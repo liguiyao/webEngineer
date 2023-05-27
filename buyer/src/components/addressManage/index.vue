@@ -8,39 +8,39 @@
         :label-width="100"
         :rules="ruleInline"
       >
-        <FormItem label="收件人" prop="name">
+        <FormItem label="Receiver" prop="name">
           <i-input v-model="formData.name" style="width: 600px"></i-input>
         </FormItem>
-        <FormItem label="收件地区" prop="address">
+        <FormItem label="Area" prop="address">
           <i-input
             v-model="formData.address"
             disabled
             style="width: 600px"
           ></i-input>
-          <Button type="primary" size="small" @click="$refs.map.showMap = true">选择</Button>
+          <Button type="primary" size="small" @click="$refs.map.showMap = true">Select</Button>
         </FormItem>
-        <FormItem label="详细地址" prop="detail">
+        <FormItem label="Full address" prop="detail">
           <i-input v-model="formData.detail" style="width: 600px"></i-input>
         </FormItem>
-        <FormItem label="手机号码" prop="mobile">
+        <FormItem label="Mobile phone" prop="mobile">
           <i-input v-model="formData.mobile" style="width: 600px"></i-input>
         </FormItem>
-        <FormItem label="地址别名">
+        <FormItem label="Address alias">
           <i-input
             v-model="formData.alias"
             length
             :maxlength="4"
-            placeholder="请输入地址别名，例如公司"
+            placeholder="Please enter an alias, such as a company"
             style="width: 600px"
           ></i-input>
         </FormItem>
-        <FormItem label="默认地址">
+        <FormItem label="Default address">
           <i-switch v-model="formData.isDefault" />
         </FormItem>
       </Form>
       <div class="mt_20" slot="footer">
-        <Button @click="hide">取消</Button>
-        <Button type="primary" class="mr_10" :loading="loading" @click="save">保存收货地址</Button>
+        <Button @click="hide">Cancel</Button>
+        <Button type="primary" class="mr_10" :loading="loading" @click="save">Save</Button>
       </div>
     </Modal>
     <lili-map ref="map" @getAddress="getAddress"></lili-map>
@@ -69,17 +69,17 @@ export default {
         isDefault: false
       },
       ruleInline: { // 验证规则
-        name: [{ required: true, message: '请输入收件人姓名', trigger: 'blur' }],
-        address: [{ required: true, message: '请输入地址', trigger: 'change' }],
+        name: [{ required: true, message: 'Enter receiver name', trigger: 'blur' }],
+        address: [{ required: true, message: 'Enter Address', trigger: 'change' }],
         detail: [
-          { required: true, message: '请输入详细地址', trigger: 'blur' }
+          { required: true, message: 'Enter address detail', trigger: 'blur' }
         ],
         mobile: [
-          { required: true, message: '手机号不能为空', trigger: 'blur' },
+          { required: true, message: 'Phone number cannot be empty', trigger: 'blur' },
           {
             type: 'string',
             pattern: /^1[3|4|5|6|7|8][0-9]{9}$/,
-            message: '手机号格式出错',
+            message: 'Wrong number format',
             trigger: 'blur'
           }
         ]
@@ -100,7 +100,7 @@ export default {
             editMemberAddress(params).then((res) => {
               this.loading = false;
               if (res.success) {
-                this.$Message.success('编辑地址成功');
+                this.$Message.success('Edit success');
                 this.$emit('change', true);
                 this.hide();
               }
@@ -109,7 +109,7 @@ export default {
             newMemberAddress(params).then((res) => {
               this.loading = false;
               if (res.success) {
-                this.$Message.success('新增地址成功');
+                this.$Message.success('Add success');
                 this.$emit('change', true);
                 this.hide();
               }

@@ -5,19 +5,19 @@
       <div class="icon-row">
         <div class="footer-icon">
           <h5 class="footer-icon-child"></h5>
-          <span class="footer-icon-text">品类齐全，轻松购物</span>
+          <span class="footer-icon-text">Easy shopping</span>
         </div>
         <div class="footer-icon">
           <h5 class="footer-icon-child footer-icon-child-2"></h5>
-          <span class="footer-icon-text">多仓直发，极速配送</span>
+          <span class="footer-icon-text">Fast delivery</span>
         </div>
         <div class="footer-icon">
           <h5 class="footer-icon-child footer-icon-child-3"></h5>
-          <span class="footer-icon-text">正品行货，精致服务</span>
+          <span class="footer-icon-text">Exquisite service</span>
         </div>
         <div class="footer-icon">
           <h5 class="footer-icon-child footer-icon-child-4"></h5>
-          <span class="footer-icon-text">天天低价，畅选无忧</span>
+          <span class="footer-icon-text">Every day cheap</span>
         </div>
       </div>
       <div class="service-intro">
@@ -76,12 +76,12 @@ export default {
       config:require('@/config'),
       guideArr: [
         // 导航链接
-        ["购物指南", "购物流程", "会员介绍", "生活旅行", "常见问题"],
-        ["配送方式", "上门自提", "配送服务查询", "收取标准", "物流规则"],
-        ["支付方式", "在线支付", "公司转账", "余额支付", "积分支付"],
-        ["售后服务", "售后政策", "退款说明", "返修/退货", "取消订单"],
+        ["Shopping guide", "Shopping process", "Member intro", "Life travel", "Q&A"],
+        ["Delivery mode", "Store pickup", "Delivery inquiry", "Charge standard", "Logistics rules"],
+        ["Payment", "Online payment", "Transfer", "Balance", "Integral"],
+        ["After-sales", "policy", "Refund", "repair/return", "Cancel order"],
       ],
-      moreLink: ["关于我们", "联系我们", "联系客服", "商家帮助", "隐私政策"], // 更多链接
+      moreLink: ["About us", "Contact us", "customer service", "Merchant help", "Privacy policy"], // 更多链接
       year: new Date().getFullYear(), // 当前年份
     };
   },

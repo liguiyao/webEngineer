@@ -1,6 +1,6 @@
 <template>
   <div class="content-drawer">
-    <div v-if="title === '购物车'" class="cart-con">
+    <div v-if="title === 'Cart'" class="cart-con">
       <ul>
         <li v-for="(goods,goodsIndex) in cartList" :key="goodsIndex">
           <div>
@@ -10,13 +10,13 @@
             <p class="hover-color" @click="linkTo(`/goodsDetail?skuId=${goods.goodsSku.id}&goodsId=${goods.goodsSku.goodsId}`)">{{goods.goodsSku.goodsName}}</p>
             <p class="price">{{goods.goodsSku.price | unitPrice('￥')}}<span>&nbsp; x{{goods.num}}</span></p>
           </div>
-          <span class="del hover-color" @click="delGoods(goods.goodsSku.id)">删除</span>
+          <span class="del hover-color" @click="delGoods(goods.goodsSku.id)">Delete</span>
         </li>
       </ul>
-      <Button size="large" class="mt_10" type="primary" @click="linkTo('/cart')" long>去购物车结算</Button>
+      <Button size="large" class="mt_10" type="primary" @click="linkTo('/cart')" long>Cart checkout</Button>
     </div>
 
-    <div v-else-if="title === '我的订单'" class="order-con">
+    <div v-else-if="title === 'My order'" class="order-con">
       <ul>
         <li v-for="(order,orderIndex) in orderList" :key="orderIndex">
           <div class="order-status"><span>{{filterOrderStatus(order.orderStatus)}}</span><span>{{order.createTime}}</span></div>
@@ -26,53 +26,53 @@
               v-for="(img,imgIndex) in order.orderItems"
               :key="imgIndex" width="40" height="40" alt="">
           </div>
-          <div class="order-handle"><span>{{ order.flowPrice | unitPrice("￥") }}</span><span class="hover-color" @click="linkTo(`home/OrderDetail?sn=${order.sn}`)">查看订单</span></div>
+          <div class="order-handle"><span>{{ order.flowPrice | unitPrice("￥") }}</span><span class="hover-color" @click="linkTo(`home/OrderDetail?sn=${order.sn}`)">View order</span></div>
         </li>
       </ul>
-      <Button type="primary" @click="linkTo('/home/MyOrder')" long>查看全部订单</Button>
+      <Button type="primary" @click="linkTo('/home/MyOrder')" long>Check my order</Button>
     </div>
 
-    <div v-else-if="title === '优惠券'" class="coupon-con">
+    <div v-else-if="title === 'Coupon'" class="coupon-con">
       <ul class="coupon-list">
           <li v-for="(coupon, index) in couponList" class="coupon-item" :key="index">
             <div class="c-left">
               <div>
                 <span v-if="coupon.couponType === 'PRICE'" class="fontsize_12 global_color">￥<span class="price">{{coupon.price | unitPrice}}</span></span>
-                <span v-if="coupon.couponType === 'DISCOUNT'" class="fontsize_12 global_color"><span class="price">{{coupon.couponDiscount}}</span>折</span>
-                <span class="describe">满{{coupon.consumeThreshold}}元可用</span>
+                <span v-if="coupon.couponType === 'DISCOUNT'" class="fontsize_12 global_color"><span class="price">{{coupon.couponDiscount}}</span>discount</span>
+                <span class="describe">Full{{coupon.consumeThreshold}}available</span>
               </div>
-              <p>使用范围：{{useScope(coupon.scopeType, coupon.storeName)}}</p>
-              <p>有效期：{{coupon.endTime}}</p>
+              <p>Scope：{{useScope(coupon.scopeType, coupon.storeName)}}</p>
+              <p>Validity：{{coupon.endTime}}</p>
             </div>
             <b></b>
-            <a class="c-right" @click="receive(coupon)">立即领取</a>
+            <a class="c-right" @click="receive(coupon)">Get</a>
             <i class="circle-top"></i>
             <i class="circle-bottom"></i>
           </li>
         </ul>
     </div>
-    <div v-else-if="title === '我的足迹'" class="tracks-con">
+    <div v-else-if="title === 'Track'" class="tracks-con">
       <ul>
         <li v-for="(track,trackIndex) in tracksList" :key="trackIndex">
           <img :src="track.thumbnail" :alt="track.thumbnail" @click="linkTo(`/goodsDetail?skuId=${track.id}&goodsId=${track.goodsId}`)" width="100" height="100">
-          <div @click="addToCart(track.id)">加入购物车</div>
+          <div @click="addToCart(track.id)">Add cart</div>
           <p class="global_color">{{track.price | unitPrice('￥')}}</p>
         </li>
       </ul>
-      <div class="hover-color" style="text-align:center;" @click="linkTo('/home/MyTracks')">查看更多>></div>
+      <div class="hover-color" style="text-align:center;" @click="linkTo('/home/MyTracks')">More>></div>
     </div>
-    <div v-else-if="title === '我的收藏'" class="collect-con">
+    <div v-else-if="title === 'My collection'" class="collect-con">
       <ul>
         <li v-for="(collect,collectIndex) in collectList" :key="collectIndex">
           <img :src="collect.image" :alt="collect.image" @click="linkTo(`/goodsDetail?skuId=${collect.skuId}&goodsId=${collect.goodsId}`)" width="100" height="100">
-          <div @click="addToCart(collect.skuId)">加入购物车</div>
+          <div @click="addToCart(collect.skuId)">Add cart</div>
           <span class="del-icon" @click.stop="cancelCollect(collect.skuId)">
             <Icon type="md-trash" />
           </span>
           <p class="global_color">{{collect.price | unitPrice('￥')}}</p>
         </li>
       </ul>
-      <div class="hover-color" style="text-align:center;" @click="linkTo('/home/Favorites')">查看更多>></div>
+      <div class="hover-color" style="text-align:center;" @click="linkTo('/home/Favorites')">More>></div>
     </div>
     <Spin v-if="loading" fix></Spin>
   </div>
@@ -93,19 +93,19 @@ export default {
   watch: {
     title (val) {
       switch (val) {
-        case '购物车':
+        case 'Cart':
           this.getCartList()
           break;
-        case '我的订单':
+        case 'Order':
           this.getOrderList()
           break;
-        case '我的足迹':
+        case 'Track':
           this.getTracksList()
           break;
-        case '优惠券':
+        case 'Coupon':
           this.getCouponList()
           break;
-        case '我的收藏':
+        case 'Collection':
           this.getCollectList()
           break;
       }
@@ -121,31 +121,31 @@ export default {
       tracksList: [], // 足迹列表
       orderStatusList: [ // 订单状态
         {
-          name: '未付款',
+          name: 'UNPAID',
           status: 'UNPAID'
         },
         {
-          name: '已付款',
+          name: 'PAID',
           status: 'PAID'
         },
         {
-          name: '待发货',
+          name: 'UNDELIVERED',
           status: 'UNDELIVERED'
         },
         {
-          name: '已发货',
+          name: 'DELIVERED',
           status: 'DELIVERED'
         },
         {
-          name: '已完成',
+          name: 'COMPLETED',
           status: 'COMPLETED'
         },
         {
-          name: '待核验',
+          name: 'evaluate',
           status: 'TAKE'
         },
         {
-          name: '已取消',
+          name: 'CANCELLED',
           status: 'CANCELLED'
         }
       ]
@@ -163,7 +163,7 @@ export default {
     delGoods (id) {
       delCartGoods({ skuIds: id }).then((res) => {
         if (res.success) {
-          this.$Message.success('删除成功');
+          this.$Message.success('Delete success');
           this.getCartList();
           cartCount().then(res => {
             this.$store.commit('SET_CARTNUM', res.result)
@@ -182,10 +182,10 @@ export default {
       receiveCoupon(item.id).then(res => {
         if (res.success) {
           this.$Modal.confirm({
-            title: '领取优惠券',
-            content: '<p>优惠券领取成功，可到我的优惠券页面查看</p>',
-            okText: '我的优惠券',
-            cancelText: '立即使用',
+            title: 'Get coupon',
+            content: '<p>Received successfully,you can go to my coupon page to view</p>',
+            okText: 'My coupon',
+            cancelText: 'Immediate use',
             onOk: () => {
               this.$router.push('/home/Coupons')
             },
@@ -205,21 +205,21 @@ export default {
       })
     },
     useScope (type, storeName) { // 判断优惠券使用范围
-      let shop = '平台';
-      let goods = '全部商品'
+      let shop = 'platform';
+      let goods = 'All goods'
       if (storeName !== 'platform') shop = storeName
       switch (type) {
         case 'ALL':
-          goods = '全部商品'
+          goods = 'All goods'
           break;
         case 'PORTION_GOODS':
-          goods = '部分商品'
+          goods = 'Partial goods'
           break;
         case 'PORTION_GOODS_CATEGORY':
-          goods = '部分分类商品'
+          goods = 'Partial classified goods'
           break;
       }
-      return `${shop}${goods}可用`
+      return `${shop}${goods}available`
     },
     addToCart (id) { // 添加商品到购物车
       const params = {
@@ -230,7 +230,7 @@ export default {
       addCartGoods(params).then(res => {
         this.loading = false;
         if (res.success) {
-          this.$Message.success('商品已成功添加到购物车')
+          this.$Message.success('Successfully added to the cart')
         } else {
           this.$Message.warning(res.message);
         }
@@ -278,7 +278,7 @@ export default {
     cancelCollect (id) { // 取消商品收藏
       cancelCollect('GOODS', id).then(res => {
         if (res.success) {
-          this.$Message.success('取消收藏成功')
+          this.$Message.success('Cancel success')
           this.getCollectList();
         }
       })

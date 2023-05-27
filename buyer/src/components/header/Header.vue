@@ -2,17 +2,17 @@
   <div class="box">
     <div class="nav">
       <ul class="location">
-        <li v-if="$route.path.includes('home')" style="margin-left:10px"><router-link to="/">首页</router-link></li>
+        <li v-if="$route.path.includes('home')" style="margin-left:10px"><router-link to="/">Home page</router-link></li>
       </ul>
       <ul class="detail">
         <li class="first" v-show="!userInfo.username">
           <router-link :to="`/signUp`">
-            <span style="border:none">立即注册</span>
+            <span style="border:none">Register</span>
           </router-link>
         </li>
         <li v-show="!userInfo.username">
           <router-link :to="`/login?rePath=${$route.path}&query=${JSON.stringify($route.query)}`">
-            <span style="border:none">请登录</span>
+            <span style="border:none">Login</span>
           </router-link>
         </li>
         <li v-show="!!userInfo.username">
@@ -23,31 +23,31 @@
             </div>
             <transition name='fade'>
               <ul class="drop-items">
-                <li @click="goUserCenter('/home')">我的主页</li>
-                <li @click="goUserCenter('/home/Coupons')">优惠券</li>
-                <li @click="goUserCenter('/home/Favorites')">我的收藏</li>
-                <li @click="signOutFun">退出登录</li>
+                <li @click="goUserCenter('/home')">Home</li>
+                <li @click="goUserCenter('/home/Coupons')">Coupon</li>
+                <li @click="goUserCenter('/home/Favorites')">Collection</li>
+                <li @click="signOutFun">Log out</li>
               </ul>
             </transition>
           </div>
         </li>
-        <li @click="goUserCenter('/home/MyOrder')"><span class="nav-item hover-color">我的订单</span></li>
-        <li @click="goUserCenter('/home/MyTracks')"><span class="nav-item hover-color">我的足迹</span></li>
-        <li @click="goUserCenter('/home/MsgList')"><span class="nav-item hover-color">我的消息</span></li>
+        <li @click="goUserCenter('/home/MyOrder')"><span class="nav-item hover-color">My Order</span></li>
+        <li @click="goUserCenter('/home/MyTracks')"><span class="nav-item hover-color">My trail</span></li>
+        <li @click="goUserCenter('/home/MsgList')"><span class="nav-item hover-color">Message</span></li>
         <li v-if="$route.name !== 'Cart'" style="position:relative;">
           <i class="cart-badge" v-show="Number(cartNum)">{{cartNum < 100 ? cartNum : '99'}}</i>
           <Dropdown placement="bottom-start">
             <router-link to="/cart" target="_blank">
               <span @mouseenter="getCartList">
                 <Icon size="18" type="ios-cart-outline"></Icon>
-                购物车
+                Cart
               </span>
             </router-link>
             <DropdownMenu slot="list">
               <div class="shopping-cart-null" style="width:200px" v-show="shoppingCart.length <= 0">
                 <Icon type="ios-cart-outline" class="cart-null-icon"></Icon>
-                <span>你的购物车没有宝贝哦</span>
-                <span>赶快去添加商品吧~</span>
+                <span>There's no treasure in your shopping cart ~</span>
+                <span>Go ahead and add the goods ~</span>
               </div>
               <div class="shopping-cart-list" v-show="shoppingCart.length > 0">
                 <div class="shopping-cart-box" v-for="(item, index) in shoppingCart" @click="goToPay" :key="index">
@@ -60,23 +60,23 @@
                     </div>
                     <div class="shopping-cart-detail">
                       <p>
-                        数量:
+                        Quantity:
                         <span class="shopping-cart-text">{{ item.num }}</span>
-                        价钱:
+                        Price:
                         <span class="shopping-cart-text">{{ item.purchasePrice | unitPrice('￥') }}</span>
                       </p>
                     </div>
                   </div>
                 </div>
                 <div class="go-to-buy">
-                  <Button type="error" size="small" @click="goToPay">去结账</Button>
+                  <Button type="error" size="small" @click="goToPay">Check Out</Button>
                 </div>
               </div>
             </DropdownMenu>
           </Dropdown>
         </li>
         <li>
-          <span class="nav-item" @click="shopEntry">店铺入驻</span>
+          <span class="nav-item" @click="shopEntry">Store Occupancy</span>
         </li>
       </ul>
     </div>
@@ -136,10 +136,10 @@ export default {
         this.$router.push({ path: path });
       } else {
         this.$Modal.confirm({
-          title: '请登录',
-          content: '<p>请登录后执行此操作</p>',
-          okText: '立即登录',
-          cancelText: '继续浏览',
+          title: 'Please log in',
+          content: '<p>Log in and continue this operation</p>',
+          okText: 'Login',
+          cancelText: 'Keep browsing',
           onOk: () => {
             this.$router.push({
               path: '/login',
@@ -187,7 +187,7 @@ export default {
 .first,
 .username,
 .shopping-cart-null span {
- 
+
 }
 
 .box {

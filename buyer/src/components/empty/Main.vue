@@ -17,7 +17,7 @@ export default {
   props: {
     _Title: { // 描述内容
       type: null,
-      default: '暂无更多'
+      default: 'No more'
     },
     _Size: { // 图片大小
       type: Number,

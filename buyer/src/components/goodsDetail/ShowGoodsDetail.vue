@@ -4,30 +4,30 @@
       <div class="item-intro-detail" ref="itemIntroDetail">
         <div class="item-intro-nav item-tabs">
           <Tabs :animated="false" @on-click="tabClick">
-            <TabPane label="商品介绍">
+            <TabPane label="Product introduction">
               <div class="item-intro-img" ref="itemIntroGoods">
                 <div class="item-intro" v-html="skuDetail.intro" v-if="skuDetail.intro"></div>
-                <div v-else style="margin:20px;">暂无商品介绍</div>
+                <div v-else style="margin:20px;">No product description</div>
               </div>
             </TabPane>
-            <TabPane label="商品评价">
+            <TabPane label="Commodity evaluation">
               <div class="remarks-container" ref="itemGoodsComment">
                 <div class="remarks-analyse-box">
                   <div class="remarks-analyse-goods">
                     <i-circle :percent="skuDetail.grade" stroke-color="#5cb85c">
                       <span class="remarks-analyse-num">{{skuDetail.grade}}%</span>
-                      <p class="remarks-analyse-title">好评率</p>
+                      <p class="remarks-analyse-title">Favorable rating</p>
                     </i-circle>
                   </div>
                 </div>
                 <div class="remarks-bar">
-                  <span @click="viewByGrade('')" :class="{selectedBar: commentParams.grade === ''}">全部({{commentTypeNum.all}})</span>
-                  <span @click="viewByGrade('GOOD')" :class="{selectedBar: commentParams.grade === 'GOOD'}">好评({{commentTypeNum.good}})</span>
-                  <span @click="viewByGrade('MODERATE')" :class="{selectedBar: commentParams.grade === 'MODERATE'}">中评({{commentTypeNum.moderate}})</span>
-                  <span @click="viewByGrade('WORSE')" :class="{selectedBar: commentParams.grade === 'WORSE'}">差评({{commentTypeNum.worse}})</span>
+                  <span @click="viewByGrade('')" :class="{selectedBar: commentParams.grade === ''}">All({{commentTypeNum.all}})</span>
+                  <span @click="viewByGrade('GOOD')" :class="{selectedBar: commentParams.grade === 'GOOD'}">Praise({{commentTypeNum.good}})</span>
+                  <span @click="viewByGrade('MODERATE')" :class="{selectedBar: commentParams.grade === 'MODERATE'}">Medium({{commentTypeNum.moderate}})</span>
+                  <span @click="viewByGrade('WORSE')" :class="{selectedBar: commentParams.grade === 'WORSE'}">Bad({{commentTypeNum.worse}})</span>
                 </div>
                 <div style="text-align: center;margin-top: 20px;" v-if="commentList.length === 0">
-                  暂无评价数据
+                  No evaluation data
                 </div>
                 <div class="remarks-box" v-for="(item,index) in commentList" :key="index" v-else>
                   <div class="remarks-user">
@@ -49,8 +49,8 @@
                     </div>
                     <div class="preview-img"  v-if="item.previewImg"  @click.prevent="hidePreviewImg(item)">
                       <div>
-                        <span @click.stop="rotatePreviewImg(0, item)"><Icon type="md-refresh" />左转</span>
-                        <span @click.stop="rotatePreviewImg(1, item)"><Icon type="md-refresh" />右转</span>
+                        <span @click.stop="rotatePreviewImg(0, item)"><Icon type="md-refresh" />Turn left</span>
+                        <span @click.stop="rotatePreviewImg(1, item)"><Icon type="md-refresh" />Turn right</span>
                       </div>
                       <img :src="item.previewImg" :style="{transform:`rotate(${item.deg}deg)`}" width="198" alt="">
                     </div>
@@ -80,7 +80,7 @@
                   </table>
                 </div>
               </template>
-              <div v-else>暂无商品参数</div>
+              <div v-else>No commodity parameters</div>
             </TabPane>
           </Tabs>
         </div>

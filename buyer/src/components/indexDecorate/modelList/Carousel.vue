@@ -25,23 +25,23 @@
           <Avatar icon="ios-person" class="mb_10" v-else size="80" />
           <div>
             Hi, {{
-              userInfo.nickName || `欢迎来到${config.title}` | secrecyMobile
+              userInfo.nickName || `Welcome to ${config.title}` | secrecyMobile
             }}
           </div>
           <div v-if="userInfo.id">
             <Button class="btns" shape="circle" @click="$router.push('home')"
-              >会员中心</Button
+              >Member</Button
             >
           </div>
           <div v-else>
             <Button class="btns" @click="$router.push('login')" shape="circle"
-              >请登录</Button
+              >Please login</Button
             >
           </div>
         </div>
         <div class="shop-msg">
           <div>
-            <span>常见问题</span>
+            <span>Q&A</span>
             <ul class="article-list">
               <li
                 class="ellipsis"

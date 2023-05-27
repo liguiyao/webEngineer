@@ -31,7 +31,7 @@ export default {
       // 头部
       _Title: { // 标题
         type: null,
-        default: '卡片头部'
+        default: 'Card Top'
       },
       // 右侧更多
       _More: {

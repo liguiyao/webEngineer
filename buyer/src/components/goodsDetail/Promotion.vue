@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="wrapper" v-if="type === 'goodsDetail'">
-      <div class="wr-l"><Icon size="23" type="ios-alarm-outline" /> 秒杀活动</div>
+      <div class="wr-l"><Icon size="23" type="ios-alarm-outline" /> Sec-kill</div>
       <div class="count-down" v-if="end === ''">
-      <p>倒计时：</p><span>{{ hours }}</span><span>{{ minutes }}</span><span>{{ seconds }}</span>
+      <p>Countdown：</p><span>{{ hours }}</span><span>{{ minutes }}</span><span>{{ seconds }}</span>
       </div>
       <div v-else>{{end}}</div>
     </div>
     <span v-else class="cart-promotion">
-      <span v-if="end === ''">距活动结束：<span>{{ hours }}</span> : <span>{{ minutes }}</span> : <span>{{ seconds }}</span></span>
-      <span v-else>活动已结束</span>
+      <span v-if="end === ''">End of distance：<span>{{ hours }}</span> : <span>{{ minutes }}</span> : <span>{{ seconds }}</span></span>
+      <span v-else>Activity has ended</span>
     </span>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
       this.minutes = m
       this.seconds = s;
       if (lefttime <= 0) {
-        this.end = `活动已结束`;
+        this.end = `Activity has ended`;
         clearInterval(this.interval)
       }
     },

@@ -11,13 +11,13 @@
           v-if="skuDetail.goodsType !== 'VIRTUAL_GOODS'"
           style="margin-top:10px;rgb(153, 149, 149);"
         >
-          实物商品
+          Physical goods
         </div>
         <div
           v-else-if="skuDetail.goodsType == 'VIRTUAL_GOODS'"
           style="margin-top:10px;rgb(153, 149, 149);"
         >
-          虚拟商品
+          Virtual goods
         </div>
         <div class="item-detail-img-row">
           <div
@@ -35,7 +35,7 @@
             ><Icon
               type="ios-heart"
               :color="isCollected ? '#ed3f14' : '#666'"
-            />{{ isCollected ? "已收藏" : "收藏" }}</span
+            />{{ isCollected ? "Collected" : "Collect" }}</span
           >
         </div>
       </div>
@@ -64,7 +64,7 @@
             >
               <p>
                 <span class="item-price-title" v-if="promotionMap['SECKILL']"
-                  >秒 &nbsp;杀&nbsp;价</span
+                  >seconds &nbsp;杀&nbsp;价</span
                 >
                 <span class="item-price">{{
                   skuDetail.promotionPrice | unitPrice("￥")
@@ -80,7 +80,7 @@
               <div v-if="wholesaleNum && wholesaleNum.length">
                 <div class="flex">
                   <div class="item-price-title">
-                    价 &nbsp;&nbsp;&nbsp;&nbsp;格
+                    Price
                   </div>
 
                   <div
@@ -92,7 +92,7 @@
                   </div>
                 </div>
                 <div class="flex">
-                  <div class="item-price-title">起 批 量</div>
+                  <div class="item-price-title">Initial batch quantity</div>
                   <div
                     v-for="(item, index) in wholesaleNum"
                     :key="index"
@@ -106,7 +106,7 @@
               <!-- 普通价格 -->
               <div v-else>
                 <span class="item-price-title"
-                  >价 &nbsp;&nbsp;&nbsp;&nbsp;格</span
+                  >Price</span
                 >
                 <span class="item-price">{{
                   skuDetail.price | unitPrice("￥")
@@ -116,7 +116,7 @@
             <!-- 优惠券展示 -->
             <div class="item-price-coupon-row" v-if="promotionMap['COUPON'].length">
               <p class="Ellipsis">
-                <span class="item-price-title">优 惠 券</span>
+                <span class="item-price-title">Coupon</span>
                 <span>
                   <span
                     class="item-coupon"
@@ -125,18 +125,18 @@
                     @click="receiveCoupon(item.id)"
                   >
                     <span v-if="item.couponType == 'PRICE'"
-                      >满{{ item.consumeThreshold }}减{{ item.price }}</span
+                      >Full{{ item.consumeThreshold }}reduce{{ item.price }}</span
                     >
                     <span v-if="item.couponType == 'DISCOUNT'"
-                      >满{{ item.consumeThreshold }}打{{
+                      >Full{{ item.consumeThreshold }}get{{
                         item.couponDiscount
-                      }}折</span
+                      }}Sale</span
                     >
                   </span>
                 </span>
 
                 <div class="dropdown" v-if="promotionMap['COUPON'].length > 6">
-                    <span>展开更多</span>
+                    <span>More</span>
                     <div class="dropdown-content">
                       <span
                         class="item-coupon"
@@ -145,12 +145,12 @@
                         @click="receiveCoupon(item.id)"
                       >
                         <span v-if="item.couponType == 'PRICE'"
-                          >满{{ item.consumeThreshold }}减{{ item.price }}</span
+                          >Full{{ item.consumeThreshold }}reduce{{ item.price }}</span
                         >
                         <span v-if="item.couponType == 'DISCOUNT'"
-                          >满{{ item.consumeThreshold }}打{{
+                          >Full{{ item.consumeThreshold }}get{{
                             item.couponDiscount
-                          }}折</span
+                          }}sale</span
                         >
                       </span>
                     </div>
@@ -161,15 +161,15 @@
             <div class="item-price-row" v-if="promotionMap['FULL_DISCOUNT']">
               <p>
                 <span class="item-price-title"
-                  >促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</span
+                  >promotion</span
                 >
-                <span class="item-promotion">满减</span>
+                <span class="item-promotion">Full subtraction</span>
                 <span
                   class="item-desc-pintuan"
                   v-if="promotionMap['FULL_DISCOUNT'].fullMinus"
-                  >满{{ promotionMap["FULL_DISCOUNT"].fullMoney }}元，立减现金{{
+                  >Full{{ promotionMap["FULL_DISCOUNT"].fullMoney }}Ringgit，reduction{{
                     promotionMap["FULL_DISCOUNT"].fullMinus
-                  }}元</span
+                  }}Ringgit</span
                 >
                 <span
                   class="item-desc-pintuan"
@@ -177,19 +177,19 @@
                     promotionMap['FULL_DISCOUNT'].fullRate &&
                     promotionMap['FULL_DISCOUNT'].fullRateFlag
                   "
-                  >满{{ promotionMap["FULL_DISCOUNT"].fullMoney }}元，立享{{
+                  >Full{{ promotionMap["FULL_DISCOUNT"].fullMoney }}Ringgit，enjoy{{
                     promotionMap["FULL_DISCOUNT"].fullRate
-                  }}折</span
+                  }}sale</span
                 >
               </p>
             </div>
           </div>
           <div class="item-price-right">
             <div class="item-remarks-sum">
-              <p>累计评价</p>
+              <p>evaluation</p>
               <p>
                 <span class="item-remarks-num"
-                  >{{ skuDetail.commentNum || 0 }} 条</span
+                  >{{ skuDetail.commentNum || 0 }} item</span
                 >
               </p>
             </div>
@@ -229,7 +229,7 @@
         <div class="add-buy-car-box">
           <div class="item-select">
             <div class="item-select-title">
-              <p>数量</p>
+              <p>quantity</p>
             </div>
             <div class="item-select-row">
               <InputNumber
@@ -240,7 +240,7 @@
                 :precision="0.1"
                 @on-blur="changeCount"
               ></InputNumber>
-              <span class="inventory"> 库存{{ skuDetail.quantity }}</span>
+              <span class="inventory"> stock{{ skuDetail.quantity }}</span>
             </div>
           </div>
           <div
@@ -250,7 +250,7 @@
             "
           >
             <div class="item-select-title">
-              <p>重量</p>
+              <p>weight</p>
             </div>
             <div class="item-select-row">
               <span class="inventory"> {{ skuDetail.weight }}kg</span>
@@ -265,7 +265,7 @@
               :loading="loading"
               :disabled="skuDetail.quantity === 0"
               @click="pointPay"
-              >积分购买</Button
+              >Point purchase</Button
             >
           </div>
           <div
@@ -278,14 +278,14 @@
               :loading="loading"
               :disabled="skuDetail.quantity === 0"
               @click="addShoppingCartBtn"
-              >加入购物车</Button
+              >Add to cart</Button
             >
             <Button
               type="warning"
               :loading="loading1"
               :disabled="skuDetail.quantity === 0"
               @click="buyNow"
-              >立即购买</Button
+              >Buy now</Button
             >
           </div>
         </div>
@@ -371,7 +371,7 @@ export default {
     changeCount(val) {
       if (this.wholesaleList && this.wholesaleList.length > 0) {
         if (this.count <= this.wholesaleList[0].num) {
-          this.$Message.warning("批发商品购买数量不能小于起批数量");
+          this.$Message.warning("The purchase quantity of wholesale goods shall not be less than the initial batch quantity");
           this.count = this.wholesaleList[0].num;
         }
       }
@@ -454,14 +454,14 @@ export default {
       if (this.isCollected) {
         let cancel = await cancelCollect("GOODS", this.skuDetail.id);
         if (cancel.success) {
-          this.$Message.success("取消收藏成功");
+          this.$Message.success("Cancel success");
           this.isCollected = false;
         }
       } else {
         let collect = await collectGoods("GOODS", this.skuDetail.id);
         if (collect.code === 200) {
           this.isCollected = true;
-          this.$Message.success("收藏商品成功,可以前往个人中心我的收藏查看");
+          this.$Message.success("collect success");
         }
       }
     },
@@ -517,7 +517,7 @@ export default {
       // 领取优惠券
       receiveCoupon(id).then((res) => {
         if (res.success) {
-          this.$Message.success("优惠券领取成功");
+          this.$Message.success("get success");
         } else {
           this.$Message.warning(res.message);
         }

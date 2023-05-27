@@ -6,7 +6,7 @@
         <Tooltip placement="left" :content="item.title">
           <Icon size="20" :type="item.icon"/>
           <p class="barTitle" v-if="item.titleShow"> {{item.title}}</p>
-          <div class="circle" v-if="item.title === '购物车'">
+          <div class="circle" v-if="item.title === 'Cart'">
             {{cartNum < 100 ? cartNum : 99}}
           </div>
         </Tooltip>
@@ -47,17 +47,17 @@ export default {
   },
   methods: {
     showCartNum (item) { // 获取购物车数量
-      if (this.userInfo && item.title === '购物车') {
+      if (this.userInfo && item.title === 'Cart') {
         this.getCartList()
       }
     },
     clickBar (val) { // tabbar点击操作
       if (!this.userInfo) {
         this.$Modal.confirm({
-          title: '请登录',
-          content: '<p>请登录后执行此操作</p>',
-          okText: '立即登录',
-          cancelText: '继续浏览',
+          title: 'Please login',
+          content: '<p>Please login</p>',
+          okText: 'Log in',
+          cancelText: 'Continue browsing',
           onOk: () => {
             this.$router.push({
               path: '/login',
@@ -75,10 +75,10 @@ export default {
         } else {
           this.handleDrawer = false
           switch (val.title) {
-            case '会员中心':
+            case 'Member':
               this.openBlank('/home')
               break;
-            case '我的资产':
+            case 'My assets':
               this.openBlank('/home/MoneyManagement')
               break;
           }
