@@ -7,10 +7,10 @@ import qs from "qs";
 
 // 创建 axios 实例
 const request = axios.create({
-  // API 请求的默认前缀
+  // API Please 求的default前缀
   baseURL: config.BASE_API_URL,
 
-  // 请求超时时间
+  // Please 求超时时间
   timeout: 20000,
 });
 
@@ -31,11 +31,11 @@ const errorHandler = (error) => {
       if(!isRefreshing){
       
       /**
-       * 403提示将重新从商家移动端进入当前页面
+       * 403Tips将重新从商家移动端进入当前页面
        */
-      MessageBox("当前登录已失效，请从关闭重新进入。", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      MessageBox("当前Login已失效，Please 从Close重新进入。", "Tips", {
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
         closeOnPressEscape: false,
         closeOnClickModal: false,
         type: "warning",
@@ -44,8 +44,8 @@ const errorHandler = (error) => {
           isRefreshing = true
           window.close();
           Notification({
-            title:"登录失效提示",
-            message: "请手动关闭当前页面",
+            title:"Login失效Tips",
+            message: "Please 手动Close当前页面",
             type:"error",
             position: "top-right",
           });
@@ -54,8 +54,8 @@ const errorHandler = (error) => {
         .catch(() => {
           isRefreshing = true
           Notification({
-            title:"登录失效提示",
-            message: "请手动关闭当前页面",
+            title:"Login失效Tips",
+            message: "Please 手动Close当前页面",
             type:"error",
             position: "top-right",
           });
@@ -74,7 +74,7 @@ const errorHandler = (error) => {
   return Promise.reject(error);
 };
 
-// 请求拦截器
+// Please 求拦截器
 request.interceptors.request.use((config) => {
   const token = getToken();
 
@@ -90,7 +90,7 @@ request.interceptors.response.use((response) => {
 }, errorHandler);
 
 /**
- * GET 请求
+ * GET Please 求
  *
  * @param {String} url
  * @param {Object} data
@@ -107,7 +107,7 @@ export const get = (url, data = {}, options = {}) => {
 };
 
 /**
- * POST 请求
+ * POST Please 求
  *
  * @param {String} url
  * @param {Object} data
@@ -125,7 +125,7 @@ export const post = (url, data = {}, options = {}) => {
 };
 
 /**
- * del 请求
+ * del Please 求
  *
  * @param {String} url
  * @param {Object} data
@@ -142,7 +142,7 @@ export const del = (url, data = {}, options = {}) => {
 };
 
 /**
- * 上传文件 POST 请求
+ * 上传文件 POST Please 求
  *
  * @param {String} url
  * @param {Object} data

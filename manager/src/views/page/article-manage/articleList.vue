@@ -21,7 +21,7 @@
                 <Input
                   type="text"
                   v-model="searchForm.title"
-                  placeholder="请输入文章标题"
+                  placeholder="Please enter 文章标题"
                   clearable
                   style="width: 200px"
                 />
@@ -31,7 +31,7 @@
                 type="primary"
                 icon="ios-search"
                 class="search-btn"
-                >搜索</Button
+                >search</Button
               >
             </Form>
           </Row>
@@ -89,7 +89,7 @@
           <FormItem label="文章分类" prop="categoryId">
             <Select
               v-model="treeValue"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 180px"
             >
@@ -126,9 +126,9 @@
           </FormItem>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="modalVisible = false">取消</Button>
+          <Button type="text" @click="modalVisible = false">Cancel</Button>
           <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-            >提交</Button
+            >Submit</Button
           >
         </div>
       </Modal>
@@ -169,11 +169,11 @@ export default {
       modalTitle: "", // 添加或编辑标题
       treeDataDefault: [],
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         categoryId: "",
       },
       searchTreeValue: "", // 切换
@@ -187,10 +187,10 @@ export default {
         id: "",
       },
       list: [], // 列表
-      treeValue: "", // 选择的分类
+      treeValue: "", // select的分类
       //树结构
       treeData: [],
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       columns: [
         // 表头
         {
@@ -216,7 +216,7 @@ export default {
           width: 100,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
 
@@ -244,7 +244,7 @@ export default {
                     },
                   },
                 },
-                this.selectedIndex == params.index ? "已选" : "选择"
+                this.selectedIndex == params.index ? "已选" : "select"
               ),
               h(
                 "Button",
@@ -277,7 +277,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -307,7 +307,7 @@ export default {
       this.getDataList();
       this.getAllList(0);
     },
-    // 选择分类回调
+    // select分类回调
     handleCateChange(data) {
       let { value, title } = data[0];
       this.list.push({
@@ -328,7 +328,7 @@ export default {
         }
       });
     },
-    // 文章分类的选择事件
+    // 文章分类的select事件
     handleCheckChange(data) {
       let value = "";
       let title = "";
@@ -357,7 +357,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索列表
+    // search列表
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -389,7 +389,7 @@ export default {
           let obj = {};
           obj.title = item.articleCategoryName;
           obj.value = item.id;
-          obj.attr = item.articleCategoryName; // 其他你想要添加的属性
+          obj.attr = item.articleCategoryName; // Others你想要添加的属性
           obj.expand = false;
           obj.selected = false;
           obj.children = this.getTree(item.children); // 递归调用
@@ -406,7 +406,7 @@ export default {
         this.loading = false;
         if (res.success) {
           this.total = res.result.total;
-          //为了在是否展示一列展示开关 需要改一下数据类型，最终提交再次更改
+          //为了在是否展示一列展示开关 需要改一下数据类型，最终Submit再次更改
           this.data = [];
           if (res.result.records.length > 0) {
             this.data = res.result.records;
@@ -422,12 +422,12 @@ export default {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.form.id;
             saveArticle(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -437,7 +437,7 @@ export default {
             updateArticle(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -483,18 +483,18 @@ export default {
         }
       });
     },
-    // 删除文章
+    // delete文章
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除么?",
+        title: "确认delete",
+        content: "您确认要delete么?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           delArticle(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

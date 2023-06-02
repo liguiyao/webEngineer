@@ -2,14 +2,14 @@
   <div class="wrapper">
     <Card>
       <Form ref="searchForm" :model="params" inline :label-width="100" class="search-form">
-        <Form-item label="商品名称">
-          <Input type="text" v-model="params.name" placeholder="请输入商品名称" clearable style="width: 200px" />
+        <Form-item label="goods name">
+          <Input type="text" v-model="params.name" placeholder="Please enter goods name" clearable style="width: 200px" />
         </Form-item>
 
-        <Button @click="getLiveGoodsMethods('clear')" type="primary" class="search-btn" icon="ios-search">搜索</Button>
+        <Button @click="getLiveGoodsMethods('clear')" type="primary" class="search-btn" icon="ios-search">search</Button>
       </Form>
       <h4 v-if="!reviewed">
-        由于直播商品需经过小程序直播平台的审核，你需要在此先提审商品，为了不影响直播间选取商品，请提前1天提审商品；
+        由于直播Goods需经过小程序直播平台的审核，你需要在此先提审Goods，为了不影响直播间选取Goods，Please 提前1天提审Goods；
       </h4>
 
       <div>
@@ -19,7 +19,7 @@
         </Tabs>
       </div>
 
-      <Button v-if="!reviewed" type="primary" style="margin-bottom:10px;" @click="addNewLiveGoods" icon="md-add">选择商品</Button>
+      <Button v-if="!reviewed" type="primary" style="margin-bottom:10px;" @click="addNewLiveGoods" icon="md-add">selectGoods</Button>
       <Button type="primary" v-if="params.auditStatus == 0" ghost style="margin:0 0 10px 10px" @click="getLiveGoodsMethods('clear')">更新状态</Button>
       <div style="position:relative">
         <Spin size="large" fix v-if="tableLoading">
@@ -33,7 +33,7 @@
             </div>
           </template>
           <template slot-scope="{ row ,index }" class="price" slot="price">
-            <!-- 如果为新增商品显示 -->
+            <!-- 如果为新增Goods显示 -->
 
             <RadioGroup v-if="params.auditStatus == 99" @on-change="changeRadio(row,'priceType')" v-model="row.priceType">
               <div class="price-item">
@@ -47,23 +47,23 @@
                 </span>
               </div>
               <div class="price-item">
-                <Radio :label="3">折扣价:</Radio> <span v-if="liveGoodsData[index].priceType == 3">原价<InputNumber :min="0.1" style="width:100px" v-model="liveGoodsData[index].price"></InputNumber>现价
+                <Radio :label="3">off扣价:</Radio> <span v-if="liveGoodsData[index].priceType == 3">原价<InputNumber :min="0.1" style="width:100px" v-model="liveGoodsData[index].price"></InputNumber>现价
                   <InputNumber :min="0.1" style="width:100px" v-model="liveGoodsData[index].price2" />
                 </span>
               </div>
             </RadioGroup>
             <div v-else>
-              <div v-if="row.priceType == 1">{{row.price | unitPrice('￥')}}</div>
-              <div v-if="row.priceType == 2">{{row.price | unitPrice('￥')}}至{{row.price2 | unitPrice('￥')}}</div>
-              <div v-if="row.priceType == 3">{{row.price2 | unitPrice('￥')}}<span class="original-price">{{row.price | unitPrice('￥')}}</span></div>
+              <div v-if="row.priceType == 1">{{row.price | unitPrice('RM')}}</div>
+              <div v-if="row.priceType == 2">{{row.price | unitPrice('RM')}}至{{row.price2 | unitPrice('RM')}}</div>
+              <div v-if="row.priceType == 3">{{row.price2 | unitPrice('RM')}}<span class="original-price">{{row.price | unitPrice('RM')}}</span></div>
             </div>
 
           </template>
 
           <template slot-scope="{ row,index }" slot="action">
-            <Button v-if="params.auditStatus == 99" type="primary" @click="()=>{liveGoodsData.splice(index,1)}">删除</Button>
+            <Button v-if="params.auditStatus == 99" type="primary" @click="()=>{liveGoodsData.splice(index,1)}">delete</Button>
             <Button v-if="params.auditStatus != 99 && !reviewed" ghost type="primary" @click="()=>{$router.push({path:'/goods-operation-edit',query:{id:row.goodsId}})}">查看</Button>
-            <Button v-if="reviewed" :type="row.___selected ? 'primary' : 'default'" @click="selectedLiveGoods(row,index)">{{row.___selected ? '已':''}}选择</Button>
+            <Button v-if="reviewed" :type="row.___selected ? 'primary' : 'default'" @click="selectedLiveGoods(row,index)">{{row.___selected ? '已':''}}select</Button>
           </template>
         </Table>
         <div class="flex">
@@ -76,13 +76,13 @@
     </Card>
     <sku-select ref="skuSelect" @selectedGoodsData="selectedGoodsData"></sku-select>
     <div v-if="params.auditStatus == 99" class="submit">
-      <Button type="primary" :loading="saveGoodsLoading" @click="saveLiveGoods">保存商品</Button>
+      <Button type="primary" :loading="saveGoodsLoading" @click="saveLiveGoods">SaveGoods</Button>
     </div>
   </div>
 </template>
 
 <script>
-import skuSelect from "@/views/lili-dialog"; //选择商品组件
+import skuSelect from "@/views/lili-dialog"; //selectGoods组件
 import { addLiveStoreGoods, getLiveGoods } from "@/api/promotion.js";
 export default {
   components: {
@@ -90,15 +90,15 @@ export default {
   },
   data() {
     return {
-      goodsTotal: 0, //商品总数
-      saveGoodsLoading: false, //保存商品加载
+      goodsTotal: 0, //Goods总数
+      saveGoodsLoading: false, //SaveGoods加载
       tableLoading: false, //表格是否加载
       params: {
         pageNumber: 1,
         pageSize: 10,
-        auditStatus: 2, //商品状态
+        auditStatus: 2, //Goods状态
       },
-      // 商品审核状态
+      // Goods审核状态
       liveTabWay: [
         {
           label: "待提审",
@@ -120,14 +120,14 @@ export default {
         },
       ],
 
-      // 商品表格columns
+      // Goods表格columns
       liveGoodsColumns: [
         {
-          title: "商品",
+          title: "Goods",
           slot: "goodsName",
         },
         {
-          title: "价格",
+          title: "price",
           slot: "price",
         },
         {
@@ -137,19 +137,19 @@ export default {
         },
 
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           width: 100,
         },
       ],
-      // 表格商品详情
+      // 表格Goods详情
       liveGoodsData: [],
-      // 已选商品
+      // 已选Goods
       selectedGoods: [],
     };
   },
   props: {
-    // 是否是已审核，此处为组件模式时使用。去除添加等功能 只保留查询以及新增选择回调数据
+    // 是否是已审核，此处为组件模式时使用。去除添加等功能 只保留查询以及新增select回调数据
     reviewed: {
       type: Boolean,
       default: false,
@@ -161,7 +161,7 @@ export default {
     },
   },
   watch: {
-    //此处为组件模式时使用 监听此处为开启则需要删除tab上面的数据只显示已审核
+    //此处为组件模式时使用 监听此处为Opening则需要deletetab上面的数据只显示已审核
     reviewed: {
       handler(val) {
         if (val) {
@@ -177,7 +177,7 @@ export default {
       handler(val) {
         if (val) {
           this.$nextTick(() => {
-            // 将当前父级返回的数据和当前数据进行匹配
+            // 将当前父级Back的数据和当前数据进行匹配
             this.selectedGoods = val;
             this.liveGoodsData.forEach((item, index) => {
               val.forEach((callback) => {
@@ -241,7 +241,7 @@ export default {
     },
 
     /**
-     * 查询商品
+     * 查询Goods
      */
     async getLiveGoodsMethods(type) {
       this.tableLoading = true;
@@ -259,29 +259,29 @@ export default {
     },
 
     /**
-     * 保存直播商品
+     * Save直播Goods
      */
     async saveLiveGoods() {
       this.saveGoodsLoading = true;
       let submit = this.liveGoodsData.map((element) => {
 
         return {
-          goodsId: element.goodsId, //商品id
-          goodsImage: element.small, //商品图片  最大为 300 * 300
-          name: element.goodsName, //商品昵称
-          price: parseInt(element.price), //商品价格
+          goodsId: element.goodsId, //Goodsid
+          goodsImage: element.small, //Goods图片  最大为 300 * 300
+          name: element.goodsName, //Goods昵称
+          price: parseInt(element.price), //Goodsprice
           quantity: element.quantity, //库存
-          price2: element.price2 ? parseInt(element.price2) : "", //商品价格
-          priceType: element.priceType, // priceType  Number  是  价格类型，1：一口价（只需要传入price，price2不传） 2：价格区间（price字段为左边界，price2字段为右边界，price和price2必传） 3：显示折扣价（price字段为原价，price2字段为现价， price和price2必传）
+          price2: element.price2 ? parseInt(element.price2) : "", //Goodsprice
+          priceType: element.priceType, // priceType  Number  是  price类型，1：一口价（只需要传入price，price2不传） 2：price区间（price字段为左边界，price2字段为右边界，price和price2必传） 3：显示off扣价（price字段为原价，price2字段为现价， price和price2必传）
           skuId: element.id,
-          url: `pages/product/goods?id=${element.id}&goodsId=${element.goodsId}`, //小程序地址
+          url: `pages/product/goods?id=${element.id}&goodsId=${element.goodsId}`, //小程序address
         };
       });
 
       let result = await addLiveStoreGoods(submit);
       if (result.success) {
         this.$Message.success({
-          content: `添加成功！`,
+          content: `添加success！`,
         });
 
         this.params.auditStatus = 0;
@@ -290,7 +290,7 @@ export default {
     },
 
     /**
-     * 商品选择器回调的商品信息
+     * Goodsselect器回调goods信息
      */
     selectedGoodsData(goods) {
       goods.map((item) => {
@@ -301,13 +301,13 @@ export default {
     },
 
     /**
-     * 新增商品
+     * 新增Goods
      */
     addNewLiveGoods() {
       this.clearNewLiveTab();
       this.liveTabWay.push({
         type: 99,
-        label: "新增商品",
+        label: "新增Goods",
       });
       this.$set(this, "liveGoodsData", []);
       this.params.auditStatus = 99;

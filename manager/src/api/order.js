@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {
   getRequest,
   postRequest,
@@ -13,27 +13,27 @@ export const storeComplain = (params) => {
 }
 
 
-//  获取售后原因分页列表
+//  获取after sale原因分页列表
 export const getAfterSaleReasonPage = (params) => {
   return getRequest('/order/afterSaleReason/getByPage', params)
 }
 
-//  删除售后原因
+//  deleteafter sale原因
 export const delAfterSaleReason = (id) => {
   return deleteRequest(`/order/afterSaleReason/delByIds/${id}`)
 }
 
-//  添加售后原因
+//  添加after sale原因
 export const addAfterSaleReason = (params) => {
   return postRequest(`/order/afterSaleReason`, params)
 }
 
-//  修改售后原因
+//  modifyafter sale原因
 export const editAfterSaleReason = (id, params) => {
   return putRequest(`/order/afterSaleReason/update/${id}`, params)
 }
 
-// 售后服务单详情
+// after sale服务单详情
 export const afterSaleOrderDetail = (sn) => {
   return getRequest(`/order/afterSale/${sn}`)
 }
@@ -43,7 +43,7 @@ export const afterSaleSellerReview = (sn, params) => {
   return putRequest(`/order/afterSale/review/${sn}`, params)
 }
 
-// 商家确认收货
+// 商家Confirm receipt
 export const afterSaleSellerConfirm = (sn, params) => {
   return putRequest(`/order/afterSale/confirm/${sn}`, params)
 }
@@ -53,17 +53,17 @@ export const afterSaleSellerDelivery = (sn, params) => {
   return putRequest(`/order/afterSale/${sn}/delivery`, params)
 }
 
-//  获取交易投诉信息
+//  获取交易Complaint信息
 export const getOrderComplain = (params) => {
   return getRequest('/order/complain', params)
 }
 
-//  获取交易投诉详细信息
+//  获取交易Complaint详细信息
 export const getOrderComplainDetail = (id) => {
   return getRequest(`/order/complain/${id}`)
 }
 
-//  交易投诉对话
+//  交易Complaint对话
 export const addOrderCommunication = (params) => {
   return postRequest(`/order/complain/communication`, params)
 }
@@ -88,7 +88,7 @@ export const orderDetail = (sn) => {
   return getRequest(`/order/order/${sn}`)
 }
 
-//  修改订单价格
+//  modify订单price
 export const updateOrderPrice = (sn, params) => {
   return putRequest(`/order/order/update/${sn}/price`, params)
 }
@@ -98,35 +98,35 @@ export const getOrderLog = (params) => {
   return getRequest(`/orderLog/getByPage`, params)
 }
 
-// 订单取消
+// 订单Cancel
 export const orderCancel = (sn, params) => {
   return postRequest(`/order/order/${sn}/cancel`, params)
 }
 
-// 修改收货地址
+// modifyDelivery address
 export const editOrderConsignee = (sn, params) => {
   return postRequest(`/order/order/update/${sn}/consignee`, params)
 }
 
-//  获取售后订单列表
+//  获取after sale订单列表
 export const getAfterSaleOrderPage = (params) => {
   return getRequest('/order/afterSale/page', params)
 }
 
-//  获取售后订单详情
+//  获取after saleOrder details
 export const getAfterSaleOrderDetail = (sn) => {
   return getRequest(`/order/afterSale/get/${sn}`)
 }
-//售后单查询物流
+//after sale单查询logistics
 export const getAfterSaleTraces = (sn) => {
   return getRequest(`/order/afterSale/getDeliveryTraces/${sn}`)
 }
-// 获取商家选中的物流公司
+// 获取商家选中的Logistics company
 export const getLogisticsChecked = () => {
   return getRequest(`/other/logistics/getChecked`)
 }
 
-//查询物流
+//查询logistics
 export const getTraces = (sn, params) => {
   return postRequest(`/order/order/getTraces/${sn}`, params)
 }
@@ -134,7 +134,7 @@ export const getTraces = (sn, params) => {
 export const getReceiptPage = (params) => {
   return getRequest(`/trade/receipt`, params)
 }
-//平台退款
+//平台refund
 export const refundPrice = (afterSaleSn, params) => {
   return putRequest(`/order/afterSale/refund/${afterSaleSn}`, params)
 }
@@ -146,12 +146,12 @@ export const paymentLog = (params) => {
 }
 
 
-//平台退款记录
+//平台refund记录
 export const refundLog = (params) => {
   return getRequest(`/order/refundLog`, params)
 }
 
-//售后单商家收货信息
+//after sale单商家收货信息
 export const storeAddress = (sn) => {
   return getRequest(`/order/afterSale/getStoreAfterSaleAddress/${sn}`)
 }

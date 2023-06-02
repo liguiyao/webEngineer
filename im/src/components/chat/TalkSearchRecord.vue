@@ -29,7 +29,7 @@
             v-model="search.keyword"
             type="text"
             maxlength="30"
-            placeholder="关键字搜索"
+            placeholder="关键字search"
             @keyup.enter="searchText($event)"
           />
         </div>
@@ -98,7 +98,7 @@
             >
               <div class="empty-records">
                 <img src="~@/assets/image/chat-search-no-message.png" />
-                <p>暂无聊天记录</p>
+                <p>absent聊天记录</p>
               </div>
             </el-main>
 
@@ -296,7 +296,7 @@ export default {
     download,
     renderSize,
 
-    // 获取图片信息
+    // 获取Picture info
     getImgStyle(url) {
       return imgZoom(url, 200);
     },

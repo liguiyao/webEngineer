@@ -9,12 +9,12 @@
         </Row>
       </FormItem>
       <FormItem label="秒杀规则">
-        <Input type="textarea" :autosize="{minRows: 4,}" v-model="form.seckillRule" placeholder="申请规则" clearable style="width: 360px; margin-left:10px" />
+        <Input type="textarea" :autosize="{minRows: 4,}" v-model="form.seckillRule" placeholder="Apply  规则" clearable style="width: 360px; margin-left:10px" />
       </FormItem>
       <FormItem>
         <div class="foot-btn">
-          <Button @click="closeCurrentPage" style="margin-right: 5px">返回</Button>
-          <Button type="primary" :loading="submitLoading" @click="handleSubmit">提交</Button>
+          <Button @click="closeCurrentPage" style="margin-right: 5px">Back</Button>
+          <Button type="primary" :loading="submitLoading" @click="handleSubmit">Submit</Button>
         </div>
       </FormItem>
     </Form>
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     /**
-     * 关闭当前页面
+     * Close当前页面
      */
     closeCurrentPage() {
       this.$store.commit("removeTag", "manager-seckill-add");
@@ -52,7 +52,7 @@ export default {
       this.$router.go(-1);
     },
     /**
-     * 提交秒杀信息
+     * Submit秒杀信息
      */
     async handleSubmit() {
       let hours = this.times
@@ -69,7 +69,7 @@ export default {
         hours,
       });
       if (result.success) {
-        this.$Message.success("设置成功!");
+        this.$Message.success("设置success!");
         this.init();
       }
     },

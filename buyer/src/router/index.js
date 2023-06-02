@@ -57,9 +57,9 @@ const Favorites = (resolve) =>
 const Distribution = (resolve) =>
   require(["@/pages/home/memberCenter/Distribution"], resolve);
 const CommentList = (resolve) =>
-  require(["@/pages/home/memberCenter/CommentList"], resolve); // 评价列表
+  require(["@/pages/home/memberCenter/CommentList"], resolve); // Evaluate列表
 const AddEval = (resolve) =>
-  require(["@/pages/home/memberCenter/evaluation/AddEval"], resolve); // 添加评价
+  require(["@/pages/home/memberCenter/evaluation/AddEval"], resolve); // 添加Evaluate
 const EvalDetail = (resolve) =>
   require(["@/pages/home/memberCenter/evaluation/EvalDetail"], resolve);
 const ComplainList = (resolve) =>
@@ -118,7 +118,7 @@ export default new Router({
       name: "login",
       component: Login,
       meta: {
-        title: "登录",
+        title: "Login",
       },
     },
     {
@@ -126,33 +126,33 @@ export default new Router({
       name: "SignUp",
       component: SignUp,
       meta: {
-        title: "注册",
+        title: "Register",
       },
     },
     {
-      path: "/forgetPassword", // 忘记密码
+      path: "/forgetPassword", // Forget Password
       name: "forgetPassword",
       component: ForgetPassword,
       meta: {
-        title: "忘记密码",
+        title: "Forgot password",
       },
     },
     {
-      path: "/goodsList", // 商品列表
+      path: "/goodsList", // Goods列表
       name: "GoodsList",
       component: GoodsList,
     },
     {
-      path: "/goodsDetail", // 商品详情
+      path: "/goodsDetail", // Goods详情
       name: "GoodsDetail",
       component: GoodsDetail,
-      meta: { title: "商品详情" },
+      meta: { title: "Goods detail" },
     },
     {
-      path: "/pointGoodsDetail", // 商品详情
+      path: "/pointGoodsDetail", // Goods详情
       name: "PointGoodsDetail",
       component: PointGoodsDetail,
-      meta: { title: "积分商品" },
+      meta: { title: "Goods points" },
     },
     {
       path: "/shoppingCart", // 头部购物车
@@ -163,13 +163,13 @@ export default new Router({
       path: "/cart", // 购物车
       name: "Cart",
       component: Cart,
-      meta: { title: "购物车" },
+      meta: { title: "Cart" },
     },
     {
       path: "/pay", // 支付页面
       name: "Pay",
       component: Pay,
-      meta: { title: "订单结算" },
+      meta: { title: "Payment detail" },
     },
     {
       path: "/payMent",
@@ -180,7 +180,7 @@ export default new Router({
       path: "/PointMall",
       name: "PointMall",
       component: PointMall,
-      meta: { title: "积分商城" },
+      meta: { title: "Points mall" },
     },
     {
       path: "/qrpay", // 三方支付
@@ -188,7 +188,7 @@ export default new Router({
       component: ThirdPay,
     },
     {
-      path: "/payDone", // 支付成功页面
+      path: "/payDone", // payment success页面
       name: "PayDone",
       component: PayDone,
     },
@@ -197,7 +197,7 @@ export default new Router({
       name: "article",
       component: article,
       meta: {
-        title: "帮助中心",
+        title: "Help center",
       },
     },
     {
@@ -205,7 +205,7 @@ export default new Router({
       name: "articleDetail",
       component: articleDetail,
       meta: {
-        title: "帮助中心",
+        title: "Help center",
       },
     },
     {
@@ -213,7 +213,7 @@ export default new Router({
       name: "shopEntry",
       component: ShopEntry,
       meta: {
-        title: "店铺入驻",
+        title: "Store occupancy",
       },
     },
     {
@@ -221,7 +221,7 @@ export default new Router({
       name: "coupon",
       component: Coupon,
       meta: {
-        title: "领券中心",
+        title: "Coupon centre",
       },
     },
     {
@@ -229,7 +229,7 @@ export default new Router({
       name: "seckill",
       component: seckill,
       meta: {
-        title: "限时秒杀",
+        title: "seckill",
       },
     },
     {
@@ -241,14 +241,14 @@ export default new Router({
           name: "Home",
           component: UserMain,
           meta: {
-            title: "会员中心",
+            title: "Member",
           },
         },
         {
           path: "MyTracks",
           name: "MyTracks",
           component: MyTracks,
-          meta: { title: "我的足迹" },
+          meta: { title: "My tract" },
         },
         {
           path: "MoneyManagement",
@@ -269,19 +269,19 @@ export default new Router({
           path: "CommentList",
           name: "CommentList",
           component: CommentList,
-          mate: { title: "评价列表" },
+          mate: { title: "Evaluate list" },
         },
         {
           path: "AddEval",
           name: "AddEval",
           component: AddEval,
-          mate: { title: "添加评价" },
+          mate: { title: "Add Evaluate" },
         },
         {
           path: "EvalDetail",
           name: "EvalDetail",
           component: EvalDetail,
-          mate: { title: "评价详情" },
+          mate: { title: "Evaluate detail" },
         },
         {
           path: "ComplainList",
@@ -307,19 +307,19 @@ export default new Router({
           path: "Favorites",
           name: "Favorites",
           component: Favorites,
-          meta: { title: "我的收藏" },
+          meta: { title: "My collection" },
         },
         {
           path: "Distribution",
           name: "Distribution",
           component: Distribution,
-          meta: { title: "分销推荐" },
+          meta: { title: "Distribution" },
         },
         {
           path: "Point",
           name: "Point",
           component: Point,
-          meta: { title: "我的积分" },
+          meta: { title: "My points" },
         },
         {
           path: "Profile",
@@ -330,19 +330,19 @@ export default new Router({
           path: "AfterSale",
           name: "AfterSale",
           component: AfterSale,
-          meta: { title: "售后" },
+          meta: { title: "after sale" },
         },
         {
           path: "ApplyAfterSale",
           name: "ApplyAfterSale",
           component: ApplyAfterSale,
-          meta: { title: "申请售后" },
+          meta: { title: "Apply  after sale" },
         },
         {
           path: "/home/MyAddress",
           name: "MyAddress",
           component: MyAddress,
-          meta: { title: "收货地址" },
+          meta: { title: "Delivery address" },
         },
         {
           path: "AddAddress",
@@ -353,31 +353,31 @@ export default new Router({
           path: "MsgList",
           name: "MsgList",
           component: MsgList,
-          meta: { title: "我的消息" },
+          meta: { title: "My message" },
         },
         {
           path: "MsgDetail",
           name: "MsgDetail",
           component: MsgDetail,
-          meta: { title: "我的消息" },
+          meta: { title: "My message" },
         },
         {
           path: "MyOrder",
           name: "MyOrder",
           component: MyOrder,
-          meta: { title: "我的订单" },
+          meta: { title: "My order" },
         },
         {
           path: "OrderDetail",
           name: "OrderDetail",
           component: OrderDetail,
-          meta: { title: "订单详情" },
+          meta: { title: "Order details" },
         },
         {
           path: "AfterSaleDetail",
           name: "AfterSaleDetail",
           component: AfterSaleDetail,
-          meta: { title: "售后详情" },
+          meta: { title: "After-sale details" },
         },
       ],
     },
@@ -385,7 +385,7 @@ export default new Router({
       path: "/merchant",
       name: "Merchant",
       component: Merchant,
-      meta: { title: "店铺" },
+      meta: { title: "Store" },
     },
   ],
 });

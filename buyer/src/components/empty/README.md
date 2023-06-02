@@ -3,8 +3,8 @@
 ```
 // _Title
 
-<empty></empty>  //默认显示
+<empty></empty>  //default显示
 
 q
-<empty _Title='暂无更多了' ></empty>   //自定义返回标题
+<empty _Title='absent更多了' ></empty>   //自定义Back标题
 ```

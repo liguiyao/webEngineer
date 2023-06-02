@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {
   getRequest,
   postRequest,
@@ -31,7 +31,7 @@ export const homeStatistics = (params) => {
   return getRequest("/statistics/index", params);
 };
 
-// 获取首页tpo10商品
+// 获取首页tpo10Goods
 export const hotGoods = (params) => {
   return getRequest("/statistics/index/goodsStatistics", params);
 };
@@ -41,7 +41,7 @@ export const hotShops = (params) => {
 };
 
 
-// 通知提示信息
+// 通知Tips信息
 export const getNoticePage = (params) => {
   return getRequest("/statistics/index/notice", params);
 };
@@ -60,7 +60,7 @@ export const logout = () => {
 export const handleRefreshToken = (token) => {
   return getRequestWithNoToken(`/passport/user/refresh/${token}`);
 };
-// 获取用户登录信息
+// 获取用户Login信息
 export const userInfo = (params) => {
   return getRequest("/passport/user/info", params);
 };
@@ -72,7 +72,7 @@ export const regist = (params) => {
 export const initCaptcha = (params) => {
   return getRequestWithNoToken("/common/captcha/init", params);
 };
-// 发送登录短信验证码
+// 发送Login短信验证码
 export const sendLoginSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendLoginSms/${mobile}`, params);
 };
@@ -84,7 +84,7 @@ export const sendRegistSms = (mobile, params) => {
 export const sendResetSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendResetSms/${mobile}`, params);
 };
-// 发送修改绑定手机短信验证码
+// 发送modify绑定手机短信验证码
 export const sendEditMobileSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendEditMobileSms/${mobile}`, params);
 };
@@ -101,11 +101,11 @@ export const ipInfo = (params) => {
 export const userInfoEdit = (params) => {
   return putRequest("/passport/user/edit", params);
 };
-// 个人中心修改密码
+// 个人中心modify密码
 export const changePass = (params) => {
   return putRequest("/passport/user/editPassword", params);
 };
-// 个人中心修改手机
+// 个人中心modify手机
 export const changeMobile = (params) => {
   return postRequest("/passport/user/changeMobile", params);
 };
@@ -113,7 +113,7 @@ export const changeMobile = (params) => {
 export const getUserListData = (params) => {
   return getRequest("/passport/user", params);
 };
-// 通过用户名搜索
+// 通过用户名search
 export const searchUserByName = (username, params) => {
   return getRequest("/passport/user/searchByName/" + username, params);
 };
@@ -138,7 +138,7 @@ export const editOtherUser = (params) => {
 export const enableUser = (id, params) => {
   return putRequest(`/passport/user/enable/${id}`, params);
 };
-// 删除用户
+// delete用户
 export const deleteUser = (ids, params) => {
   return deleteRequest(`/passport/user/${ids}`, params);
 };
@@ -152,7 +152,7 @@ export const getUserByDepartmentId = (id, params) => {
   return getRequest(`/permission/departmentRole/${id}`, params);
 };
 
-// 通过部门修改绑定角色
+// 通过部门modify绑定角色
 export const updateDepartmentRole = (id, params) => {
   return putRequestWithNoForm(`/permission/departmentRole/${id}`, params);
 };
@@ -173,11 +173,11 @@ export const addDepartment = (params) => {
 export const editDepartment = (ids, params) => {
   return putRequest(`/permission/department/${ids} `, params);
 };
-// 删除部门
+// delete部门
 export const deleteDepartment = (ids, params) => {
   return deleteRequest(`/permission/department/${ids}`, params);
 };
-// 搜索部门
+// search部门
 export const searchDepartment = (params) => {
   return getRequest("/permission/department/search", params);
 };
@@ -208,7 +208,7 @@ export const selectRoleMenu = (params) => {
   return getRequest(`/permission/roleMenu/${params}`);
 };
 
-// 保存角色菜单
+// Save角色菜单
 export const saveRoleMenu = (id, params) => {
   return postRequestWithNoForm(`/permission/roleMenu/${id}`, params);
 };
@@ -221,7 +221,7 @@ export const editRolePerm = (params) => {
 export const editRoleDep = (params) => {
   return postRequest("/permission/role/editRoleDep", params);
 };
-// 删除角色
+// delete角色
 export const deleteRole = (ids, params) => {
   return deleteRequest(`/permission/role/${ids}`, params);
 };
@@ -249,11 +249,11 @@ export const addPermission = (params) => {
 export const editPermission = (params) => {
   return putRequest(`/permission/menu/${params.id}`, params);
 };
-// 删除权限
+// delete权限
 export const deletePermission = (ids, params) => {
   return deleteRequest(`/permission/menu/${ids}`, params);
 };
-// 搜索权限
+// search权限
 export const searchPermission = (params) => {
   return getRequest("/permission/menu", params);
 };
@@ -265,7 +265,7 @@ export const searchPermission = (params) => {
 export const getLogListData = (params) => {
   return getRequest("/setting/log/getAllByPage", params);
 };
-// 删除日志
+// delete日志
 export const deleteLog = (ids, params) => {
   return deleteRequest(`/setting/log/${ids}`, params);
 };
@@ -275,7 +275,7 @@ export const deleteAllLog = (params) => {
 };
 
 
-// 分页获取消息数据
+// 分页获Cancel息数据
 export const getMessageData = (params) => {
   return getRequest("/other/message/getByCondition", params);
 };
@@ -291,7 +291,7 @@ export const addMessage = (params) => {
 export const editMessage = (params) => {
   return postRequest("/other/message/edit", params);
 };
-// 删除消息
+// delete消息
 export const deleteMessage = (ids, params) => {
   return deleteRequest(`/other/message/delByIds/${ids}`, params);
 };
@@ -299,7 +299,7 @@ export const deleteMessage = (ids, params) => {
 export const editMessageSend = (params) => {
   return putRequest("/messageSend/update", params);
 };
-// 删除发送消息
+// delete发送消息
 export const deleteMessageSend = (ids, params) => {
   return deleteRequest(`/manager/messageSend/delByIds/${ids}`, params);
 };
@@ -313,7 +313,7 @@ export const getFileListData = (params) => {
 export const renameFile = (params) => {
   return postRequest("/common/file/rename", params);
 };
-// 删除文件
+// delete文件
 export const deleteFile = (ids, params) => {
   return deleteRequest(`/common/file/delete/${ids}`, params);
 };
@@ -347,29 +347,29 @@ export const insertSensitiveWords = (params) => {
   return postRequest(`/other/sensitiveWords`, params);
 };
 
-// 修改
+// modify
 export const updateSensitiveWords = (id, params) => {
   return putRequest(`/other/sensitiveWords/${id}`, params);
 };
 
-// 删除敏感词
+// delete敏感词
 export const delSensitive = (ids) => {
   return deleteRequest(`/other/sensitiveWords/delByIds/${ids}`);
 };
 
-// 添加商品计量单位
+// 添加Goods计量单位
 export const addGoodsUnit = (params) => {
   return postRequest(`/goods/goodsUnit`, params);
 };
-// 分页获取商品计量单位
+// 分页获取Goods计量单位
 export const getGoodsUnitPage = (params) => {
   return getRequest(`/goods/goodsUnit`, params);
 };
-// 编辑商品计量单位
+// 编辑Goods计量单位
 export const updateGoodsUnit = (id, params) => {
   return putRequest(`/goods/goodsUnit/${id}`, params);
 };
-// 删除商品计量单位
+// deleteGoods计量单位
 export const delGoodsUnit = (ids) => {
   return deleteRequest(`/goods/goodsUnit/delete/${ids}`);
 };
@@ -379,7 +379,7 @@ export const asyncRegion = () => {
   return postRequest(`/setting/region/sync`);
 };
 
-// 批量id删除
+// 批量iddelete
 export const delRegion = (ids) => {
   return deleteRequest(`/setting/region/${ids}`);
 };
@@ -403,12 +403,12 @@ export const resetPassword = (params) => {
   return postRequest(`/passport/user/resetPassword/${params}`);
 };
 
-// 初始化商品索引
+// 初始化Goods索引
 export const createIndex = () => {
   return getRequest(`/other/elasticsearch`);
 };
 
-// 初始化商品索引
+// 初始化Goods索引
 export const getProgress = () => {
   return getRequest(`/other/elasticsearch/progress`);
 };
@@ -423,12 +423,12 @@ export const insertCustomWords = (params) => {
   return postRequest(`/other/customWords`, params);
 };
 
-// 修改自定义分词
+// modify自定义分词
 export const updateCustomWords = (params) => {
   return putRequest(`/other/customWords`, params);
 };
 
-// 删除自定义分词
+// delete自定义分词
 export const delCustom = (id) => {
   return deleteRequest(`/other/customWords/${id}`);
 };
@@ -438,7 +438,7 @@ export const setHotWords = (params) => {
   return postRequest(`/hotwords/hotwords`, params);
 };
 
-// 删除热搜词
+// delete热搜词
 export const deleteHotWords = (params) => {
   return deleteRequest(`/hotwords/hotwords`,params);
 };

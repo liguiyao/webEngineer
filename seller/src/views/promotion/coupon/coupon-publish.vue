@@ -15,32 +15,32 @@
                 style="width: 260px"
               />
             </FormItem>
-            <FormItem label="优惠券名称" prop="couponName">
+            <FormItem label="coupon名称" prop="couponName">
               <Input
                 :disabled="disabled"
                 type="text"
                 v-model="form.couponName"
-                placeholder="优惠券名称"
+                placeholder="coupon名称"
                 clearable
                 style="width: 260px"
               />
             </FormItem>
-            <FormItem label="优惠券类型" prop="couponType">
+            <FormItem label="coupon类型" prop="couponType">
               <Select :disabled="disabled" v-model="form.couponType" style="width: 260px">
-                <Option value="DISCOUNT">打折</Option>
+                <Option value="DISCOUNT">打off</Option>
                 <Option value="PRICE">减免现金</Option>
               </Select>
             </FormItem>
-            <FormItem label="折扣" prop="discount" v-if="form.couponType == 'DISCOUNT'">
+            <FormItem label="off扣" prop="discount" v-if="form.couponType == 'DISCOUNT'">
               <Input
                 :disabled="disabled"
                 type="number"
                 v-model="form.couponDiscount"
-                placeholder="折扣"
+                placeholder="off扣"
                 clearable
                 style="width: 260px"
               />
-              <span class="describe">请输入0-10之间数字，可以输入一位小数</span>
+              <span class="describe">Please enter 0-10之间数字，可以输入一位小数</span>
             </FormItem>
             <FormItem label="面额" prop="price" v-if="form.couponType == 'PRICE'">
               <Input
@@ -59,14 +59,14 @@
               </Select>
             </FormItem>
 
-            <FormItem label="发放数量" v-if="form.getType == 'FREE'" prop="publishNum">
+            <FormItem label="发放Quantity" v-if="form.getType == 'FREE'" prop="publishNum">
               <Input
                 :disabled="disabled"
                 v-model="form.publishNum"
-                placeholder="发放数量"
+                placeholder="发放Quantity"
                 style="width: 260px"
               />
-              <span class="tips ml_10">如果发放数量为0时,则代表不限制发放数量</span>
+              <span class="tips ml_10">如果发放Quantity为0时,则代表不限制发放Quantity</span>
             </FormItem>
           </div>
           <h4>使用限制</h4>
@@ -93,7 +93,7 @@
                 clearable
                 style="width: 260px"
               />
-              <span class="tips ml_10">如果领取限制为0时,则代表不限制领取数量</span>
+              <span class="tips ml_10">如果领取限制为0时,则代表不限制领取Quantity</span>
             </FormItem>
             <FormItem label="有效期" prop="rangeTime">
               <DatePicker
@@ -101,7 +101,7 @@
                 type="datetimerange"
                 v-model="form.rangeTime"
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择"
+                placeholder="Please select"
                 :options="options"
                 style="width: 260px"
               >
@@ -110,9 +110,9 @@
             <FormItem label="使用范围" prop="scopeType">
               <RadioGroup type="button" button-style="solid" v-model="form.scopeType">
                 <Radio :disabled="disabled" label="ALL">全品类</Radio>
-                <Radio :disabled="disabled" label="PORTION_GOODS">指定商品</Radio>
+                <Radio :disabled="disabled" label="PORTION_GOODS">指定Goods</Radio>
                 <Radio :disabled="disabled" label="PORTION_GOODS_CATEGORY"
-                  >部分商品分类</Radio
+                  >Partial goods分类</Radio
                 >
               </RadioGroup>
             </FormItem>
@@ -120,7 +120,7 @@
             <FormItem style="width: 100%" v-if="form.scopeType == 'PORTION_GOODS'">
               <div style="display: flex; margin-bottom: 10px">
                 <Button :disabled="disabled" type="primary" @click="openSkuList"
-                  >选择商品</Button
+                  >selectGoods</Button
                 >
                 <Button
                   :disabled="disabled"
@@ -128,7 +128,7 @@
                   ghost
                   style="margin-left: 10px"
                   @click="delSelectGoods"
-                  >批量删除</Button
+                  >批量delete</Button
                 >
               </div>
               <Table
@@ -177,14 +177,14 @@
                 :disabled="disabled"
                 type="text"
                 @click="$router.push({ name: 'coupon' })"
-                >返回</Button
+                >Back</Button
               >
               <Button
                 :disabled="disabled"
                 type="primary"
                 :loading="submitLoading"
                 @click="handleSubmit"
-                >提交</Button
+                >Submit</Button
               >
             </div>
           </div>
@@ -210,7 +210,7 @@ export default {
       if (!value && value !== 0) {
         return callback(new Error("面额不能为空"));
       } else if (!regular.money.test(value)) {
-        callback(new Error("请输入正整数或者两位小数"));
+        callback(new Error("Please enter 正整数或者两位小数"));
       } else if (parseFloat(value) > 99999999) {
         callback(new Error("面额设置超过上限值"));
       } else {
@@ -221,7 +221,7 @@ export default {
       if (!value && typeof value !== "number") {
         callback(new Error("消费门槛不能为空"));
       } else if (!regular.money.test(value)) {
-        callback(new Error("请输入正整数或者两位小数"));
+        callback(new Error("Please enter 正整数或者两位小数"));
       } else if (parseFloat(value) > 99999999) {
         callback(new Error("消费门槛设置超过上限值"));
       } else {
@@ -230,20 +230,20 @@ export default {
     };
 
     return {
-      modalType: 0, // 判断是新增还是编辑优惠券 0 新增  1 编辑
+      modalType: 0, // 判断是新增还是编辑coupon 0 新增  1 编辑
       disabled: this.$route.query.onlyView,
       form: {
         /** 店铺承担比例 */
         sellerCommission: 0,
-        /** 发行数量 */
+        /** 发行Quantity */
         publishNum: 1,
         /** 运费承担者 */
         scopeType: "ALL",
-        /** 限领数量 */
+        /** 限领Quantity */
         couponLimitNum: 1,
         /** 活动类型 */
         couponType: "PRICE",
-        /** 优惠券名称 */
+        /** coupon名称 */
         couponName: "",
         getType: "FREE",
         promotionGoodsList: [],
@@ -251,39 +251,39 @@ export default {
         rangeDayType: "FIXEDTIME",
       },
       id: this.$route.query.id,
-      submitLoading: false, // 添加或编辑提交状态
-      selectedGoods: [], // 已选商品列表，便于删除
-      goodsCategoryList: [], // 商品分类列表
+      submitLoading: false, // 添加或编辑Submit状态
+      selectedGoods: [], // 已选Goods列表，便于delete
+      goodsCategoryList: [], // Goods分类列表
       formRule: {
         promotionName: [{ required: true, message: "活动名称不能为空" }],
-        couponName: [{ required: true, message: "优惠券名称不能为空" }],
+        couponName: [{ required: true, message: "coupon名称不能为空" }],
         couponLimitNum: [{ required: true, message: "领取限制不能为空" }],
-        price: [{ required: true, message: "请输入面额" }, { validator: checkPrice }],
+        price: [{ required: true, message: "Please enter 面额" }, { validator: checkPrice }],
         consumeThreshold: [
-          { required: true, message: "请输入消费门槛" },
+          { required: true, message: "Please enter 消费门槛" },
           { validator: checkWeight },
         ],
-        rangeTime: [{ required: true, message: "请选择优惠券有效期" }],
+        rangeTime: [{ required: true, message: "Please selectcoupon有效期" }],
         couponDiscount: [
-          { required: true, message: "请输入折扣" },
+          { required: true, message: "Please enter off扣" },
           {
             pattern: regular.discount,
-            message: "请输入0-10的数字,可有一位小数",
+            message: "Please enter 0-10的数字,可有一位小数",
           },
         ],
         sellerCommission: [
-          { required: true, message: "请输入店铺承担比例" },
-          { pattern: regular.rate, message: "请输入0-100的正整数" },
+          { required: true, message: "Please enter 店铺承担比例" },
+          { pattern: regular.rate, message: "Please enter 0-100的正整数" },
         ],
         publishNum: [
-          { required: true, message: "请输入发放数量" },
-          { pattern: regular.Integer, message: "请输入正整数" },
+          { required: true, message: "Please enter 发放Quantity" },
+          { pattern: regular.Integer, message: "Please enter 正整数" },
         ],
         couponLimitNum: [
-          { required: true, message: "请输入领取限制" },
-          { pattern: regular.Integer, message: "请输入正整数" },
+          { required: true, message: "Please enter 领取限制" },
+          { pattern: regular.Integer, message: "Please enter 正整数" },
         ],
-        description: [{ required: true, message: "请输入范围描述" }],
+        description: [{ required: true, message: "Please enter 范围描述" }],
       },
       columns: [
         {
@@ -292,16 +292,16 @@ export default {
           align: "center",
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           minWidth: 40,
           render: (h, params) => {
-            return h("div", this.$options.filters.unitPrice(params.row.price, "￥"));
+            return h("div", this.$options.filters.unitPrice(params.row.price, "RM"));
           },
         },
         {
@@ -311,7 +311,7 @@ export default {
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           minWidth: 50,
           align: "center",
@@ -330,12 +330,12 @@ export default {
                   },
                 },
               },
-              "删除"
+              "delete"
             );
           },
         },
       ],
-      // 时间选择器可选范围
+      // 时间select器可选范围
       options: {
         disabledDate(date) {
           return date && date.valueOf() < Date.now() - 86400000;
@@ -390,7 +390,7 @@ export default {
         this.form = data;
       });
     },
-    /** 保存优惠券 */
+    /** Savecoupon */
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -411,7 +411,7 @@ export default {
             params.scopeType == "PORTION_GOODS" &&
             (!params.promotionGoodsList || params.promotionGoodsList.length == 0)
           ) {
-            this.$Modal.warning({ title: "提示", content: "请选择指定商品" });
+            this.$Modal.warning({ title: "Tips", content: "Please select指定Goods" });
             return;
           }
 
@@ -419,12 +419,12 @@ export default {
             params.scopeType == "PORTION_GOODS_CATEGORY" &&
             (!params.scopeIdGoods || params.scopeIdGoods.length == 0)
           ) {
-            this.$Modal.warning({ title: "提示", content: "请选择商品分类" });
+            this.$Modal.warning({ title: "Tips", content: "Please selectGoods分类" });
             return;
           }
 
           if (params.scopeType == "PORTION_GOODS") {
-            //指定商品
+            //指定Goods
             params.promotionGoodsList.forEach((item) => {
               scopeId.push(item.skuId);
             });
@@ -432,7 +432,7 @@ export default {
           } else if (params.scopeType == "ALL") {
             delete params.promotionGoodsList;
           } else if (params.scopeType == "PORTION_GOODS_CATEGORY") {
-            //部分商品分类
+            //Partial goods分类
             scopeId = this.filterCategoryId(params.scopeIdGoods, []);
             params.scopeId = scopeId.toString();
             delete params.promotionGoodsList;
@@ -441,12 +441,12 @@ export default {
 
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete params.id;
             saveShopCoupon(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("优惠券发送成功");
+                this.$Message.success("coupon发送success");
                 this.closeCurrentPage();
               }
             });
@@ -458,7 +458,7 @@ export default {
             editShopCoupon(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("优惠券修改成功");
+                this.$Message.success("couponmodifysuccess");
                 this.closeCurrentPage();
               }
             });
@@ -466,7 +466,7 @@ export default {
         }
       });
     },
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-coupon");
       localStorage.storeOpenedList = JSON.stringify(
@@ -477,7 +477,7 @@ export default {
       });
     },
     openSkuList() {
-      // 显示商品选择器
+      // 显示Goodsselect器
       this.$refs.skuSelect.open("goods");
       let data = JSON.parse(JSON.stringify(this.form.promotionGoodsList));
       data.forEach((e) => {
@@ -486,18 +486,18 @@ export default {
       this.$refs.skuSelect.goodsData = data;
     },
     changeSelect(e) {
-      // 已选商品批量选择
+      // 已选Goods批量select
       this.selectedGoods = e;
     },
     delSelectGoods() {
-      // 多选删除商品
+      // 多选deleteGoods
       if (this.selectedGoods.length <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选商品吗?",
+        title: "确认delete",
+        content: "您确认要delete所选Goods吗?",
         onOk: () => {
           let ids = [];
           this.selectedGoods.forEach(function (e) {
@@ -510,11 +510,11 @@ export default {
       });
     },
     delGoods(index) {
-      // 删除商品
+      // deleteGoods
       this.form.promotionGoodsList.splice(index, 1);
     },
     selectedGoodsData(item) {
-      // 回显已选商品
+      // 回显已选Goods
       let list = [];
       item.forEach((e) => {
         list.push({
@@ -530,11 +530,11 @@ export default {
       this.form.promotionGoodsList = list;
     },
     getGoodsCategory(e) {
-      // 获取级联选择器商品分类id
+      // 获取级联select器Goods分类id
     },
 
     async getCagetoryList() {
-      // 获取全部商品分类
+      // 获取All goods分类
       let data = await getGoodsCategoryAll();
       this.goodsCategoryList = this.filterCategory(data.result);
       // 过滤出可显示的值
@@ -566,7 +566,7 @@ export default {
       });
     },
     filterCategory(list) {
-      // 递归删除空children
+      // 递归delete空children
       list.forEach((item) => {
         if (item.children.length == 0) {
           delete item.children;

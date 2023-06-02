@@ -3,9 +3,9 @@
     <div class="wap-content">
       <div class="query-wrapper">
         <div class="query-item">
-          <div>搜索范围</div>
+          <div>search范围</div>
           <Input
-            placeholder="商品名称"
+            placeholder="goods name"
             @on-clear="
               goodsData = [];
               goodsParams.goodsName = '';
@@ -28,7 +28,7 @@
         <div class="query-item">
           <Cascader
             v-model="category"
-            placeholder="请选择商品分类"
+            placeholder="Please selectGoods分类"
             style="width: 250px"
             :data="skuList"
           ></Cascader>
@@ -41,7 +41,7 @@
               getQueryGoodsList();
             "
             icon="ios-search"
-            >搜索</Button
+            >search</Button
           >
         </div>
       </div>
@@ -66,13 +66,13 @@
               <div class="wap-sku">{{ item.goodsUnit }}</div>
               <div class="wap-sku"><Tag :color="item.salesModel === 'RETAIL' ? 'default' : 'geekblue'">{{item.salesModel === "RETAIL" ? "零售型" : "批发型"}}</Tag></div>
               <div class="wap-content-desc-bottom">
-                <div>￥{{ item.price | unitPrice }}</div>
+                <div>RM{{ item.price | unitPrice }}</div>
               </div>
             </div>
           </div>
           <Spin size="large" fix v-if="loading"></Spin>
 
-          <div v-if="empty" class="empty">暂无商品信息</div>
+          <div v-if="empty" class="empty">absentGoods details</div>
         </Scroll>
       </div>
     </div>
@@ -84,10 +84,10 @@ export default {
   data() {
     return {
       type: "multiple", //单选或者多选 single  multiple
-      skuList: [], // 商品sku列表
-      total: 0, // 商品总数
+      skuList: [], // Goodssku列表
+      total: 0, // Goods总数
       goodsParams: {
-        // 商品请求参数
+        // GoodsPlease 求参数
         pageNumber: 1,
         pageSize: 18,
         order: "desc",
@@ -99,7 +99,7 @@ export default {
         sort:"createTime"
       },
       category: [], // 分类
-      goodsData: [], // 商品数据
+      goodsData: [], // Goods数据
       empty: false, // 空数据
       loading: false, // 加载状态
     };
@@ -147,7 +147,7 @@ export default {
         }
       }, 1500);
     },
-    // 获取商品列表
+    // 获取Goods列表
     getQueryGoodsList() {
       API_Goods.getGoodsSkuData(this.goodsParams).then((res) => {
         this.initGoods(res);
@@ -166,7 +166,7 @@ export default {
           });
         });
         /**
-         * 解决数据请求中，滚动栏会一直上下跳动
+         * 解决数据Please 求中，滚动栏会一直上下跳动
          */
         this.total = res.result.total;
         this.goodsData.push(...res.result.records);
@@ -174,10 +174,10 @@ export default {
         this.empty = true;
       }
     },
-    // 查询商品
+    // 查询Goods
     init() {
       API_Goods.getGoodsSkuData(this.goodsParams).then((res) => {
-        // 商品
+        // Goods
         this.initGoods(res);
       });
       if (localStorage.getItem("category")) {
@@ -225,7 +225,7 @@ export default {
     },
 
     /**
-     * 点击商品
+     * 点击Goods
      */
     checkedGoods(val, index) {
       // 如果单选的话

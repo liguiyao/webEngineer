@@ -15,13 +15,13 @@
           </div>
           <div class="shop-box">
             <div class="box-item">
-              <div>店铺名称：{{ userData.storeName || '暂无' }}</div>
+              <div>store name：{{ userData.storeName || 'absent' }}</div>
             </div>
             <div class="box-item">
-              <div>店铺状态：{{ userData.storeDisable == 'OPEN' ? '开启中' : '关闭' }}</div>
+              <div>Status：{{ userData.storeDisable == 'OPEN' ? 'Opening' : 'Close' }}</div>
             </div>
             <div class="box-item" @click="im()">
-              <Button type="info" :loading='load'>点击登录客服</Button>
+              <Button type="info" :loading='load'>点击Login客服</Button>
             </div>
           </div>
 
@@ -53,21 +53,21 @@
                   <p class="bold">{{ userData.descriptionScore }}分</p>
                 </div>
               </i-circle>
-              <h5>评价得分</h5>
+              <h5>Evaluate得分</h5>
             </div>
           </div>
         </div>
         <div class="card">
-          <h4>待办事项</h4>
+          <h4>To do list</h4>
 
           <div class="detail-list">
             <div class="detail-item" @click="navigateTo('orderList')">
               <div>
                 <span>{{ homeData.unPaidOrder || 0 }}</span>
-                <div>待付款</div>
+                <div>To be paid</div>
               </div>
               <div class="detail-title">
-                交易前
+                Before transaction
               </div>
             </div>
 
@@ -78,27 +78,27 @@
               </div>
               <div>
                 <span>{{ homeData.deliveredOrder || 0 }}</span>
-                <div>待收货</div>
+                <div>To be receive</div>
               </div>
               <div class="detail-title">
-                交易中
+                In transaction
               </div>
             </div>
             <div class="detail-item">
               <div @click="navigateTo('returnMoneyOrder')">
                 <span>{{ homeData.returnMoney || 0 }}</span>
-                <div>退款</div>
+                <div>refund</div>
               </div>
               <div @click="navigateTo('returnGoodsOrder')">
                 <span>{{ homeData.returnGoods || 0 }}</span>
-                <div>退货</div>
+                <div>Return goods</div>
               </div>
               <div @click="navigateTo('memberComment')">
                 <span>{{ homeData.memberEvaluation || 0 }}</span>
-                <div>待评价</div>
+                <div>待Evaluate</div>
               </div>
               <div class="detail-title">
-                交易后
+                After transaction
               </div>
             </div>
             <div class="detail-item" @click="navigateTo('orderComplaint')">
@@ -108,7 +108,7 @@
               </div>
 
               <div class="detail-title">
-                投诉
+                Complaint
               </div>
             </div>
             <div class="detail-item" @click="navigateTo('goods')">
@@ -121,7 +121,7 @@
                 <div>审核中</div>
               </div>
               <div class="detail-title">
-                商品
+                Goods
               </div>
             </div>
 
@@ -135,7 +135,7 @@
                 <div>等待对账</div>
               </div>
               <div class="detail-title">
-                其他
+                Others
               </div>
             </div>
 
@@ -162,7 +162,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.goodsNum || 0 }}</div>
-            <div>商品数量</div>
+            <div>GoodsQuantity</div>
           </div>
 
         </div>
@@ -171,7 +171,7 @@
             <Icon class="icon" size="31" type="ios-card" />
           </div>
           <div>
-            <div class="counts">{{ homeData.orderPrice || 0 | unitPrice('￥') }}</div>
+            <div class="counts">{{ homeData.orderPrice || 0 | unitPrice('RM') }}</div>
             <div>订单总额</div>
           </div>
 
@@ -183,7 +183,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.orderNum || 0 }}</div>
-            <div>订单数量</div>
+            <div>订单Quantity</div>
           </div>
 
         </div>
@@ -193,7 +193,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.storeUV || 0 }}</div>
-            <div>访客数量</div>
+            <div>访客Quantity</div>
           </div>
 
         </div>
@@ -253,8 +253,8 @@ export default {
     },
 
     /**
-     * 点击登录im的时候需要去判断一下当前店铺信息是否失效
-     * 失效的话重新请求刷新token保证最新的token去访问im
+     * 点击Loginim的时候需要去判断一下当前店铺信息是否失效
+     * 失效的话重新Please 求刷新token保证最新的token去访问im
      */
     async im () {
       // 获取访问Token
@@ -267,7 +267,7 @@ export default {
         window.open(`${this.IMLink}?token=` + accessToken);
       }
       else{
-        this.$Message.error("请登录后再联系客服");
+        this.$Message.error("Please Login后再联系客服");
       }
     },
 

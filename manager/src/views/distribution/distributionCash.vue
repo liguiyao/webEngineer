@@ -19,7 +19,7 @@
             </Select>
           </Form-item>
           <Form-item>
-            <Button @click="handleSearch" type="primary">搜索</Button>
+            <Button @click="handleSearch" type="primary">search</Button>
           </Form-item>
         </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10"></Table>
@@ -46,8 +46,8 @@
         </FormItem>
       </Form>
       <div slot="footer" v-if="handleStatus == 'edit'">
-        <Button type="text" @click="modalVisible=false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="handleSubmit">提交</Button>
+        <Button type="text" @click="modalVisible=false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="handleSubmit">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -68,11 +68,11 @@ export default {
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       result: 'FAIL_AUDITING', // 是否通过
-      searchForm: { // 搜索框初始化对象
+      searchForm: { // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
       },
       handleStatus:'edit',// 判断是编辑还是查看
       form: { // 添加或编辑表单对象初始化数据
@@ -80,7 +80,7 @@ export default {
         memberName: "",
         price: "",
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       columns: [
         {
           title: "编号",
@@ -93,15 +93,15 @@ export default {
           minWidth: 120
         },
         {
-          title: "申请金额",
+          title: "Apply  金额",
           key: "price",
           minWidth: 90,
           render: (h, params) => {
-            return h("div", this.$options.filters.unitPrice(params.row.price,'￥'));
+            return h("div", this.$options.filters.unitPrice(params.row.price,'RM'));
           }
         },
         {
-          title: "申请时间",
+          title: "Apply  时间",
           key: "createTime",
           minWidth: 130
         },
@@ -127,7 +127,7 @@ export default {
             },
          },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -200,7 +200,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -209,7 +209,7 @@ export default {
     // 获取列表数据
     getDataList() {
       this.loading = true;
-      // 带多条件搜索参数获取表单数据 请自行修改接口
+      // 带多条件search参数获取表单数据 Please 自行modify接口
       getDistributionCash(this.searchForm).then(res => {
         this.loading = false;
         if (res.success) {
@@ -220,7 +220,7 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 通过还是拒绝申请
+    // 通过还是拒绝Apply
     handleSubmit() {
       let result = "拒绝"
       if(this.result == 'VIA_AUDITING'){
@@ -236,7 +236,7 @@ export default {
                 auditDistributionCash(this.form.id,{result:this.result}).then(res => {
                     if (res.success) {
                       this.$Modal.remove();
-                      this.$Message.success("审核成功");
+                      this.$Message.success("审核success");
                       this.getDataList();
                       this.modalVisible = false;
                     } else {

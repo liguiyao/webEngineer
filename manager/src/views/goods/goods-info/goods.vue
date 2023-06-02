@@ -9,29 +9,29 @@
         class="search-form"
         @keydown.enter.native="handleSearch"
       >
-        <Form-item label="商品名称" prop="goodsName">
+        <Form-item label="goods name" prop="goodsName">
           <Input
             type="text"
             v-model="searchForm.goodsName"
-            placeholder="请输入商品名称"
+            placeholder="Please enter goods name"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="商品编号" prop="id">
+        <Form-item label="Goods编号" prop="id">
           <Input
             type="text"
             v-model="searchForm.id"
-            placeholder="请输入商品编号"
+            placeholder="Please enter Goods编号"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="店铺名称" prop="id">
+        <Form-item label="store name" prop="id">
           <Input
             type="text"
             v-model="searchForm.storeName"
-            placeholder="请输入店铺名称"
+            placeholder="Please enter store name"
             clearable
             style="width: 200px"
           />
@@ -39,7 +39,7 @@
         <Form-item label="状态" prop="status">
           <Select
             v-model="searchForm.marketEnable"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
@@ -50,7 +50,7 @@
         <Form-item label="销售模式" prop="status">
           <Select
             v-model="searchForm.salesModel"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
@@ -58,15 +58,15 @@
             <Option value="WHOLESALE">批发</Option>
           </Select>
         </Form-item>
-        <Form-item label="商品类型" prop="status">
+        <Form-item label="Goods类型" prop="status">
           <Select
             v-model="searchForm.goodsType"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
-            <Option value="PHYSICAL_GOODS">实物商品</Option>
-            <Option value="VIRTUAL_GOODS">虚拟商品</Option>
+            <Option value="PHYSICAL_GOODS">实物Goods</Option>
+            <Option value="VIRTUAL_GOODS">虚拟Goods</Option>
           </Select>
         </Form-item>
         <Button
@@ -74,7 +74,7 @@
           class="search-btn"
           type="primary"
           icon="ios-search"
-          >搜索</Button
+          >search</Button
         >
       </Form>
       <Table
@@ -85,7 +85,7 @@
         ref="table"
         class="mt_10"
       >
-        <!-- 商品栏目格式化 -->
+        <!-- Goods栏目格式化 -->
         <template slot="goodsSlot" slot-scope="{ row }">
           <div style="margin: 5px 0px; height: 80px; display: flex">
             <div style="">
@@ -137,7 +137,7 @@
       </Row>
     </Card>
     <Modal
-      title="下架操作"
+      title="下架operation"
       v-model="modalVisible"
       :mask-closable="false"
       :width="500"
@@ -148,9 +148,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="lower"
-          >提交</Button
+          >Submit</Button
         >
       </div>
     </Modal>
@@ -167,42 +167,42 @@ export default {
   name: "goods",
   data() {
     return {
-      id: "", //要操作的id
+      id: "", //要operation的id
       loading: true, // 表单加载状态
       modalVisible: false, // 添加或编辑显示
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "create_time", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "create_time", // default排序字段
+        order: "desc", // default排序方式
       },
       underForm: {
         // 下架原因
         reason: "",
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       columns: [
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 180,
           slot: "goodsSlot",
         },
         {
-          title: "商品编号",
+          title: "Goods编号",
           key: "id",
           minWidth: 150,
           tooltip: true,
         },
         {
-          title: "价格",
+          title: "price",
           key: "price",
           width: 130,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -216,19 +216,19 @@ export default {
             } else if (params.row.salesModel === "WHOLESALE") {
               return h("Tag", { props: { color: "magenta" } }, "批发");
             } else {
-              return h("Tag", { props: { color: "volcano" } }, "其他类型");
+              return h("Tag", { props: { color: "volcano" } }, "Others类型");
             }
           },
         },
         {
-          title: "商品类型",
+          title: "Goods类型",
           key: "goodsType",
           width: 130,
           render: (h, params) => {
             if (params.row.goodsType === "PHYSICAL_GOODS") {
-              return h("Tag", { props: { color: "green" } }, "实物商品");
+              return h("Tag", { props: { color: "green" } }, "实物Goods");
             } else if (params.row.goodsType === "VIRTUAL_GOODS") {
-              return h("Tag", { props: { color: "volcano" } }, "虚拟商品");
+              return h("Tag", { props: { color: "volcano" } }, "虚拟Goods");
             } else {
               return h("Tag", { props: { color: "geekblue" } }, "电子卡券");
             }
@@ -261,13 +261,13 @@ export default {
           },
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 100,
           tooltip: true,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -366,7 +366,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -398,7 +398,7 @@ export default {
       lowGoods(this.id, this.underForm).then((res) => {
         this.$Modal.remove();
         if (res.success) {
-          this.$Message.success("操作成功");
+          this.$Message.success("operationsuccess");
           this.modalVisible = false;
           this.getDataList();
         }
@@ -414,7 +414,7 @@ export default {
           upGoods(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("上架成功");
+              this.$Message.success("上架success");
               this.getDataList();
             }
           });
@@ -422,7 +422,7 @@ export default {
       });
     },
 
-    //查看商品详情
+    //查看Goods详情
     showDetail(v) {
       let id = v.id;
       this.$router.push({

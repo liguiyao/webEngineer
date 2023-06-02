@@ -8,7 +8,7 @@ import { handleRefreshToken } from '@/api/index';
 import { v4 as uuidv4} from 'uuid';
 
 const qs = require('qs');
-// api地址
+// apiaddress
 export const buyerUrl =
   process.env.NODE_ENV === 'development'
     ? BASE.API_DEV.buyer
@@ -29,7 +29,7 @@ export const sellerUrl =
 var isRefreshToken = 0;
 const refreshToken = getTokenDebounce();
 const service = axios.create({
-  timeout: 10000, // 请求超时时间
+  timeout: 10000, // Please 求超时时间
   baseURL: buyerUrl, // API
   httpsAgent: new https.Agent({
     rejectUnauthorized: false
@@ -44,7 +44,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     const { loading } = config;
-    // 如果是put/post请求，用qs.stringify序列化参数
+    // 如果是put/postPlease 求，用qs.stringify序列化参数
     const isPutPost = config.method === 'put' || config.method === 'post';
     const isJson = config.headers['Content-Type'] === 'application/json';
     const isFile = config.headers['Content-Type'] === 'multipart/form-data';
@@ -107,10 +107,10 @@ async function refresh(error) {
     Storage.setItem('cartNum', 0);
     store.commit('SET_CARTNUM', 0);
     Modal.confirm({
-      title: '请登录',
-      content: '<p>请登录后执行此操作</p>',
-      okText: '立即登录',
-      cancelText: '继续浏览',
+      title: 'Please login',
+      content: '<p>Please log in first</p>',
+      okText: 'Login now',
+      cancelText: 'Continue browsing',
       onOk: () => {
         router.push({
           path: '/login',
@@ -150,13 +150,13 @@ service.interceptors.response.use(
         isRefreshToken = 0;
       }
     } else if (errorResponse.status === 404) {
-      // 避免刷新token时也提示报错信息
+      // 避免刷新token时也Tips报错信息
     } else {
       if (error.message) {
         let _message =
           error.code === 'ECONNABORTED'
-            ? '连接超时，请稍候再试！'
-            : '网络错误，请稍后再试！';
+            ? '连接超时，Please 稍候再试！'
+            : '网络错误，Please 稍后再试！';
         Message.error(errorData.message || _message);
       }
     }
@@ -165,7 +165,7 @@ service.interceptors.response.use(
 );
 
 /**
- * 关闭全局加载
+ * Close全局加载
  * @param target
  */
 const closeLoading = target => {
@@ -218,7 +218,7 @@ function getTokenDebounce () {
         });
     }
     return new Promise(resolve => {
-      // 一直看lock,直到请求失败或者成功
+      // 一直看lock,直到Please 求失败或者success
       const timer = setInterval(() => {
         if (!lock) {
           clearInterval(timer);

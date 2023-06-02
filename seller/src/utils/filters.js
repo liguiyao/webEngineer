@@ -112,15 +112,15 @@ export function unixSellerBillStatus(status_code) {
     case "PAY":
       return "已结算";
     case "COMPLETE":
-      return "已完成";
+      return "completed";
   }
 }
 export function unixSwitchStatus(status_code) {
   switch (status_code) {
     case "OPEN":
-      return "开启";
+      return "Opening";
     case "CLOSE":
-      return "关闭";
+      return "Close";
   }
 }
 
@@ -163,9 +163,9 @@ export function formatDate(date, fmt) {
   return fmt;
 }
 
-// 楼层装修，选择链接处理跳转方式
+// 楼层装修，select链接处理跳转方式
 export function formatLinkType (item) {
-  const types = ['goods', 'category', 'shops', 'marketing', 'pages', 'other'] // 所有跳转的分类 依次为 商品、分类、店铺、活动、页面、其他
+  const types = ['goods', 'category', 'shops', 'marketing', 'pages', 'other'] // 所有跳转的分类 依次为 Goods、分类、店铺、活动、页面、Others
   let url = '';
   switch (item.___type) {
     case 'goods':
@@ -180,11 +180,11 @@ export function formatLinkType (item) {
       url = `/merchant?id=${item.id}`;
       break;
 
-    case 'marketing': // 暂无数据，需要后续修改
+    case 'marketing': // absent数据，需要后续modify
       url = `/seckill?id=${item.id}`;
       break;
 
-    case 'pages': // 暂无数据，需要后续修改
+    case 'pages': // absent数据，需要后续modify
       url = `/article?id=${item.id}`;
       break;
 
@@ -196,10 +196,10 @@ export function formatLinkType (item) {
         case '购物车':
           url = '/cart';
           break;
-        case '我的订单':
+        case 'My order':
           url = '/home/MyOrder';
           break;
-        case '收藏商品':
+        case '收藏Goods':
           url = '/home/Favorites';
           break;
         case '个人中心':

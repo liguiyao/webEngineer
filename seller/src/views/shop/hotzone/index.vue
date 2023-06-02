@@ -37,7 +37,7 @@ export default {
     changeHotzone(info) {
       this.$emit("changeZone", info);
     },
-    // 关闭弹窗
+    // Close弹窗
     clickClose() {
       this.$emit("closeFlag", false);
     },
@@ -49,7 +49,7 @@ export default {
     open(type, mutiple) {
       this.flag = true;
     },
-    // 关闭组件
+    // Close组件
     close() {
       this.flag = false;
     },

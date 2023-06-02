@@ -2,7 +2,7 @@ import request, {
   Method
 } from '@/plugins/request.js';
 
-// 商品列表
+// Goods列表
 export function goodsList (params) {
   return request({
     url: '/buyer/goods/goods/es',
@@ -12,7 +12,7 @@ export function goodsList (params) {
   });
 }
 
-// 商品分类 筛选条件  品牌， 尺寸等
+// Goods分类 筛选条件  品牌， 尺寸等
 export function filterList (params) {
   return request({
     url: '/buyer/goods/goods/es/related',
@@ -22,7 +22,7 @@ export function filterList (params) {
   });
 }
 
-// id获取商品详情
+// id获取Goods详情
 export function goodsDetail (goodsId) {
   return request({
     url: `/buyer/goods/goods/get/${goodsId}`,
@@ -31,7 +31,7 @@ export function goodsDetail (goodsId) {
   });
 }
 
-// id获取商品Sku详情
+// id获取GoodsSku详情
 export function goodsSkuDetail (params) {
   return request({
     url: `/buyer/goods/goods/sku/${params.goodsId}/${params.skuId}`,
@@ -41,7 +41,7 @@ export function goodsSkuDetail (params) {
   });
 }
 
-// 获取所有商品分类
+// 获取所有Goods分类
 export function getCategory (parentId) {
   return request({
     url: `/buyer/goods/category/get/${parentId}`,
@@ -60,8 +60,8 @@ export function pintuanMembers (pintuanId) {
 }
 
 /**
- * 获取搜索热词
- * @param {Number} count 获取搜索热词数量
+ * 获取search热词
+ * @param {Number} count 获取search热词Quantity
  */
 export function hotWords (params) {
   return request({

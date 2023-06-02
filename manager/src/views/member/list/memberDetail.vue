@@ -20,7 +20,7 @@
               </div>
             </div>
             <div class="bottom-info">
-              <p>上次登录 {{memberInfo.lastLoginDate}}&nbsp;
+              <p>上次Login {{memberInfo.lastLoginDate}}&nbsp;
               <p>
                 <i-switch size="large" v-model="memberInfo.disabled" :true-value="true" :false-value="false"
                           @on-change="memberStatusChange">
@@ -107,34 +107,34 @@
         <TabPane label="TA的订单" name="order" style="min-height: 200px">
           <Row>
             <Form ref="searchForm" :model="orderSearchForm" inline :label-width="70" class="search-form">
-              <Form-item label="订单号" prop="orderSn">
+              <Form-item label="Order number" prop="orderSn">
                 <Input
                   type="text"
                   v-model="orderSearchForm.orderSn"
-                  placeholder="请输入订单号"
+                  placeholder="Please enter Order number"
                   clearable
                   style="width: 200px"
                 />
               </Form-item>
               <Form-item label="订单状态" prop="orderStatus">
-                <Select v-model="orderSearchForm.orderStatus" placeholder="请选择" clearable style="width: 200px">
-                  <Option value="UNPAID">未付款</Option>
+                <Select v-model="orderSearchForm.orderStatus" placeholder="Please select" clearable style="width: 200px">
+                  <Option value="UNPAID">Unpaid</Option>
                   <Option value="PAID">已付款</Option>
                   <Option value="UNDELIVERED">待发货</Option>
                   <Option value="DELIVERED">已发货</Option>
-                  <Option value="COMPLETED">已完成</Option>
+                  <Option value="COMPLETED">completed</Option>
                   <Option value="TAKE">待核验</Option>
-                  <Option value="CANCELLED">已取消</Option>
+                  <Option value="CANCELLED">已Cancel</Option>
                 </Select>
               </Form-item>
               <Form-item label="支付状态" prop="payStatus">
-                <Select v-model="orderSearchForm.payStatus" placeholder="请选择" clearable style="width: 200px">
-                  <Option value="UNPAID">未付款</Option>
+                <Select v-model="orderSearchForm.payStatus" placeholder="Please select" clearable style="width: 200px">
+                  <Option value="UNPAID">Unpaid</Option>
                   <Option value="PAID">已付款</Option>
                 </Select>
               </Form-item>
               <Form-item label="订单类型" prop="orderType">
-                <Select v-model="orderSearchForm.orderType" placeholder="请选择" clearable style="width: 200px">
+                <Select v-model="orderSearchForm.orderType" placeholder="Please select" clearable style="width: 200px">
                   <Option value="NORMAL">普通订单</Option>
                   <Option value="VIRTUAL">虚拟订单</Option>
                   <Option value="GIFT">赠品订单</Option>
@@ -142,7 +142,7 @@
                 </Select>
               </Form-item>
               <Form-item label="订单来源" prop="clientType">
-                <Select v-model="orderSearchForm.clientType" placeholder="请选择" clearable style="width: 200px">
+                <Select v-model="orderSearchForm.clientType" placeholder="Please select" clearable style="width: 200px">
                   <Option value="H5">移动端</Option>
                   <Option value="PC">PC端</Option>
                   <Option value="WECHAT_MP">小程序</Option>
@@ -157,11 +157,11 @@
                   format="yyyy-MM-dd HH:mm:ss"
                   clearable
                   @on-change="selectDateRange"
-                  placeholder="选择起始时间"
+                  placeholder="select起始时间"
                   style="width: 200px"
                 ></DatePicker>
               </Form-item>
-              <Button @click="getOrderData" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+              <Button @click="getOrderData" type="primary" icon="ios-search" class="search-btn">search</Button>
             </Form>
           </Row>
           <div style="min-height: 180px">
@@ -191,7 +191,7 @@
             </Row>
           </div>
         </TabPane>
-        <TabPane label="TA收货地址" name="address">
+        <TabPane label="TADelivery address" name="address">
           <Row class="operation padding-row">
             <Button @click="addMemberAddress" type="primary">新增</Button>
           </Row>
@@ -229,7 +229,7 @@
               </div>
 
               <div class="points-top-text">
-                {{memberWalletInfo.memberWallet?memberWalletInfo.memberWallet:0 | unitPrice('￥')}}
+                {{memberWalletInfo.memberWallet?memberWalletInfo.memberWallet:0 | unitPrice('RM')}}
               </div>
             </div>
             <div style="min-width: 120px;">
@@ -237,7 +237,7 @@
                 冻结余额
               </div>
               <div class="points-top-text">
-                {{memberWalletInfo.memberFrozenWallet?memberWalletInfo.memberFrozenWallet:0 | unitPrice('￥')}}
+                {{memberWalletInfo.memberFrozenWallet?memberWalletInfo.memberFrozenWallet:0 | unitPrice('RM')}}
               </div>
             </div>
           </div>
@@ -269,16 +269,16 @@
         <TabPane label="TA的发票" name="receipt">
           <Row>
             <Form ref="searchForm" :model="receiptRecordSearchForm" inline :label-width="70" class="search-form">
-              <Form-item label="订单号" prop="orderSn">
+              <Form-item label="Order number" prop="orderSn">
                 <Input
                   type="text"
                   v-model="receiptRecordSearchForm.orderSn"
-                  placeholder="请输入订单号"
+                  placeholder="Please enter Order number"
                   clearable
                   style="width: 200px"
                 />
               </Form-item>
-              <Button @click="getReceiptRecordData" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+              <Button @click="getReceiptRecordData" type="primary" icon="ios-search" class="search-btn">search</Button>
             </Form>
           </Row>
           <Table
@@ -320,23 +320,23 @@
       :width="500"
     >
       <Form ref="addressForm" :model="addressForm" :label-width="100" :rules="addressFormValidate">
-        <FormItem label="收货人姓名" prop="name">
+        <FormItem label="receivername" prop="name">
           <Input v-model="addressForm.name" maxlength="8" clearable style="width: 80%"/>
         </FormItem>
-        <FormItem label="收货人手机" prop="mobile">
+        <FormItem label="receiver手机" prop="mobile">
           <Input v-model="addressForm.mobile" clearable style="width: 80%" maxlength="11"/>
         </FormItem>
-        <FormItem label="收货人地址" prop="consigneeAddressPath">
+        <FormItem label="receiver address" prop="consigneeAddressPath">
           <Input v-model="addressForm.consigneeAddressPath" @on-focus="$refs.liliMap.showMap = true" clearable
                  style="width: 80%"/>
         </FormItem>
-        <FormItem label="详细地址" prop="detail">
+        <FormItem label="Full address" prop="detail">
           <Input v-model="addressForm.detail" maxlength="35" clearable style="width: 80%"/>
         </FormItem>
-        <FormItem label="地址别名" prop="alias">
+        <FormItem label="Address alias" prop="alias">
           <Input v-model="addressForm.alias" clearable style="width: 80%" maxlength="8"/>
         </FormItem>
-        <FormItem label="默认" prop="isDefault">
+        <FormItem label="default" prop="isDefault">
           <RadioGroup type="button" button-style="solid" v-model="addressForm.isDefault">
             <Radio label="1">是</Radio>
             <Radio label="0">否</Radio>
@@ -344,8 +344,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="addressModalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="addressSubmit">保存</Button>
+        <Button type="text" @click="addressModalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="addressSubmit">Save</Button>
       </div>
     </Modal>
     <liliMap ref="liliMap" @getAddress="getAddress"></liliMap>
@@ -373,38 +373,38 @@
         loading: true, // 表单加载状态
         memberInfo: {},//会员信息
         memberWalletInfo: {},//会员预存款信息
-        addressModalTitle: "",//会员地址操作标题
-        addressModalVisible: false, //会员地址操作弹出框
+        addressModalTitle: "",//会员addressoperation标题
+        addressModalVisible: false, //会员addressoperation弹出框
         addressForm: {
           id: "",
           isDefault: "0"
 
-        },//会员地址操作form
-        selectDate: null, // 选择时间段
-        submitLoading: false, // 添加或编辑提交状态
+        },//会员addressoperationform
+        selectDate: null, // select时间段
+        submitLoading: false, // 添加或编辑Submit状态
         addressFormValidate: {
-          name: [{required: true, message: "收货人姓名不能为空"}],
+          name: [{required: true, message: "receivername不能为空"}],
           mobile: [
-            {required: true, message: '请输入收货人手机号码'},
+            {required: true, message: 'Please enter receiverPhone number'},
             {
               pattern: RegExp.mobile,
-              message: '请输入正确的手机号'
+              message: 'Please enter correctly phone number'
             }
           ],
-          consigneeAddressPath: [{required: true, message: "收货人地址不能为空"}],
-          detail: [{required: true, message: "收货人详细地址不能为空"}],
-          alias: [{required: true, message: "收货人地址别名不能为空"}],
-        },//会员地址操作表单校验
+          consigneeAddressPath: [{required: true, message: "receiver address不能为空"}],
+          detail: [{required: true, message: "receiverFull address不能为空"}],
+          alias: [{required: true, message: "receiver address alias不能为空"}],
+        },//会员addressoperation表单校验
         //历史积分表格
         pointsColumns: [
           {
-            title: "操作内容",
+            title: "operation内容",
             key: "content",
             minWidth: 120,
             tooltip: true
           },
           {
-            title: "操作时间",
+            title: "operation时间",
             key: "createTime",
             width: 200
           },
@@ -463,7 +463,7 @@
             key: "flowPrice",
             width: 130,
             render: (h, params) => {
-              return h("div", this.$options.filters.unitPrice(params.row.flowPrice, '￥'));
+              return h("div", this.$options.filters.unitPrice(params.row.flowPrice, 'RM'));
             }
           },
           {
@@ -506,7 +506,7 @@
             width: 95,
             render: (h, params) => {
               if (params.row.orderStatus == "UNPAID") {
-                return h('div', [h('span', {}, '未付款'),]);
+                return h('div', [h('span', {}, 'Unpaid'),]);
               } else if (params.row.orderStatus == "PAID") {
                 return h('div', [h('span', {}, '已付款'),]);
               } else if (params.row.orderStatus == "UNDELIVERED") {
@@ -514,11 +514,11 @@
               } else if (params.row.orderStatus == "DELIVERED") {
                 return h('div', [h('span', {}, '已发货'),]);
               } else if (params.row.orderStatus == "COMPLETED") {
-                return h('div', [h('span', {}, '已完成'),]);
+                return h('div', [h('span', {}, 'completed'),]);
               } else if (params.row.orderStatus == "TAKE") {
                 return h('div', [h('span', {}, '待核验'),]);
               } else if (params.row.orderStatus == "CANCELLED") {
-                return h('div', [h('span', {}, '已取消'),]);
+                return h('div', [h('span', {}, '已Cancel'),]);
               }
             }
           },
@@ -528,45 +528,45 @@
             width: 95,
             render: (h, params) => {
               if (params.row.payStatus == "UNPAID") {
-                return h('div', [h('span', {}, '未付款'),]);
+                return h('div', [h('span', {}, 'Unpaid'),]);
               } else if (params.row.payStatus == "PAID") {
                 return h('div', [h('span', {}, '已付款'),]);
               }
             }
           },
           {
-            title: "售后状态",
+            title: "after sale状态",
             key: "groupAfterSaleStatus",
             width: 100,
             render: (h, params) => {
               if (params.row.groupAfterSaleStatus == "NEW") {
-                return h('div', [h('span', {}, '未申请'),]);
+                return h('div', [h('span', {}, '未Apply  '),]);
               } else if (params.row.groupAfterSaleStatus == "NOT_APPLIED") {
-                return h('div', [h('span', {}, '未申请'),]);
+                return h('div', [h('span', {}, '未Apply  '),]);
               } else if (params.row.groupAfterSaleStatus == "ALREADY_APPLIED") {
-                return h('div', [h('span', {}, '已申请'),]);
+                return h('div', [h('span', {}, '已Apply  '),]);
               } else if (params.row.groupAfterSaleStatus == "EXPIRED") {
                 return h('div', [h('span', {}, '已失效'),]);
               }
             }
           },
           {
-            title: "投诉状态",
+            title: "Complaint状态",
             key: "groupComplainStatus",
             width: 95,
             render: (h, params) => {
               if (params.row.groupComplainStatus == "NEW") {
-                return h('div', [h('span', {}, '未申请'),]);
+                return h('div', [h('span', {}, '未Apply  '),]);
               } else if (params.row.groupComplainStatus == "NO_APPLY") {
-                return h('div', [h('span', {}, '未申请'),]);
+                return h('div', [h('span', {}, '未Apply  '),]);
               } else if (params.row.groupComplainStatus == "APPLYING") {
-                return h('div', [h('span', {}, '申请中'),]);
+                return h('div', [h('span', {}, 'Apply  中'),]);
               } else if (params.row.groupComplainStatus == "COMPLETE") {
-                return h('div', [h('span', {}, '已完成'),]);
+                return h('div', [h('span', {}, 'completed'),]);
               } else if (params.row.groupComplainStatus == "EXPIRED") {
                 return h('div', [h('span', {}, '已失效'),]);
               } else if (params.row.groupComplainStatus == "CANCEL") {
-                return h('div', [h('span', {}, '取消投诉'),]);
+                return h('div', [h('span', {}, 'CancelComplaint'),]);
               }
             }
           },
@@ -582,7 +582,7 @@
             width: 170,
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             width: 100,
@@ -629,38 +629,38 @@
         },
         addressColumns: [
           {
-            title: "地址别名",
+            title: "Address alias",
             key: "alias",
             minWidth: 80,
             tooltip: true
           },
           {
-            title: "收货人姓名",
+            title: "receivername",
             key: "name",
             minWidth: 90,
             tooltip: true
           },
           {
-            title: "收货人电话",
+            title: "receiver电话",
             key: "mobile",
             width: 125,
           },
 
           {
-            title: "地址",
+            title: "address",
             key: "consigneeAddressPath",
             minWidth: 160,
             tooltip: true
 
           },
           {
-            title: "详细地址",
+            title: "Full address",
             key: "detail",
             minWidth: 180,
             tooltip: true
           },
           {
-            title: "默认",
+            title: "default",
             key: "isDefault",
             width: 80,
             render: (h, params) => {
@@ -677,7 +677,7 @@
             }
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             width: 120,
@@ -705,7 +705,7 @@
                       },
                     },
                   },
-                  "删除"
+                  "delete"
                 ),
                 h(
                   "Button",
@@ -732,7 +732,7 @@
         ],
         addressData: [],//历史积分数据
         addressTotal: 0,//历史积分总条数
-        //TA的收货地址form
+        //TA的Delivery addressform
         addressSearchForm: {
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
@@ -752,9 +752,9 @@
             if (params.row.serviceType == "WALLET_WITHDRAWAL") {
               return h("div", [h("span", {}, "余额提现")]);
             } else if (params.row.serviceType == "WALLET_PAY") {
-              return h("div", [h("span", {}, "余额支付")]);
+              return h("div", [h("span", {}, "Balance payment")]);
             } else if (params.row.serviceType == "WALLET_REFUND") {
-              return h("div", [h("span", {}, "余额退款")]);
+              return h("div", [h("span", {}, "余额refund")]);
             } else if (params.row.serviceType == "WALLET_RECHARGE") {
               return h("div", [h("span", {}, "余额充值")]);
             } else {
@@ -773,7 +773,7 @@
                     style:{
                       color: 'green'
                     }
-                  }, this.$options.filters.unitPrice(params.row.money,'￥')),
+                  }, this.$options.filters.unitPrice(params.row.money,'RM')),
                 ]);
               } else if (params.row.money < 0) {
                 return h('div', [
@@ -781,7 +781,7 @@
                     style:{
                       color: 'red'
                     }
-                  }, this.$options.filters.unitPrice(params.row.money,'￥')),
+                  }, this.$options.filters.unitPrice(params.row.money,'RM')),
                 ]);
               }
             },
@@ -802,8 +802,8 @@
         walletSearchForm: {
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
         },
         walletData: [],//历史积分数据
         walletTotal: 0,//历史积分总条数
@@ -811,8 +811,8 @@
         receiptRecordSearchForm: {
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
         },
         receiptRecordColumns: [
           {
@@ -839,9 +839,9 @@
             width: 130,
             render: (h, params) => {
               if(params.row.receiptPrice == null){
-                return h("div", this.$options.filters.unitPrice(0, '￥'));
+                return h("div", this.$options.filters.unitPrice(0, 'RM'));
               }else{
-                return h("div", this.$options.filters.unitPrice(params.row.receiptPrice, '￥'));
+                return h("div", this.$options.filters.unitPrice(params.row.receiptPrice, 'RM'));
               }
 
             }
@@ -954,7 +954,7 @@
         });
         this.loading = false;
       },
-      //跳转到订单详情页面
+      //跳转到Order details页面
       orderDetail(v) {
         this.$router.push({
           name: "order-detail",
@@ -974,9 +974,9 @@
         });
         this.loading = false;
       },
-      //新增TA的收货地址
+      //新增TA的Delivery address
       addMemberAddress() {
-        this.addressModalTitle = "新增会员地址";
+        this.addressModalTitle = "新增会员address";
         this.addressModalVisible = true
         this.addressForm = {
           id: "",
@@ -984,14 +984,14 @@
         }
 
       },
-      //修改TA的收货地址
+      //modifyTA的Delivery address
       editAddress(v) {
-        this.addressModalTitle = "修改会员地址";
+        this.addressModalTitle = "modify会员address";
         this.$set(this, "addressForm", v);
         delete this.addressForm.updateTime;
         this.addressModalVisible = true
       },
-      //新增或者修改表单提交
+      //新增或者modify表单Submit
       addressSubmit() {
         this.addressForm.memberId = this.id
         this.$refs.addressForm.validate((valid) => {
@@ -1000,21 +1000,21 @@
             let submit = JSON.parse(JSON.stringify(this.addressForm))
             submit.isDefault == "1" ? submit.isDefault  = true :  submit.isDefault = false
             if (submit.id != "") {
-              //修改地址
+              //modifyaddress
               API_Member.editMemberAddress(submit).then((res) => {
                 this.submitLoading = false;
                 if (res && res.success) {
-                  this.$Message.success("修改成功");
+                  this.$Message.success("modifysuccess");
                   this.addressModalVisible = false
                   this.getAddressData();
                 }
               });
             } else {
-              //添加地址
+              //添加address
               API_Member.addMemberAddress(submit).then((res) => {
                 this.submitLoading = false;
                 if (res && res.success) {
-                  this.$Message.success("添加成功");
+                  this.$Message.success("添加success");
                   this.addressModalVisible = false
                   this.getAddressData();
                 }
@@ -1024,7 +1024,7 @@
         })
 
       },
-      //获取地址
+      //获取address
       getAddress(item) {
         this.$set(this.addressForm, 'consigneeAddressPath', item.addr)
         this.$set(this.addressForm, 'consigneeAddressIdPath', item.addrId)
@@ -1032,22 +1032,22 @@
         this.addressForm.lat = item.position.lat
         this.addressForm.lon = item.position.lng
       },
-      //删除会员地址
+      //delete会员address
       memberAddressRemove(v) {
         this.$Modal.confirm({
-          title: '删除',
-          content: '<p>确定要删除此收货地址？</p>',
+          title: 'delete',
+          content: '<p>Confirm要delete此Delivery address？</p>',
           onOk: () => {
             API_Member.removeMemberAddress(v.id).then((res) => {
               if (res.success) {
-                this.$Message.success('删除成功');
+                this.$Message.success('deletesuccess');
                 this.getAddressData();
               }
             });
           }
         })
       },
-      //查询TA的收货地址
+      //查询TA的Delivery address
       getAddressData() {
         this.loading = true;
         API_Member.getMemberAddressData(this.id, this.addressSearchForm).then((res) => {
@@ -1073,13 +1073,13 @@
         this.getPointData();
       }
       ,
-      //会员地址记录页数变化
+      //会员address记录页数变化
       addressChangePage(v) {
         this.addressSearchForm.pageNumber = v;
         this.getAddressData()
       }
       ,
-      //会员地址记录页数变化
+      //会员address记录页数变化
       addressChangePageSize(v) {
         this.addressSearchForm.pageNumber = 1;
         this.addressSearchForm.pageSize = v;

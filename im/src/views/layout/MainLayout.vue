@@ -37,7 +37,7 @@
       </el-main>
     </el-container>
 
-    <!-- 语音消息提示 -->
+    <!-- 语音消息Tips -->
     <audio id="audio" preload="auto">
       <source src="~@/assets/image/1701.mp3" type="audio/mp3" />
     </audio>
@@ -87,7 +87,7 @@ export default {
         .querySelector("#audio")
         .play()
         .catch(() => {
-          console.error("消息提示音播放异常");
+          console.error("消息Tips音播放异常");
         });
     },
     logout () {

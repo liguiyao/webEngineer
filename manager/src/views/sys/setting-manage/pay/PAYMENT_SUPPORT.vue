@@ -68,9 +68,9 @@ export default {
       formValidate: {}, // 表单数据
       // key obj
       payWay: { // 支付方式
-        ALIPAY: "支付宝支付",
-        WECHAT: "微信支付",
-        WALLET: "余额支付",
+        ALIPAY: "Alipay支付",
+        WECHAT: "Wechat支付",
+        WALLET: "Balance payment",
       },
       supportForm: "", // 支持的支付方式
     };
@@ -86,11 +86,11 @@ export default {
         this.setupSetting();
       }
     },
-    // 修改支付设置
+    // modify支付设置
     handleChangePayType(val) {
       this.$Modal.confirm({
-        title: "修改支付设置",
-        content: "您是否修改此项？",
+        title: "modify支付设置",
+        content: "您是否modify此项？",
         loading: true,
         onOk: () => {
           this.setupSetting();
@@ -100,15 +100,15 @@ export default {
         },
       });
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, { paymentSupportItems: this.formValidate }).then(
         (res) => {
           if (res.success) {
-            this.$Message.success("保存成功!");
+            this.$Message.success("Savesuccess!");
             this.$Modal.remove();
           } else {
-            this.$Message.error("保存失败!");
+            this.$Message.error("Save失败!");
             this.$Modal.remove();
           }
         }

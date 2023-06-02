@@ -1,5 +1,5 @@
 <template>
-  <Modal :mask-closable="false" :value="switched" v-model="switched" title="选择地址" @on-ok="submit" @on-cancel="cancel">
+  <Modal :mask-closable="false" :value="switched" v-model="switched" title="selectaddress" @on-ok="submit" @on-cancel="cancel">
     <div class="flex">
       <Spin size="large" fix v-if="spinShow"></Spin>
       <Tree ref="tree" class="tree" :data="data" expand-node show-checkbox multiple></Tree>
@@ -14,7 +14,7 @@ export default {
       switched: false, // 控制模态框显隐
       spinShow: false, // 加载loading
       data: [], // 地区数据
-      selectedWay: [], // 选择的地区
+      selectedWay: [], // select的地区
       callBackData: "", // 打开组件的回显数据
     };
   },
@@ -28,12 +28,12 @@ export default {
       this.init();
     },
     /**
-     * 关闭
+     * Close
      */
     cancel() {
       this.switched = false;
 
-      // 关闭的时候所有数据设置成disabled为true
+      // Close的时候所有数据设置成disabled为true
       this.data.forEach((item) => {
         this.$set(item, "disabled", false);
         item.children.forEach((child) => {
@@ -43,13 +43,13 @@ export default {
     },
 
     /**
-     * 打开地图选择器
+     * 打开地图select器
      * @param {val} 回调的数据
-     * @param {index} 当前操作的运费模板的索引
+     * @param {index} 当前operation的运费模板的索引
      */
     open(val, index) {
       if (val) {
-        //已选中的地址
+        //已选中的address
         let checkedData = this.$store.state.shipTemplate;
 
         let checkData = [];
@@ -62,7 +62,7 @@ export default {
         });
         // 选中
         checkData.forEach((check) => {
-          // 循环出已经选中的地址id
+          // 循环出已经选中的addressid
           check.areaId.split(",").forEach((ids) => {
             this.data.forEach((item) => {
               // 如果当前省份下市区全部选中则选中该省份
@@ -90,7 +90,7 @@ export default {
 
         // 禁用
         disabledData.forEach((dis) => {
-          // 循环出已经选中的地址id
+          // 循环出已经选中的addressid
           dis.areaId.split(",").forEach((ids) => {
             // 循环出省份
             this.data.forEach((item) => {
@@ -121,7 +121,7 @@ export default {
     },
 
     /**
-     * 提交并筛选出省市
+     * Submit并筛选出省市
      */
     submit() {
       // 筛选出省市

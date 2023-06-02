@@ -1,11 +1,11 @@
 <template>
-  <!-- 登录消息 -->
+  <!-- Login消息 -->
   <div class="login-message">
-    <h4>登录操作通知</h4>
-    <p>登录时间：{{ datetime }} (CST)</p>
-    <p>IP地址：{{ ip }}</p>
-    <p>登录地点：{{ address }}</p>
-    <p>登录设备：{{ platform }}</p>
+    <h4>Loginoperation通知</h4>
+    <p>Login时间：{{ datetime }} (CST)</p>
+    <p>IPaddress：{{ ip }}</p>
+    <p>Login地点：{{ address }}</p>
+    <p>Login设备：{{ platform }}</p>
     <p>异常原因：{{ reason }}</p>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
       ip: '',
       address: '',
       platform: '',
-      reason: '常用设备登录',
+      reason: '常用设备Login',
     }
   },
   created() {

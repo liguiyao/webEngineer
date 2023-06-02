@@ -9,46 +9,46 @@ import {
 export const getMessageData = params => {
   return getRequest("/other/message", params);
 };
-//修改短信模板
+//modify短信模板
 export const editSmsMessageTemplate = (id, params) => {
   return putRequest(`/sms/sms/${id}`, params)
 }
-//修改站内信模板
+//modify站内信模板
 export const editNoticeMessage = (id, params) => {
   return putRequest(`/setting/noticeMessage/${id}`, params)
 }
 
-//微信消息同步
+//Wechat消息同步
 export const wechatMessageSync = (params) => {
   return getRequest("/wechat/wechatMessage/init", params)
 }
-//分页获取微信消息
+//分页获取Wechat消息
 export const getWechatMessagePage = (params) => {
   return getRequest("/wechat/wechatMessage", params)
 }
-//编辑微信消息模版
+//编辑Wechat消息模版
 export const editWechatMessageTemplate = (id, params) => {
   return putRequest(`/wechat/wechatMessage/${id}`, params)
 }
-//删除微信消息模版
+//deleteWechat消息模版
 export const delWechatMessageTemplate = (id, params) => {
   return deleteRequest(`/wechat/wechatMessage/${id}`, params)
 }
 
 
-//微信消息订阅同步
+//Wechat消息订阅同步
 export const wechatMPMessageSync = (params) => {
   return getRequest("/wechat/wechatMPMessage/init", params)
 }
-//分页获取微信消息订阅
+//分页获取Wechat消息订阅
 export const getWechatMPMessagePage = (params) => {
   return getRequest("/wechat/wechatMPMessage", params)
 }
-//编辑微信消息订阅模版
+//编辑Wechat消息订阅模版
 export const editWechatMPMessageTemplate = (id, params) => {
   return putRequest(`/wechat/wechatMPMessage/${id}`, params)
 }
-//删除微信消息订阅模版
+//deleteWechat消息订阅模版
 export const delWechatMPMessageTemplate = (id, params) => {
   return deleteRequest(`/wechat/wechatMPMessage/${id}`, params)
 }
@@ -59,15 +59,15 @@ export const delWechatMPMessageTemplate = (id, params) => {
 export const getNoticeMessageData = params => {
   return getRequest("/setting/noticeMessage", params);
 };
-//删除站内信
+//delete站内信
 export const deleteMessage = (id) => {
   return deleteRequest(`/other/message/${id}`);
 };
-// 开启站内信模板
+// Opening站内信模板
 export const openNoticeMessage = (id) => {
   return putRequest(`/setting/noticeMessage/${id}/open`);
 };
-// 修改站内信状态
+// modify站内信状态
 export const updateMessageStatus = (id,status) => {
   return putRequest(`/setting/noticeMessage/${id}/${status}`);
 };
@@ -79,11 +79,11 @@ export const getSmsTemplatePage = (params) => {
 export const addSmsTemplatePage = (params) => {
   return postRequest(`sms/template`, params);
 };
-//删除短信模板
+//delete短信模板
 export const deleteSmsTemplatePage = (params) => {
   return deleteRequest(`sms/template`, params);
 };
-//删除短信模板
+//delete短信模板
 export const editSmsTemplatePage = (params) => {
   return putRequest(`sms/template/modifySmsTemplate`, params);
 };
@@ -103,7 +103,7 @@ export const addSmsSign = (params) => {
 export const syncSign = () => {
   return putRequest(`sms/sign/querySmsSign`);
 };
-//删除短信签名
+//delete短信签名
 export const deleteSign = (id) => {
   return deleteRequest(`sms/sign/${id}`);
 };
@@ -124,11 +124,11 @@ export const appVersionPage = (params) => {
 export const addVersion = (params) => {
   return postRequest(`/other/appVersion`, params);
 };
-//修改app版本信息
+//modifyapp版本信息
 export const editVersion = (params, id) => {
   return putRequest(`/other/appVersion/${id}`, params);
 };
-//删除app版本信息
+//deleteapp版本信息
 export const deleteVersion = (id) => {
   return deleteRequest(`/other/appVersion/${id}`);
 };
@@ -146,7 +146,7 @@ export const openInstantDelivery = (bean) => {
   return putRequest(`instant-delivery/${bean}/open`);
 };
 
-//修改封面图片
+//modify封面图片
 export const editInstantDeliveryImage = (bean, params) => {
   return putRequest(`instant-delivery/${bean}/image`, params);
 };
@@ -167,7 +167,7 @@ export const getPaymentSupportForm = () => {
   return getRequest(`setting/settingx/paymentSupport`);
 }
 
-//  验证码源文件删除
+//  验证码源文件delete
 export const delVerification = (id) => {
   return deleteRequest(`/other/verificationSource/${id}`)
 }
@@ -177,7 +177,7 @@ export const addVerification = (params) => {
   return postRequest(`/other/verificationSource`, params)
 }
 
-//  修改验证码源文件
+//  modify验证码源文件
 export const editVerification = (id, params) => {
   return putRequest(`/other/verificationSource/${id}`, params)
 }

@@ -4,22 +4,22 @@
             <template #header>
                 <p style="color:black;text-align:left">
                     <!-- <Icon type="ios-information-circle"></Icon> -->
-                    <span>活动优惠券</span>
+                    <span>Activity coupon</span>
                 </p>
             </template>
               <template>
                   <Scroll :on-reach-bottom="handleReachBottom">
                       <Card dis-hover v-for="(item, index) in autoCoupList" :key="index" style="margin: 10px 15px">
-                            <span v-if="item.couponType === 'PRICE'" class="fontsize_12 global_color" style="font-size: 15px;">￥<span class="price">{{item.price | unitPrice}}</span></span>
-                            <span v-if="item.couponType === 'DISCOUNT'" class="fontsize_12 global_color" style="font-size: 15px;"><span class="price">{{item.discount}}</span>折</span>
-                            <span class="describe" style="font-size: 15px;margin-left: 5px;">满{{item.consumeThreshold}}元可用</span>
-                            <p style="font-size: 10px;">使用范围：{{useScope(item.scopeType, item.storeName)}}</p>
-                            <p style="font-size: 10px;">有效期：{{item.endTime}}</p>
+                            <span v-if="item.couponType === 'PRICE'" class="fontsize_12 global_color" style="font-size: 15px;">RM<span class="price">{{item.price | unitPrice}}</span></span>
+                            <span v-if="item.couponType === 'DISCOUNT'" class="fontsize_12 global_color" style="font-size: 15px;"><span class="price">{{item.discount}}</span>off</span>
+                            <span class="describe" style="font-size: 15px;margin-left: 5px;">full{{item.consumeThreshold}}ringgit available</span>
+                            <p style="font-size: 10px;">Scope of use：{{useScope(item.scopeType, item.storeName)}}</p>
+                            <p style="font-size: 10px;">Validity period：{{item.endTime}}</p>
                       </Card>
                   </Scroll>
               </template>
             <template #footer>
-                <Button type="error" @click="showCpmodel=false">确定</Button>
+                <Button type="error" @click="showCpmodel=false">confirm</Button>
             </template>
         </Modal>
     <drawer></drawer>
@@ -27,11 +27,11 @@
     <hover-search class="hover-search" :class="{show: topSearchShow}"></hover-search>
     <!-- 顶部广告 -->
     <FixedTopPage :data="topAdvert"></FixedTopPage>
-    <!-- 头部 包括登录，我的订单等 -->
+    <!-- 头部 包括Login，My order等 -->
     <BaseHeader></BaseHeader>
-    <!-- 搜索框、logo -->
+    <!-- search框、logo -->
     <Search></Search>
-    <!-- 商品分类 -->
+    <!-- Goods分类 -->
     <cateNav :showAlways="true" v-if="showNav" :large="carouselLarge" :opacity="carouselOpacity"></cateNav>
     <!-- 楼层装修部分 -->
     <model-form ref="modelForm" :data="modelForm"></model-form>
@@ -71,32 +71,32 @@ export default {
       modelForm: { list: [] }, // 楼层装修数据
       topAdvert: {}, // 顶部广告
       showNav: false, // 是否展示分类栏
-      topSearchShow: false, // 滚动后顶部搜索栏展示
+      topSearchShow: false, // 滚动后顶部search栏展示
       carouselLarge: false, // 不同轮播分类尺寸
       carouselOpacity: false // 不同轮播分类样式
     };
   },
   // created(){
-   
+
   // },
   methods: {
-    // 优惠券可用范围
+    // couponavailable范围
     useScope (type, storeName) {
-      let shop = '平台';
-      let goods = '全部商品'
+      let shop = 'platform';
+      let goods = 'All goods'
       if (storeName !== 'platform') shop = storeName
       switch (type) {
         case 'ALL':
-          goods = '全部商品'
+          goods = 'All goods'
           break;
         case 'PORTION_GOODS':
-          goods = '部分商品'
+          goods = 'Partial goods'
           break;
         case 'PORTION_GOODS_CATEGORY':
-          goods = '部分分类商品'
+          goods = 'Partial classified goods'
           break;
       }
-      return `${shop}${goods}可用`
+      return `${shop}${goods}available`
     },
     getAutoCoup(){
       let data = new Date()
@@ -114,7 +114,7 @@ export default {
         // window.localStorage.setItem('getTimes',datas)//存储缓存
         this.getcps()
       }
-    },  
+    },
     getcps(){
       console.log(123123)
       let data = new Date()
@@ -139,16 +139,16 @@ export default {
               storage.setItem('getTimes',datas)//存储缓存
             }
       })
-    }, 
+    },
     handleReachBottom(){
       console.log(111)
-    } , 
+    } ,
     getIndexData () {
       // 获取首页装修数据
       indexData({ clientType: 'PC' }).then(async (res) => {
         if (res.success) {
           let dataJson = JSON.parse(res.result.pageData);
-          // 秒杀活动不是装修的数据，需要调用接口判断是否有秒杀商品
+          // 秒杀活动不是装修的数据，需要调用接口判断是否有秒杀Goods
           // 轮播图根据不同轮播，样式不同
           for (let i = 0; i < dataJson.list.length; i++) {
             let type = dataJson.list[i].type

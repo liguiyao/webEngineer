@@ -45,7 +45,7 @@
     <template v-if="element.type == 'seckill' && element.options.list.length">
       <seckill :data="element" class="mb_20 width_1200_auto"></seckill>
     </template>
-    <!-- 折扣广告 -->
+    <!-- off扣广告 -->
     <template v-if="element.type == 'discountAdvert'">
       <div
         class="discountAdvert"
@@ -174,7 +174,7 @@ export default {
   }
 }
 
-/** 折扣广告 */
+/** off扣广告 */
 .discountAdvert {
   width: 1300px;
   height: 566px;

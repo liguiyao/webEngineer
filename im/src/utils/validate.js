@@ -1,5 +1,5 @@
 /**
- * 检测是否是字邮箱地址
+ * 检测是否是字邮箱address
  *
  * @param {String} value
  */
@@ -10,7 +10,7 @@ export const isEmail = value => {
 }
 
 /**
- * 检测是否是手机号
+ * 检测是否是Phone number
  *
  * @param {String} value
  */
@@ -46,7 +46,7 @@ export const isBoolean = value => {
 }
 
 /**
- * 检测是非是微信浏览器
+ * 检测是非是Wechat浏览器
  */
 export const isWeiXin = () => {
   let ua = navigator.userAgent.toLowerCase()

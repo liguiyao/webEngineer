@@ -36,13 +36,13 @@ router.beforeEach((to, from, next) => {
       console.log(name)
       Util.toDefaultPage([...routers], name, router, next);
     } else {
-      // 判断是否已经登录且前往的页面不是登录页
+      // 判断是否已经Login且前往的页面不是Login页
       next({
         name: 'login'
       });
     }
   } else if (Cookies.get('userInfoSeller') && name === 'login') {
-    // 判断是否已经登录且前往的是登录页
+    // 判断是否已经Login且前往的是Login页
     Util.title();
     next({
       name: 'home_index'

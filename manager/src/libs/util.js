@@ -6,10 +6,10 @@ import Cookies from "js-cookie";
 let util = {};
 
 util.title = function(title) {
-  title = title || "运营后台";
+  title = title || "Backstage";
   window.document.title = title;
 };
-// 判断元素是否存在于数组中
+// 判断ringgit素是否存在于数组中
 util.oneOf = function(ele, targetArr) {
   if (targetArr.indexOf(ele) >= 0) {
     return true;
@@ -102,10 +102,10 @@ util.initRouter = function(vm) {
       frontRoute: "error-page/404"
     }
   ];
-  // 判断用户是否登录
+  // 判断用户是否Login
   let userInfo = Cookies.get("userInfoManager");
   if (!userInfo) {
-    // 未登录
+    // 未Login
     return;
   }
   if (!vm.$store.state.app.added) {
@@ -142,7 +142,7 @@ util.initRouter = function(vm) {
       vm.$store.commit("updateDefaultRouter", otherRoutes);
       // 添加菜单路由
       util.initMenuData(vm, menuData);
-      // 缓存数据 修改加载标识
+      // 缓存数据 modify加载标识
       window.localStorage.setItem("menuData", JSON.stringify(menuData));
       vm.$store.commit("setAdded", true);
     });
@@ -200,7 +200,7 @@ util.initMenuData = function(vm, data) {
       }
     }
   } else {
-    // 默认第一个
+    // default第一个
     currNav = navList[0].name;
     vm.$store.commit("setCurrNavTitle", navList[0].title);
   }
@@ -246,7 +246,7 @@ util.initRouterNode = function(routers, data) {
 
     let meta = {};
     // 给页面添加标题、父级菜单name（方便左侧菜单选中）
-    meta.title = menu.title ? menu.title + " - 运营后台" : null;
+    meta.title = menu.title ? menu.title + " - Backstage" : null;
     meta.firstRouterName = item.firstRouterName;
     menu.meta = meta;
 

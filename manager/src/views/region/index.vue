@@ -55,11 +55,11 @@
 
           <div class="button-list">
             <Button type="default" @click="handleUpdate('formValidate')"
-              >修改</Button
+              >modify</Button
             >
             <Button type="primary" ghost @click="handleInsert()">添加</Button>
             <Button type="error" @click="handleDel('formValidate')"
-              >删除</Button
+              >delete</Button
             >
           </div>
         </Form>
@@ -151,12 +151,12 @@ export default {
     this.init();
   },
   methods: {
-    // 提交数据
+    // Submit数据
     submit() {
       delete this.addValidate.children;
       addRegion(this.addValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("添加成功!请稍后查看");
+          this.$Message.success("添加success!Please 稍后查看");
         }
       });
     },
@@ -164,7 +164,7 @@ export default {
     // 添加
     handleInsert() {
       if (!this.formValidate.parentId) {
-        this.$Message.error("请选择要添加的数据");
+        this.$Message.error("Please select要添加的数据");
         return false;
       }
       this.addValidate = JSON.parse(JSON.stringify(this.formValidate));
@@ -198,22 +198,22 @@ export default {
       this.addValidate.center = "";
       this.modalFlag = true;
     },
-    // 删除
+    // delete
     handleDel() {
       this.$Modal.confirm({
-        title: "确定删除？",
-        content: "删除后店铺以及用户地区绑定数据将全部错乱",
+        title: "Confirmdelete？",
+        content: "delete后店铺以及用户地区绑定数据将全部错乱",
         onOk: () => {
           delRegion(this.formValidate.id).then((res) => {
             if (res.success) {
-              this.$Message.success("删除成功!,请稍后查看数据");
+              this.$Message.success("deletesuccess!,Please 稍后查看数据");
             }
           });
         },
       });
     },
 
-    // 修改
+    // modify
     handleUpdate(name) {
       delete this.formValidate.createBy;
       delete this.formValidate.createTime;
@@ -227,11 +227,11 @@ export default {
             : (this.formValidate.adCode = "");
           updateRegion(this.formValidate.id, this.formValidate).then((res) => {
             if (res.result) {
-              this.$Message.success("修改成功!,请稍后查看数据");
+              this.$Message.success("modifysuccess!,Please 稍后查看数据");
             }
           });
         } else {
-          this.$Message.error("请选择数据");
+          this.$Message.error("Please select数据");
         }
       });
     },
@@ -307,7 +307,7 @@ export default {
     handleAsyncRegion() {
       this.num = 10;
       this.$Modal.confirm({
-        title: "确定更新？",
+        title: "Confirm更新？",
         content: "更新后店铺以及用户地区绑定数据将全部错乱",
         onOk: () => {
           let timer;

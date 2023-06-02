@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {
   getRequest,
   postRequest,
@@ -11,11 +11,11 @@ import {
 
 
 
-// 分页获取物流公司
+// 分页获取Logistics company
 export const getLogisticsPage = params => {
   return getRequest(`/other/logistics/getByPage`, params);
 };
-// 删除
+// delete
 export const delLogistics = id => {
   return deleteRequest(`/other/logistics/delete/${id}`);
 };
@@ -36,7 +36,7 @@ export const getCheckedOn = params =>{
   return getRequest(`/other/logistics/getCheckedFaceSheet`,params);
 }
 
-//获取物流设置
+//获取logistics设置
 export const getLogisticsSetting = () =>{
   return getRequest(`/other/logistics`);
 }

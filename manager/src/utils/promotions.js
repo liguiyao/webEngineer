@@ -12,7 +12,7 @@ export function promotionsStatusRender(h, params) {
     text = "已结束";
     color = "red";
   } else if (params.row.promotionStatus == "CLOSE") {
-    text = "已关闭";
+    text = "已Close";
     color = "red";
   }
   return h("div", [
@@ -35,13 +35,13 @@ export function promotionsScopeTypeRender(h, params) {
     text = "全品类";
     color = "default";
   } else if (params.row.scopeType == "PORTION_GOODS_CATEGORY") {
-    text = "商品分类";
+    text = "Goods分类";
     color = "yellow";
   } else if (params.row.scopeType == "PORTION_SHOP_CATEGORY") {
     text = "店铺分类";
     color = "pink";
   } else if (params.row.scopeType == "PORTION_GOODS") {
-    text = "指定商品";
+    text = "指定Goods";
     color = "magenta";
   }
   return h("div", [

@@ -7,7 +7,7 @@
       :model="formValidate"
       :rules="ruleValidate"
     >
-      <FormItem label="热词默认配置" prop="hotWordsSettingItems">
+      <FormItem label="热词default配置" prop="hotWordsSettingItems">
         <div
           class="item-label"
           v-for="(item, index) in formValidate.hotWordsSettingItems"
@@ -24,17 +24,17 @@
             </div>
           </div>
           <div>
-            <Button type="primary" @click="formValidate.hotWordsSettingItems.splice(index,1)">删除</Button>
+            <Button type="primary" @click="formValidate.hotWordsSettingItems.splice(index,1)">delete</Button>
           </div>
         </div>
         <Button @click="addSetItem">添加配置</Button>
       </FormItem>
-      <FormItem label="每日持久化热词数量" prop="saveNum">
+      <FormItem label="每日持久化热词Quantity" prop="saveNum">
         <InputNumber :min="0" v-model="formValidate.saveNum" />
       </FormItem>
 
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
       </div>
     </Form>
   </div>
@@ -48,13 +48,13 @@ export default {
       ruleValidate: {}, // 验证规则
       formValidate: {
         // 表单数据
-        saveNum: 1, // 每日保存数量
+        saveNum: 1, // 每日SaveQuantity
         hotWordsSettingItems: [
           {
             keywords: "",
             score: 1,
           },
-        ], // 热词默认配置
+        ], // 热词default配置
       },
     };
   },
@@ -63,7 +63,7 @@ export default {
     this.init();
   },
   methods: {
-    // 添加热词默认配置
+    // 添加热词default配置
     addSetItem(val) {
       if (this.formValidate.hotWordsSettingItems.length >= 5) {
         this.$Message.error("最多5个热词项");
@@ -80,18 +80,18 @@ export default {
         if (valid) {
           this.setupSetting();
         } else {
-          that.$Message.error("请正确填写内容!");
+          that.$Message.error("Please 正确enter 内容!");
           return flag;
         }
       });
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting("HOT_WORDS", this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
         this.init();
       });

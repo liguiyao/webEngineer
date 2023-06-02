@@ -13,45 +13,45 @@
             <Input
               type="text"
               v-model="searchForm.orderSn"
-              placeholder="请输入订单编号"
+              placeholder="Please enter 订单编号"
               clearable
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="售后单号" prop="sn">
+          <Form-item label="After-sales order number" prop="sn">
             <Input
               type="text"
               v-model="searchForm.sn"
-              placeholder="请输入售后单号"
+              placeholder="Please enter After-sales order number"
               clearable
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="售后状态">
+          <Form-item label="after sale状态">
             <Select
               v-model="searchForm.serviceStatus"
               placeholder="全部"
               clearable
               style="width: 200px"
             >
-              <Option value="APPLY">申请售后</Option>
-              <Option value="PASS">通过售后</Option>
-              <Option value="REFUSE">拒绝售后</Option>
-              <Option value="BUYER_RETURN">买家退货，待卖家收货</Option>
-              <Option value="SELLER_CONFIRM">卖家确认收货</Option>
-              <Option value="SELLER_TERMINATION">卖家终止售后</Option>
-              <Option value="BUYER_CANCEL">买家取消售后</Option>
-              <Option value="COMPLETE">完成售后</Option>
+              <Option value="APPLY">Apply  after sale</Option>
+              <Option value="PASS">通过after sale</Option>
+              <Option value="REFUSE">拒绝after sale</Option>
+              <Option value="BUYER_RETURN">买家Return goods，待卖家收货</Option>
+              <Option value="SELLER_CONFIRM">卖家Confirm receipt</Option>
+              <Option value="SELLER_TERMINATION">卖家终止after sale</Option>
+              <Option value="BUYER_CANCEL">买家Cancelafter sale</Option>
+              <Option value="COMPLETE">完成after sale</Option>
             </Select>
           </Form-item>
-          <Form-item label="申请时间">
+          <Form-item label="Apply  时间">
             <DatePicker
               v-model="selectDate"
               type="datetimerange"
               format="yyyy-MM-dd HH:mm:ss"
               clearable
               @on-change="selectDateRange"
-              placeholder="选择起始时间"
+              placeholder="select起始时间"
               style="width: 200px"
             ></DatePicker>
           </Form-item>
@@ -59,7 +59,7 @@
             <Input
               type="text"
               v-model="searchForm.storeName"
-              placeholder="请输入商家名称"
+              placeholder="Please enter 商家名称"
               clearable
               style="width: 200px"
             />
@@ -68,20 +68,20 @@
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="请输入会员名称"
+              placeholder="Please enter 会员名称"
               clearable
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="售后类型">
+          <Form-item label="after sale类型">
             <Select
               v-model="searchForm.serviceType"
               placeholder="全部"
               clearable
               style="width: 200px"
             >
-              <Option value="RETURN_MONEY">退款</Option>
-              <Option value="RETURN_GOODS">退货</Option>
+              <Option value="RETURN_MONEY">refund</Option>
+              <Option value="RETURN_GOODS">Return goods</Option>
             </Select>
           </Form-item>
           <Button
@@ -89,7 +89,7 @@
             type="primary"
             icon="ios-search"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -101,7 +101,7 @@
         ref="table"
         class="mt_10"
       >
-        <!-- 商品栏目格式化 -->
+        <!-- Goods栏目格式化 -->
         <template slot="goodsSlot" slot-scope="{ row }">
           <div style="margin-top: 5px; height: 80px; display: flex">
             <div style="">
@@ -164,11 +164,11 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
         orderSn: "",
@@ -177,7 +177,7 @@ export default {
         storeName: "",
         sn: "",
       },
-      selectDate: null, // 选择时间段
+      selectDate: null, // select时间段
       form: {
         // 添加或编辑表单对象初始化数据
         sn: "",
@@ -188,7 +188,7 @@ export default {
       },
       columns: [
         {
-          title: "售后服务单号",
+          title: "after sale服务单号",
           key: "sn",
           minWidth: 140,
           tooltip: true,
@@ -200,7 +200,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "商品",
+          title: "Goods",
           key: "goodsName",
           minWidth: 300,
           tooltip: true,
@@ -218,29 +218,29 @@ export default {
           tooltip: true,
         },
         {
-          title: "售后金额",
+          title: "after sale金额",
           key: "applyRefundPrice",
           width: 110,
           render: (h, params) => {
             if (params.row.applyRefundPrice == null) {
-              return h("div", this.$options.filters.unitPrice(0, "￥"));
+              return h("div", this.$options.filters.unitPrice(0, "RM"));
             } else {
               return h(
                 "div",
-                this.$options.filters.unitPrice(params.row.applyRefundPrice, "￥")
+                this.$options.filters.unitPrice(params.row.applyRefundPrice, "RM")
               );
             }
           },
         },
         {
-          title: "售后类型",
+          title: "after sale类型",
           key: "serviceType",
           width: 100,
           render: (h, params) => {
             if (params.row.serviceType == "RETURN_MONEY") {
-              return h("div", [h("tag", { props: { color: "blue" } }, "退款")]);
+              return h("div", [h("tag", { props: { color: "blue" } }, "refund")]);
             } else if (params.row.serviceType == "RETURN_GOODS") {
-              return h("div", [h("tag", { props: { color: "volcano" } }, "退货")]);
+              return h("div", [h("tag", { props: { color: "volcano" } }, "Return goods")]);
             } else if (params.row.serviceType == "EXCHANGE_GOODS") {
               return h("div", [h("tag", { props: { color: "green" } }, "换货")]);
             }
@@ -248,40 +248,40 @@ export default {
         },
 
         {
-          title: "售后状态",
+          title: "after sale状态",
           key: "serviceStatus",
           width: 150,
           render: (h, params) => {
             if (params.row.serviceStatus == "APPLY") {
-              return h("div", [h("tag", { props: { color: "blue" } }, "申请中")]);
+              return h("div", [h("tag", { props: { color: "blue" } }, "Apply  中")]);
             } else if (params.row.serviceStatus == "PASS") {
-              return h("div", [h("tag", { props: { color: "cyan" } }, "通过售后")]);
+              return h("div", [h("tag", { props: { color: "cyan" } }, "通过after sale")]);
             } else if (params.row.serviceStatus == "REFUSE") {
-              return h("div", [h("tag", { props: { color: "volcano" } }, "拒绝售后")]);
+              return h("div", [h("tag", { props: { color: "volcano" } }, "拒绝after sale")]);
             } else if (params.row.serviceStatus == "BUYER_RETURN") {
               return h("div", [
-                h("tag", { props: { color: "orange" } }, "买家退货，待卖家收货"),
+                h("tag", { props: { color: "orange" } }, "买家Return goods，待卖家收货"),
               ]);
             } else if (params.row.serviceStatus == "SELLER_CONFIRM") {
-              return h("div", [h("tag", { props: { color: "gold" } }, "卖家确认收货")]);
+              return h("div", [h("tag", { props: { color: "gold" } }, "卖家Confirm receipt")]);
             } else if (params.row.serviceStatus == "SELLER_TERMINATION") {
-              return h("div", [h("tag", { props: { color: "lime" } }, "卖家终止售后")]);
+              return h("div", [h("tag", { props: { color: "lime" } }, "卖家终止after sale")]);
             } else if (params.row.serviceStatus == "BUYER_CANCEL") {
-              return h("div", [h("tag", { props: { color: "purple" } }, "买家取消售后")]);
+              return h("div", [h("tag", { props: { color: "purple" } }, "买家Cancelafter sale")]);
             } else if (params.row.serviceStatus == "COMPLETE") {
-              return h("div", [h("tag", { props: { color: "green" } }, "完成售后")]);
+              return h("div", [h("tag", { props: { color: "green" } }, "完成after sale")]);
             } else if (params.row.serviceStatus == "WAIT_REFUND") {
-              return h("div", [h("tag", { props: { color: "geekblue" } }, "待平台退款")]);
+              return h("div", [h("tag", { props: { color: "geekblue" } }, "待平台refund")]);
             }
           },
         },
         {
-          title: "申请时间",
+          title: "Apply  时间",
           key: "createTime",
           width: 180,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           fixed: "right",
           align: "center",
@@ -330,7 +330,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -356,7 +356,7 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 跳转订单详情
+    // 跳转Order details
     detail(v) {
       let sn = v.sn;
       this.$router.push({

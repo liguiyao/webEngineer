@@ -13,7 +13,7 @@
             <Input
               type="text"
               v-model="searchForm.promotionName"
-              placeholder="请输入活动名称"
+              placeholder="Please enter 活动名称"
               clearable
               style="width: 200px"
             />
@@ -21,14 +21,14 @@
           <Form-item label="活动状态" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
               <Option value="START">已开始/上架</Option>
               <Option value="END">已结束/下架</Option>
-              <Option value="CLOSE">紧急关闭/作废</Option>
+              <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
           <Form-item label="活动时间">
@@ -36,7 +36,7 @@
               v-model="selectDate"
               type="daterange"
               clearable
-              placeholder="选择起始时间"
+              placeholder="select起始时间"
               style="width: 200px"
             >
             </DatePicker>
@@ -46,7 +46,7 @@
             type="primary"
             class="search-btn"
             icon="ios-search"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -63,7 +63,7 @@
           {{ unixDate(row.applyEndTime) }}
         </template>
         <template slot-scope="{ row }" slot="promotionType">
-          {{ row.fullMinusFlag ? "满减" : "满折" }}
+          {{ row.fullMinusFlag ? "full减" : "fulloff" }}
         </template>
         <template slot-scope="{ row }" slot="hours">
           <Tag v-for="item in unixHours(row.hours)" :key="item">{{ item }}</Tag>
@@ -77,7 +77,7 @@
               style="margin-left: 5px"
               size="small"
               @click="openOrClose(row)"
-              >关闭</Button
+              >Close</Button
             >
           </div>
         </template>
@@ -110,7 +110,7 @@ export default {
       total: 0,
       loading: false, // 表单加载状态
       searchForm: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         sort: "createTime",
@@ -134,7 +134,7 @@ export default {
           width: 170,
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 60,
         },
@@ -152,7 +152,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           width: 140,
@@ -166,22 +166,22 @@ export default {
     init() {
       this.getDataList();
     },
-    // 开启或关闭活动
+    // Opening或Close活动
     openOrClose(row) {
-      let name = "开启";
+      let name = "Opening";
       if (row.promotionStatus === 'NEW' ||row.promotionStatus === "START") {
-        name = "关闭";
+        name = "Close";
         this.$Modal.confirm({
-          title: "提示",
-          // 记得确认修改此处
-          content: `确认${name}此活动吗?需要一定时间才能生效，请耐心等待`,
+          title: "Tips",
+          // 记得确认modify此处
+          content: `确认${name}此活动吗?需要一定时间才能生效，Please 耐心等待`,
           loading: true,
           onOk: () => {
-            // 删除
+            // delete
             updateFullDiscount(row.id).then((res) => {
               this.$Modal.remove();
               if (res.success) {
-                this.$Message.success(`${name}成功`);
+                this.$Message.success(`${name}success`);
                 this.getDataList();
               }
             });
@@ -201,7 +201,7 @@ export default {
       this.getDataList();
     },
     handleSearch() {
-      // 搜索
+      // search
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();

@@ -1,6 +1,6 @@
 var BASE = {
   /**
-   * @description api请求基础路径
+   * @description apiPlease 求基础路径
    */
   API_DEV: {
     common: "http://localhost:8890",
@@ -15,15 +15,15 @@ var BASE = {
     manager: "https://admin-api.pickmall.cn",
   },
   /**
-   * @description // 跳转买家端地址 pc端
+   * @description // 跳转买家端address pc端
    */
   PC_URL: "https://pc-b2b2c.pickmall.cn",
   /**
-   * @description  // 跳转买家端地址 wap端
+   * @description  // 跳转买家端address wap端
    */
   WAP_URL: "https://m-b2b2c.pickmall.cn",
   /**
-   *  @description api请求基础路径前缀
+   *  @description apiPlease 求基础路径前缀
    */
   PREFIX: "/store",
 };

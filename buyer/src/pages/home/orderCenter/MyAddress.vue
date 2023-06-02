@@ -1,31 +1,31 @@
 <template>
   <div>
-    <card _Title="收货地址" _More="添加新地址" _Src="/home/addAddress"></card>
+    <card _Title="Delivery address" _More="Add new address" _Src="/home/addAddress"></card>
     <div class="address-box" v-for="(item, index) in list" :key="index">
       <div class="address-header">
         <span>
           {{ item.name }}
-          <Tag class="ml_10" v-if="item.isDefault" color="red">默认地址</Tag>
+          <Tag class="ml_10" v-if="item.isDefault" color="red">Default address</Tag>
           <Tag class="ml_10" v-if="item.alias" color="warning">{{item.alias}}</Tag>
         </span>
         <div class="address-action">
-          <span @click="edit(item.id)"><Icon type="edit"></Icon>修改</span>
-          <span @click="del(item.id)"><Icon type="trash-a"></Icon>删除</span>
+          <span @click="edit(item.id)"><Icon type="edit"></Icon>modify</span>
+          <span @click="del(item.id)"><Icon type="trash-a"></Icon>delete</span>
         </div>
       </div>
       <div class="address-content">
         <p>
-          <span class="address-content-title"> 收 货 人 :</span> {{ item.name }}
+          <span class="address-content-title"> receiver :</span> {{ item.name }}
         </p>
         <p>
-          <span class="address-content-title">收货地区:</span
+          <span class="address-content-title">receive area:</span
           >{{ item.consigneeAddressPath | unitAddress }}
         </p>
         <p>
-          <span class="address-content-title">详细地址:</span> {{ item.detail }}
+          <span class="address-content-title">Full address:</span> {{ item.detail }}
         </p>
         <p>
-          <span class="address-content-title">手机号码:</span> {{ item.mobile }}
+          <span class="address-content-title">Phone number:</span> {{ item.mobile }}
         </p>
       </div>
     </div>
@@ -41,34 +41,34 @@ export default {
 
   data () {
     return {
-      list: [] // 地址列表
+      list: [] // address列表
     };
   },
   methods: {
     edit (id) {
-      // 编辑地址
+      // 编辑address
       this.$router.push({ path: '/home/addAddress', query: { id: id } });
     },
     del (id) {
-      // 删除地址
+      // deleteaddress
       this.$Modal.confirm({
-        title: '提示',
-        content: '你确定删除这个收货地址',
+        title: 'Tips',
+        content: 'Are you sure to delete this Delivery address',
         onOk: () => {
           delMemberAddress(id).then((res) => {
             if (res.success) {
-              this.$Message.success('删除成功');
+              this.$Message.success('deletesuccess');
               this.getAddrList();
             }
           });
         },
         onCancel: () => {
-          this.$Message.info('取消删除');
+          this.$Message.info('Cancel delete');
         }
       });
     },
     getAddrList () {
-      // 获取地址列表
+      // 获取address列表
       memberAddress().then((res) => {
         console.log(res);
         if (res.success) {
@@ -110,7 +110,7 @@ export default {
 }
 
 .address-content-title {
- 
+
 }
 
 .address-action span {

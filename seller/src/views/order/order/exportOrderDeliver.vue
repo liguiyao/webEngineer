@@ -21,7 +21,7 @@
           multiple type="drag" :action="action" :headers="accessToken">
           <div style="padding: 50px 0">
             <Icon type="ios-cloud-upload" size="102" style="color: #3399ff"></Icon>
-            <h2>选择或拖拽文件上传</h2>
+            <h2>select或拖拽文件上传</h2>
           </div>
         </Upload>
       </div>
@@ -31,8 +31,8 @@
         <h1>发货完成</h1>
 
         <div>
-          <Button class="btn" @click="close">关闭页面</Button>
-          <Button class="btn" type="primary" @click="navigationToGoodsOrder">商品订单</Button>
+          <Button class="btn" @click="close">Close页面</Button>
+          <Button class="btn" type="primary" @click="navigationToGoodsOrder">Goods订单</Button>
         </div>
       </div>
 
@@ -78,7 +78,7 @@ export default {
     this.accessToken.accessToken = this.getStore("accessToken");
   },
   methods: {
-    // 点击选择步骤
+    // 点击select步骤
     handleCheckStep(val) {
       if (val.title.search("3") == -1) {
         console.warn(val);
@@ -100,7 +100,7 @@ export default {
         path: "/order/orderList",
       });
     },
-    // 关闭页面
+    // Close页面
     close() {
       this.$store.commit("removeTag", "export-order-deliver");
       localStorage.storeOpenedList = JSON.stringify(

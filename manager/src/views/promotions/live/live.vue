@@ -137,7 +137,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           render: (h, params) => {
             return h(

@@ -4,36 +4,36 @@
       <div class="main-content">
         <div class="div-flow-left">
           <div class="div-form-default">
-            <h3>投诉信息</h3>
+            <h3>Complaint信息</h3>
             <dl>
-              <dt>投诉商品</dt>
+              <dt>ComplaintGoods</dt>
               <dd>{{ complaintInfo.goodsName }}</dd>
             </dl>
             <dl>
-              <dt>投诉状态</dt>
-              <dd v-if="complaintInfo.complainStatus =='NEW'">新投诉</dd>
+              <dt>Complaint状态</dt>
+              <dd v-if="complaintInfo.complainStatus =='NEW'">新Complaint</dd>
               <dd v-if="complaintInfo.complainStatus =='CANCEL'">已撤销</dd>
               <dd v-if="complaintInfo.complainStatus =='WAIT_APPEAL'">待申诉</dd>
               <dd v-if="complaintInfo.complainStatus =='COMMUNICATION'">对话中</dd>
               <dd v-if="complaintInfo.complainStatus =='WAIT_ARBITRATION'">等待仲裁</dd>
-              <dd v-if="complaintInfo.complainStatus =='COMPLETE'">已完成</dd>
+              <dd v-if="complaintInfo.complainStatus =='COMPLETE'">completed</dd>
             </dl>
             <dl>
-              <dt>投诉时间</dt>
+              <dt>Complaint时间</dt>
               <dd>{{ complaintInfo.createTime }}</dd>
             </dl>
             <dl>
-              <dt>投诉主题</dt>
+              <dt>Complaint主题</dt>
               <dd>{{ complaintInfo.complainTopic }}</dd>
             </dl>
             <dl>
-              <dt>投诉内容</dt>
+              <dt>Complaint内容</dt>
               <dd>{{ complaintInfo.content }}</dd>
             </dl>
             <dl>
-              <dt>投诉凭证</dt>
+              <dt>Complaint凭证</dt>
               <dd v-if="images === ''">
-                暂无投诉凭证
+                absentComplaint凭证
               </dd>
               <dd v-else>
                 <div class="div-img" v-for="(item, index) in images" :key="index">
@@ -55,7 +55,7 @@
             <dl>
               <dt>申诉凭证</dt>
               <dd v-if="appealImages == ''">
-                暂无申诉凭证
+                absent申诉凭证
               </dd>
               <dd v-else>
                 <div class="div-img" v-for="(item, index) in appealImages" :key="index">
@@ -104,7 +104,7 @@
               <dt></dt>
               <dd>
                 <Button type="primary" :loading="submitLoading" @click="appealSubmit()" style="margin-left: 5px">
-                  提交申诉
+                  Submit申诉
                 </Button>
               </dd>
             </dl>
@@ -140,7 +140,7 @@
                     回复
                   </Button>
                   <Button type="default" :loading="submitLoading" @click="returnDataList" style="margin-left: 5px">
-                    返回列表
+                    Back列表
                   </Button>
                 </div>
               </dd>
@@ -161,14 +161,14 @@
         </div>
         <div class="div-flow-right">
           <div class="div-form-default">
-            <h3>相关商品交易信息</h3>
+            <h3>相关Goods交易信息</h3>
             <dl>
               <dt>
                 <img :src="complaintInfo.goodsImage" height="60px">
               </dt>
               <dd>
                 <a>{{ complaintInfo.goodsName }}</a><br>
-                <span>￥{{ complaintInfo.goodsPrice | unitPrice }} * {{ complaintInfo.num }}(数量)</span>
+                <span>RM{{ complaintInfo.goodsPrice | unitPrice }} * {{ complaintInfo.num }}(Quantity)</span>
               </dd>
             </dl>
 
@@ -196,16 +196,16 @@
                 订单金额
               </dt>
               <dd>
-                {{ complaintInfo.orderPrice | unitPrice('￥')}}
+                {{ complaintInfo.orderPrice | unitPrice('RM')}}
               </dd>
             </dl>
 
           </div>
           <div class="div-form-default">
-            <h3>收件人信息</h3>
+            <h3>Receiver信息</h3>
             <dl>
               <dt>
-                收货人
+                receiver
               </dt>
               <dd>
                 {{ complaintInfo.consigneeName }}
@@ -213,7 +213,7 @@
             </dl>
             <dl>
               <dt>
-                收货地址
+                Delivery address
               </dt>
               <dd>
                 {{ complaintInfo.consigneeAddressPath }}
@@ -221,7 +221,7 @@
             </dl>
             <dl>
               <dt>
-                收货人手机
+                receiver手机
               </dt>
               <dd>
                 {{ complaintInfo.consigneeMobile }}
@@ -247,18 +247,18 @@ export default {
       //上传图片路径
       uploadFileUrl: uploadFile,
       accessToken: "", // 验证token
-      id: 0, // 投诉单id
-      complaintInfo: "", // 投诉信息
+      id: 0, // Complaint单id
+      complaintInfo: "", // Complaint信息
       images: [], //会员申诉图片
       appealImages: [], //商家申诉的图片
-      applyAppealImages: [], //商家申诉表单填写的图片
-      submitLoading: false, // 添加或编辑提交状态
+      applyAppealImages: [], //商家申诉表单enter 的图片
+      submitLoading: false, // 添加或编辑Submit状态
       //商家回复内容
       params: {
         content: "",
         complainId: "",
       },
-      //投诉
+      //Complaint
       appeal: {
         orderComplaintId: "",
         appealContent: "",
@@ -283,7 +283,7 @@ export default {
         (i) =>  i.url !== file.url
       );
     },
-    // 上传成功回调
+    // 上传success回调
     handleSuccessGoodsPicture(res, file) {
       if (file.response) {
         file.url = file.response.result;
@@ -331,7 +331,7 @@ export default {
         }
       });
     },
-    //返回列表
+    //Back列表
     returnDataList() {
       this.$router.push({
         name: "orderComplaint",
@@ -340,14 +340,14 @@ export default {
     //回复
     handleSubmit() {
       if (this.params.content === "") {
-        this.$Message.error("请填写对话内容");
+        this.$Message.error("Please enter 对话内容");
         return;
       }
       this.params.complainId = this.id;
       API_Order.addOrderComplaint(this.params).then((res) => {
         this.submitLoading = false;
         if (res.success) {
-          this.$Message.success("对话成功");
+          this.$Message.success("对话success");
           this.params.content = "";
           this.getDetail();
         }
@@ -357,7 +357,7 @@ export default {
     appealSubmit() {
 
       if (this.appeal.appealContent === "") {
-        this.$Message.error("请填写内容");
+        this.$Message.error("Please enter 内容");
         return;
       }
       this.appeal.appealImages = this.appeal.appealImages.map(item=> item.url)
@@ -365,7 +365,7 @@ export default {
       API_Order.appeal(this.appeal).then((res) => {
         this.submitLoading = false;
         if (res.success) {
-          this.$Message.success("申诉成功");
+          this.$Message.success("申诉success");
           this.getDetail();
         }
       });
@@ -378,7 +378,7 @@ export default {
       accessToken: this.getStore("accessToken"),
     };
   },
-  // 如果是从详情页返回列表页，修改列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
   beforeRouteLeave(to, from, next){
     if(to.name === 'orderComplaint') {
       to.meta.keepAlive = true

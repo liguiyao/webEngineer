@@ -32,9 +32,9 @@
               </div>
             </div>
             <div class="flex">
-              <div class="hotzone-btn" @click="editZone(index)">修改</div>
+              <div class="hotzone-btn" @click="editZone(index)">modify</div>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="hotzone-btn" @click="delZone(index)">删除</div>
+              <div class="hotzone-btn" @click="delZone(index)">delete</div>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default {
     showZoneText(zone) {
       switch (zone.type) {
         case "goods":
-          return `商品：${zone.goodsName}`;
+          return `Goods：${zone.goodsName}`;
         case "category":
           return `分类：${zone.name}`;
         case "shops":
@@ -156,11 +156,11 @@ export default {
         case "pages":
           return `文章：${zone.title}`;
         case "marketing":
-          return `促销活动商品：${zone.goodsName}`;
+          return `促销活动Goods：${zone.goodsName}`;
         case "other":
           return `${zone.title}`;
         default:
-          return "请选择跳转链接";
+          return "Please select跳转链接";
       }
     },
     changeInfo(res) {
@@ -174,7 +174,7 @@ export default {
     addItem(setting) {
       this.zones.push(setting);
       this.$emit("choose");
-      // this.hasChange()  不应该发送通知，mouseup判定成功才应该发
+      // this.hasChange()  不应该发送通知，mouseup判定success才应该发
       // this.$emit('add', setting)
     },
     eraseItem(index = this.zones.length - 1) {

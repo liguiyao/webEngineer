@@ -4,13 +4,13 @@
       <Form @keydown.enter.native="handleSearch" ref="searchForm" :model="searchForm" inline :label-width="70"
         class="search-form">
         <Form-item label="规格名称" prop="specName">
-          <Input type="text" v-model="searchForm.specName" placeholder="请输入规格名称" clearable style="width: 200px" />
+          <Input type="text" v-model="searchForm.specName" placeholder="Please enter 规格名称" clearable style="width: 200px" />
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
       </Form>
       <Row class="operation padding-row">
         <Button @click="add" type="primary">添加</Button>
-        <Button @click="delAll">批量删除</Button>
+        <Button @click="delAll">批量delete</Button>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom"
         @on-sort-change="changeSort" @on-selection-change="changeSelect">
@@ -36,8 +36,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="saveSpec">提交</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="saveSpec">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -57,11 +57,11 @@ export default {
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "asc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "asc", // default排序方式
       },
       // 表单验证规则
       formValidate: {
@@ -78,7 +78,7 @@ export default {
       },
       /** 编辑规格值 */
       specValue: [],
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -100,7 +100,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -138,7 +138,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -156,24 +156,24 @@ export default {
     init () {
       this.getDataList();
     },
-    //修改分页
+    //modify分页
     changePage (v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    //修改页面大小
+    //modify页面大小
     changePageSize (v) {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    //搜索参数
+    //search参数
     handleSearch () {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    //重置搜索参数
+    //重置search参数
     handleReset () {
       this.$refs.searchForm.resetFields();
       this.searchForm.pageNumber = 1;
@@ -190,11 +190,11 @@ export default {
       }
       this.getDataList();
     },
-    //清除已选择
+    //清除已select
     clearSelectAll () {
       this.$refs.table.selectAll(false);
     },
-    //修改已选择
+    //modify已select
     changeSelect (e) {
       this.selectList = e;
       this.selectCount = e.length;
@@ -202,7 +202,7 @@ export default {
     //获取数据
     getDataList () {
       this.loading = true;
-      // 带多条件搜索参数获取表单数据 请自行修改接口
+      // 带多条件search参数获取表单数据 Please 自行modify接口
       getSpecListData(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -219,7 +219,7 @@ export default {
           this.submitLoading = true;
           if (this.modalType === 0) {
             if (this.data.find((item) => item.specName == this.form.specName)) {
-              this.$Message.error("请勿添加重复规格名称!");
+              this.$Message.error("Please 勿添加重复规格名称!");
               this.submitLoading = false;
               return;
             }
@@ -228,7 +228,7 @@ export default {
             insertSpec(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -238,7 +238,7 @@ export default {
             updateSpec(this.form.id, this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -281,32 +281,32 @@ export default {
       }
       this.modalVisible = true;
     },
-    // 删除规格
+    // delete规格
     remove (v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除 " + v.specName + " ?",
+        title: "确认delete",
+        content: "您确认要delete " + v.specName + " ?",
         loading: true,
         onOk: () => {
           delSpec(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
         },
       });
     },
-    // 批量删除
+    // 批量delete
     delAll () {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -317,7 +317,7 @@ export default {
           delSpec(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.clearSelectAll();
               this.searchForm.pageNumber = 1;
               this.getDataList();

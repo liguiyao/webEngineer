@@ -5,7 +5,7 @@
     </Card>
 
     <div class="row">
-      <Card v-if="paramsGroup.length == 0"> 暂无参数绑定信息 </Card>
+      <Card v-if="paramsGroup.length == 0"> absent参数绑定信息 </Card>
       <div class="paramsGroup" v-else>
         <Card
           style="width: 350px; margin: 7px"
@@ -19,7 +19,7 @@
           <p slot="extra">
             <Dropdown slot="extra">
               <a href="javascript:void(0)">
-                操作
+                operation
                 <Icon type="ios-arrow-down"></Icon>
               </a>
               <Dropdown-menu slot="list">
@@ -27,7 +27,7 @@
                   >编辑</Dropdown-item
                 >
                 <Dropdown-item @click.native="handleDeleteParamGroup(group)"
-                  >删除</Dropdown-item
+                  >delete</Dropdown-item
                 >
               </Dropdown-menu>
             </Dropdown>
@@ -50,12 +50,12 @@
                   size="small"
                   style="color: #f56c6c"
                   @click="handleDeleteParam(group, param)"
-                  >删除</i-button
+                  >delete</i-button
                 >
               </span>
             </div>
           </template>
-          <div v-else style="align-content: center">暂无数据...</div>
+          <div v-else style="align-content: center">absent数据...</div>
           <div style="text-align: center">
             <i-button type="text" @click="handleAddParams(group)"
               >添加</i-button
@@ -116,12 +116,12 @@
         </Form>
 
         <div slot="footer">
-          <Button type="text" @click="dialogParamsVisible = false">取消</Button>
+          <Button type="text" @click="dialogParamsVisible = false">Cancel</Button>
           <Button
             type="primary"
             :loading="submitLoading"
             @click="submitParamForm"
-            >提交</Button
+            >Submit</Button
           >
         </div>
       </Modal>
@@ -149,13 +149,13 @@
 
         <div slot="footer">
           <Button type="text" @click="dialogParamsGroupVisible = false"
-            >取消</Button
+            >Cancel</Button
           >
           <Button
             type="primary"
             :loading="submitLoading"
             @click="submitParamGroupForm"
-            >提交</Button
+            >Submit</Button
           >
         </div>
       </Modal>
@@ -216,10 +216,10 @@ export default {
   },
   filters: {
     paramTypeFilter(val) {
-      return val === 1 ? "输入项" : "选择项";
+      return val === 1 ? "输入项" : "select项";
     },
   },
- 
+
   methods: {
     // 初始化数据
     init() {
@@ -241,7 +241,7 @@ export default {
       this.modalType = 0;
       this.dialogParamsVisible = true;
     },
-    //弹出修改参数框
+    //弹出modify参数框
     handleEditParams(group, param) {
       console.log(group, param);
       this.paramForm = {
@@ -256,10 +256,10 @@ export default {
       };
       this.ops.options = this.paramForm.options;
       this.modalType = 1;
-      this.modalTitle = "修改参数";
+      this.modalTitle = "modify参数";
       this.dialogParamsVisible = true;
     },
-    //弹出修改参数组框
+    //弹出modify参数组框
     handleEditParamsGroup(group) {
       this.paramGroupForm = {
         groupName: group.groupName,
@@ -267,7 +267,7 @@ export default {
         id: group.groupId,
       };
       this.modalType = 1;
-      this.modalTitle = "修改参数组";
+      this.modalTitle = "modify参数组";
       this.dialogParamsGroupVisible = true;
     },
     // 添加参数
@@ -279,7 +279,7 @@ export default {
       this.modalTitle = "添加参数组";
       this.dialogParamsGroupVisible = true;
     },
-    //保存参数组
+    //Save参数组
     submitParamGroupForm() {
       this.$refs.paramGroupForm.validate((valid) => {
         if (valid) {
@@ -287,7 +287,7 @@ export default {
             insertParamsGroup(this.paramGroupForm).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数组修改成功");
+                this.$Message.success("参数组modifysuccess");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -297,7 +297,7 @@ export default {
             updateParamsGroup(this.paramGroupForm).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数组修改成功");
+                this.$Message.success("参数组modifysuccess");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -307,7 +307,7 @@ export default {
         }
       });
     },
-    //保存参数
+    //Save参数
     submitParamForm() {
       this.$refs.paramForm.validate((valid) => {
         if (valid) {
@@ -319,7 +319,7 @@ export default {
             insertGoodsParams(data).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数添加成功");
+                this.$Message.success("参数添加success");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -331,7 +331,7 @@ export default {
             updateGoodsParams(data).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数修改成功");
+                this.$Message.success("参数modifysuccess");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -348,38 +348,38 @@ export default {
         }
       });
     },
-    //删除参数方法
+    //delete参数方法
     handleDeleteParam(group, param) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除 " + param.paramName + " ?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "您确认要delete " + param.paramName + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           deleteParams(param.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除参数成功");
+              this.$Message.success("delete参数success");
               this.getDataList();
             }
           });
         },
       });
     },
-    //删除参数组方法
+    //delete参数组方法
     handleDeleteParamGroup(group) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除 " + group.groupName + " ?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "您确认要delete " + group.groupName + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           deleteParamsGroup(group.groupId).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除参数成功");
+              this.$Message.success("delete参数success");
               this.getDataList();
             }
           });

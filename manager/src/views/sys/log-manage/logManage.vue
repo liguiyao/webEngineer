@@ -8,43 +8,43 @@
         :label-width="70"
         class="search-form"
       >
-        <Form-item label="搜索日志" prop="searchKey">
+        <Form-item label="search日志" prop="searchKey">
           <Input
             type="text"
             v-model="searchForm.searchKey"
-            placeholder="请输入搜索日志内容"
+            placeholder="Please enter search日志内容"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="操作人" prop="operatorName">
+        <Form-item label="operation人" prop="operatorName">
           <Input
             type="text"
             v-model="searchForm.operatorName"
-            placeholder="请输入操作人"
+            placeholder="Please enter operation人"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="创建时间">
+        <Form-item label="Create time">
           <DatePicker
             type="daterange"
             v-model="selectDate"
             format="yyyy-MM-dd"
             clearable
             @on-change="selectDateRange"
-            placeholder="选择起始时间"
+            placeholder="select起始时间"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
         <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn"
-          >搜索</Button
+          >search</Button
         >
       </Form>
       <Row class="operation padding-row">
         <Button @click="getLogList" icon="md-refresh">刷新</Button>
         <Button type="dashed" @click="openTip = !openTip">{{
-          openTip ? "关闭提示" : "开启提示"
+          openTip ? "CloseTips" : "OpeningTips"
         }}</Button>
       </Row>
       <div v-show="openTip">
@@ -104,12 +104,12 @@ export default {
   name: "log-manage",
   data() {
     return {
-      openTip: false, // 开启提示
+      openTip: false, // OpeningTips
       loading: true, // 加载状态
-      selectDate: null, // 选择时间段
+      selectDate: null, // select时间段
       showDev: false, //展示进阶日志
       searchForm: {
-        // 请求参数
+        // Please 求参数
         type: 1,
         key: "",
         operatorName: "",
@@ -123,7 +123,7 @@ export default {
       columns: [
         // 表头
         {
-          title: "操作名称",
+          title: "operation名称",
           key: "name",
           width: 150,
           fixed: "left",
@@ -139,14 +139,14 @@ export default {
           tooltip: true,
         },
         {
-          title: "操作用户",
+          title: "operation用户",
           minWidth: 115,
           key: "username",
           width: 120,
           tooltip: true,
         },
         {
-          title: "操作时间",
+          title: "operation时间",
           key: "createTime",
           align: "center",
           width: 170,
@@ -154,7 +154,7 @@ export default {
       ],
       columns_dev: [
         {
-          title: "操作名称",
+          title: "operation名称",
           key: "name",
           minWidth: 100,
           fixed: "left",
@@ -170,7 +170,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "操作用户",
+          title: "operation用户",
           key: "username",
           width: 115,
         },
@@ -187,14 +187,14 @@ export default {
           tooltip: true,
         },
         {
-          title: "请求路径",
+          title: "Please 求路径",
           width: 150,
           ellipsis: false,
           tooltip: true,
           key: "requestUrl",
         },
         {
-          title: "请求类型",
+          title: "Please 求类型",
           key: "requestType",
           width: 130,
           align: "center",
@@ -230,7 +230,7 @@ export default {
           },
         },
         {
-          title: "请求参数",
+          title: "Please 求参数",
           minWidth: 100,
           key: "requestParam",
           ellipsis: false,
@@ -267,7 +267,7 @@ export default {
           },
         },
         {
-          title: "操作时间",
+          title: "operation时间",
           key: "createTime",
           align: "center",
           width: 170,
@@ -283,12 +283,12 @@ export default {
     init() {
       this.getLogList();
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getLogList();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -301,7 +301,7 @@ export default {
         this.searchForm.endDate = v[1];
       }
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.getLogList();

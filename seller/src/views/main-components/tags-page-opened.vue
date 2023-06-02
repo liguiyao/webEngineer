@@ -39,15 +39,15 @@ export default {
     return {
       currentPageName: this.$route.name, // 当前路由名称
       tagBodyLeft: 0, // 标签左偏移量
-      visible: false, // 显示操作按钮
+      visible: false, // 显示operation按钮
       contextMenuLeft: 0, // 内容左偏移量
       contextMenuTop: 0, // 内容上偏移量
       actionList: { // 右键菜单
-        others: '关闭其他',
-        clearAll: '关闭所有'
+        others: 'CloseOthers',
+        clearAll: 'Close所有'
       },
       refsTag: [], // 所有已打开标签
-      tagsCount: 1 // 标签数量
+      tagsCount: 1 // 标签Quantity
     };
   },
   props: {
@@ -76,7 +76,7 @@ export default {
         return item.title;
       }
     },
-    // 关闭页面
+    // Close页面
     closePage(event, name) {
       let storeOpenedList = this.$store.state.app.storeOpenedList;
       let lastPageObj = storeOpenedList[0];
@@ -159,7 +159,7 @@ export default {
       }
       this.tagBodyLeft = left;
     },
-    // 标签右键操作
+    // 标签右键operation
     handleTagsOption(type) {
       if (type == "clearAll") {
         this.$store.commit("clearAllTags");
@@ -199,14 +199,14 @@ export default {
         );
       }
     },
-    // 显示操作按钮
+    // 显示operation按钮
     contextMenu (item, e) {
       this.visible = true
       const offsetLeft = this.$el.getBoundingClientRect().left
       this.contextMenuLeft = e.clientX - offsetLeft + 10
       this.contextMenuTop = e.clientY - 64
     },
-    // 关闭右侧菜单
+    // Close右侧菜单
     closeMenu () {
       this.visible = false
     }

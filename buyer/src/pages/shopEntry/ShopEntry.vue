@@ -2,12 +2,12 @@
   <div class="shop-entry">
     <div style="height: 20px"></div>
     <div class="content">
-      <h1>店铺入驻</h1>
+      <h1>Store occupancy</h1>
       <Steps :current="currentIndex" class="margin">
-        <Step title="企业资质信息"></Step>
-        <Step title="财务资质信息"></Step>
-        <Step title="其他信息"></Step>
-        <Step title="提交审核"></Step>
+        <Step title="Enterprise qualification information"></Step>
+        <Step title="Financial qualification information"></Step>
+        <Step title="other information"></Step>
+        <Step title="Submit"></Step>
       </Steps>
       <first-apply v-if="currentIndex == 0 && dataReview" :content="firstData" @change="nextPage"></first-apply>
 
@@ -16,25 +16,25 @@
       <third-apply v-if="currentIndex == 2 && dataReview" :content="thirdData" @change="nextPage"></third-apply>
 
       <div class="success-page" v-if="currentIndex == 3">
-        <span v-if="storeDisable == '' || storeDisable == 'APPLYING'">入驻申请提交成功，等待平台审核</span>
-        <span v-if="storeDisable == 'OPEN'">申请已通过，请联系管理员</span>
-        <span v-if="storeDisable == 'CLOSED'">店铺已关闭，重申请联系管理员</span>
-        <span v-if="storeDisable == 'REFUSED'">审核未通过,请修改资质信息，如有疑问请联系管理员</span>
+        <span v-if="storeDisable == '' || storeDisable == 'APPLYING'">Apply  Submit success, Waiting for platform review</span>
+        <span v-if="storeDisable == 'OPEN'">Apply  pass，Please contact admin</span>
+        <span v-if="storeDisable == 'CLOSED'">store Close，reapply contact admin</span>
+        <span v-if="storeDisable == 'REFUSED'">reject,Please modify information，any question please contact admin</span>
       </div>
-      <Button v-if="currentIndex === 3" @click="$router.push('/')">返回</Button>
+      <Button v-if="currentIndex === 3" @click="$router.push('/')">Back</Button>
       &nbsp;
       <Button type="primary" @click='currentIndex = 0'
-        v-if="storeDisable === 'REFUSED' && currentIndex === 3">重新申请</Button>
+        v-if="storeDisable === 'REFUSED' && currentIndex === 3">reapply  </Button>
     </div>
 
-    <Modal title="店铺入驻协议" v-model="showAgreement" width="1200" :closable="false" :mask-closable="false">
+    <Modal title="Store occupancy agreement" v-model="showAgreement" width="1200" :closable="false" :mask-closable="false">
       <div class="agreeent-con" v-html="agreementCon"></div>
 
       <div slot="footer" style="text-align: center">
         <p>
-          <Checkbox v-model="checked">我已同意以上协议</Checkbox>
+          <Checkbox v-model="checked">Agree</Checkbox>
         </p>
-        <Button type="primary" :disabled="!checked" class="margin" @click="showAgreement = false">同意协议填写资质信息</Button>
+        <Button type="primary" :disabled="!checked" class="margin" @click="showAgreement = false">agree enter Qualification information</Button>
       </div>
     </Modal>
   </div>
@@ -59,8 +59,8 @@ export default {
       firstData: {}, // 第一步数据
       secondData: {}, // 第二步数据
       thirdData: {}, // 第三步数据
-      storeDisable: "", // APPLY OPEN 开店中 CLOSED 关闭 REFUSED 拒绝 APPLYING 申请中，审核
-      dataReview: true, // 根据接口返回判断是否可展示数据
+      storeDisable: "", // APPLY OPEN 开店中 CLOSED Close REFUSED 拒绝 APPLYING Apply  中，审核
+      dataReview: true, // 根据接口Back判断是否可展示数据
     };
   },
   methods: {
@@ -71,7 +71,7 @@ export default {
       });
     },
     getData(status) {
-      // 获取已填写店铺信息
+      // 获取已enter 店铺信息
       applyStatus().then((res) => {
         if (res.success) {
           if (!res.result) {

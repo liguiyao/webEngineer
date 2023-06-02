@@ -1,30 +1,30 @@
 <template>
   <div class="wrapper">
-    <card _Title="我的分销" />
-    <!-- 分销申请 -->
+    <card _Title="My distribution" />
+    <!-- 分销Apply   -->
 
     <div v-if="status === 0">
-      <Alert type="warning">分销商申请</Alert>
+      <Alert type="warning">Distributor application</Alert>
       <Form ref="form" :model="applyForm" :rules="rules">
-        <FormItem label="姓名" prop="name">
+        <FormItem label="Name" prop="name">
           <Input v-model="applyForm.name"></Input>
         </FormItem>
-        <FormItem label="身份证号" prop="idNumber">
+        <FormItem label="Id card" prop="idNumber">
           <Input v-model="applyForm.idNumber"></Input>
         </FormItem>
-        <FormItem label="银行开户行" prop="settlementBankBranchName">
+        <FormItem label="Bank account" prop="settlementBankBranchName">
           <Input v-model="applyForm.settlementBankBranchName"></Input>
         </FormItem>
-        <FormItem label="银行开户名" prop="settlementBankAccountName">
+        <FormItem label="Account name" prop="settlementBankAccountName">
           <Input v-model="applyForm.settlementBankAccountName"></Input>
         </FormItem>
-        <FormItem label="银行账号" prop="settlementBankAccountNum">
+        <FormItem label="Account number" prop="settlementBankAccountNum">
           <Input v-model="applyForm.settlementBankAccountNum"></Input>
         </FormItem>
 
         <FormItem>
           <Button type="primary" :loading="applyLoading" @click="apply"
-            >提交申请</Button
+            >Submit</Button
           >
         </FormItem>
       </Form>
@@ -32,45 +32,45 @@
     <!-- 分销审核 -->
     <div v-if="status === 1">
       <Alert type="success">
-        您提交的信息正在审核
+        Your submission is being reviewed
         <template slot="desc"
-          >提交认证申请后，工作人员将在三个工作日进行核对完成审核</template
+          >After submitting the certification application, the staff will complete the verification within three working days</template
         >
       </Alert>
     </div>
-    <!-- 分销提现、商品、订单 -->
+    <!-- 分销提现、Goods、订单 -->
     <div v-if="status === 2">
       <div class="tips">
 
-          <p>分销下线付款之后会生成分销订单。</p>
+          <p>A distribution order is generated after the distribution line payment is made</p>
           <p>
-            冻结金额：用户提现金额即为冻结金额，审核通过后扣除冻结金额，审核拒绝之后冻结金额返回可提现金额。
+            Frozen amount: The amount withdrawn by the user is the frozen amount. The frozen amount will be deducted after the approval, and the frozen amount will be returned to the withdrawal amount after the rejection
           </p>
-          <p>可提现金额：分销订单佣金T+1解冻后可变为可提现金额。</p>
+          <p>Withdrawable amount: Distribution order commission T+1 can be changed into withdrawable amount after thawing</p>
 
       </div>
 
       <div class="box">
         <div class="mb_20 account-price">
-          <span class="subTips">可提现金额：</span>
+          <span class="subTips">Available for withdrawal：</span>
           <span class="fontsize_48 global_color"
-            >￥{{ result.canRebate | unitPrice }}</span
+            >RM{{ result.canRebate | unitPrice }}</span
           >
-          <span class="subTips">冻结金额：</span>
-          <span class="">￥{{ result.commissionFrozen | unitPrice }}</span>
-          <span class="subTips">返利总金额：</span>
-          <span class="">￥{{ result.rebateTotal | unitPrice }}</span>
+          <span class="subTips">Frozen amount：</span>
+          <span class="">RM{{ result.commissionFrozen | unitPrice }}</span>
+          <span class="subTips">Total amount of rebate：</span>
+          <span class="">RM{{ result.rebateTotal | unitPrice }}</span>
           <Button
             type="primary"
             size="small"
             class="ml_20"
             @click="withdrawApplyModal = true"
-            >申请提现</Button
+            >Application for withdrawal</Button
           >
         </div>
       </div>
       <Tabs :value="tabName" @on-click="tabPaneChange">
-        <TabPane label="已选商品" name="goodsChecked">
+        <TabPane label="Selected goods" name="goodsChecked">
           <Table stripe :columns="goodsColumns" :data="goodsData.records">
             <template slot-scope="{ row }" slot="name">
               <div
@@ -91,10 +91,10 @@
               </div>
             </template>
             <template slot-scope="{ row }" slot="price">
-              <span> ￥{{ row.price | unitPrice }}</span>
+              <span> RM{{ row.price | unitPrice }}</span>
             </template>
             <template slot-scope="{ row }" slot="commission">
-              <span> ￥{{ row.commission | unitPrice }}</span>
+              <span> RM{{ row.commission | unitPrice }}</span>
             </template>
             <template slot-scope="{ row }" slot="action">
               <Button
@@ -102,13 +102,13 @@
                 size="small"
                 style="margin-right: 5px"
                 @click="fenxiao(row)"
-                >分销商品</Button
+                >Distribute goods</Button
               >
               <Button
                 type="error"
                 size="small"
                 @click="selectGoods(row.id, false)"
-                >取消选择</Button
+                >deselect</Button
               >
             </template>
           </Table>
@@ -124,7 +124,7 @@
             ></Page>
           </div>
         </TabPane>
-        <TabPane label="未选商品" name="goodsUncheck">
+        <TabPane label="Unselected goods" name="goodsUncheck">
           <Table stripe :columns="goodsColumns" :data="goodsData.records">
             <template slot-scope="{ row }" slot="name">
               <div
@@ -145,10 +145,10 @@
               </div>
             </template>
             <template slot-scope="{ row }" slot="price">
-              <span> ￥{{ row.price | unitPrice }}</span>
+              <span> RM{{ row.price | unitPrice }}</span>
             </template>
             <template slot-scope="{ row }" slot="commission">
-              <span> ￥{{ row.commission | unitPrice }}</span>
+              <span> RM{{ row.commission | unitPrice }}</span>
             </template>
             <template slot-scope="{ row }" slot="action">
               <Button
@@ -156,7 +156,7 @@
                 size="small"
                 style="margin-right: 5px"
                 @click="selectGoods(row.id, true)"
-                >选择商品</Button
+                >Select goods</Button
               >
             </template>
           </Table>
@@ -172,7 +172,7 @@
             ></Page>
           </div>
         </TabPane>
-        <TabPane label="提现记录" name="log">
+        <TabPane label="Withdrawal record" name="log">
           <Table stripe :columns="logColumns" :data="logData.records">
             <template slot-scope="{ row }" slot="sn">
               <span>{{ row.sn }}</span>
@@ -185,20 +185,20 @@
                 v-if="row.distributionCashStatus == 'VIA_AUDITING'"
                 style="color: green"
               >
-                +￥{{ row.price | unitPrice }}</span
+                +RM{{ row.price | unitPrice }}</span
               >
               <span v-else style="color: red">
-                -￥{{ row.price | unitPrice }}</span
+                -RM{{ row.price | unitPrice }}</span
               >
             </template>
             <template slot-scope="{ row }" slot="status">
               <span>
                 {{
                   row.distributionCashStatus == "APPLY"
-                    ? "待处理"
+                    ? "processed"
                     : row.distributionCashStatus == "VIA_AUDITING"
-                    ? "通过"
-                    : "拒绝"
+                    ? "pass"
+                    : "reject"
                 }}</span
               >
             </template>
@@ -220,9 +220,9 @@
     <!-- 未开放 -->
     <div v-if="status === 3">
       <Alert type="error">
-        分销功能暂未开启
+        The distribution function is not enabled
         <template slot="desc"
-          >提交认证申请后，工作人员将在三个工作日进行核对完成审核</template
+          >After submitting the certification application, the staff will complete the verification within three working days</template
         >
       </Alert>
     </div>
@@ -230,19 +230,19 @@
     <Modal v-model="withdrawApplyModal" width="530">
       <p slot="header">
         <Icon type="edit"></Icon>
-        <span>提现金额</span>
+        <span>Amount withdrawn</span>
       </p>
       <div>
         <Input v-model="withdrawPrice" size="large" number maxlength="9"
-          ><span slot="append">元</span></Input
+          ><span slot="append">ringgit</span></Input
         >
       </div>
       <div slot="footer" style="text-align: center">
-        <Button type="primary" size="large" @click="withdraw">提现</Button>
+        <Button type="primary" size="large" @click="withdraw">Withdraw cash</Button>
       </div>
     </Modal>
-    <Modal v-model="qrcodeShow" title="分销商品" width="800">
-      <Alert type="warning"> 下载二维码或者复制链接分享商品 </Alert>
+    <Modal v-model="qrcodeShow" title="分销Goods" width="800">
+      <Alert type="warning"> Download QR code or copy the link to share the product </Alert>
       <div style="width: 200px; height: 200px; border: 1px solid #eee">
         <vue-qr
           :text="qrcode"
@@ -253,11 +253,11 @@
           :size="200"
         ></vue-qr>
         <Button class="download-btn" type="success" @click="downloadQrcode"
-          >下载二维码</Button
+          >Download QR code</Button
         >
       </div>
       <div class="mt_10">
-        商品链接：<Input style="width: 400px" v-model="qrcode"></Input>
+        Commodity link：<Input style="width: 400px" v-model="qrcode"></Input>
       </div>
     </Modal>
   </div>
@@ -280,19 +280,19 @@ export default {
   components: { vueQr },
   data() {
     return {
-      status: 0, // 申请状态，0为未申请 1 申请中 2 申请完成 3 功能暂未开启
-      applyForm: {}, // 申请表单
+      status: 0, // Apply  状态，0为未Apply   1 Apply  中 2 Apply  完成 3 功能暂未Opening
+      applyForm: {}, // Apply  表单
       rules: {
         // 验证规则
-        name: [{ required: true, message: "请输入真实姓名" }],
+        name: [{ required: true, message: "Please enter  your real name" }],
         idNumber: [
-          { required: true, message: "请输入身份证号" },
-          { pattern: IDCard, message: "请输入正确的身份证号" },
+          { required: true, message: "Please enter  your ID number" },
+          { pattern: IDCard, message: "Please enter  the correct ID number" },
         ],
         settlementBankBranchName: [
           {
             required: true,
-            message: "请输入银行开户行",
+            message: "bank account",
             // 可以单个或者同时写两个触发验证方式
             trigger: "blur",
           },
@@ -300,59 +300,59 @@ export default {
         settlementBankAccountName: [
           {
             required: true,
-            message: "请输入银行开户名",
+            message: "account name",
             // 可以单个或者同时写两个触发验证方式
             trigger: "blur",
           },
         ],
-        //银行账号
+        //Bank account
         settlementBankAccountNum: [
           {
             required: true,
-            message: "银行账号不正确",
+            message: "account number is incorrect",
             // 可以单个或者同时写两个触发验证方式
             trigger: "blur",
           },
           {
             validator: (rule, value, callback) => {
-              // 上面有说，返回true表示校验通过，返回false表示不通过
-              // this.$u.test.mobile()就是返回true或者false的
+              // 上面有说，Backtrue表示校验通过，Backfalse表示不通过
+              // this.$u.test.mobile()就是Backtrue或者false的
               return checkBankno(value);
             },
-            message: "银行账号不正确",
+            message: "account number is incorrect",
           },
         ],
       },
       tabName: "goodsChecked", // 当前所在tab
       result: {}, // 审核结果
-      applyLoading: false, // 申请加载状态
+      applyLoading: false, // Apply  加载状态
       goodsLoading: false, // 列表加载状态
       withdrawApplyModal: false, // 提现表单显隐
       withdrawPrice: 0, // 提现金额
-      goodsData: {}, // 商品数据
+      goodsData: {}, // Goods数据
       logData: {}, // 日志数据
       goodsColumns: [
-        // 商品表头
-        { title: "商品名称", slot: "name", width: 400 },
-        { title: "商品价格", slot: "price" },
-        { title: "佣金", slot: "commission" },
-        { title: "操作", slot: "action", minWidth: 120 },
+        // Goods表头
+        { title: "Goods name", slot: "name", width: 400 },
+        { title: "Goods price", slot: "price" },
+        { title: "commission", slot: "commission" },
+        { title: "operation", slot: "action", minWidth: 120 },
       ],
       logColumns: [
         // 日志表头
-        { title: "编号", slot: "sn" },
-        { title: "申请时间", slot: "time" },
-        { title: "提现金额", slot: "price" },
-        { title: "提现状态", slot: "status" },
+        { title: "Number", slot: "sn" },
+        { title: "Application time", slot: "time" },
+        { title: "Amount withdrawn", slot: "price" },
+        { title: "Withdrawal status", slot: "status" },
       ],
       params: {
-        // 商品请求参数
+        // GoodsPlease 求参数
         pageNumber: 1,
         pageSize: 20,
         checked: true,
       },
       orderParams: {
-        // 订单商品请求参数
+        // 订单GoodsPlease 求参数
         pageNumber: 1,
         pageSize: 20,
       },
@@ -366,7 +366,7 @@ export default {
       qrcode: "", // 二维码
       qrcodeShow: false, // 显示二维码
       base64Img: "", // base64编码
-      goodsNameCurr: "", // 当前分销商品名称
+      goodsNameCurr: "", // 当前分销goods name
     };
   },
   mounted() {
@@ -374,14 +374,14 @@ export default {
   },
   methods: {
     apply() {
-      // 申请成为分销商
+      // Apply  成为分销商
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.applyLoading = true;
           applyDistribution(this.form).then((res) => {
             this.applyLoading = false;
             if (res.success) {
-              this.$Message.success("申请已提交，请等待管理员审核");
+              this.$Message.success("The application has been submitted, please wait for administrator review");
               this.status = 1;
             }
           });
@@ -389,12 +389,12 @@ export default {
       });
     },
     withdraw() {
-      // 申请提现
+      // Apply  提现
       distCash({ price: this.withdrawPrice }).then((res) => {
         this.withdrawApplyModal = false;
         this.price = 0;
         if (res.success) {
-          this.$Message.success("申请已提交，请等待审核");
+          this.$Message.success("The application has been submitted, please wait for administrator review");
           this.distribution();
           this.getLog();
         } else {
@@ -403,12 +403,12 @@ export default {
       });
     },
     qrcodeData(data64) {
-      // 二维码base64地址
+      // 二维码base64address
       this.base64Img = data64;
     },
     downloadQrcode() {
       // 下载二维码
-      let a = document.createElement("a"); // 生成一个a元素
+      let a = document.createElement("a"); // 生成一个aringgit素
       let event = new MouseEvent("click"); // 创建一个单击事件
       a.download = this.goodsNameCurr || "photo";
       a.href = this.base64Img; // 将生成的URL设置为a.href属性
@@ -429,36 +429,36 @@ export default {
       }
     },
     changePage(val) {
-      // 修改页码
+      // modify页码
       this.params.pageNumber = val;
       this.getGoodsData();
     },
     changePageLog(val) {
-      // 修改页码 日志
+      // modify页码 日志
       this.logParams.pageNumber = val;
       this.getLog();
     },
     selectGoods(id, checked) {
-      // 选择商品
+      // selectGoods
       let params = {
         distributionGoodsId: id,
         checked: checked,
       };
       selectDistGoods(params).then((res) => {
         if (res.success) {
-          this.$Message.success("操作成功！");
+          this.$Message.success("Successful operation！");
           this.getGoodsData();
         }
       });
     },
     fenxiao(row) {
-      // 分销商品
+      // 分销Goods
       this.qrcode = `${location.origin}/goodsDetail?skuId=${row.skuId}&goodsId=${row.goodsId}&distributionId=${this.result.id}`;
       this.goodsNameCurr = row.goodsName;
       this.qrcodeShow = true;
     },
     getGoodsData() {
-      // 商品数据
+      // Goods数据
       getDistGoodsList(this.params).then((res) => {
         if (res.success) this.goodsData = res.result;
       });
@@ -487,7 +487,7 @@ export default {
         } else if (!res.data.success && res.data.code === 22000) {
           this.status = 3;
         } else {
-          // 没有资格申请 先去实名认证
+          // 没有资格Apply   先去实名认证
           this.status = 0;
         }
       });

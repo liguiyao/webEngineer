@@ -8,7 +8,7 @@ const resolve = dir => {
 /**
  * 在项目开发的时候将生产环境以及开发环境进行判断
  * 将生产环境中的路径用cdn来进行优化处理
- * 将开发环境中替换为本地的内容，方便处理bug以及开启vueDev
+ * 将开发环境中替换为本地的内容，方便处理bug以及OpeningvueDev
  * 我们可以根据环境变量进行相应的处理，只有在产品的时候，才让插件去自动注入相应的资源文件到html页面
  */
 const enableProduction = process.env.NODE_ENV === "production"; // 是否生产环境
@@ -46,24 +46,24 @@ let cdn = {
   ]
 };
 
-// 删除注释
+// delete注释
 let jsPlugin = [
   new UglifyJsPlugin({
     uglifyOptions: {
-      // 删除注释
+      // delete注释
       output: {
         comments: false
       },
       compress: {
-        drop_console: true, // 删除所有调式带有console的
+        drop_console: true, // delete所有调式带有console的
         drop_debugger: true,
-        pure_funcs: ["console.log"] // 删除console.log
+        pure_funcs: ["console.log"] // deleteconsole.log
       }
     }
   })
 ];
 
-// 判断是否需要加载CDN，线上删除注释
+// 判断是否需要加载CDN，线上delete注释
 
 cdn =  enableProduction && configs.enableCDN  ? cdn : { css: [], js: [] };
 externals = enableProduction && configs.enableCDN  ? externals : {};

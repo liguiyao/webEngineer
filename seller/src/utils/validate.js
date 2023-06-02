@@ -6,16 +6,16 @@ export function validateNeedName(rule, value, callback) {
   if (name.test(value)) {
     callback();
   } else {
-    return callback(new Error("请输入汉字"));
+    return callback(new Error("Please enter 汉字"));
   }
 }
 
-//表单中输入手机号验证
+//表单中输入Phone number验证
 export function validateMobile(rule, value, callback) {
   const mobile = regExp.mobile;
   if (mobile.test(value)) {
     callback();
   } else {
-    return callback(new Error("手机号输入错误！"));
+    return callback(new Error("Phone number输入错误！"));
   }
 }

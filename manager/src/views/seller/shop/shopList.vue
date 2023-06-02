@@ -6,33 +6,33 @@
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="请输入会员名称"
+            placeholder="Please enter 会员名称"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="店铺名称" prop="storeName">
+        <Form-item label="store name" prop="storeName">
           <Input
             type="text"
             v-model="searchForm.storeName"
-            placeholder="请输入店铺名称"
+            placeholder="Please enter store name"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="店铺状态">
+        <Form-item label="Status">
           <Select v-model="searchForm.storeDisable" clearable style="width: 200px">
-            <Option value="OPEN">开启中</Option>
-            <Option value="CLOSED">已关闭</Option>
-            <!-- <Option value="APPLY">申请中</Option> -->
+            <Option value="OPEN">Opening</Option>
+            <Option value="CLOSED">已Close</Option>
+            <!-- <Option value="APPLY">Apply  中</Option> -->
             <Option value="APPLYING">审核中</Option>
             <Option value="REFUSED">审核拒绝</Option>
           </Select>
         </Form-item>
-        <Form-item label="创建时间" prop="createTime">
-          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+        <Form-item label="Create time" prop="createTime">
+          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Row class="operation padding-row">
         <Button @click="add" type="primary">添加</Button>
@@ -59,19 +59,19 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
       },
-      selectDate: null, // 创建时间
+      selectDate: null, // Create time
       columns: [
         // 表头
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 120,
           align: "left",
@@ -83,7 +83,7 @@ export default {
           tooltip: true
         },
         {
-          title: "店铺地址",
+          title: "店铺address",
           key: "storeAddressPath",
           width: 300,
           tooltip: true,
@@ -93,7 +93,7 @@ export default {
               {
 
               },
-              params.row.storeAddressPath ||  "暂未填写"
+              params.row.storeAddressPath ||  "暂未enter "
             );
           },
         },
@@ -116,17 +116,17 @@ export default {
         },
 
         {
-          title: "店铺状态",
+          title: "Status",
           key: "storeDisable",
           align: "left",
           width: 130,
           render: (h, params) => {
             if (params.row.storeDisable == "OPEN") {
-              return h("Tag", {props: {color: "green",},},"开启中");
+              return h("Tag", {props: {color: "green",},},"Opening");
             } else if (params.row.storeDisable == "CLOSED") {
-              return h("Tag", {props: {color: "volcano",},},"已关闭");
+              return h("Tag", {props: {color: "volcano",},},"已Close");
             } else if (params.row.storeDisable == "APPLY") {
-              return h("Tag", {props: {color: "geekblue",},},"申请中");
+              return h("Tag", {props: {color: "geekblue",},},"Apply  中");
             } else if (params.row.storeDisable == "APPLYING") {
               return h("Tag", {props: {color: "purple",},},"审核中");
             } else if (params.row.storeDisable == "REFUSED") {
@@ -135,13 +135,13 @@ export default {
           },
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
           align: "left",
           width: 170
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           width: 200,
           align: "center",
@@ -165,7 +165,7 @@ export default {
                     },
                   },
                 },
-                "关闭"
+                "Close"
               );
             } else if (params.row.storeDisable == "CLOSED") {
               enableOrDisable = h(
@@ -184,7 +184,7 @@ export default {
                     },
                   },
                 },
-                "开启"
+                "Opening"
               );
             } else if (params.row.storeDisable == "APPLYING") {
               return h("div", [
@@ -222,7 +222,7 @@ export default {
                       },
                     },
                   },
-                  "修改"
+                  "modify"
                 ),
               ]);
             }
@@ -244,7 +244,7 @@ export default {
                     },
                   },
                 },
-                "选择"
+                "select"
               ),
               h(
                 "Button",
@@ -281,7 +281,7 @@ export default {
                     },
                   },
                 },
-                "修改"
+                "modify"
               ),
               enableOrDisable,
             ]);
@@ -290,7 +290,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      selectedShop: false, //用于是否选择店铺
+      selectedShop: false, //用于是否select店铺
     };
   },
 
@@ -314,7 +314,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -331,7 +331,7 @@ export default {
     getDataList() {
       console.log(this.searchForm)
       this.loading = true;
-      // 带多条件搜索参数获取表单数据 请自行修改接口
+      // 带多条件search参数获取表单数据 Please 自行modify接口
       getShopListData(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -346,21 +346,21 @@ export default {
     add() {
       this.$router.push({ path: '/shop-operation'});
     },
-    // 修改店铺
+    // modify店铺
     edit(v) {
       this.$router.push({ path: '/shop-operation', query: { shopId: v.id } });
     },
-    // 关闭店铺
+    // Close店铺
     disable(v) {
       this.$Modal.confirm({
-        title: "确认关闭",
-        content: "您确认要关闭店铺 " + v.storeName + " ?",
+        title: "确认Close",
+        content: "您确认要Close店铺 " + v.storeName + " ?",
         loading: true,
         onOk: () => {
           disableShop(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
@@ -383,7 +383,7 @@ export default {
           shopAudit(v.id, 0).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
@@ -392,7 +392,7 @@ export default {
           shopAudit(v.id, 1).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
@@ -402,14 +402,14 @@ export default {
     // 启用店铺
     enable(v) {
       this.$Modal.confirm({
-        title: "确认开启",
-        content: "您确认要开启店铺 " + v.storeName + " ?",
+        title: "确认Opening",
+        content: "您确认要Opening店铺 " + v.storeName + " ?",
         loading: true,
         onOk: () => {
           enableBrand(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

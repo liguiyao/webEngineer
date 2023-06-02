@@ -14,7 +14,7 @@ let state = {
   // 主题颜色
   themeColor: '',
 
-  // 消息提示音
+  // 消息Tips音
   notifyCueTone: true,
 
   // 键盘输入事件消息推送开关
@@ -49,7 +49,7 @@ const Settings = {
       setUserSettingCache(state)
     },
 
-    // 设置消息提示音状态
+    // 设置消息Tips音状态
     SET_NOTIFY_CUE_TONE(state, isTrue) {
       state.notifyCueTone = isTrue
       setUserSettingCache(state)

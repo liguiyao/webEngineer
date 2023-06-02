@@ -10,17 +10,17 @@
 
           <InputNumber :min="0" v-model="point.point"></InputNumber>
 
-          <Button ghost type="error" @click="delSign(point,index)">删除</Button>
+          <Button ghost type="error" @click="delSign(point,index)">delete</Button>
           <span class="ml_10">签到<span class="theme_color">{{ point.day }}</span>天，赠送<span
             class="theme_color">{{ point.point }}</span>积分</span>
         </div>
 
       </FormItem>
-      <FormItem label="操作：">
+      <FormItem label="operation：">
         <Button @click="addSign">新增签到</Button>
       </FormItem>
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
       </div>
     </Form>
   </div>
@@ -40,18 +40,18 @@ export default {
     this.init();
   },
   methods: {
-    // 保存
+    // Save
     submit(name) {
       let that = this;
       this.setupSetting();
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },
@@ -86,7 +86,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
           {

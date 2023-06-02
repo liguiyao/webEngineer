@@ -1,30 +1,30 @@
 <template>
   <div class="merchant">
     <BaseHeader/>
-    <!-- 搜索栏 -->
+    <!-- search栏 -->
     <Search :store="true" @search="search"></Search>
     <!-- 店铺logo -->
     <div class="shop-logo">
       <div>
-        <p>{{ storeMsg.storeName || 'xx店铺' }}</p>
+        <p>{{ storeMsg.storeName || 'xx store' }}</p>
         <p :alt="storeMsg.storeDesc" class="ellipsis" v-html="storeMsg.storeDesc"></p>
       </div>
       <div>
         <span class="hover-pointer" @click="collect"><Icon :color="storeCollected ? '#ed3f14' : '#fff'"
                                                            type="ios-heart"/>{{
-            storeCollected ? '已收藏店铺' : '收藏店铺'
+            storeCollected ? 'Collected shop' : 'Collection shop'
           }}</span>
         <span class="hover-pointer ml_10" style="width:80px" @click="IMService(storeMsg.storeId)"><Icon
-          custom="icomoon icon-customer-service"/>联系客服</span>
+          custom="icomoon icon-customer-service"/>Contact service</span>
       </div>
     </div>
     <div class="store-category">
       <ul class="cate-list">
         <li
           class="cate-item"
-          @click="searchByCate({ id: '', labelName: '店铺推荐' })"
+          @click="searchByCate({ id: '', labelName: 'Recommendation' })"
         >
-          首页
+          Home page
         </li>
         <li v-for="(cate, index) in cateList" :key="index" class="cate-item">
           <Dropdown v-if="cate.children.length">
@@ -75,7 +75,7 @@
           <div class="goods-show-price">
             <span>
               <span class="seckill-price text-danger">{{
-                  item.price | unitPrice("￥")
+                  item.price | unitPrice("RM")
                 }}</span>
             </span>
           </div>
@@ -83,8 +83,8 @@
             <span>{{ item.goodsName }}</span>
           </div>
           <div class="goods-show-num">
-            已有<span>{{ item.commentNum || 0 }}</span
-          >人评价
+            already <span>{{ item.commentNum || 0 }}</span
+          >人Evaluate
           </div>
         </div>
       </div>
@@ -131,24 +131,24 @@ export default {
       modelForm: {list: []}, // 楼层装修数据
       topAdvert: {}, // 顶部广告
       showNav: false, // 是否展示分类栏
-      topSearchShow: false, // 滚动后顶部搜索栏展示
+      topSearchShow: false, // 滚动后顶部search栏展示
       carouselLarge: false, // 不同轮播分类尺寸
       carouselOpacity: false, // 不同轮播分类样式,
       enablePageData: false, //是否显示楼层装修内容
       basePageData: false, //基础店铺信息
       storeMsg: {}, // 店铺信息
       cateList: [], // 店铺分裂
-      goodsList: [], // 商品列表
-      total: 0, // 商品数量
+      goodsList: [], // Goods列表
+      total: 0, // GoodsQuantity
       params: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 20,
         keyword: "",
         storeId: this.$route.query.id,
         storeCatId: "",
       },
-      cateName: "店铺推荐", // 分类名称
+      cateName: "recommendation", // 分类名称
       storeCollected: false, // 是否收藏
     };
   },
@@ -162,7 +162,7 @@ export default {
         (res) => {
           if (res.success) {
             let dataJson = JSON.parse(res.result.pageData);
-            // 秒杀活动不是装修的数据，需要调用接口判断是否有秒杀商品
+            // 秒杀活动不是装修的数据，需要调用接口判断是否有秒杀Goods
             // 轮播图根据不同轮播，样式不同
             for (const element of dataJson.list) {
               let type = element.type;
@@ -221,7 +221,7 @@ export default {
           this.storeMsg = res.result;
           console.log(this.storeMsg)
 
-          //判定如果开启楼层展示，则获取页面信息 否则读取商品信息
+          //判定如果Opening楼层展示，则获取页面信息 否则读取Goods details
           if (this.storeMsg.pageShow && this.storeMsg.pageShow === '1') {
 
             this.getIndexData();
@@ -250,7 +250,7 @@ export default {
       });
     },
     getGoodsList() {
-      // 商品信息
+      // Goods details
       goodsList(this.params)
         .then((res) => {
           if (res.success) {
@@ -262,7 +262,7 @@ export default {
         });
     },
     goGoodsDetail(skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: {skuId, goodsId},
@@ -270,23 +270,23 @@ export default {
       window.open(routeUrl.href, "_blank");
     },
     search(val) {
-      // 搜索本店商品
+      // search本店Goods
       console.log(val);
       this.params.keyword = val;
       this.getGoodsList();
     },
     searchByCate(cate) {
-      // 搜索同分类下商品
+      // search同分类下Goods
       this.params.storeCatId = cate.id;
       this.cateName = cate.labelName;
       this.getGoodsList();
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePageNum(val) {
       this.params.pageNumber = val;
       this.getGoodsList();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(val) {
       this.params.pageNumber = 1;
       this.params.pageSize = val;
@@ -297,14 +297,14 @@ export default {
       if (this.storeCollected) {
         let cancel = await cancelStoreCollect("STORE", this.storeMsg.storeId);
         if (cancel.success) {
-          this.$Message.success("已取消收藏");
+          this.$Message.success("Canceled collection");
           this.storeCollected = false;
         }
       } else {
         let collect = await collectStore("STORE", this.storeMsg.storeId);
         if (collect.code === 200) {
           this.storeCollected = true;
-          this.$Message.success("收藏店铺成功,可以前往个人中心我的收藏查看");
+          this.$Message.success("Collection shop success,You can check out my collection in the Personal center");
         }
       }
     },

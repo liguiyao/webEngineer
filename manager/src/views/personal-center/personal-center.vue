@@ -32,7 +32,7 @@
                     style="width: 100px;margin-right:5px"
                     :loading="saveLoading"
                     @click="saveEdit"
-                  >保存
+                  >Save
                   </Button>
                 </FormItem>
               </Form>
@@ -43,7 +43,7 @@
                   <div class="title">账户密码</div>
                 </div>
                 <div>
-                  <a @click="changePassword">修改</a>
+                  <a @click="changePassword">modify</a>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default {
       let userInfo = JSON.parse(JSON.stringify(v));
       this.userForm = userInfo;
     },
-    // 跳转修改密码页面
+    // 跳转modify密码页面
     changePassword() {
       util.openNewPage(this, "change-password");
       this.$router.push({
@@ -103,14 +103,14 @@ export default {
     changeMenu(v) {
       this.currMenu = v;
     },
-    // 保存
+    // Save
     saveEdit() {
       this.saveLoading = true;
       let params = this.userForm;
       userInfoEdit(params).then(res => {
         this.saveLoading = false;
         if (res.success) {
-          this.$Message.success("保存成功");
+          this.$Message.success("Savesuccess");
           // 更新用户信息
           Cookies.set("userInfoManager", this.userForm);
           // 更新头像

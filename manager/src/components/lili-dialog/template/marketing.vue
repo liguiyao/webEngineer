@@ -11,15 +11,15 @@
         {{ typeOption(item).title }}
       </div>
 
-      <!-- <div class="list-item" >暂无活动</div> -->
+      <!-- <div class="list-item" >absent活动</div> -->
     </div>
     <div class="content">
       <div v-if="showPromotionList">
         <!-- <div class="search-views">
           <Input v-model="value11" disabled class="search">
-          <span slot="prepend">店铺名称</span>
+          <span slot="prepend">store name</span>
           </Input>
-          <Button type="primary">选择</Button>
+          <Button type="primary">select</Button>
 
         </div> -->
 
@@ -62,13 +62,13 @@ export default {
   data() {
     return {
       totals: "", // 总数
-      loading: true, //表格请求数据为true
+      loading: true, //表格Please 求数据为true
       promotionList: "", // 活动列表
-      selectedIndex: 0, //左侧菜单选择
+      selectedIndex: 0, //左侧菜单select
       promotions: "", //选中的活动key
       index: 999, // 已选下标
       params: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 10,
       },
@@ -81,12 +81,12 @@ export default {
           width: 250,
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           tooltip: true,
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           tooltip: true,
         },
@@ -101,7 +101,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           fixed: "right",
           width: 100,
@@ -120,7 +120,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "选择"
+                this.index == params.index ? "已选" : "select"
               ),
             ]);
           },
@@ -128,13 +128,13 @@ export default {
       ],
       seckillColumns: [
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           tooltip: true,
           width: 200,
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           tooltip: true,
         },
@@ -169,7 +169,7 @@ export default {
               {
                 style: {},
               },
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -184,7 +184,7 @@ export default {
                 style: {},
               },
               params.row.promotionApplyStatus == "APPLY"
-                ? "申请"
+                ? "Apply  "
                 : params.row.promotionApplyStatus == "PASS"
                 ? "通过"
                 : "拒绝"
@@ -193,7 +193,7 @@ export default {
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           width: 100,
           fixed: "right",
@@ -212,7 +212,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "选择"
+                this.index == params.index ? "已选" : "select"
               ),
             ]);
           },
@@ -229,7 +229,7 @@ export default {
           width: 200,
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           tooltip: true,
         },
@@ -244,7 +244,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           fixed: "right",
           width: 100,
@@ -263,16 +263,16 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "选择"
+                this.index == params.index ? "已选" : "select"
               ),
             ]);
           },
         },
       ],
 
-      promotionData: "", //商品集合
+      promotionData: "", //Goods集合
 
-      showPromotionList: [], //显示当前促销的商品
+      showPromotionList: [], //显示当前促销goods
     };
   },
   mounted() {
@@ -300,7 +300,7 @@ export default {
       switch (type) {
         case "FULL_DISCOUNT":
           return {
-            title: "满减",
+            title: "full减",
             methodsed: () => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;
@@ -338,7 +338,7 @@ export default {
           };
         case "COUPON":
           return {
-            title: "优惠券",
+            title: "coupon",
             methodsed: () => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;
@@ -347,7 +347,7 @@ export default {
           };
         case "POINTS_GOODS":
           return {
-            title: "积分商品",
+            title: "积分Goods",
             methodsed: () => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;
@@ -358,7 +358,7 @@ export default {
           return {};
       }
     },
-    // 选择活动
+    // select活动
     selectedPromotion(val) {
       val.row.___type = "marketing";
       val.row.___promotion = this.promotions;

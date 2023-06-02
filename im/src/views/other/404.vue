@@ -9,7 +9,7 @@
         <p>抱歉，你访问的页面不存在或仍在开发中...</p>
         <div>
           <el-button type="primary" size="small" @click="toHome">
-            返回首页 ({{ second }}S)
+            Back首页 ({{ second }}S)
           </el-button>
         </div>
       </div>

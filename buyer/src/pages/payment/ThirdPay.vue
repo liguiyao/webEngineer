@@ -3,31 +3,31 @@
     <BaseHeader></BaseHeader>
     <div class="wrapper-head">
       <div class="head-left">
-        <div class="left-tips">订单提交成功，请尽快付款！</div>
-        <div class="left-tips-time">请您尽快完成支付，否则订单会被自动取消</div>
+        <div class="left-tips">Order Submit success，Please payment！</div>
+        <div class="left-tips-time">Please payment，otherwise the order will be automatic Cancel</div>
       </div>
       <div class="head-right">
-        <div>应付金额 <span class="price">{{$route.query.price | unitPrice}}</span>元</div>
+        <div>Amount payable <span class="price">{{$route.query.price | unitPrice}}</span>ringgit</div>
       </div>
     </div>
     <div class="content">
-      <div class="pay-way">{{params.paymentMethod === 'ALIPAY' ? '支付宝支付' : '微信支付'}}</div>
+      <div class="pay-way">{{params.paymentMethod === 'ALIPAY' ? 'Alipay' : 'Wechat'}}</div>
       <div class="qrcode">
         <div style="width:200px;height:200px;border:1px solid #eee;">
           <vue-qr :text="qrcode" :margin="0" colorDark="#000" colorLight="#fff" :size="200"></vue-qr>
         </div>
         <div class="intro">
-          <Icon type="md-qr-scanner" /> 请使用{{params.paymentMethod === 'ALIPAY' ? '支付宝' : '微信'}}扫码付款
+          <Icon type="md-qr-scanner" /> Please use{{params.paymentMethod === 'ALIPAY' ? 'Alipay' : 'Wechat'}}scan to payment
         </div>
       </div>
       <div class="btn-div">
-        <p class="mb_10">支付成功后自动跳转，如未跳转请点击按钮手动跳转。。。</p>
+        <p class="mb_10">After the payment success, it will jump automatically. If not, Please click the button to jump manually...</p>
         <div>
-          <Button @click="handlePay">重新支付</Button>
-          <Button type="success" @click="$router.push('/payDone')">支付成功</Button>
+          <Button @click="handlePay">repay</Button>
+          <Button type="success" @click="$router.push('/payDone')">payment success</Button>
         </div>
       </div>
-      <a @click="$router.back()">选择其他支付方式></a>
+      <a @click="$router.back()">select other payment method></a>
     </div>
     <BaseFooter></BaseFooter>
   </div>
@@ -42,7 +42,7 @@ export default {
       qrcode: '', // 二维码
       params: this.$route.query, // 参数
       interval: null, // 定时器
-      num: 0 // 商品数
+      num: 0 // Goods数
     };
   },
   methods: {

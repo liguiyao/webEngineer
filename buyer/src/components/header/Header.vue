@@ -63,7 +63,7 @@
                         Quantity:
                         <span class="shopping-cart-text">{{ item.num }}</span>
                         Price:
-                        <span class="shopping-cart-text">{{ item.purchasePrice | unitPrice('￥') }}</span>
+                        <span class="shopping-cart-text">{{ item.purchasePrice | unitPrice('RM') }}</span>
                       </p>
                     </div>
                   </div>
@@ -102,7 +102,7 @@ export default {
     };
   },
   computed: {
-    // 购物车商品数量
+    // 购物车GoodsQuantity
     cartNum () {
       return this.$store.state.cartNum;
     }
@@ -120,7 +120,7 @@ export default {
       });
       window.open(url.href, '_blank');
     },
-    signOutFun () { // 退出登录
+    signOutFun () { // 退出Login
       logout().then(res => {
         storage.removeItem('accessToken');
         storage.removeItem('refreshToken');
@@ -131,7 +131,7 @@ export default {
       });
     },
     goUserCenter (path) {
-      // 跳转我的订单，我的足迹、收藏等
+      // 跳转My order，My tract、收藏等
       if (this.userInfo.username) {
         this.$router.push({ path: path });
       } else {

@@ -3,13 +3,13 @@
     <div class="wap-content">
       <div class="query-wrapper">
         <div class="query-item">
-          <div>店铺名称</div>
-          <Input placeholder="请输入店铺名称" @on-clear="shopsData=[]; params.storeName=''; params.pageNumber =1; init()" @on-enter="()=>{shopsData=[]; params.pageNumber =1; init();}" icon="ios-search" clearable style="width: 150px"
+          <div>store name</div>
+          <Input placeholder="Please enter store name" @on-clear="shopsData=[]; params.storeName=''; params.pageNumber =1; init()" @on-enter="()=>{shopsData=[]; params.pageNumber =1; init();}" icon="ios-search" clearable style="width: 150px"
             v-model="params.storeName" />
         </div>
 
         <div class="query-item">
-          <Button type="primary" @click="shopsData=[];params.pageNumber =1; init();" icon="ios-search">搜索</Button>
+          <Button type="primary" @click="shopsData=[];params.pageNumber =1; init();" icon="ios-search">search</Button>
         </div>
       </div>
       <div>
@@ -22,7 +22,7 @@
               <div class="wap-content-desc-title">{{ item.storeName }}</div>
 
               <div class="self-operated" :class="{'theme_color':item.selfOperated }">{{ item.selfOperated ? '自营' : '非自营' }}</div>
-              <div class="wap-sku" :class="{'theme_color':(item.storeDisable === 'OPEN' ? true : false) }">{{ item.storeDisable === 'OPEN' ? '开启中' : '未开启' }}</div>
+              <div class="wap-sku" :class="{'theme_color':(item.storeDisable === 'OPEN' ? true : false) }">{{ item.storeDisable === 'OPEN' ? 'Opening' : '未Opening' }}</div>
             </div>
           </div>
           <Spin size="large" fix v-if="loading"></Spin>
@@ -38,7 +38,7 @@ export default {
     return {
       loading: false, // 加载状态
       total: "", // 总数
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         storeDisable: "OPEN",
@@ -67,7 +67,7 @@ export default {
       getShopListData(this.params).then((res) => {
         if (res.success) {
           /**
-           * 解决数据请求中，滚动栏会一直上下跳动
+           * 解决数据Please 求中，滚动栏会一直上下跳动
            */
           this.total = res.result.total;
 

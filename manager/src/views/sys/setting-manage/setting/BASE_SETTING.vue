@@ -16,7 +16,7 @@
 
           <img v-if="formValidate.domainLogo" class="img" :src="formValidate.domainLogo" />
           <img v-else class="img" src="../../../../assets/emptyImg.png" alt="">
-          <Button @click="onClickImg('domainLogo')">选择图片</Button>
+          <Button @click="onClickImg('domainLogo')">select图片</Button>
            <span class="desc">后台管理左上角logo展示 	17∶6</span>
         </div>
       </FormItem>
@@ -25,7 +25,7 @@
 
           <img v-if="formValidate.domainIcon" class="img" :src="formValidate.domainIcon" />
           <img v-else class="img" src="../../../../assets/emptyImg.png" alt="">
-          <Button @click="onClickImg('domainIcon')">选择图片</Button>
+          <Button @click="onClickImg('domainIcon')">select图片</Button>
             <span class="desc">后台管理网站icon展示 	1∶1</span>
         </div>
       </FormItem>
@@ -33,7 +33,7 @@
         <div class="label-item-upload">
           <img v-if="formValidate.buyerSideLogo" class="img" :src="formValidate.buyerSideLogo" />
           <img v-else class="img" src="../../../../assets/emptyImg.png" alt="">
-          <Button @click="onClickImg('buyerSideLogo')">选择图片</Button>
+          <Button @click="onClickImg('buyerSideLogo')">select图片</Button>
            <span class="desc">买家端logo展示 	17∶6</span>
         </div>
       </FormItem>
@@ -41,7 +41,7 @@
         <div class="label-item-upload">
           <img v-if="formValidate.buyerSideIcon" class="img" :src="formValidate.buyerSideIcon" />
           <img v-else class="img" src="../../../../assets/emptyImg.png" alt="">
-          <Button @click="onClickImg('buyerSideIcon')">选择图片</Button>
+          <Button @click="onClickImg('buyerSideIcon')">select图片</Button>
             <span class="desc">买家端网站icon展示 	1∶1</span>
         </div>
       </FormItem>
@@ -49,7 +49,7 @@
         <div class="label-item-upload">
           <img v-if="formValidate.storeSideLogo" class="img" :src="formValidate.storeSideLogo" />
           <img v-else class="img" src="../../../../assets/emptyImg.png" alt="">
-          <Button @click="onClickImg('storeSideLogo')">选择图片</Button>
+          <Button @click="onClickImg('storeSideLogo')">select图片</Button>
           <span class="desc">商家端logo展示 	17∶6</span>
         </div>
       </FormItem>
@@ -57,20 +57,20 @@
         <div class="label-item-upload">
           <img v-if="formValidate.storeSideIcon" class="img" :src="formValidate.storeSideIcon" />
           <img v-else class="img" src="../../../../assets/emptyImg.png" alt="">
-          <Button @click="onClickImg('storeSideIcon')">选择图片</Button>
+          <Button @click="onClickImg('storeSideIcon')">select图片</Button>
            <span class="desc">商家端icon展示 	1∶1</span>
         </div>
       </FormItem>
 
-      <FormItem label="站点地址" prop="staticPageAddress">
+      <FormItem label="站点address" prop="staticPageAddress">
         <Input  style="width:200px;" v-model="formValidate.staticPageAddress" />
 
       </FormItem>
-      <FormItem label="wap站点地址" prop="staticPageWapAddress">
+      <FormItem label="wap站点address" prop="staticPageWapAddress">
         <Input v-model="formValidate.staticPageWapAddress" />
       </FormItem>
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
 
       </div>
     </Form>
@@ -131,20 +131,20 @@ export default {
         this.setupSetting();
       }
     },
-    // 选择回显
+    // select回显
     callbackSelected(val) {
       this.picModelFlag = false;
       this.formValidate[this.selected] = val.url;
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
           localStorage.setItem("icon", this.formValidate.domainLogo);
-          window.document.title = this.formValidate.siteName + " - 运营后台";
+          window.document.title = this.formValidate.siteName + " - Backstage";
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },
@@ -156,7 +156,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
         ];

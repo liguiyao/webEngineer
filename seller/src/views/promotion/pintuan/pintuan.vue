@@ -13,7 +13,7 @@
             <Input
               type="text"
               v-model="searchForm.promotionName"
-              placeholder="请输入活动名称"
+              placeholder="Please enter 活动名称"
               clearable
               style="width: 200px"
             />
@@ -21,14 +21,14 @@
           <Form-item label="活动状态" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
               <Option value="START">已开始/上架</Option>
               <Option value="END">已结束/下架</Option>
-              <Option value="CLOSE">紧急关闭/作废</Option>
+              <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
           <Form-item label="活动时间">
@@ -36,7 +36,7 @@
               v-model="selectDate"
               type="daterange"
               clearable
-              placeholder="选择起始时间"
+              placeholder="select起始时间"
               style="width: 200px"
             ></DatePicker>
           </Form-item>
@@ -45,7 +45,7 @@
             type="primary"
             class="search-btn"
             icon="ios-search"
-            >搜索</Button
+            >search</Button
           >
           <Button @click="handleReset" class="search-btn">重置</Button>
         </Form>
@@ -82,21 +82,21 @@
               size="small"
               v-if="row.promotionStatus != 'START'"
               @click="remove(row)"
-              >删除</Button
+              >delete</Button
             >
             <Button
               type="success"
               v-if="row.promotionStatus == 'CLOSE'"
               size="small"
               @click="open(row)"
-              >开启</Button
+              >Opening</Button
             >
             <Button
               type="warning"
               v-if="row.promotionStatus == 'START'"
               size="small"
               @click="close(row)"
-              >关闭</Button
+              >Close</Button
             >
           </div>
         </template>
@@ -127,13 +127,13 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 0, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "startTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "startTime", // default排序字段
+        order: "desc", // default排序方式
       },
-      selectDate: null, // 选择的时间
+      selectDate: null, // select的时间
       columns: [
         {
           title: "活动名称",
@@ -165,14 +165,14 @@ export default {
               text = "已结束";
               color = "blue";
             } else if (params.row.promotionStatus == "CLOSE") {
-              text = "已关闭";
+              text = "已Close";
               color = "red";
             }
             return h("div", [h("Tag", { props: { color: color } }, text)]);
           },
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           width: 250,
@@ -197,7 +197,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 0;
       this.searchForm.pageSize = 10;
@@ -244,11 +244,11 @@ export default {
     edit(v) {
       this.$router.push({ name: "pintuan-edit", query: { id: v.id } });
     },
-    // 管理拼团商品
+    // 管理拼团Goods
     manage(v, status) {
       this.$router.push({ name: "pintuan-goods", query: { id: v.id, status: status } });
     },
-    // 手动开启拼团活动
+    // 手动Opening拼团活动
     open(v) {
       let sTime = new Date();
       sTime.setMinutes(sTime.getMinutes() + 10);
@@ -256,8 +256,8 @@ export default {
       this.openStartTime = sTime.getTime();
       this.openEndTime = eTime.getTime();
       this.$Modal.confirm({
-        title: "确认开启(默认为当前时间的十分钟之后)",
-        content: "您确认要开启此拼团活动?",
+        title: "确认Opening(default为当前时间的十分钟之后)",
+        content: "您确认要Opening此拼团活动?",
         onOk: () => {
           let params = {
             startTime: this.openStartTime,
@@ -266,7 +266,7 @@ export default {
           editPintuanStatus(v.id, params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("开启活动成功");
+              this.$Message.success("Opening活动success");
               this.getDataList();
             }
           });
@@ -276,7 +276,7 @@ export default {
             h("DatePicker", {
               props: {
                 type: "datetimerange",
-                placeholder: "请选择开始时间和结束时间",
+                placeholder: "Please select开始时间和结束时间",
                 value: [sTime, eTime],
               },
               style: {
@@ -297,35 +297,35 @@ export default {
         },
       });
     },
-    // 关闭拼团活动
+    // Close拼团活动
     close(v) {
       this.$Modal.confirm({
-        title: "确认关闭",
-        content: "您确认要关闭此拼团活动?",
+        title: "确认Close",
+        content: "您确认要Close此拼团活动?",
         loading: true,
         onOk: () => {
           editPintuanStatus(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("关闭活动成功");
+              this.$Message.success("Close活动success");
               this.getDataList();
             }
           });
         },
       });
     },
-    // 删除拼团活动
+    // delete拼团活动
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除此拼团活动?",
+        title: "确认delete",
+        content: "您确认要delete此拼团活动?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           deletePintuan(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
@@ -336,7 +336,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，修改KeepAlive为false，保证进入该页面是刷新
+  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
   beforeRouteLeave(to, from, next) {
     from.meta.keepAlive = false;
     next();

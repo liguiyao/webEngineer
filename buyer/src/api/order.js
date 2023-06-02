@@ -25,9 +25,9 @@ export function orderDetail (orderSn) {
 }
 
 /**
- * 取消订单
+ * Cancel order
  * @param {orderSn} 订单编号
- * @param reason 取消订单原因
+ * @param reason Cancel order reason
  */
 export function cancelOrder (params) {
   return request({
@@ -39,7 +39,7 @@ export function cancelOrder (params) {
 }
 
 /**
- * 删除订单
+ * delete order
  * @param {orderSn} 订单编号
  */
 export function delOrder (orderSn) {
@@ -51,7 +51,7 @@ export function delOrder (orderSn) {
 }
 
 /**
- * 确认收货
+ * Confirm receipt
  * @param {orderSn} 订单编号
  */
 export function sureReceived (orderSn) {
@@ -63,7 +63,7 @@ export function sureReceived (orderSn) {
 }
 
 /**
- * 查询物流
+ * 查询logistics
  * @param {orderSn} 订单编号
  */
 export function getTraces (orderSn) {
@@ -75,7 +75,7 @@ export function getTraces (orderSn) {
 }
 
 /**
- * 评价列表
+ * Evaluate列表
  *
  */
 export function evolutionList (params) {
@@ -87,7 +87,7 @@ export function evolutionList (params) {
   });
 }
 
-// 添加交易投诉对话
+// 添加交易Complaint对话
 export function communication (params) {
   return request({
     url: `/buyer/order/complain/communication`,
@@ -97,7 +97,7 @@ export function communication (params) {
   });
 }
 
-// 退换货服务 提交物流
+// 退换货服务 Submitlogistics
 export function afterSaleDelivery (params) {
   return request({
     url: `/buyer/order/afterSale/delivery/${params.afterSaleSn}`,
@@ -106,7 +106,7 @@ export function afterSaleDelivery (params) {
     params
   });
 }
-// 获取退货可选物流公司
+// 获取Return goods可选Logistics company
 export function getLogisticsCompany () {
   return request({
     url: `/buyer/other/logistics`,

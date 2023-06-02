@@ -1,31 +1,31 @@
 <template>
-  <div class="search">   
+  <div class="search">
     <Card>
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="100" class="search-form">
-          <Form-item label="订单号" prop="sn">
+          <Form-item label="Order number" prop="sn">
             <Input type="text" v-model="searchForm.sn" placeholder="订单/交易号" clearable style="width: 200px" />
           </Form-item>
-          <Form-item label="付款状态" prop="orderStatus">
-            <Select v-model="searchForm.payStatus" placeholder="请选择" clearable style="width: 200px">
-              <Option value="UNPAID">未付款</Option>
-              <Option value="PAID">已付款</Option>
+          <Form-item label="Payment status" prop="orderStatus">
+            <Select v-model="searchForm.payStatus" placeholder="Please select" clearable style="width: 200px">
+              <Option value="UNPAID">non-payment</Option>
+              <Option value="PAID">paid</Option>
             </Select>
           </Form-item>
-          <Form-item label="支付方式" prop="orderStatus">
-            <Select v-model="searchForm.paymentMethod" placeholder="请选择" clearable style="width: 200px">
-              <Option value="">全部</Option>
-              <Option value="WECHAT">微信</Option>
-              <Option value="ALIPAY">支付宝</Option>
-              <Option value="WALLET">余额</Option>
-              <Option value="BANK_TRANSFER">银行转账</Option>
+          <Form-item label="Method of payment" prop="orderStatus">
+            <Select v-model="searchForm.paymentMethod" placeholder="Please select" clearable style="width: 200px">
+              <Option value="">All</Option>
+              <Option value="WECHAT">Wechat</Option>
+              <Option value="ALIPAY">Alipay</Option>
+              <Option value="WALLET">Balance</Option>
+              <Option value="BANK_TRANSFER">Transfer</Option>
 
             </Select>
           </Form-item>
-          <Form-item label="订单创建时间">
-            <DatePicker v-model="times" type="datetimerange" format="yyyy-MM-dd HH:mm" clearable @on-change="changeDate" placeholder="选择支付时间" style="width: 200px"></DatePicker>
+          <Form-item label="Order Create time">
+            <DatePicker v-model="times" type="datetimerange" format="yyyy-MM-dd HH:mm" clearable @on-change="changeDate" placeholder="select支付时间" style="width: 200px"></DatePicker>
           </Form-item>
-          <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+          <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
         </Form>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10"></Table>
@@ -46,64 +46,64 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         sn: "",
         payStatus: "",
-        startDate: "", //订单创建时间
+        startDate: "", //订单Create time
         endDate: "", //订单结束时间
       },
-      times: [], //订单创建时间
+      times: [], //订单Create time
       columns: [
         {
-          title: "订单/交易编号",
+          title: "Order/Trade Number",
           key: "sn",
           minWidth: 180,
           tooltip: true,
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 100,
           tooltip: true,
         },
         {
-          title: "支付方式",
+          title: "Payment method",
           key: "paymentMethod",
           width: 120,
           align: "center",
           render: (h, params) => {
             if (params.row.paymentMethod === "WECHAT") {
               return h("div", [
-                h("Tag", { props: { color: "green" } }, "微信"),
+                h("Tag", { props: { color: "green" } }, "Wechat"),
               ]);
             } else if (params.row.paymentMethod === "ALIPAY") {
               return h("div", [
-                h("Tag", { props: { color: "blue" } }, "支付宝"),
+                h("Tag", { props: { color: "blue" } }, "Alipay"),
               ]);
             } else if (params.row.paymentMethod === "WALLET") {
               return h("div", [
-                h("Tag", { props: { color: "geekblue" } }, "余额支付"),
+                h("Tag", { props: { color: "geekblue" } }, "Balance payment"),
               ]);
             } else if (params.row.paymentMethod === "BANK_TRANSFER") {
               return h("div", [
-                h("Tag", { props: { color: "orange" } }, "银行转帐"),
+                h("Tag", { props: { color: "orange" } }, "Transfer"),
               ]);
             } else {
-              return h("div", [h("Tag", {}, "暂未付款")]);
+              return h("div", [h("Tag", {}, "暂Unpaid")]);
             }
           },
         },
         {
-          title: "第三方流水",
+          title: "Third party flow",
           key: "receivableNo",
           minWidth: 130,
           render: (h, params) => {
             return h("div", [
-              h("span", {}, params.row.receivableNo || "暂无流水号"),
+              h("span", {}, params.row.receivableNo || "absent number"),
             ]);
           },
         },
@@ -114,7 +114,7 @@ export default {
           render: (h, params) => {
             if (
               params.row.clientType === "WECHAT_MP" ||
-              params.row.clientType === "小程序"
+              params.row.clientType === "App"
             ) {
               return h("div", [h("span", {}, "小程序")]);
             } else if (params.row.clientType === "APP") {
@@ -130,37 +130,37 @@ export default {
           },
         },
         {
-          title: "支付时间",
+          title: "Payment time",
           key: "paymentTime",
           width: 200,
           render: (h, params) => {
             return h("div", [
-              h("span", {}, params.row.paymentTime || "暂无支付时间"),
+              h("span", {}, params.row.paymentTime || "absent payment time"),
             ]);
           },
         },
         {
-          title: "订单金额",
+          title: "Order amount",
           fixed: "right",
           key: "flowPrice",
           minWidth: 80,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
         {
-          title: "支付状态",
+          title: "Payment status",
           key: "payStatus",
           width: 95,
           fixed: "right",
           render: (h, params) => {
             if (params.row.payStatus == "PAID") {
-              return h("div", [h("Tag", {props:{color:'green'}}, "已付款")]);
+              return h("div", [h("Tag", {props:{color:'green'}}, "paid")]);
             } else {
-              return h("div", [h("Tag", {props:{color:'red'}}, "未付款")]);
+              return h("div", [h("Tag", {props:{color:'red'}}, "non-payment")]);
             }
           },
         },
@@ -185,7 +185,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;

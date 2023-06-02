@@ -3,22 +3,22 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" @keydown.enter.native="handleSearch" inline :label-width="70" class="search-form">
         <Form-item label="会员名称" prop="memberName">
-          <Input type="text" v-model="searchForm.memberName" clearable placeholder="请输入会员名称" style="width: 200px" />
+          <Input type="text" v-model="searchForm.memberName" clearable placeholder="Please enter 会员名称" style="width: 200px" />
         </Form-item>
-        <Form-item label="商品名称" prop="goodsName">
-          <Input type="text" v-model="searchForm.goodsName" clearable placeholder="请输入商品名" style="width: 200px" />
+        <Form-item label="goods name" prop="goodsName">
+          <Input type="text" v-model="searchForm.goodsName" clearable placeholder="Please enter Goods名" style="width: 200px" />
         </Form-item>
-        <Form-item label="评价" prop="orderStatus">
-          <Select v-model="searchForm.grade" placeholder="请选择" clearable style="width: 200px">
+        <Form-item label="Evaluate" prop="orderStatus">
+          <Select v-model="searchForm.grade" placeholder="Please select" clearable style="width: 200px">
             <Option value="GOOD">好评</Option>
             <Option value="MODERATE">中评</Option>
             <Option value="WORSE">差评</Option>
           </Select>
         </Form-item>
         <Form-item label="评论日期">
-          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
         <Button @click="handleReset" class="search-btn">重置</Button>
       </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10"></Table>
@@ -29,15 +29,15 @@
     </Card>
     <Modal :title="modalTitle" v-model="modalVisible" :mask-closable="false" :width="500">
       <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
-        <FormItem label="评价内容">
-          <span v-if="!content">暂无评价</span>
+        <FormItem label="Evaluate内容">
+          <span v-if="!content">absentEvaluate</span>
           <span v-else>
             <div>
               <Input v-model="content" type="textarea" maxlength="200" disabled :rows="4" clearable style="width:90%" />
             </div>
           </span>
         </FormItem>
-        <FormItem label="评价图片" style="padding-top: 10px" v-if="detailInfo.haveImage == 1">
+        <FormItem label="Evaluate图片" style="padding-top: 10px" v-if="detailInfo.haveImage == 1">
           <upload-pic-thumb v-model="image" :disable="true" :remove="false" :isView="true"></upload-pic-thumb>
         </FormItem>
         <FormItem label="回复内容" prop="reply">
@@ -52,7 +52,7 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button v-if="replyStatus == false" type="primary" :loading="submitLoading" @click="handleSubmit">回复
         </Button>
       </div>
@@ -72,18 +72,18 @@ export default {
   data() {
     return {
       detailInfo: {}, // 详情信息
-      image: [], //评价图片
+      image: [], //Evaluate图片
       replyStatus: false, //回复状态
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       loading: true, // 表单加载状态
-      content: "", //评价内容
+      content: "", //Evaluate内容
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
       },
@@ -94,9 +94,9 @@ export default {
       },
       // 表单验证规则
       formValidate: {
-        reply: [{ required: true, message: "请输入回复内容", trigger: "blur" }],
+        reply: [{ required: true, message: "Please enter 回复内容", trigger: "blur" }],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       columns: [
         // 表头
         {
@@ -106,19 +106,19 @@ export default {
           tooltip: true,
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 150,
           tooltip: true,
         },
         {
-          title: "评价内容",
+          title: "Evaluate内容",
           key: "content",
           minWidth: 300,
           tooltip: true,
         },
         {
-          title: "评价",
+          title: "Evaluate",
           key: "grade",
           width: 100,
           render: (h, params) => {
@@ -163,7 +163,7 @@ export default {
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: 'right',
@@ -212,7 +212,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -229,7 +229,7 @@ export default {
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
-    // 选择日期回调
+    // select日期回调
     selectDateRange(v) {
       if (v) {
         this.searchForm.startDate = v[0];
@@ -254,7 +254,7 @@ export default {
           API_Member.replyMemberReview(this.form.id, this.form).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("回复成功");
+              this.$Message.success("回复success");
               this.getDataList();
               this.modalVisible = false;
             }
@@ -294,6 +294,6 @@ export default {
 };
 </script>
 <style lang="scss">
-// 建议引入通用样式 可删除下面样式代码
+// 建议引入通用样式 可delete下面样式代码
 @import "@/styles/table-common.scss";
 </style>

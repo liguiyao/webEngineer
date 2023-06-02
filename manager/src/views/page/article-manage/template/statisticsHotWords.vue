@@ -11,7 +11,7 @@
             :min="10"
             v-model="params.top"
           ></InputNumber>
-          <Button style="margin-left: 10px" @click="search">搜索</Button>
+          <Button style="margin-left: 10px" @click="search">search</Button>
         </div>
       </Affix>
     </div>
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       params: {
-        // 请求参数
+        // Please 求参数
         searchType: "LAST_SEVEN",
         year: "",
         month: "",
@@ -45,7 +45,7 @@ export default {
           key: "keywords",
         },
         {
-          title: "搜索次数",
+          title: "search次数",
           key: "score",
         },
       ],
@@ -93,7 +93,7 @@ export default {
       if (this.hotWordsChart) {
         this.hotWordsChart.data(this.hotWordsData);
         this.hotWordsChart.scale("score", {
-          alias: "搜索次数",
+          alias: "search次数",
         });
 
         this.hotWordsChart.axis("keywords", {

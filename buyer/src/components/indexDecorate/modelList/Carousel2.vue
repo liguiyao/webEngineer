@@ -33,17 +33,17 @@
         <div class="person-msg">
           <img :src="userInfo.face" v-if="userInfo.face" alt />
           <Avatar icon="ios-person" class="mb_10" v-else size="80" />
-          <div>Hi，{{ userInfo.nickName || `欢迎来到${config.title}` | secrecyMobile }}</div>
+          <div>Hi，{{ userInfo.nickName || `Welcome to ${config.title}` | secrecyMobile }}</div>
           <div v-if="userInfo.id">
-            <Button type="error" shape="circle">会员中心</Button>
+            <Button type="error" shape="circle">Member</Button>
           </div>
           <div v-else>
-            <Button type="error" shape="circle">请登录</Button>
+            <Button type="error" shape="circle">Please login</Button>
           </div>
         </div>
         <div class="shop-msg">
           <div>
-            <span>常见问题</span>
+            <span>Problem</span>
             <ul class="article-list">
               <li class="ellipsis" :alt="article.title" v-for="(article, index) in articleList" :key="index" @click="goArticle(article.id)">
                 {{article.title}}
@@ -68,7 +68,7 @@ export default {
       config:require('@/config'),
       userInfo: {}, // 用户信息
       articleList: [], // 常见问题
-      params: { // 请求常见问题参数
+      params: { // Please 求常见问题参数
         pageNumber: 1,
         pageSize: 10,
         type: 'ANNOUNCEMENT',

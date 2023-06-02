@@ -9,24 +9,24 @@
           <div>页面名称</div>
           <div class="item-config">
             <div>状态</div>
-            <div>操作</div>
+            <div>operation</div>
           </div>
         </div>
 
         <div class="item" v-for="(item, index) in list" :key="index">
-          <div>{{ item.name || "暂无模板昵称" }}</div>
+          <div>{{ item.name || "absent模板昵称" }}</div>
           <div class="item-config">
             <i-switch v-model="item.pageShow" @on-change="changeSwitch(item)">
               <span slot="open">开</span>
               <span slot="close">关</span>
             </i-switch>
-            <Button type="info" placement="right" @click="handleEdit(item)" size="small">修改</Button>
-            <Poptip confirm title="删除此模板？" @on-ok="handleDel(item)" >
-              <Button type="error" size="small">删除</Button>
+            <Button type="info" placement="right" @click="handleEdit(item)" size="small">modify</Button>
+            <Poptip confirm title="delete此模板？" @on-ok="handleDel(item)" >
+              <Button type="error" size="small">delete</Button>
             </Poptip>
           </div>
         </div>
-        <div class="no-more" v-if="list.length ==0">暂无更多模板</div>
+        <div class="no-more" v-if="list.length ==0">absent更多模板</div>
       </div>
       <Page :total="total" size="small" @on-change="(val) => {params.pageNumber = val; } " :current="params.pageNumber" :page-size="params.pageSize" show-sizer  :page-size-opts="[10, 20, 50]" @on-page-size-change="changePageSize"/>
 
@@ -51,14 +51,14 @@ export default {
           title: "状态",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
         },
       ],
 
       loading: false, // 加载状态
 
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         sort: "createTime",
@@ -66,7 +66,7 @@ export default {
         pageType: "STORE",
         pageClientType: "H5",
       },
-      total: 0, // 页面数量
+      total: 0, // 页面Quantity
       list: [], // 总数据
     };
   },
@@ -95,7 +95,7 @@ export default {
       API_Other.releasePageHome(item.id).then((res) => {
         if (res.result) {
           this.loading = false;
-          this.$Message.success("发布成功");
+          this.$Message.success("发布success");
           this.init();
         }
 
@@ -141,14 +141,14 @@ export default {
       this.params.pageSize = v;
       this.init();
     },
-    // 删除模板
+    // delete模板
     handleDel(val) {
       this.loading = true;
       API_Other.removePageHome(val.id).then((res) => {
         if (res.result) {
           this.loading = false;
           this.init();
-          this.$Message.success("删除成功");
+          this.$Message.success("deletesuccess");
         }
 
         this.loading = false;

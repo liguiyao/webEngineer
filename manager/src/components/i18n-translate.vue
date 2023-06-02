@@ -36,12 +36,12 @@ export default {
     return {
       language,
       tabVal: "",
-      enable: false, //是否开启modal
+      enable: false, //是否Openingmodal
       title: "转换语言",
     };
   },
   methods: {
-    //   删除tab标签将没有用的语音进行删除
+    //   deletetab标签将没有用的语音进行delete
     handleTabRemove(tab) {
       this.language = this.language.filter((item) => {
         return item.value != tab;

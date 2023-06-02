@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <!-- 卡片组件 -->
-    <card _Title="我的售后" :_Size="16"></card>
-    <!-- 搜索 筛选 -->
+    <card _Title="My after-sale" :_Size="16"></card>
+    <!-- search 筛选 -->
     <div class="mb_20 box">
       <div class="global_float_right">
         <Input
@@ -11,7 +11,7 @@
           enter-button
           v-model="params.sn"
           @on-search="getList"
-          placeholder="请输入订单号搜索"
+          placeholder="Please enter order search"
         />
       </div>
     </div>
@@ -24,12 +24,12 @@
             <div>
               <div v-if="order.serviceStatus">{{ filterOrderStatus(order.serviceStatus) }}</div>
               <div>
-                售后单号：{{ order.sn }} &nbsp; &nbsp; &nbsp;{{ order.createTime }}
+                Order number：{{ order.sn }} &nbsp; &nbsp; &nbsp;{{ order.createTime }}
                 &nbsp; &nbsp;{{ order.memberName | secrecyMobile }}
               </div>
             </div>
             <div>
-              <span>申请退款金额：<span class="global_color">{{ order.applyRefundPrice | unitPrice("￥") }}</span></span>
+              <span>Amount of refund applied：<span class="global_color">{{ order.applyRefundPrice | unitPrice("RM") }}</span></span>
             </div>
           </div>
           <div class="order-body">
@@ -46,15 +46,15 @@
               <span @click="shopPage(order.shopId)">{{ order.storeName }}</span>
             </div>
             <div>
-              <!-- 订单基础操作 -->
-              <Button @click="goDetail(order.sn)" type="info" size="small">售后详情</Button>
+              <!-- 订单基础operation -->
+              <Button @click="goDetail(order.sn)" type="info" size="small">After-sale details</Button>
               <Button @click="openModal(order)"
                       v-if="order.serviceStatus == 'PASS' &&
                 order.serviceType != 'RETURN_MONEY'"
-                      type="warning" size="small">提交物流
+                      type="warning" size="small">Submit logistics
               </Button>
               <Button @click="cancel(order.sn)" type="error" v-if="order.afterSaleAllowOperationVO.cancel" size="small">
-                取消售后
+                Cancel after sale
               </Button>
             </div>
           </div>
@@ -72,7 +72,7 @@
     </div>
     <Modal v-model="logisticsShow" width="530">
       <p slot="header">
-        <span>提交物流信息</span>
+        <span>Submit logistics information</span>
       </p>
       <div>
         <div class="goods-list modal-goods">
@@ -84,29 +84,29 @@
             </div>
             <div class="mt_10">
               <span class="global_color"
-              >{{ singleOrder.flowPrice | unitPrice("￥") }} </span
+              >{{ singleOrder.flowPrice | unitPrice("RM") }} </span
               >x {{ singleOrder.num }}
             </div>
           </div>
         </div>
         <Form ref="form" :model="form" label-position="left" :label-width="100" :rules="rules">
-          <FormItem label="物流公司" prop="logisticsId">
-            <Select v-model="form.logisticsId" placeholder="请选择物流公司">
+          <FormItem label="Logistics company" prop="logisticsId">
+            <Select v-model="form.logisticsId" placeholder="Please select logistics company">
               <Option v-for="item in companyList" :value="item.id" :key="item.id">{{ item.name }}</Option>
             </Select>
           </FormItem>
-          <FormItem label="快递单号" prop="logisticsNo">
-            <Input v-model="form.logisticsNo" placeholder="请填写快递单号"></Input>
+          <FormItem label="Tracking number" prop="logisticsNo">
+            <Input v-model="form.logisticsNo" placeholder="Please enter Tracking number"></Input>
           </FormItem>
-          <FormItem label="发货时间" prop="mDeliverTime">
+          <FormItem label="Delivery time" prop="mDeliverTime">
             <DatePicker type="date" style="width:100%" v-model="form.mDeliverTime" @on-change="changeTime"
-                        format="yyyy-MM-dd" placeholder="选择发货时间"></DatePicker>
+                        format="yyyy-MM-dd" placeholder="selectDelivery time"></DatePicker>
           </FormItem>
         </Form>
       </div>
       <div slot="footer" style="text-align: right">
-        <Button @click="logisticsShow = false">关闭</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitDelivery">提交</Button>
+        <Button @click="logisticsShow = false">Close</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitDelivery">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -122,7 +122,7 @@ export default {
   data() {
     return {
       orderList: [], // 订单列表
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         sn: '',
@@ -133,41 +133,41 @@ export default {
       afterSaleStatusList,
       total: 0, // 订单总数
       spinShow: false, // 加载状态
-      companyList: [], // 物流公司列表
-      logisticsShow: false, // 物流信息modal
-      singleOrder: {}, // 单独的售后信息
-      form: { // 物流信息数据
+      companyList: [], // Logistics company 列表
+      logisticsShow: false, // logistics informationmodal
+      singleOrder: {}, // 单独的after sale信息
+      form: { // logistics information数据
         afterSaleSn: '',
         logisticsId: '',
         logisticsNo: '',
         mDeliverTime: ''
       },
       rules: { // 必填校验
-        logisticsId: [{required: true, message: '请选择物流公司'}],
-        logisticsNo: [{required: true, message: '请填写物流编号'}],
-        mDeliverTime: [{required: true, message: '请选择发货时间'}]
+        logisticsId: [{required: true, message: 'Please selectLogistics company '}],
+        logisticsNo: [{required: true, message: 'Please enter Logistics number'}],
+        mDeliverTime: [{required: true, message: 'Please select Delivery time'}]
       },
-      submitLoading: false // 提交加载状态
+      submitLoading: false // Submit加载状态
     };
   },
   mounted() {
     this.getList();
   },
   methods: {
-    goDetail(sn) { // 跳转售后详情
+    goDetail(sn) { // 跳转After-sale details
       this.$router.push({
         name: 'AfterSaleDetail',
         query: {sn}
       })
     },
-    cancel(sn) { // 取消售后申请
+    cancel(sn) { // Cancelafter saleApply
       this.$Modal.confirm({
-        title: '取消',
-        content: '<p>确定取消此次售后申请吗？</p>',
+        title: 'Cancel',
+        content: '<p>Are you sure to cancel this after-sales application？</p>',
         onOk: () => {
           cancelAfterSale(sn).then(res => {
             if (res.success) {
-              this.$Message.success('取消售后申请成功')
+              this.$Message.success('Cancel the after-sales application successfully')
               this.getList()
             }
           })
@@ -177,7 +177,7 @@ export default {
       });
     },
     goodsDetail(skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}
@@ -192,7 +192,7 @@ export default {
       });
       window.open(routeUrl.href, '_blank');
     },
-    getList() { // 获取售后列表
+    getList() { // 获取after sale列表
       this.spinShow = true;
       let params = JSON.parse(JSON.stringify(this.params))
       afterSaleList(params).then(res => {
@@ -203,11 +203,11 @@ export default {
         }
       });
     },
-    changePageNum(val) { // 修改页码
+    changePageNum(val) { // modify页码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize(val) { // 修改页数
+    changePageSize(val) { // modify页数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()
@@ -218,7 +218,7 @@ export default {
       });
       return ob[0].name
     },
-    // 获取物流公司列表
+    // 获取Logistics company 列表
     getCompany() {
       getLogisticsCompany().then(res => {
         if (res.success) {
@@ -226,13 +226,13 @@ export default {
         }
       })
     },
-    // 提交物流信息
+    // Submitlogistics information
     submitDelivery() {
       this.submitLoading = true
       afterSaleDelivery(this.form).then(res => {
         if (res.success) {
           this.logisticsShow = false;
-          this.$Message.success('提交成功')
+          this.$Message.success('Submit success')
           this.getList()
         }
         this.submitLoading = false
@@ -240,7 +240,7 @@ export default {
         this.submitLoading = false
       })
     },
-    // 提交物流modal
+    // Submitlogisticsmodal
     openModal(row) {
       console.log(row);
       this.singleOrder = row;

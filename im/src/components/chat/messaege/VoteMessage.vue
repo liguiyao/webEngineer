@@ -36,7 +36,7 @@
           </div>
           <div class="vfooter vote-view">
             <p>应参与人数：{{ answer_num }} 人</p>
-            <p>实际参与人数：{{ answered_num }} 人</p>
+            <p>real 参与人数：{{ answered_num }} 人</p>
           </div>
         </template>
         <template v-else>
@@ -53,7 +53,7 @@
           </div>
           <div class="vfooter">
             <el-button plain round @click="toVote">
-              {{ isUserVote ? "立即投票" : "请选择进行投票" }}
+              {{ isUserVote ? "立即投票" : "Please select进行投票" }}
             </el-button>
           </div>
         </template>

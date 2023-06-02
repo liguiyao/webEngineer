@@ -3,12 +3,12 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70"  @keydown.enter.native="handleSearch" class="search-form">
         <Form-item label="订单编号" prop="orderSn">
-          <Input type="text" v-model="searchForm.orderSn" placeholder="请输入订单编号" clearable style="width: 200px" />
+          <Input type="text" v-model="searchForm.orderSn" placeholder="Please enter 订单编号" clearable style="width: 200px" />
         </Form-item>
         <Form-item label="订单时间">
-          <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="选择时间" style="width: 210px"></DatePicker>
+          <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="select时间" style="width: 210px"></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
       </Form>
 
       <Table class="mt_10" :loading="loading" border :columns="columns" :data="data" ref="table"></Table>
@@ -35,7 +35,7 @@ export default {
       distributionId: this.$route.query.id, // 分销id
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
         sort:"create_time",
@@ -51,7 +51,7 @@ export default {
 
 
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
           tooltip: true,
@@ -69,9 +69,9 @@ export default {
             } else if (params.row.distributionOrderStatus == "WAIT_CASH") {
               return h("Tag", { props: { color: "orange" } }, "待提现");
             } else if (params.row.distributionOrderStatus == "CANCEL") {
-              return h("Tag", { props: { color: "red" } }, "订单已取消");
+              return h("Tag", { props: { color: "red" } }, "订单已Cancel");
             }else if (params.row.distributionOrderStatus == "REFUND") {
-              return h("Tag", { props: { color: "magenta" } }, "退款");
+              return h("Tag", { props: { color: "magenta" } }, "refund");
             }
 
           },
@@ -84,17 +84,17 @@ export default {
           sortable: false,
           render: (h, params) => {
             if (params.row.rebate == null) {
-              return h("div", this.$options.filters.unitPrice(0, "￥"));
+              return h("div", this.$options.filters.unitPrice(0, "RM"));
             } else {
               return h(
                 "div",
-                this.$options.filters.unitPrice(params.row.rebate, "￥")
+                this.$options.filters.unitPrice(params.row.rebate, "RM")
               );
             }
           },
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
           width: 180,
           sortable: false,
@@ -124,7 +124,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -145,7 +145,7 @@ export default {
         );
       }
       console.log(this.searchForm);
-      // 带多条件搜索参数获取表单数据 请自行修改接口
+      // 带多条件search参数获取表单数据 Please 自行modify接口
       getDistributionOrder(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {

@@ -12,10 +12,10 @@
               :rules="baseValidate"
             >
               <FormItem label="网站名称" prop="siteName">
-                <Input type="text" v-model="base.siteName" placeholder="请输入网站名称" style="width: 350px"/>
+                <Input type="text" v-model="base.siteName" placeholder="Please enter 网站名称" style="width: 350px"/>
               </FormItem>
               <FormItem label="ICP证书号" prop="icp">
-                <Input type="text" v-model="base.icp" placeholder="请输入ICP证书号"
+                <Input type="text" v-model="base.icp" placeholder="Please enter ICP证书号"
                        style="width: 350px"/>
               </FormItem>
               <FormItem label="Logo" prop="logo">
@@ -26,7 +26,7 @@
               </FormItem>
               <FormItem>
                 <Button type="primary" style="width: 100px;margin-right:5px" :loading="saveLoading"
-                        @click="saveBase">保存
+                        @click="saveBase">Save
                 </Button>
               </FormItem>
             </Form>
@@ -43,20 +43,20 @@
                     :rules="pointValidate"
             >
               <FormItem label="注册" prop="register">
-                <Input type="text" v-model="point.register" placeholder="请输入注册赠送积分"
+                <Input type="text" v-model="point.register" placeholder="Please enter 注册赠送积分"
                        style="width: 350px"/>
               </FormItem>
               <FormItem label="登陆" prop="login">
-                <Input type="text" v-model="point.login" placeholder="请输入登陆赠送积分"
+                <Input type="text" v-model="point.login" placeholder="Please enter 登陆赠送积分"
                        style="width: 350px"/>
               </FormItem>
-              <FormItem label="消费一元" prop="money">
-                <Input type="text" v-model="point.money" placeholder="请输入积分"
+              <FormItem label="消费一ringgit" prop="money">
+                <Input type="text" v-model="point.money" placeholder="Please enter 积分"
                        style="width: 350px"/>
               </FormItem>
               <FormItem>
                 <Button type="primary" style="width: 100px;margin-right:5px" :loading="saveLoading"
-                        @click="savePoint">保存
+                        @click="savePoint">Save
                 </Button>
               </FormItem>
             </Form>
@@ -72,28 +72,28 @@
                     label-position="right"
                     :rules="orderValidate"
             >
-              <FormItem label="自动取消 分钟" prop="autoCancel">
-                <Input type="text" v-model="order.autoCancel" placeholder="请输入自动取消分钟"
+              <FormItem label="自动Cancel 分钟" prop="autoCancel">
+                <Input type="text" v-model="order.autoCancel" placeholder="Please enter 自动Cancel分钟"
                        style="width: 350px"/>
               </FormItem>
               <FormItem label="自动收货 天" prop="autoReceive">
-                <Input type="text" v-model="order.autoReceive" placeholder="请输入自动收货天数"
+                <Input type="text" v-model="order.autoReceive" placeholder="Please enter 自动收货天数"
                        style="width: 350px"/>
               </FormItem>
               <FormItem label="自动收货 天" prop="autoComplete">
-                <Input type="text" v-model="order.autoComplete" placeholder="请输入自动完成天数"
+                <Input type="text" v-model="order.autoComplete" placeholder="Please enter 自动完成天数"
                        style="width: 350px"/>
               </FormItem>
               <FormItem>
                 <Button type="primary" style="width: 100px;margin-right:5px" :loading="saveLoading"
-                        @click="saveOrder">保存
+                        @click="saveOrder">Save
                 </Button>
               </FormItem>
             </Form>
             <Spin fix v-if="loading"></Spin>
           </div>
         </TabPane>
-        <TabPane label="商品设置" name="goods">
+        <TabPane label="Goods设置" name="goods">
           <div style="display:flex;position:relative">
             <Form
                     ref="goodsForm"
@@ -102,18 +102,18 @@
                     label-position="right"
                     :rules="goodsValidate"
             >
-              <FormItem label="是否开启商品审核" prop="goodsCheck">
+              <FormItem label="是否OpeningGoods审核" prop="goodsCheck">
                 <RadioGroup type="button" button-style="solid" v-model="goods.goodsCheck">
-                  <Radio label="OPEN">开启</Radio>
-                  <Radio label="CLOSE">关闭</Radio>
+                  <Radio label="OPEN">Opening</Radio>
+                  <Radio label="CLOSE">Close</Radio>
                 </RadioGroup>
               </FormItem>
-              <FormItem label="商品页面小图宽度" prop="smallPictureWidth">
-                <Input type="text" v-model="goods.smallPictureWidth" placeholder="商品页面小图宽度"
+              <FormItem label="Goods页面小图宽度" prop="smallPictureWidth">
+                <Input type="text" v-model="goods.smallPictureWidth" placeholder="Goods页面小图宽度"
                        style="width: 350px"/>
               </FormItem>
-              <FormItem label="商品页面小图高度" prop="smallPictureHeight">
-                <Input type="text" v-model="goods.smallPictureHeight" placeholder="商品页面小图高度"
+              <FormItem label="Goods页面小图高度" prop="smallPictureHeight">
+                <Input type="text" v-model="goods.smallPictureHeight" placeholder="Goods页面小图高度"
                        style="width: 350px"/>
               </FormItem>
               <FormItem label="缩略图宽度" prop="abbreviationPictureWidth">
@@ -134,7 +134,7 @@
               </FormItem>
               <FormItem>
                 <Button type="primary" style="width: 100px;margin-right:5px" :loading="saveLoading"
-                        @click="saveGoods">保存
+                        @click="saveGoods">Save
                 </Button>
               </FormItem>
             </Form>
@@ -146,7 +146,7 @@
             <Row style="background:#eee;padding:10px;" :gutter="16">
               <Col span="12">
                 <Card>
-                  <p slot="title">微信信任登陆</p>
+                  <p slot="title">Wechat信任登陆</p>
                   <Form
                           ref="wechatForm"
                           :model="wechat"
@@ -178,7 +178,7 @@
                     <FormItem>
                       <Button type="primary" style="width: 100px;margin-right:5px"
                               :loading="saveLoading"
-                              @click="saveWechat">保存
+                              @click="saveWechat">Save
                       </Button>
                     </FormItem>
                   </Form>
@@ -219,7 +219,7 @@
                     <FormItem>
                       <Button type="primary" style="width: 100px;margin-right:5px"
                               :loading="saveLoading"
-                              @click="saveQQ">保存
+                              @click="saveQQ">Save
                       </Button>
                     </FormItem>
                   </Form>
@@ -262,7 +262,7 @@
                     <FormItem>
                       <Button type="primary" style="width: 100px;margin-right:5px"
                               :loading="saveLoading"
-                              @click="saveWeibo">保存
+                              @click="saveWeibo">Save
                       </Button>
                     </FormItem>
                   </Form>
@@ -271,7 +271,7 @@
               </Col>
               <Col span="12">
                 <Card>
-                  <p slot="title">支付宝信任登陆</p>
+                  <p slot="title">Alipay信任登陆</p>
                   <Form
                           ref="alipayForm"
                           :model="alipay"
@@ -303,7 +303,7 @@
                     <FormItem>
                       <Button type="primary" style="width: 100px;margin-right:5px"
                               :loading="saveLoading"
-                              @click="saveAlipay">保存
+                              @click="saveAlipay">Save
                       </Button>
                     </FormItem>
                   </Form>
@@ -338,7 +338,7 @@
       return {
         tabName: "base", // tab栏名字
         loading: false, // 表单加载状态
-        saveLoading: false, // 保存加载状态
+        saveLoading: false, // Save加载状态
         base: { // 基本设置
           siteName: "",
           icp: "",
@@ -355,7 +355,7 @@
           autoReceive: "",
           autoComplete: ""
         },
-        goods: { // 商品设置
+        goods: { // Goods设置
           goodsCheck: "OPEN",
           smallPictureWidth: "",
           smallPictureHeight: "",
@@ -364,7 +364,7 @@
           originalPictureWidth: "",
           originalPictureHeight: ""
         },
-        wechat: { // 微信设置
+        wechat: { // Wechat设置
           appId: "",
           appSecret: "",
           callbackUrl: "",
@@ -405,7 +405,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -416,7 +416,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -428,7 +428,7 @@
               required: true,
               validator: (rule, value, callback) => {
                 if (!regular.integer.test(value)) {
-                  callback(new Error('请输入正整数，且不为零！'))
+                  callback(new Error('Please enter 正整数，且不为零！'))
                 } else {
                   callback()
                 }
@@ -442,7 +442,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -453,7 +453,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -464,7 +464,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -477,7 +477,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -488,7 +488,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -499,7 +499,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -510,7 +510,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -521,7 +521,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -532,7 +532,7 @@
             required: true,
             validator: (rule, value, callback) => {
               if (!regular.integer.test(value)) {
-                callback(new Error('请输入正整数，且不为零！'))
+                callback(new Error('Please enter 正整数，且不为零！'))
               } else {
                 callback()
               }
@@ -589,7 +589,7 @@
           }
         });
       },
-      // 商品设置
+      // Goods设置
       initGoods() {
         this.loading = true;
         getParams('goods').then(res => {
@@ -601,7 +601,7 @@
           }
         });
       },
-      // 
+      //
       initWeibo() {
         this.loading = true;
         getParams('weibo').then(res => {
@@ -613,7 +613,7 @@
           }
         });
       },
-      // 微信设置
+      // Wechat设置
       initWechat() {
         this.loading = true;
         getParams('wechat').then(res => {
@@ -648,7 +648,7 @@
           }
         });
       },
-      // 保存基础配置
+      // Save基础配置
       saveBase() {
         this.$refs.baseForm.validate(valid => {
           if (valid) {
@@ -657,13 +657,13 @@
             editParams(this.base, 'base').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存积分配置
+      // Save积分配置
       savePoint() {
         this.$refs.pointForm.validate(valid => {
           if (valid) {
@@ -672,13 +672,13 @@
             editParams(this.point, 'point').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存订单配置
+      // Save订单配置
       saveOrder() {
         this.$refs.orderForm.validate(valid => {
           if (valid) {
@@ -687,13 +687,13 @@
             editParams(this.order, 'order').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存商品设置
+      // SaveGoods设置
       saveGoods() {
         this.$refs.goodsForm.validate(valid => {
           if (valid) {
@@ -702,13 +702,13 @@
             editParams(this.goods, 'goods').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存微信设置
+      // SaveWechat设置
       saveWechat() {
         this.$refs.wechatForm.validate(valid => {
           if (valid) {
@@ -717,13 +717,13 @@
             editParams(this.wechat, 'wechat').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存qq设置
+      // Saveqq设置
       saveQQ() {
         this.$refs.qqForm.validate(valid => {
           if (valid) {
@@ -732,13 +732,13 @@
             editParams(this.qq, 'qq').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存微博设置
+      // Save微博设置
       saveWeibo() {
         this.$refs.wechatForm.validate(valid => {
           if (valid) {
@@ -747,13 +747,13 @@
             editParams(this.weibo, 'weibo').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }
         });
       },
-      // 保存支付宝设置
+      // SaveAlipay设置
       saveAlipay() {
         this.$refs.alipayForm.validate(valid => {
           if (valid) {
@@ -762,7 +762,7 @@
             editParams(this.alipay, 'alipay').then(res => {
               this.saveLoading = false;
               if (res.success) {
-                this.$Message.success("保存成功");
+                this.$Message.success("Savesuccess");
               }
             });
           }

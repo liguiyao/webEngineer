@@ -13,7 +13,7 @@
             <Input
               type="text"
               v-model="searchForm.promotionName"
-              placeholder="请输入活动名称"
+              placeholder="Please enter 活动名称"
               clearable
               style="width: 200px"
             />
@@ -21,14 +21,14 @@
           <Form-item label="活动状态" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
               <Option value="START">已开始/上架</Option>
               <Option value="END">已结束/下架</Option>
-              <Option value="CLOSE">紧急关闭/作废</Option>
+              <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
           <Form-item label="活动时间">
@@ -36,7 +36,7 @@
               v-model="selectDate"
               type="daterange"
               clearable
-              placeholder="选择起始时间"
+              placeholder="select起始时间"
               style="width: 200px"
             >
             </DatePicker>
@@ -47,7 +47,7 @@
             type="primary"
             icon="ios-search"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -90,7 +90,7 @@
                 v-if="row.promotionStatus == 'START' || row.promotionStatus == 'NEW'"
                 class="mr_5"
                 @click="off(row)"
-                >关闭</Button
+                >Close</Button
               >
               &nbsp;
               <Button
@@ -99,7 +99,7 @@
                 v-if="row.promotionStatus == 'CLOSE' || row.promotionStatus == 'END'"
                 ghost
                 @click="expire(row)"
-                >删除</Button
+                >delete</Button
               >
             </template>
           </Table>
@@ -143,13 +143,13 @@ export default {
       selectDate: [],
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
         sort: "createTime",
-        order: "desc", // 默认排序方式
+        order: "desc", // default排序方式
       },
-      setupFlag: false, //默认不请求设置
+      setupFlag: false, //default不Please 求设置
       columns: [
         // 表单
         {
@@ -165,7 +165,7 @@ export default {
           width: 180,
         },
         {
-          title: "申请截止时间",
+          title: "Apply  截止时间",
           key: "applyEndTime",
           width: 180,
         },
@@ -180,13 +180,13 @@ export default {
         },
 
         {
-          title: "申请规则",
+          title: "Apply  规则",
           key: "seckillRule",
           minWidth: 120,
           tooltip: true,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           width: 250,
@@ -220,7 +220,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -238,12 +238,12 @@ export default {
     off(v) {
       // 下架
       this.$Modal.confirm({
-        title: "提示",
-        content: "您确定要下架该活动吗？",
+        title: "Tips",
+        content: "您Confirm要下架该活动吗？",
         onOk: () => {
           updateSeckillStatus(v.id).then((res) => {
             if (res.success) {
-              this.$Message.success("下架成功");
+              this.$Message.success("下架success");
               this.getDataList();
             }
           });
@@ -253,12 +253,12 @@ export default {
     expire(v) {
       // 作废
       this.$Modal.confirm({
-        title: "提示",
-        content: "您确定要作废该活动吗？",
+        title: "Tips",
+        content: "您Confirm要作废该活动吗？",
         onOk: () => {
           delSeckill(v.id).then((res) => {
             if (res.success) {
-              this.$Message.success("作废成功");
+              this.$Message.success("作废success");
               this.getDataList();
             }
           });
@@ -275,7 +275,7 @@ export default {
         this.searchForm.startTime = null;
         this.searchForm.endTime = null;
       }
-      // 带多条件搜索参数获取表单数据
+      // 带多条件search参数获取表单数据
       getSeckillList(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {

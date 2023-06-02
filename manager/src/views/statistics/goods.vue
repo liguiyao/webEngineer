@@ -7,10 +7,10 @@
     </Affix>
     <Card class="card">
       <Tabs @on-click="handleClickType">
-        <TabPane label="热门商品订单数量" name="NUM">
+        <TabPane label="热门Goods订单Quantity" name="NUM">
           <Table :columns="columns" :data="data"></Table>
         </TabPane>
-        <TabPane label="热门商品订单金额" name="PRICE">
+        <TabPane label="热门Goods订单金额" name="PRICE">
           <Table :columns="columns" :data="data"></Table>
         </TabPane>
       </Tabs>
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      params: { // 请求参数
+      params: { // Please 求参数
         searchType: "LAST_SEVEN",
         year: "",
         month: "",
@@ -39,11 +39,11 @@ export default {
       },
       columns: [ // 表头
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
         },
         {
-          title: "销售数量",
+          title: "销售Quantity",
           key: "num",
         },
         {
@@ -52,7 +52,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, '￥')
+              this.$options.filters.unitPrice(params.row.price, 'RM')
             );
           },
         },

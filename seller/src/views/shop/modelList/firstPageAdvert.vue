@@ -36,7 +36,7 @@
                     建议尺寸：<span>{{ selected.size }}</span>
                 </div>
                 <div>
-                    图片链接：<span>{{ selected.url }}</span> <Button size="small" type="primary" @click="handleSelectLink">选择链接</Button>
+                    图片链接：<span>{{ selected.url }}</span> <Button size="small" type="primary" @click="handleSelectLink">select链接</Button>
                 </div>
                 <div>
                     <span>渐变背景色：</span><Input v-model="selected.fromColor" /> <ColorPicker v-if="selected.fromColor" v-model="selected.fromColor" />
@@ -46,17 +46,17 @@
                 </div>
                 <div :style="{backgroundImage:`linear-gradient(to right, ${selected.fromColor}, ${selected.toColor})`}" class="exhibition"></div>
                 <div>
-                    选择图片：<Button size="small" type="primary" @click="handleSelectImg">选择图片</Button>&nbsp;
+                    select图片：<Button size="small" type="primary" @click="handleSelectImg">select图片</Button>&nbsp;
                 </div>
             </div>
         </Modal>
-        <!-- 选择商品。链接 -->
+        <!-- selectGoods。链接 -->
         <liliDialog
             ref="liliDialog"
             @selectedLink="selectedLink"
 
         ></liliDialog>
-        <!-- 选择图片 -->
+        <!-- select图片 -->
         <Modal width="1200px" v-model="picModelFlag" footer-hide>
             <ossManage @callback="callbackSelected" :isComponent="true" ref="ossManage" />
         </Modal>
@@ -77,7 +77,7 @@ export default {
             options: this.data.options, // 当前类型数据
             showModal: false, // modal显隐
             selected: {}, // 已选数据
-            picModelFlag: false // 图片选择器
+            picModelFlag: false // 图片select器
         }
     },
     methods:{
@@ -86,18 +86,18 @@ export default {
             this.selected = item;
             this.showModal = true
         },
-        handleSelectLink(item,index) { // 调起选择链接弹窗
+        handleSelectLink(item,index) { // 调起select链接弹窗
             this.$refs.liliDialog.open('link')
         },
-        // 选择链接回调
+        // select链接回调
         selectedLink(val) {
             this.selected.url = this.$options.filters.formatLinkType(val);;
         },
-        handleSelectImg(){ // 选择图片
+        handleSelectImg(){ // select图片
             this.$refs.ossManage.selectImage = true;
             this.picModelFlag = true;
         },
-        // 选择图片回调
+        // select图片回调
         callbackSelected (val) {
             this.picModelFlag = false;
             this.selected.img = val.url;

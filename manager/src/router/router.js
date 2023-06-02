@@ -6,7 +6,7 @@ export const loginRouter = {
   path: "/login",
   name: "login",
   meta: {
-    title: `登录 - ${config.title}运营后台`
+    title: `Login - ${config.title}Backstage`
   },
   component: () => import("@/views/login.vue")
 };
@@ -33,7 +33,7 @@ export const otherRouter = {
     },
     {
       path: "change-password",
-      title: "修改密码",
+      title: "modify密码",
       name: "change_password",
       component: () => import("@/views/change-password/change-password.vue")
     },
@@ -57,7 +57,7 @@ export const otherRouter = {
     },
     {
       path: "shop-operation",
-      title: "店铺操作",
+      title: "店铺operation",
       name: "shop-operation",
       component: () => import("@/views/seller/shop/shopOperation.vue")
     },
@@ -75,43 +75,43 @@ export const otherRouter = {
     },
     {
       path: "apply-goods",
-      title: "商品审核列表",
+      title: "Goods审核列表",
       name: "apply-goods",
       component: () => import("@/views/goods/goods-info/goodsApply.vue")
     },
     {
       path: "manager-goods",
-      title: "管理端商品列表",
+      title: "管理端Goods列表",
       name: "manager-goods",
       component: () => import("@/views/goods/goods-info/goods.vue")
     },
     {
       path: "goods-brand",
-      title: "商品品牌",
+      title: "Goods品牌",
       name: "goods-brand",
       component: () => import("@/views/goods/goods-manage/brand.vue")
     },
     {
       path: "goods-category",
-      title: "商品分类",
+      title: "Goods分类",
       name: "goods-category",
       component: () => import("@/views/goods/goods-manage/category.vue")
     },
     {
       path: "goods-parameter",
-      title: "商品参数",
+      title: "Goods参数",
       name: "goods-parameter",
       component: () => import("@/views/goods/goods-manage/parameter.vue")
     },
     {
       path: "goods-spec",
-      title: "商品参数",
+      title: "Goods参数",
       name: "goods-spec",
       component: () => import("@/views/goods/goods-manage/spec.vue")
     },
     {
       path: "order-complaint-detail",
-      title: "投诉详情",
+      title: "Complaint详情",
       name: "order-complaint-detail",
       component: () =>
         import("@/views/order/after-order/orderComplaintDetail.vue")
@@ -124,13 +124,13 @@ export const otherRouter = {
     },
     {
       path: "order-detail",
-      title: "订单详情",
+      title: "Order details",
       name: "order-detail",
       component: () => import("@/views/order/order/orderDetail.vue")
     },
     {
       path: "after-order-detail",
-      title: "售后单详情",
+      title: "after sale单详情",
       name: "after-order-detail",
       component: () =>
         import("@/views/order/after-order/afterSaleOrderDetail.vue")
@@ -150,27 +150,27 @@ export const otherRouter = {
 
     {
       path: "goods/goods-info/goodsDetail",
-      title: "商品详情",
+      title: "Goods详情",
       name: "goods-detail",
       component: () => import("@/views/goods/goods-info/goodsDetail.vue")
     },
     {
       path: "promotions/add-points-goods",
-      title: "添加积分商品",
+      title: "添加积分Goods",
       name: "add-points-goods",
       component: () =>
         import("@/views/promotions/points-goods/points-goods-add.vue")
     },
     {
       path: "promotions/edit-points-goods",
-      title: "修改积分商品",
+      title: "modify积分Goods",
       name: "edit-points-goods",
       component: () =>
         import("@/views/promotions/points-goods/points-goods-edit.vue")
     },
     {
       path: "promotions/manager-points-goods-category",
-      title: "积分商品分类",
+      title: "积分Goods分类",
       name: "manager-points-goods-category",
       component: () =>
         import("@/views/promotions/points-goods-category/points-goods-category.vue")
@@ -183,43 +183,43 @@ export const otherRouter = {
     },
     {
       path: "promotions/edit-kanJia-activity-goods",
-      title: "修改砍价活动",
+      title: "modify砍价活动",
       name: "edit-kanJia-activity-goods",
       component: () => import("@/views/promotions/kanjia/kanjia-activity-edit-goods.vue")
     },
     {
       path: "promotions/manager-coupon",
-      title: "平台优惠券",
+      title: "平台coupon",
       name: "manager-coupon",
       component: () => import("@/views/promotions/coupon/coupon.vue")
     },
     {
       path: "promotions/coupon-receive",
-      title: "优惠券领取记录",
+      title: "coupon领取记录",
       name: "coupon-receive",
       component: () => import("@/views/promotions/coupon/coupon-receive.vue"),
     },
     {
       path: "promotions/add-platform-coupon",
-      title: "添加平台优惠券",
+      title: "添加平台coupon",
       name: "add-platform-coupon",
       component: () => import("@/views/promotions/coupon/coupon-publish.vue")
     },
     {
       path: "promotions/edit-platform-coupon",
-      title: "编辑平台优惠券",
+      title: "编辑平台coupon",
       name: "edit-platform-coupon",
       component: () => import("@/views/promotions/coupon/coupon-publish.vue")
     },
     {
       path: "promotions/add-coupon-activity",
-      title: "添加优惠券活动",
+      title: "添加coupon活动",
       name: "add-coupon-activity",
       component: () => import("@/views/promotions/coupon-activity/coupon-publish.vue")
     },
     {
       path: "promotions/edit-coupon-activity",
-      title: "编辑平台优惠券活动",
+      title: "编辑平台coupon活动",
       name: "edit-coupon-activity",
       component: () => import("@/views/promotions/coupon-activity/coupon-publish.vue")
     },
@@ -237,13 +237,13 @@ export const otherRouter = {
     },
     {
       path: "promotions/pintuan/pintuan-goods",
-      title: "拼团商品",
+      title: "拼团Goods",
       name: "pintuan-goods",
       component: () => import("@/views/promotions/pintuan/pintuan-goods.vue")
     },
     {
       path: "promotions/full-discount-detail",
-      title: "满减满折详情",
+      title: "full减fulloff详情",
       name: "full-discount-detail",
       component: () => import("@/views/promotions/full-discount/full-discount-detail.vue")
     },
@@ -255,7 +255,7 @@ export const otherRouter = {
     },
     {
       path: "promotions/seckill/seckill-goods",
-      title: "秒杀商品",
+      title: "秒杀Goods",
       name: "seckill-goods",
       component: () => import("@/views/promotions/seckill/seckill-goods.vue")
     },

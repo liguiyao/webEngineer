@@ -2,13 +2,13 @@
  * 短信倒计时锁
  */
 class SmsLock {
-  // 发送倒计时默认60秒
+  // 发送倒计时default60秒
   time = null
 
   // 计时器
   timer = null
 
-  // 倒计时默认60秒
+  // 倒计时default60秒
   lockTime = 60
 
   // 锁标记名称

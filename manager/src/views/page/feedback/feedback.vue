@@ -24,7 +24,7 @@
         ></Page>
       </Row>
     </Card>
-    <!-- 修改模态框 -->
+    <!-- modify模态框 -->
     <Modal v-model="formValidate" title="详细信息" width="500">
       <Form
         ref="formValidate"
@@ -34,13 +34,13 @@
         <FormItem label="用户名" prop="userName">
           <span> {{form.userName}}</span>
         </FormItem>
-        <FormItem label="手机号码" prop="mobile">
+        <FormItem label="Phone number" prop="mobile">
           <span> {{form.mobile}}</span>
         </FormItem>
         <FormItem label="类型" prop="type">
           <span v-if="form.type == 'FUNCTION'">功能建议</span>
           <span v-if="form.type == 'OPTIMIZE'">优化反馈</span>
-          <span v-if="form.type == 'OTHER'">其他意见</span>
+          <span v-if="form.type == 'OTHER'">Others意见</span>
         </FormItem>
         <FormItem label="反馈内容" prop="context">
           <Input style="width: 85%" v-model="form.context" type="textarea" disabled :autosize="{minRows: 3,maxRows: 5}"
@@ -48,7 +48,7 @@
         </FormItem>
         <FormItem label="相关材料" prop="images">
           <div v-if="form.images == null">
-            暂无
+            absent
           </div>
           <div v-else>
             <span v-for="(item, index) in this.form.images.split(',')" :key="index">
@@ -59,7 +59,7 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="formValidate = false">取消</Button>
+        <Button type="text" @click="formValidate = false">Cancel</Button>
       </div>
     </Modal>
   </div>
@@ -77,7 +77,7 @@
       return {
         loading: true, // 加载状态
         form: {}, // 表单数据
-        searchForm: { // 请求参数
+        searchForm: { // Please 求参数
           pageNumber: 1,
           pageSize: 10,
         },
@@ -91,7 +91,7 @@
 
           },
           {
-            title: "手机号码",
+            title: "Phone number",
             key: "mobile",
             minWidth: 120,
             tooltip: true
@@ -113,20 +113,20 @@
               } else if (params.row.type == "OPTIMIZE") {
                 return h('div', [h('span', {}, "优化反馈")]);
               } else if (params.row.type == "OTHER") {
-                return h('div', [h('span', {}, "其他意见")]);
+                return h('div', [h('span', {}, "Others意见")]);
               } else {
                 return h('div', [h('span', {}, "未知意见")]);
               }
             }
           },
           {
-            title: "创建时间",
+            title: "Create time",
             key: "createTime",
             width: 170,
             sortable: true,
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             width: 130,
@@ -164,12 +164,12 @@
       init() {
         this.getFeedback();
       },
-      // 分页 修改页码
+      // 分页 modify页码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getFeedback();
       },
-      // 分页 修改页数
+      // 分页 modify页数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;
@@ -189,7 +189,7 @@
         });
       },
       /**
-       * 投诉建议详细
+       * Complaint建议详细
        */
       detail(v) {
         getMemberFeedbackDetail(v.id).then((res) => {

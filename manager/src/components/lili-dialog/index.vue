@@ -33,9 +33,9 @@ export default {
   },
   data() {
     return {
-      goodsFlag: false, // 是否商品选择器
-      goodsData: [], //选择的商品
-      linkData: "", //选择的链接
+      goodsFlag: false, // 是否Goodsselect器
+      goodsData: [], //selectgoods
+      linkData: "", //select的链接
       flag: false, // modal显隐
     };
   },
@@ -43,12 +43,12 @@ export default {
     clearGoodsSelected(){
       this.goodsData = []
     },
-    // 关闭弹窗
+    // Close弹窗
     clickClose() {
       this.$emit("closeFlag", false);
       this.goodsFlag = false;
     },
-    // 单选商品
+    // 单选Goods
     singleGoods() {
       var timer = setInterval(() => {
         if (this.$refs.goodsDialog) {
@@ -78,7 +78,7 @@ export default {
         this.goodsFlag = false;
       }
     },
-    // 关闭组件
+    // Close组件
     close() {
       this.flag = false;
     },

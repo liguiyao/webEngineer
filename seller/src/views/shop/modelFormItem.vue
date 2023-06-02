@@ -56,7 +56,7 @@
     <template v-if="element.type == 'seckill'">
       <seckill :data="element"></seckill>
     </template>
-    <!-- 折扣广告 -->
+    <!-- off扣广告 -->
     <template v-if="element.type == 'discountAdvert'">
       <div
         class="discountAdvert"
@@ -139,7 +139,7 @@
       <not-enough :data="element"></not-enough>
     </template>
     <div class="del-btn">
-      <Button size="small" type="error" @click="handleModelDelete">删除</Button>
+      <Button size="small" type="error" @click="handleModelDelete">delete</Button>
     </div>
     <Modal
       v-model="showModal"
@@ -168,7 +168,7 @@
             :src="selected.img"
             alt
           />
-          <!-- 折扣广告三种图片尺寸 -->
+          <!-- off扣广告三种图片尺寸 -->
           <img
             class="show-image"
             width="600"
@@ -200,23 +200,23 @@
         <div>
           图片链接：<span>{{ selected.url }}</span>
           <Button size="small" type="primary" @click="handleSelectLink"
-            >选择链接</Button
+            >select链接</Button
           >
         </div>
         <div>
-          选择图片：<Button size="small" type="primary" @click="handleSelectImg"
-            >选择图片</Button
+          select图片：<Button size="small" type="primary" @click="handleSelectImg"
+            >select图片</Button
           >&nbsp;
         </div>
       </div>
     </Modal>
-    <!-- 选择商品。链接 -->
+    <!-- selectGoods。链接 -->
     <liliDialog
       ref="liliDialog"
       @selectedLink="selectedLink"
-  
+
     ></liliDialog>
-    <!-- 选择图片 -->
+    <!-- select图片 -->
     <Modal width="1200px" v-model="picModelFlag" footer-hide>
       <ossManage
         @callback="callbackSelected"
@@ -256,7 +256,7 @@ export default {
     return {
       showModal: false, // modal显隐
       selected: {}, // 已选数据
-      picModelFlag: false, // 图片选择器
+      picModelFlag: false, // 图片select器
     };
   },
   methods: {
@@ -265,11 +265,11 @@ export default {
       this.selected = item;
       this.showModal = true;
     },
-    // 删除模块
+    // delete模块
     handleModelDelete() {
       this.$Modal.confirm({
-        title: "提示",
-        content: "<p>确定删除当前模块吗？</p>",
+        title: "Tips",
+        content: "<p>Confirmdelete当前模块吗？</p>",
         onOk: () => {
           this.$nextTick(() => {
             this.data.list.splice(this.index, 1);
@@ -278,16 +278,16 @@ export default {
       });
     },
     handleSelectLink(item, index) {
-      // 调起选择链接弹窗
+      // 调起select链接弹窗
       this.$refs.liliDialog.open("link");
     },
-    // 确定选择链接
+    // Confirmselect链接
     selectedLink(val) {
       this.selected.url = this.$options.filters.formatLinkType(val);
     },
-    
+
     handleSelectImg() {
-      // 选择图片
+      // select图片
       this.$refs.ossManage.selectImage = true;
       this.picModelFlag = true;
     },
@@ -360,7 +360,7 @@ export default {
     height: 100px;
   }
 }
-/** 折扣广告 */
+/** off扣广告 */
 .discountAdvert {
   height: 566px;
   background-repeat: no-repeat;

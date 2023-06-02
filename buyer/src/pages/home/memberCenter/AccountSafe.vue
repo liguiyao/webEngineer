@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <card _Title="账户安全"/>
+    <card _Title="Account security"/>
     <div class="safeList">
       <!-- 密码 -->
       <Row class="safeItem">
@@ -8,11 +8,11 @@
           <Icon size="40" type="md-key"/>
         </Col>
         <Col :span="16">
-          <div class="setDivItem">登录密码</div>
-          <div class="setDivItem theme">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</div>
+          <div class="setDivItem">Password</div>
+          <div class="setDivItem theme">You are advised to periodically change your password to protect your Internet account security。</div>
         </Col>
         <Col :span="4">
-          <Button @click="modifyPwd">修改密码</Button>
+          <Button @click="modifyPwd">Change password</Button>
         </Col>
       </Row>
     </div>
@@ -36,16 +36,16 @@ export default {
     goModifyPwd () {
       this.$router.push({name: 'ModifyPwd', query: { status: 2 }})
     },
-    modifyPwd () { // 修改密码
+    modifyPwd () { // modify密码
       this.$router.push({name: 'ModifyPwd', query: { status: 1 }})
     },
     // 获取密码状态
     getPwdStatus () {
       getPwdStatus().then(res => {
         if (res) {
-          this.pwdStatus = '修改密码'
+          this.pwdStatus = 'Change password'
         } else {
-          this.pwdStatus = '设置密码'
+          this.pwdStatus = 'Set a password'
         }
       });
     }

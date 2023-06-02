@@ -32,7 +32,7 @@ export default {
       },
       storeId: "", // 店铺id
       dates: [], // 日期列表
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         storeName: "",
@@ -89,7 +89,7 @@ export default {
       }
       this.dates = dates.reverse();
     },
-    // 选择回调
+    // select回调
     changeSelect() {
       if (this.month) {
         this.dateList.forEach((res) => {

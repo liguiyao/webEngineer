@@ -262,7 +262,7 @@ export default {
     },
     emptyText: {
       type: String,
-      default: "暂无数据"
+      default: "absent数据"
     },
     showHeader: {
       type: Boolean,

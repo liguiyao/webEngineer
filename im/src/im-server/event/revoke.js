@@ -2,7 +2,7 @@ import Base from './base'
 import store from '@/store'
 
 /**
- * 好友邀请消息处理
+ * 好友邀Please 消息处理
  */
 class Revoke extends Base {
   /**

@@ -10,11 +10,11 @@
           :label-width="70"
           class="search-form"
         >
-          <Form-item label="商品名称" prop="goodsName">
+          <Form-item label="goods name" prop="goodsName">
             <Input
               type="text"
               v-model="searchForm.goodsName"
-              placeholder="请输入商品名称"
+              placeholder="Please enter goods name"
               clearable
               style="width: 200px"
             />
@@ -22,7 +22,7 @@
           <Form-item label="状态" prop="status">
             <Select
               v-model="searchForm.marketEnable"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
@@ -33,7 +33,7 @@
           <Form-item label="销售模式" prop="status">
             <Select
               v-model="searchForm.salesModel"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
@@ -41,43 +41,43 @@
               <Option value="WHOLESALE">批发</Option>
             </Select>
           </Form-item>
-          <Form-item label="商品类型" prop="status">
+          <Form-item label="Goods类型" prop="status">
             <Select
               v-model="searchForm.goodsType"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
-              <Option value="PHYSICAL_GOODS">实物商品</Option>
-              <Option value="VIRTUAL_GOODS">虚拟商品</Option>
+              <Option value="PHYSICAL_GOODS">实物Goods</Option>
+              <Option value="VIRTUAL_GOODS">虚拟Goods</Option>
             </Select>
           </Form-item>
-          <Form-item label="商品编号" prop="sn">
+          <Form-item label="Goods编号" prop="sn">
             <Input
               type="text"
               v-model="searchForm.id"
-              placeholder="商品编号"
+              placeholder="Goods编号"
               clearable
               style="width: 200px"
             />
           </Form-item>
-          <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+          <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
           <Button @click="handleReset" class="search-btn">重置</Button>
         </Form>
       </Row>
       <Row class="operation padding-row">
-        <Button @click="addGoods" type="primary">添加商品</Button>
-        <Button @click="openImportGoods" type="primary">导入商品</Button>
+        <Button @click="addGoods" type="primary">添加Goods</Button>
+        <Button @click="openImportGoods" type="primary">导入Goods</Button>
         <Dropdown @on-click="handleDropdown">
           <Button type="default">
-            批量操作
+            批量operation
             <Icon type="ios-arrow-down"></Icon>
           </Button>
           <DropdownMenu slot="list">
             <DropdownItem name="uppers">批量上架</DropdownItem>
             <DropdownItem name="lowers">批量下架</DropdownItem>
-            <DropdownItem name="deleteAll">批量删除</DropdownItem>
-            <DropdownItem name="batchShipTemplate">批量设置物流模板</DropdownItem>
+            <DropdownItem name="deleteAll">批量delete</DropdownItem>
+            <DropdownItem name="batchShipTemplate">批量设置logistics模板</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Row>
@@ -91,7 +91,7 @@
         ref="table"
         @on-selection-change="changeSelect"
       >
-        <!-- 商品栏目格式化 -->
+        <!-- Goods栏目格式化 -->
         <template slot="goodsSlot" slot-scope="{ row }">
           <div style="margin-top: 5px; height: 90px; display: flex">
             <div style="">
@@ -160,25 +160,25 @@
           ></Table>
         </TabPane>
         <TabPane label="批量规格更新" name="stockAll">
-          <Input type="number" v-model="stockAllUpdate" placeholder="统一规格修改" />
+          <Input type="number" v-model="stockAllUpdate" placeholder="统一规格modify" />
         </TabPane>
       </Tabs>
 
       <div slot="footer">
-        <Button type="text" @click="updateStockModalVisible = false">取消</Button>
+        <Button type="text" @click="updateStockModalVisible = false">Cancel</Button>
         <Button type="primary" @click="updateStock">更新</Button>
       </div>
     </Modal>
 
-    <!-- 批量设置物流模板 -->
+    <!-- 批量设置logistics模板 -->
     <Modal
-      title="批量设置物流模板"
+      title="批量设置logistics模板"
       v-model="shipTemplateModal"
       :mask-closable="false"
       :width="500"
     >
       <Form ref="shipTemplateForm" :model="shipTemplateForm" :label-width="120">
-        <FormItem class="form-item-view-el" label="物流模板" prop="templateId">
+        <FormItem class="form-item-view-el" label="logistics模板" prop="templateId">
           <Select v-model="shipTemplateForm.templateId" style="width: 200px">
             <Option v-for="item in logisticsTemplate" :value="item.id" :key="item.id"
               >{{ item.name }}
@@ -187,23 +187,23 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="shipTemplateModal = false">取消</Button>
+        <Button type="text" @click="shipTemplateModal = false">Cancel</Button>
         <Button type="primary" @click="saveShipTemplate">更新</Button>
       </div>
     </Modal>
-    <Modal title="导入商品信息" v-model="importModal" :mask-closable="false">
+    <Modal title="导入Goods details" v-model="importModal" :mask-closable="false">
       <div style="text-align: center">
         <Upload :before-upload="handleUpload" name="files" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 multiple type="drag" :action="action" :headers="accessToken">
           <div style="padding: 50px 0">
             <Icon type="ios-cloud-upload" size="102" style="color: #3399ff"></Icon>
-            <h2>选择或拖拽文件上传</h2>
+            <h2>select或拖拽文件上传</h2>
           </div>
         </Upload>
         <Button @click="exportGoods" type="text" style="color: red">下载导入模板</Button>
       </div>
       <div slot="footer">
-        <Button type="text" @click="importModal = false">确定</Button>
+        <Button type="text" @click="importModal = false">Confirm</Button>
       </div>
     </Modal>
   </div>
@@ -232,19 +232,19 @@ export default {
       accessToken: {}, // 验证token
       importModal: false,
       action: baseUrl + "/goods/import/import", // 上传接口
-      id: "", //要操作的id
+      id: "", //要operation的id
       loading: true, // 表单加载状态
-      shipTemplateForm: {}, // 物流模板
-      shipTemplateModal: false, // 物流模板是否显示
-      logisticsTemplate: [], // 物流列表
+      shipTemplateForm: {}, // logistics模板
+      shipTemplateModal: false, // logistics模板是否显示
+      logisticsTemplate: [], // logistics列表
       updateStockModalVisible: false, // 更新库存模态框显隐
-      stockAllUpdate: undefined, // 更新库存数量
+      stockAllUpdate: undefined, // 更新库存Quantity
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "create_time", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "create_time", // default排序字段
+        order: "desc", // default排序方式
       },
       stockList: [], // 库存列表
       form: {
@@ -279,7 +279,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 200,
@@ -300,7 +300,7 @@ export default {
       ],
       // 表单验证规则
       formValidate: {},
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -310,13 +310,13 @@ export default {
           align: "center",
         },
         {
-          title: "商品编号",
+          title: "Goods编号",
           key: "id",
           width: 180,
           tooltip: true,
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 200,
           slot: "goodsSlot",
@@ -331,30 +331,30 @@ export default {
             } else if (params.row.salesModel === "WHOLESALE") {
               return h("Tag", { props: { color: "magenta" } }, "批发");
             } else {
-              return h("Tag", { props: { color: "volcano" } }, "其他类型");
+              return h("Tag", { props: { color: "volcano" } }, "Others类型");
             }
           },
         },
         {
-          title: "商品类型",
+          title: "Goods类型",
           key: "goodsType",
           width: 130,
           render: (h, params) => {
             if (params.row.goodsType === "PHYSICAL_GOODS") {
-              return h("Tag", { props: { color: "geekblue" } }, "实物商品");
+              return h("Tag", { props: { color: "geekblue" } }, "实物Goods");
             } else if (params.row.goodsType === "VIRTUAL_GOODS") {
-              return h("Tag", { props: { color: "purple" } }, "虚拟商品");
+              return h("Tag", { props: { color: "purple" } }, "虚拟Goods");
             } else {
               return h("Tag", { props: { color: "cyan" } }, "电子卡券");
             }
           },
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           width: 130,
           render: (h, params) => {
-            return h("div", this.$options.filters.unitPrice(params.row.price, "￥"));
+            return h("div", this.$options.filters.unitPrice(params.row.price, "RM"));
           },
         },
         {
@@ -397,7 +397,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -496,16 +496,16 @@ export default {
       // 初始化数据
       this.getDataList();
     },
-    // 添加商品
+    // 添加Goods
     addGoods() {
       this.$router.push({ name: "goods-operation" });
     },
-    // 编辑商品
+    // 编辑Goods
     editGoods(v) {
       this.$router.push({ name: "goods-operation-edit", query: { id: v.id } });
     },
 
-    //批量操作
+    //批量operation
     handleDropdown(v) {
       //批量上架
       if (v == "uppers") {
@@ -515,11 +515,11 @@ export default {
       if (v == "lowers") {
         this.lowers();
       }
-      //批量删除商品
+      //批量deleteGoods
       if (v == "deleteAll") {
         this.deleteAll();
       }
-      //批量设置物流模板
+      //批量设置logistics模板
       if (v == "batchShipTemplate") {
         this.batchShipTemplate();
       }
@@ -550,7 +550,7 @@ export default {
       if (res.success) {
         this.stepList.map((item) => {
           item.checked = false;
-          this.$Message.success("导入成功")
+          this.$Message.success("导入success")
           this.importModal = false
         });
 
@@ -572,7 +572,7 @@ export default {
           if ("download" in document.createElement("a")) {
             //支持a标签download的浏览器
             const link = document.createElement("a"); //创建a标签
-            link.download = "商品批量导入模板.xls"; //a标签添加属性
+            link.download = "Goods批量导入模板.xls"; //a标签添加属性
             link.style.display = "none";
             link.href = URL.createObjectURL(blob);
             document.body.appendChild(link);
@@ -599,7 +599,7 @@ export default {
       updateGoodsSkuStocks(updateStockList).then((res) => {
         if (res.success) {
           this.updateStockModalVisible = false;
-          this.$Message.success("更新库存成功");
+          this.$Message.success("更新库存success");
           this.getDataList();
         }
       });
@@ -615,13 +615,13 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置搜索条件
+    // 重置search条件
     handleReset() {
       this.searchForm = {};
       this.searchForm.pageNumber = 1;
@@ -638,22 +638,22 @@ export default {
       this.selectList = e;
       this.selectCount = e.length;
     },
-    //保存物流模板信息
+    //Savelogistics模板信息
     saveShipTemplate() {
       this.$Modal.confirm({
-        title: "确认设置物流模板",
-        content: "您确认要设置所选的 " + this.selectCount + " 个商品的物流模板?",
+        title: "确认设置logistics模板",
+        content: "您确认要设置所选的 " + this.selectCount + " 个Goods的logistics模板?",
         loading: true,
         onOk: () => {
           let ids = [];
           this.selectList.forEach(function (e) {
             ids.push(e.id);
           });
-          // 批量设置物流模板
+          // 批量设置logistics模板
           batchShipTemplate(this.shipTemplateForm).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("物流模板设置成功");
+              this.$Message.success("logistics模板设置success");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -662,10 +662,10 @@ export default {
         },
       });
     },
-    //批量设置物流模板
+    //批量设置logistics模板
     batchShipTemplate() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要设置物流模板的商品");
+        this.$Message.warning("您还未select要设置logistics模板goods");
         return;
       }
       this.getShipTempList();
@@ -676,10 +676,10 @@ export default {
       this.shipTemplateForm.goodsId = data;
       this.shipTemplateModal = true;
     },
-    // 获取商品列表数据
+    // 获取Goods列表数据
     getDataList() {
       this.loading = true;
-      // 带多条件搜索参数获取表单数据
+      // 带多条件search参数获取表单数据
       getGoodsListDataSeller(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -688,7 +688,7 @@ export default {
         }
       });
     },
-    // 获取物流模板
+    // 获取logistics模板
     getShipTempList() {
       API_Shop.getShipTemplate().then((res) => {
         if (res.success) {
@@ -696,7 +696,7 @@ export default {
         }
       });
     },
-    //下架商品
+    //下架Goods
     lower(v) {
       this.$Modal.confirm({
         title: "确认下架",
@@ -709,7 +709,7 @@ export default {
           lowGoods(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架成功");
+              this.$Message.success("下架success");
               this.getDataList();
             }
           });
@@ -719,12 +719,12 @@ export default {
     //批量下架
     lowers() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要下架的商品");
+        this.$Message.warning("您还未select要下架goods");
         return;
       }
       this.$Modal.confirm({
         title: "确认下架",
-        content: "您确认要下架所选的 " + this.selectCount + " 个商品?",
+        content: "您确认要下架所选的 " + this.selectCount + " 个Goods?",
         loading: true,
         onOk: () => {
           let ids = [];
@@ -738,7 +738,7 @@ export default {
           lowGoods(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架成功");
+              this.$Message.success("下架success");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -746,15 +746,15 @@ export default {
         },
       });
     },
-    //批量删除商品
+    //批量deleteGoods
     deleteAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的商品");
+        this.$Message.warning("您还未select要deletegoods");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 个商品?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 个Goods?",
         loading: true,
         onOk: () => {
           let ids = [];
@@ -764,11 +764,11 @@ export default {
           let params = {
             goodsId: ids.toString(),
           };
-          // 批量删除
+          // 批量delete
           deleteGoods(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -779,12 +779,12 @@ export default {
     //批量上架
     uppers(v) {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要上架的商品");
+        this.$Message.warning("您还未select要上架goods");
         return;
       }
       this.$Modal.confirm({
         title: "确认上架",
-        content: "您确认要上架所选的 " + this.selectCount + " 个商品?",
+        content: "您确认要上架所选的 " + this.selectCount + " 个Goods?",
         loading: true,
         onOk: () => {
           let ids = [];
@@ -798,7 +798,7 @@ export default {
           upGoods(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("上架成功");
+              this.$Message.success("上架success");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -818,7 +818,7 @@ export default {
           upGoods(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("上架成功");
+              this.$Message.success("上架success");
               this.getDataList();
             }
           });

@@ -26,7 +26,7 @@ export default {
           this.IMLink + "?token=" + accessToken + "&id=" + id || this.storeMsg.storeId
         );
       } else {
-        this.$Message.error("请登录后再联系客服");
+        this.$Message.error("Please log in and contact customer service");
         return;
       }
     },

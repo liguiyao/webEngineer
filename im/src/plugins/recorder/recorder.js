@@ -71,7 +71,7 @@ export default class Recorder {
         // 资源交换文件标识符
         writeString('RIFF')
         offset += 4
-        // 下个地址开始到文件尾总字节数,即文件大小-8
+        // 下个address开始到文件尾总字节数,即文件大小-8
         data.setUint32(offset, 36 + dataLength, true)
         offset += 4
         // WAV文件标志

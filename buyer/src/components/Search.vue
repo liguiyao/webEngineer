@@ -12,14 +12,14 @@
         v-model="searchData"
         size="large"
         class="search"
-        placeholder="输入你想查找的商品"
+        placeholder="Type goods"
         @keyup.enter.native="search"
       >
-        <Button v-if="!store"  slot="append" @click="search">搜索</Button>
+        <Button v-if="!store"  slot="append" @click="search">Search</Button>
       </i-input>
       <div v-if="store" class="btn-div">
-        <Button class="store-search" type="warning" @click="searchStore">搜本店</Button>
-        <Button class="store-search" type="primary" @click="search">搜全站</Button>
+        <Button class="store-search" type="warning" @click="searchStore">Search in store</Button>
+        <Button class="store-search" type="primary" @click="search">Search all</Button>
       </div>
       <template v-if="showTag">
         <div style="height:12px" v-if="promotionTags.length === 0"></div>
@@ -43,7 +43,7 @@ import {hotWords} from '@/api/goods.js'
 export default {
   name: 'search',
   props: {
-    showTag: { // 是否展示搜索栏下方热门搜索
+    showTag: { // 是否展示search栏下方热门search
       type: Boolean,
       default: true
     },
@@ -62,15 +62,15 @@ export default {
   },
   data () {
     return {
-      searchData: '' // 搜索内容
+      searchData: '' // search内容
     };
   },
   methods: {
-    selectTags (item) { // 选择热门标签
+    selectTags (item) { // select热门标签
       this.searchData = item;
       this.search();
     },
-    search () { // 全平台搜索商品
+    search () { // 全平台searchGoods
       const url = this.$route.path;
       if(url == '/goodsList'){
         this.$emit('search', this.searchData)
@@ -81,7 +81,7 @@ export default {
         });
       }
     },
-    searchStore () { // 店铺搜索商品
+    searchStore () { // 店铺searchGoods
       this.$emit('search', this.searchData)
     }
   },
@@ -96,8 +96,8 @@ export default {
   },
   created () {
     this.searchData = this.$route.query.keyword
-    if (!this.hover) { // 首页顶部固定搜索栏不调用热词接口
-      // 搜索热词每5分钟请求一次
+    if (!this.hover) { // 首页顶部固定search栏不调用热词接口
+      // search热词每5分钟Please 求一次
       const reloadTime = storage.getItem('hotWordsReloadTime')
       const time = new Date().getTime() - 5 * 60 * 1000
       if (!reloadTime) {

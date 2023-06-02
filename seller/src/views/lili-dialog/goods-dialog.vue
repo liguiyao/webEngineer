@@ -3,15 +3,15 @@
     <div class="wap-content">
       <div class="query-wrapper">
         <div class="query-item">
-          <div>搜索范围</div>
-          <Input placeholder="商品名称" @on-clear="goodsData=[]; goodsParams.goodsName='';  getQueryGoodsList()" @on-enter="()=>{goodsData=[]; getQueryGoodsList();}" clearable style="width: 150px"
+          <div>search范围</div>
+          <Input placeholder="goods name" @on-clear="goodsData=[]; goodsParams.goodsName='';  getQueryGoodsList()" @on-enter="()=>{goodsData=[]; getQueryGoodsList();}" clearable style="width: 150px"
             v-model="goodsParams.goodsName" />
         </div>
         <div class="query-item">
-          <Cascader v-model="category" placeholder="请选择商品分类" style="width: 150px" :data="cateList"></Cascader>
+          <Cascader v-model="category" placeholder="Please selectGoods分类" style="width: 150px" :data="cateList"></Cascader>
         </div>
         <div class="query-item">
-          <Button type="primary" @click="goodsData=[]; getQueryGoodsList();" icon="ios-search">搜索</Button>
+          <Button type="primary" @click="goodsData=[]; getQueryGoodsList();" icon="ios-search">search</Button>
         </div>
       </div>
       <div >
@@ -26,13 +26,13 @@
               <div class="wap-sku">{{ item.goodsUnit }}</div>
               <div class="wap-sku"><Tag :color="item.salesModel === 'RETAIL' ? 'default' : 'geekblue'">{{item.salesModel === "RETAIL" ? "零售型" : "批发型"}}</Tag></div>
               <div class="wap-content-desc-bottom">
-                <div>￥{{ item.price | unitPrice }}</div>
+                <div>RM{{ item.price | unitPrice }}</div>
               </div>
             </div>
           </div>
           <Spin size="large" fix v-if="loading"></Spin>
 
-          <div v-if="empty" class="empty">暂无商品信息</div>
+          <div v-if="empty" class="empty">absentGoods details</div>
         </Scroll>
 
       </div>
@@ -54,10 +54,10 @@ export default {
     return {
       type: "multiple", //单选或者多选 single  multiple
 
-      cateList: [], // 商品分类列表
-      total: "", // 商品总数
+      cateList: [], // Goods分类列表
+      total: "", // Goods总数
       goodsParams: {
-        // 请求商品列表参数
+        // Please 求Goods列表参数
         pageNumber: 1,
         pageSize: 18,
         order: "desc",
@@ -68,10 +68,10 @@ export default {
         authFlag: "PASS",
         sort:"createTime"
       },
-      category: [], // 选中的商品分类
-      goodsData: [], // 商品列表
+      category: [], // 选中goods分类
+      goodsData: [], // Goods列表
       empty: false, // 是否空数据
-      loading: false, // 商品加载loading
+      loading: false, // Goods加载loading
     };
   },
   watch: {
@@ -110,14 +110,14 @@ export default {
       }, 1500);
     },
     getQueryGoodsList() {
-      // 根据商品分类筛选商品
+      // 根据Goods分类筛选Goods
       API_Goods.getGoodsSkuData(this.goodsParams).then((res) => {
         this.initGoods(res);
       });
     },
 
     initGoods(res) {
-      // 获取商品列表
+      // 获取Goods列表
       if (res.result.records.length != 0) {
         let data = res.result.records;
         data.forEach((item) => {
@@ -131,7 +131,7 @@ export default {
           });
         });
         /**
-         * 解决数据请求中，滚动栏会一直上下跳动
+         * 解决数据Please 求中，滚动栏会一直上下跳动
          */
         this.total = res.result.total;
         this.goodsData.push(...res.result.records);
@@ -140,13 +140,13 @@ export default {
       }
     },
 
-    // 查询商品
+    // 查询Goods
     init() {
       Promise.all([
         API_Goods.getGoodsSkuData(this.goodsParams),
         API_Goods.getGoodsCategoryAll(0),
       ]).then((res) => {
-        // 商品
+        // Goods
         this.initGoods(res[0]);
 
         // 分类
@@ -193,7 +193,7 @@ export default {
     },
 
     /**
-     * 点击商品
+     * 点击Goods
      */
     checkedGoods(val, index) {
       // 如果单选的话

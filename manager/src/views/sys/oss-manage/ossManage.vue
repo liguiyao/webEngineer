@@ -12,7 +12,7 @@
               <Input
                 type="text"
                 v-model="searchForm.name"
-                placeholder="请输入原文件名"
+                placeholder="Please enter 原文件名"
                 clearable
                 style="width: 200px"
               />
@@ -21,7 +21,7 @@
               <Input
                 type="text"
                 v-model="searchForm.fileKey"
-                placeholder="请输入存储文件名"
+                placeholder="Please enter 存储文件名"
                 clearable
                 style="width: 200px"
               />
@@ -34,12 +34,12 @@
                 format="yyyy-MM-dd"
                 clearable
                 @on-change="selectDateRange"
-                placeholder="选择起始时间"
+                placeholder="select起始时间"
                 style="width: 200px"
               ></DatePicker>
             </Form-item>
              <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn"
-              >搜索
+              >search
               </Button>
           </Form>
         </Row>
@@ -61,12 +61,12 @@
             </Upload>
             <Dropdown @on-click="handleDropdown">
               <Button>
-                更多操作
+                更多operation
                 <Icon type="md-arrow-dropdown"/>
               </Button>
               <DropdownMenu slot="list">
                 <DropdownItem name="refresh">刷新</DropdownItem>
-                <DropdownItem v-show="showType == 'list'" name="removeAll">批量删除
+                <DropdownItem v-show="showType == 'list'" name="removeAll">批量delete
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -102,7 +102,7 @@
       <div v-show="showType == 'list'">
         <Row >
           <Alert show-icon>
-            已选择
+            已select
             <span >{{ selectCount }}</span> 项
             <a class="select-clear" @click="clearSelectAll">清空</a>
             <span v-if="selectCount > 0" style="margin-left: 15px"
@@ -149,7 +149,7 @@
                   文件类型：{{ item.fileType }} 文件大小：{{
                     ((item.fileSize * 1.0) / (1024 * 1024)).toFixed(2)
                   }}
-                  MB 创建时间：{{ item.createTime }}
+                  MB Create time：{{ item.createTime }}
                 </div>
               </div>
               <div class="actions">
@@ -164,7 +164,7 @@
                   </Tooltip>
                 </div>
                 <div class="btn-no">
-                  <Tooltip content="删除" placement="top">
+                  <Tooltip content="delete" placement="top">
                     <Icon @click="remove(item)" type="md-trash" size="16"/>
                   </Tooltip>
                 </div>
@@ -206,9 +206,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="handleCancel">取消</Button>
+        <Button type="text" @click="handleCancel">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-        >提交
+        >Submit
         </Button
         >
       </div>
@@ -222,7 +222,7 @@
       />
       <div slot="footer">
         <span
-        >文件类型：{{ file.fileType }} 文件大小：{{ file.msize }} 创建时间：{{
+        >文件类型：{{ file.fileType }} 文件大小：{{ file.msize }} Create time：{{
             file.createTime
           }}</span
         >
@@ -239,7 +239,7 @@
       <div id="dplayer"></div>
       <div slot="footer">
         <span
-        >文件类型：{{ file.fileType }} 文件大小：{{ file.msize }} 创建时间：{{
+        >文件类型：{{ file.fileType }} 文件大小：{{ file.msize }} Create time：{{
             file.createTime
           }}</span
         >
@@ -270,8 +270,8 @@ export default {
   data() {
     return {
       commonUrl, // 上传文件路径
-      config, // api地址
-      selectImage: false, //是否是选择
+      config, // apiaddress
+      selectImage: false, //是否是select
       accessToken: {}, // 上传token鉴权
       loading: false, // 表单加载状态
       fileType: "all", // 文件类型
@@ -284,19 +284,19 @@ export default {
       videoTitle: "", // 视频title
       modalTitle: "", // 添加或编辑标题
       searchForm: {
-        // 搜索框对应data对象
+        // search框对应data对象
         name: "",
         fileKey: "",
         fileType: "",
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
       },
-      selectDate: null, // 选择日期绑定modal
-      oldKey: "", // 请求参数
+      selectDate: null, // select日期绑定modal
+      oldKey: "", // Please 求参数
       form: { // 表单
         name: "",
         fileKey: "",
@@ -307,7 +307,7 @@ export default {
         name: [{required: true, message: "不能为空", trigger: "blur"}],
         fileKey: [{required: true, message: "不能为空", trigger: "blur"}],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       totalSize: "", // 文件大小统计
@@ -455,7 +455,7 @@ export default {
           sortType: "desc",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -479,7 +479,7 @@ export default {
                     },
                   },
                 },
-                "选择"
+                "select"
               ),
               h(
                 "Button",
@@ -535,7 +535,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -553,12 +553,12 @@ export default {
   },
   methods: {
     /**
-     * 选择
+     * select
      */
     selectedParams(val) {
       this.$emit("callback", val);
     },
-    // 更多操作
+    // 更多operation
     handleDropdown(name) {
       if (name == "refresh") {
         this.getDataList();
@@ -595,7 +595,7 @@ export default {
       this.videoTitle = v.name + "(" + v.fileKey + ")";
       this.videoVisible = true;
     },
-    // 关闭视频
+    // Close视频
     closeVideo() {
       dp.destroy();
     },
@@ -652,7 +652,7 @@ export default {
         this.total = res.result.total;
       });
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.title = this.searchForm.name;
       this.searchForm.pageNumber = 1;
@@ -682,10 +682,10 @@ export default {
         desc: "所选文件大小过大, 不得超过 1M.",
       });
     },
-    // 上传成功回调
+    // 上传success回调
     handleSuccess(res, file) {
       if (res.success) {
-        this.$Message.success("上传文件 " + file.name + " 成功");
+        this.$Message.success("上传文件 " + file.name + " success");
         this.getDataList();
       } else {
         this.$Message.error(res.message);
@@ -699,7 +699,7 @@ export default {
     clearFiles() {
       this.$refs.up.clearFiles();
     },
-    // 取消修改文件名
+    // Cancelmodify文件名
     handleCancel() {
       this.modalVisible = false;
     },
@@ -709,15 +709,15 @@ export default {
         v.url + "?attname=&response-content-type=application/octet-stream"
       );
     },
-    // 批量删除文件
+    // 批量delete文件
     removeAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 个文件?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 个文件?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -728,7 +728,7 @@ export default {
           deleteFile(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("批量删除文件成功");
+              this.$Message.success("批量delete文件success");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -736,24 +736,24 @@ export default {
         },
       });
     },
-    // 单个删除文件
+    // 单个delete文件
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除文件 " + v.name + " ?",
+        title: "确认delete",
+        content: "您确认要delete文件 " + v.name + " ?",
         loading: true,
         onOk: () => {
           deleteFile(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除文件 " + v.name + " 成功");
+              this.$Message.success("delete文件 " + v.name + " success");
               this.getDataList();
             }
           });
         },
       });
     },
-    // 提交修改文件名
+    // Submitmodify文件名
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -767,7 +767,7 @@ export default {
           renameFile(params).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
               this.modalVisible = false;
             }
@@ -775,7 +775,7 @@ export default {
         }
       });
     },
-    // 修改文件名modal
+    // modify文件名modal
     rename(v) {
       this.modalTitle = "编辑文件名";
       // 转换null为""

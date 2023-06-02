@@ -6,7 +6,7 @@
           <Input
             type="text"
             v-model="searchForm.username"
-            placeholder="请输入用户名"
+            placeholder="Please enter 用户名"
             clearable
             style="width: 200px"
           />
@@ -15,7 +15,7 @@
           <Input
             type="text"
             v-model="searchForm.mobile"
-            placeholder="请输入联系方式"
+            placeholder="Please enter 联系方式"
             clearable
             style="width: 200px"
           />
@@ -23,11 +23,11 @@
         <Form-item label="部门">
           <department-choose @on-change="handleSelectDep" style="width: 150px;" ref="dep"></department-choose>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Row class="operation padding-row">
         <Button @click="add" type="primary">添加</Button>
-        <Button @click="delAll">批量删除</Button>
+        <Button @click="delAll">批量delete</Button>
         <Button @click="resetPass">重置密码</Button>
       </Row>
       <Table
@@ -76,7 +76,7 @@
         <FormItem label="邮箱" prop="email">
           <Input v-model="form.email"/>
         </FormItem>
-        <FormItem label="手机号" prop="mobile">
+        <FormItem label="Phone number" prop="mobile">
           <Input v-model="form.mobile"/>
         </FormItem>
         <Form-item label="头像" prop="avatar">
@@ -94,8 +94,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="userModalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitUser">提交</Button>
+        <Button type="text" @click="userModalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitUser">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -126,9 +126,9 @@ export default {
   data() {
     return {
       loading: true, // 加载状态
-      selectCount: 0, // 已选数量
+      selectCount: 0, // 已选Quantity
       selectList: [], // 已选数据列表
-      searchForm: { // 请求参数
+      searchForm: { // Please 求参数
         username: "",
         departmentId: "",
         mobile: "",
@@ -150,24 +150,24 @@ export default {
         departmentTitle: ""
       },
       roleList: [], // 角色列表
-      errorPass: "", // 错误提示
+      errorPass: "", // 错误Tips
       formValidate: { // 验证规则
         username: [
           {required: true, message: "用户名不能为空", trigger: "blur"}
         ],
         password: [
-          {required: true, message: "密码不能为空", trigger: "blur"}
+          {required: true, message: "password cannot be empty", trigger: "blur"}
         ],
         mobile: [
-          {required: true, message: "手机号不能为空", trigger: "blur"},
+          {required: true, message: "Phone number不能为空", trigger: "blur"},
           {validator: validateMobile, trigger: "blur"}
         ],
         email: [
-          {required: true, message: "请输入邮箱地址"},
+          {required: true, message: "Please enter 邮箱address"},
           {type: "email", message: "邮箱格式不正确"}
         ]
       },
-      submitLoading: false, // 提交状态
+      submitLoading: false, // Submit状态
       columns: [ // 表头
         {
           type: "selection",
@@ -248,14 +248,14 @@ export default {
           }
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
           sortable: true,
           sortType: "desc",
           width: 180
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           width: 200,
           align: "center",
@@ -333,7 +333,7 @@ export default {
                     }
                   }
                 },
-                "删除"
+                "delete"
               )
             ]);
           }
@@ -348,7 +348,7 @@ export default {
     init() {
       this.getUserList();
     },
-    // 选择部门回调
+    // select部门回调
     handleSelectDepTree(v) {
       if (v) {
         this.form.departmentId = v.departmentId;
@@ -358,24 +358,24 @@ export default {
         this.form.departmentTitle = "";
       }
     },
-    // 搜索项部门选择
+    // search项部门select
     handleSelectDep(v) {
       this.searchForm.departmentId = v;
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getUserList();
       this.clearSelectAll();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.searchForm.pageNumber = 1;
       this.getUserList();
     },
     getUserList() {
-      // 多条件搜索用户列表
+      // 多条件search用户列表
       this.loading = true;
       getUserListData(this.searchForm).then(res => {
         this.loading = false;
@@ -385,7 +385,7 @@ export default {
         }
       });
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -413,7 +413,7 @@ export default {
     },
     // 重置密码
     resetPass() {
-      if(this.selectCount==0) {this.$Message.warning('请选中数据后重试!'); return}
+      if(this.selectCount==0) {this.$Message.warning('Please 选中数据后重试!'); return}
       this.$Modal.confirm({
         title: "确认重置",
         content:
@@ -430,7 +430,7 @@ export default {
           resetPassword(ids).then(res => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.clearSelectAll();
               this.getUserList();
             }
@@ -438,7 +438,7 @@ export default {
         }
       });
     },
-    // 确认提交
+    // 确认Submit
     submitUser() {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -448,7 +448,7 @@ export default {
             delete params.id;
             delete params.status;
             if (params.password == "" || params.password == undefined) {
-              this.errorPass = "密码不能为空";
+              this.errorPass = "password cannot be empty";
               return;
             }
             if (params.password.length < 6) {
@@ -461,7 +461,7 @@ export default {
             addUser(params).then(res => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getUserList();
                 this.userModalVisible = false;
               }
@@ -472,7 +472,7 @@ export default {
             editOtherUser(this.form).then(res => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getUserList();
                 this.userModalVisible = false;
               }
@@ -533,7 +533,7 @@ export default {
           enableUser(v.id, params).then(res => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getUserList();
             }
           });
@@ -553,24 +553,24 @@ export default {
           enableUser(v.id, params).then(res => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getUserList();
             }
           });
         }
       });
     },
-    // 删除用户
+    // delete用户
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除用户 " + v.username + " ?",
+        title: "确认delete",
+        content: "您确认要delete用户 " + v.username + " ?",
         loading: true,
         onOk: () => {
           deleteUser(v.id).then(res => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getUserList();
             }
           });
@@ -587,15 +587,15 @@ export default {
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
-    // 批量删除
+    // 批量delete
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -606,7 +606,7 @@ export default {
           deleteUser(ids).then(res => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.clearSelectAll();
               this.getUserList();
             }

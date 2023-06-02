@@ -46,7 +46,7 @@ export function unixToDate (unix, format) {
 }
 
 /**
- * 替换地址栏 逗号分隔为空格分隔
+ * 替换address栏 逗号分隔为空格分隔
  */
 export function unitAddress (val) {
   if (!val) return '';

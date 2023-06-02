@@ -3,7 +3,7 @@
  *
  * qq       qq号
  * name     汉字
- * mobile   手机号
+ * mobile   Phone number
  * email    电子邮箱
  * password 密码【6-20位】
  * integer  正整数【不包含0】
@@ -20,7 +20,7 @@ export const qq = /^[1-9][0-9]{4,14}$/
 //汉字
 export const name = /^[\u4e00-\u9fa5]{0,}$/
 
-// 手机号
+// Phone number
 export const mobile = /^0?(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])[0-9]{8}$/
 
 // 电子邮箱
@@ -35,7 +35,7 @@ export const integer = /^[1-9]\d*$/
 // 正整数【包含0】
 export const Integer = /^[0-9]\d*$/
 
-// 折扣
+// off扣
 export const discount = /^((0\.[1-9]{1})|(([1-9]{1})(\.\d{1})?))$/
 
 // 0-100正整数
@@ -61,7 +61,7 @@ export const TEL = /0\d{2,3}-\d{7,8}/
 // 正整数
 export const INTEGER = {
   pattern: /^[0-9]\d*$/,
-  message: '请输入正整数'
+  message: 'Please enter 正整数'
 }
 
 export const VARCHAR5 = {
@@ -86,11 +86,11 @@ export const VARCHAR255 = {
 
 export const URL200 = {
   pattern: /[a-zA-z]+\:\/\/[^\s]{1,190}/,
-  message: '请输入长度不超过200的URL地址'
+  message: 'Please enter 长度不超过200的URLaddress'
 }
 export const REQUIRED = {
   required: true,
-  message: '请填写参数'
+  message: 'Please enter 参数'
 }
 
 export const WHITE_SPACE = {

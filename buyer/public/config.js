@@ -1,6 +1,6 @@
 var BASE = {
   /**
-   * @description api请求基础路径
+   * @description apiPlease 求基础路径
    */
   API_DEV: {
     common: "http://localhost:8890",

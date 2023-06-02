@@ -64,7 +64,7 @@ export default {
       pvs: 0, // 浏览量
 
       dateList: [
-        // 日期选择列表
+        // 日期select列表
         {
           title: "今天",
           selected: false,
@@ -125,7 +125,7 @@ export default {
   methods: {
     // 订单图
     initChart() {
-      // 默认已经加载 legend-filter 交互
+      // default已经加载 legend-filter 交互
       /**
        * 将数据分成三组来进行展示
        */

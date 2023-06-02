@@ -15,7 +15,7 @@ export const ServeCreateTalkList = (id) => {
   return get(`/im/talk/user/${id}`);
 };
 
-// 删除聊天列表服务接口
+// delete聊天列表服务接口
 export const ServeDeleteTalkList = (data) => {
   return del("/im/talk", data);
 };
@@ -50,7 +50,7 @@ export const ServeFindTalkRecords = (data) => {
   return get("/im/talk/find-chat-records", data);
 };
 
-// 搜索用户聊天记录服务接口
+// search用户聊天记录服务接口
 export const ServeSearchTalkRecords = (data) => {
   return get("/im/talk/search-chat-records", data);
 };
@@ -89,7 +89,7 @@ export const ServeRevokeRecords = (data) => {
   return post("/im/talk/message/revoke", data);
 };
 
-// 删除消息服务接口
+// delete消息服务接口
 export const ServeRemoveRecords = (data) => {
   return post("/im/talk/message/delete", data);
 };

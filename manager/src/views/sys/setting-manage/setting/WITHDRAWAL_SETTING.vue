@@ -2,29 +2,29 @@
   <div class="layout">
 
     <Form ref="formValidate" :label-width="150" label-position="right" :model="formValidate">
-      <FormItem label="提现审核是否开启">
+      <FormItem label="提现审核是否Opening">
         <i-switch v-model="formValidate.apply" style="margin-top:7px;"><span slot="open">开</span>
           <span slot="close">关</span>
         </i-switch>
       </FormItem>
 
       <FormItem  label="最低提现金额" prop="minPrice">
-        ￥<Input class="label-appkey" v-model="formValidate.minPrice" />
+        RM<Input class="label-appkey" v-model="formValidate.minPrice" />
       </FormItem>
 
       <FormItem label="提现方式" prop="type">
         <RadioGroup v-model="formValidate.type">
-          <Radio label="WECHAT">微信</Radio>
-          <Radio label="ALI">支付宝</Radio>
+          <Radio label="WECHAT">Wechat</Radio>
+          <Radio label="ALI">Alipay</Radio>
         </RadioGroup>
       </FormItem>
 
-      <FormItem label="微信提现应用ID" prop="wechatAppId">
+      <FormItem label="Wechat提现应用ID" prop="wechatAppId">
         <Input class="label-appkey" v-model="formValidate.wechatAppId" />
       </FormItem>
 
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
       </div>
     </Form>
   </div>
@@ -43,7 +43,7 @@ export default {
         wechatAppId: "",
       },
 
-      switchTitle: "提现审核是否开启", // 切换title
+      switchTitle: "提现审核是否Opening", // 切换title
     };
   },
   created() {
@@ -51,21 +51,21 @@ export default {
   },
   props: ["res", "type"],
   methods: {
-    // 保存
+    // Save
     submit(name) {
       let that = this;
        if( handleSubmit(that, name )){
         this.setupSetting()
       }
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
 
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },

@@ -6,7 +6,7 @@ export const orderStatusList = [
     status: 'ALL'
   },
   {
-    name: '未付款',
+    name: 'Unpaid',
     status: 'UNPAID'
   },
   {
@@ -22,7 +22,7 @@ export const orderStatusList = [
     status: 'DELIVERED'
   },
   {
-    name: '已完成',
+    name: 'completed',
     status: 'COMPLETED'
   },
   {
@@ -30,7 +30,7 @@ export const orderStatusList = [
     status: 'TAKE'
   },
   {
-    name: '已取消',
+    name: '已Cancel',
     status: 'CANCELLED'
   },
   {
@@ -38,10 +38,10 @@ export const orderStatusList = [
     status: 'STAY_PICKED_UP'
   }
 ]
-// 订单售后状态
+// 订单after sale状态
 export const afterSaleStatusList = [
   {
-    name: '申请中',
+    name: 'Apply  中',
     status: 'APPLY'
   },
   {
@@ -53,31 +53,31 @@ export const afterSaleStatusList = [
     status: 'REFUSE'
   },
   {
-    name: '买家退货，待卖家收货',
+    name: '买家Return goods，待卖家收货',
     status: 'BUYER_RETURN'
   },
   {
-    name: '卖家确认收货',
+    name: '卖家Confirm receipt',
     status: 'SELLER_CONFIRM'
   },
   {
-    name: '卖家终止售后',
+    name: '卖家终止after sale',
     status: 'SELLER_TERMINATION'
   },
   {
-    name: '买家确认收货',
+    name: '买家Confirm receipt',
     status: 'BUYER_CONFIRM'
   },
   {
-    name: '买家取消售后',
+    name: '买家Cancelafter sale',
     status: 'BUYER_CANCEL'
   },
   {
-    name: '完成售后',
+    name: '完成after sale',
     status: 'COMPLETE'
   },
   {
-    name: '等待平台退款',
+    name: '等待平台refund',
     status: 'WAIT_REFUND'
   }
 ]

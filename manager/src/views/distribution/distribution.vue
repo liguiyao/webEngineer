@@ -13,7 +13,7 @@
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="请输入会员名称"
+              placeholder="Please enter 会员名称"
               clearable
               style="width: 200px"
             />
@@ -36,7 +36,7 @@
             type="primary"
             icon="ios-search"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -82,7 +82,7 @@ export default {
       distributionStatusList, // 分销状态
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
       },
@@ -107,19 +107,19 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.rebateTotal, "￥")
+              this.$options.filters.unitPrice(params.row.rebateTotal, "RM")
             );
           },
         },
         {
-          title: "可用金额",
+          title: "available金额",
           key: "canRebate",
           width: 150,
           sortable: false,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.canRebate, "￥")
+              this.$options.filters.unitPrice(params.row.canRebate, "RM")
             );
           },
         },
@@ -131,7 +131,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.commissionFrozen, "￥")
+              this.$options.filters.unitPrice(params.row.commissionFrozen, "RM")
             );
           },
         },
@@ -153,7 +153,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -236,7 +236,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -257,16 +257,16 @@ export default {
     // 清退分销商
     retreat(v) {
       this.$Modal.confirm({
-        title: "提示",
-        // 记得确认修改此处
+        title: "Tips",
+        // 记得确认modify此处
         content: "您确认要清退 " + v.memberName + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           retreatDistribution(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
@@ -276,16 +276,16 @@ export default {
     // 恢复分销商
     resume(v) {
       this.$Modal.confirm({
-        title: "提示",
-        // 记得确认修改此处
+        title: "Tips",
+        // 记得确认modify此处
         content: "您确认要恢复 " + v.memberName + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           resumeDistribution(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

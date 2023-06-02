@@ -37,15 +37,15 @@ export default {
     return {
       currentPageName: this.$route.name, // 当前路由名称
       tagBodyLeft: 0, // 标签左偏移量
-      visible: false, // 显示操作按钮
+      visible: false, // 显示operation按钮
       contextMenuLeft: 0, // 内容左偏移量
       contextMenuTop: 0, // 内容上偏移量
       actionList: {
-        others: '关闭其他',
-        clearAll: '关闭所有'
+        others: 'CloseOthers',
+        clearAll: 'Close所有'
       },
       refsTag: [], // 所有已打开标签
-      tagsCount: 1 // 标签数量
+      tagsCount: 1 // 标签Quantity
     };
   },
   props: {

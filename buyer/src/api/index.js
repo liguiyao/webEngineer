@@ -32,8 +32,8 @@ export function getFloorStoreData(params) {
 
 /**
  * 楼层装修数据
- * @param pageClientType 客户端类型,可用值:PC,H5,WECHAT_MP,APP
- * @param pageType 页面类型,可用值:INDEX,STORE,SPECIAL
+ * @param pageClientType 客户端类型,available值:PC,H5,WECHAT_MP,APP
+ * @param pageType 页面类型,available值:INDEX,STORE,SPECIAL
  */
 export function pageData(params) {
   return request({

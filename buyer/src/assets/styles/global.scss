@@ -24,7 +24,7 @@ $dark_background_color: #141414;
 $dark_sub_background_color: #1d1d1d; //稍微浅一点的
 $dark_content_color: #d5d5d5;
 
-/***** 封装一些方法可用于 黑暗主题 ，明亮主题 *****/
+/***** 封装一些方法available于 黑暗主题 ，明亮主题 *****/
 
 // 背景颜色
 @mixin background_color($color) {

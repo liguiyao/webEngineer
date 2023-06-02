@@ -9,11 +9,11 @@
           :label-width="70"
           class="search-form"
         >
-          <Form-item label="商品名称" prop="goodsName">
+          <Form-item label="goods name" prop="goodsName">
             <Input
               type="text"
               v-model="searchForm.goodsName"
-              placeholder="请输入商品名称"
+              placeholder="Please enter goods name"
               clearable
               style="width: 200px"
             />
@@ -21,14 +21,14 @@
           <Form-item label="活动状态" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
               <Option value="START">已开始/上架</Option>
               <Option value="END">已结束/下架</Option>
-              <Option value="CLOSE">紧急关闭/作废</Option>
+              <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
           <Form-item label="活动时间">
@@ -36,7 +36,7 @@
               v-model="selectDate"
               type="daterange"
               clearable
-              placeholder="选择起始时间"
+              placeholder="select起始时间"
               style="width: 200px"
             >
             </DatePicker>
@@ -46,7 +46,7 @@
             type="primary"
             icon="ios-search"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -116,7 +116,7 @@
             size="small"
             style="margin-right: 10px"
             @click="delAll(row)"
-            >删除
+            >delete
           </Button>
         </template>
       </Table>
@@ -157,11 +157,11 @@ export default {
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         goodsName: "",
       },
       form: {
@@ -169,18 +169,18 @@ export default {
       },
       // 表单验证规则
       formValidate: {},
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
         {
-          title: "商品名称",
+          title: "goods name",
           slot: "goodsName",
           minWidth: 150,
           tooltip: true,
         },
         {
-          title: "库存数量",
+          title: "库存Quantity",
           slot: "quantity",
           width: 100,
         },
@@ -196,7 +196,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.lowestPrice, "￥")
+              this.$options.filters.unitPrice(params.row.lowestPrice, "RM")
             );
           },
         },
@@ -208,18 +208,18 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.highestPrice, "￥")
+              this.$options.filters.unitPrice(params.row.highestPrice, "RM")
             );
           },
         },
         {
-          title: "结算价格",
+          title: "结算price",
           key: "settlementPrice",
           minWidth: 100,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.settlementPrice, "￥")
+              this.$options.filters.unitPrice(params.row.settlementPrice, "RM")
             );
           },
         },
@@ -237,7 +237,7 @@ export default {
           width: 100,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           fixed: "right",
@@ -246,7 +246,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      selectCoupon: [], //本级选中的优惠券
+      selectCoupon: [], //本级选中的coupon
     };
   },
   props: {},
@@ -308,7 +308,7 @@ export default {
         this.searchForm.startTime = null;
         this.searchForm.endTime = null;
       }
-      // 带多条件搜索参数获取表单数据 请自行修改接口
+      // 带多条件search参数获取表单数据 Please 自行modify接口
       getKanJiaGoodsList(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -331,19 +331,19 @@ export default {
     },
     delAll(row) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "确认需要删除此砍价商品",
+        title: "确认delete",
+        content: "确认需要delete此砍价Goods",
         loading: true,
         onOk: () => {
           let ids = [];
           this.selectList.forEach(function (e) {
             ids.push(e.id);
           });
-          // 批量删除
+          // 批量delete
           delKanJiaGoods(row.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getDataList();
             }
           });

@@ -10,17 +10,17 @@
           <img
             src="https://cdn.learnku.com/uploads/images/202101/30/46424/PPYHOUhCb4.jpg"
           />
-          <p>支付宝</p>
+          <p>Alipay</p>
         </div>
         <div class="pay-box">
           <img
             src="https://cdn.learnku.com/uploads/images/202101/30/46424/XLmCJjbvlQ.png"
           />
-          <p>微信</p>
+          <p>Wechat</p>
         </div>
       </div>
       <div class="footer">
-        开源不易，如果你觉得项目对你有帮助，可以请作者喝杯咖啡☕️！鼓励下...
+        开源不易，如果你觉得项目对你有帮助，可以Please 作者喝杯咖啡☕️！鼓励下...
       </div>
     </div>
   </div>

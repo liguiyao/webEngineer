@@ -2,7 +2,7 @@
   <Card>
     <div style="margin-top: 0px">
       <div class="sign-name">
-        {{id ? '修改签名' : '新增签名'}}
+        {{id ? 'modify签名' : '新增签名'}}
       </div>
       <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
         <FormItem label="签名" prop="signName">
@@ -10,7 +10,7 @@
                  placeholder="仅限2-12个字符，建议使用App应用名称或是网站名/公司名"/>
         </FormItem>
         <FormItem label="签名来源" prop="signSource">
-          <Select v-model="form.signSource" placeholder="请选择签名来源" style="width: 28%">
+          <Select v-model="form.signSource" placeholder="Please select签名来源" style="width: 28%">
             <Option :value="0">企事业单位的全称或简称</Option>
             <Option :value="1">工信部备案网站的全称或简称</Option>
             <Option :value="2">App应用的全称或简称</Option>
@@ -20,10 +20,10 @@
           </Select>
         </FormItem>
         <div class="div-remark div-remark-first">
-          签名来源选择工信部备案网站的全称或简称时，请在说明中添加网站域名，加快审核速度；
+          签名来源select工信部备案网站的全称或简称时，Please 在说明中添加网站域名，加快审核速度；
         </div>
         <div class="div-remark div-remark-bottom">
-          如果选择APP应用的全称或简称或公众号或小程序的全称或简称，则网站、APP、小程序或公众号必须已上线；
+          如果selectAPP应用的全称或简称或公众号或小程序的全称或简称，则网站、APP、小程序或公众号必须已上线；
         </div>
         <FormItem label="证明文件">
           <div style="float: left">
@@ -43,19 +43,19 @@
           </div>
         </FormItem>
         <div class="div-remark div-remark-first">
-          第一张为营业执照，第二张为授权委托书，请上传签名归属方的企事业单位的企业营业执照、组织机构代码证、税务登记证三证合一的证件及授权委托书
+          第一张为营业执照，第二张为授权委托书，Please 上传签名归属方的企事业单位的企业营业执照、组织机构代码证、税务登记证三证合一的证件及授权委托书
         </div>
         <div class="div-remark div-remark-bottom">
           支持jpg、png、gif、jpeg格式的图片，每张图片不大于2MB
         </div>
-        <FormItem label="申请说明" prop="remark">
+        <FormItem label="Apply  说明" prop="remark">
           <Input v-model="form.remark" clearable type="textarea" style="width: 50%" maxlength="100"
             :autosize="{maxRows:4,minRows: 4}" show-word-limit
-            placeholder="请描述您的业务使用场景，不超过100字符；如：验证码、双十一大促营销"/>
+            placeholder="Please 描述您的业务使用场景，不超过100字符；如：验证码、双十一大促营销"/>
         </FormItem>
       </Form>
       <div class="footer">
-        <Button type="primary" :loading="submitLoading" @click="addSignSubmit">提交</Button>
+        <Button type="primary" :loading="submitLoading" @click="addSignSubmit">Submit</Button>
       </div>
     </div>
   </Card>
@@ -81,10 +81,10 @@
         loading: false, // 加载状态
         formValidate: { // 验证规则
           signName: [{required: true, message: "签名名称不能为空", trigger: "blur"}],
-          remark: [{required: true, message: "申请说明不能为空", trigger: "blur"}],
+          remark: [{required: true, message: "Apply  说明不能为空", trigger: "blur"}],
           businessLicense: [{required: true, message: " ", trigger: "blur"}],
         },
-        submitLoading: false //提交加载状态
+        submitLoading: false //Submit加载状态
       }
 
     },
@@ -100,12 +100,12 @@
       addSignSubmit() {
         //校验证件信息
         if (this.form.businessLicense == "" || this.form.license == "") {
-          this.$Message.error("请完善证件信息");
+          this.$Message.error("Please 完善证件信息");
           return
         }
         //校验签名来源
         if (this.form.signSource == "") {
-          this.$Message.error("请选择签名来源");
+          this.$Message.error("Please select签名来源");
           return
         }
         this.$refs.form.validate((valid) => {
@@ -116,7 +116,7 @@
               API_Setting.addSmsSign(this.form).then(res => {
                 this.loading = false;
                 if (res.success) {
-                  this.$Message.success('添加成功');
+                  this.$Message.success('添加success');
                   this.$router.back()
                 }
               }).catch(() => {
@@ -126,7 +126,7 @@
               API_Setting.editSmsSign(this.form).then(res => {
                 this.loading = false;
                 if (res.success) {
-                  this.$Message.success('修改成功');
+                  this.$Message.success('modifysuccess');
                   this.$router.back()
                 }
               }).catch(() => {

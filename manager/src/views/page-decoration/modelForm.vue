@@ -1,7 +1,7 @@
 <template>
   <div class="model-form">
     <div class="model-content">
-      <!-- 头部广告，登录信息，不需要拖拽 -->
+      <!-- 头部广告，Login信息，不需要拖拽 -->
       <div
         class="top-fixed-advert"
         :style="{ backgroundColor: topAdvert.bgColor }"
@@ -17,9 +17,9 @@
         <div></div>
         <ul class="detail">
           <li>立即注册</li>
-          <li>请登录</li>
-          <li>我的订单</li>
-          <li>我的足迹</li>
+          <li>Please Login</li>
+          <li>My order</li>
+          <li>My tract</li>
           <li><Icon size="18" type="ios-cart-outline"></Icon>购物车</li>
           <li>店铺入驻</li>
         </ul>
@@ -27,13 +27,13 @@
       <div class="search-con">
         <img :src="require('@/assets/logo.png')" class="logo" alt="" />
         <div class="search">
-          <i-input size="large" placeholder="输入你想查找的商品">
-            <Button slot="append">搜索</Button>
+          <i-input size="large" placeholder="输入你想查找goods">
+            <Button slot="append">search</Button>
           </i-input>
         </div>
       </div>
       <div class="nav-con">
-        <div class="all-categories">全部商品分类</div>
+        <div class="all-categories">All goods分类</div>
         <ul class="nav-item">
           <li v-for="(item, index) in navList.list" :key="index">
             <a href="#">{{ item.name }}</a>
@@ -95,15 +95,15 @@
             :disabled="!!topAdvert.type && topAdvert.type !== 'link'"
             placeholder="https://"
           /><Button size="small" type="primary" @click="handleSelectLink"
-            >选择链接</Button
+            >select链接</Button
           >
         </div>
         <div>
-          选择图片：<Button size="small" type="primary" @click="handleSelectImg"
-            >选择图片</Button
+          select图片：<Button size="small" type="primary" @click="handleSelectImg"
+            >select图片</Button
           >&nbsp;
         </div>
-        <div>选择背景色：<ColorPicker v-model="topAdvert.bgColor" /></div>
+        <div>select背景色：<ColorPicker v-model="topAdvert.bgColor" /></div>
       </div>
     </Modal>
     <Modal
@@ -123,9 +123,9 @@
           <thead>
             <tr>
               <th width="250">分类名称</th>
-              <th width="250">链接地址</th>
+              <th width="250">链接address</th>
               <!-- <th width="150">排序</th> -->
-              <th width="250">操作</th>
+              <th width="250">operation</th>
             </tr>
           </thead>
           <tbody>
@@ -143,10 +143,10 @@
                   type="primary"
                   size="small"
                   @click="handleSelectLink(item, index)"
-                  >选择链接</Button
+                  >select链接</Button
                 >&nbsp;
                 <Button type="error" size="small" @click="handleDelNav(index)"
-                  >删除</Button
+                  >delete</Button
                 >
               </td>
             </tr>
@@ -154,9 +154,9 @@
         </table>
       </div>
     </Modal>
-    <!-- 选择商品。链接 -->
+    <!-- selectGoods。链接 -->
     <liliDialog ref="liliDialog" @selectedLink="selectedLink"></liliDialog>
-    <!-- 选择图片 -->
+    <!-- select图片 -->
     <Modal width="1200px" v-model="picModelFlag" footer-hide>
       <ossManage
         @callback="callbackSelected"
@@ -180,16 +180,16 @@ export default {
   props: ["data"],
   data() {
     return {
-      picModelFlag: false, // 选择图片模态框
+      picModelFlag: false, // select图片模态框
       showModal: false, // 顶部广告模态框
       showModalNav: false, // 分类nav模态框
       selectedNav: null, //当前已选nav
-      // 模拟搜索框下方数据
+      // 模拟search框下方数据
       promotionTags: [
         "买2免1",
         "领200神券",
         "199减100",
-        "母婴5折抢",
+        "母婴5off抢",
         "充100送20",
       ], // 热词数据
       topAdvert: {
@@ -206,7 +206,7 @@ export default {
         list: [
           { name: "秒杀", url: "" },
           { name: "闪购", url: "" },
-          { name: "优惠券", url: "" },
+          { name: "coupon", url: "" },
           { name: "拍卖", url: "" },
           { name: "服装城", url: "" },
         ],
@@ -224,7 +224,7 @@ export default {
   },
   methods: {
     handleSelectLink(item, index) {
-      // 调起选择链接弹窗
+      // 调起select链接弹窗
       if (item) this.selectedNav = item;
       this.$refs.liliDialog.open("link");
       console.log(item);
@@ -242,7 +242,7 @@ export default {
       }
     },
     handleDelNav(index) {
-      // 删除导航
+      // delete导航
       this.navList.list.splice(index, 1);
     },
     handleAddNav() {
@@ -253,7 +253,7 @@ export default {
     handleMoveEnd({ newIndex, oldIndex }) {
       console.log("index", newIndex, oldIndex);
     },
-    // 修改顶部广告
+    // modify顶部广告
     handleModel(type) {
       if (type == "topAdvert") {
         this.showModal = true;
@@ -261,13 +261,13 @@ export default {
         this.showModalNav = true;
       }
     },
-    // 选择图片
+    // select图片
     handleSelectImg() {
       this.$refs.ossManage.selectImage = true;
       this.picModelFlag = true;
     },
     callbackSelected(item) {
-      // 选择图片回调
+      // select图片回调
       this.picModelFlag = false;
       this.topAdvert.img = item.url;
     },
@@ -275,7 +275,7 @@ export default {
       // 拖拽，添加模块
       const newIndex = evt.newIndex;
 
-      // 为拖拽到容器的元素添加唯一 key
+      // 为拖拽到容器的ringgit素添加唯一 key
       this.data.list[newIndex] = JSON.parse(
         JSON.stringify(this.data.list[newIndex])
       );
@@ -308,7 +308,7 @@ export default {
 .model-form-list {
   min-height: 500px;
 }
-/**  顶部广告，头部，搜索框 start */
+/**  顶部广告，头部，search框 start */
 .top-fixed-advert {
   display: flex;
   width: 1500px;
@@ -350,7 +350,7 @@ export default {
     }
   }
 }
-/** 搜索框 */
+/** search框 */
 .search-con {
   padding-top: 15px;
   margin: 0px auto;
@@ -389,7 +389,7 @@ export default {
     }
   }
 }
-/** 商品分类 */
+/** Goods分类 */
 .nav-con {
   width: 1200px;
   height: 40px;
@@ -425,7 +425,7 @@ export default {
     }
   }
 }
-/**  顶部广告，头部，搜索框 end */
+/**  顶部广告，头部，search框 end */
 
 .top-fixed-advert,
 .nav-con {

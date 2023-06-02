@@ -3,13 +3,13 @@
     <BaseHeader></BaseHeader>
     <Search></Search>
     <cateNav></cateNav>
-    <!-- 添加成功提示 -->
+    <!-- 添加successTips -->
     <div class="add-info-box-container">
       <div class="add-info-box">
         <div class="add-info-detail">
           <div class="add-info-title">
             <p>
-              <i class="fa fa-check-circle"></i> 商品已成功加入购物车！</p>
+              <i class="fa fa-check-circle"></i> Goods add success！</p>
           </div>
           <div class="add-info-box-row">
             <div class="add-info-img">
@@ -17,7 +17,7 @@
             </div>
             <div class="add-info-intro">
               <p>{{detail.goodsName}}</p>
-              <p class="add-info-intro-detail">数量：{{$route.query.count}}</p>
+              <p class="add-info-intro-detail">Quantity：{{$route.query.count}}</p>
             </div>
           </div>
         </div>
@@ -25,10 +25,10 @@
           <div></div>
           <div class="car-btn-row">
             <router-link :to="`/goodsDetail?skuId=${detail.id}&goodsId=${detail.goodsId}`">
-              <button class="btn-car hover-pointer btn-car-to-detail">查看商品详情</button>
+              <button class="btn-car hover-pointer btn-car-to-detail">Check Goods details</button>
             </router-link>
             <router-link to="/cart">
-              <button class="btn-car hover-pointer btn-car-to-pay">去购物车结算></button>
+              <button class="btn-car hover-pointer btn-car-to-pay">Go to cart></button>
             </router-link>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default {
   },
   data () {
     return {
-      detail: {} // 商品详情
+      detail: {} // Goods详情
     };
   },
   mounted () {
@@ -131,7 +131,7 @@ border:1px solid $theme_color;
   background-color: $theme_color;
   border:1px solid $theme_color;
 }
-/*其他用户购买*/
+/*Others用户购买*/
 .other-user-buy-box{
   width: 90%;
   margin: 0px auto;

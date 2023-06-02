@@ -321,10 +321,10 @@ util.initRouter = function (vm) { // 初始化路由
     },
     component: 'error-page/404'
   }];
-  // 判断用户是否登录
+  // 判断用户是否Login
   let userInfo = Cookies.get('userInfoSeller')
   if (!userInfo) {
-    // 未登录
+    // 未Login
     return;
   }
 
@@ -357,7 +357,7 @@ util.initRouter = function (vm) { // 初始化路由
     vm.$store.commit('updateDefaultRouter', otherRoutes);
     // 添加菜单路由
     util.initMenuData(vm, menuData);
-    // 缓存数据 修改加载标识
+    // 缓存数据 modify加载标识
     window.localStorage.setItem('menuData', JSON.stringify(menuData));
     vm.$store.commit('setAdded', true);
   })
@@ -406,7 +406,7 @@ util.initMenuData = function (vm, data) {
       }
     }
   } else {
-    // 默认第一个
+    // default第一个
     currNav = navList[0].name;
     vm.$store.commit('setCurrNavTitle', navList[0].title);
   }

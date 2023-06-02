@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import { getRequest, postRequest, putRequest ,postRequestWithNoForm } from "@/libs/axios";
 
 import { baseUrl } from "@/libs/axios.js";
@@ -42,31 +42,31 @@ export const modifyOrderPrice = (sn, params) => {
   return putRequest(`/order/order/update/${sn}/price`, params);
 };
 
-// 取消订单
+// Cancel order
 export const cancelOrder = (sn, params) => {
   return postRequest(`/order/order/${sn}/cancel`, params);
 };
 
-// 修改收货地址
+// modifyDelivery address
 export const editOrderConsignee = (sn, params) => {
   return postRequest(`/order/order/update/${sn}/consignee`, params);
 };
-//获取投诉列表
+//获取Complaint列表
 export const getComplainPage = params => {
   return getRequest(`/order/complain`, params);
 };
 
-//获取投诉详情
+//获取Complaint详情
 export const getComplainDetail = id => {
   return getRequest(`/order/complain/${id}`);
 };
 
-//添加交易投诉对话
+//添加交易Complaint对话
 export const addOrderComplaint = params => {
   return postRequest(`/order/complain/communication/`, params);
 };
 
-//添加交易投诉对话
+//添加交易Complaint对话
 export const appeal = params => {
   return putRequest(`/order/complain/appeal`, params);
 };
@@ -86,7 +86,7 @@ export const orderShunFengDelivery = (sn) => {
   return postRequest(`/order/order/${sn}/shunfeng/delivery`);
 };
 
-// 获取商家选中的物流公司
+// 获取商家选中的Logistics company
 export const getLogisticsChecked = () => {
   return getRequest(`/other/logistics/getChecked`);
 };
@@ -96,12 +96,12 @@ export const orderTake = (sn, verificationCode) => {
   return putRequest(`/order/order/take/${sn}/${verificationCode}`);
 };
 
-// 售后服务单
+// after sale服务单
 export const afterSaleOrderPage = params => {
   return getRequest(`/order/afterSale/page`, params);
 };
 
-// 售后服务单详情
+// after sale服务单详情
 export const afterSaleOrderDetail = sn => {
   return getRequest(`/order/afterSale/${sn}`);
 };
@@ -111,7 +111,7 @@ export const afterSaleSellerReview = (sn, params) => {
   return putRequest(`/order/afterSale/review/${sn}`, params);
 };
 
-// 商家确认收货
+// 商家Confirm receipt
 export const afterSaleSellerConfirm = (sn, params) => {
   return putRequest(`/order/afterSale/confirm/${sn}`, params);
 };
@@ -120,15 +120,15 @@ export const afterSaleSellerConfirm = (sn, params) => {
 export const afterSaleSellerDelivery = (sn, params) => {
   return postRequest(`/order/afterSale/${sn}/delivery`, params);
 };
-//查询物流
+//查询logistics
 export const getTraces = (sn, params) => {
   return getRequest(`/order/order/getTraces/${sn}`, params);
 };
-//售后单查询物流
+//after sale单查询logistics
 export const getSellerDeliveryTraces = (sn, params) => {
   return getRequest(`/order/afterSale/getSellerDeliveryTraces/${sn}`, params);
 };
-//售后单查询物流
+//after sale单查询logistics
 export const getAfterSaleTraces = (sn, params) => {
   return getRequest(`/order/afterSale/getDeliveryTraces/${sn}`, params);
 };

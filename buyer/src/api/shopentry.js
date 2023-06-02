@@ -12,7 +12,7 @@ export function shopList (params) {
   })
 }
 
-// 申请店铺第一步-填写企业信息
+// Apply  店铺第一步-enter 企业信息
 export function applyFirst (params) {
   return request({
     url: '/buyer/store/store/apply/first',
@@ -22,7 +22,7 @@ export function applyFirst (params) {
   })
 }
 
-// 申请店铺第一步-填写企业信息
+// Apply  店铺第一步-enter 企业信息
 export function applySecond (params) {
   return request({
     url: '/buyer/store/store/apply/second',
@@ -32,7 +32,7 @@ export function applySecond (params) {
   })
 }
 
-// 申请店铺第一步-填写企业信息
+// Apply  店铺第一步-enter 企业信息
 export function applyThird (params) {
   return request({
     url: '/buyer/store/store/apply/third',
@@ -67,7 +67,7 @@ export function agreement () {
   })
 }
 
-//  获取当前登录会员的店铺信息
+//  获取当前Login会员的店铺信息
 export function applyStatus () {
   return request({
     url: `/buyer/store/store/apply`,
@@ -77,7 +77,7 @@ export function applyStatus () {
 }
 
 /**
- * 获取自提点信息
+ * 获取self-lifting点信息
  * @param storeId
  */
  export function getStoreAddress(storeId,params) {

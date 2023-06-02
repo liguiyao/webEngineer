@@ -23,7 +23,7 @@ export default {
     beforeunloadHandler () {
       this.beforeUnload = new Date().getTime();
     },
-    // 页面关闭后 重置btnHide
+    // 页面Close后 重置btnHide
     unloadHandler (e) {
       this.Handler = new Date().getTime() - this.beforeUnload;
       if (this.Handler <= 5) {

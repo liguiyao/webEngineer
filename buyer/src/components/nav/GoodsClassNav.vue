@@ -1,7 +1,7 @@
 <template>
   <div class="item-class-show">
     <div class="head-bar">
-      <!-- 有商品分类展示商品分类 -->
+      <!-- 有Goods分类展示Goods分类 -->
       <template v-if="$route.query.categoryId">
         <!-- 头部展示筛选信息 -->
         <div @click="cateClick(tabBar,1)">{{ tabBar.name }}</div>
@@ -27,9 +27,9 @@
         </div>
         <Icon type="ios-arrow-forward" v-if="tabBar.second" />
       </template>
-      <!-- 无商品分类，展示搜索结果 -->
+      <!-- 无Goods分类，展示search结果 -->
       <template v-else>
-        <div style="font-size:14px">全部结果</div>
+        <div style="font-size:14px">Total result</div>
         <Icon type="ios-arrow-forward" />
         <div style="font-weight:bold;" class="mr_10">“{{params.keyword}}”</div>
       </template>
@@ -47,7 +47,7 @@
 
     <!-- 筛选主体 -->
     <div class="content">
-      <!-- 品牌， 有图片，独立出来 -->
+      <!-- Brand， 有图片，独立出来 -->
       <div class="brand" v-show="tagsContent[0].show && tagsContent[0].values.length">
         <div>
           <strong>{{ tagsContent[0].key }}：</strong>
@@ -73,11 +73,11 @@
 
           <div class="btn" v-show="multiple !== 0">
             <span @click="moreBrand(0)"
-              >{{ tagsContent[0].more ? "收起" : "更多"
+              >{{ tagsContent[0].more ? "Put away" : "More"
               }}<Icon
                 :type="tagsContent[0].more ? 'ios-arrow-up' : 'ios-arrow-down'"
             /></span>
-            <span @click="multSelectBrand(0)"><Icon type="md-add" />多选</span>
+            <span @click="multSelectBrand(0)"><Icon type="md-add" />Multiple</span>
           </div>
 
           <div class="multBtn" v-show="multiple === 0">
@@ -86,14 +86,14 @@
               size="small"
               :disabled="!multSelected.length"
               @click="sure(0)"
-              >确定</Button
+              >Confirm</Button
             >
-            <Button size="small" @click="cancel">取消</Button>
+            <Button size="small" @click="cancel">Cancel</Button>
           </div>
         </div>
       </div>
 
-      <!-- 其他筛选项 -->
+      <!-- Others筛选项 -->
       <template v-for="(tag, tagIndex) in tagsContent">
         <div class="other" v-if="tag.show && tagIndex !== 0" v-show="tagIndex < showTagCount" :key="tagIndex">
           <div>
@@ -132,11 +132,11 @@
 
             <div class="btn" v-show="multiple !== tagIndex">
               <span @click="moreBrand(tagIndex)" v-show="tag.values.length > 9"
-                >{{ tag.more ? "收起" : "更多"
+                >{{ tag.more ? "Put away" : "More"
                 }}<Icon :type="tag.more ? 'ios-arrow-up' : 'ios-arrow-down'"
               /></span>
               <span @click="multSelectBrand(tagIndex)"
-                ><Icon type="md-add" />多选</span
+                ><Icon type="md-add" />Multiple</span
               >
             </div>
 
@@ -146,14 +146,14 @@
                 size="small"
                 :disabled="!multSelected.length"
                 @click="sure(tagIndex)"
-                >确定</Button
+                >Confirm</Button
               >
-              <Button size="small" @click="cancel">取消</Button>
+              <Button size="small" @click="cancel">Cancel</Button>
             </div>
           </div>
         </div>
       </template>
-      <div @click="moreOptions" v-if="tagsContent.length>4" class="more-options">{{showTagCount===5?'更多筛选项':'收起筛选项'}}<Icon :type="showTagCount===5?'ios-arrow-down':'ios-arrow-up'" /></div>
+      <div @click="moreOptions" v-if="tagsContent.length>4" class="more-options">{{showTagCount===5?'More filters':'Collapse filter'}}<Icon :type="showTagCount===5?'ios-arrow-down':'ios-arrow-up'" /></div>
     </div>
   </div>
 </template>
@@ -169,12 +169,12 @@ export default {
         first: {},
         second: {}
       },
-      showTagCount: 5, // 展示的搜索项数量
+      showTagCount: 5, // 展示的search项Quantity
       multiple: false, // 多选
       tagsContent: [
         // 标签
         {
-          key: '品牌',
+          key: 'Brand',
           more: false,
           show: true,
           values: []
@@ -182,12 +182,12 @@ export default {
       ],
       multSelected: [], // 多选分类
       selectedItem: [], // 已选分类集合 顶部展示
-      brandIds: [], // 品牌id合集
-      params: {} // 请求参数
+      brandIds: [], // Brandid合集
+      params: {} // Please 求参数
     };
   },
   computed: {
-    cateList () { // 商品分类
+    cateList () { // Goods分类
       return this.$store.state.category || []
     }
   },
@@ -199,7 +199,7 @@ export default {
         this.params.brandId = ''
         this.params.prop = ''
         val.forEach((item) => {
-          if (item.type === '品牌') {
+          if (item.type === 'Brand') {
             this.params.brandId = this.brandIds.join('@');
           } else {
             const nameArr = item.name.split('、');
@@ -230,9 +230,9 @@ export default {
     }
   },
   methods: {
-    getNav () { // 获取商品分类，分类下展示
+    getNav () { // 获取Goods分类，分类下展示
       if (!this.$route.query.categoryId) return
-      if (!this.cateList.length) { // 商品分类存储在localstorage，接口未调用成功前再次刷新数据
+      if (!this.cateList.length) { // Goods分类存储在localstorage，接口未调用success前再次刷新数据
         setTimeout(() => {
           this.getNav()
         }, 500)
@@ -280,9 +280,9 @@ export default {
       }
     },
     selectBrand (item, index) {
-      // 选择筛选项
+      // select筛选项
       if (this.multiple !== false) {
-        // 非多选直接在顶部栏展示，多选则添加选择状态
+        // 非多选直接在顶部栏展示，多选则添加select状态
 
         let key = this.multSelected.indexOf(item);
         if (key > -1) {
@@ -299,7 +299,7 @@ export default {
         this.tagsContent[index].show = false;
 
         if (index === 0) {
-          // 如果是品牌，获取品牌id
+          // 如果是Brand，获取Brandid
 
           let brands = this.tagsContent[0].values;
 
@@ -311,7 +311,7 @@ export default {
     },
 
     cancelSelected (item, index) {
-      // 顶部栏 取消已选中的项
+      // 顶部栏 Cancel已选中的项
       this.selectedItem.splice(index, 1);
 
       this.tagsContent.forEach((tag, index) => {
@@ -320,7 +320,7 @@ export default {
           tag.more = false;
         }
       });
-      if (item.type === '品牌') {
+      if (item.type === 'Brand') {
         this.brandIds = [];
       }
     },
@@ -342,7 +342,7 @@ export default {
       });
 
       if (index === 0) {
-        // 如果是品牌，获取品牌id
+        // 如果是Brand，获取Brandid
 
         let brands = this.tagsContent[0].values;
 
@@ -355,7 +355,7 @@ export default {
       this.cancel();
     },
     cancel () {
-      // 多选取消按钮
+      // 多选Cancel按钮
       this.multSelected = [];
       this.tagsContent[0].more = false;
       this.multiple = false;
@@ -366,7 +366,7 @@ export default {
         if (res.success) {
           const data = res.result;
           this.tagsContent = [{
-            key: '品牌',
+            key: 'Brand',
             more: false,
             show: true,
             values: []
@@ -380,13 +380,13 @@ export default {
         }
       });
     },
-    // 展示更多搜索项
+    // 展示更多search项
     moreOptions () {
       this.showTagCount = this.showTagCount === 5 ? 100 : 5
     }
   },
   mounted () {
-    // 有分类id就根据id搜索
+    // 有分类id就根据idsearch
     if (this.$route.query.categoryId) {
       let cateId = this.$route.query.categoryId.split(',')
       Object.assign(this.params, this.$route.query)
@@ -520,7 +520,7 @@ export default {
   border-bottom: 1px solid #ddd;
   margin: 10px 0;
 }
-/** 品牌 start */
+/** Brand start */
 .brand {
   border-bottom: 1px solid #ddd;
   display: flex;
@@ -637,8 +637,8 @@ export default {
     }
   }
 }
-/** 品牌 end */
-/** 其他筛选项  start */
+/** Brand end */
+/** Others筛选项  start */
 .other {
   border-bottom: 1px solid #ddd;
   display: flex;
@@ -725,5 +725,5 @@ export default {
 .more-options:hover{
   color:#0165d1;
 }
-/** 其他筛选项  end */
+/** Others筛选项  end */
 </style>

@@ -82,7 +82,7 @@ export default {
         storeId: '',
       },
       goodsDetail: {},
-      footPrintList: [], // 商品
+      footPrintList: [], // Goods
       orderPrintList: []// 订单
     }
   },
@@ -214,7 +214,7 @@ export default {
 
       // 插入对话记录
       this.$store.commit("PUSH_DIALOGUE", insterChat);
-      // 获取聊天面板元素节点
+      // 获取聊天面板ringgit素节点
       let el = document.getElementById("lumenChatPanel");
       // 判断的滚动条是否在底部
       let isBottom =

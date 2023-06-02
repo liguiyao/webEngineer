@@ -14,13 +14,13 @@
             id="serach-mobile"
             class="input"
             prefix-icon="el-icon-search"
-            placeholder="请输入对方手机号(精确查找)"
+            placeholder="Please enter 对方Phone number(精确查找)"
             clearable
             @keyup.enter.native="onSubmit"
             @input="error = false"
           />
           <p v-show="error" class="error">
-            无法找到该用户，请检查搜索内容并重试
+            无法找到该用户，Please 检查search内容并重试
           </p>
           <el-button
             type="primary"
@@ -57,7 +57,7 @@ export default {
       })
     },
 
-    // 关闭窗口
+    // Close窗口
     close() {
       this.isShow = false
     },

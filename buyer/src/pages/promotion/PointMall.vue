@@ -3,7 +3,7 @@
     <BaseHeader></BaseHeader>
     <Search></Search>
     <cateNav></cateNav>
-    <h3 class="promotion-decorate">积分商品</h3>
+    <h3 class="promotion-decorate">Integral goods</h3>
     <Select @on-select="selectCate" size="small" class="cate-select-con" v-model="cateId">
       <Option v-for="(cate, index) in cateList" :value="cate.id" :key="index">{{cate.name}}</Option>
     </Select>
@@ -30,7 +30,7 @@
         </div>
         <div class="goods-show-num">
           已有<span>{{ item.commentNum || 0 }}</span
-          >人评价
+          >人Evaluate
         </div>
         <div class="goods-show-seller">
           <span>{{ item.storeName }}</span>
@@ -53,17 +53,17 @@ import {pointGoods, pointGoodsCategory} from '@/api/promotion.js'
 export default {
   data () {
     return {
-      goodsList: [], // 积分商品列表
-      cateList: [{ // 商品分类
+      goodsList: [], // 积分Goods列表
+      cateList: [{ // Goods分类
         name: '全部分类',
         id: 0
       }], // 积分分类列表
-      params: { // 商品列表请求参数
+      params: { // Goods列表Please 求参数
         pageNumber: 1,
         pageSize: 20,
         pointsGoodsCategoryId: ''
       },
-      total: 0, // 商品总数
+      total: 0, // Goods总数
       cateId: '' // 店铺分类id
     }
   },
@@ -89,13 +89,13 @@ export default {
         }
       })
     },
-    selectCate (item) { // 选择商品分类
+    selectCate (item) { // selectGoods分类
       let cateId = item.value === 0 ? '' : item.value
       this.params.pointsGoodsCategoryId = cateId
       this.getList()
       this.$router.push({query: {categoryId: cateId}})
     },
-    goGoodsDetail (id) { // 跳转商品详情
+    goGoodsDetail (id) { // 跳转Goods详情
       this.$router.push({path: '/pointGoodsDetail', query: {id}})
       // let routerUrl = this.$router.resolve({
       //   path: '/pointGoodsDetail',
@@ -103,11 +103,11 @@ export default {
       // })
       // window.open(routerUrl.href, '_blank')
     },
-    changePageNum (val) { // 修改页码
+    changePageNum (val) { // modify页码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // 修改页数
+    changePageSize (val) { // modify页数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()

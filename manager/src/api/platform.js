@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import { getRequest, postRequest } from '@/libs/axios';
 
 // 验证码渲染图片接口

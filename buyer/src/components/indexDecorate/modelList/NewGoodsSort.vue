@@ -62,7 +62,7 @@
         >
           <img :src="item.img" alt="" />
           <p>{{ item.name }}</p>
-          <p>{{ item.price | unitPrice("￥") }}</p>
+          <p>{{ item.price | unitPrice("RM") }}</p>
           <div class="jiaobiao" :class="'jiaobiao' + (index + 1)">
             {{ index + 1 }}
           </div>

@@ -37,8 +37,8 @@ export default {
         .then((res) => {
           if (res.code == 200) {
             Notification({
-              title: "收藏提示",
-              message: "表情包收藏成功...",
+              title: "收藏Tips",
+              message: "表情包收藏success...",
               type: "success",
             });
 
@@ -47,7 +47,7 @@ export default {
         })
         .catch(() => {
           Notification({
-            title: "收藏提示",
+            title: "收藏Tips",
             message: "表情包收藏失败...",
             type: "warning",
           });
@@ -66,7 +66,7 @@ export default {
         })
         .catch(() => {
           Notification({
-            message: "网络异常请稍后再试...",
+            message: "网络异常Please 稍后再试...",
             type: "error",
             duration: 3000,
           });

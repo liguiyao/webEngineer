@@ -1,11 +1,11 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {getRequest, postRequest, putRequest, deleteRequest, importRequest, getRequestWithNoToken} from '@/libs/axios';
 
-//保存导航栏
+//Save导航栏
 export const save = (params) => {
     return postRequest('/siteNavigation/save', params)
 }
-//保存导航栏
+//Save导航栏
 export const update = (params) => {
     return postRequest('/siteNavigation/update', params)
 }
@@ -21,7 +21,7 @@ export const disableNavigation = (ids) => {
 export const enableNavigation = (ids) => {
     return deleteRequest(`/siteNavigation/enable/${ids}`)
 }
-//删除导航栏
+//delete导航栏
 export const delNavigation = (ids) => {
     return deleteRequest(`/siteNavigation/remove/${ids}`)
 }
@@ -47,7 +47,7 @@ export const disableFocus = (ids) => {
 export const enableFocus = (ids) => {
     return putRequest(`/focus/enable/${ids}`)
 }
-//删除导航栏
+//delete导航栏
 export const delFocus = (ids) => {
     return deleteRequest(`/focus/delByIds/${ids}`)
 }
@@ -57,7 +57,7 @@ export const getPageData = (id) => {
     return getRequest(`/page/get/${id}`)
 }
 
-//保存页面数据
+//Save页面数据
 export const savePageData = (params) => {
     return postRequest('/page/insertOrUpdate', params)
 }
@@ -70,11 +70,11 @@ export const saveArticleCategory = (params) => {
     return postRequest('/article-category', params)
 }
 
-//删除文章分类
+//delete文章分类
 export const delArticleCategory = (id) => {
     return deleteRequest(`/article-category/${id}`)
 }
-//修改文章分类
+//modify文章分类
 export const updateArticleCategory = (params, id) => {
     return putRequest(`/article-category/update/${id}`, params)
 }
@@ -82,7 +82,7 @@ export const updateArticleCategory = (params, id) => {
 export const saveArticle = (params) => {
     return postRequest('/other/article', params)
 }
-//文章修改
+//文章modify
 export const updateArticle = (params) => {
     return putRequest(`/other/article/update/${params.id}`, params)
 }
@@ -98,7 +98,7 @@ export const getArticle = (params) => {
 
 
 
-//删除文章数据
+//delete文章数据
 export const delArticle = (ids) => {
     return deleteRequest(`/other/article/delByIds/${ids}`)
 }

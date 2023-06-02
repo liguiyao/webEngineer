@@ -3,28 +3,28 @@
     <Card>
       <Form ref="form" :model="form" :label-width="120" :rules="formRule">
         <div class="base-info-item">
-          <h4>积分商品信息</h4>
+          <h4>积分Goods details</h4>
           <div class="form-item-view">
-            <FormItem label="商品名称">
+            <FormItem label="goods name">
               <div>{{ form.goodsSku.goodsName }}</div>
             </FormItem>
             <FormItem label="SKU编码">
               <div>{{ form.goodsSku.id }}</div>
             </FormItem>
-            <FormItem label="店铺名称">
+            <FormItem label="store name">
               <div>{{ form.goodsSku.storeName }}</div>
             </FormItem>
-            <FormItem label="商品价格">
-              <div>{{ form.goodsSku.price | unitPrice("￥") }}</div>
+            <FormItem label="Goodsprice">
+              <div>{{ form.goodsSku.price | unitPrice("RM") }}</div>
             </FormItem>
             <FormItem label="库存">
               <div>{{ form.goodsSku.quantity }}</div>
             </FormItem>
-            <FormItem label="结算价格" prop="settlementPrice">
+            <FormItem label="结算price" prop="settlementPrice">
               <Input
                 type="number"
                 v-model="form.settlementPrice"
-                placeholder="请填写结算价格"
+                placeholder="Please enter 结算price"
                 clearable
                 style="width: 260px"
               />
@@ -44,7 +44,7 @@
               <Input
                 type="number"
                 v-model="form.activeStock"
-                placeholder="请填写活动库存"
+                placeholder="Please enter 活动库存"
                 clearable
                 style="width: 260px"
               />
@@ -53,7 +53,7 @@
               <Input
                 type="number"
                 v-model="form.points"
-                placeholder="请填写兑换积分"
+                placeholder="Please enter 兑换积分"
                 clearable
                 style="width: 260px"
               />
@@ -63,7 +63,7 @@
                 type="datetimerange"
                 v-model="form.rangeTime"
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择"
+                placeholder="Please select"
                 :options="options"
                 style="width: 260px"
               >
@@ -71,9 +71,9 @@
             </FormItem>
           </div>
           <div class="footer">
-            <Button @click="closeCurrentPage" style="margin-right: 5px">返回</Button>
+            <Button @click="closeCurrentPage" style="margin-right: 5px">Back</Button>
             <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-              >保存</Button
+              >Save</Button
             >
           </div>
         </div>
@@ -105,7 +105,7 @@ export default {
         startTime: "",
         /** 抢购时间段 */
         seckillPeriod: [],
-        /** 申请规则 */
+        /** Apply  规则 */
         seckillRule: "",
         goodsSku: {},
         promotionStatus: "NEW",
@@ -113,12 +113,12 @@ export default {
       },
       categoryList: [], // 分类列表
       id: this.$route.query.id, // 活动id
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       formRule: {
-        settlementPrice: [{ required: true, message: "请填写结算价格" }],
-        pointsGoodsCategoryId: [{ required: true, message: "请选择积分商品分类" }],
-        points: [{ required: true, message: "请填写兑换积分" }],
-        activeStock: [{ required: true, message: "请填写库存" }],
+        settlementPrice: [{ required: true, message: "Please enter 结算price" }],
+        pointsGoodsCategoryId: [{ required: true, message: "Please select积分Goods分类" }],
+        points: [{ required: true, message: "Please enter 兑换积分" }],
+        activeStock: [{ required: true, message: "Please enter 库存" }],
       },
       options: {
         disabledDate(date) {
@@ -141,13 +141,13 @@ export default {
       this.pointsGoodsCategoryId=v.value
       this.pointsGoodsCategoryName=v.label
     },
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "edit-points-goods");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
       this.$router.go(-1);
     },
-    // 获取商品数据
+    // 获取Goods数据
     getData() {
       getPointsGoodsById(this.id).then((res) => {
         if (res.success) {
@@ -165,7 +165,7 @@ export default {
       let res = await getPointsGoodsCategoryList();
       this.categoryList = res.result.records;
     },
-    /** 保存 */
+    /** Save */
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -182,7 +182,7 @@ export default {
           updatePointsGoods(params).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("积分商品修改成功");
+              this.$Message.success("积分Goodsmodifysuccess");
               this.closeCurrentPage();
             }
           });
@@ -294,7 +294,7 @@ div.base-info-item {
   }
 }
 
-/*商品描述*/
+/*Goods描述*/
 .goods-intro {
   line-height: 40;
 }

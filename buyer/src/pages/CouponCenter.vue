@@ -7,17 +7,17 @@
           <router-link to="/">
             <img src="../assets/images/logo.png" width="120" alt="" />
           </router-link>
-          <p>领券中心</p>
+          <p>Coupon centre</p>
           <Input
             search
             style="width: 400px"
             @on-search="search"
-            enter-button="搜索"
-            placeholder="搜索优惠券"
+            enter-button="search"
+            placeholder="search coupon"
           />
         </div>
 
-        <div class="fontsize_18 recommend">推荐好券</div>
+        <div class="fontsize_18 recommend">Recommended coupon</div>
 
         <empty v-if="list.length === 0" />
         <ul class="coupon-list" v-else>
@@ -27,7 +27,7 @@
                 <span
                   v-if="item.couponType === 'PRICE'"
                   class="fontsize_12 global_color"
-                  >￥<span class="price">{{
+                  >RM<span class="price">{{
                     item.price | unitPrice
                   }}</span></span
                 >
@@ -35,17 +35,17 @@
                   v-if="item.couponType === 'DISCOUNT'"
                   class="fontsize_12 global_color"
                   ><span class="price">{{ item.couponDiscount }}</span
-                  >折</span
+                  >off</span
                 >
                 <span class="describe"
-                  >满{{ item.consumeThreshold }}元可用</span
+                  >full{{ item.consumeThreshold }}ringgitavailable</span
                 >
               </div>
-              <p>使用范围：{{ useScope(item.scopeType, item.storeName) }}</p>
-              <p>有效期：{{ item.endTime }}</p>
+              <p>Scope of use：{{ useScope(item.scopeType, item.storeName) }}</p>
+              <p>Validity period：{{ item.endTime }}</p>
             </div>
             <b></b>
-            <a class="c-right" @click="receive(item)">立即领取</a>
+            <a class="c-right" @click="receive(item)">Get now</a>
             <i class="circle-top"></i>
             <i class="circle-bottom"></i>
           </li>
@@ -70,10 +70,10 @@ import { couponList, receiveCoupon } from "@/api/member.js";
 export default {
   data() {
     return {
-      list: [], // 优惠券列表
-      total: 0, // 优惠券总数
+      list: [], // Coupon list
+      total: 0, // coupon总数
       params: {
-        // 请求参数
+        // Please 求参数
         getType: "FREE",
         pageNumber: 1,
         pageSize: 20,
@@ -81,13 +81,13 @@ export default {
     };
   },
   methods: {
-    // 搜索优惠券
+    // searchcoupon
     search(item) {
       this.params.couponName = item;
       this.params.pageNumber = 1;
       this.getList();
     },
-    // 获取优惠券列表
+    // 获取Coupon list
     getList() {
       this.$Spin.show();
       couponList(this.params)
@@ -114,15 +114,15 @@ export default {
       this.params.pageSize = val;
       this.getList();
     },
-    // 领取优惠券
+    // 领取coupon
     receive(item) {
       receiveCoupon(item.id).then((res) => {
         if (res.success) {
           console.log(item);
           this.$Modal.confirm({
-            title: "领取优惠券",
-            content: "<p>优惠券领取成功，可到我的优惠券页面查看</p>",
-            okText: "我的优惠券",
+            title: "领取coupon",
+            content: "<p>coupon领取success，可到我的coupon页面查看</p>",
+            okText: "我的coupon",
             cancelText: "立即使用",
             closable: true,
             onOk: () => {
@@ -138,23 +138,23 @@ export default {
         }
       });
     },
-    // 优惠券可用范围
+    // couponavailable范围
     useScope(type, storeName) {
       let shop = "平台";
-      let goods = "全部商品";
+      let goods = "All goods";
       if (storeName !== "platform") shop = storeName;
       switch (type) {
         case "ALL":
-          goods = "全部商品";
+          goods = "All goods";
           break;
         case "PORTION_GOODS":
-          goods = "部分商品";
+          goods = "Partial goods";
           break;
         case "PORTION_GOODS_CATEGORY":
-          goods = "部分分类商品";
+          goods = "Partial classified goods";
           break;
       }
-      return `${shop}${goods}可用`;
+      return `${shop}${goods}available`;
     },
   },
   mounted() {

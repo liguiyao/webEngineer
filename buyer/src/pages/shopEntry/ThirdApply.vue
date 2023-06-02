@@ -1,16 +1,16 @@
 <template>
   <div class="person-msg">
     <Form ref="thirdForm" :model="form" :rules="rules" :label-width="140">
-      <h4>基础信息</h4>
-      <FormItem prop="storeName" label="店铺名称">
+      <h4>Basic information</h4>
+      <FormItem prop="storeName" label="Store name">
         <Input
           type="text"
           v-model="form.storeName"
-          placeholder="请填写店铺名称"
+          placeholder="Please enter store name"
         />
       </FormItem>
 
-      <FormItem prop="storeLogo" label="店铺logo">
+      <FormItem prop="storeLogo" label="store logo">
         <Upload
           ref="uploadLogo"
           :show-upload-list="false"
@@ -25,9 +25,9 @@
           :action="action"
           :headers="accessToken"
         >
-          <Button type="info" :loading="uploadLoading">上传logo</Button>
+          <Button type="info" :loading="uploadLoading">upload logo</Button>
         </Upload>
-        <div class="describe">请压缩图片在2M以内，格式为gif，jpg，png</div>
+        <div class="describe">Please compressed image should be less than 2M in format of gif, jpg, or png</div>
         <div
           class="img-list"
           v-for="(item, index) in form.storeLogo"
@@ -46,7 +46,7 @@
           </div>
         </div>
       </FormItem>
-      <FormItem prop="goodsManagementCategory" label="店铺经营类目">
+      <FormItem prop="goodsManagementCategory" label="Categories of shop operations">
         <Select
           v-model="form.goodsManagementCategory"
           multiple
@@ -60,47 +60,47 @@
           >
         </Select>
       </FormItem>
-      <FormItem prop="storeCenter" label="店铺定位">
+      <FormItem prop="storeCenter" label="positioning">
         <Button
           type="info"
           v-if="!form.storeCenter"
           @click="$refs.liliMap.showMap = true"
-        >点击获取店铺定位</Button>
+        >Click to get store location</Button>
         <Button
           type="success"
           v-else
           @click="$refs.liliMap.showMap = true"
-        >已定位</Button>
+        >located</Button>
       </FormItem>
-      <FormItem prop="storeAddressIdPath" label="店铺所在地">
+      <FormItem prop="storeAddressIdPath" label="Shop location">
         <region
           style="width: 250px"
           @selected="selectedRegion"
           :addressId="address"
         />
       </FormItem>
-      <FormItem prop="storeAddressDetail" label="店铺详细地址">
+      <FormItem prop="storeAddressDetail" label="Store Full address">
         <Input
           type="text"
           v-model="form.storeAddressDetail"
-          placeholder="请填写店铺详细地址"
+          placeholder="Please enter store Full address"
         />
       </FormItem>
-      <FormItem prop="storeDesc" label="店铺简介">
+      <FormItem prop="storeDesc" label="Store details">
         <Input
           type="textarea"
           v-model="form.storeDesc"
           maxlength="200"
           show-word-limit
           :rows="4"
-          placeholder="请输入店铺简介"
+          placeholder="Please enter store details"
         />
       </FormItem>
 
       <FormItem>
-        <Button @click="$emit('change', 1)">返回</Button>
+        <Button @click="$emit('change', 1)">Back</Button>
         <Button type="primary" :loading="loading" @click="next"
-          >提交平台审核</Button
+          >Submit audit</Button
         >
       </FormItem>
     </Form>
@@ -129,24 +129,24 @@ export default {
     return {
       loading: false, // 加载状态
       uploadLoading: false, // 上传加载状态
-      action: commonUrl + '/common/common/upload/file', // 上传地址
+      action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       previewPicture: '', // 预览图片
-      address: '', // 回显地址
+      address: '', // 回显address
       visible: false, // 图片预览
       form: { // 表单数据
         storeLogo: []
       },
       rules: { // 验证规则
         goodsManagementCategory: [
-          { required: true, message: '请选择店铺经营类目' }
+          { required: true, message: 'Please select categories of shop operations' }
         ],
-        storeName: [{ required: true, message: '请填写店铺名称' }],
-        storeLogo: [{ required: true, message: '请上传店铺logo' }],
-        storeDesc: [{ required: true, message: '请填写店铺简介' }],
-        storeCenter: [{ required: true, message: '请选择店铺位置' }],
-        storeAddressIdPath: [{ required: true, message: '请选择店铺位置' }],
-        storeAddressDetail: [{ required: true, message: '请输入店铺详细地址' }]
+        storeName: [{ required: true, message: 'Please enter store name' }],
+        storeLogo: [{ required: true, message: 'Please upload stroe logo' }],
+        storeDesc: [{ required: true, message: 'Please enter store details' }],
+        storeCenter: [{ required: true, message: 'Please select store location' }],
+        storeAddressIdPath: [{ required: true, message: 'Please select store location' }],
+        storeAddressDetail: [{ required: true, message: 'Please enter store Full address' }]
       },
       categoryList: [] // 分类数据
     };
@@ -178,11 +178,11 @@ export default {
     beforeUpload () {
       this.uploadLoading = true;
       if (this.form.storeLogo.length >= 3) {
-        this.$Message.warning('最多上传三张图片')
+        this.$Message.warning('Upload a maximum of three images')
         return false;
       }
     },
-    // 上传成功回调
+    // 上传success回调
     handleSuccess (res, file) {
       this.uploadLoading = false;
       this.form.storeLogo.push(res.result);
@@ -192,7 +192,7 @@ export default {
       this.uploadLoading = false;
       this.$Notice.warning({
         title: 'The file format is incorrect',
-        desc: '上传文件格式不正确'
+        desc: 'The format of the uploaded file is incorrect'
       });
     },
     // 上传大小限制
@@ -200,7 +200,7 @@ export default {
       this.uploadLoading = false;
       this.$Notice.warning({
         title: 'Exceeding file size limit',
-        desc: '文件大小不能超过2M'
+        desc: 'The file size cannot exceed 2 MB'
       })
     },
     // 上传失败
@@ -212,11 +212,11 @@ export default {
       this.previewPicture = item;
       this.visible = true;
     },
-    // 删除图片
+    // delete图片
     handleRemove (index, listName) {
       this.form[listName].splice(index, 1);
     },
-    // 选择坐标回调
+    // select坐标回调
     getAddress (item) {
       this.$set(
         this.form,
@@ -224,13 +224,13 @@ export default {
         item.position.lng + ',' + item.position.lat
       );
     },
-    // 获取商品分类
+    // 获取Goods分类
     getCategoryList () {
       getCategory(0).then((res) => {
         if (res.success) this.categoryList = res.result;
       });
     },
-    // 地址选择回显
+    // addressselect回显
     selectedRegion (item) {
       this.$set(this.form, 'storeAddressIdPath', item[0].toString());
       this.$set(

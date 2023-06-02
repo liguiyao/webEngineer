@@ -8,11 +8,11 @@
         :label-width="75"
         class="search-form mb_10"
       >
-        <Form-item label="优惠券名称" prop="couponName">
+        <Form-item label="coupon名称" prop="couponName">
           <Input
             type="text"
             v-model="searchForm.couponName"
-            placeholder="请输入优惠券名称"
+            placeholder="Please enter coupon名称"
             clearable
             style="width: 200px"
           />
@@ -20,7 +20,7 @@
         <Form-item label="获取方式" prop="getType">
           <Select
             v-model="searchForm.getType"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
@@ -31,14 +31,14 @@
         <Form-item label="活动状态" prop="promotionStatus">
           <Select
             v-model="searchForm.promotionStatus"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
             <Option value="NEW">未开始</Option>
             <Option value="START">已开始/上架</Option>
             <Option value="END">已结束/下架</Option>
-            <Option value="CLOSE">紧急关闭/作废</Option>
+            <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
         <Form-item label="活动时间">
@@ -46,7 +46,7 @@
             v-model="selectDate"
             type="daterange"
             clearable
-            placeholder="选择起始时间"
+            placeholder="select起始时间"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
@@ -55,13 +55,13 @@
           type="primary"
           icon="ios-search"
           class="search-btn"
-          >搜索</Button
+          >search</Button
         >
       </Form>
       <Row class="operation padding-row" v-if="getType !== 'ACTIVITY'">
-        <Button @click="add" type="primary">添加优惠券</Button>
-        <Button @click="delAll">批量关闭</Button>
-        <Button @click="receivePage()" type="info">优惠券领取记录</Button>
+        <Button @click="add" type="primary">添加coupon</Button>
+        <Button @click="delAll">批量Close</Button>
+        <Button @click="receivePage()" type="info">coupon领取记录</Button>
       </Row>
       <Table
         v-if="refreshTable"
@@ -97,7 +97,7 @@
             type="error"
             size="small"
             @click="close(row)"
-            >关闭
+            >Close
           </Button>
           <Button
             class="ml_5"
@@ -107,7 +107,7 @@
             type="error"
             size="small"
             @click="remove(row)"
-            >删除
+            >delete
           </Button>
           <Button
             style="margin: 5px"
@@ -152,12 +152,12 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "create_time", // 默认排序字段
-        order: "desc", // 默认排序方式
-        getType: "", // 默认排序方式
+        sort: "create_time", // default排序字段
+        order: "desc", // default排序方式
+        getType: "", // default排序方式
       },
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
@@ -170,29 +170,29 @@ export default {
           fixed: "left",
         },
         {
-          title: "优惠券名称",
+          title: "coupon名称",
           key: "couponName",
           width: 180,
           tooltip: true,
         },
         {
-          title: "面额/折扣",
+          title: "面额/off扣",
           key: "price",
           width: 150,
           render: (h, params) => {
             if (params.row.price) {
               return h(
                 "div",
-                this.$options.filters.unitPrice(params.row.price, "￥")
+                this.$options.filters.unitPrice(params.row.price, "RM")
               );
             } else {
-              return h("div", params.row.couponDiscount + "折");
+              return h("div", params.row.couponDiscount + "off");
             }
           },
         },
 
         {
-          title: "已领取数量/总数量",
+          title: "已领取Quantity/总Quantity",
           key: "publishNum",
           width: 180,
           render: (h, params) => {
@@ -206,7 +206,7 @@ export default {
         },
 
         {
-          title: "已被使用的数量/已领取数量",
+          title: "已被使用的Quantity/已领取Quantity",
           key: "publishNum",
           width: 200,
           render: (h, params) => {
@@ -232,13 +232,13 @@ export default {
           },
         },
         {
-          title: "优惠券类型",
+          title: "coupon类型",
           key: "couponType",
           width: 150,
           render: (h, params) => {
             let text = "";
             if (params.row.couponType === "DISCOUNT") {
-              return h("Tag", { props: { color: "blue" } }, "打折");
+              return h("Tag", { props: { color: "blue" } }, "打off");
             } else if (params.row.couponType === "PRICE") {
               return h("Tag", { props: { color: "geekblue" } }, "减免现金");
             } else {
@@ -284,7 +284,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           fixed: "right",
@@ -293,12 +293,12 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      refreshTable: true, // 修改选中状态后刷新表格
+      refreshTable: true, // modify选中状态后刷新表格
       selectDate: [], //选中的信息
     };
   },
   props: {
-    //优惠券类型 查询参数
+    //coupon类型 查询参数
     getType: {
       type: String,
       default: "",
@@ -307,7 +307,7 @@ export default {
       type: String,
       default: "",
     },
-    //已选择优惠券
+    //已selectcoupon
     selectedList: {
       type: Array,
       default: () => {
@@ -321,10 +321,10 @@ export default {
         this.init();
       }
     },
-    // 选中优惠券 父级传值
+    // 选中coupon 父级传值
     selectedList: {
       handler(val) {
-        // 判断是否是父级回调给自己已选择优惠券
+        // 判断是否是父级回调给自己已selectcoupon
         if (val.length) {
           this.selectList = val;
           this.data.forEach((item) => {
@@ -352,7 +352,7 @@ export default {
   },
   methods: {
     check() {
-      // 选中的优惠券
+      // 选中的coupon
       this.$emit("selected", this.selectList);
     },
     receivePage(id) {
@@ -371,7 +371,7 @@ export default {
       this.$router.push({ name: "add-platform-coupon" });
     },
     info(v) {
-      // 查看优惠券
+      // 查看coupon
       this.$router.push({ name: "platform-coupon-info", query: { id: v.id } });
     },
     changePage(v) {
@@ -386,7 +386,7 @@ export default {
       this.getDataList();
     },
     handleSearch() {
-      // 搜索
+      // search
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
@@ -396,7 +396,7 @@ export default {
       this.$refs.table.selectAll(false);
     },
     /**
-     * 选择优惠券
+     * selectcoupon
      */
     changeSelect(e) {
       this.selectList = e;
@@ -432,14 +432,14 @@ export default {
       this.$router.push({ name: "edit-platform-coupon", query: data });
     },
     close(v) {
-      // 下架优惠券
+      // 下架coupon
       this.$Modal.confirm({
-        title: "确认关闭",
-        // 记得确认修改此处
-        content: "确认要关闭此优惠券么?",
+        title: "确认Close",
+        // 记得确认modify此处
+        content: "确认要Close此coupon么?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           updatePlatformCouponStatus({
             couponIds: v.id,
             effectiveDays: 0,
@@ -447,7 +447,7 @@ export default {
             .then((res) => {
               this.$Modal.remove();
               if (res.success) {
-                this.$Message.success("优惠券已关闭");
+                this.$Message.success("coupon已Close");
                 this.getDataList();
               }
             })
@@ -458,19 +458,19 @@ export default {
       });
     },
     remove(v) {
-      // 下架优惠券
+      // 下架coupon
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "确认要删除此优惠券么?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "确认要delete此coupon么?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           deletePlatformCoupon(v.id)
             .then((res) => {
               this.$Modal.remove();
               if (res.success) {
-                this.$Message.success("优惠券已删除");
+                this.$Message.success("coupon已delete");
                 this.getDataList();
               }
             })
@@ -483,7 +483,7 @@ export default {
     delAll() {
       // 批量下架
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要下架的优惠券");
+        this.$Message.warning("您还未select要下架的coupon");
         return;
       }
       this.$Modal.confirm({
@@ -499,11 +499,11 @@ export default {
             couponIds: ids.toString(),
             promotionStatus: "CLOSE",
           };
-          // 批量删除
+          // 批量delete
           updatePlatformCouponStatus(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架成功");
+              this.$Message.success("下架success");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -513,7 +513,7 @@ export default {
     },
   },
   mounted() {
-    //如果作为组件方式，传入了类型值，则搜索参数附加类型
+    //如果作为组件方式，传入了类型值，则search参数附加类型
     if (this.getType) {
       this.searchForm.getType = this.getType;
       this.columns.pop();

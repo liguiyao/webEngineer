@@ -21,7 +21,7 @@
             size="medium"
             clear="vote-input"
             v-model.trim="title"
-            placeholder="请输入投票主题，最多50字"
+            placeholder="Please enter 投票主题，最多50字"
             :maxlength="50"
           />
         </div>
@@ -34,7 +34,7 @@
                 size="medium"
                 clear="vote-input"
                 v-model.trim="option.value"
-                placeholder="请输入选项内容"
+                placeholder="Please enter 选项内容"
                 :maxlength="120"
               >
                 <span
@@ -55,7 +55,7 @@
         </div>
       </el-main>
       <el-footer class="footer">
-        <el-button plain size="small">取消</el-button>
+        <el-button plain size="small">Cancel</el-button>
         <el-button
           type="primary"
           size="small"
@@ -124,13 +124,13 @@ export default {
           if (res.code == 200) {
             this.$emit('close')
             this.$notify({
-              title: '友情提示',
-              message: '发起投票成功!',
+              title: '友情Tips',
+              message: '发起投票success!',
               type: 'success',
             })
           } else {
             this.$notify({
-              title: '友情提示',
+              title: '友情Tips',
               message: res.message,
               type: 'warning',
             })

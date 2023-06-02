@@ -1,30 +1,30 @@
 <template>
   <div class="add-eval">
     <div class="title">
-      <card _Title="订单投诉" :_Size="16"></card>
+      <card _Title="complaint" :_Size="16"></card>
       <p>
         <span class="fontsize_16 global_color">{{ statusLabel[detail.complainStatus] }}</span>
-        <span class="color999 ml_20">创建时间：</span><span>{{ detail.createTime }}</span>
+        <span class="color999 ml_20">Creation time：</span><span>{{ detail.createTime }}</span>
         <span class="color999 ml_20">{{ detail.createTime }}</span>
       </p>
     </div>
 
-    <Alert class="l_title" show-icon type="warning">我的申诉信息</Alert>
+    <Alert class="l_title" show-icon type="warning">My appeal</Alert>
     <table cellspacing="0" cellpadding='0' border="1">
       <tr>
-        <td>投诉商品</td>
+        <td>Complaint goods</td>
         <td class="hover-color" @click="linkTo(`/goodsDetail?goodsId=${detail.goodsId}&skuId=${detail.skuId}`)"><img :src="detail.goodsImage" width="60" alt=""> &nbsp;{{ detail.goodsName }}</td>
       </tr>
       <tr>
-        <td>投诉主题</td>
+        <td>Subject of complaint</td>
         <td>{{ detail.complainTopic }}</td>
       </tr>
       <tr>
-        <td>投诉内容</td>
+        <td>Content of complaint</td>
         <td>{{ detail.content }}</td>
       </tr>
       <tr>
-        <td>补充内容</td>
+        <td>Supplementary content</td>
         <td>
           <div style="display:flex;align-items:center;">
             <template v-if="detail.images">
@@ -35,24 +35,24 @@
                 </div>
               </div>
             </template>
-            <div v-else>暂无</div>
+            <div v-else>absent</div>
           </div>
         </td>
       </tr>
     </table>
 
-    <Alert class="l_title" show-icon type="warning">商家申诉信息</Alert>
+    <Alert class="l_title" show-icon type="warning">Merchant appeal information</Alert>
     <table cellspacing="0" cellpadding='0' border="1">
       <tr>
-        <td>申诉时间</td>
-        <td>{{ detail.appealTime || '暂无' }}</td>
+        <td>Appeal time</td>
+        <td>{{ detail.appealTime || 'Non' }}</td>
       </tr>
       <tr>
-        <td>申诉内容</td>
-        <td>{{ detail.appealContent || '暂无' }}</td>
+        <td>Content of appeal</td>
+        <td>{{ detail.appealContent || 'Non' }}</td>
       </tr>
       <tr>
-        <td>申诉凭证</td>
+        <td>Proof of appeal</td>
         <td>
 
           <div style="display:flex;align-items:center;">
@@ -64,21 +64,21 @@
                 </div>
               </div>
             </template>
-            <div v-else>暂无</div>
+            <div v-else>absent</div>
           </div>
         </td>
       </tr>
     </table>
 
-    <Alert class="l_title" show-icon type="warning">平台仲裁</Alert>
+    <Alert class="l_title" show-icon type="warning">Platform arbitration</Alert>
     <table cellspacing="0" cellpadding='0' border="1">
       <tr>
-        <td>仲裁意见</td>
-        <td>{{ detail.arbitrationResult || '暂无' }}</td>
+        <td>opinion</td>
+        <td>{{ detail.arbitrationResult || 'Non' }}</td>
       </tr>
     </table>
 
-    <Alert class="l_title" show-icon type="warning">对话详情</Alert>
+    <Alert class="l_title" show-icon type="warning">Conversation details</Alert>
     <div class="speak-way" v-if="detail.orderComplaintCommunications && detail.orderComplaintCommunications.length">
       <div
         class="speak-msg seller"
@@ -88,18 +88,18 @@
       >
         {{
           item.owner == "PLATFORM"
-            ? "平台"
+            ? "platform"
             : item.owner == "BUYER"
-            ? "买家"
-            : "卖家"
+            ? "buyer"
+            : "seller"
         }}[{{ item.createTime }}]：
         <span>{{ item.content }}</span>
       </div>
     </div>
-    <div v-else>暂无对话</div>
+    <div v-else>No conversation</div>
     <table cellspacing="0" cellpadding='0' border="1" v-if="detail.complainStatus!='COMPLETE'">
       <tr>
-        <td>回复：</td>
+        <td>reply：</td>
         <td><label>
           <input type="textarea" maxlength="200" :rows="4" clearable
                  style="width:260px" v-model="params.content" />
@@ -109,7 +109,7 @@
         <td></td>
         <td>
           <Button type="primary"  :loading="submitLoading" @click="handleSubmit" style="margin-left: 5px">
-            回复
+            reply
           </Button>
         </td>
       </tr>
@@ -126,19 +126,19 @@ import {communication} from '@/api/order';
 export default {
   data () {
     return {
-      detail: {}, // 评价详情
+      detail: {}, // Evaluate详情
       visible: false, // 图片预览
-      previewImage: '', // 预览图片地址
+      previewImage: '', // 预览图片address
       loading: false, // 加载状态
       submitLoading: false, // 回复消息loading
       // 状态
       statusLabel: {
-        NO_APPLY: '未申请',
-        APPLYING: '申请中',
-        COMPLETE: '已完成',
-        EXPIRED: '已失效',
-        CANCEL: '已取消',
-        NEW: '待审核'
+        NO_APPLY: 'unapplied',
+        APPLYING: 'application',
+        COMPLETE: 'completed',
+        EXPIRED: 'defunct',
+        CANCEL: 'cancelled',
+        NEW: 'reviewed'
       },
       // 商家回复内容
       params: {
@@ -148,12 +148,12 @@ export default {
     }
   },
   methods: {
-    getDetail () { // 获取投诉详情
+    getDetail () { // 获取Complaint详情
       getComplainDetail(this.$route.query.id).then(res => {
         if (res.success) this.detail = res.result
       })
     },
-    goGoodsDetail (skuId, goodsId) { // 跳转商品详情
+    goGoodsDetail (skuId, goodsId) { // 跳转Goods详情
       let routerUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}
@@ -167,7 +167,7 @@ export default {
     // 回复消息
     handleSubmit () {
       if (this.params.content === '') {
-        this.$Message.error('请填写对话内容');
+        this.$Message.error('Please fill in the dialog content');
         return;
       }
       this.submitLoading = true;
@@ -175,7 +175,7 @@ export default {
       communication(this.params).then((res) => {
         this.submitLoading = false;
         if (res.success) {
-          this.$Message.success('对话成功');
+          this.$Message.success('Successful conversation');
           this.params.content = '';
           this.getDetail();
         }

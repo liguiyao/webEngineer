@@ -32,7 +32,7 @@
 
       <el-footer class="footer" height="50px">
         <el-button type="primary" size="medium" class="btn" @click="closeBox">
-          关闭窗口
+          Close窗口
         </el-button>
       </el-footer>
     </el-container>

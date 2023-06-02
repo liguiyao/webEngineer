@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {getRequest, postRequest, putRequest} from '@/libs/axios';
 
 //查询店铺列表
@@ -13,7 +13,7 @@ export const getShopListData = (params) => {
 export const disableShop = (id) => {
     return putRequest(`/store/store/disable/${id}`)
 }
-//开启店铺
+//Opening店铺
 export const enableBrand = (id) => {
     return putRequest(`/store/store/enable/${id}`)
 }
@@ -28,7 +28,7 @@ export const shopAdd = (params) => {
     return postRequest(`/store/store/add`, params)
 }
 
-//修改店铺列表
+//modify店铺列表
 export const shopEdit = (id,params) => {
     return putRequest(`/store/store/edit/${id}`, params)
 }

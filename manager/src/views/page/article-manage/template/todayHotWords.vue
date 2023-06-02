@@ -6,7 +6,7 @@
     <Row>
       <p>
         <Alert type="success">
-          这里展示今日系统中搜索前一百的搜索热词，分数为热词在排序系统中的分数，分数越高，可以在用户获取热词时进行优先展示（首页商品搜索栏下方推荐位）（分数可以填写负数，会降低推荐度）
+          这里展示今日系统中search前一百的search热词，分数为热词在排序系统中的分数，分数越高，可以在用户获取热词时进行优先展示（首页Goodssearch栏下方推荐位）（分数可以enter 负数，会降低推荐度）
         </Alert>
       </p>
     </Row>
@@ -38,9 +38,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-          >提交</Button
+          >Submit</Button
         >
       </div>
     </Modal>
@@ -99,7 +99,7 @@ export default {
           setHotWords(this.form).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
               this.modalVisible = false;
             }
@@ -121,14 +121,14 @@ export default {
     },
     deleteWords(words) {
       this.$Modal.confirm({
-        title: "是否确定删除热词",
-        content: "<p>您确定要删除此热词吗？</p>",
+        title: "是否Confirmdelete热词",
+        content: "<p>您Confirm要delete此热词吗？</p>",
         okText: "确实",
-        cancelText: "取消",
+        cancelText: "Cancel",
         onOk: () => {
           deleteHotWords({words}).then((res) => {
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getDataList();
             }
           });

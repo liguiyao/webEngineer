@@ -1,12 +1,12 @@
 <template>
   <div class="map">
-    <Modal v-model="showMap" title="选择地址" width="800">
+    <Modal v-model="showMap" title="selectaddress" width="800">
       <div class="address">{{ addrContent.address }}</div>
       <div id="map-container"></div>
 
       <div class="search-con">
         <Input
-          placeholder="输入关键字搜索"
+          placeholder="输入关键字search"
           id="input-map"
           v-model="mapSearch"
         />
@@ -22,8 +22,8 @@
         </ul>
       </div>
       <div slot="footer">
-        <Button type="default" @click="showMap = false">取消</Button>
-        <Button type="primary" :loading="loading" @click="ok">确定</Button>
+        <Button type="default" @click="showMap = false">Cancel</Button>
+        <Button type="primary" :loading="loading" @click="ok">Confirm</Button>
       </div>
     </Modal>
   </div>
@@ -38,13 +38,13 @@ export default {
     return {
       config,
       showMap: false, // modal显隐
-      mapSearch: "", // 地图搜索
+      mapSearch: "", // 地图search
       map: null, // 初始化地图
-      autoComplete: null, // 初始化搜索方法
+      autoComplete: null, // 初始化search方法
       geocoder: null, // 初始化地理、坐标转化
       positionPicker: null, // 地图拖拽选点
-      tips: [], //搜索关键字列表
-      addrContent: {}, // 回显地址信息
+      tips: [], //search关键字列表
+      addrContent: {}, // 回显address信息
       loading: false, // 加载状态
     };
   },
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     ok() {
-      // 确定选择
+      // Confirmselect
       this.loading = true;
       const params = {
         cityCode: this.addrContent.regeocode.addressComponent.citycode,
@@ -74,8 +74,8 @@ export default {
     // 初始化地图组件
     init() {
       AMapLoader.load({
-        key: this.config.aMapKey, // 申请好的Web端开发者Key，首次调用 load 时必填
-        version: "", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+        key: this.config.aMapKey, // Apply  好的Web端开发者Key，首次调用 load 时必填
+        version: "", // 指定要加载的 JSAPI 的版本，缺省时default为 1.4.15
         plugins: [
           "AMap.ToolBar",
           "AMap.Autocomplete",
@@ -102,7 +102,7 @@ export default {
           let autoOptions = {
             city: "全国",
           };
-          that.autoComplete = new AMap.Autocomplete(autoOptions); // 搜索
+          that.autoComplete = new AMap.Autocomplete(autoOptions); // search
           that.geocoder = new AMap.Geocoder(autoOptions);
 
           that.positionPicker = new AMapUI.PositionPicker({
@@ -123,10 +123,10 @@ export default {
         }).catch((e) => {});
     },
     searchOfMap(val) {
-      // 地图搜索
+      // 地图search
       let that = this;
       this.autoComplete.search(val, function (status, result) {
-        // 搜索成功时，result即是对应的匹配数据
+        // searchsuccess时，result即是对应的匹配数据
         if (status == "complete" && result.info == "OK") {
           that.tips = result.tips;
         } else {
@@ -135,9 +135,9 @@ export default {
       });
     },
     selectAddr(location) {
-      // 选择坐标
+      // select坐标
       if (!location) {
-        this.$Message.warning("请选择正确点位");
+        this.$Message.warning("Please select正确点位");
         return false;
       }
       const lnglat = [location.lng, location.lat];

@@ -1,12 +1,12 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import { getRequest, postRequest, putRequest, deleteRequest} from '@/libs/axios';
 
-//  获取商品品牌分页列表
+//  获取Goods品牌分页列表
 export const getManagerBrandPage = (params) => {
     return getRequest('/goods/brand/getByPage', params)
 }
 
-// 批量删除
+// 批量delete
 export const delBrand = (ids) =>{
   return deleteRequest(`/goods/brand/delByIds/${ids}`)
 }
@@ -16,7 +16,7 @@ export const delBrand = (ids) =>{
 export const addBrand = (params) => {
     return postRequest('/goods/brand', params)
 }
-// 修改品牌设置
+// modify品牌设置
 export const updateBrand = (params) => {
     return putRequest(`/goods/brand/${params.id}`, params)
 }
@@ -28,20 +28,20 @@ export const disableBrand = (id, params) => {
 export const getCategoryBrandListData = (category_id, params) => {
     return getRequest(`/goods/categoryBrand/${category_id}`, params)
 }
-//保存获取关联品牌
+//Save获取关联品牌
 export const saveCategoryBrand = (category_id, params) => {
     return postRequest(`/goods/categoryBrand/${category_id}`, params)
 }
-//保存获取关联规格
+//Save获取关联规格
 export const saveCategorySpec = (category_id, params) => {
     return postRequest(`/goods/categorySpec/${category_id}`, params)
 }
 
-//获取所有可用品牌
+//获取所有available品牌
 export const getBrandListData = (params) => {
     return getRequest('/goods/brand/all', params)
 }
-// 获取所有可用规格
+// 获取所有available规格
 export const getSpecificationList = (params) => {
     return getRequest('/goods/spec/all', params)
 }
@@ -56,15 +56,15 @@ export const getCategoryTree = () => {
   return getRequest(`/goods/category/allChildren`)
 }
 
-//  添加商品分类
+//  添加Goods分类
 export const insertCategory = (params) => {
     return postRequest('/goods/category', params)
 }
-//  添加商品分类
+//  添加Goods分类
 export const updateCategory = (params) => {
     return putRequest('/goods/category', params)
 }
-//删除商品分类
+//deleteGoods分类
 export const delCategory = (id) => {
     return deleteRequest(`/goods/category/${id}`)
 }
@@ -74,15 +74,15 @@ export const disableCategory = (id, type) => {
 }
 
 
-//  获取商品规格分页列表
+//  获取Goods规格分页列表
 export const getSpecListData = (params) => {
     return getRequest('/goods/spec', params)
 }
-//  添加或修改规格设置
+//  添加或modify规格设置
 export const insertSpec = (params) => {
     return postRequest('/goods/spec', params)
 }
-//  添加或修改规格设置
+//  添加或modify规格设置
 export const updateSpec = (id,params) => {
     return putRequest(`/goods/spec/${id}`, params)
 }
@@ -90,7 +90,7 @@ export const updateSpec = (id,params) => {
 export const getCategorySpecListData = (category_id, params) => {
     return getRequest(`/goods/categorySpec/${category_id}`, params)
 }
-//删除gUI个
+//deletegUI个
 export const delSpec = (id, params) => {
     return deleteRequest(`/goods/spec/${id}`, params)
 }
@@ -100,30 +100,30 @@ export const getGoodsCategory = (parent_id) => {
     return getRequest(`/goods/category/${parent_id}/all-children`)
 }
 
-//  上架商品
+//  上架Goods
 export const upGoods = (id, params) => {
     return putRequest(`/goods/goods/${id}/up`, params)
   }
-  //  下架商品
+  //  下架Goods
   export const lowGoods = (id, params) => {
     return putRequest(`/goods/goods/${id}/under`, params)
   }
 
-//  获取商品sku分页列表
+//  获取Goodssku分页列表
 export const getGoodsSkuData = (params) => {
     return getRequest('/goods/goods/sku/list', params)
 }
 
 
-//  获取商品分页列表
+//  获取Goods分页列表
 export const getGoodsListData = (params) => {
     return getRequest('/goods/goods/list', params)
 }
-//  获取待审核商品分页列表
+//  获取待审核Goods分页列表
 export const getAuthGoodsListData = (params) => {
     return getRequest('/goods/goods/auth/list', params)
 }
-//  审核商品
+//  审核Goods
 export const authGoods = (id, params) => {
     return putRequest(`/goods/goods/${id}/auth`, params)
 }
@@ -133,11 +133,11 @@ export const getCategoryParamsListData = (id, params) => {
     return getRequest(`/goods/categoryParameters/${id}`, params)
 }
 
-//查询商品绑定参数信息
+//查询Goods绑定参数信息
 export const getCategoryParamsByGoodsId = (goodsId, categoryId) => {
     return getRequest(`/goods/parameters/${goodsId}/${categoryId}`)
 }
-//保存参数
+//Save参数
 export const insertGoodsParams = (params) => {
     return postRequest('/goods/parameters', params)
 }
@@ -145,11 +145,11 @@ export const insertGoodsParams = (params) => {
 export const updateGoodsParams = (params) => {
     return putRequest('/goods/parameters', params)
 }
-//删除参数
+//delete参数
 export const deleteParams = (id, params) => {
     return deleteRequest(`/goods/parameters/${id}`, params)
 }
-//保存参数组
+//Save参数组
 export const insertParamsGroup = (params) => {
     return postRequest('/goods/categoryParameters', params)
 }
@@ -157,12 +157,12 @@ export const insertParamsGroup = (params) => {
 export const updateParamsGroup = (params) => {
     return putRequest('/goods/categoryParameters', params)
 }
-//删除参数组
+//delete参数组
 export const deleteParamsGroup = (id, params) => {
     return deleteRequest(`/goods/categoryParameters/${id}`, params)
 }
 
-//保存获取关联规格
+//Save获取关联规格
 export const getGoodsSpecInfo = (category_id, params) => {
     return getRequest(`/goods/categorySpec/goods/${category_id}`, params)
 }
@@ -174,7 +174,7 @@ export const getSkuPage = (params) => {
 }
 
 
-//查看商品详情
+//查看Goods详情
 export const getGoodsDetail = (id) => {
   return getRequest(`/goods/goods/get/${id}`)
 }
@@ -216,12 +216,12 @@ export const goodsStatistics = (params) => {
 }
 
 
-// 获取退款统计列表
+// 获取refund统计列表
 export const refundStatistics = (params) => {
     return getRequest(`/statistics/refund/order/getByPage`, params)
 }
 
-// 获取退款统计金额
+// 获取refund统计金额
 export const refundPriceStatistics = (params) => {
     return getRequest(`/statistics/refund/order/getPrice`, params)
 }

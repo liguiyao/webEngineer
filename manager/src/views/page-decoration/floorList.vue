@@ -18,12 +18,12 @@
           <div>页面名称</div>
           <div class="item-config">
             <div>状态</div>
-            <div>操作</div>
+            <div>operation</div>
           </div>
         </div>
 
         <div class="item" v-for="(item, index) in list" :key="index">
-          <div>{{ item.name || "暂无模板昵称" }}</div>
+          <div>{{ item.name || "absent模板昵称" }}</div>
           <div class="item-config">
             <i-switch
               v-model="item.pageShow"
@@ -46,12 +46,12 @@
               size="small"
               >装修</Button
             >
-            <Poptip confirm title="删除此模板？" @on-ok="delTemplate(item.id)">
-              <Button type="error" size="small">删除</Button>
+            <Poptip confirm title="delete此模板？" @on-ok="delTemplate(item.id)">
+              <Button type="error" size="small">delete</Button>
             </Poptip>
           </div>
         </div>
-        <div class="no-more" v-if="list.length == 0">暂无更多模板</div>
+        <div class="no-more" v-if="list.length == 0">absent更多模板</div>
       </div>
       <Page
         show-total
@@ -79,7 +79,7 @@
     >
       <Form ref="form" :model="formData" :label-width="80">
         <FormItem label="模板名称" prop="name">
-          <Input v-model="formData.name" placeholder="请输入模板名称" />
+          <Input v-model="formData.name" placeholder="Please enter 模板名称" />
         </FormItem>
       </Form>
     </Modal>
@@ -93,11 +93,11 @@ export default {
   data() {
     return {
       showModal: false, // 添加modal的显示
-      selectedIndex: 0, // 首页还是专题选择的index
+      selectedIndex: 0, // 首页还是专题select的index
       total: 0,
       formData: {
         // 新建模态框的数据
-        status: false, // 模板是否开启
+        status: false, // 模板是否Opening
         name: "", // 模板名称
       },
       searchForm: {
@@ -118,7 +118,7 @@ export default {
           title: "状态",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
         },
       ],
@@ -154,13 +154,13 @@ export default {
             (data.pageClientType = "PC");
           if (data.id) {
             API_floor.updateHome(data.id, data).then((res) => {
-              this.$Message.success("编辑模板成功");
+              this.$Message.success("编辑模板success");
               this.showModal = false;
               this.getTemplateList();
             });
           } else {
             API_floor.setHomeSetup(data).then((res) => {
-              this.$Message.success("新建模板成功");
+              this.$Message.success("新建模板success");
               this.showModal = false;
               this.getTemplateList();
             });
@@ -199,12 +199,12 @@ export default {
       });
     },
 
-    // 分页 修改页码
+    // 分页 modify页码
     changePageNum(val) {
       this.searchForm.pageNumber = val;
       this.getTemplateList();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(val) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = val;
@@ -238,16 +238,16 @@ export default {
       //发布模板
       API_floor.releasePageHome(id).then((res) => {
         if (res.success) {
-          this.$Message.success("发布模板成功");
+          this.$Message.success("发布模板success");
           this.getTemplateList();
         }
       });
     },
-    // 删除模板
+    // delete模板
     delTemplate(id) {
       API_floor.removePageHome(id).then((res) => {
         if (res.success) {
-          this.$Message.success("删除模板成功");
+          this.$Message.success("delete模板success");
           this.getTemplateList();
         }
       });

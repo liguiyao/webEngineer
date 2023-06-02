@@ -7,7 +7,7 @@
       change-on-select
       filterable
       clearable
-      placeholder="请选择"
+      placeholder="Please select"
     ></Cascader>
   </div>
 </template>

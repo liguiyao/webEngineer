@@ -38,7 +38,7 @@ export default {
       storeId: "", // 店铺id
       dates: [], // 日期列表
       params: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         storeName: "",
@@ -90,7 +90,7 @@ export default {
       getShopListData(this.params).then((res) => {
         if (res.success) {
           /**
-           * 解决数据请求中，滚动栏会一直上下跳动
+           * 解决数据Please 求中，滚动栏会一直上下跳动
            */
           this.shopTotal = res.result.total;
 

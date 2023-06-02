@@ -22,7 +22,7 @@ export const getStore = name => {
 }
 
 /**
- * 删除localStorage
+ * deletelocalStorage
  */
 export const removeStore = name => {
     if (!name) return;

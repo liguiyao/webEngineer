@@ -71,7 +71,7 @@ export default {
     },
     // 点击tab的回调
     tabsChange (index) {
-    //  处理并返回index
+    //  处理并Backindex
       this.isActive = index;
       this.$emit('_Change', index);
     }

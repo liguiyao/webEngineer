@@ -1,22 +1,22 @@
 <template>
   <div>
     <Card class="change-pass">
-      <p slot="title">修改密码</p>
+      <p slot="title">modify密码</p>
       <div class="mt_10">
         <Form ref="editPasswordForm" :model="editPasswordForm" :label-width="100" label-position="right" :rules="passwordValidate" style="width:450px">
           <FormItem label="原密码" prop="oldPass">
-            <Input type="password" v-model="editPasswordForm.oldPassword" placeholder="请输入现在使用的密码"></Input>
+            <Input type="password" v-model="editPasswordForm.oldPassword" placeholder="Please enter 现在使用的密码"></Input>
           </FormItem>
           <FormItem label="新密码" prop="newPass">
             <SetPassword  v-model="editPasswordForm.newPassword" @on-change="changeInputPass" />
           </FormItem>
           <FormItem label="确认新密码" prop="rePass">
-            <Input type="password" v-model="editPasswordForm.rePassword" placeholder="请再次输入新密码"></Input>
+            <Input type="password" v-model="editPasswordForm.rePassword" placeholder="Please 再次输入新密码"></Input>
           </FormItem>
           <FormItem>
-            <Button type="primary" class="mr_10" :loading="savePassLoading" @click="saveEditPass">保存
+            <Button type="primary" class="mr_10" :loading="savePassLoading" @click="saveEditPass">Save
             </Button>
-            <Button @click="cancelEditPass">取消</Button>
+            <Button @click="cancelEditPass">Cancel</Button>
           </FormItem>
         </Form>
       </div>
@@ -42,7 +42,7 @@ export default {
       }
     };
     return {
-      savePassLoading: false, // 保存加载状态
+      savePassLoading: false, // Save加载状态
       editPasswordForm: { // 编辑密码表单
         oldPassword: "",
         newPassword: "",
@@ -53,19 +53,19 @@ export default {
         oldPassword: [
           {
             required: true,
-            message: "请输入原密码",
+            message: "Please enter 原密码",
             trigger: "blur",
           },
         ],
         newPassword: [
           {
             required: true,
-            message: "请输入新密码",
+            message: "Please enter 新密码",
             trigger: "blur",
           },
           {
             min: 6,
-            message: "请至少输入6个字符",
+            message: "Please 至少输入6个字符",
             trigger: "blur",
           },
           {
@@ -77,7 +77,7 @@ export default {
         rePassword: [
           {
             required: true,
-            message: "请再次输入新密码",
+            message: "Please 再次输入新密码",
             trigger: "blur",
           },
           {
@@ -93,7 +93,7 @@ export default {
     changeInputPass(v, grade, strength) {
       this.strength = strength;
     },
-    // 确认修改密码
+    // 确认modify密码
     saveEditPass() {
       let params = {
         password: this.md5(this.editPasswordForm.oldPassword),
@@ -107,8 +107,8 @@ export default {
             this.savePassLoading = false;
             if (res.success) {
               this.$Modal.success({
-                title: "修改密码成功",
-                content: "修改密码成功，需重新登录",
+                title: "modify密码success",
+                content: "modify密码success，需重新Login",
                 onOk: () => {
                   this.$store.commit("logout", this);
                   this.$router.push({
@@ -121,7 +121,7 @@ export default {
         }
       });
     },
-    // 取消修改密码
+    // Cancelmodify密码
     cancelEditPass() {
       this.$store.commit("removeTag", "change_password");
       localStorage.pageOpenedList = JSON.stringify(

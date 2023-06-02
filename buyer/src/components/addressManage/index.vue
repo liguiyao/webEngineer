@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal v-model="showAddr" width="800" title="收件人地址">
+    <Modal v-model="showAddr" width="800" title="receiver address">
       <Form
         :model="formData"
         ref="form"
@@ -30,7 +30,7 @@
             v-model="formData.alias"
             length
             :maxlength="4"
-            placeholder="Please enter an alias, such as a company"
+            placeholder="Please enter  an alias, such as a company"
             style="width: 600px"
           ></i-input>
         </FormItem>
@@ -57,7 +57,7 @@ import {
 export default {
   name: 'addressManage',
   props: {
-    id: { // 传入的地址id
+    id: { // 传入的addressid
       defalut: '',
       type: String
     }
@@ -84,12 +84,12 @@ export default {
           }
         ]
       },
-      loading: false, // 提交的加载状态
+      loading: false, // Submit的加载状态
       mapMsg: {} // 地图信息
     };
   },
   methods: {
-    save () { // 保存地址
+    save () { // Saveaddress
       this.$refs.form.validate((valid) => {
         if (valid) {
           const params = JSON.parse(JSON.stringify(this.formData));
@@ -119,7 +119,7 @@ export default {
       });
     },
     getAddrById (id) {
-      // 获取地址详情
+      // 获取address详情
       getAddrDetail(id).then((res) => {
         if (res.success) {
           console.log(res);
@@ -130,7 +130,7 @@ export default {
       });
     },
     getAddress (item) {
-      // 获取地图选择信息
+      // 获取地图select信息
       this.mapMsg = item;
       this.$set(this.formData, 'address', item.addr);
       this.$set(this.formData, 'consigneeAddressIdPath', item.addrId);
@@ -138,15 +138,15 @@ export default {
       this.formData.lat = item.position.lat;
       this.formData.lon = item.position.lng;
     },
-    show () { // 地址模态框显示
+    show () { // address模态框显示
       this.showAddr = true;
     },
-    hide () { // 地址模态框隐藏
+    hide () { // address模态框隐藏
       this.showAddr = false;
     }
   },
   watch: {
-    id: { // 传入的地址id
+    id: { // 传入的addressid
       handler: function (v) {
         if (v) {
           this.getAddrById(v);

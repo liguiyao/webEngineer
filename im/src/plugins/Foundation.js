@@ -4,7 +4,7 @@
  * dateToUnix    将时间转unix时间戳
  * deepClone     对一个对象进行深拷贝
  * formatPrice   货币格式化
- * secrecyMobile 手机号隐私保护
+ * secrecyMobile Phone number隐私保护
  * randomString  随机生成指定长度的字符串
  */
 
@@ -133,7 +133,7 @@ function formatPrice (price) {
 }
 
 /**
- * 手机号隐私保护
+ * Phone number隐私保护
  * 隐藏中间四位数字
  * @param mobile
  * @returns {*}

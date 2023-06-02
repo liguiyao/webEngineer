@@ -28,7 +28,7 @@
         <FormItem label="校验码" prop="checkWord">
           <Input v-model="formValidate.checkWord" />
         </FormItem>
-        <FormItem label="请求地址" prop="callUrl">
+        <FormItem label="Please 求address" prop="callUrl">
           <Input class="label-appkey" v-model="formValidate.callUrl" />
         </FormItem>
 
@@ -40,7 +40,7 @@
         </FormItem>
       </div>
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
       </div>
     </Form>
   </div>
@@ -74,13 +74,13 @@ export default {
         this.setupSetting()
       }
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },
@@ -92,7 +92,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
         ];

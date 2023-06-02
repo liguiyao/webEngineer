@@ -15,7 +15,7 @@
             :style="{ background: msgLeft.bgColor }"
             @click="linkTo(msgLeft.list[0].url)"
             class="fz_12 view-btn"
-            >点击查看</Button
+            >Click to view</Button
           >
         </div>
         <div>
@@ -181,7 +181,7 @@ export default {
             }
           }
           .right-img {
-            width: 100;
+            width: 100px;
             height: 100px;
             text-align: center;
             margin: 0 auto;

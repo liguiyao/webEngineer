@@ -3,14 +3,14 @@
     <div class="aside hover-pointer" @click="goToSeckill">
       <div class="title">{{ actName }}</div>
       <div class="hour">
-        <span>{{ currHour }}:00</span>点场 倒计时
+        <span>{{ currHour }}:00</span>countdown
       </div>
       <div class="count-down" v-if="actStatus === 1">
         <span>{{ hours }}</span>
         <span>{{ minutes }}</span>
         <span>{{ seconds }}</span>
       </div>
-      <div class="act-status" v-else>未开始</div>
+      <div class="act-status" v-else>Not started</div>
     </div>
     <swiper :options="swiperOption" ref="mySwiper">
       <swiper-slide v-for="(item,index) in goodsList" :key="index">
@@ -18,8 +18,8 @@
           <img :src="item.goodsImage" width="140" height="140" :alt="item.goodsName">
           <div class="ellipsis">{{item.goodsName}}</div>
           <div>
-            <span>{{ item.price | unitPrice('￥') }}</span>
-            <span>{{ item.originalPrice | unitPrice('￥') }}</span>
+            <span>{{ item.price | unitPrice('RM') }}</span>
+            <span>{{ item.originalPrice | unitPrice('RM') }}</span>
           </div>
         </div>
       </swiper-slide>
@@ -47,9 +47,9 @@ export default {
   data () {
     return {
       list: [], // 秒杀时段列表
-      goodsList: [], // 商品列表
+      goodsList: [], // Goods列表
       actStatus: 0, // 0 未开始  1 进行中
-      actName: '限时秒杀', // 活动名称
+      actName: 'seckill', // 活动名称
       currIndex: 0, // 当前时间段的下标
       currHour: '00', // 当前秒杀场
       diffSeconds: 0, // 倒计时秒数

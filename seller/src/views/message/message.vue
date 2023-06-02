@@ -79,7 +79,7 @@
           <div class="message-content-top-bar">
             <span class="mes-back-btn-con">
               <Button type="text" @click="backMesTitleList">
-                <Icon type="ios-arrow-back"></Icon>&nbsp;&nbsp;返回
+                <Icon type="ios-arrow-back"></Icon>&nbsp;&nbsp;Back
               </Button>
             </span>
             <h3 class="mes-title">{{ mes.title }}</h3>
@@ -120,7 +120,7 @@
                 API_Index.read(v.id).then(res => {
                   this.loading = false;
                   if (res.success) {
-                    this.$Message.success("操作成功");
+                    this.$Message.success("operationsuccess");
                     this.currentMessageType = "unread"
                     this.getAll();
                   }
@@ -148,7 +148,7 @@
                 API_Index.deleteMessage(v.id).then(res => {
                   this.loading = false;
                   if (res.success) {
-                    this.$Message.success("删除成功");
+                    this.$Message.success("deletesuccess");
                     this.currentMessageType = "read"
                     this.getAll();
                   }
@@ -156,7 +156,7 @@
               }
             }
           },
-          "删除"
+          "delete"
         );
       };
       const restoreBtn = (h, params) => {
@@ -199,13 +199,13 @@
             },
             on: {
               click: () => {
-                // 彻底删除
+                // 彻底delete
                 let v = params.row;
                 this.loading = true;
                 API_Index.clearMessage(v.id).then(res => {
                   this.loading = false;
                   if (res.success) {
-                    this.$Message.success("删除成功");
+                    this.$Message.success("deletesuccess");
                     this.currentMessageType = "recycleBin"
                     this.getAll();
                   }
@@ -213,17 +213,17 @@
               }
             }
           },
-          "彻底删除"
+          "彻底delete"
         );
       };
       return {
         loading: true, // 列表加载的loading
-        params: { // 请求消息列表参数
+        params: { // Please 求消息列表参数
           status: "UN_READY",
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc" // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc" // default排序方式
         },
         total: 0, // 消息列表总数
         totalUnread: 0, // 未读总数
@@ -235,10 +235,10 @@
         recyclebinList: [], // 回收站消息
         currentMessageType: "unread", // 当前列表消息状态
         showMesTitleList: true, // 是否展示消息状态列表
-        unReadCount: 0, // 未读消息数量
-        hasReadCount: 0, // 已读消息数量
-        recycleBinCount: 0, // 回收站消息数量
-        noDataText: "暂无未读消息",
+        unReadCount: 0, // 未读消息Quantity
+        hasReadCount: 0, // 已读消息Quantity
+        recycleBinCount: 0, // 回收站消息Quantity
+        noDataText: "absent未读消息",
         mes: { // 展示消息详情
           title: "",
           time: "",
@@ -361,11 +361,11 @@
           }
         });
       },
-      // 删除消息
+      // delete消息
       deleteMessage(id) {
         API_Index.deleteMessage(id).then(res => {
           if (res.success) {
-            this.$Message.success("删除成功");
+            this.$Message.success("deletesuccess");
           }
         });
       },
@@ -379,9 +379,9 @@
         }
         this.currentMessageType = type;
         if (type == "unread") {
-          this.noDataText = "暂无未读消息";
+          this.noDataText = "absent未读消息";
         } else if (type == "read") {
-          this.noDataText = "暂无已读消息";
+          this.noDataText = "absent已读消息";
         } else {
           this.noDataText = "回收站无消息";
         }

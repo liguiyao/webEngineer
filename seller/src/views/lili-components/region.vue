@@ -7,7 +7,7 @@
       @on-visible-change="handleChangeOnSelect"
       @on-change="change"
     ></Cascader>
-  
+
   </div>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
       dd:"",
       data: [], // 地区数据
       selected: [], // 已选地区
-      changeOnSelect: false, // 选择时的变化
+      changeOnSelect: false, // select时的变化
       id: 0 // 0层id
     };
   },
@@ -29,7 +29,7 @@ export default {
 
   props: ['addressId'],
   methods: {
-    // 选择地区回显
+    // select地区回显
     change(val, selectedData) {
       /**
        * @returns [regionId,region]
@@ -41,8 +41,8 @@ export default {
     },
     /**
      * 动态设置change-on-select的值
-     * 当级联选择器弹窗展开时，设置change-on-select为true，即可以点选菜单选项值发生变化
-     * 当级联选择器弹窗关闭时，设置change-on-select为false，即能够设置初始值
+     * 当级联select器弹窗展开时，设置change-on-select为true，即可以点选菜单选项值发生变化
+     * 当级联select器弹窗Close时，设置change-on-select为false，即能够设置初始值
      */
     handleChangeOnSelect(value) {
       this.changeOnSelect = value;
@@ -56,7 +56,7 @@ export default {
           this.selected = item;
 
           /**
-           * 处理数据并返回
+           * 处理数据并Back
            */
         } else {
           res.result.forEach((child) => {

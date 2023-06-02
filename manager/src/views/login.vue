@@ -16,7 +16,7 @@
                 prefix="ios-contact"
                 size="large"
                 clearable
-                placeholder="请输入用户名"
+                placeholder="Please enter 用户名"
                 autocomplete="off"
               />
             </FormItem>
@@ -27,7 +27,7 @@
                 prefix="ios-lock"
                 size="large"
                 password
-                placeholder="请输入密码"
+                placeholder="Please enter 密码"
                 autocomplete="off"
               />
             </FormItem>
@@ -99,7 +99,7 @@ export default {
         password: [
           {
             required: true,
-            message: "密码不能为空",
+            message: "password cannot be empty",
             trigger: "blur",
           },
         ],
@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     afterLogin(res) {
-      // 登录成功后处理
+      // Loginsuccess后处理
       let accessToken = res.result.accessToken;
       let refreshToken = res.result.refreshToken;
       this.setStore("accessToken", accessToken);
@@ -129,7 +129,7 @@ export default {
       });
     },
     submitLogin() {
-      // 登录操作
+      // Loginoperation
       this.$refs.usernameLoginForm.validate((valid) => {
         if (valid) {
           this.$refs.verify.init();

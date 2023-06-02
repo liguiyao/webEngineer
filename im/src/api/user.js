@@ -41,7 +41,7 @@ export const ServeStoreGetOrderPrint = (params) => {
   return get(`${config.BASE_SELLER}/store/order/order`, params);
 };
 
-// 获取商品信息
+// 获取Goods details
 export const ServeGetGoodsDetail = (data) => {
   return get(`${config.BASE_BUYER}/buyer/goods/goods/sku/${data.goodsId}/${data.skuId}`);
 };

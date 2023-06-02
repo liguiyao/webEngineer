@@ -1,32 +1,32 @@
 <template>
   <div>
     <div class="shop">
-      <h3>售后详情</h3>
+      <h3>After-sale details</h3>
       <div class="shop-item">
         <div class="label-item">
-          <span>售后类型</span>
+          <span>after sale类型</span>
           <span>{{serviceTypeList[res.serviceType]}}</span>
         </div>
         <div class="label-item">
-          <span>售后单状态</span>
+          <span>after sale单状态</span>
           <span>{{serviceStatusList[res.serviceStatus]}}</span>
         </div>
 
         <div class="label-item">
-          <span>退款时间</span>
-          <span>{{res.refundTime || '暂无'}}</span>
+          <span>refund时间</span>
+          <span>{{res.refundTime || 'absent'}}</span>
         </div>
         <div class="label-item">
-          <span>申请退款金额</span>
+          <span>Apply  refund amount</span>
           <span>{{res.applyRefundPrice || '0'}}</span>
         </div>
         <div class="label-item">
           <span>商家备注</span>
-          <span>{{res.auditRemark || '暂无'}}</span>
+          <span>{{res.auditRemark || 'absent'}}</span>
         </div>
         <div class="label-item">
-          <span>申请原因</span>
-          <span>{{res.reason || '暂无'}}</span>
+          <span>Apply  原因</span>
+          <span>{{res.reason || 'absent'}}</span>
         </div>
 
       </div>
@@ -36,16 +36,16 @@
           <span>{{res.memberName}}</span>
         </div>
         <div class="label-item">
-          <span>店铺名称</span>
+          <span>store name</span>
           <span>{{res.sellerName}}</span>
         </div>
         <div class="label-item">
-          <span>创建时间</span>
+          <span>Create time</span>
           <span>{{res.createTime}}</span>
         </div>
 
       </div>
-      <h3>商品详情</h3>
+      <h3>Goods详情</h3>
       <div class="shop-item">
 
         <div class="goods-item">
@@ -55,7 +55,7 @@
           <div class="goods-title">
             <div>{{res.goodsName}}</div>
             <div>{{'x'+res.num}}</div>
-            <div class="goods-price">{{res.flowPrice |  unitPrice('￥')}}</div>
+            <div class="goods-price">{{res.flowPrice |  unitPrice('RM')}}</div>
 
           </div>
 
@@ -63,8 +63,8 @@
       </div>
       <div class="count-price">
         <div class="label-item">
-          <span>实际退款金额</span>
-          <span class="flowPrice">{{res.flowPrice | unitPrice('￥')}}</span>
+          <span>real refund amount</span>
+          <span class="flowPrice">{{res.flowPrice | unitPrice('RM')}}</span>
         </div>
       </div>
     </div>
@@ -77,32 +77,32 @@ export default {
     return {
       orderStatusList: {
         UNDELIVERED: "待发货",
-        UNPAID: "未付款",
+        UNPAID: "Unpaid",
         PAID: "已付款",
         DELIVERED: "已发货",
-        CANCELLED: "已取消",
-        COMPLETED: "已完成",
-        TAKE: "已完成",
+        CANCELLED: "已Cancel",
+        COMPLETED: "completed",
+        TAKE: "completed",
       },
-      // 售后类型
+      // after sale类型
       serviceTypeList: {
-        CANCEL: "取消",
-        RETURN_GOODS: "退货",
+        CANCEL: "Cancel",
+        RETURN_GOODS: "Return goods",
         EXCHANGE_GOODS: "换货",
-        RETURN_MONEY: "退款",
+        RETURN_MONEY: "refund",
       },
       serviceStatusList: {
-        APPLY: "申请售后",
-        PASS: "通过售后",
-        REFUSE: "拒绝售后",
-        BUYER_RETURN: "买家退货，待卖家收货",
+        APPLY: "Apply  after sale",
+        PASS: "通过after sale",
+        REFUSE: "拒绝after sale",
+        BUYER_RETURN: "买家Return goods，待卖家收货",
         SELLER_RE_DELIVERY: "商家换货/补发",
-        SELLER_CONFIRM: "卖家确认收货",
-        SELLER_TERMINATION: "卖家终止售后",
-        BUYER_CONFIRM: "买家确认收货",
-        BUYER_CANCEL: "买家取消售后",
-        WAIT_REFUND: "等待平台退款",
-        COMPLETE: "完成售后",
+        SELLER_CONFIRM: "卖家Confirm receipt",
+        SELLER_TERMINATION: "卖家终止after sale",
+        BUYER_CONFIRM: "买家Confirm receipt",
+        BUYER_CANCEL: "买家Cancelafter sale",
+        WAIT_REFUND: "等待平台refund",
+        COMPLETE: "完成after sale",
       },
     };
   },

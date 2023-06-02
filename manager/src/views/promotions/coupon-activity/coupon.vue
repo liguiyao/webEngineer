@@ -25,7 +25,7 @@
             size="small"
             style="margin-right: 10px"
             @click="remove(row)"
-            >关闭
+            >Close
           </Button>
         </template>
       </Table>
@@ -61,11 +61,11 @@ export default {
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
       },
       form: {
         // 添加或编辑表单对象初始化数据
@@ -75,7 +75,7 @@ export default {
       formValidate: {
         promotionName: [{ required: true, message: "不能为空", trigger: "blur" }],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -157,7 +157,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           fixed: "right",
@@ -188,18 +188,18 @@ export default {
     info(v) {
       this.$router.push({ name: "coupon-activity-info", query: { id: v.id } });
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    //搜索活动
+    //search活动
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -231,15 +231,15 @@ export default {
     //停止活动
     remove(v) {
       this.$Modal.confirm({
-        title: "确认关闭",
-        content: "确认要关闭此优惠券活动么?关闭活动只能重新创建",
+        title: "确认Close",
+        content: "确认要Close此coupon活动么?Close活动只能重新创建",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           closeActivity(v.id)
             .then((res) => {
               if (res.success) {
-                this.$Message.success("优惠券活动已关闭");
+                this.$Message.success("coupon活动已Close");
                 this.getDataList();
                 this.$Modal.remove();
               }

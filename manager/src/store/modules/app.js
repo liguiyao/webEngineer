@@ -9,7 +9,7 @@ import Vue from 'vue';
 
 const app = {
   state: {
-    styleStore: "", // 移动端楼层装修中选择风格存储
+    styleStore: "", // 移动端楼层装修中select风格存储
     added: false, // 加载路由标识
     navList: [], // 顶部菜单
     currNav: "", // 当前顶部菜单name
@@ -24,7 +24,7 @@ const app = {
     hotWords:[], //今日热词数据
     // 面包屑数组 左侧菜单
     menuList: [],
-    tagsList: [...otherRouter.children], //这块是面包屑的内容不能删除
+    tagsList: [...otherRouter.children], //这块是面包屑的内容不能delete
     routers: [otherRouter],
     messageCount: 0,
     // 在这里定义你不想要缓存的页面的name属性值(参见路由配置router.js)

@@ -3,10 +3,10 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
         <Form-item label="账单编号" prop="sn">
-          <Input type="text" v-model="searchForm.sn" placeholder="请输入账单编号" clearable style="width: 200px" />
+          <Input type="text" v-model="searchForm.sn" placeholder="Please enter 账单编号" clearable style="width: 200px" />
         </Form-item>
         <Form-item label="出帐时间" prop="createTime">
-          <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px">
+          <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px">
           </DatePicker>
         </Form-item>
         <Form-item label="筛选状态">
@@ -17,10 +17,10 @@
             <Option value="COMPLETE">已付款</Option>
           </Select>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Row class="operation padding-row">
-       
+
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom" @on-selection-change="changeSelect">
       </Table>
@@ -42,16 +42,16 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
         billStatus:"" //状态
       },
-      selectDate: null, // 选择一个时间段
+      selectDate: null, // select一个时间段
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -81,7 +81,7 @@ export default {
           },
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 120,
           tooltip: true,
@@ -94,7 +94,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.billPrice, "￥")
+              this.$options.filters.unitPrice(params.row.billPrice, "RM")
             );
           },
         },
@@ -115,7 +115,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -160,7 +160,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    handleSearch() { // 搜索
+    handleSearch() { // search
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
@@ -206,30 +206,30 @@ export default {
     },
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除 " + v.name + " ?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "您确认要delete " + v.name + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           this.deleteRequest("/bill/delByIds/" + v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
         },
       });
     },
-    delAll() { // 多选删除数据
+    delAll() { // 多选delete数据
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -237,11 +237,11 @@ export default {
             ids += e.id + ",";
           });
           ids = ids.substring(0, ids.length - 1);
-          // 批量删除
+          // 批量delete
           this.deleteRequest("/bill/delByIds/" + ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

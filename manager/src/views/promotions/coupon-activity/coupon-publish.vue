@@ -9,7 +9,7 @@
               <Input
                 type="text"
                 v-model="form.promotionName"
-                placeholder="请填写活动名称"
+                placeholder="Please enter 活动名称"
                 clearable
                 style="width: 260px"
               />
@@ -20,13 +20,13 @@
                 :options="options"
                 v-model="rangeTime"
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择活动时间"
+                placeholder="Please select活动时间"
                 style="width: 260px"
               >
               </DatePicker>
             </FormItem>
 
-            <FormItem label="优惠券活动类型" prop="couponActivityType">
+            <FormItem label="coupon活动类型" prop="couponActivityType">
               <RadioGroup
                 type="button"
                 button-style="solid"
@@ -63,7 +63,7 @@
               </RadioGroup>
             </FormItem>
             <FormItem
-              label="选择会员"
+              label="select会员"
               prop="scopeType"
               v-if="
                 form.couponActivityType === 'SPECIFY' &&
@@ -71,18 +71,18 @@
               "
             >
               <Button type="primary" icon="ios-add" @click="addVip" ghost
-                >选择会员</Button
+                >select会员</Button
               >
               <div style="margin-top: 24px" v-if="form.activityScope == 'DESIGNATED'">
                 <Table border :columns="userColumns" :data="this.selectedMember"> </Table>
               </div>
             </FormItem>
           </div>
-          <h4>配置优惠券</h4>
+          <h4>配置coupon</h4>
           <div class="form-item-view">
-            <FormItem label="选择优惠券" prop="scopeType">
+            <FormItem label="selectcoupon" prop="scopeType">
               <Button type="primary" :loading="submitLoading" @click="showSelector"
-                >选择优惠券</Button
+                >selectcoupon</Button
               >
             </FormItem>
             <FormItem label="赠送配置" prop="scopeType">
@@ -91,7 +91,7 @@
                   <Input
                     type="text"
                     v-model="form.couponActivityItems[scope.index].num"
-                    placeholder="赠送数量"
+                    placeholder="赠送Quantity"
                   />
                   <Input
                     type="text"
@@ -103,9 +103,9 @@
             </FormItem>
 
             <div>
-              <Button type="text" @click="closeCurrentPage">返回</Button>
+              <Button type="text" @click="closeCurrentPage">Back</Button>
               <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-                >提交</Button
+                >Submit</Button
               >
             </div>
           </div>
@@ -165,26 +165,26 @@ export default {
           return date && date.valueOf() < Date.now() - 86400000;
         },
       },
-      showCouponSelect: false, //显示优惠券选择框
+      showCouponSelect: false, //显示couponselect框
       rangeTime: "", //时间区间
-      checkUserList: false, //会员选择器
-      selectedMember: [], //选择的会员
+      checkUserList: false, //会员select器
+      selectedMember: [], //select的会员
       form: {
         promotionName: "", //活动名称
-        activityScope: "ALL", //活动范围 ，默认全体发券
-        couponActivityType: "REGISTERED", //触发活动方式 默认新人赠券
+        activityScope: "ALL", //活动范围 ，default全体发券
+        couponActivityType: "REGISTERED", //触发活动方式 default新人赠券
         startTime: "", //开始时间
         endTime: "", //结束时间
         memberDTOS: [], //指定会员范围
-        couponActivityItems: [], //优惠券列表
-        couponFrequencyEnum:"", //选择周期
+        couponActivityItems: [], //Coupon list
+        couponFrequencyEnum:"", //select周期
       },
-      submitLoading: false, // 添加或编辑提交状态
-      selectCouponList: [], //选择的优惠券列表
+      submitLoading: false, // 添加或编辑Submit状态
+      selectCouponList: [], //select的Coupon list
       formRule: {
         promotionName: [{ required: true, message: "活动名称不能为空" }],
-        rangeTime: [{ required: true, message: "请选择活动有效期" }],
-        description: [{ required: true, message: "请输入范围描述" }],
+        rangeTime: [{ required: true, message: "Please select活动有效期" }],
+        description: [{ required: true, message: "Please enter 范围描述" }],
       },
       // 用户表格
       userColumns: [
@@ -194,18 +194,18 @@ export default {
           minWidth: 120,
         },
         {
-          title: "手机号",
+          title: "Phone number",
           key: "mobile",
           render: (h, params) => {
-            return h("div", params.row.mobile || "暂未填写");
+            return h("div", params.row.mobile || "暂未enter ");
           },
         },
         {
-          title: "最后登录时间",
+          title: "最后Login时间",
           key: "lastLoginDate",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           minWidth: 50,
           align: "center",
@@ -224,15 +224,15 @@ export default {
                   },
                 },
               },
-              "删除"
+              "delete"
             );
           },
         },
       ],
-      //优惠券表格
+      //coupon表格
       columns: [
         {
-          title: "优惠券名称",
+          title: "coupon名称",
           key: "couponName",
           minWidth: 120,
         },
@@ -245,26 +245,26 @@ export default {
           },
         },
         {
-          title: "面额/折扣",
+          title: "面额/off扣",
           key: "couponName",
           minWidth: 120,
           render: (h, params) => {
             if (params.row.price) {
-              return h("div", this.$options.filters.unitPrice(params.row.price, "￥"));
+              return h("div", this.$options.filters.unitPrice(params.row.price, "RM"));
             } else {
-              return h("div", params.row.couponDiscount + "折");
+              return h("div", params.row.couponDiscount + "off");
             }
           },
         },
 
         {
-          title: "赠送数量",
+          title: "赠送Quantity",
           type: "template",
           slot: "sendNum",
           minWidth: 120,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           minWidth: 50,
           align: "center",
@@ -283,7 +283,7 @@ export default {
                   },
                 },
               },
-              "删除"
+              "delete"
             );
           },
         },
@@ -291,9 +291,9 @@ export default {
     };
   },
   methods: {
-    // 返回已选择的用户
+    // Back已select的用户
     callbackSelectUser(val) {
-      // 每次将返回的数据回调判断
+      // 每次将Back的数据回调判断
       let findUser = this.selectedMember.find((item) => {
         return item.id === val.id;
       });
@@ -301,7 +301,7 @@ export default {
       if (!findUser) {
         this.selectedMember.push(val);
       } else {
-        // 有重复数据就删除
+        // 有重复数据就delete
         this.selectedMember.map((item, index) => {
           if (item.id === findUser.id) {
             this.selectedMember.splice(index, 1);
@@ -311,12 +311,12 @@ export default {
       this.reSelectMember();
     },
 
-    // 删除选择的会员
+    // deleteselect的会员
     delUser(index) {
       this.selectedMember.splice(index, 1);
       this.reSelectMember();
     },
-    //更新选择的会员
+    //更新select的会员
     reSelectMember() {
       this.form.memberDTOS = this.selectedMember.map((item) => {
         return {
@@ -326,12 +326,12 @@ export default {
       });
     },
     /**
-     * 返回优惠券*/
+     * Backcoupon*/
     selectedCoupon(val) {
       this.selectCouponList = val;
       this.reSelectCoupon();
     },
-    // 删除选择的优惠券
+    // deleteselect的coupon
     delCoupon(index) {
       this.selectCouponList.splice(index, 1);
       this.reSelectCoupon();
@@ -352,11 +352,11 @@ export default {
         this.$refs.memberLayout.selectedMember = true;
       });
     },
-    //显示优惠券选择框
+    //显示couponselect框
     showSelector() {
       this.showCouponSelect = true;
     },
-    /** 保存平台优惠券 */
+    /** Save平台coupon */
     handleSubmit() {
       if(this.form.couponFrequencyEnum !== ''){
         console.log(this.activityScope)
@@ -368,12 +368,12 @@ export default {
             if (valid) {
               const params = JSON.parse(JSON.stringify(this.form));
               this.submitLoading = true;
-              // 添加 避免编辑后传入id等数据 记得删除
+              // 添加 避免编辑后传入id等数据 记得delete
               delete params.id;
               saveActivityCoupon(params).then((res) => {
                 this.submitLoading = false;
                 if (res.success) {
-                  this.$Message.success("优惠券活动创建成功");
+                  this.$Message.success("coupon活动创建success");
                   this.closeCurrentPage();
                 }
               });
@@ -392,21 +392,21 @@ export default {
         if (valid) {
           const params = JSON.parse(JSON.stringify(this.form));
           this.submitLoading = true;
-          // 添加 避免编辑后传入id等数据 记得删除
+          // 添加 避免编辑后传入id等数据 记得delete
           delete params.id;
           saveActivityCoupon(params).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("优惠券活动创建成功");
+              this.$Message.success("coupon活动创建success");
               this.closeCurrentPage();
             }
           });
         }
       });
       }
-    
+
     },
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-platform-coupon");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);

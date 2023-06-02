@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <card _Title="优惠券列表" :_Tabs="statusNameList" @_Change="change" />
+    <card _Title="Coupon list" :_Tabs="statusNameList" @_Change="change" />
     <empty v-if="list.length == 0" />
     <ul class="coupon-list" v-else>
       <li v-for="(item, index) in list" class="coupon-item" :key="index">
@@ -9,15 +9,15 @@
             <span
               v-if="item.couponType === 'PRICE'"
               class="fontsize_12 global_color"
-              >￥<span class="price">{{ item.price | unitPrice }}</span></span
+              >RM<span class="price">{{ item.price | unitPrice }}</span></span
             >
             <span
               v-if="item.couponType === 'DISCOUNT'"
               class="fontsize_12 global_color"
               ><span class="price">{{ item.discount }}</span
-              >折</span
+              >off</span
             >
-            <span class="describe">满{{ item.consumeThreshold }}元可用</span>
+            <span class="describe">full{{ item.consumeThreshold }}ringgitavailable</span>
           </div>
           <p>使用范围：{{ useScope(item.scopeType, item.storeName) }}</p>
           <p>有效期：{{ item.endTime }}</p>
@@ -54,26 +54,26 @@ export default {
   data() {
     return {
       statusNameList: [
-        // 优惠券状态
+        // coupon状态
         "未使用",
         "已使用",
         "已过期",
       ],
-      statusList: ["NEW", "USED", "EXPIRE"], // 优惠券状态
+      statusList: ["NEW", "USED", "EXPIRE"], // coupon状态
       loading: false, // 列表加载状态
       params: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         memberCouponStatus: "NEW",
       },
-      total: 0, // 优惠券总数
-      list: [], // 优惠券列表
+      total: 0, // coupon总数
+      list: [], // Coupon list
     };
   },
   methods: {
     getList() {
-      // 获取优惠券列表
+      // 获取Coupon list
       this.loading = true;
       memberCouponList(this.params).then((res) => {
         this.loading = false;
@@ -83,14 +83,14 @@ export default {
         }
       });
     },
-    // 切换优惠券状态
+    // 切换coupon状态
     change(index) {
       this.params.memberCouponStatus = this.statusList[index];
       this.params.pageNumber = 1;
       this.getList();
     },
     go(item) {
-      // 根据使用条件跳转商品列表页面
+      // 根据使用条件跳转Goods列表页面
       if (this.params.memberCouponStatus !== "NEW") return;
 
       this.$router.push({
@@ -113,22 +113,22 @@ export default {
     },
 
     useScope(type, storeName) {
-      // 根据字段返回 优惠券适用范围
+      // 根据字段Back coupon适用范围
       let shop = "平台";
-      let goods = "全部商品";
+      let goods = "All goods";
       if (storeName !== "platform") shop = storeName;
       switch (type) {
         case "ALL":
-          goods = "全部商品";
+          goods = "All goods";
           break;
         case "PORTION_GOODS":
-          goods = "部分商品";
+          goods = "Partial goods";
           break;
         case "PORTION_GOODS_CATEGORY":
-          goods = "部分分类商品";
+          goods = "Partial classified goods";
           break;
       }
-      return `${shop}${goods}可用`;
+      return `${shop}${goods}available`;
     },
   },
   mounted() {

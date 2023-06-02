@@ -38,7 +38,7 @@ export function setUpdatePwdOrdinary (params) {
   })
 }
 
-// 修改会员资料
+// modify会员资料
 export function editMemberInfo (params) {
   return request({
     url: '/buyer/passport/member/editOwn',
@@ -48,7 +48,7 @@ export function editMemberInfo (params) {
   })
 }
 
-// 修改密码
+// modify密码
 export function editPwd (params) {
   return request({
     url: `/buyer/passport/member/modifyPass`,

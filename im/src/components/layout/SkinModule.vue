@@ -11,7 +11,7 @@ export default {
         {
           theme: '',
           class: 'default',
-          text: '默认',
+          text: 'default',
         },
         {
           theme: '',

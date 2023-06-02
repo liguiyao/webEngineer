@@ -72,7 +72,7 @@ export default {
       userInfo: {}, // 用户信息
       articleList: [], // 常见问题
       params: {
-        // 请求常见问题参数
+        // Please 求常见问题参数
         pageNumber: 1,
         pageSize: 5,
         type: "ANNOUNCEMENT",

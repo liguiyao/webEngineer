@@ -9,7 +9,7 @@
               <Input
                 type="text"
                 v-model="form.promotionName"
-                placeholder="请填写活动名称"
+                placeholder="Please enter 活动名称"
                 clearable
                 style="width: 260px"
               />
@@ -19,7 +19,7 @@
                 type="datetime"
                 v-model="form.applyEndTime"
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择"
+                placeholder="Please select"
                 clearable
                 style="width: 200px"
               >
@@ -30,7 +30,7 @@
                 type="datetime"
                 v-model="form.startTime"
                 format="yyyy-MM-dd"
-                placeholder="请选择"
+                placeholder="Please select"
                 clearable
                 style="width: 200px"
               >
@@ -55,20 +55,20 @@
               ></InputNumber>
               <Button type="default" @click="addPeriod">添加时间段</Button>
             </FormItem>
-            <FormItem label="申请规则" prop="seckillRule">
+            <FormItem label="Apply  规则" prop="seckillRule">
               <Input
                 type="text"
                 v-model="form.seckillRule"
-                placeholder="申请规则"
+                placeholder="Apply  规则"
                 clearable
                 style="width: 260px"
               />
             </FormItem>
           </div>
           <div class="foot-btn">
-            <Button @click="closeCurrentPage" style="margin-right: 5px">返回</Button>
+            <Button @click="closeCurrentPage" style="margin-right: 5px">Back</Button>
             <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-              >提交</Button
+              >Submit</Button
             >
           </div>
         </div>
@@ -93,21 +93,21 @@ export default {
         startTime: "",
         /** 抢购时间段 */
         seckillPeriod: [],
-        /** 申请规则 */
+        /** Apply  规则 */
         seckillRule: "",
         promotionStatus: "NEW",
       },
       id: this.$route.query.id, // 活动id
       periodTime: null, // 抢购时间段
       showAddPeriod: false, // input显隐
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
 
       formRule: {
-        promotionName: [{ required: true, message: "请填写活动名称" }],
-        applyEndTime: [{ required: true, message: "请填写报名截止时间" }],
-        seckillPeriod: [{ required: true, message: "请填写抢购时间段" }],
-        startTime: [{ required: true, message: "请填写活动开始时间" }],
-        seckillRule: [{ required: true, message: "请输入申请规则" }],
+        promotionName: [{ required: true, message: "Please enter 活动名称" }],
+        applyEndTime: [{ required: true, message: "Please enter 报名截止时间" }],
+        seckillPeriod: [{ required: true, message: "Please enter 抢购时间段" }],
+        startTime: [{ required: true, message: "Please enter 活动开始时间" }],
+        seckillRule: [{ required: true, message: "Please enter Apply  规则" }],
       },
     };
   },
@@ -118,7 +118,7 @@ export default {
     }
   },
   methods: {
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "manager-seckill-add");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
@@ -153,7 +153,7 @@ export default {
       // 移除秒杀时间段
       this.form.seckillPeriod = this.form.seckillPeriod.filter((i) => i !== name);
     },
-    // // 申请截止时间格式化
+    // // Apply  截止时间格式化
     // applyTimeChange (time) {
     //   console.log(time);
     //   this.form.applyEndTime = time
@@ -181,7 +181,7 @@ export default {
           updateSeckill(params).then((res) => {
             this.submitLoading = false;
             if (res && res.success) {
-              this.$Message.success("编辑成功");
+              this.$Message.success("编辑success");
               this.closeCurrentPage();
             }
           });

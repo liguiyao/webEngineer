@@ -3,17 +3,17 @@
     <Card>
       <Form ref="form" :model="form" :rules="formRule">
         <div class="base-info-item">
-          <h4>添加积分商品</h4>
+          <h4>添加积分Goods</h4>
           <div class="form-item-view">
             <FormItem astyle="width: 100%">
               <div style="display: flex; margin-bottom: 10px">
-                <Button type="primary" @click="openSkuList">选择商品</Button>
+                <Button type="primary" @click="openSkuList">selectGoods</Button>
                 <Button
                   type="error"
                   ghost
                   style="margin-left: 10px"
                   @click="delSelectGoods"
-                  >批量删除</Button
+                  >批量delete</Button
                 >
               </div>
               <Table
@@ -76,7 +76,7 @@
                 type="datetime"
                 v-model="form.startTime"
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择"
+                placeholder="Please select"
                 :options="options"
                 clearable
                 style="width: 200px"
@@ -88,16 +88,16 @@
                 v-model="form.endTime"
                 format="yyyy-MM-dd HH:mm:ss"
                 :options="options"
-                placeholder="请选择"
+                placeholder="Please select"
                 clearable
                 style="width: 200px"
               >
               </DatePicker>
             </FormItem>
             <div>
-              <Button type="text" @click="closeCurrentPage">返回</Button>
+              <Button type="text" @click="closeCurrentPage">Back</Button>
               <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-                >提交</Button
+                >Submit</Button
               >
             </div>
           </div>
@@ -134,19 +134,19 @@ export default {
     };
     return {
       form: {
-        promotionGoodsList: [], // 活动商品列表
+        promotionGoodsList: [], // 活动Goods列表
       },
       showTable: true,
-      promotionGoodsList: [], // 活动商品列表
+      promotionGoodsList: [], // 活动Goods列表
       categoryList: [], // 分类列表
-      submitLoading: false, // 添加或编辑提交状态
-      selectedGoods: [], // 已选商品列表，便于删除
+      submitLoading: false, // 添加或编辑Submit状态
+      selectedGoods: [], // 已选Goods列表，便于delete
       formRule: {
         startTime: [
           {
             required: true,
             type: "date",
-            message: "请选择开始时间",
+            message: "Please select开始时间",
           },
           {
             trigger: "change",
@@ -158,7 +158,7 @@ export default {
           {
             required: true,
             type: "date",
-            message: "请选择结束时间",
+            message: "Please select结束时间",
           },
           {
             trigger: "change",
@@ -167,25 +167,25 @@ export default {
           },
         ],
         discount: [
-          { required: true, message: "请输入折扣" },
+          { required: true, message: "Please enter off扣" },
           {
             pattern: regular.discount,
-            message: "请输入0-10的数字,可有一位小数",
+            message: "Please enter 0-10的数字,可有一位小数",
           },
         ],
         sellerCommission: [
-          { required: true, message: "请输入店铺承担比例" },
-          { pattern: regular.rate, message: "请输入0-100的正整数" },
+          { required: true, message: "Please enter 店铺承担比例" },
+          { pattern: regular.rate, message: "Please enter 0-100的正整数" },
         ],
         publishNum: [
-          { required: true, message: "请输入发放数量" },
-          { pattern: regular.Integer, message: "请输入正整数" },
+          { required: true, message: "Please enter 发放Quantity" },
+          { pattern: regular.Integer, message: "Please enter 正整数" },
         ],
         couponLimitNum: [
-          { required: true, message: "请输入领取限制" },
-          { pattern: regular.Integer, message: "请输入正整数" },
+          { required: true, message: "Please enter 领取限制" },
+          { pattern: regular.Integer, message: "Please enter 正整数" },
         ],
-        description: [{ required: true, message: "请输入范围描述" }],
+        description: [{ required: true, message: "Please enter 范围描述" }],
       },
       columns: [
         {
@@ -194,7 +194,7 @@ export default {
           align: "center",
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
           render: (h, params) => {
@@ -207,7 +207,7 @@ export default {
           minWidth: 120,
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 60,
           render: (h, params) => {
@@ -215,13 +215,13 @@ export default {
           },
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           minWidth: 40,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -234,7 +234,7 @@ export default {
           },
         },
         {
-          title: "结算价格",
+          title: "结算price",
           slot: "settlementPrice",
           minWidth: 40,
         },
@@ -254,7 +254,7 @@ export default {
           minWidth: 40,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           minWidth: 50,
           align: "center",
@@ -273,7 +273,7 @@ export default {
                   },
                 },
               },
-              "删除"
+              "delete"
             );
           },
         },
@@ -289,12 +289,12 @@ export default {
     await this.getCategory();
   },
   methods: {
-    // 获取商品分类
+    // 获取Goods分类
     async getCategory() {
       let res = await getPointsGoodsCategoryList();
       this.categoryList = res.result.records;
     },
-    /** 保存积分商品 */
+    /** Save积分Goods */
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -303,7 +303,7 @@ export default {
           const end = this.$options.filters.unixToDate(this.form.endTime / 1000);
 
           if (!params || params.length == 0) {
-            this.$Modal.warning({ title: "提示", content: "请选择指定商品" });
+            this.$Modal.warning({ title: "Tips", content: "Please select指定Goods" });
             return;
           }
 
@@ -316,37 +316,37 @@ export default {
           addPointsGoods(params).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("积分商品创建成功");
+              this.$Message.success("积分Goods创建success");
               this.closeCurrentPage();
             }
           });
         }
       });
     },
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-points-goods");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
       this.$router.go(-1);
     },
-    // 选择分类
+    // select分类
     changeCategory(val, index) {
       this.promotionGoodsList[index].pointsGoodsCategoryName = val.label;
     },
     // 变更选中状态
     changeSelect(e) {
-      // 已选商品批量选择
+      // 已选Goods批量select
       this.selectedGoods = e;
     },
     delSelectGoods() {
-      // 多选删除商品
+      // 多选deleteGoods
       if (this.selectedGoods.length <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选商品吗?",
+        title: "确认delete",
+        content: "您确认要delete所选Goods吗?",
         onOk: () => {
           let ids = [];
           this.selectedGoods.forEach(function (e) {
@@ -359,11 +359,11 @@ export default {
       });
     },
     delGoods(index) {
-      // 删除商品
+      // deleteGoods
       this.promotionGoodsList.splice(index, 1);
     },
     openSkuList() {
-      // 显示商品选择器
+      // 显示Goodsselect器
       this.$refs.skuSelect.open("goods");
       let data = JSON.parse(JSON.stringify(this.promotionGoodsList));
       data.forEach((e) => {
@@ -372,7 +372,7 @@ export default {
       this.$refs.skuSelect.goodsData = data;
     },
     selectedGoodsData(item) {
-      // 回显已选商品
+      // 回显已选Goods
       let list = [];
       item.forEach((e) => {
         const obj = {

@@ -14,7 +14,7 @@
             ref="table"
             sortable="custom"
           >
-            <!-- 商品栏目格式化 -->
+            <!-- Goods栏目格式化 -->
             <template slot="imageSlot" slot-scope="scope">
               <div style="">
                 <img
@@ -52,7 +52,7 @@
             ref="table"
             sortable="custom"
           >
-            <!-- 商品栏目格式化 -->
+            <!-- Goods栏目格式化 -->
             <template slot="imageSlot" slot-scope="scope">
               <div style="">
                 <img
@@ -105,9 +105,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-          >提交
+          >Submit
         </Button>
       </div>
     </Modal>
@@ -126,7 +126,7 @@ export default {
       modalTitle: "", //添加验证码源弹出框标题
       loading: true, // 表单加载状态
       modalType: 0, // 添加或编辑标识
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       form: {
         name: "",
         resource: "",
@@ -136,24 +136,24 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入名称",
+            message: "Please enter 名称",
             trigger: "blur",
           },
         ],
         resource: [
           {
             required: true,
-            message: "请上传图片",
+            message: "Please 上传图片",
             trigger: "blur",
           },
         ],
       },
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         type: "RESOURCE",
       },
       columns: [
@@ -174,12 +174,12 @@ export default {
           minWidth: 80,
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
           minWidth: 120,
         },
         {
-          title: "最后修改人",
+          title: "最后modify人",
           key: "updateBy",
           minWidth: 80,
         },
@@ -189,7 +189,7 @@ export default {
           minWidth: 120,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 200,
@@ -226,7 +226,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -284,7 +284,7 @@ export default {
       this.modalType = 0;
       this.modalTitle = "添加验证码源";
     },
-    //修改验证码源
+    //modify验证码源
     edit(v) {
       this.form.name = v.name;
       this.form.id = v.id;
@@ -293,9 +293,9 @@ export default {
 
       this.modalType = 1;
       this.modalVisible = true;
-      this.modalTitle = "修改验证码源";
+      this.modalTitle = "modify验证码源";
     },
-    //提交表单
+    //Submit表单
     handleSubmit() {
       this.form.type = this.searchForm.type;
       this.$refs.form.validate((valid) => {
@@ -307,7 +307,7 @@ export default {
             API_Setting.addVerification(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -318,7 +318,7 @@ export default {
               (res) => {
                 this.submitLoading = false;
                 if (res.success) {
-                  this.$Message.success("修改成功");
+                  this.$Message.success("modifysuccess");
                   this.getDataList();
                   this.modalVisible = false;
                 }
@@ -328,19 +328,19 @@ export default {
         }
       });
     },
-    //删除验证码源
+    //delete验证码源
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "确认要删除此验证码源?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "确认要delete此验证码源?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           API_Setting.delVerification(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("验证码源已删除");
+              this.$Message.success("验证码源已delete");
               this.getDataList();
             }
           });

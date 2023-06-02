@@ -11,7 +11,7 @@
             </FormItem>
             <FormItem label="活动时间" prop="rangeTime">
               <DatePicker type="datetimerange" v-model="form.rangeTime" :disabled="form.promotionStatus != 'NEW'"
-                format="yyyy-MM-dd HH:mm:ss" placeholder="请选择" :options="options" style="width: 280px">
+                format="yyyy-MM-dd HH:mm:ss" placeholder="Please select" :options="options" style="width: 280px">
               </DatePicker>
             </FormItem>
             <FormItem label="活动描述" prop="description">
@@ -30,35 +30,35 @@
             <FormItem label="优惠方式">
               <RadioGroup type="button" button-style="solid" v-model="form.discountType">
                 <Radio :disabled="form.promotionStatus != 'NEW'" label="fullMinusFlag">减现金</Radio>
-                <Radio :disabled="form.promotionStatus != 'NEW'" label="fullRateFlag">打折</Radio>
+                <Radio :disabled="form.promotionStatus != 'NEW'" label="fullRateFlag">打off</Radio>
               </RadioGroup>
             </FormItem>
             <FormItem v-if="form.discountType == 'fullMinusFlag'" label="优惠金额" prop="fullMinus">
               <Input :disabled="form.promotionStatus != 'NEW'" type="text" v-model="form.fullMinus" placeholder="优惠金额"
                 clearable style="width: 280px" />
             </FormItem>
-            <FormItem v-if="form.discountType == 'fullRateFlag'" label="优惠折扣" prop="fullRate">
-              <Input :disabled="form.promotionStatus != 'NEW'" type="text" v-model="form.fullRate" placeholder="优惠折扣"
+            <FormItem v-if="form.discountType == 'fullRateFlag'" label="优惠off扣" prop="fullRate">
+              <Input :disabled="form.promotionStatus != 'NEW'" type="text" v-model="form.fullRate" placeholder="优惠off扣"
                 clearable style="width: 280px" />
-              <span class="describe">优惠折扣为0-10之间数字，可有一位小数</span>
+              <span class="describe">优惠off扣为0-10之间数字，可有一位小数</span>
             </FormItem>
             <FormItem label="额外赠送">
               <Checkbox :disabled="form.promotionStatus != 'NEW'" v-model="form.freeFreightFlag">免邮费</Checkbox>
-              <Checkbox :disabled="form.promotionStatus != 'NEW'" v-model="form.couponFlag">送优惠券</Checkbox>
+              <Checkbox :disabled="form.promotionStatus != 'NEW'" v-model="form.couponFlag">送coupon</Checkbox>
               <Checkbox :disabled="form.promotionStatus != 'NEW'" v-model="form.giftFlag">送赠品</Checkbox>
               <Checkbox :disabled="form.promotionStatus != 'NEW'" v-if="Cookies.get('userInfoSeller') &&
                 JSON.parse(Cookies.get('userInfoSeller')).selfOperated
                 " v-model="form.pointFlag">送积分</Checkbox>
             </FormItem>
-            <FormItem v-if="form.couponFlag" label="赠送优惠券" prop="couponId">
+            <FormItem v-if="form.couponFlag" label="赠送coupon" prop="couponId">
               <Select v-model="form.couponId" :disabled="form.promotionStatus != 'NEW'" filterable
-                :remote-method="getCouponList" placeholder="输入优惠券名称搜索" :loading="couponLoading" style="width: 280px">
+                :remote-method="getCouponList" placeholder="输入coupon名称search" :loading="couponLoading" style="width: 280px">
                 <Option v-for="item in couponList" :value="item.id" :key="item.id">{{ item.couponName }}</Option>
               </Select>
             </FormItem>
             <FormItem v-if="form.giftFlag" label="赠品" prop="giftId">
               <Select :disabled="form.promotionStatus != 'NEW'" v-model="form.giftId" filterable
-                :remote-method="getGiftList" placeholder="输入赠品名称搜索" :loading="giftLoading" style="width: 280px">
+                :remote-method="getGiftList" placeholder="输入赠品名称search" :loading="giftLoading" style="width: 280px">
                 <Option v-for="item in giftList" :value="item.id" :key="item.id">
                   {{ item.goodsName }}
                 </Option>
@@ -71,14 +71,14 @@
             <FormItem label="使用范围" prop="scopeType">
               <RadioGroup type="button" button-style="solid" v-model="form.scopeType">
                 <Radio :disabled="form.promotionStatus != 'NEW'" label="ALL">全品类</Radio>
-                <Radio :disabled="form.promotionStatus != 'NEW'" label="PORTION_GOODS">指定商品</Radio>
+                <Radio :disabled="form.promotionStatus != 'NEW'" label="PORTION_GOODS">指定Goods</Radio>
               </RadioGroup>
             </FormItem>
 
             <FormItem style="width: 100%" v-if="form.scopeType == 'PORTION_GOODS'">
               <div style="display: flex; margin-bottom: 10px" v-if="form.promotionStatus == 'NEW'">
-                <Button type="primary" @click="openSkuList">选择商品</Button>
-                <Button type="error" ghost style="margin-left: 10px" @click="delSelectGoods">批量删除</Button>
+                <Button type="primary" @click="openSkuList">selectGoods</Button>
+                <Button type="error" ghost style="margin-left: 10px" @click="delSelectGoods">批量delete</Button>
               </div>
               <Table border :columns="columns" :data="form.promotionGoodsList" @on-selection-change="changeSelect">
                 <template slot-scope="{ row }" slot="QRCode">
@@ -86,15 +86,15 @@
                 </template>
                 <template slot-scope="{ index }" slot="action">
                   <Button type="error" :disabled="form.promotionStatus != 'NEW' && !!id" size="small" ghost
-                    @click="delGoods(index)">删除</Button>
+                    @click="delGoods(index)">delete</Button>
                 </template>
               </Table>
             </FormItem>
 
             <div>
-              <Button type="text" @click="closeCurrentPage">返回</Button>
+              <Button type="text" @click="closeCurrentPage">Back</Button>
               <Button type="primary" :disabled="form.promotionStatus != 'NEW' && !!id" :loading="submitLoading"
-                @click="handleSubmit">提交</Button>
+                @click="handleSubmit">Submit</Button>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default {
       if (!value && value !== 0) {
         return callback(new Error("面额不能为空"));
       } else if (!regular.money.test(value)) {
-        callback(new Error("请输入正整数或者两位小数"));
+        callback(new Error("Please enter 正整数或者两位小数"));
       } else if (parseFloat(value) > 99999999) {
         callback(new Error("面额设置超过上限值"));
       } else {
@@ -136,7 +136,7 @@ export default {
       if (!value && typeof value !== "number") {
         callback(new Error("优惠门槛不能为空"));
       } else if (!regular.money.test(value)) {
-        callback(new Error("请输入正整数或者两位小数"));
+        callback(new Error("Please enter 正整数或者两位小数"));
       } else if (parseFloat(value) > 99999999) {
         callback(new Error("优惠门槛设置超过上限值"));
       } else {
@@ -153,37 +153,37 @@ export default {
         promotionStatus: "NEW",
       },
       id: this.$route.query.id, // 活动id
-      submitLoading: false, // 添加或编辑提交状态
-      selectedGoods: [], // 已选商品列表，便于删除
+      submitLoading: false, // 添加或编辑Submit状态
+      selectedGoods: [], // 已选Goods列表，便于delete
       formRule: {
         // 验证规则
         promotionName: [{ required: true, message: "活动名称不能为空" }],
-        rangeTime: [{ required: true, message: "请选择活动时间" }],
-        description: [{ required: true, message: "请填写活动描述" }],
+        rangeTime: [{ required: true, message: "Please select活动时间" }],
+        description: [{ required: true, message: "Please enter 活动描述" }],
         price: [
-          { required: true, message: "请输入面额" },
+          { required: true, message: "Please enter 面额" },
           { validator: checkPrice },
         ],
         consumptionLimit: [{ required: true, validator: checkWeight }],
         fullMoney: [{ required: true, validator: checkWeight }],
         fullMinus: [
-          { required: true, message: "请填写优惠金额" },
-          { pattern: regular.money, message: "请输入正确金额" },
+          { required: true, message: "Please enter 优惠金额" },
+          { pattern: regular.money, message: "Please enter 正确金额" },
         ],
         fullRate: [
-          { required: true, message: "请填写优惠折扣" },
+          { required: true, message: "Please enter 优惠off扣" },
           {
             pattern: regular.discount,
-            message: "请输入0-10的数字,可有一位小数",
+            message: "Please enter 0-10的数字,可有一位小数",
           },
         ],
-        couponId: [{ required: true, message: "请选择优惠券" }],
-        giftId: [{ required: true, message: "请选择赠品" }],
-        point: [{ required: true, message: "请填写积分" }],
+        couponId: [{ required: true, message: "Please selectcoupon" }],
+        giftId: [{ required: true, message: "Please select赠品" }],
+        point: [{ required: true, message: "Please enter 积分" }],
       },
-      couponList: [], // 店铺优惠券列表
+      couponList: [], // 店铺Coupon list
       giftList: [], // 赠品列表
-      giftLoading: false, // 请求赠品状态
+      giftLoading: false, // Please 求赠品状态
       columns: [
         // 表头
         {
@@ -192,18 +192,18 @@ export default {
           align: "center",
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           minWidth: 40,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -213,7 +213,7 @@ export default {
           minWidth: 40,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           minWidth: 50,
         },
@@ -235,7 +235,7 @@ export default {
     await this.getGiftList();
   },
   methods: {
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage () {
       this.$store.commit("removeTag", "full-cut-detail");
       localStorage.storeOpenedList = JSON.stringify(
@@ -244,7 +244,7 @@ export default {
       this.$router.go(-1);
     },
     openSkuList () {
-      // 显示商品选择器
+      // 显示Goodsselect器
       this.$refs.skuSelect.open("goods");
       let data = JSON.parse(JSON.stringify(this.form.promotionGoodsList));
       data.forEach((e) => {
@@ -273,7 +273,7 @@ export default {
         this.form = data;
       });
     },
-    /** 保存 */
+    /** Save */
     handleSubmit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -292,7 +292,7 @@ export default {
             (!params.promotionGoodsList ||
               params.promotionGoodsList.length == 0)
           ) {
-            this.$Modal.warning({ title: "提示", content: "请选择指定商品" });
+            this.$Modal.warning({ title: "Tips", content: "Please select指定Goods" });
             return;
           }
           if (params.scopeType == "ALL") {
@@ -316,12 +316,12 @@ export default {
           delete params.rangeTime;
           this.submitLoading = true;
           if (!this.id) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete params.id;
             newFullDiscount(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加活动成功");
+                this.$Message.success("添加活动success");
                 this.closeCurrentPage();
               }
             });
@@ -332,7 +332,7 @@ export default {
             editFullDiscount(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("编辑活动成功");
+                this.$Message.success("编辑活动success");
                 this.closeCurrentPage();
               }
             });
@@ -342,18 +342,18 @@ export default {
     },
 
     changeSelect (e) {
-      // 已选商品批量选择
+      // 已选Goods批量select
       this.selectedGoods = e;
     },
     delSelectGoods () {
-      // 多选删除商品
+      // 多选deleteGoods
       if (this.selectedGoods.length <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选商品吗?",
+        title: "确认delete",
+        content: "您确认要delete所选Goods吗?",
         onOk: () => {
           let ids = [];
           this.selectedGoods.forEach(function (e) {
@@ -368,11 +368,11 @@ export default {
       });
     },
     delGoods (index) {
-      // 删除商品
+      // deleteGoods
       this.form.promotionGoodsList.splice(index, 1);
     },
     selectedGoodsData (item) {
-      // 回显已选商品
+      // 回显已选Goods
       let list = [];
       item.forEach((e) => {
         list.push({
@@ -388,7 +388,7 @@ export default {
       this.form.promotionGoodsList = list;
     },
     getCouponList (query) {
-      // 优惠券列表
+      // Coupon list
       let params = {
         pageSize: 10,
         pageNumber: 0,

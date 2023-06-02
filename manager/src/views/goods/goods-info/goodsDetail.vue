@@ -5,21 +5,21 @@
         <div class="base-info-item">
           <h4>基本信息</h4>
           <div class="form-item-view">
-            <FormItem label="商品分类">
+            <FormItem label="Goods分类">
               <span v-for="(item, index) in goods.categoryName" :key="index">
                 {{ item }}
                 <i v-if="index !== goods.categoryName.length - 1">&gt;</i>
               </span>
             </FormItem>
-            <FormItem label="商品名称">
+            <FormItem label="goods name">
               {{ goods.goodsName }}
             </FormItem>
 
-            <FormItem label="商品卖点">
+            <FormItem label="Goods卖点">
               {{ goods.sellingPoint }}
             </FormItem>
           </div>
-          <h4>商品交易信息</h4>
+          <h4>Goods交易信息</h4>
           <div class="form-item-view">
             <FormItem label="计量单位"> {{ goods.goodsUnit }}</FormItem>
             <FormItem label="销售模式">
@@ -34,13 +34,13 @@
               </Table>
             </FormItem>
           </div>
-          <h4>商品规格及图片</h4>
+          <h4>Goods规格及图片</h4>
           <div class="form-item-view">
-            <FormItem label="商品编号"> {{ goods.id }}</FormItem>
-            <FormItem label="商品价格">
+            <FormItem label="Goods编号"> {{ goods.id }}</FormItem>
+            <FormItem label="Goodsprice">
               ¥{{ goods.price | unitPrice }}
             </FormItem>
-            <FormItem label="商品图片">
+            <FormItem label="Goods图片">
               <div
                 class="demo-upload-list"
                 v-for="(item, __index) in goods.goodsGalleryList"
@@ -62,7 +62,7 @@
                 </Modal>
               </div>
             </FormItem>
-            <FormItem label="商品规格">
+            <FormItem label="Goods规格">
               <Table :columns="skuColumn" :data="skuData">
                 <template slot="showImage" slot-scope="scope">
                   <div style="margin-top: 5px; height: 80px; display: flex">
@@ -81,7 +81,7 @@
                     disabled
                     v-model="wholesaleData[0].price"
                   >
-                    <span slot="append">元</span>
+                    <span slot="append">ringgit</span>
                   </Input>
                 </template>
                 <template slot-scope="{ row }" slot="wholePrice1">
@@ -91,7 +91,7 @@
                     disabled
                     v-model="wholesaleData[1].price"
                   >
-                    <span slot="append">元</span>
+                    <span slot="append">ringgit</span>
                   </Input>
                 </template>
                 <template slot-scope="{ row }" slot="wholePrice2">
@@ -101,15 +101,15 @@
                     disabled
                     v-model="wholesaleData[2].price"
                   >
-                    <span slot="append">元</span>
+                    <span slot="append">ringgit</span>
                   </Input>
                 </template>
               </Table>
             </FormItem>
           </div>
-          <h4>商品详情描述</h4>
+          <h4>Goods详情描述</h4>
           <div class="form-item-view">
-            <FormItem label="商品描述">
+            <FormItem label="Goods描述">
               <div v-html="goods.intro"></div>
             </FormItem>
             <FormItem label="移动端描述">
@@ -127,7 +127,7 @@ export default {
   name: "goodsDetail",
   data() {
     return {
-      goods: {}, // 商品信息
+      goods: {}, // Goods details
       previewGoodsPicture: "", // 预览图片
       goodsPictureVisible: false, // 预览图片模态框
       wholesalePreviewColumns: [
@@ -136,9 +136,9 @@ export default {
           width: 300,
           render: (h, params) => {
             let guide =
-              "当商品购买数量 ≥" +
+              "当Goodsquantity ≥" +
               params.row.num +
-              " 时，售价为 ￥" +
+              " 时，售价为 RM" +
               params.row.price +
               " /" +
               this.goods.goodsUnit;
@@ -169,7 +169,7 @@ export default {
     this.initGoods(this.$route.query.id);
   },
   methods: {
-    // 初始化数据，获取商品详情
+    // 初始化数据，获取Goods详情
     initGoods(id) {
       getGoodsDetail(id).then((res) => {
         this.goods = res.result;
@@ -198,7 +198,7 @@ export default {
               key: "cost",
             },
             {
-              title: "价格",
+              title: "price",
               key: "price",
             }
           );
@@ -210,7 +210,7 @@ export default {
         this.wholesaleData = res.result.wholesaleList;
       });
     },
-    // 预览商品图片
+    // 预览Goods图片
     handleViewGoodsPicture(url) {
       this.previewGoodsPicture = url;
       this.goodsPictureVisible = true;

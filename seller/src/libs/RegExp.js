@@ -1,6 +1,6 @@
 /**
  * 各种正则表达式
- * mobile   手机号
+ * mobile   Phone number
  * email    电子邮箱
  * password 密码【6-20位】
  * integer  正整数【不包含0】
@@ -12,7 +12,7 @@
  * TEL      固定电话
  */
 
-// 手机号
+// Phone number
 export const mobile = /^0?(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])[0-9]{8}$/
 
 // 电子邮箱

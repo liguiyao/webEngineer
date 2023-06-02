@@ -26,8 +26,8 @@
           </FormItem>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="modalVisible = false">取消</Button>
-          <Button type="primary" :loading="submitLoading" @click="handleSubmit">提交</Button>
+          <Button type="text" @click="modalVisible = false">Cancel</Button>
+          <Button type="primary" :loading="submitLoading" @click="handleSubmit">Submit</Button>
         </div>
       </Modal>
     </template>
@@ -60,10 +60,10 @@ export default {
       modalVisible: false, // 添加或编辑显示
       treeDataDefault: [],
       list: [], // 列表
-      treeValue: "", // 选择的分类
+      treeValue: "", // select的分类
       //树结构
       treeData: [],
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       modalTitle:'',
       currindex:'',
       form: {
@@ -92,7 +92,7 @@ export default {
           width: 150,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 230,
@@ -149,7 +149,7 @@ export default {
     init() {
       this.getAllList(0);
     },
-    // 文章分类的选择事件
+    // 文章分类的select事件
     handleCheckChange(data) {
       let value = "";
       let title = "";
@@ -192,7 +192,7 @@ export default {
           let obj = {};
           obj.title = item.articleCategoryName;
           obj.value = item.id;
-          obj.attr = item.articleCategoryName; // 其他你想要添加的属性
+          obj.attr = item.articleCategoryName; // Others你想要添加的属性
           obj.expand = false;
           obj.selected = false;
           obj.children = this.getTree(item.children); // 递归调用
@@ -233,7 +233,7 @@ export default {
           updatePrivacy(this.form.id,this.form.type,this.form.article).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.modalVisible = false;
             }
           });

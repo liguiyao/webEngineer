@@ -9,7 +9,7 @@
           :label-width="70"
           class="search-form"
         >
-          <Form-item label="订单号" prop="orderSn">
+          <Form-item label="Order number" prop="orderSn">
             <Input
               type="text"
               v-model="searchForm.orderSn"
@@ -18,25 +18,25 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="退款状态">
+          <Form-item label="refund状态">
             <Select
               v-model="searchForm.isRefund"
-              placeholder="请选择"
+              placeholder="Please select"
               clearable
               style="width: 200px"
             >
-              <Option value="false">未退款</Option>
-              <Option value="true">已退款</Option>
+              <Option value="false">未refund</Option>
+              <Option value="true">已refund</Option>
             </Select>
           </Form-item>
-          <Form-item label="退款时间">
+          <Form-item label="refund时间">
             <DatePicker
               v-model="selectDate"
               type="datetimerange"
               format="yyyy-MM-dd"
               clearable
               @on-change="selectDateRange"
-              placeholder="选择起始时间"
+              placeholder="select起始时间"
               style="width: 200px"
             ></DatePicker>
           </Form-item>
@@ -45,7 +45,7 @@
             type="primary"
             icon="ios-search"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -59,11 +59,11 @@
       >
         <template slot-scope="{ row, index }" slot="actions">
 
-          <Tag color="green" v-if="row.isRefund">已退款</Tag>
+          <Tag color="green" v-if="row.isRefund">已refund</Tag>
           <div v-if="!row.isRefund">
-            <Tag v-if="!row.errorMessage" color="red">未退款</Tag>
+            <Tag v-if="!row.errorMessage" color="red">未refund</Tag>
             <Tooltip v-else placement="left">
-              <Tag color="red">未退款<Icon type="md-help" /></Tag>
+              <Tag color="red">未refund<Icon type="md-help" /></Tag>
               <div
                 slot="content"
                 style="white-space: normal"
@@ -111,27 +111,27 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
         orderSn: "",
         isRefund: "",
       },
-      // 退款起止时间
+      // refund起止时间
       selectDate: null,
       columns: [
         {
-          title: "售后单号",
+          title: "After-sales order number",
           key: "afterSaleNo",
           minWidth: 150,
           tooltip: true,
         },
         {
-          title: "订单号",
+          title: "Order number",
           key: "orderSn",
           minWidth: 150,
           tooltip: true,
@@ -143,30 +143,30 @@ export default {
           tooltip: true,
         },
         {
-          title: "第三方退款流水",
+          title: "第三方refund流水",
           key: "receivableNo",
           minWidth: 130,
           tooltip: true,
         },
         {
-          title: "退款金额",
+          title: "refund amount",
           key: "totalAmount",
           minWidth: 120,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.totalAmount, "￥")
+              this.$options.filters.unitPrice(params.row.totalAmount, "RM")
             );
           },
         },
         {
-          title: "申请时间",
+          title: "Apply  时间",
           key: "createTime",
           minWidth: 120,
           tooltip: true,
         },
         {
-          title: "退款状态",
+          title: "refund状态",
           key: "isRefund",
           align:"center",
           width: 200,
@@ -193,7 +193,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;

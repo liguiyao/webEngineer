@@ -84,7 +84,7 @@ export default {
         return this.table.$emit('tree-icon-click', latestData[rowIndex], column, columnIndex, $event);
       }
       if (certainType.cell && eventType === 'click') {
-        // 点击扩展单元格
+        // 点击扩展单ringgit格
         if (this.isExpandCell(this.table, columnIndex)) {
           this.toggleStatus('Expanded', row, rowIndex);
           return this.table.$emit('expand-cell-click', latestData[rowIndex], column, columnIndex, $event);
@@ -185,7 +185,7 @@ export default {
       return classList.join(' ');
     }
 
-    // 根据type渲染单元格Cell
+    // 根据type渲染单ringgit格Cell
     function renderCell(row, rowIndex, column, columnIndex) {
       // ExpandType
       if (this.isExpandCell(this.table, columnIndex)) {

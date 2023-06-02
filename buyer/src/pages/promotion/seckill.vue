@@ -3,7 +3,7 @@
     <BaseHeader></BaseHeader>
     <Search />
     <!-- 秒杀时间段 -->
-    <div class="promotion-decorate">限时秒杀</div>
+    <div class="promotion-decorate">seckill</div>
     <ul class="time-line">
       <template v-for="(time, index) in list">
         <li v-if="index < 5" @click="currIndex = index" :key="index" :class="{ currTimeline: currIndex === index }">
@@ -22,7 +22,7 @@
         </li>
       </template>
     </ul>
-    <!-- 秒杀商品列表 -->
+    <!-- 秒杀Goods列表 -->
     <div class="goods-list">
       <empty v-if="goodsList.length === 0" />
       <div v-else class="goods-show-info1" v-for="(item, index) in goodsList" :key="index"
@@ -33,10 +33,10 @@
         <div class="goods-show-price">
           <span>
             <span class="seckill-price text-danger">{{
-              item.price | unitPrice("￥")
+              item.price | unitPrice("RM")
             }}</span>
             <span style="color: #999; text-decoration: line-through">{{
-              item.originalPrice | unitPrice("￥")
+              item.originalPrice | unitPrice("RM")
             }}</span>
           </span>
         </div>
@@ -80,7 +80,7 @@ export default {
   data () {
     return {
       list: [], // 秒杀时段列表
-      goodsList: [], // 商品列表
+      goodsList: [], // Goods列表
       interval: null, // 定时器
       currIndex: 0, // 当前时间段的下标
       currTime: 0, // 当前显示的倒计时
@@ -135,7 +135,7 @@ export default {
       });
     },
     goGoodsDetail (skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },

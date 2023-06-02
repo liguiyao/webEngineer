@@ -1,13 +1,13 @@
 <template>
   <div class="layout">
     <Form ref="formValidate" :label-width="150" label-position="right" :model="formValidate" :rules="ruleValidate">
-      <FormItem label="云IM地址" prop="httpUrl">
+      <FormItem label="云IMaddress" prop="httpUrl">
         <Input v-model="formValidate.httpUrl"/>
-        <span class="desc">配置买家端联系客服以及商家端登录客服跳转的路径</span>
+        <span class="desc">配置买家端联系客服以及商家端Login客服跳转的路径</span>
       </FormItem>
 
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
       </div>
     </Form>
   </div>
@@ -31,20 +31,20 @@ export default {
     this.init();
   },
   methods: {
-    // 保存
+    // Save
     submit(name) {
       let that = this;
       if (handleSubmit(that, name)) {
         this.setupSetting()
       }
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },
@@ -57,7 +57,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
         ];

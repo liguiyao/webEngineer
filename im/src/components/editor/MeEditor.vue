@@ -40,7 +40,7 @@
           <!--                <div class="books-title">编辑说明:</div>-->
           <!--                <p>-->
           <!--                  1.-->
-          <!--                  支持上传QQ及微信截图，在QQ或微信中截图后使用Ctrl+v上传图片。-->
+          <!--                  支持上传QQ及Wechat截图，在QQ或Wechat中截图后使用Ctrl+v上传图片。-->
           <!--                </p>-->
           <!--                <p>-->
           <!--                  2.-->
@@ -51,7 +51,7 @@
           <!--                <p>5. 按Enter发送 / Shift+Enter 换行。</p>-->
           <!--                <p>-->
           <!--                  6.-->
-          <!--                  注意：当文件正在上传时，请勿关闭网页或离开当前对话框，否则将导致文件停止上传或上传失败。-->
+          <!--                  注意：当文件正在上传时，Please 勿Close网页或离开当前对话框，否则将导致文件停止上传或上传失败。-->
           <!--                </p>-->
           <!--              </div>-->
           <!--              <i class="el-icon-info" slot="reference" />-->
@@ -166,7 +166,7 @@ export default {
       // 上次发送消息的时间
       sendtime: 0,
 
-      // 发送间隔时间（默认1秒）
+      // 发送间隔时间（default1秒）
       interval: 1000,
     };
   },
@@ -221,13 +221,13 @@ export default {
       }
     },
 
-    // 选择图片文件后回调方法
+    // select图片文件后回调方法
     uploadImageChange (e) {
       this.openImageViewer(e.target.files[0]);
       this.$refs.restFile.value = null;
     },
 
-    // 选择文件回调事件
+    // select文件回调事件
     uploadFileChange (e) {
       let maxsize = 100 * 1024 * 1024;
       if (e.target.files.length == 0) {
@@ -242,7 +242,7 @@ export default {
 
       if (file.size > maxsize) {
         this.$notify.info({
-          title: "消息",
+          title: "Messages",
           message: "上传文件不能大于100M",
         });
         return;
@@ -272,7 +272,7 @@ export default {
           this.codeBlock.isShow = false;
         } else {
           this.$notify({
-            title: "友情提示",
+            title: "友情Tips",
             message: res.message,
             type: "warning",
           });
@@ -294,7 +294,7 @@ export default {
             ref.closeBox();
           } else {
             this.$notify({
-              title: "友情提示",
+              title: "友情Tips",
               message: res.message,
               type: "warning",
             });

@@ -16,7 +16,7 @@ import MainMixin from './mixins/main-mixin'
 import face from '@/components/face'
 import faceNull from '@/components/face-null'
 
-// 引入配置文件和其他核心模块
+// 引入配置文件和Others核心模块
 import config from "@/config/config";
 import './core/lazy-use'
 import './core/global-component'
@@ -36,7 +36,7 @@ Object.keys(filters).forEach((key) => {
 // 引入自定义全局css
 import '@/assets/css/global.less'
 
-// 关闭生产提示
+// Close生产Tips
 Vue.config.productionTip = false
 
 // 注册全局 mixin
@@ -46,14 +46,14 @@ Vue.component('face-null', faceNull)
 
 
 // 添加自定义原型方法
-Vue.prototype.linkToGoods = function (goodsId, skuId) {  // 跳转买家端商品
+Vue.prototype.linkToGoods = function (goodsId, skuId) {  // 跳转买家端Goods
   if (localStorage.getItem('storeFlag') == 'false') {
     window.open(`${config.PC_URL}goodsDetail?skuId=${skuId}&goodsId=${goodsId}`, '_blank')
   } else {
     window.open(`${config.PC_URL}goodsDetail?skuId=${skuId}&goodsId=${goodsId}`, '_blank')
   }
 };
-Vue.prototype.linkToStore = function (storeId) {  // 跳转商家端商品
+Vue.prototype.linkToStore = function (storeId) {  // 跳转商家端Goods
   console.log(`${config.PC_URL}/Merchant?id=${storeId}`)
   window.open(`${config.PC_URL}/Merchant?id=${storeId}`, '_blank')
 };

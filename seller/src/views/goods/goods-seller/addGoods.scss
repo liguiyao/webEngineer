@@ -1,4 +1,4 @@
-/*选择商品品类*/
+/*selectGoods品类*/
 .content-goods-publish {
   padding: 15px;
   margin: 0 auto;
@@ -7,7 +7,7 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background: none repeat 0 0 #fff;
 
-  /*商品品类*/
+  /*Goods品类*/
   .goods-category {
     min-height: 500px;
     border-radius: 0.8em;
@@ -51,7 +51,7 @@
     color: #fff;
   }
 
-  /*!*当前选择的商品品类文字*!*/
+  /*!*当前selectgoods品类文字*!*/
   .current-goods-category {
     text-align: left;
     padding: 10px;
@@ -224,7 +224,7 @@ div.base-info-item {
   }
 }
 
-/*折叠面板*/
+/*off叠面板*/
 .el-collapse-item {
   /deep/ .el-collapse-item__header {
     text-align: left;
@@ -273,7 +273,7 @@ div.base-info-item {
   }
 }
 
-/*商品描述*/
+/*Goods描述*/
 .goods-intro {
   line-height: 40;
 }

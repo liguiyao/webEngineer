@@ -25,7 +25,7 @@ export default {
     return {
       showModal: false, // modal显隐
       selected: null, // 已选数据
-      picModelFlag: false, // 选择图片modal
+      picModelFlag: false, // select图片modal
       bgColor: '#fff' // 轮播背景色
     };
   },

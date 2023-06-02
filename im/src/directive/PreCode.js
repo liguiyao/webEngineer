@@ -6,7 +6,7 @@ const copyFunc = (pre, text) => {
   el.innerText = '复制'
   el.onclick = () => {
     Clipboard(text.replace(/(^\s*)|(\s*$)/g, ''), function() {
-      el.innerText = '复制成功!'
+      el.innerText = '复制success!'
       setTimeout(() => {
         el.innerText = '复制'
       }, 1000)

@@ -1,13 +1,13 @@
 <template>
   <div class="layout">
     <Form ref="formValidate" :label-width="150" label-position="right" :model="formValidate" :rules="ruleValidate">
-      <FormItem label="商品审核" prop="goodsCheck">
+      <FormItem label="Goods审核" prop="goodsCheck">
         <RadioGroup type="button" button-style="solid" v-model="formValidate.goodsCheck">
-          <Radio label="true">开启</Radio>
-          <Radio label="false">关闭</Radio>
+          <Radio label="true">Opening</Radio>
+          <Radio label="false">Close</Radio>
 
         </RadioGroup>
-         <span class="desc">商品审核关闭后，商家添加商品则无需审核直接上架</span>
+         <span class="desc">Goods审核Close后，商家添加Goods则无需审核直接上架</span>
       </FormItem>
       <div class="label-item">
         <FormItem class="label-item" label="缩略图宽" prop="abbreviationPictureWidth">
@@ -55,8 +55,8 @@
         </FormItem>
       </div>
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
-        <Button type="primary" style="margin-left: 100px" @click="createIndex()">重新生成所有商品索引</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
+        <Button type="primary" style="margin-left: 100px" @click="createIndex()">重新生成所有Goods索引</Button>
         <div class="progress-item" v-if="showProgress">
           <i-progress :percent="progressVal"></i-progress>
         </div>
@@ -92,14 +92,14 @@ export default {
     this.init();
   },
   methods: {
-    //保存
+    //Save
     submit(name) {
       let that = this;
       if (handleSubmit(that, name)) {
         this.setupSetting();
       }
     },
-    //重新生成所有商品索引
+    //重新生成所有Goods索引
     createIndex() {
       createIndex().then((res) => {
         if (res.success) {
@@ -112,7 +112,7 @@ export default {
                 if (progressResult != null && progressResult.flag === 0) {
                   clearInterval(this.intervalProgress);
                   this.showProgress = false;
-                  this.$Message.success("生成成功!");
+                  this.$Message.success("生成success!");
                 } else {
                   this.progressVal = Math.floor(
                     (progressResult.processed / progressResult.total) * 100
@@ -129,7 +129,7 @@ export default {
               if (progressResult != null && progressResult.flag === 0) {
                 clearInterval(this.intervalProgress);
                 this.showProgress = false;
-                this.$Message.success("生成成功!");
+                this.$Message.success("生成success!");
               } else {
                 this.progressVal = Math.floor(
                   (progressResult.processed / progressResult.total) * 100
@@ -140,13 +140,13 @@ export default {
         }
       });
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },
@@ -163,7 +163,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
           {

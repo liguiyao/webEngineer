@@ -21,7 +21,7 @@ export default {
   props: ['addressId'],
   mounted () {},
   methods: {
-    change (val, selectedData) { // 选择地区
+    change (val, selectedData) { // select地区
       /**
        * @returns [regionId,region]
        */
@@ -110,7 +110,7 @@ export default {
         }
         arr0.push(obj);
       });
-      // 根据选择的数据来加载数据列表
+      // 根据select的数据来加载数据列表
       if (length > 0) {
         let children = await getRegion(addr[0]);
         children = this.handleData(children.result);

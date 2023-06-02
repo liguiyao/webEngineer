@@ -9,11 +9,11 @@
           :label-width="70"
           class="search-form"
         >
-          <Form-item label="商品名称">
+          <Form-item label="goods name">
             <Input
               type="text"
               v-model="searchForm.goodsName"
-              placeholder="请输入商品名称"
+              placeholder="Please enter goods name"
               clearable
               style="width: 200px"
             />
@@ -22,7 +22,7 @@
             <Input
               type="text"
               v-model="searchForm.pointsS"
-              placeholder="请输入开始区间"
+              placeholder="Please enter 开始区间"
               clearable
               style="width: 200px"
             />
@@ -30,7 +30,7 @@
             <Input
               type="text"
               v-model="searchForm.pointsE"
-              placeholder="请输入结束区间"
+              placeholder="Please enter 结束区间"
               clearable
               style="width: 200px"
             />
@@ -46,7 +46,7 @@
             <Input
               type="text"
               v-model="searchForm.skuId"
-              placeholder="请输入SKU编码"
+              placeholder="Please enter SKU编码"
               clearable
               style="width: 200px"
             />
@@ -56,12 +56,12 @@
             type="primary"
             icon="ios-search"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
       <Row class="operation padding-row">
-        <Button @click="addPointsGoods" type="primary">添加积分商品</Button>
+        <Button @click="addPointsGoods" type="primary">添加积分Goods</Button>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table">
         <template slot-scope="{ row }" slot="goodsName">
@@ -91,10 +91,10 @@
           </div>
         </template>
         <template slot-scope="{ row }" slot="price">
-          <div>{{ row.originalPrice | unitPrice("￥") }}</div>
+          <div>{{ row.originalPrice | unitPrice("RM") }}</div>
         </template>
         <template slot-scope="{ row }" slot="settlementPrice">
-          <div>{{ row.settlementPrice | unitPrice("￥") }}</div>
+          <div>{{ row.settlementPrice | unitPrice("RM") }}</div>
         </template>
         <template slot-scope="{ row }" slot="quantity">
           <div>{{ row.activeStock }}</div>
@@ -118,7 +118,7 @@
             size="small"
             @click="statusChanged(row.id, 'CLOSE')"
             style="margin-right: 5px"
-            >关闭</Button
+            >Close</Button
           >
           <Button
             v-if="row.promotionStatus === 'CLOSE' || row.promotionStatus === 'END'"
@@ -126,7 +126,7 @@
             size="small"
             @click="close(row.id)"
             style="margin-right: 5px"
-            >删除</Button
+            >delete</Button
           >
         </template>
       </Table>
@@ -166,23 +166,23 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
         sort: "createTime",
-        order: "desc", // 默认排序方式
+        order: "desc", // default排序方式
       },
       statusList: [
         // 活动状态
         { label: "未开始", value: "NEW" },
         { label: "已开始", value: "START" },
         { label: "已结束", value: "END" },
-        { label: "已关闭", value: "CLOSE" },
+        { label: "已Close", value: "CLOSE" },
       ],
       columns: [
         // 表头
         {
-          title: "商品名称",
+          title: "goods name",
           slot: "goodsName",
           minWidth: 150,
           fixed: "left",
@@ -199,7 +199,7 @@ export default {
           width: 100,
         },
         {
-          title: "库存数量",
+          title: "库存Quantity",
           slot: "quantity",
           width: 100,
         },
@@ -237,7 +237,7 @@ export default {
           width: 100,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           fixed: "right",
@@ -253,22 +253,22 @@ export default {
     init() {
       this.getDataList();
     },
-    // 跳转添加商品页面
+    // 跳转添加Goods页面
     addPointsGoods() {
       this.$router.push({ name: "add-points-goods" });
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -295,46 +295,46 @@ export default {
     edit(id) {
       this.$router.push({ name: "edit-points-goods", query: { id: id } });
     },
-    // 启用 停用积分商品
+    // 启用 停用积分Goods
     statusChanged(id, status, startTime, endTime) {
       let text = "";
       let params = {};
       if (status == "START") {
-        text = "开启";
+        text = "Opening";
         params = {
           startTime: startTime,
           endTime: endTime,
         };
       } else if (status == "CLOSE") {
-        text = "关闭";
+        text = "Close";
       }
       this.$Modal.confirm({
         title: "确认" + text,
-        content: "您确认要" + text + "此积分商品?",
+        content: "您确认要" + text + "此积分Goods?",
         loading: true,
         onOk: () => {
           editPointsGoodsStatus(id, params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success(text + "成功");
+              this.$Message.success(text + "success");
               this.getDataList();
             }
           });
         },
       });
     },
-    // 删除积分商品
+    // delete积分Goods
     close(id) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除此积分商品?",
+        title: "确认delete",
+        content: "您确认要delete此积分Goods?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           deletePointsGoodsStatus(id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

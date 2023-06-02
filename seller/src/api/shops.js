@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {getRequest, postRequest, putRequest, deleteRequest, importRequest, getRequestWithNoToken} from '@/libs/axios';
 
 
@@ -37,50 +37,50 @@ export const getBillDetail = (id, params) => {
   return getRequest(`/order/bill/get/${id}`, params)
 }
 
-// 获取所有物流公司
+// 获取所有Logistics company
 export const getLogistics = (id, params) => {
   return getRequest(`/other/logistics`, params)
 }
-//返回信息
+//Back信息
 export const getIsCheck =(logisticsId) =>{
   return getRequest(`other/logistics/${logisticsId}/getStoreLogistics`)
 }
 
-// 开启物流公司
+// OpeningLogistics company
 export const logisticsChecked = (id, params) => {
   return postRequest(`/other/logistics/${id}`, params, {
     "Content-type": "application/json"
   })
 }
-//获取发货地址
+//获取发货address
 export const getDeliverAddress = () =>{
   return getRequest(`/settings/storeSettings/storeDeliverGoodsAddress`)
 }
-//修改发货地址
+//modify发货address
 export const editDeliverAddress = (params) =>{
   return putRequest(`/settings/storeSettings/storeDeliverGoodsAddress`,params)
 }
 
-// 关闭开启物流公司
+// CloseOpeningLogistics company
 export const logisticsUnChecked = (id, params) => {
   return deleteRequest(`/other/logistics/${id}`, params)
 }
-// 获取商家自提点
+// 获取商家self-lifting点
 export const getShopAddress = (id, params) => {
   return getRequest(`/member/storeAddress/`, params)
 }
 
-// 修改商家自提点
+// modify商家self-lifting点
 export const editShopAddress = (id, params) => {
   return putRequest(`/member/storeAddress/${id}`, params)
 }
 
-// 添加商品自提点
+// 添加Goodsself-lifting点
 export const addShopAddress = (params) => {
   return postRequest(`/member/storeAddress/`, params)
 }
 
-// 添加商品自提点
+// 添加Goodsself-lifting点
 export const deleteShopAddress = (id) => {
   return deleteRequest(`/member/storeAddress/${id}`)
 }
@@ -90,26 +90,26 @@ export const getShopInfo = () => {
   return getRequest(`/settings/storeSettings`)
 }
 
-// 保存商家详细信息
+// Save商家详细信息
 export const saveShopInfo = (params) => {
   return putRequest(`/settings/storeSettings`, params)
 }
 
-//获取商家退货地址
+//获取商家Return goodsaddress
 export const getRefundGoodsAddress = () => {
   return getRequest(`/settings/storeSettings/storeAfterSaleAddress`)
 }
-//修改商家退货地址
+//modify商家Return goodsaddress
 export const saveRefundGoodsAddress = (params) => {
   return putRequest(`/settings/storeSettings/storeAfterSaleAddress`, params)
 }
-//修改im商户id
+//modifyim商户id
 export const updatEmerchantId = (params) => {
   return putRequest(`/settings/storeSettings/merchantEuid`, params)
 }
 
 
-//修改保存库存预警数
+//modifySave库存预警数
 export const updateStockWarning = (params) => {
   return putRequest(`/settings/storeSettings/updateStockWarning`, params)
 }
@@ -117,7 +117,7 @@ export const updateStockWarning = (params) => {
 export const getShipTemplate = () => {
   return getRequest(`/setting/freightTemplate`)
 }
-//删除运费模板
+//delete运费模板
 export const deleteShipTemplate = (id) => {
   return deleteRequest(`/setting/freightTemplate/${id}`)
 }
@@ -131,7 +131,7 @@ export const editShipTemplate = (id, params, headers) => {
   return putRequest(`/setting/freightTemplate/${id}`, params, headers)
 }
 
-//修改电子面单等信息
+//modify电子面单等信息
 export const editChecked = (logisticsId,params) => {
   return putRequest(`/other/logistics/${logisticsId}/updateStoreLogistics`,params)
 }

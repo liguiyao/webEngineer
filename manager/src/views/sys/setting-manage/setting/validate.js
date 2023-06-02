@@ -15,7 +15,7 @@ export function handleSubmit(that, name) {
       flag = true;
       return flag;
     } else {
-      that.$Message.error("请正确填写内容!");
+      that.$Message.error("Please 正确enter 内容!");
       return flag;
     }
   });

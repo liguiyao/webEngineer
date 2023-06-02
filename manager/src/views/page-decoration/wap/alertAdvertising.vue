@@ -25,9 +25,9 @@
               <div>设置</div>
             </div>
             <div class="decorate-item-box">
-              <!-- 选择照片 -->
+              <!-- select照片 -->
               <div class="decorate-view">
-                <div class="decorate-view-title">选择图片</div>
+                <div class="decorate-view-title">select图片</div>
                 <div>
                   <img class="show-image" :src="item.img" alt />
                   <input
@@ -48,21 +48,21 @@
                     @click="handleClickFile(item, index)"
                     ghost
                     type="primary"
-                    >选择链接</Button
+                    >select链接</Button
                   >
                 </div>
               </div>
 
-              <!-- 选择连接 -->
+              <!-- select连接 -->
               <div class="decorate-view">
-                <div class="decorate-view-title">选择图片</div>
+                <div class="decorate-view-title">select图片</div>
                 <div>
                   <Button
                     ghost
                     type="primary"
                     size="small"
                     @click="clickLink(item)"
-                    >选择链接</Button
+                    >select链接</Button
                   >
                 </div>
               </div>
@@ -90,7 +90,7 @@ export default {
   },
   data() {
     return {
-      picModelFlag: false, //图片选择器
+      picModelFlag: false, //图片select器
       type: "full", // 展示方式
       //全屏广告
       advertising: [
@@ -100,7 +100,7 @@ export default {
           size: "612*836",
         },
       ],
-      linkType: "", // 选择类型
+      linkType: "", // select类型
       selectedLinks: {},
     };
   },
@@ -121,7 +121,7 @@ export default {
     this.openPage();
   },
   methods: {
-    // 回调选择的链接
+    // 回调select的链接
     selectedLink(val) {
       this.selectedLinks.url = val;
 
@@ -142,12 +142,12 @@ export default {
           : "";
       });
     },
-    // 图片选择器回显
+    // 图片select器回显
     callbackSelected(val) {
       this.picModelFlag = false;
       this.advertising[0].img = val.url;
     },
-    // 点击选择图片
+    // 点击select图片
     handleClickFile(item, index) {
       this.$refs.ossManage.selectImage = true;
       this.picModelFlag = true;

@@ -13,7 +13,7 @@ import util from "@/libs/util.js";
 export default {
   name: "messageTip",
   props: {
-    value: { // 未读消息数量
+    value: { // 未读消息Quantity
       type: Number,
       default: 0
     },

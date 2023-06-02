@@ -1,5 +1,5 @@
 <template>
-  <!-- 好友申请消息 -->
+  <!-- 好友Apply  消息 -->
   <div class="apply-card">
     <div class="card-header">
       <img class="avatar" :src="avatar" />

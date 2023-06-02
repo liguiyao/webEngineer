@@ -10,7 +10,7 @@ class WsSocket {
   connect;
 
   /**
-   * 服务器连接地址
+   * 服务器连接address
    */
   url;
 
@@ -77,16 +77,16 @@ class WsSocket {
    */
   loadSocket() {
     /**
-     * 判断当前如果是掉线提示
-     * 重连成功后关闭掉线提示，新增重连提示
+     * 判断当前如果是掉线Tips
+     * 重连success后Close掉线Tips，新增重连Tips
      */
     if (wsSignIn) {
       store.commit('SET_WS_STATUS',true);
       wsSignIn.close();
 
       Notification({
-        title: "成功",
-        message: "重连成功",
+        title: "success",
+        message: "重连success",
         type: "success",
         position: "top-right",
         duration: 1000,
@@ -122,12 +122,12 @@ class WsSocket {
   reconnect() {
     
     /**
-     * 长时间挂载页面中并且重连次数为空的时候进行提示
+     * 长时间挂载页面中并且重连次数为空的时候进行Tips
      */
     if (this.config.reconnect.number == 0) {
-      MessageBox("当前对话链接已失效，请从关闭重新进入。", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      MessageBox("当前对话链接已失效，Please 从Close重新进入。", "Tips", {
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
         closeOnPressEscape: false,
         closeOnClickModal: false,
         type: "warning",
@@ -135,25 +135,25 @@ class WsSocket {
         .then(() => {
           window.close();
           Notification({
-            title: "对话链接已失效提示",
-            message: "请手动关闭当前页面",
+            title: "对话链接已失效Tips",
+            message: "Please 手动Close当前页面",
             type: "error",
             position: "top-right",
           });
         })
         .catch(() => {
           Notification({
-            title: "对话链接已失效提示",
-            message: "请手动关闭当前页面",
+            title: "对话链接已失效Tips",
+            message: "Please 手动Close当前页面",
             type: "error",
             position: "top-right",
           });
         });
       return false;
     }
-    // 掉线重连提示
+    // 掉线重连Tips
     wsSignIn = Notification({
-      title: "掉线重连接提示",
+      title: "掉线重连接Tips",
       message: `网络连接已断开，正在尝试重新连接......`,
       type: "error",
       position: "top-right",
@@ -166,7 +166,7 @@ class WsSocket {
       return;
     }
     this.config.reconnect.lockReconnect = true;
-    // 没连接上会一直重连，设置延迟避免请求过多
+    // 没连接上会一直重连，设置延迟避免Please 求过多
     reconnect.setTimeout && clearTimeout(reconnect.setTimeout);
     this.config.reconnect.setTimeout = setTimeout(() => {
       this.connection();
@@ -183,7 +183,7 @@ class WsSocket {
   onParse(evt) {
     const res = JSON.parse(evt.data).result;
 
-    //如果创建时间是时间戳类型则转换为 日期类型，否则新压入栈的消息的创建时间和从数据库读取出来的创建时间格式对不上，处理的时候会出异常。
+    //如果Create time是时间戳类型则转换为 日期类型，否则新压入栈的消息的Create time和从数据库读取出来的Create time格式对不上，处理的时候会出异常。
     if (typeof res.createTime == "number") {
       res.createTime = this.unixToDate(res.createTime, "yyyy-MM-dd hh:mm");
     }
@@ -239,12 +239,12 @@ class WsSocket {
   }
 
   /**
-   * 关闭连接
+   * Close连接
    *
    * @param {Object} evt Websocket 消息
    */
   onClose(evt) {
-    console.log("关闭连接", evt);
+    console.log("Close连接", evt);
     if (this.config.heartbeat.enabled) {
       clearInterval(this.config.heartbeat.setInterval);
     }
@@ -311,7 +311,7 @@ class WsSocket {
   }
 
   /**
-   * 关闭连接
+   * Close连接
    */
   close() {
     this.connect.close();
@@ -327,7 +327,7 @@ class WsSocket {
     if (this.connect && this.connect.readyState === 1) {
       this.connect.send(JSON.stringify(data));
     } else {
-      console.error("WebSocket 连接已关闭...", this.connect);
+      console.error("WebSocket 连接已Close...", this.connect);
     }
   }
 }

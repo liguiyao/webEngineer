@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {
   getRequest,
   postRequest,
@@ -36,7 +36,7 @@ export const getHomeList = params => {
 
 
 /**
- * 修改楼层装修
+ * modify楼层装修
  *
  */
 export const updateHome = (id, params) => {
@@ -45,7 +45,7 @@ export const updateHome = (id, params) => {
 };
 
 /**
- * 删除楼层装修
+ * delete楼层装修
  *
  */
 export const removePageHome = (id) => {
@@ -95,7 +95,7 @@ export const getMemberMessage = (params) => {
 export const getOpenHomeData = params => {
   return getRequest(`/other/pageData/pageType/${params}`);
 };
-// 保存修改弹窗广告
+// Savemodify弹窗广告
 export const addOpenHomeData = params => {
   return postRequest(`/other/pageData/pageType/${params}`);
 };

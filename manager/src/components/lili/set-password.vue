@@ -21,7 +21,7 @@
           hide-info
           style="margin: 13px 0;"
         />
-        <br />请至少输入 6 个字符。请不要使
+        <br />Please 至少输入 6 个字符。Please 不要使
         <br />用容易被猜到的密码。
       </div>
     </Poptip>
@@ -36,7 +36,7 @@ export default {
     size: String,
     placeholder: {
       type: String,
-      default: "请输入密码，长度为6-20个字符"
+      default: "Please enter 密码，长度为6-20个字符"
     },
     disabled: {
       type: Boolean,

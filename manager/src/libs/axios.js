@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { handleRefreshToken } from "../api/index";
 import {v4 as uuidv4} from 'uuid';
 
-// 统一请求路径前缀
+// 统一Please 求路径前缀
 export const commonUrl =
   process.env.NODE_ENV === "development"
     ? BASE.API_DEV.common
@@ -42,7 +42,7 @@ service.interceptors.request.use(
     return config;
   },
   err => {
-    Message.error("请求超时");
+    Message.error("Request overtime");
     return Promise.reject(err);
   }
 );
@@ -51,7 +51,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const data = response.data;
-    // 根据返回的code值来做不同的处理(和后端约定)
+    // 根据Back的code值来做不同的处理(和后端约定)
     if (!data.success && data.message) {
       Message.error(data.message);
     }
@@ -65,14 +65,14 @@ service.interceptors.response.use(
         break;
       case 20004:
       case 401:
-        // 未登录 清除已登录状态
+        // 未Login 清除已Login状态
         Cookies.set("userInfoManager", "");
         setStore("accessToken", "");
         if (router.history.current.name != "login") {
           if (data.message !== null) {
             Message.error(data.message);
           } else {
-            Message.error("未知错误，请重新登录");
+            Message.error("未知错误，Please 重新Login");
           }
           router.push("/login");
         }
@@ -91,10 +91,10 @@ service.interceptors.response.use(
     }
   },
   async error => {
-    // 返回状态码不为200时候的错误处理
+    // Back状态码不为200时候的错误处理
     if (error.response) {
       if (error.response.status === 401) {
-        // 这种情况一般调到登录页
+        // 这种情况一般调到Login页
       } else if (error.response.status === 404) {
         // 避免刷新token报错
       } else if (error.response.status === 403 || error.response.data.code === 20004) {
@@ -118,7 +118,7 @@ service.interceptors.response.use(
           isRefreshToken = 0;
         }
       } else {
-        // 其他错误处理
+        // Others错误处理
         Message.error(error.response.data.message);
       }
     }
@@ -156,7 +156,7 @@ function getTokenDebounce() {
         });
     }
     return new Promise(resolve => {
-      // 一直看lock,直到请求失败或者成功
+      // 一直看lock,直到Please 求失败或者success
       const timer = setInterval(() => {
         if (!lock) {
           clearInterval(timer);
@@ -322,7 +322,7 @@ export const uploadFileRequest = (url, params) => {
 };
 
 /**
- * 无需token验证的请求 避免旧token过期导致请求失败
+ * 无需token验证的Please 求 避免旧token过期导致Please 求失败
  * @param {*} url
  * @param {*} params
  */
@@ -335,7 +335,7 @@ export const getRequestWithNoToken = (url, params) => {
 };
 
 /**
- * 无需token验证的请求 避免旧token过期导致请求失败
+ * 无需token验证的Please 求 避免旧token过期导致Please 求失败
  * @param {*} url
  * @param {*} params
  */
@@ -348,7 +348,7 @@ export const postRequestWithNoToken = (url, params) => {
 };
 
 /**
- * 无需token验证的请求 避免旧token过期导致请求失败
+ * 无需token验证的Please 求 避免旧token过期导致Please 求失败
  * @param {*} url
  * @param {*} params
  */

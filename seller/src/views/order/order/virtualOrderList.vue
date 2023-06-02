@@ -3,24 +3,24 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
         <Form-item label="订单编号" prop="orderSn">
-          <Input type="text" v-model="searchForm.orderSn" clearable placeholder="请输入订单编号" style="width: 160px" />
+          <Input type="text" v-model="searchForm.orderSn" clearable placeholder="Please enter 订单编号" style="width: 160px" />
         </Form-item>
         <Form-item label="会员名称" prop="buyerName">
-          <Input type="text" v-model="searchForm.buyerName" clearable placeholder="请输入会员名称" style="width: 160px" />
+          <Input type="text" v-model="searchForm.buyerName" clearable placeholder="Please enter 会员名称" style="width: 160px" />
         </Form-item>
         <Form-item label="订单状态" prop="orderStatus">
-          <Select v-model="searchForm.orderStatus" placeholder="请选择" clearable style="width: 160px">
-            <Option value="UNPAID">未付款</Option>
+          <Select v-model="searchForm.orderStatus" placeholder="Please select" clearable style="width: 160px">
+            <Option value="UNPAID">Unpaid</Option>
             <Option value="PAID">已付款</Option>
-            <Option value="COMPLETED">已完成</Option>
+            <Option value="COMPLETED">completed</Option>
             <Option value="TAKE">待核验</Option>
-            <Option value="CANCELLED">已取消</Option>
+            <Option value="CANCELLED">已Cancel</Option>
           </Select>
         </Form-item>
         <Form-item label="下单时间">
-          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 160px"></DatePicker>
+          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 160px"></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
         <Button @click="handleReset" class="search-btn">重置</Button>
       </Form>
       <div>
@@ -57,11 +57,11 @@ export default {
       orderCode: "", // 核验码
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
         orderSn: "",
@@ -72,7 +72,7 @@ export default {
       selectDate: null,
       columns: [
         {
-          title: "订单号",
+          title: "Order number",
           key: "sn",
           minWidth: 240,
           tooltip: true,
@@ -109,7 +109,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
@@ -120,7 +120,7 @@ export default {
           minWidth: 100,
           render: (h, params) => {
             if (params.row.orderStatus == "UNPAID") {
-              return h("div", [h("tag", {props: {color: "magenta"}}, "未付款")]);
+              return h("div", [h("tag", {props: {color: "magenta"}}, "Unpaid")]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [h("tag", {props: {color: "blue"}}, "已付款")]);
             } else if (params.row.orderStatus == "UNDELIVERED") {
@@ -128,11 +128,11 @@ export default {
             } else if (params.row.orderStatus == "DELIVERED") {
               return h("div", [h("tag", {props: {color: "cyan"}}, "已发货")]);
             } else if (params.row.orderStatus == "COMPLETED") {
-              return h("div", [h("tag", {props: {color: "green"}}, "已完成")]);
+              return h("div", [h("tag", {props: {color: "green"}}, "completed")]);
             } else if (params.row.orderStatus == "TAKE") {
               return h("div", [h("tag", {props: {color: "volcano"}}, "待核验")]);
             } else if (params.row.orderStatus == "CANCELLED") {
-              return h("div", [h("tag", {props: {color: "red"}}, "已取消")]);
+              return h("div", [h("tag", {props: {color: "red"}}, "已Cancel")]);
             }
           },
         },
@@ -145,7 +145,7 @@ export default {
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 100,
@@ -205,7 +205,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -239,7 +239,7 @@ export default {
         this.searchForm.endDate = v[1];
       }
     },
-    // 获取商品列表
+    // 获取Goods列表
     getDataList() {
       this.loading = true;
       API_Order.getOrderList(this.searchForm).then((res) => {
@@ -262,7 +262,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，修改KeepAlive为false，保证进入该页面是刷新
+  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
   beforeRouteLeave(to, from, next) {
     from.meta.keepAlive = false
     next()
@@ -270,7 +270,7 @@ export default {
 };
 </script>
 <style lang="scss">
-// 建议引入通用样式 可删除下面样式代码
+// 建议引入通用样式 可delete下面样式代码
 @import "@/styles/table-common.scss";
 .export {
   margin: 10px 20px 10px 0;

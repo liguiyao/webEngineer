@@ -47,7 +47,7 @@
                 </div>
                 <div class="card-item">
                   <div class="card-item-label">下单金额</div>
-                  <div class="card-item-value">{{overViewList.orderAmount || 0 | unitPrice('￥')}}</div>
+                  <div class="card-item-value">{{overViewList.orderAmount || 0 | unitPrice('RM')}}</div>
                 </div>
                 <div class="card-item">
                   <div class="card-item-label">付款笔数</div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="card-item">
                   <div class="card-item-label">付款金额</div>
-                  <div class="card-item-value">{{ overViewList.paymentAmount || 0 | unitPrice('￥')}}</div>
+                  <div class="card-item-value">{{ overViewList.paymentAmount || 0 | unitPrice('RM')}}</div>
                 </div>
 
               </div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="card-item">
                   <div class="card-item-label">退单金额</div>
-                  <div class="card-item-value">{{overViewList.refundOrderPrice || 0 | unitPrice('￥')}}</div>
+                  <div class="card-item-value">{{overViewList.refundOrderPrice || 0 | unitPrice('RM')}}</div>
                 </div>
 
               </div>
@@ -180,34 +180,34 @@ export default {
       // 订单状态
       orderStatusList: {
         UNDELIVERED: "待发货",
-        UNPAID: "未付款",
+        UNPAID: "Unpaid",
         PAID: "已付款",
         DELIVERED: "已发货",
-        CANCELLED: "已取消",
-        COMPLETED: "已完成",
-        TAKE: "已完成",
+        CANCELLED: "已Cancel",
+        COMPLETED: "completed",
+        TAKE: "completed",
       },
 
       serviceTypeList: {
         // 服务类型
-        CANCEL: "取消",
-        RETURN_GOODS: "退货",
+        CANCEL: "Cancel",
+        RETURN_GOODS: "Return goods",
         EXCHANGE_GOODS: "换货",
-        RETURN_MONEY: "退款",
+        RETURN_MONEY: "refund",
       },
       serviceStatusList: {
         // 服务类型
-        APPLY: "申请售后",
-        PASS: "通过售后",
-        REFUSE: "拒绝售后",
-        BUYER_RETURN: "买家退货，待卖家收货",
+        APPLY: "Apply  after sale",
+        PASS: "通过after sale",
+        REFUSE: "拒绝after sale",
+        BUYER_RETURN: "买家Return goods，待卖家收货",
         SELLER_RE_DELIVERY: "商家换货/补发",
-        SELLER_CONFIRM: "卖家确认收货",
-        SELLER_TERMINATION: "卖家终止售后",
-        BUYER_CONFIRM: "买家确认收货",
-        BUYER_CANCEL: "买家取消售后",
-        WAIT_REFUND: "等待平台退款",
-        COMPLETE: "完成售后",
+        SELLER_CONFIRM: "卖家Confirm receipt",
+        SELLER_TERMINATION: "卖家终止after sale",
+        BUYER_CONFIRM: "买家Confirm receipt",
+        BUYER_CANCEL: "买家Cancelafter sale",
+        WAIT_REFUND: "等待平台refund",
+        COMPLETE: "完成after sale",
       },
       //
 
@@ -245,7 +245,7 @@ export default {
           },
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
         },
 
@@ -253,22 +253,22 @@ export default {
           title: "支付时间",
           key: "paymentTime",
           render: (h, params) => {
-            return h("div", params.row.paymentTime || "暂无");
+            return h("div", params.row.paymentTime || "absent");
           },
         },
         {
-          title: "价格",
+          title: "price",
           key: "flowPrice",
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
       ],
       refundColumns: [
-        // 退货单表头
+        // Return goods单表头
         {
           type: "expand",
           width: 50,
@@ -281,7 +281,7 @@ export default {
           },
         },
         {
-          title: "商品图片",
+          title: "Goods图片",
           key: "goodsImage",
           render: (h, params) => {
             return h("img", {
@@ -297,7 +297,7 @@ export default {
         },
 
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
         },
         {
@@ -305,47 +305,47 @@ export default {
           key: "sellerName",
         },
         {
-          title: "售后单类型",
+          title: "after sale单类型",
           key: "serviceType",
           render: (h, params) => {
             return h("div", this.serviceTypeList[params.row.serviceType]);
           },
         },
         {
-          title: "售后单状态",
+          title: "after sale单状态",
           key: "serviceStatus",
           render: (h, params) => {
             return h("div", this.serviceStatusList[params.row.serviceStatus]);
           },
         },
         {
-          title: "退款时间",
+          title: "refund时间",
           key: "refundTime",
           render: (h, params) => {
-            return h("div", params.row.refundTime || "暂无");
+            return h("div", params.row.refundTime || "absent");
           },
         },
         {
-          title: "申请退款金额",
+          title: "Apply  refund amount",
           key: "applyRefundPrice",
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.applyRefundPrice, "￥")
+              this.$options.filters.unitPrice(params.row.applyRefundPrice, "RM")
             );
           },
         },
         {
-          title: "申请原因",
+          title: "Apply  原因",
           key: "reason",
         },
         {
-          title: "实际金额",
+          title: "real 金额",
           key: "flowPrice",
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
@@ -471,7 +471,7 @@ export default {
   methods: {
     // 订单图
     initOrderChart() {
-      // 默认已经加载 legend-filter 交互
+      // default已经加载 legend-filter 交互
       let data = this.chartList;
 
       data.forEach((item) => {

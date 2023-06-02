@@ -53,7 +53,7 @@
             <Button type="error" shape="circle">会员中心</Button>
           </div>
           <div v-else>
-            <Button type="error" shape="circle">请登录</Button>
+            <Button type="error" shape="circle">Please Login</Button>
           </div>
         </div>
         <div class="shop-msg">
@@ -91,8 +91,8 @@
           <thead>
             <tr>
               <th width="250">所选图片</th>
-              <th width="250">链接地址</th>
-              <th width="250">操作</th>
+              <th width="250">链接address</th>
+              <th width="250">operation</th>
             </tr>
           </thead>
           <tbody>
@@ -116,14 +116,14 @@
               </td>
               <td>
                 <Button type="info" size="small" @click="handleSelectLink(item)"
-                  >选择链接</Button
+                  >select链接</Button
                 >&nbsp;
                 <Button
                   type="error"
                   ghost
                   size="small"
                   @click="handleDel(index)"
-                  >删除</Button
+                  >delete</Button
                 >
               </td>
             </tr>
@@ -162,8 +162,8 @@
               <thead>
                 <tr>
                   <th width="250">所选图片</th>
-                  <th width="250">链接地址</th>
-                  <th width="250">操作</th>
+                  <th width="250">链接address</th>
+                  <th width="250">operation</th>
                 </tr>
               </thead>
               <tbody>
@@ -190,7 +190,7 @@
                       type="info"
                       size="small"
                       @click="handleSelectLink(item)"
-                      >选择链接</Button
+                      >select链接</Button
                     >
                   </td>
                 </tr>
@@ -200,9 +200,9 @@
         </Tabs>
       </div>
     </Modal>
-    <!-- 选择商品。链接 -->
+    <!-- selectGoods。链接 -->
     <liliDialog ref="liliDialog" @selectedLink="selectedLink"></liliDialog>
-    <!-- 选择图片 -->
+    <!-- select图片 -->
     <Modal width="1200px" v-model="picModelFlag" footer-hide>
       <ossManage @callback="callbackSelected" ref="ossManage" />
     </Modal>
@@ -221,11 +221,11 @@ export default {
     return {
       showModal: false, // modal显隐
       selected: null, // 已选数据
-      picModelFlag: false, // 选择图片modal
+      picModelFlag: false, // select图片modal
       userInfo: {},
       articleList: [
         { title: "促销计算规则" },
-        { title: "商家申请开店" },
+        { title: "商家Apply  开店" },
         { title: "商家账号注册" },
         { title: "促销计算规则" },
       ],
@@ -250,7 +250,7 @@ export default {
         { img: "", url: "" },
       ]);
     },
-    // 删除图片组
+    // delete图片组
     handleTabRemove(index) {
       this.data.options.listRight.splice(index, 1);
     },
@@ -260,21 +260,21 @@ export default {
       this.selected = item;
     },
     callbackSelected(item) {
-      // 选择图片回调
+      // select图片回调
       this.picModelFlag = false;
       this.selected.img = item.url;
     },
-    // 删除图片
+    // delete图片
     handleDel(index) {
       this.data.options.list.splice(index, 1);
     },
     selectedLink(val) {
-      // 选择链接回调
+      // select链接回调
       this.selected.url = this.$options.filters.formatLinkType(val);
       this.selected.type =
         val.___type === "other" && val.url === "" ? "link" : "other";
     },
-    // 打开选择图片modal
+    // 打开select图片modal
     handleSelectImg(item) {
       this.selected = item;
       this.$refs.ossManage.selectImage = true;

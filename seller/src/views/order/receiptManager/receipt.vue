@@ -3,25 +3,25 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
         <Form-item label="订单编号" prop="orderSn">
-          <Input type="text" v-model="searchForm.orderSn" clearable placeholder="请输入订单编号" style="width: 200px" />
+          <Input type="text" v-model="searchForm.orderSn" clearable placeholder="Please enter 订单编号" style="width: 200px" />
         </Form-item>
         <Form-item label="会员名称" prop="memberName">
-          <Input type="text" v-model="searchForm.memberName" clearable placeholder="请输入会员名称" style="width: 200px" />
+          <Input type="text" v-model="searchForm.memberName" clearable placeholder="Please enter 会员名称" style="width: 200px" />
         </Form-item>
         <Form-item label="发票抬头" prop="receiptTitle">
-          <Input type="text" v-model="searchForm.receiptTitle" clearable placeholder="请输入发票抬头" style="width: 200px" />
+          <Input type="text" v-model="searchForm.receiptTitle" clearable placeholder="Please enter 发票抬头" style="width: 200px" />
         </Form-item>
         <Form-item label="状态" prop="receiptStatus">
-          <Select v-model="searchForm.receiptStatus" placeholder="请选择" clearable style="width: 200px">
+          <Select v-model="searchForm.receiptStatus" placeholder="Please select" clearable style="width: 200px">
             <Option :value="0">未开票</Option>
             <Option :value="1">已开票</Option>
           </Select>
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
         <Button @click="handleReset" class="search-btn">重置</Button>
       </Form>
       <Table class="mt_10" :loading="loading" border :columns="columns" :data="data" ref="table">
-        <!-- 订单详情格式化 -->
+        <!-- Order details格式化 -->
         <template slot="orderSlot" slot-scope="scope">
           <a @click="$router.push({name: 'order-detail',query: {sn: scope.row.orderSn}})">{{scope.row.orderSn}}</a>
         </template>
@@ -43,16 +43,16 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         receiptStatus: "", // 发票状态
       },
       columns: [
         {
-          title: "订单号",
+          title: "Order number",
           key: "orderSn",
           minWidth: 120,
           slot: "orderSlot",
@@ -70,7 +70,7 @@ export default {
           minWidth: 90,
           tooltip: true,
           render: (h, params) => {
-            return h("div", params.row.receiptTitle || "暂未填写");
+            return h("div", params.row.receiptTitle || "暂未enter ");
           },
         },
         {
@@ -79,7 +79,7 @@ export default {
           minWidth: 100,
           tooltip: true,
           render: (h, params) => {
-            return h("div", params.row.taxpayerId || "暂未填写");
+            return h("div", params.row.taxpayerId || "暂未enter ");
           },
         },
         {
@@ -88,7 +88,7 @@ export default {
           minWidth: 90,
           tooltip: true,
           render: (h, params) => {
-            return h("div", params.row.receiptContent || "暂未填写");
+            return h("div", params.row.receiptContent || "暂未enter ");
           },
         },
         {
@@ -98,7 +98,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.receiptPrice, "￥")
+              this.$options.filters.unitPrice(params.row.receiptPrice, "RM")
             );
           },
         },
@@ -126,7 +126,7 @@ export default {
           render: (h, params) => {
             if (params.row.orderStatus == "UNPAID") {
               return h("div", [
-                h("tag", { props: { color: "magenta" } }, "未付款"),
+                h("tag", { props: { color: "magenta" } }, "Unpaid"),
               ]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [
@@ -142,7 +142,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "COMPLETED") {
               return h("div", [
-                h("tag", { props: { color: "green" } }, "已完成"),
+                h("tag", { props: { color: "green" } }, "completed"),
               ]);
             } else if (params.row.orderStatus == "TAKE") {
               return h("div", [
@@ -150,14 +150,14 @@ export default {
               ]);
             } else if (params.row.orderStatus == "CANCELLED") {
               return h("div", [
-                h("tag", { props: { color: "red" } }, "已取消"),
+                h("tag", { props: { color: "red" } }, "已Cancel"),
               ]);
             }
           },
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 80,
@@ -213,13 +213,13 @@ export default {
       this.searchForm.pageSize = v;
       this.getData();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getData();
     },
-    // 重置搜索条件
+    // 重置search条件
     handleReset() {
       this.searchForm = {};
       this.searchForm.pageNumber = 1;
@@ -255,7 +255,7 @@ export default {
         onOk: () => {
           API_Order.invoicing(params.id).then((res) => {
             if (res.success) {
-              this.$Message.success("开票成功");
+              this.$Message.success("开票success");
             }
             this.$Modal.remove();
             this.getData();
@@ -270,6 +270,6 @@ export default {
 };
 </script>
 <style lang="scss">
-// 建议引入通用样式 可删除下面样式代码
+// 建议引入通用样式 可delete下面样式代码
 @import "@/styles/table-common.scss";
 </style>

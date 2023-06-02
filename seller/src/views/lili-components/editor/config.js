@@ -22,7 +22,7 @@ export const initEditor = {
       if (res.result) {
         success(res.result)
       } else {
-        failure("上传文件有误请稍后重试");
+        failure("上传文件有误Please 稍后重试");
       }
     } catch (e) {
       failure('上传出错')

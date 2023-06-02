@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <card _Title="我的投诉"  />
+    <card _Title="我的Complaint"  />
 
     <div class="order">
       <div class="order-title">
         <Row class="order-row title">
-          <i-col span="12">商品信息</i-col>
-          <i-col span="4">投诉状态</i-col>
-          <i-col span="4">投诉主题</i-col>
+          <i-col span="12">Goods details</i-col>
+          <i-col span="4">Complaint状态</i-col>
+          <i-col span="4">Complaint主题</i-col>
           <i-col span="6"></i-col>
         </Row>
       </div>
@@ -16,10 +16,10 @@
       <div class="order-item" v-else v-for="(item, index) in list" :key="index">
         <div>
           <div class="title order-item-title">
-            <span>投诉单号:{{item.id}}</span>
+            <span>Complaint单号:{{item.id}}</span>
             <span class="color999 ml_10">{{item.createTime}}</span>
-            <span class="hover-pointer fontsize_12 eval-detail" @click="goDetail(item.id)">投诉详情</span>
-            <span class="hover-pointer fontsize_12 eval-detail" style="right: 90px" v-if="item.complainStatus === 'APPLYING' || item.complainStatus === 'NEW'" @click="cancel(item.id)">取消投诉</span>
+            <span class="hover-pointer fontsize_12 eval-detail" @click="goDetail(item.id)">Complaint详情</span>
+            <span class="hover-pointer fontsize_12 eval-detail" style="right: 90px" v-if="item.complainStatus === 'APPLYING' || item.complainStatus === 'NEW'" @click="cancel(item.id)">CancelComplaint</span>
           </div>
           <Row class="order-item-view">
             <i-col span="12" class="item-view-name">
@@ -66,17 +66,17 @@ export default {
   data () {
     return {
       loading: false, // 加载状态
-      list: [], // 投诉列表
-      statusLabel: { // 投诉状态
-        NO_APPLY: '未申请',
-        APPLYING: '申请中',
-        COMPLETE: '已完成',
+      list: [], // Complaint列表
+      statusLabel: { // Complaint状态
+        NO_APPLY: '未Apply  ',
+        APPLYING: 'Apply  中',
+        COMPLETE: 'completed',
         EXPIRED: '已失效',
-        CANCEL: '已取消',
+        CANCEL: '已Cancel',
         NEW: '新订单'
       },
-      total: 0, // 投诉总数
-      params: { // 请求参数
+      total: 0, // Complaint总数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10
       }
@@ -86,7 +86,7 @@ export default {
     this.getList()
   },
   methods: {
-    getList () { // 获取投诉列表
+    getList () { // 获取Complaint列表
       complainList(this.params).then(res => {
         if (res.success) {
           const list = res.result.records;
@@ -104,14 +104,14 @@ export default {
       this.params.pageSize = val;
       this.getList()
     },
-    cancel (id) { // 取消投诉
+    cancel (id) { // CancelComplaint
       this.$Modal.confirm({
-        title: '取消投诉',
-        content: '<p>确定取消投诉吗？</p>',
+        title: 'CancelComplaint',
+        content: '<p>ConfirmCancelComplaint吗？</p>',
         onOk: () => {
           clearComplain(id).then((res) => {
             if (res.success) {
-              this.$Message.success('取消投诉成功');
+              this.$Message.success('CancelComplaintsuccess');
               this.getCartList();
             }
           });
@@ -119,7 +119,7 @@ export default {
         onCancel: () => { }
       });
     },
-    goDetail (id) { // 跳转投诉详情
+    goDetail (id) { // 跳转Complaint详情
       this.$router.push({path: '/home/complainDetail', query: { id }})
     }
   }

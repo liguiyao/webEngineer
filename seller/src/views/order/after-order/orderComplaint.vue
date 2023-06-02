@@ -8,31 +8,31 @@
               type="text"
               v-model="searchForm.memberName"
               clearable
-              placeholder="请输入会员名称"
+              placeholder="Please enter 会员名称"
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="订单号" prop="orderSn">
+          <Form-item label="Order number" prop="orderSn">
             <Input
               type="text"
               v-model="searchForm.orderSn"
               clearable
-              placeholder="请输入订单号"
+              placeholder="Please enter Order number"
               style="width: 200px"
             />
           </Form-item>
           <Form-item label="状态" prop="status">
-            <Select v-model="searchForm.status" placeholder="请选择订单状态" clearable style="width: 200px">
-              <Option value="NEW">新投诉</Option>
+            <Select v-model="searchForm.status" placeholder="Please select订单状态" clearable style="width: 200px">
+              <Option value="NEW">新Complaint</Option>
               <Option value="CANCEL">已撤销</Option>
               <Option value="WAIT_APPEAL">待申诉</Option>
               <Option value="COMMUNICATION">对话中</Option>
               <Option value="WAIT_ARBITRATION">等待仲裁</Option>
-              <Option value="COMPLETE">已完成</Option>
+              <Option value="COMPLETE">completed</Option>
 
             </Select>
           </Form-item>
-          <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+          <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
           <Button @click="handleReset" class="search-btn">重置</Button>
         </Form>
       </Row>
@@ -86,11 +86,11 @@
       return {
         loading: true, // 表单加载状态
         searchForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
         },
         columns: [
           // 表头
@@ -104,23 +104,23 @@
             key: "orderSn",
           },
           {
-            title: "商品名称",
+            title: "goods name",
             slot: "goodsName",
           },
           {
-            title: "投诉主题",
+            title: "Complaint主题",
             key: "complainTopic",
           },
           {
-            title: "投诉时间",
+            title: "Complaint时间",
             key: "createTime",
           },
           {
-            title: "投诉状态",
+            title: "Complaint状态",
             key: "complainStatus",
             render: (h, params) => {
               if (params.row.complainStatus == "NEW") {
-                return h('div', [h('tag',{props: {color: "purple"}}, '新投诉'),]);
+                return h('div', [h('tag',{props: {color: "purple"}}, '新Complaint'),]);
               } else if (params.row.complainStatus == "CANCEL") {
                 return h('div', [h('tag', {props: {color: "cyan"}}, '已撤销'),]);
               } else if (params.row.complainStatus == "WAIT_APPEAL") {
@@ -130,13 +130,13 @@
               }else if (params.row.complainStatus == "WAIT_ARBITRATION") {
                 return h('div', [h('tag', {props: {color: "blue"}}, '等待仲裁'),]);
               }else if (params.row.complainStatus == "COMPLETE") {
-                return h('div', [h('tag', {props: {color: "green"}}, '已完成'),]);
+                return h('div', [h('tag', {props: {color: "green"}}, 'completed'),]);
               }
             }
           },
 
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             width: 120,
@@ -208,7 +208,7 @@
         this.searchForm.pageSize = v;
         this.getDataList();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = 10;
@@ -234,7 +234,7 @@
         this.total = this.data.length;
         this.loading = false;
       },
-      //投诉详情
+      //Complaint详情
       detail(v) {
         let id = v.id;
         this.$router.push({
@@ -246,7 +246,7 @@
     mounted() {
       this.init();
     },
-    // 页面缓存处理，从该页面离开时，修改KeepAlive为false，保证进入该页面是刷新
+    // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
     beforeRouteLeave(to, from, next) {
       from.meta.keepAlive = false
       next()
@@ -254,6 +254,6 @@
   };
 </script>
 <style lang="scss">
-  // 建议引入通用样式 可删除下面样式代码
+  // 建议引入通用样式 可delete下面样式代码
   @import "@/styles/table-common.scss";
 </style>

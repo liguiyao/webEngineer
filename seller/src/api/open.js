@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import { getRequest, postRequest, putRequest, deleteRequest, importRequest, uploadFileRequest } from '@/libs/axios';
 
 
@@ -35,7 +35,7 @@ export const addClient = (params) => {
 export const updateClient = (params) => {
     return putRequest('/client/update', params)
 }
-// 删除客户端
+// delete客户端
 export const deleteClient = (ids, params) => {
     return deleteRequest(`/client/delByIds/${ids}`, params)
 }

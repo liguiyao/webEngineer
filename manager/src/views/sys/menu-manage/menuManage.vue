@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <Card>
-      <!-- 筛选项和操作按钮 -->
+      <!-- 筛选项和operation按钮 -->
       <Row class="operation">
         <i-switch
           v-model="strict"
@@ -14,10 +14,10 @@
         </i-switch>
         <Button @click="addRootMenu">添加顶级菜单</Button>
         <Button @click="addMenu" type="primary">添加子菜单</Button>
-        <Button @click="delAll">批量删除</Button>
+        <Button @click="delAll">批量delete</Button>
         <Dropdown @on-click="handleDropdown">
           <Button>
-            更多操作
+            更多operation
             <Icon type="md-arrow-dropdown"></Icon>
           </Button>
           <DropdownMenu slot="list">
@@ -33,15 +33,15 @@
       <Row type="flex" justify="start">
         <Col :md="8" :lg="8" :xl="6">
           <Alert show-icon>
-            当前选择编辑：
+            当前select编辑：
             <span class="select-title">{{ editTitle }}</span>
-            <a class="select-clear" v-if="form.id" @click="cancelEdit">取消选择</a>
+            <a class="select-clear" v-if="form.id" @click="cancelEdit">Cancelselect</a>
           </Alert>
           <Input
             v-model="searchKey"
             suffix="ios-search"
             @on-change="search"
-            placeholder="输入菜单名搜索"
+            placeholder="输入菜单名search"
             clearable
           />
           <div class="tree-bar" :style="{ maxHeight: maxHeight }">
@@ -81,14 +81,14 @@
               <Input class="menu-input" v-model="form.title" />
             </FormItem>
             <FormItem
-              label="路由地址"
+              label="路由address"
               prop="path"
               v-if="form.level != 0"
               class="block-tool"
             >
               <Tooltip
                 placement="right"
-                content="路由地址，英文唯一，跳转页面，路径展示用 "
+                content="路由address，英文唯一，跳转页面，路径展示用 "
               >
                 <Input class="menu-input" v-model="form.path" />
               </Tooltip>
@@ -121,7 +121,7 @@
                 @click="submitEdit"
                 :loading="submitLoading"
                 type="primary"
-                >保存
+                >Save
               </Button>
               <Button @click="handleReset">重置</Button>
             </Form-item>
@@ -156,7 +156,7 @@
           <Input class="menu-input" v-model="formAdd.title" />
         </FormItem>
 
-        <FormItem label="路由地址" prop="path" v-if="formAdd.level != 0">
+        <FormItem label="路由address" prop="path" v-if="formAdd.level != 0">
           <Input v-model="formAdd.path" />
         </FormItem>
         <FormItem label="路由名称" prop="name" class="block-tool">
@@ -178,8 +178,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="menuModalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitAdd">提交</Button>
+        <Button type="text" @click="menuModalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitAdd">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -205,9 +205,9 @@ export default {
       expandLevel: 1, // 展开层级
       menuModalVisible: false, // 添加菜单modal
       selectList: [], // 已选列表
-      selectCount: 0, // 所选数量
+      selectCount: 0, // 所选Quantity
       showParent: false, // 展示父级
-      searchKey: "", // 搜索关键词
+      searchKey: "", // search关键词
       parentTitle: "", // 父级标题
       editTitle: "", // 编辑标题
       modalTitle: "", // modal标题
@@ -230,8 +230,8 @@ export default {
         // 验证规则
         title: [{ required: true, message: "菜单名称名称不能为空", trigger: "blur" }],
         name: [{ required: true, message: "路由名称不能为空", trigger: "blur" }],
-        path: [{ required: true, message: "路由地址不能为空", trigger: "blur" }],
-        frontRoute: [{ required: true, message: "文件地址不能为空", trigger: "blur" }],
+        path: [{ required: true, message: "路由address不能为空", trigger: "blur" }],
+        frontRoute: [{ required: true, message: "文件address不能为空", trigger: "blur" }],
         sortOrder: [
           {
             required: true,
@@ -241,7 +241,7 @@ export default {
           },
         ],
       },
-      submitLoading: false, // 提交状态
+      submitLoading: false, // Submit状态
       data: [], // 数据
     };
   },
@@ -277,7 +277,7 @@ export default {
         ]),
       ]);
     },
-    // 更多操作
+    // 更多operation
     handleDropdown(name) {
       if (name == "expandOne") {
         this.expandLevel = 1;
@@ -302,7 +302,7 @@ export default {
       getAllPermissionList().then((res) => {
         this.loading = false;
         if (res.success) {
-          // 仅展开指定级数 默认后台已展开所有
+          // 仅展开指定级数 default后台已展开所有
           let expandLevel = this.expandLevel;
           res.result.forEach(function (e) {
             if (expandLevel == 1) {
@@ -383,7 +383,7 @@ export default {
         }
       });
     },
-    // 选择菜单
+    // select菜单
     selectTree(v) {
       if (v.length > 0) {
         let str = JSON.stringify(v);
@@ -395,7 +395,7 @@ export default {
         this.cancelEdit();
       }
     },
-    // 搜索菜单
+    // search菜单
     search() {
       if (this.searchKey) {
         this.loading = true;
@@ -409,7 +409,7 @@ export default {
         this.getAllList();
       }
     },
-    // 取消选择
+    // Cancelselect
     cancelEdit() {
       let data = this.$refs.tree.getSelectedNodes()[0];
       if (data) {
@@ -424,19 +424,19 @@ export default {
       this.$refs.form.resetFields();
       this.form.frontRoute = "";
     },
-    // 保存
+    // Save
     submitEdit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           if (!this.form.id) {
-            this.$Message.warning("请先点击选择要修改的菜单节点");
+            this.$Message.warning("Please 先点击select要modify的菜单节点");
             return;
           }
           this.submitLoading = true;
           if (this.form.sortOrder == null) {
             this.form.sortOrder = 0;
           }
-          // 删除一些之前添加的无用字段
+          // delete一些之前添加的无用字段
           delete this.form.icon;
           delete this.form.frontComponent;
           delete this.form.buttonType;
@@ -449,7 +449,7 @@ export default {
           editPermission(this.form).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("编辑成功");
+              this.$Message.success("编辑success");
               // 标记重新获取菜单数据
               this.$store.commit("setAdded", false);
               util.initRouter(this);
@@ -469,7 +469,7 @@ export default {
           addPermission(this.formAdd).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("添加成功");
+              this.$Message.success("添加success");
               // 标记重新获取菜单数据
               this.$store.commit("setAdded", false);
               util.initRouter(this);
@@ -483,7 +483,7 @@ export default {
     // 添加子菜单
     addMenu() {
       if (!this.form.id) {
-        this.$Message.warning("请先点击选择一个菜单权限节点");
+        this.$Message.warning("Please 先点击select一个菜单权限节点");
         return;
       }
       this.parentTitle = this.form.title;
@@ -523,15 +523,15 @@ export default {
       this.selectCount = v.length;
       this.selectList = v;
     },
-    // 批量删除菜单
+    // 批量delete菜单
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未勾选要删除的数据");
+        this.$Message.warning("您还未勾选要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -542,7 +542,7 @@ export default {
           deletePermission(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               // 标记重新获取菜单数据
               this.$store.commit("setAdded", false);
               util.initRouter(this);

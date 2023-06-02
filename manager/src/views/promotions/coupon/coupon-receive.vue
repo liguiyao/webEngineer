@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <Card>
-      <Button style="margin-bottom: 10px" @click="back()">返回</Button>
+      <Button style="margin-bottom: 10px" @click="back()">Back</Button>
       <Form
         ref="searchForm"
         :model="searchForm"
@@ -9,11 +9,11 @@
         :label-width="75"
         class="search-form mb_10"
       >
-        <Form-item label="优惠券名称" prop="couponName">
+        <Form-item label="coupon名称" prop="couponName">
           <Input
             type="text"
             v-model="searchForm.couponName"
-            placeholder="请输入优惠券名称"
+            placeholder="Please enter coupon名称"
             clearable
             style="width: 200px"
           />
@@ -22,7 +22,7 @@
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="请输入会员名称"
+            placeholder="Please enter 会员名称"
             clearable
             style="width: 200px"
           />
@@ -30,7 +30,7 @@
         <Form-item label="获取方式" prop="getType">
           <Select
             v-model="searchForm.getType"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
@@ -38,10 +38,10 @@
             <Option value="ACTIVITY">活动获取</Option>
           </Select>
         </Form-item>
-        <Form-item label="优惠券状态" prop="memberCouponStatus">
+        <Form-item label="coupon状态" prop="memberCouponStatus">
           <Select
             v-model="searchForm.memberCouponStatus"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
@@ -56,7 +56,7 @@
             v-model="selectDate"
             type="daterange"
             clearable
-            placeholder="选择起始时间"
+            placeholder="select起始时间"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
@@ -65,7 +65,7 @@
           type="primary"
           icon="ios-search"
           class="search-btn"
-          >搜索</Button
+          >search</Button
         >
       </Form>
       <Table
@@ -109,13 +109,13 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "create_time", // 默认排序字段
-        order: "desc", // 默认排序方式
-        getType: "", // 默认排序方式
-        couponId: this.$route.query.couponId, // 优惠券id
+        sort: "create_time", // default排序字段
+        order: "desc", // default排序方式
+        getType: "", // default排序方式
+        couponId: this.$route.query.couponId, // couponid
       },
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
@@ -128,7 +128,7 @@ export default {
           fixed: "left",
         },
         {
-          title: "优惠券名称",
+          title: "coupon名称",
           key: "couponName",
           minWidth: 100,
           tooltip: true,
@@ -142,17 +142,17 @@ export default {
           },
         },
         {
-          title: "面额/折扣",
+          title: "面额/off扣",
           key: "price",
           width: 100,
           render: (h, params) => {
             if (params.row.price) {
               return h(
                 "div",
-                this.$options.filters.unitPrice(params.row.price, "￥")
+                this.$options.filters.unitPrice(params.row.price, "RM")
               );
             } else {
-              return h("div", params.row.discount + "折");
+              return h("div", params.row.discount + "off");
             }
           },
         },
@@ -179,7 +179,7 @@ export default {
           },
         },
         {
-          title: "会员优惠券状态",
+          title: "会员coupon状态",
           width: 130,
           key: "memberCouponStatus",
           render: (h, params) => {
@@ -190,12 +190,12 @@ export default {
           },
         },
         {
-          title: "优惠券类型",
+          title: "coupon类型",
           key: "couponType",
           width: 120,
           render: (h, params) => {
             if (params.row.couponType === "DISCOUNT") {
-              return h("Tag", { props: { color: "orange" } }, "打折");
+              return h("Tag", { props: { color: "orange" } }, "打off");
             } else if (params.row.couponType === "PRICE") {
               return h("Tag", { props: { color: "magenta" } }, "减免现金");
             } else {
@@ -233,7 +233,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      refreshTable: true, // 修改选中状态后刷新表格
+      refreshTable: true, // modify选中状态后刷新表格
       selectDate: [], //选中的信息
     };
   },
@@ -260,7 +260,7 @@ export default {
       this.$router.go(-1);
     },
     check() {
-      // 选中的优惠券
+      // 选中的coupon
       this.$emit("selected", this.selectList);
     },
     // 初始化数据
@@ -279,13 +279,13 @@ export default {
       this.getDataList();
     },
     handleSearch() {
-      // 搜索
+      // search
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
     /**
-     * 选择优惠券
+     * selectcoupon
      */
     changeSelect(e) {
       this.selectList = e;

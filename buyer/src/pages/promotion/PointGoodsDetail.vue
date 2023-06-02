@@ -5,11 +5,11 @@
     <!-- <drawer></drawer> -->
     <div class="base-width cate-container">
       <Breadcrumb>
-        <BreadcrumbItem to="/">首页</BreadcrumbItem>
+        <BreadcrumbItem to="/">Home page</BreadcrumbItem>
         <BreadcrumbItem>{{goodsMsg.pointsGoodsCategoryName}}</BreadcrumbItem>
       </Breadcrumb>
     </div>
-    <!-- 商品信息展示 -->
+    <!-- Goods details展示 -->
     <div class="item-detail-show">
       <!-- 详情左侧展示数据、图片，收藏、举报 -->
       <div class="item-detail-left">
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <!-- 右侧商品信息、活动信息、操作展示 -->
+      <!-- 右侧Goods details、活动信息、operation展示 -->
       <div class="item-detail-right">
         <div class="item-detail-title">
           <p>{{ goodsSku.goodsName }}</p>
@@ -31,10 +31,10 @@
         <div class="sell-point">
           {{goodsSku.sellingPoint}}
         </div>
-        <!-- 商品详细 -->
+        <!-- Goods详细 -->
         <div class="item-detail-price-row">
           <div class="item-price-left">
-            <!-- 商品原价 -->
+            <!-- Goods原价 -->
             <div class="item-price-row">
               <p>
                 <span class="item-price-title">积 &nbsp;&nbsp;&nbsp;&nbsp;分</span>
@@ -46,7 +46,7 @@
         <div class="add-buy-car-box">
           <div class="item-select">
             <div class="item-select-title">
-              <p>数量</p>
+              <p>Quantity</p>
             </div>
             <div class="item-select-row">
               <InputNumber :min="1" :disabled="goodsSku.quantity === 0" v-model="count"></InputNumber>
@@ -67,11 +67,11 @@
         </div>
       </div>
     </div>
-    <!-- 商品详情 -->
+    <!-- Goods详情 -->
     <div class="base-width item-intro" ref="itemIntroGoods">
-      <div>商品介绍</div>
+      <div>Goods介绍</div>
       <div v-html="goodsSku.intro" class="mt_10 ml_10" v-if="goodsSku.intro"></div>
-      <div v-else style="margin:20px;">暂无商品介绍</div>
+      <div v-else style="margin:20px;">absentGoods介绍</div>
     </div>
     <Spin size="large" fix v-if="isLoading"></Spin>
     <BaseFooter></BaseFooter>
@@ -97,17 +97,17 @@ export default {
   },
   data () {
     return {
-      goodsMsg: {}, // 商品信息
-      goodsSku: {}, // 商品sku
+      goodsMsg: {}, // Goods details
+      goodsSku: {}, // Goodssku
       isLoading: false, // 加载状态
       categoryBar: [], // 分类
       onceFlag: true, // 只调用一次
-      count: 1, // 购买商品数量
-      loading: false // 提交加载状态
+      count: 1, // 购买GoodsQuantity
+      loading: false // Submit加载状态
     };
   },
   methods: {
-    // 获取积分商品详情
+    // 获取积分Goods详情
     getGoodsDetail () {
       this.isLoading = true;
       pointGoodsDetail(this.$route.query.id).then((res) => {
@@ -149,7 +149,7 @@ export default {
         this.onceFlag = false
       }
     },
-    changeHeight () { // 设置商品详情高度
+    changeHeight () { // 设置Goods详情高度
       let goodsDetailCon = document.querySelector('.item-intro')
       let heightCss = window.getComputedStyle(goodsDetailCon).height;
       heightCss = parseInt(heightCss.substr(0, heightCss.length - 2)) + 89;
@@ -174,7 +174,7 @@ export default {
   padding-left: 10px;
   margin-top: 10px;
 }
-// 商品图片，价格等
+// Goods图片，price等
 .item-detail-show {
   width: 1200px;
   margin: 0 auto;
@@ -213,7 +213,7 @@ export default {
     width: 100%;
   }
 }
-/*商品选购详情*/
+/*Goods选购详情*/
 .item-detail-right {
   flex: 1;
   display: flex;
@@ -235,14 +235,14 @@ export default {
   color: #fff;
 }
 
-/*商品标签*/
+/*Goods标签*/
 .item-detail-tag {
   padding: 8px 0;
   font-size: 12px;
   color: $theme_color;
 }
 
-/*价格详情等*/
+/*price详情等*/
 .item-detail-price-row {
   padding: 10px;
   display: flex;
@@ -341,7 +341,7 @@ export default {
   color: red;
   margin-bottom: 5px;
 }
-// 商品详情
+// Goods详情
 .item-intro {
   margin-top: 10px;
   >div:nth-child(1) {

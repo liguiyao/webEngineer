@@ -51,12 +51,12 @@ export default {
           ___type: "cart",
         },
         {
-          title: "收藏商品",
+          title: "收藏Goods",
           icon: "md-heart",
           ___type: "collection",
         },
         {
-          title: "我的订单",
+          title: "My order",
           icon: "md-document",
           ___type: "order",
         },
@@ -136,7 +136,7 @@ export default {
       this.linkVisible = false
     }
 
-  },  
+  },
   methods: {
     handleLink(val, index) {
       val = { ...val, ___type: "other" };

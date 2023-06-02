@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="shop">
-      <h3>订单详情</h3>
+      <h3>Order details</h3>
       <div class="shop-item">
         <div class="label-item">
           <span>订单来源</span>
@@ -15,7 +15,7 @@
           <span>付款状态</span>
           <span>{{
             res.payStatus == "UNPAID"
-              ? "未付款"
+              ? "Unpaid"
               : res.payStatus == "PAID"
               ? "已付款"
               : ""
@@ -23,7 +23,7 @@
         </div>
         <div class="label-item">
           <span>支付时间</span>
-          <span>{{ res.paymentTime || "暂无" }}</span>
+          <span>{{ res.paymentTime || "absent" }}</span>
         </div>
         <div class="label-item">
           <span>支付方式</span>
@@ -31,10 +31,10 @@
             >{{ res.paymentMethod == "ONLINE" ? "在线支付" : ""
             }}{{
               res.paymentMethod == "ALIPAY"
-                ? "支付宝"
+                ? "Alipay"
                 : res.paymentMethod == "BANK_TRANSFER"
                 ? "银行卡"
-                : "" || "暂无"
+                : "" || "absent"
             }}</span
           >
         </div>
@@ -45,15 +45,15 @@
           <span>{{ res.memberName }}</span>
         </div>
         <div class="label-item">
-          <span>店铺名称</span>
+          <span>store name</span>
           <span>{{ res.storeName }}</span>
         </div>
         <div class="label-item">
-          <span>创建时间</span>
+          <span>Create time</span>
           <span>{{ res.createTime }}</span>
         </div>
       </div>
-      <h3>商品详情</h3>
+      <h3>Goods详情</h3>
       <div class="shop-item">
         <div
           class="goods-item"
@@ -67,14 +67,14 @@
           <div class="goods-title">
             <div>{{ item.name }}</div>
             <div>{{ "x" + item.num }}</div>
-            <div class="goods-price">{{ res.flowPrice | unitPrice("￥") }}</div>
+            <div class="goods-price">{{ res.flowPrice | unitPrice("RM") }}</div>
           </div>
         </div>
       </div>
       <div class="count-price">
         <div class="label-item">
-          <span>总价格</span>
-          <span class="flowPrice">{{ res.flowPrice | unitPrice("￥") }}</span>
+          <span>总price</span>
+          <span class="flowPrice">{{ res.flowPrice | unitPrice("RM") }}</span>
         </div>
       </div>
     </div>
@@ -87,12 +87,12 @@ export default {
       orderStatusList: {
         // 订单状态
         UNDELIVERED: "待发货",
-        UNPAID: "未付款",
+        UNPAID: "Unpaid",
         PAID: "已付款",
         DELIVERED: "已发货",
-        CANCELLED: "已取消",
-        COMPLETED: "已完成",
-        TAKE: "已完成",
+        CANCELLED: "已Cancel",
+        COMPLETED: "completed",
+        TAKE: "completed",
       },
     };
   },

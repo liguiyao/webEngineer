@@ -26,20 +26,20 @@
       width="800"
       :z-index="100"
       :mask-closable="false"
-      
-      
+
+
     >
       <div class="modal-tab-bar">
         <Button type="primary" size="small" @click="handleAdd">添加轮播</Button>
         &nbsp;
         <span class="ml_10">图片尺寸:{{ data.size }}</span>
-        <span style="color: red" class="fz_12 ml_10">点击缩略图替换图片、点击颜色选择器选择背景色</span>
+        <span style="color: red" class="fz_12 ml_10">点击缩略图替换图片、点击颜色select器select背景色</span>
         <table cellspacing="0">
           <thead>
             <tr>
               <th width="250">所选图片</th>
-              <th width="250">链接地址</th>
-              <th width="250">操作</th>
+              <th width="250">链接address</th>
+              <th width="250">operation</th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +60,7 @@
                   type="info"
                   size="small"
                   @click="handleSelectLink(item)"
-                  >选择链接</Button
+                  >select链接</Button
                 >&nbsp;
                 <ColorPicker size="small" v-model="item.bgColor" />
                 &nbsp;
@@ -69,7 +69,7 @@
                   ghost
                   size="small"
                   @click="handleDel(index)"
-                  >删除</Button
+                  >delete</Button
                 >
               </td>
             </tr>
@@ -77,13 +77,13 @@
         </table>
       </div>
     </Modal>
-    <!-- 选择商品。链接 -->
+    <!-- selectGoods。链接 -->
     <liliDialog
       ref="liliDialog"
       @selectedLink="selectedLink"
-    
+
     ></liliDialog>
-    <!-- 选择图片 -->
+    <!-- select图片 -->
     <Modal width="1200px" v-model="picModelFlag" footer-hide>
       <ossManage @callback="callbackSelected" ref="ossManage" />
     </Modal>
@@ -102,7 +102,7 @@ export default {
     return {
       showModal: false, // modal显隐
       selected: null, // 已选数据
-      picModelFlag: false, // 选择图片modal
+      picModelFlag: false, // select图片modal
       bgColor:'#fff'  // 轮播背景色
     };
   },
@@ -123,23 +123,23 @@ export default {
       this.data.options.list.push({ img: "", url: "", bgColor: '#fff' });
       this.$forceUpdate();
     },
-    // 打开选择链接modal
+    // 打开select链接modal
     handleSelectLink (item) {
       this.$refs.liliDialog.open('link')
       this.selected = item;
     },
-    callbackSelected (item) { // 选择图片回调
+    callbackSelected (item) { // select图片回调
       this.picModelFlag = false;
       this.selected.img = item.url;
     },
-    // 删除图片
+    // delete图片
     handleDel(index) {
       this.data.options.list.splice(index, 1);
     },
-    selectedLink(val) { // 选择链接回调
+    selectedLink(val) { // select链接回调
       this.selected.url = this.$options.filters.formatLinkType(val);
     },
-    // 打开选择图片modal
+    // 打开select图片modal
     handleSelectImg(item) {
       this.selected = item;
       this.$refs.ossManage.selectImage = true;
@@ -163,7 +163,7 @@ export default {
   width: 1200px;
   height: 470px;
   margin: 0px auto;
-  
+
 }
 .nav-side {
   height: 100%;

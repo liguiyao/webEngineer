@@ -3,7 +3,7 @@ code_path=$PWD
 REGISTRY_PATH='registry.cn-hangzhou.aliyuncs.com/lilishop-ui'
 BUILD_VERSION=4.2.4.1
 
-read -p "请输入仓库地址": REGISTRY_PATH
+read -p "Please enter 仓库address": REGISTRY_PATH
 
 echo $REGISTRY_PATH
 

@@ -9,11 +9,11 @@
         :label-width="70"
         class="search-form"
       >
-        <Form-item label="订单号" prop="orderSn">
+        <Form-item label="Order number" prop="orderSn">
           <Input
             type="text"
             v-model="searchForm.orderSn"
-            placeholder="请输入订单号"
+            placeholder="Please enter Order number"
             clearable
             style="width: 160px"
           />
@@ -22,7 +22,7 @@
           <Input
             type="text"
             v-model="searchForm.buyerName"
-            placeholder="请输入会员名称"
+            placeholder="Please enter 会员名称"
             clearable
             style="width: 160px"
           />
@@ -31,7 +31,7 @@
         <Form-item label="订单类型" prop="orderType">
           <Select
             v-model="searchForm.orderPromotionType"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 160px"
           >
@@ -49,25 +49,25 @@
             format="yyyy-MM-dd"
             clearable
             @on-change="selectDateRange"
-            placeholder="选择起始时间"
+            placeholder="select起始时间"
             style="width: 160px"
           ></DatePicker>
         </Form-item>
         <Form-item label="订单状态" prop="orderStatus">
           <Select
             v-model="searchForm.orderStatus"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 160px"
           >
-            <Option value="UNPAID">未付款</Option>
+            <Option value="UNPAID">Unpaid</Option>
             <Option value="PAID">已付款</Option>
             <Option value="UNDELIVERED">待发货</Option>
             <Option value="DELIVERED">已发货</Option>
-            <Option value="COMPLETED">已完成</Option>
+            <Option value="COMPLETED">completed</Option>
             <Option value="TAKE">待核验</Option>
-            <Option value="CANCELLED">已取消</Option>
-            <Option value="STAY_PICKED_UP">待自提</Option>
+            <Option value="CANCELLED">已Cancel</Option>
+            <Option value="STAY_PICKED_UP">待self-lifting</Option>
           </Select>
         </Form-item>
         <Button
@@ -75,7 +75,7 @@
           type="primary"
           icon="ios-search"
           class="search-btn"
-          >搜索</Button
+          >search</Button
         >
       </Form>
       <div>
@@ -84,7 +84,7 @@
           :data="data"
           :fields="fields"
           :fetch="exportOrder"
-          name="商品订单.xls"
+          name="Goods订单.xls"
         >
           <Button type="info" class="export"> 导出订单 </Button>
         </download-excel>
@@ -148,12 +148,12 @@ export default {
             }
           },
         },
-        商品数量: "groupNum",
+        GoodsQuantity: "groupNum",
         付款状态: {
           field: "payStatus",
           callback: (value) => {
             return value == "UNPAID"
-              ? "未付款"
+              ? "Unpaid"
               : value == "PAID"
               ? "已付款"
               : "";
@@ -163,11 +163,11 @@ export default {
       },
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
         orderType: "",
@@ -178,7 +178,7 @@ export default {
       selectDate: null,
       columns: [
         {
-          title: "订单号",
+          title: "Order number",
           key: "sn",
           minWidth: 240,
           tooltip: true,
@@ -245,7 +245,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
@@ -257,7 +257,7 @@ export default {
           render: (h, params) => {
             if (params.row.orderStatus == "UNPAID") {
               return h("div", [
-                h("tag", { props: { color: "magenta" } }, "未付款"),
+                h("tag", { props: { color: "magenta" } }, "Unpaid"),
               ]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [
@@ -269,7 +269,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "STAY_PICKED_UP") {
               return h("div", [
-                h("tag", { props: { color: "geekblue" } }, "待自提"),
+                h("tag", { props: { color: "geekblue" } }, "待self-lifting"),
               ]);
             } else if (params.row.orderStatus == "DELIVERED") {
               return h("div", [
@@ -277,7 +277,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "COMPLETED") {
               return h("div", [
-                h("tag", { props: { color: "green" } }, "已完成"),
+                h("tag", { props: { color: "green" } }, "completed"),
               ]);
             } else if (params.row.orderStatus == "TAKE") {
               return h("div", [
@@ -285,7 +285,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "CANCELLED") {
               return h("div", [
-                h("tag", { props: { color: "red" } }, "已取消"),
+                h("tag", { props: { color: "red" } }, "已Cancel"),
               ]);
             }
           },
@@ -296,7 +296,7 @@ export default {
           width: 170,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 100,
@@ -337,7 +337,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -379,13 +379,13 @@ export default {
       const result = await API_Order.getOrderList(params);
       if (result.success) {
         if (result.result.records.length === 0) {
-          this.$Message.warning("暂无待发货订单");
+          this.$Message.warning("absent待发货订单");
           return [];
         } else {
           return result.result.records;
         }
       } else {
-        this.$Message.warning("导出订单失败，请重试");
+        this.$Message.warning("导出订单失败，Please 重试");
       }
     },
   },

@@ -4,7 +4,7 @@
       <Form ref="searchForm" :model="searchForm" inline :label-width="100" class="search-form">
 
         <Form-item label="直播状态" prop="promotionStatus">
-          <Select v-model="searchForm.status" placeholder="请选择" clearable style="width: 200px">
+          <Select v-model="searchForm.status" placeholder="Please select" clearable style="width: 200px">
             <Option value="NEW">未开始</Option>
             <Option value="START">直播中</Option>
             <Option value="END">已结束</Option>
@@ -12,7 +12,7 @@
           </Select>
         </Form-item>
 
-        <Button @click="handleSearch" type="primary" class="search-btn" icon="ios-search">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn" icon="ios-search">search</Button>
       </Form>
       <div class="btns">
         <Button @click="createLive()" type="primary">创建直播</Button>
@@ -108,7 +108,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           render: (h, params) => {
             return h(
@@ -135,7 +135,7 @@ export default {
                       },
                     },
                   },
-                  "查看/添加商品"
+                  "查看/添加Goods"
                 ),
               ]
             );
@@ -159,7 +159,7 @@ export default {
   },
   methods: {
     /**
-     * 搜索直播间状态
+     * search直播间状态
      */
     handleSearch() {
       this.getStoreLives();

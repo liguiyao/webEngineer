@@ -26,10 +26,10 @@ export default {
           type: "BASE_SETTING",
           name: "基础配置",
         },
-        //商品设置
+        //Goods设置
         {
           type: "GOODS_SETTING",
-          name: "商品设置",
+          name: "Goods设置",
         },
         //订单配置
         {
@@ -64,22 +64,22 @@ export default {
         },
       ],
       authLogin: [
-        // 微信设置
-        {type: "WECHAT_CONNECT", name: "微信设置"},
+        // Wechat设置
+        {type: "WECHAT_CONNECT", name: "Wechat设置"},
         // QQ设置
         {type: "QQ_CONNECT", name: "QQ设置"},
         //微博联合登陆
         // {type: "WEIBO_CONNECT", name: "微博联合登陆"},
-        // //支付宝配置
-        // {type: "ALIPAY_CONNECT", name: "支付宝配置"},
+        // //Alipay配置
+        // {type: "ALIPAY_CONNECT", name: "Alipay配置"},
       ],
       pay: [
-        //支付宝支付设置
-        {type: "PAYMENT_SUPPORT", name: "支付开启/关闭"},
-        //支付宝支付设置
-        {type: "ALIPAY_PAYMENT", name: "支付宝支付设置"},
-        //微信支付设置
-        {type: "WECHAT_PAYMENT", name: "微信支付设置"},
+        //Alipay支付设置
+        {type: "PAYMENT_SUPPORT", name: "支付Opening/Close"},
+        //Alipay支付设置
+        {type: "ALIPAY_PAYMENT", name: "Alipay支付设置"},
+        //Wechat支付设置
+        {type: "WECHAT_PAYMENT", name: "Wechat支付设置"},
       ],
       tabWay: [], // tab数据
     };
@@ -105,7 +105,7 @@ export default {
       this.getSettingData(name);
     },
     /**
-     * 进入页面请求第一个配置
+     * 进入页面Please 求第一个配置
      */
     getSettingData(name) {
       this.settingData = "";

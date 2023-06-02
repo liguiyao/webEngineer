@@ -7,7 +7,7 @@
           @on-change="search"
           type="date"
           placement="bottom-end"
-          placeholder="选择查看日期"
+          placeholder="select查看日期"
           style="width: 200px"
           v-model="yestDate"
         ></DatePicker>
@@ -78,7 +78,7 @@ export default {
         this.hotWordsChart.data(this.hotWordsData);
         this.hotWordsChart.render();
         if (!this.hotWordsData) {
-          Message.error("暂无数据");
+          Message.error("absent数据");
         }
       }
     },
@@ -92,7 +92,7 @@ export default {
         padding: [50, 20, 50, 20],
       });
       chart.scale("score", {
-        alias: "搜索次数",
+        alias: "search次数",
       });
 
       chart.axis("keywords", {

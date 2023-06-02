@@ -4,10 +4,10 @@
     <Form ref="form" :model="form" :rules="formRule" :label-width="120" style="padding: 10px;">
 
       <Divider orientation="left">分销设置</Divider>
-      <FormItem label="是否开启分销" prop="isOpen">
+      <FormItem label="是否Opening分销" prop="isOpen">
         <i-switch size="large" v-model="form.isOpen" :true-value="true" :false-value="false">
-          <span slot="open">开启</span>
-          <span slot="close">关闭</span>
+          <span slot="open">Opening</span>
+          <span slot="close">Close</span>
         </i-switch>
       </FormItem>
       <FormItem label="分销关系绑定天数" prop="distributionDay">
@@ -17,7 +17,7 @@
         <InputNumber :min="0"  :max="365"  style="width:100px;" v-model="form.cashDay"></InputNumber>
       </FormItem>
       <FormItem>
-        <Button type="primary" @click="submit">保存</Button>
+        <Button type="primary" @click="submit">Save</Button>
       </FormItem>
     </Form>
   </div>
@@ -62,11 +62,11 @@ export default {
         }
       });
     },
-    // 提交api
+    // Submitapi
     submit() {
       setSetting("DISTRIBUTION_SETTING", this.form).then((res) => {
         if (res.success) {
-          this.$Message.success("操作成功");
+          this.$Message.success("operationsuccess");
           this.getDataList();
         }
       });

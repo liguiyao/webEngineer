@@ -18,7 +18,7 @@
         ref="table"
       >
         <template slot-scope="{ row }" slot="originalPrice">
-          <div>{{ row.originalPrice | unitPrice("￥") }}</div>
+          <div>{{ row.originalPrice | unitPrice("RM") }}</div>
         </template>
 
         <template slot-scope="{ row }" slot="quantity">
@@ -26,7 +26,7 @@
         </template>
 
         <template slot-scope="{ row }" slot="price">
-          <div>{{ row.price | unitPrice("￥") }}</div>
+          <div>{{ row.price | unitPrice("RM") }}</div>
         </template>
 
         <template slot-scope="{ row }" slot="time">
@@ -42,7 +42,7 @@
           />
         </template>
         <template slot-scope="{ row, index }" slot="action">
-          <Button type="error" size="small" @click="delGoods(index, row)">删除 </Button>
+          <Button type="error" size="small" @click="delGoods(index, row)">delete </Button>
         </template>
       </Table>
       <Row type="flex" justify="end" class="mt_10">
@@ -75,11 +75,11 @@ export default {
     return {
       promotionStatus: "", // 活动状态
       showModal: false, // modal显隐
-      openTip: true, // 显示提示
+      openTip: true, // 显示Tips
       loading: false, // 表单加载状态
       submitLoading: false, // 加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
       },
@@ -153,15 +153,15 @@ export default {
         },
       ],
       goodsColumns: [
-        // 商品表单
+        // Goods表单
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
           tooltip: true,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           slot: "originalPrice",
           width: 110,
         },
@@ -172,7 +172,7 @@ export default {
           width: 90,
         },
         {
-          title: "活动价格",
+          title: "活动price",
           slot: "price",
           width: 100,
         },
@@ -193,15 +193,15 @@ export default {
         //   width: 90,
         // },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           width: 150,
           align: "center",
         },
       ],
-      goodsList: [], // 商品列表
+      goodsList: [], // Goods列表
       params: {
-        // 请求参数
+        // Please 求参数
         seckillId: this.$route.query.id,
         applyStatus: "PASS",
         failReason: "",
@@ -209,7 +209,7 @@ export default {
       },
       rules: {
         // 验证规则
-        failReason: [{ required: true, message: "请输入拒绝原因" }],
+        failReason: [{ required: true, message: "Please enter 拒绝原因" }],
       },
     };
   },
@@ -236,7 +236,7 @@ export default {
     },
 
     getDataList() {
-      // 获取商品详情
+      // 获取Goods详情
       this.loading = true;
       this.searchForm.seckillId = this.$route.query.id;
       seckillGoodsList(this.searchForm).then((res) => {
@@ -260,10 +260,10 @@ export default {
       });
     },
     delGoods(index, row) {
-      // 删除商品
+      // deleteGoods
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除该商品吗?删除后不可恢复",
+        title: "确认delete",
+        content: "您确认要delete该Goods吗?delete后不可恢复",
         onOk: () => {
           const params = {
             seckillId: row.seckillId,
@@ -272,7 +272,7 @@ export default {
           delSeckillGoods(params).then((res) => {
             if (res.success) {
               this.goodsList.splice(index, 1);
-              this.$Message.success("删除成功！");
+              this.$Message.success("deletesuccess！");
             }
           });
         },

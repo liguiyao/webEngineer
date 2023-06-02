@@ -4,9 +4,9 @@
       <Form ref="searchForm" @keydown.enter.native="handleSearch" :model="searchForm" inline :label-width="70"
             class="search-form">
         <Form-item label="品牌名称">
-          <Input type="text" v-model="searchForm.name" placeholder="请输入品牌名称" clearable style="width: 200px"/>
+          <Input type="text" v-model="searchForm.name" placeholder="Please enter 品牌名称" clearable style="width: 200px"/>
         </Form-item>
-        <Button @click="handleSearch" type="primary">搜索</Button>
+        <Button @click="handleSearch" type="primary">search</Button>
       </Form>
       <Row class="operation padding-row">
         <Button @click="add" type="primary">添加</Button>
@@ -28,8 +28,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="handleSubmit">提交</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="handleSubmit">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -59,11 +59,11 @@ export default {
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "create_time", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "create_time", // default排序字段
+        order: "desc", // default排序方式
       },
       form: {
         // 添加或编辑表单对象初始化数据
@@ -82,7 +82,7 @@ export default {
           regular.URL200
         ],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       columns: [
         {
           title: "品牌名称",
@@ -142,7 +142,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           width: 180,
           align: "center",
@@ -224,7 +224,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -235,12 +235,12 @@ export default {
     };
   },
   methods: {
-    // 删除品牌
+    // delete品牌
     async delBrand(id) {
       let res = await delBrand(id);
 
       if (res.success) {
-        this.$Message.success("品牌删除成功!");
+        this.$Message.success("品牌deletesuccess!");
         this.getDataList();
       }
     },
@@ -258,7 +258,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -275,18 +275,18 @@ export default {
         }
       });
     },
-    // 提交表单
+    // Submit表单
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.form.id;
             addBrand(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -296,7 +296,7 @@ export default {
             updateBrand(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -339,7 +339,7 @@ export default {
           disableBrand(v.id, {disable: false}).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
@@ -356,7 +356,7 @@ export default {
           disableBrand(v.id, {disable: true}).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

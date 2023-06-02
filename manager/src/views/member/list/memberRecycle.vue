@@ -14,7 +14,7 @@
               <Input
                 type="text"
                 v-model="searchForm.username"
-                placeholder="请输入会员名称"
+                placeholder="Please enter 会员名称"
                 clearable
                 style="width: 200px"
               />
@@ -24,7 +24,7 @@
               <Input
                 type="text"
                 v-model="searchForm.mobile"
-                placeholder="请输入会员联系方式"
+                placeholder="Please enter 会员联系方式"
                 clearable
                 style="width: 200px"
               />
@@ -34,7 +34,7 @@
               class="search-btn"
               type="primary"
               icon="ios-search"
-              >搜索</Button
+              >search</Button
             >
           </Form>
         </Row>
@@ -65,7 +65,7 @@
       </Card>
     </Row>
 
-    <!-- 修改模态框 -->
+    <!-- modify模态框 -->
     <Modal
       v-model="descFlag"
       :title="descTitle"
@@ -89,7 +89,7 @@
                 this.$refs.ossManage.selectImage = true;
               }
             "
-            >修改
+            >modify
           </Button>
           <input type="file" style="display: none" id="file" />
         </FormItem>
@@ -117,7 +117,7 @@
             </Radio>
           </RadioGroup>
         </FormItem>
-        <FormItem label="修改密码" prop="password">
+        <FormItem label="modify密码" prop="password">
           <Input
             type="password"
             style="width: 220px"
@@ -143,7 +143,7 @@
                   this.updateRegion = !this.updateRegion;
                 }
               "
-              >修改
+              >modify
             </Button>
           </div>
           <div class="form-item" v-else>
@@ -171,14 +171,14 @@ export default {
   },
   data() {
     return {
-      selectedMember: false, //是否是其他组件调用
+      selectedMember: false, //是否是Others组件调用
       descTitle: "", // modal标题
       descFlag: false, //编辑查看框
-      openSearch: true, // 显示搜索
+      openSearch: true, // 显示search
       loading: true, // 表单加载状态
       updateRegion: false, // 显示所在地
       searchForm: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         order: "desc",
@@ -186,9 +186,9 @@ export default {
         mobile: "",
         disabled: "CLOSE",
       },
-      picModelFlag: false, // 选择图片
+      picModelFlag: false, // select图片
       formValidate: {}, // 表单数据
-      ruleValidate: {}, //修改验证
+      ruleValidate: {}, //modify验证
       columns: [
         {
           title: "会员名称",
@@ -221,7 +221,7 @@ export default {
         },
 
         {
-          title: "积分数量",
+          title: "积分Quantity",
           align: "left",
           width: 120,
           render: (h, params) => {
@@ -233,7 +233,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 200,
@@ -264,7 +264,7 @@ export default {
                       },
                     },
                   },
-                  "选择"
+                  "select"
                 ),
                 h(
                   "Button",
@@ -342,24 +342,24 @@ export default {
     init() {
       this.getData();
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getData();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getData();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getData();
     },
-    //查看详情修改
+    //查看详情modify
     editPerm(val) {
       this.descTitle = `查看用户 ${val.username}`;
       this.descFlag = true;
@@ -392,7 +392,7 @@ export default {
       this.formValidate.face = val.url;
     },
 
-    // 选中的地址
+    // 选中的address
     selectedRegion(val) {
       this.region = val[1];
       this.regionId = val[0];
@@ -409,12 +409,12 @@ export default {
         disabled: true,
       };
       this.$Modal.confirm({
-        title: "提示",
+        title: "Tips",
         content: "<p>启用用此会员？</p>",
         onOk: () => {
           API_Member.updateMemberStatus(params).then((res) => {
             if (res.success) {
-              this.$Message.success("禁用成功");
+              this.$Message.success("禁用success");
               this.getData();
             } else {
               // this.$Message.error(res.message);
@@ -424,7 +424,7 @@ export default {
       });
     },
 
-    // 提交修改数据
+    // Submitmodify数据
     handleSubmitModal() {
       const { nickName, sex, username, face, newPassword, id } =
         this.formValidate;
@@ -446,7 +446,7 @@ export default {
       }
       API_Member.updateMember(submit).then((res) => {
         if (res.result) {
-          this.$Message.success("修改成功！");
+          this.$Message.success("modifysuccess！");
           this.init();
         }
       });

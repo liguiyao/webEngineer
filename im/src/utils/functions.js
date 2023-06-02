@@ -89,7 +89,7 @@ export function getFileExt (fileName) {
  * @param {String} name
  */
 export function downloadIamge (imgsrc, name) {
-  //下载图片地址和图片名
+  //下载图片address和图片名
   let image = new Image();
   // 解决跨域 Canvas 污染问题
   image.setAttribute("crossOrigin", "anonymous");
@@ -100,7 +100,7 @@ export function downloadIamge (imgsrc, name) {
     let context = canvas.getContext("2d");
     context.drawImage(image, 0, 0, image.width, image.height);
     let url = canvas.toDataURL("image/png"); //得到图片的base64编码数据
-    let a = document.createElement("a"); // 生成一个a元素
+    let a = document.createElement("a"); // 生成一个aringgit素
     let event = new MouseEvent("click"); // 创建一个单击事件
     a.download = name || "photo"; // 设置图片名称
     a.href = url; // 将生成的URL设置为a.href属性
@@ -360,7 +360,7 @@ export function getSelection () {
  * 剪贴板复制功能
  *
  * @param {String} value 复制内容
- * @param {Function} callback 复制成功回调方法
+ * @param {Function} callback 复制success回调方法
  */
 export const copyTextToClipboard = (value, callback) => {
   let textArea = document.createElement("textarea");
@@ -382,9 +382,9 @@ export const copyTextToClipboard = (value, callback) => {
 };
 
 /**
- * 隐藏用户手机号中间四位
+ * 隐藏用户Phone number中间四位
  *
- * @param {String} phone  手机号
+ * @param {String} phone  Phone number
  */
 export function hidePhone (phone) {
   return phone.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");

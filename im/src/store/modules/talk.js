@@ -101,7 +101,7 @@ const Talk = {
           enableGetTalkList = false
         }
       })
-      // 循环如果当前用户不在对话记录列表中 就重新请求对话列表接口
+      // 循环如果当前用户不在对话记录列表中 就重新Please 求对话列表接口
       enableGetTalkList ? this.commit('getTalkList') : ''
     },
 

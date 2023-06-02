@@ -17,9 +17,9 @@
           <div class="tips">直播开播时间需要在当前时间的10分钟后 并且 开始时间不能在 6 个月后</div>
         </FormItem>
 
-        <FormItem label="主播微信号" prop="anchorWechat">
-          <Input disabled v-model="liveForm.anchorWechat" style="width:360px" placeholder="主播微信号"></Input>
-          <div class="tips">主播微信号，如果未实名认证，需要先前往“小程序直播”小程序进行<a target="_black" href="https://res.wx.qq.com/op_res/9rSix1dhHfK4rR049JL0PHJ7TpOvkuZ3mE0z7Ou_Etvjf-w1J_jVX0rZqeStLfwh">实名验证</a></div>
+        <FormItem label="主播Wechat号" prop="anchorWechat">
+          <Input disabled v-model="liveForm.anchorWechat" style="width:360px" placeholder="主播Wechat号"></Input>
+          <div class="tips">主播Wechat号，如果未实名认证，需要先前往“小程序直播”小程序进行<a target="_black" href="https://res.wx.qq.com/op_res/9rSix1dhHfK4rR049JL0PHJ7TpOvkuZ3mE0z7Ou_Etvjf-w1J_jVX0rZqeStLfwh">实名验证</a></div>
         </FormItem>
 
         <!-- 分享卡片 -->
@@ -87,7 +87,7 @@
           <div class="tips"> 直播间分享图，图片规则：建议像素800*640，大小不超过1M</div>
         </FormItem>
 
-        <FormItem label="商品" v-if="$route.query.id">
+        <FormItem label="Goods" v-if="$route.query.id">
           <Table class="goods-table" :columns="liveColumns" :data="liveData">
             <template slot-scope="{ row,index }" slot="goodsName">
               <div class="flex-goods">
@@ -98,9 +98,9 @@
             </template>
             <template slot-scope="{ row }" class="price" slot="price">
               <div>
-                <div v-if="row.priceType == 1">{{row.price | unitPrice('￥')}}</div>
-                <div v-if="row.priceType == 2">{{row.price | unitPrice('￥')}}至{{row.price2 | unitPrice('￥')}}</div>
-                <div v-if="row.priceType == 3">{{row.price | unitPrice('￥')}}<span class="original-price">{{row.price2 | unitPrice('￥')}}</span></div>
+                <div v-if="row.priceType == 1">{{row.price | unitPrice('RM')}}</div>
+                <div v-if="row.priceType == 2">{{row.price | unitPrice('RM')}}至{{row.price2 | unitPrice('RM')}}</div>
+                <div v-if="row.priceType == 3">{{row.price | unitPrice('RM')}}<span class="original-price">{{row.price2 | unitPrice('RM')}}</span></div>
               </div>
             </template>
             <template slot-scope="{ row }" slot="quantity">
@@ -108,12 +108,12 @@
             </template>
           </Table>
           <div class="tips">
-            直播间商品中前两个商品将自动被选为封面，伴随直播间在直播列表中显示
+            直播间Goods中前两个Goods将自动被选为封面，伴随直播间在直播列表中显示
           </div>
         </FormItem>
 
         <FormItem>
-          <Button type="primary" @click="createLives()">保存</Button>
+          <Button type="primary" @click="createLives()">Save</Button>
 
         </FormItem>
       </Form>
@@ -136,7 +136,7 @@ export default {
       liveForm: {
         name: "", //直播标题
         anchorName: "", //主播昵称
-        anchorWechat: "", //主播微信号
+        anchorWechat: "", //主播Wechat号
         feedsImg: "", //分享卡片封面
         coverImg: "", //直播间背景墙
         shareImg: "", //分享图
@@ -144,14 +144,14 @@ export default {
       },
 
       times: [], //接收直播时间数据
-      // 直播商品表格表头
+      // 直播Goods表格表头
       liveColumns: [
         {
-          title: "商品",
+          title: "Goods",
           slot: "goodsName",
         },
         {
-          title: "价格",
+          title: "price",
           slot: "price",
         },
         {
@@ -160,19 +160,19 @@ export default {
           width: 100,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           width: 250,
         },
       ],
-      liveData: [], //直播商品集合
-      commodityList: "", //商品集合
+      liveData: [], //直播Goods集合
+      commodityList: "", //Goods集合
     };
   },
   mounted() {
     /**
      * 如果query.id有值说明是查看详情
-     * liveStatus 可以判断当前直播状态 从而区分数据 是否是未开始、已开启、已关闭、
+     * liveStatus 可以判断当前直播状态 从而区分数据 是否是未开始、已Opening、已Close、
      */
     if (this.$route.query.id) {
       // 获取直播间详情
@@ -210,7 +210,7 @@ export default {
         for (let key in data) {
           this.liveForm[key] = data[key];
         }
-        // 将选择的商品回调给表格
+        // 将selectgoods回调给表格
 
         this.liveData = data.commodityList;
         this.commodityList = data.commodityList;

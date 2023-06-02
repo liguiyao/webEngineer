@@ -1,8 +1,8 @@
 // 分销商状态列表
-export const distributionStatusList= [ 
+export const distributionStatusList= [
     {
         value:'APPLY',
-        label:'申请中'
+        label:'Apply  中'
     },
     {
         value:'RETREAT',

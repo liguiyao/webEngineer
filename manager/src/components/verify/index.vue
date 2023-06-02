@@ -18,7 +18,7 @@
 import { getVerifyImg, postVerifyImg } from './verify.js';
 export default {
   props: {
-    // 传入数据，判断是登录、注册、修改密码
+    // 传入数据，判断是Login、注册、modify密码
     verifyType: {
       defalut: 'LOGIN',
       type: String
@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       show: false, // 验证码显隐
-      type: 'LOGIN', // 请求类型
+      type: 'LOGIN', // Please 求类型
       data: { // 验证码数据
         backImage: '',
         slidingImage: '',
@@ -40,7 +40,7 @@ export default {
       flag: false, // 判断滑块是否按下
       downX: 0, // 鼠标按下位置
       bgColor: '#04ad11', // 滑动背景颜色
-      verifyText: '拖动滑块解锁' // 文字提示
+      verifyText: '拖动滑块解锁' // 文字Tips
     };
   },
   methods: {
@@ -75,7 +75,7 @@ export default {
         if (res.success) {
           if (res.result) {
             this.bgColor = 'green';
-            this.verifyText = '解锁成功';
+            this.verifyText = '解锁success';
             this.$emit('change', { status: true, distance: this.distance });
           } else {
             this.bgColor = 'red';
@@ -89,7 +89,7 @@ export default {
         } else {
           this.init()
         }
-        
+
       }).catch(()=>{
         this.init()
       });
@@ -105,7 +105,7 @@ export default {
           this.data = res.result;
           this.show = true;
         } else {
-          this.$Message.warning('请求失败请重试！')
+          this.$Message.warning('Please 求失败Please 重试！')
         }
       });
     }

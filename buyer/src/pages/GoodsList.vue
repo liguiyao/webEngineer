@@ -5,12 +5,12 @@
     <drawer></drawer>
     <cateNav></cateNav>
     <div class="container">
-      <!-- 商品筛选栏 -->
+      <!-- Goods筛选栏 -->
       <GoodsClassNav @getParams="getParams"></GoodsClassNav>
 
-      <!-- 商品展示容器 -->
+      <!-- Goods展示容器 -->
       <div class="goods-box">
-        <!-- 商品列表 -->
+        <!-- Goods列表 -->
         <div class="goods-list-box">
           <!-- 排序 -->
           <div class="goods-list-tool">
@@ -26,7 +26,7 @@
               </li>
               <li @click="orderBy('price', 5, 'up')" class="price-sort">
                 <span :class="{ 'goods-list-tool-active': 5 === sortIndex }">
-                  价格
+                  price
                   <div>
                     <Icon
                       type="md-arrow-dropup"
@@ -57,7 +57,7 @@
               <div class="goods-show-price">
                 <span>
                   <span class="seckill-price text-danger">{{
-                    item.price | unitPrice("￥")
+                    item.price | unitPrice("RM")
                   }}</span>
                 </span>
               </div>
@@ -67,13 +67,13 @@
                   class="goods-show-tag"
                   color="purple"
                 >
-                  批发
+                  wholesale
                 </Tag>
                 <span>{{ item.goodsName }}</span>
               </div>
               <div class="goods-show-num">
-                已有<span>{{ item.commentNum || 0 }}</span
-                >人评价
+                Already have<span>{{ item.commentNum || 0 }}</span
+                >人Evaluate
               </div>
               <div class="goods-show-seller">
                 <span class="text-bottom" style="color: #e4393c">{{
@@ -87,21 +87,21 @@
                   color="red"
                   v-if="item.selfOperated"
                 >
-                  自营
+                  self-support
                 </Tag>
                 <Tag
                   class="goods-show-tag"
                   color="blue"
                   v-if="item.goodsType === 'VIRTUAL_GOODS'"
                 >
-                  虚拟
+                  virtual
                 </Tag>
                 <Tag
                   class="goods-show-tag"
                   color="blue"
                   v-else-if="item.goodsType === 'PHYSICAL_GOODS'"
                 >
-                  实物
+                  Physical object
                 </Tag>
               </div>
             </div>
@@ -136,19 +136,19 @@ export default {
   data() {
     return {
       sortIndex: 0, // 排序状态
-      sortPriceIndex: false, // 判断价格升序还是降序
+      sortPriceIndex: false, // 判断price升序还是降序
       goodsTool: [
         // 排序类型
-        { title: "综合", en: "" },
-        { title: "销量", en: "buyCount" },
-        { title: "评论数", en: "commentNum" },
-        { title: "新品", en: "releaseTime" },
+        { title: "synthesize", en: "" },
+        { title: "Sales volume", en: "buyCount" },
+        { title: "Comment count", en: "commentNum" },
+        { title: "New product", en: "releaseTime" },
       ],
-      goodsList: [], // 商品列表
+      goodsList: [], // Goods列表
       loading: false, // 加载状态
       total: 0, // 列表总数
       params: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 0,
         pageSize: 20,
         categoryId: "",
@@ -176,7 +176,7 @@ export default {
     },
   },
   methods: {
-    // 搜索
+    // search
     handleSearch(key) {
       this.params.keyword = key;
       this.params.pageNumber = 0;
@@ -202,26 +202,26 @@ export default {
       this.getGoodsList();
     },
     goGoodsDetail(skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },
       });
       window.open(routeUrl.href, "_blank");
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePageNum(val) {
       this.params.pageNumber = val;
       this.getGoodsList();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(val) {
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getGoodsList();
     },
 
-    // 获取商品列表
+    // 获取Goods列表
     getGoodsList() {
       this.loading = true;
       apiGoods
@@ -386,7 +386,7 @@ export default {
 }
 /* ---------------侧边广告栏结束------------------- */
 
-/* ---------------商品栏开始------------------- */
+/* ---------------Goods栏开始------------------- */
 .goods-list-box {
   position: relative;
   width: 100%;
@@ -464,5 +464,5 @@ export default {
   background-color: $theme_color !important;
 }
 
-/* ---------------商品栏结束------------------- */
+/* ---------------Goods栏结束------------------- */
 </style>

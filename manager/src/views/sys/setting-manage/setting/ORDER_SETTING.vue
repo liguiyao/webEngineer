@@ -2,11 +2,11 @@
   <div class="layout">
     <Form ref="formValidate" :label-width="150" label-position="right" :model="formValidate" :rules="ruleValidate">
 
-      <FormItem label="订单自动取消" prop="autoCancel">
+      <FormItem label="订单自动Cancel" prop="autoCancel">
         <Input type='number' v-model="formValidate.autoCancel">
         <span slot="append">分</span>
         </Input>
-        <span class="desc">发起订单后，多少分钟未操作取消订单</span>
+        <span class="desc">发起订单后，多少分钟未operationCancel order</span>
       </FormItem>
 
       <FormItem label="订单自动收货" class="label-item" prop="autoReceive">
@@ -22,21 +22,21 @@
         </Input>
         <span class="desc">订单发货后，多少天后自动好评</span>
       </FormItem>
-      <FormItem label="已完成订单允许退单" prop="closeAfterSale">
+      <FormItem label="completed订单允许退单" prop="closeAfterSale">
         <Input type='number' v-model="formValidate.closeAfterSale">
         <span slot="append">天</span>
         </Input>
         <span class="desc">订单完成后，多少天内允许退单，如果天数为0,则不允许退单</span>
       </FormItem>
-      <FormItem label="已完成订单允许投诉" prop="closeComplaint">
+      <FormItem label="completed订单允许Complaint" prop="closeComplaint">
         <Input type='number' v-model="formValidate.closeComplaint">
         <span slot="append">天</span>
         </Input>
-        <span class="desc">订单完成后，多少天内允许投诉，如果天数为0,则不允许投诉</span>
+        <span class="desc">订单完成后，多少天内允许Complaint，如果天数为0,则不允许Complaint</span>
       </FormItem>
 
       <div class="label-btns">
-        <Button type="primary" @click="submit('formValidate')">保存</Button>
+        <Button type="primary" @click="submit('formValidate')">Save</Button>
 
       </div>
     </Form>
@@ -64,20 +64,20 @@ export default {
     this.init();
   },
   methods: {
-    // 保存
+    // Save
     submit(name) {
       let that = this;
       if (handleSubmit(that, name)) {
         this.setupSetting();
       }
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       setSetting(this.type, this.formValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("保存成功!");
+          this.$Message.success("Savesuccess!");
         } else {
-          this.$Message.error("保存失败!");
+          this.$Message.error("Save失败!");
         }
       });
     },
@@ -92,7 +92,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
           {

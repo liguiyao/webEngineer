@@ -40,9 +40,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-          >提交</Button
+          >Submit</Button
         >
       </div>
     </Modal>
@@ -67,11 +67,11 @@ export default {
       modalVisible: false, // 添加或编辑显示
       modalTitle: "", // 添加或编辑标题
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         words: "",
       },
       form: {
@@ -85,7 +85,7 @@ export default {
           regular.VARCHAR20
         ],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -101,7 +101,7 @@ export default {
           minWidth: 120
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
           width: 200
         },
@@ -111,12 +111,12 @@ export default {
           width: 200
         },
         {
-          title: "操作人",
+          title: "operation人",
           key: "createBy",
           minWidth: 150
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -139,7 +139,7 @@ export default {
                     },
                   },
                 },
-                "修改"
+                "modify"
               ),
               h(
                 "Button",
@@ -157,7 +157,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -207,7 +207,7 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 提交数据
+    // Submit数据
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -218,7 +218,7 @@ export default {
             insertCustomWords(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -229,7 +229,7 @@ export default {
             updateCustomWords(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -247,42 +247,42 @@ export default {
 
       this.modalVisible = true;
     },
-    // 修改
+    // modify
     detail(v) {
       this.modalType = 1;
       this.id = v.id;
-      this.modalTitle = "修改";
+      this.modalTitle = "modify";
       this.modalVisible = true;
       this.form.name = v.name;
     },
-    // 删除
+    // delete
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除 " + v.name + " ?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "您确认要delete " + v.name + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           delCustom(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });
         },
       });
     },
-    // 批量删除
+    // 批量delete
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -290,11 +290,11 @@ export default {
             ids += e.id + ",";
           });
           ids = ids.substring(0, ids.length - 1);
-          // 批量删除
+          // 批量delete
           delSensitive(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.clearSelectAll();
               this.getDataList();
             }

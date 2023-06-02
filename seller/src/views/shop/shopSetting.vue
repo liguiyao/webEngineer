@@ -9,7 +9,7 @@
             :label-width="100"
             :rules="formValidate"
           >
-            <FormItem label="店铺名称">
+            <FormItem label="store name">
               <Input
                 v-model="storeName"
                 disabled
@@ -17,7 +17,7 @@
                 style="width: 20%"
               />
             </FormItem>
-            <FormItem label="店铺地址" prop="address">
+            <FormItem label="店铺address" prop="address">
               <Input
                 v-model="form.address"
                 @on-focus="$refs.liliMap.showMap = true"
@@ -25,7 +25,7 @@
                 style="width: 20%"
               />
             </FormItem>
-            <FormItem label="详细地址" prop="shopAddressDetail">
+            <FormItem label="Full address" prop="shopAddressDetail">
               <Input
                 v-model="form.storeAddressDetail"
                 clearable
@@ -39,7 +39,7 @@
                 :multiple="false"
               ></upload-pic-thumb>
             </FormItem>
-            <FormItem label="店铺简介" prop="content" class="wangEditor">
+            <FormItem label="store details" prop="content" class="wangEditor">
               <Input
                 type="textarea"
                 :rows="8"
@@ -49,11 +49,11 @@
             </FormItem>
             <FormItem label="店铺楼层" prop="content" class="wangEditor">
               <i-switch v-model="form.pageShow" @on-change="pageShow"></i-switch>
-               <span class="desc">店铺楼层装修是否开启，开启后移动端PC端将会自动展示装修的内容</span>
+               <span class="desc">店铺楼层装修是否Opening，Opening后移动端PC端将会自动展示装修的内容</span>
             </FormItem>
-            <FormItem label="开启自提" prop="content" class="wangEditor">
+            <FormItem label="Openingself-lifting" prop="content" class="wangEditor">
               <i-switch v-model="form.selfPickFlag" @on-change="changeSelfPickFlag"></i-switch>
-               <span class="desc">店铺是否开启自提功能</span>
+               <span class="desc">店铺是否Openingself-lifting功能</span>
             </FormItem>
             <Form-item>
               <Button
@@ -61,19 +61,19 @@
                 :loading="submitLoading"
                 type="primary"
                 style="margin-right: 5px"
-                >修改
+                >modify
               </Button>
             </Form-item>
           </Form>
         </TabPane>
-        <TabPane label="发货地址">
+        <TabPane label="发货address">
           <Form
             ref="addressGoods"
             :model="addressGoods"
             :label-width="100"
             :rules="addressGoodsValidate"
           >
-            <FormItem label="发货人姓名" prop="salesConsignorName">
+            <FormItem label="发货人name" prop="salesConsignorName">
               <Input
                 v-model="addressGoods.salesConsignorName"
                 maxlength="11"
@@ -82,7 +82,7 @@
               >
               </Input>
             </FormItem>
-            <FormItem label="发货人手机号" prop="salesConsignorMobile">
+            <FormItem label="发货人Phone number" prop="salesConsignorMobile">
               <Input
                 v-model="addressGoods.salesConsignorMobile"
                 maxlength="11"
@@ -91,7 +91,7 @@
               >
               </Input>
             </FormItem>
-            <FormItem label="地址" prop="salesConsignorAddressId">
+            <FormItem label="address" prop="salesConsignorAddressId">
               <Input
                 v-model="regionGoods"
                 clearable
@@ -110,10 +110,10 @@
                 @click="regionClicks"
                 type="primary"
                 style="margin-left: 8px"
-              >修改
+              >modify
               </Button>
             </FormItem>
-            <!-- <FormItem label="地址名称" prop="salesConsignorAddressPath">
+            <!-- <FormItem label="address名称" prop="salesConsignorAddressPath">
               <Input
                 v-model="addressGoods.salesConsignorAddressPath"
                 clearable
@@ -121,7 +121,7 @@
               >
               </Input>
             </FormItem> -->
-            <FormItem label="详细地址" prop="salesConsignorDetail">
+            <FormItem label="Full address" prop="salesConsignorDetail">
               <Input
                 v-model="addressGoods.salesConsignorDetail"
                 clearable
@@ -137,14 +137,14 @@
             </Button>
           </Form>
         </TabPane>
-        <TabPane label="退货地址" name="REFUND_GOODS_ADDRESS">
+        <TabPane label="Return goodsaddress" name="REFUND_GOODS_ADDRESS">
           <Form
             ref="addressForm"
             :model="addressForm"
             :label-width="100"
             :rules="afterFormValidate"
           >
-            <FormItem label="收货人" prop="salesConsigneeName">
+            <FormItem label="receiver" prop="salesConsigneeName">
               <Input
                 v-model="addressForm.salesConsigneeName"
                 maxlength="11"
@@ -152,14 +152,14 @@
                 style="width: 20%"
               />
             </FormItem>
-            <FormItem label="收货人电话" prop="salesConsigneeMobile">
+            <FormItem label="receiver电话" prop="salesConsigneeMobile">
               <Input
                 v-model="addressForm.salesConsigneeMobile"
                 maxlength="11"
                 style="width: 20%"
               />
             </FormItem>
-            <FormItem label="售后地址">
+            <FormItem label="after saleaddress">
               <Input
                 v-model="region"
                 disabled
@@ -172,7 +172,7 @@
                 :loading="submitLoading"
                 type="primary"
                 style="margin-left: 8px"
-                >修改
+                >modify
               </Button>
               <regionMap
                 style="width: 20%"
@@ -180,7 +180,7 @@
                 v-if="showRegion == true"
               />
             </FormItem>
-            <FormItem label="详细地址" prop="salesConsigneeDetail">
+            <FormItem label="Full address" prop="salesConsigneeDetail">
               <Input
                 v-model="addressForm.salesConsigneeDetail"
                 clearable
@@ -195,7 +195,7 @@
                 :loading="submitLoading"
                 type="primary"
                 style="margin-right: 5px"
-                >修改
+                >modify
               </Button>
             </Form-item>
           </Form>
@@ -225,7 +225,7 @@
                 :loading="submitLoading"
                 type="primary"
                 style="margin-right: 5px"
-                >修改
+                >modify
               </Button>
             </Form-item>
           </Form>
@@ -252,7 +252,7 @@
                 :loading="submitLoading"
                 type="primary"
                 style="margin-right: 5px"
-                >修改
+                >modify
               </Button>
             </Form-item>
           </Form>
@@ -284,21 +284,21 @@ export default {
   data() {
     return {
       type: "INFO",
-      showRegion: false, // 选择地址模态框显隐
-      storeName: "", //店铺名称
+      showRegion: false, // selectaddress模态框显隐
+      storeName: "", //store name
       region: "", // 地区名称
       regionId: [], // 地区id
       addressForm: {
-        // 退货地址
-        salesConsigneeName: "", // 收货人姓名
-        salesConsigneeMobile: "", // 收货人电话
-        salesConsigneeAddressId: "", // 售后地址id,逗号分割
-        salesConsigneeAddressPath: "", // 售后地址，逗号分割
-        salesConsigneeDetail: "", // 详细地址
+        // Return goodsaddress
+        salesConsigneeName: "", // receivername
+        salesConsigneeMobile: "", // receiver电话
+        salesConsigneeAddressId: "", // after saleaddressid,逗号分割
+        salesConsigneeAddressPath: "", // after saleaddress，逗号分割
+        salesConsigneeDetail: "", // Full address
       },
       //库存预警form
       stockWarningForm: {
-        stockWarning: "", // 库存预警数量
+        stockWarning: "", // 库存预警Quantity
       },
       //im form
       udeskForm: {
@@ -306,38 +306,38 @@ export default {
       },
       stockWarningFormValidate: {
         stockWarning: [
-          { required: true, type:'number', message: "请输入库存预警数", trigger: "blur" },
+          { required: true, type:'number', message: "Please enter 库存预警数", trigger: "blur" },
         ],
       },
       udeskFormValidate: {
         merchantEuid: [
-          { required: true, message: "请输入店铺坐席ID", trigger: "blur" },
+          { required: true, message: "Please enter 店铺坐席ID", trigger: "blur" },
         ],
       },
       afterFormValidate: {
         salesConsigneeMobile: [
-          { required: true, message: "手机号不能为空", trigger: "blur" },
+          { required: true, message: "Phone number不能为空", trigger: "blur" },
           {
             pattern: RegExp.mobile,
             trigger: "blur",
-            message: "请输入正确的手机号",
+            message: "Please enter correctly phone number",
           },
         ],
         salesConsigneeName: [
-          { required: true, message: "请输入收货人", trigger: "blur" },
+          { required: true, message: "Please enter receiver", trigger: "blur" },
         ],
         salesConsigneeDetail: [
-          { required: true, message: "请输入详细地址", trigger: "blur" },
+          { required: true, message: "Please enter Full address", trigger: "blur" },
         ],
       },
       form: {
         // 添加或编辑表单对象初始化数据
-        storeAddressPath: "", // 店铺地址中文
+        storeAddressPath: "", // 店铺address中文
         storeCenter: "", // 经度 + 纬度
         longitude: "", //经度
         latitude: "", //纬度
-        storeAddressDetail: "", //详细地址
-        storeAddressIdPath: "", //地址
+        storeAddressDetail: "", //Full address
+        storeAddressIdPath: "", //address
         storeDesc: "", // 店铺描述
         pageShow: false,
         selfPickFlag: false,
@@ -348,28 +348,28 @@ export default {
         addressName: [
           {
             required: true,
-            message: "请输入地址名称",
+            message: "Please enter address名称",
             trigger: "blur",
           },
         ],
         longitude: [
           {
             required: true,
-            message: "请输入地址经度",
+            message: "Please enter address经度",
             trigger: "blur",
           },
         ],
         latitude: [
           {
             required: true,
-            message: "请输入地址纬度",
+            message: "Please enter address纬度",
             trigger: "blur",
           },
         ],
         mobile: [
           {
             required: true,
-            message: "请输入地址纬度",
+            message: "Please enter address纬度",
             trigger: "blur",
           },
           {
@@ -380,13 +380,13 @@ export default {
         storeAddressDetail: [
           {
             required: true,
-            message: "请输入详细地址",
+            message: "Please enter Full address",
             trigger: "blur",
           },
         ],
       },
-      submitLoading: false, // 添加或编辑提交状态
-      //发货地址
+      submitLoading: false, // 添加或编辑Submit状态
+      //发货address
       addressGoods: {
         salesConsignorName:" ",
         salesConsignorMobile:" ",
@@ -394,21 +394,21 @@ export default {
         salesConsignorAddressPath: " ",
         salesConsignorDetail: " ",
       },
-      regionGoods:"",//发货地址
+      regionGoods:"",//发货address
       addressGoodsValidate: {
         salesConsignorName: [
-          { required: true, message: "请输入发货人姓名", trigger: "blur" },
+          { required: true, message: "Please enter 发货人name", trigger: "blur" },
         ],
         salesConsignorMobile: [
-          { required: true, message: "手机号不能为空", trigger: "blur" },
+          { required: true, message: "Phone number不能为空", trigger: "blur" },
           {
             pattern: RegExp.mobile,
             trigger: "blur",
-            message: "请输入正确的手机号",
+            message: "Please enter correctly phone number",
           },
         ],
         salesConsignorDetail: [
-          { required: true, message: "请输入详细地址", trigger: "blur" },
+          { required: true, message: "Please enter Full address", trigger: "blur" },
         ],
       },
     };
@@ -430,7 +430,7 @@ export default {
     SetAddressGoods(){
       console.log(this.$refs.addressGoods)
       if (this.regionIdS == "") {
-        this.$Message.error("请选择地址");
+        this.$Message.error("Please selectaddress");
         return;
       }
       this.$refs.addressGoods.validate((valid) => {
@@ -439,7 +439,7 @@ export default {
           this.addressGoods.salesConsignorAddressId = this.regionIdS;
           API_Shop.editDeliverAddress(this.addressGoods).then(res=>{
             if(res.success){
-              this.$Message.success("修改成功")
+              this.$Message.success("modifysuccess")
             }
           })
         }
@@ -487,7 +487,7 @@ export default {
         }
       })
     },
-    //修改售后地址
+    //modifyafter saleaddress
     regionClick() {
       this.showRegion = true;
       this.regionId = "";
@@ -496,7 +496,7 @@ export default {
     handleReset() {
       this.$refs.form.resetFields();
     },
-    //提交保存
+    //SubmitSave
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -504,14 +504,14 @@ export default {
           API_Shop.saveShopInfo(this.form).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("修改成功");
+              this.$Message.success("modifysuccess");
               this.getShopInfo();
             }
           });
         }
       });
     },
-    //修改库存预警数
+    //modify库存预警数
     stockWarningHandleSubmit() {
       this.$refs.stockWarningForm.validate((valid) => {
         if (valid) {
@@ -519,7 +519,7 @@ export default {
           API_Shop.updateStockWarning(this.stockWarningForm).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("修改成功");
+              this.$Message.success("modifysuccess");
               this.getShopInfo();
             }
           });
@@ -533,30 +533,30 @@ export default {
           API_Shop.updatEmerchantId(this.udeskForm).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("修改成功");
+              this.$Message.success("modifysuccess");
               this.getShopInfo();
             }
           });
         }
       });
     },
-    // 选中的地址
+    // 选中的address
     selectedRegion(val) {
       this.region = val[1];
       this.regionId = val[0];
     },
     //tab切换
     handleClickType(v) {
-      //退款
+      //refund
       if (v == "INFO") {
         this.getShopInfo();
       }
-      //退货
+      //Return goods
       if (v == "REFUND_GOODS_ADDRESS") {
         this.getRefundGoodsAddress();
       }
     },
-    //获取商家退货地址
+    //获取商家Return goodsaddress
     getRefundGoodsAddress() {
       API_Shop.getRefundGoodsAddress().then((res) => {
         if (res.result != null) {
@@ -566,10 +566,10 @@ export default {
         }
       });
     },
-    //提交保存
+    //SubmitSave
     afterHandleSubmit() {
       if (this.regionId == "") {
-        this.$Message.error("请选择地址");
+        this.$Message.error("Please selectaddress");
         return;
       }
       this.$refs.addressForm.validate((valid) => {
@@ -580,7 +580,7 @@ export default {
           API_Shop.saveRefundGoodsAddress(this.addressForm).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("修改成功");
+              this.$Message.success("modifysuccess");
               this.getRefundGoodsAddress();
               this.showRegion = false;
             }
@@ -588,7 +588,7 @@ export default {
         }
       });
     },
-    //获取地址
+    //获取address
     getAddress(item) {
       this.$set(this.form, "address", item.addr);
       this.form.storeAddressPath = item.addr;

@@ -96,7 +96,7 @@ export default {
   },
   data() {
     return {
-      sliceNum: 5, // 展示nav数量
+      sliceNum: 5, // 展示navQuantity
       userInfo: "", // 用户信息
       navType: 1, // nav类型
       tipsMessage: "", // 通知消息
@@ -137,7 +137,7 @@ export default {
       link.href = localStorage.getItem("domainIcon");
       link.rel = "shortcut icon";
       document.getElementsByTagName("head")[0].appendChild(link);
-      window.document.title = localStorage.getItem("title") + " - 运营后台";
+      window.document.title = localStorage.getItem("title") + " - Backstage";
       // 读取未读消息数
       getNoticePage({}).then((res) => {
         if (res.success) {
@@ -157,14 +157,14 @@ export default {
           name: "personal-center",
         });
       }
-      //修改密码
+      //modify密码
       else if (name === "changePass") {
         util.openNewPage(this, "change-password");
         this.$router.push({
           name: "change_password",
         });
       }
-      // 退出登录
+      // 退出Login
       else if (name === "loginOut") {
         logout().then((res) => {
           this.$store.commit("logout", this);
@@ -183,7 +183,7 @@ export default {
         }
       });
       if (!openpageHasTag) {
-        //  解决关闭当前标签后再点击回退按钮会退到当前页时没有标签的问题
+        //  解决Close当前标签后再点击回退按钮会退到当前页时没有标签的问题
         util.openNewPage(
           this,
           name,

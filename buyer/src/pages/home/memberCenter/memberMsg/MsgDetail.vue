@@ -1,6 +1,6 @@
 <template>
   <div class="msg-list">
-    会员消息详情
+    Member information details
   </div>
 </template>
 <script>
@@ -13,5 +13,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  
+
 </style>

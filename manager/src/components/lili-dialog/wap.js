@@ -1,6 +1,6 @@
 export default [
   {
-    title: "商品",
+    title: "Goods",
     url: "0",
     openGoods: true,
     name: "goods"
@@ -31,7 +31,7 @@ export default [
     name: "special"
   },
   {
-    title: "其他",
+    title: "Others",
     url: "3",
     name: "other"
   },

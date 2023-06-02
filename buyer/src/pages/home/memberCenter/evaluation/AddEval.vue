@@ -1,37 +1,37 @@
 <template>
   <div class="add-eval">
     <div class="title">
-      <card _Title="订单评价" :_Size="16"></card>
+      <card _Title="订单Evaluate" :_Size="16"></card>
       <p>
-        <span class="color999">订单号：</span><span>{{$route.query.sn}}</span>
+        <span class="color999">Order Number：</span><span>{{$route.query.sn}}</span>
         <span class="color999 ml_20" v-if="order.order">{{order.order.paymentTime}}</span>
       </p>
     </div>
-    <!-- 物流评分、服务评分 -->
+    <!-- logistics评分、服务评分 -->
     <div class="delivery-rate">
-      <div class="fontsize_16">物流服务评价：</div>
+      <div class="fontsize_16">Service evaluate：</div>
       <div class="color999">
-        <span>物流评价：<Rate v-model="form.deliveryScore" /></span>
-        <span>服务评价：<Rate v-model="form.serviceScore" /></span>
-        <span>描述评价：<Rate v-model="form.descriptionScore" /></span>
+        <span>Logistics：<Rate v-model="form.deliveryScore" /></span>
+        <span>Service：<Rate v-model="form.serviceScore" /></span>
+        <span>Descriptive：<Rate v-model="form.descriptionScore" /></span>
       </div>
     </div>
-    <!-- 添加订单评价  左侧商品详情  右侧评价框 -->
+    <!-- 添加订单Evaluate  左侧Goods详情  右侧Evaluate框 -->
     <ul class="goods-eval">
       <li >
         <div class="goods-con">
           <img :src="orderGoods.image" class="hover-pointer" alt="" width="100" @click="goGoodsDetail(orderGoods.skuId, orderGoods.goodsId)">
           <p class="hover-pointer color999" @click="goGoodsDetail(orderGoods.skuId, orderGoods.goodsId)">{{orderGoods.goodsName}}</p>
-          <p>{{orderGoods.goodsPrice | unitPrice('￥')}}</p>
+          <p>{{orderGoods.goodsPrice | unitPrice('RM')}}</p>
         </div>
 
         <div class="eval-con">
           <div>
-            <span class="color999">商品评价：</span>
+            <span class="color999">Goods evaluation：</span>
             <RadioGroup style="margin-bottom:5px;color:#999" v-model="orderGoods.grade" type="button" button-style="solid">
-              <Radio label="GOOD">好评</Radio>
-              <Radio label="MODERATE">中评</Radio>
-              <Radio label="WORSE">差评</Radio>
+              <Radio label="GOOD">Good</Radio>
+              <Radio label="MODERATE">Medium</Radio>
+              <Radio label="WORSE">Bad</Radio>
             </RadioGroup>
             <Input type="textarea" maxlength="500" show-word-limit :rows="4" v-model="orderGoods.content" />
           </div>
@@ -59,7 +59,7 @@
         </div>
       </li>
     </ul>
-    <Button type="primary" class="mt_10" :loading="loading" @click="save">发表</Button>
+    <Button type="primary" class="mt_10" :loading="loading" @click="save">Publish</Button>
     <Modal title="View Image" v-model="visible">
         <img :src="previewImage" v-if="visible" style="width: 100%">
     </Modal>
@@ -73,22 +73,22 @@ import storage from '@/plugins/storage';
 export default {
   data () {
     return {
-      order: {}, // 订单详情
-      orderGoods: {}, // 订单商品
+      order: {}, // Order details
+      orderGoods: {}, // 订单Goods
       form: { // 评分展示
         deliveryScore: 5,
         serviceScore: 5,
         descriptionScore: 5
       }, // 表单
       visible: false, // 图片预览
-      action: commonUrl + '/common/common/upload/file', // 上传地址
+      action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
-      previewImage: '', // 预览图片地址
-      loading: false // 提交加载状态
+      previewImage: '', // 预览图片address
+      loading: false // Submit加载状态
     }
   },
   methods: {
-    getOrderDetail () { // 获取订单详情
+    getOrderDetail () { // 获取Order details
       orderDetail(this.$route.query.sn).then(res => {
         this.order = res.result
         this.orderGoods = res.result.orderItems[this.$route.query.index]
@@ -96,14 +96,14 @@ export default {
         this.orderGoods.uploadList = []
       })
     },
-    save () { // 保存评价
+    save () { // SaveEvaluate
       if (!this.form.serviceScore || !this.form.deliveryScore) {
-        this.$Message.warning('物流服务评价不能为空')
+        this.$Message.warning('Logistics service evaluation can not be empty')
         return false;
       }
 
       if (!this.form.descriptionScore) {
-        this.$Message.warning('描述评价不能为空')
+        this.$Message.warning('Description evaluation cannot be empty')
       }
 
       this.loading = true;
@@ -122,14 +122,14 @@ export default {
       addEvaluation(params).then(res => {
         this.loading = false
         if (res.success) {
-          this.$Message.success('评价成功')
+          this.$Message.success('Evaluate success')
           this.$router.push('/home/CommentList')
         }
       }).catch(() => {
         this.loading = false;
       })
     },
-    goGoodsDetail (skuId, goodsId) { // 跳转商品详情
+    goGoodsDetail (skuId, goodsId) { // 跳转Goods详情
       let routerUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}
@@ -144,7 +144,7 @@ export default {
       this.orderGoods.uploadList.splice(index, 1)
       this.$forceUpdate()
     },
-    handleSuccess (res, file) { // 上传成功回调
+    handleSuccess (res, file) { // 上传success回调
       this.orderGoods.uploadList.push(res.result)
       this.$forceUpdate()
     },
@@ -152,7 +152,7 @@ export default {
       const check = this.orderGoods.uploadList.length < 10;
       if (!check) {
         this.$Notice.warning({
-          title: '最多可以上传九张图片'
+          title: 'Upload a maximum of 9 images'
         });
         return check;
       }

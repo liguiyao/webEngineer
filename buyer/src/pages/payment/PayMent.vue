@@ -3,22 +3,22 @@
     <BaseHeader></BaseHeader>
     <div class="wrapper-head">
       <div class="head-left">
-        <div class="left-tips">订单提交成功，请尽快付款！</div>
-        <div class="left-tips-time">请您尽快完成支付，否则订单会被自动取消</div>
+        <div class="left-tips">Order Submit success，Please payment ！</div>
+        <div class="left-tips-time">Please payment，otherwise the order will be automatic Cancel</div>
         <div class="left-tips-count-down">
           <mv-count-down :startTime="startTime" class="count-down"
             :endTime="endTime"
             :endText="endText"
-            :dayTxt="'天'"
-            :hourTxt="'小时'"
-            :minutesTxt="'分钟'"
-            :secondsTxt="'秒'"
+            :dayTxt="'days'"
+            :hourTxt="'hours'"
+            :minutesTxt="'minutes'"
+            :secondsTxt="'seconds'"
             :isStart="isStart"></mv-count-down>
 
         </div>
       </div>
       <div class="head-right">
-        <div>应付金额 <span class="price">{{ payDetail.price | unitPrice }}</span>元</div>
+        <div>Amount payable <span class="price">{{ payDetail.price | unitPrice }}</span>ringgit</div>
       </div>
     </div>
     <div class="wrapper-box">
@@ -26,18 +26,18 @@
         <img
           src="https://ss3.bdstatic.com/yrwDcj7w0QhBkMak8IuT_XF5ehU5bvGh7c50/logopic/a9936a369e82e0c6c42112674a5220e8_fullsize.jpg"
           alt="">
-        <span>支付宝</span>
+        <span>Alipay</span>
       </div>
       <div v-if="support.includes('WECHAT')" class="-box-item" @click="handlePay('WECHAT')">
         <img
           src="https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3774939867,2826752539&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=796e842a5ef2d16d9edc872d6f1147ef"
           alt="">
-        <span>微信</span>
+        <span>Wechat</span>
       </div>
       <div v-if="support.includes('WALLET') && $route.query.orderType !== 'RECHARGE'" class="-box-item" @click="handlePay('WALLET')">
         <Icon custom="icomoon icon-wallet" size="60"/>
-        <span>余额支付</span>
-        <span>当前剩余({{ walletValue | unitPrice('￥') }})</span>
+        <span>Balance payment</span>
+        <span>Current balance({{ walletValue | unitPrice('RM') }})</span>
       </div>
     </div>
     <BaseFooter></BaseFooter>
@@ -56,17 +56,17 @@ export default {
   data () {
     return {
       payDetail: {}, // 支付详情
-      support: [], // 支持配送方式
+      support: [], // 支持Distribution mode
       walletValue: 0, // 当前余额
       qrcode: '', // 支付二维码
       startTime: new Date().getTime(), // 开始时间（时间戳）
       endTime: 0, // 完成的时间（时间戳）
-      endText: '订单已超时取消', // 倒计时完成的提示文本
-      isStart: false // 控制倒计时开始的时机（异步请求完成开启）
+      endText: 'order has timed out cancel', // 倒计时完成的Tips文本
+      isStart: false // 控制倒计时开始的时机（异步Please 求完成Opening）
     };
   },
   methods: {
-    // 获取订单详情
+    // 获取Order details
     getTradeDetail () {
       const params = this.$route.query;
       params.clientType = 'PC'
@@ -82,11 +82,11 @@ export default {
     },
     // 支付
     handlePay (way) {
-      // 余额支付则直接跳转
+      // Balance payment则直接跳转
       if (way === 'WALLET') {
         // 如果待支付金额大于余额，则报错
         if (this.payDetail.price > this.walletValue) {
-          Message.error('余额不足以支付当前订单，如需充值请前往会员中心');
+          Message.error('The balance is not enough to cover the current order. Please go to the Member Center if you need to recharge');
           return;
         }
       }
@@ -96,8 +96,8 @@ export default {
       params.price = this.payDetail.price;
       if (way === 'WALLET') {
         this.$Modal.confirm({
-          title: '支付确认',
-          content: '<p>确认使用余额支付吗？</p>',
+          title: 'Payment confirmation',
+          content: '<p>Confirm use balance payment？</p>',
           onOk: () => {
             pay(params).then(res => {
               if (res.success) {

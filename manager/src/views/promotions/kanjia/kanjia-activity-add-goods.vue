@@ -4,11 +4,11 @@
       <Form ref="form" :model="form" :label-width="120" :rules="formRule">
         <div class="base-info-item">
           <div class="form-item-view">
-            <h4>商品信息</h4>
+            <h4>Goods details</h4>
 
-            <FormItem label="选择商品" prop="scopeType">
-              <Button type="primary" @click="openSkuList">选择商品</Button>
-              <!-- <Button type="error" ghost style="margin-left: 10px" @click="delSelectGoods">批量删除
+            <FormItem label="selectGoods" prop="scopeType">
+              <Button type="primary" @click="openSkuList">selectGoods</Button>
+              <!-- <Button type="error" ghost style="margin-left: 10px" @click="delSelectGoods">批量delete
               </Button> -->
             </FormItem>
 
@@ -51,16 +51,16 @@
                 type="datetimerange"
                 v-model="form.rangeTime"
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择"
+                placeholder="Please select"
                 :options="options"
                 style="width: 260px"
               >
               </DatePicker>
             </FormItem>
             <div>
-              <Button type="text" @click="closeCurrentPage">返回</Button>
+              <Button type="text" @click="closeCurrentPage">Back</Button>
               <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-                >提交</Button
+                >Submit</Button
               >
             </div>
           </div>
@@ -86,14 +86,14 @@ export default {
     return {
       modalType: 0, // 是否编辑
       form: {
-        promotionGoodsList: [], // 活动商品列表
+        promotionGoodsList: [], // 活动Goods列表
       },
       id: this.$route.query.id, // 砍价活动id
-      submitLoading: false, // 添加或编辑提交状态
-      selectedGoods: [], // 已选商品列表，便于删除
-      promotionGoodsList: [], // 活动商品列表
+      submitLoading: false, // 添加或编辑Submit状态
+      selectedGoods: [], // 已选Goods列表，便于delete
+      promotionGoodsList: [], // 活动Goods列表
       formRule: {
-        rangeTime: [{ required: true, message: "请选择活动时间" }],
+        rangeTime: [{ required: true, message: "Please select活动时间" }],
       },
       columns: [
         {
@@ -102,17 +102,17 @@ export default {
           align: "center",
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           tooltip: true,
           minWidth: 100,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           width: 120,
           render: (h, params) => {
-            return h("div", this.$options.filters.unitPrice(params.row.price, "￥"));
+            return h("div", this.$options.filters.unitPrice(params.row.price, "RM"));
           },
         },
         {
@@ -121,7 +121,7 @@ export default {
           width: 100,
         },
         {
-          title: "结算价格",
+          title: "结算price",
           slot: "settlementPrice",
           width: 110,
         },
@@ -141,7 +141,7 @@ export default {
           width: 110,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 100,
@@ -160,7 +160,7 @@ export default {
                   },
                 },
               },
-              "删除"
+              "delete"
             );
           },
         },
@@ -181,7 +181,7 @@ export default {
   },
   methods: {
     openSkuList() {
-      // 显示商品选择器
+      // 显示Goodsselect器
       this.$refs.skuSelect.open("goods");
       let data = JSON.parse(JSON.stringify(this.promotionGoodsList));
       data.forEach((e) => {
@@ -190,13 +190,13 @@ export default {
       this.$refs.skuSelect.goodsData = data;
     },
 
-    /** 保存砍价活动 */
+    /** Save砍价活动 */
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           const params = JSON.parse(JSON.stringify(this.form));
           if (this.form.rangeTime[0] === "" || this.form.rangeTime[0] === "") {
-            this.$Message.error("请选择活动时间");
+            this.$Message.error("Please select活动时间");
             return;
           }
           params.startTime = this.$options.filters.unixToDate(
@@ -207,26 +207,26 @@ export default {
           );
           delete params.rangeTime;
           let checkResult = true;
-          //如果添加活动的时候选择了商品 则对选择的商品参数做一些校验
+          //如果添加活动的时候select了Goods 则对selectgoods参数做一些校验
           if (this.form.promotionGoodsList.length > 0) {
             this.form.promotionGoodsList.forEach((res) => {
               //校验库存参数
               if (res.stock <= 0 || res.stock > res.quantity) {
                 checkResult = false;
-                this.$Message.error("活动库存不能为0且不能超过商品库存");
+                this.$Message.error("活动库存不能为0且不能超过Goods库存");
                 return;
               }
 
-              // 结算价格金额格式校验
+              // 结算price金额格式校验
               if (!regular.money.test(res.settlementPrice)) {
                 checkResult = false;
-                this.$Message.error("结算价格金额格式不正确");
+                this.$Message.error("结算price金额格式不正确");
                 return;
               }
-              // 结算价格金额格式校验
+              // 结算price金额格式校验
               if (res.settlementPrice < 0 || res.settlementPrice > res.price) {
                 checkResult = false;
-                this.$Message.error("结算价格金额不能为0且不能超过商品价格");
+                this.$Message.error("结算price金额不能为0且不能超过Goodsprice");
                 return;
               }
               //最高砍价校验
@@ -237,7 +237,7 @@ export default {
               }
               if (res.highestPrice <= 0 || res.highestPrice > res.price) {
                 checkResult = false;
-                this.$Message.error("最高可砍金额不能为0且不能超过商品价格");
+                this.$Message.error("最高可砍金额不能为0且不能超过Goodsprice");
                 return;
               }
               //最低砍价校验
@@ -267,21 +267,21 @@ export default {
           saveKanJiaActivityGoods(params).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("砍价活动修改成功");
+              this.$Message.success("砍价活动modifysuccess");
               this.closeCurrentPage();
             }
           });
         }
       });
     },
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-kan-jia-goods");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
       this.$router.go(-1);
     },
     openSkuList() {
-      // 显示商品选择器
+      // 显示Goodsselect器
       this.$refs.skuSelect.open("goods");
       let data = JSON.parse(JSON.stringify(this.form.promotionGoodsList));
       data.forEach((e) => {
@@ -290,18 +290,18 @@ export default {
       this.$refs.skuSelect.goodsData = data;
     },
     changeSelect(e) {
-      // 已选商品批量选择
+      // 已选Goods批量select
       this.selectedGoods = e;
     },
     // delSelectGoods() {
-    //   // 多选删除商品
+    //   // 多选deleteGoods
     //   if (this.selectedGoods.length <= 0) {
-    //     this.$Message.warning("您还未选择要删除的数据");
+    //     this.$Message.warning("您还未select要delete的数据");
     //     return;
     //   }
     //   this.$Modal.confirm({
-    //     title: "确认删除",
-    //     content: "您确认要删除所选商品吗?",
+    //     title: "确认delete",
+    //     content: "您确认要delete所选Goods吗?",
     //     onOk: () => {
     //       let ids = [];
     //       this.selectedGoods.forEach(function (e) {
@@ -316,11 +316,11 @@ export default {
     //   });
     // },
     delGoods(index) {
-      // 删除商品
+      // deleteGoods
       this.form.promotionGoodsList.splice(index, 1);
     },
     selectedGoodsData(item) {
-      // 回显已选商品
+      // 回显已选Goods
       let list = [];
       item.forEach((e) => {
         list.push({

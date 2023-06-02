@@ -7,10 +7,10 @@
         :src="$store.state.logoImg" width='150'
         @click="$router.push('/')"
       />
-      <div>修改密码</div>
+      <div>modify password</div>
     </div>
     <div class="login-container">
-        <!-- 验证手机号 -->
+        <!-- 验证Phone number -->
         <Form
           ref="formFirst"
           :model="formFirst"
@@ -23,7 +23,7 @@
               type="text"
               v-model="formFirst.mobile"
               clearable
-              placeholder="手机号"
+              placeholder="Phone number"
             >
               <Icon type="md-phone-portrait" slot="prepend"></Icon>
             </i-input>
@@ -33,7 +33,7 @@
               type="text"
               v-model="formFirst.code"
               clearable
-              placeholder="手机验证码"
+              placeholder="verification code"
             >
               <Icon
                 type="ios-text-outline"
@@ -44,10 +44,10 @@
             </i-input>
           </FormItem>
           <FormItem>
-            <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'验证通过':'点击完成安全验证'}}</Button>
+            <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'verification pass':'Click to complete'}}</Button>
           </FormItem>
           <FormItem>
-            <Button type="error" @click="next" :loading="loading" long>下一步</Button>
+            <Button type="error" @click="next" :loading="loading" long>Next</Button>
           </FormItem>
         </Form>
         <Form
@@ -62,7 +62,7 @@
               type="password"
               v-model="form.password"
               clearable
-              placeholder="请输入至少六位密码"
+              placeholder="Please enter at least six number"
             >
               <Icon type="md-lock" slot="prepend"></Icon>
             </i-input>
@@ -72,13 +72,13 @@
               type="password"
               v-model="form.oncePasd"
               clearable
-              placeholder="请再次输入密码"
+              placeholder="Please reenter the password"
             >
               <Icon type="md-lock" slot="prepend"></Icon>
             </i-input>
           </FormItem>
           <FormItem>
-            <Button type="error" size="large" @click="handleSubmit" :loading="loading1" long>提交</Button>
+            <Button type="error" size="large" @click="handleSubmit" :loading="loading1" long>Submit</Button>
           </FormItem>
         </Form>
         <!-- 拼图验证码 -->
@@ -88,20 +88,20 @@
           :verifyType="verifyType"
           @change="verifyChange"
         ></Verify>
-        <div class="login-btn"><a @click="$router.push('login')">前往登录</a></div>
+        <div class="login-btn"><a @click="$router.push('login')">Go to login</a></div>
     </div>
     <div class="foot">
       <Row type="flex" justify="space-around" class="help">
-        <a class="item" href="https://pickmall.cn/" target="_blank">帮助</a>
-        <a class="item" href="https://pickmall.cn/" target="_blank">隐私</a>
-        <a class="item" href="https://pickmall.cn/" target="_blank">条款</a>
+        <a class="item" href="https://pickmall.cn/" target="_blank">help</a>
+        <a class="item" href="https://pickmall.cn/" target="_blank">privacy</a>
+        <a class="item" href="https://pickmall.cn/" target="_blank">clause</a>
       </Row>
       <Row type="flex" justify="center" class="copyright">
         Copyright © {{year}} - Present
         <a href="https://pickmall.cn/" target="_blank" style="margin: 0 5px"
           >{{config.title}}</a
         >
-        版权所有
+        All rights reserved.
       </Row>
     </div>
   </div>
@@ -122,7 +122,7 @@ export default {
       config:require('@/config'),
       loading: false, // 加载状态
       loading1: false, // 第二步加载状态
-      formFirst: { // 手机验证码表单
+      formFirst: { // phone verification code表单
         // 注册表单
         mobile: '',
         code: ''
@@ -136,25 +136,25 @@ export default {
       ruleInline: {
         // 验证规则
         mobile: [
-          { required: true, message: '请输入手机号码' },
+          { required: true, message: 'Please enter Phone number' },
           {
             pattern: RegExp.mobile,
             trigger: 'blur',
-            message: '请输入正确的手机号'
+            message: 'Please enter correctly phone number'
           }
         ],
-        code: [{ required: true, message: '请输入手机验证码' }],
-        password: [{required: true, message: '密码不能为空'}, {pattern: RegExp.password, message: '密码不能少于6位'}]
+        code: [{ required: true, message: 'Please enter phone verification code' }],
+        password: [{required: true, message: 'password cannot be empty'}, {pattern: RegExp.password, message: 'password cannot be less than 6 characters'}]
       },
       verifyStatus: false, // 图片验证状态
       verifyType: 'FIND_USER', // 图片验证类型
-      codeMsg: '发送验证码', // 验证码文字
+      codeMsg: 'Send verification code', // 验证码文字
       interval: '', // 定时器
       time: 60 // 倒计时时间
     };
   },
   methods: {
-    // 提交短信验证码，修改密码
+    // Submit短信验证码，modify密码
     next () {
       this.$refs.formFirst.validate((valid) => {
         if (valid) {
@@ -172,12 +172,12 @@ export default {
         } else {}
       });
     },
-    handleSubmit () { // 提交密码
+    handleSubmit () { // Submit密码
       this.$refs.form.validate(valid => {
         if (valid) {
           let params = JSON.parse(JSON.stringify(this.form));
           if (params.password !== params.oncePasd) {
-            this.$Message.warning('两次输入密码不一致');
+            this.$Message.warning('The two passwords are inconsistent');
             return;
           };
           params.mobile = this.formFirst.mobile;
@@ -189,21 +189,21 @@ export default {
             this.loading1 = false;
             console.log(res);
             if (res.success) {
-              this.$Message.success('修改密码成功');
+              this.$Message.success('modify password success');
               this.$router.push('login');
             }
           }).catch(() => { this.loading = false; });
         };
       });
     },
-    sendCode () { // 发送验证码
+    sendCode () { // Send verification code
       if (this.time === 60) {
         if (this.formFirst.mobile === '') {
-          this.$Message.warning('请先填写手机号');
+          this.$Message.warning('Please enter phone number first');
           return;
         }
         if (!this.verifyStatus) {
-          this.$Message.warning('请先完成安全验证');
+          this.$Message.warning('Please Complete security verification first');
           return;
         }
         let params = {
@@ -212,13 +212,13 @@ export default {
         };
         sendSms(params).then(res => {
           if (res.success) {
-            this.$Message.success('验证码发送成功');
+            this.$Message.success('Verification code sending success');
             let that = this;
             this.interval = setInterval(() => {
               that.time--;
               if (that.time === 0) {
                 that.time = 60;
-                that.codeMsg = '重新发送';
+                that.codeMsg = 'resend';
                 that.verifyStatus = false;
                 clearInterval(that.interval);
               } else {

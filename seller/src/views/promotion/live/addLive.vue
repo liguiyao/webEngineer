@@ -4,7 +4,7 @@
       <Spin size="large" fix v-if="spinShow"></Spin>
       <Alert type="warning">
         <template slot="desc">
-          为了方便在创建直播间时从选择商品，请尽量提前提审直播商品
+          为了方便在创建直播间时从selectGoods，Please 尽量提前提审直播Goods
         </template>
       </Alert>
 
@@ -46,15 +46,15 @@
           </div>
         </FormItem>
 
-        <FormItem label="主播微信号" prop="anchorWechat">
+        <FormItem label="主播Wechat号" prop="anchorWechat">
           <Input
             :disabled="liveStatus != 'NEW'"
             v-model="liveForm.anchorWechat"
             style="width: 360px"
-            placeholder="主播微信号"
+            placeholder="主播Wechat号"
           ></Input>
           <div class="tips">
-            主播微信号，如果未实名认证，需要先前往“小程序直播”小程序进行<a
+            主播Wechat号，如果未实名认证，需要先前往“小程序直播”小程序进行<a
               target="_black"
               href="https://res.wx.qq.com/op_res/9rSix1dhHfK4rR049JL0PHJ7TpOvkuZ3mE0z7Ou_Etvjf-w1J_jVX0rZqeStLfwh"
               >实名验证</a
@@ -176,14 +176,14 @@
           <div class="tips">直播间分享图，图片规则：建议像素800*640，大小不超过1M</div>
         </FormItem>
 
-        <FormItem label="商品" v-if="$route.query.id">
+        <FormItem label="Goods" v-if="$route.query.id">
           <Button
             type="primary"
             ghost
             @click="liveGoodsVisible = true"
             :disabled="liveStatus != 'NEW'"
             icon="md-add"
-            >添加商品</Button
+            >添加Goods</Button
           >
           <Table class="goods-table" :columns="liveColumns" :data="liveData">
             <template slot-scope="{ row, index }" slot="goodsName">
@@ -195,13 +195,13 @@
             </template>
             <template slot-scope="{ row }" class="price" slot="price">
               <div>
-                <div v-if="row.priceType == 1">{{ row.price | unitPrice("￥") }}</div>
+                <div v-if="row.priceType == 1">{{ row.price | unitPrice("RM") }}</div>
                 <div v-if="row.priceType == 2">
-                  {{ row.price | unitPrice("￥") }}至{{ row.price2 | unitPrice("￥") }}
+                  {{ row.price | unitPrice("RM") }}至{{ row.price2 | unitPrice("RM") }}
                 </div>
                 <div v-if="row.priceType == 3">
-                  {{ row.price2 | unitPrice("￥")
-                  }}<span class="original-price">{{ row.price | unitPrice("￥") }}</span>
+                  {{ row.price2 | unitPrice("RM")
+                  }}<span class="original-price">{{ row.price | unitPrice("RM") }}</span>
                 </div>
               </div>
             </template>
@@ -215,7 +215,7 @@
                   type="primary"
                   :disabled="liveStatus != 'NEW'"
                   @click="deleteGoods(row, index)"
-                  >删除</Button
+                  >delete</Button
                 >
                 <Button
                   size="small"
@@ -237,13 +237,13 @@
             </template>
           </Table>
           <div class="tips">
-            直播间商品中前两个商品将自动被选为封面，伴随直播间在直播列表中显示
+            直播间Goods中前两个Goods将自动被选为封面，伴随直播间在直播列表中显示
           </div>
         </FormItem>
 
         <FormItem>
           <Button type="primary" v-if="liveStatus == 'NEW'" @click="createLives()"
-            >保存</Button
+            >Save</Button
           >
         </FormItem>
       </Form>
@@ -276,13 +276,13 @@ export default {
   data() {
     return {
       spinShow: false, // loading加载
-      liveGoodsVisible: false, //选择商品
+      liveGoodsVisible: false, //selectGoods
       imageVisible: false, //查看图片的dailog
       imageSrc: "", //查看图片的路径
-      action: uploadFile, // 上传地址
+      action: uploadFile, // 上传address
       accessToken: {}, // 验证token
       liveStatus: "NEW", //当前直播状态
-      // 不能选择今天以前的时间
+      // 不能select今天以前的时间
       optionsTime: {
         disabledDate(date) {
           return date && date.valueOf() < Date.now() - 86400000;
@@ -291,18 +291,18 @@ export default {
       // 直播间数据上传规则
       liveRulesForm: {
         name: [
-          { required: true, message: "请输入直播标题", trigger: "blur" },
+          { required: true, message: "Please enter 直播标题", trigger: "blur" },
           { max: 17, min: 3, message: "直播间名字最短3个汉字，最长17个汉字" },
         ],
         anchorName: [
-          { required: true, message: "请输入主播昵称", trigger: "blur" },
+          { required: true, message: "Please enter 主播昵称", trigger: "blur" },
           { max: 15, min: 2, message: "主播昵称最短2个汉字，最长15个汉字" },
         ],
-        anchorWechat: [{ required: true, message: "请输入主播微信号", trigger: "blur" }],
+        anchorWechat: [{ required: true, message: "Please enter 主播Wechat号", trigger: "blur" }],
         startTime: [
           {
             required: true,
-            message: "请正确输入开始时间以及结束时间",
+            message: "Please 正确输入开始时间以及结束时间",
           },
         ],
         feedsImg: [{ required: true, message: "分享卡片封面不能为空", trigger: "blur" }],
@@ -312,7 +312,7 @@ export default {
       liveForm: {
         name: "", //直播标题
         anchorName: "", //主播昵称
-        anchorWechat: "", //主播微信号
+        anchorWechat: "", //主播Wechat号
         feedsImg: "", //分享卡片封面
         coverImg: "", //直播间背景墙
         shareImg: "", //分享图
@@ -320,14 +320,14 @@ export default {
       },
 
       times: [], //接收直播时间数据
-      // 直播商品表格表头
+      // 直播Goods表格表头
       liveColumns: [
         {
-          title: "商品",
+          title: "Goods",
           slot: "goodsName",
         },
         {
-          title: "价格",
+          title: "price",
           slot: "price",
         },
         {
@@ -336,19 +336,19 @@ export default {
           width: 100,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           width: 250,
         },
       ],
-      liveData: [], //直播商品集合
+      liveData: [], //直播Goods集合
     };
   },
   mounted() {
 
     /**
      * 如果query.id有值说明是查看详情
-     * liveStatus 可以判断当前直播状态 从而区分数据 是否是未开始、已开启、已关闭、
+     * liveStatus 可以判断当前直播状态 从而区分数据 是否是未开始、已Opening、已Close、
      */
     if (this.$route.query.id) {
       // 获取直播间详情
@@ -360,13 +360,13 @@ export default {
   },
   methods: {
     /**
-     * 删除直播间商品
+     * delete直播间Goods
      */
     async deleteGoods(val, index) {
       this.$Spin.show();
       let res = await delRoomLiveGoods(this.liveForm.roomId, val.liveGoodsId);
       if (res.success) {
-        this.$Message.success("删除成功!");
+        this.$Message.success("deletesuccess!");
         this.liveData.splice(index, 1);
         this.$Spin.hide();
       } else {
@@ -386,7 +386,7 @@ export default {
         for (let key in data) {
           this.liveForm[key] = data[key];
         }
-        // 将选择的商品回调给表格
+        // 将selectgoods回调给表格
 
         this.liveData = data.commodityList;
 
@@ -430,7 +430,7 @@ export default {
       });
     },
     /**
-     * 回调的商品选择数据
+     * 回调goodsselect数据
      */
     callBackData(way) {
       console.log(way);
@@ -460,23 +460,23 @@ export default {
     },
 
     /**
-     * 删除上传的图片
+     * delete上传的图片
      */
     handleRemove(type) {
       if (this.liveStatus == "NEW") {
         this.liveForm[type] = "";
       } else {
-        this.$Message.error("当前状态禁止修改删除!");
+        this.$Message.error("当前状态禁止modifydelete!");
       }
     },
     /**
-     * 直播间背景图上传成功回调
+     * 直播间背景图上传success回调
      */
     handleCoverImgSuccess(res) {
       this.liveForm.coverImg = res.result;
     },
     /**
-     * 直播间分享图上传成功回调
+     * 直播间分享图上传success回调
      */
     handleShareImgSuccess(res) {
       console.log(res);
@@ -484,7 +484,7 @@ export default {
     },
 
     /**
-     * 分享卡片封面上传成功回调
+     * 分享卡片封面上传success回调
      */
     handleFeedsImgSuccess(res) {
       this.liveForm.feedsImg = res.result;
@@ -506,12 +506,12 @@ export default {
     },
 
     /**
-     * 选择时间后的回调
+     * select时间后的回调
      */
     handleChangeTime(daterange) {
       /**
        * 直播开播时间需要在当前时间的10分钟后
-       * 此处设置默认为15分钟方便调整
+       * 此处设置default为15分钟方便调整
        */
       let siteTime = new Date().getTime() / 1000;
       let selectTime = new Date(daterange[0]).getTime() / 1000;
@@ -556,7 +556,7 @@ export default {
      */
     handleFormatError(file) {
       this.$Notice.warning({
-        title: "请上传正确的图片格式！",
+        title: "Please 上传正确的图片格式！",
         desc: file.name + " 格式不为 jpg or png.",
       });
     },
@@ -567,7 +567,7 @@ export default {
     handleMaxSize(file) {
       this.$Notice.warning({
         title: "图片超过限制大小！",
-        desc: "图片超过规定限制大小，请重新上传",
+        desc: "图片超过规定限制大小，Please 重新上传",
       });
     },
 
@@ -590,15 +590,15 @@ export default {
     createLives() {
       this.$refs["liveForm"].validate((valid) => {
         if (valid) {
-          // 需判断当前是否是添加商品
+          // 需判断当前是否是添加Goods
           if (this.$route.query.id) {
             this.spinShow = true;
             this.liveForm.commodityList = JSON.stringify(this.liveForm.commodityList);
             delete this.liveForm.updateTime;
-            // 将当前直播间修改
+            // 将当前直播间modify
             editLive(this.liveForm).then((res) => {
               if (res.success) {
-                this.$Message.success("修改成功!");
+                this.$Message.success("modifysuccess!");
 
                 this.$router.push({ path: "/promotion/live" });
               }
@@ -609,7 +609,7 @@ export default {
             this.spinShow = true;
             addLive(this.liveForm).then((res) => {
               if (res.success) {
-                this.$Message.success("添加成功!");
+                this.$Message.success("添加success!");
 
                 this.$router.push({ path: "/live" });
               }

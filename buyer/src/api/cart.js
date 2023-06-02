@@ -25,7 +25,7 @@ export function cartGoodsAll () {
 }
 
 /**
- * 获取购物车商品数量
+ * 获取购物车GoodsQuantity
  */
 export function cartCount () {
   return request({
@@ -48,9 +48,9 @@ export function cartGoodsPay (params) {
 }
 
 /**
- * 向购物车添加一个商品
+ * 向购物车添加一个Goods
  * @param skuId skuId
- * @param  num  购买数量
+ * @param  num  quantity
  */
 export function addCartGoods (params) {
   return request({
@@ -78,8 +78,8 @@ export function createTrade (data) {
 }
 
 /**
- * 选择优惠券
- * @param memberCouponId 优惠券id
+ * selectcoupon
+ * @param memberCouponId couponid
  * @param way 购物车购买：CART/立即购买：BUY_NOW/ 积分购买：POINT
  * @param used 使用true 弃用 false
  */
@@ -93,7 +93,7 @@ export function selectCoupon (params) {
 }
 
 /**
- * 可用优惠券数量
+ * availablecouponQuantity
  */
 export function couponNum (params) {
   return request({
@@ -104,8 +104,8 @@ export function couponNum (params) {
   });
 }
 /**
- * 选择收货地址
- * @param shippingAddressId 地址id
+ * selectDelivery address
+ * @param shippingAddressId addressid
  * @param way 购物车类型
  */
 export function selectAddr (params) {
@@ -118,7 +118,7 @@ export function selectAddr (params) {
 }
 
 /**
- * 选中购物车所有商品
+ * 选中购物车所有Goods
  * @param checked 设置选中 0，1
  */
 export function setCheckedAll (params) {
@@ -131,7 +131,7 @@ export function setCheckedAll (params) {
 }
 
 /**
- * 批量设置某商家的商品为选中或不选中
+ * 批量设置某商家goods为选中或不选中
  * @param checked 是否选中
  * @param storeId   商家id
  */
@@ -159,9 +159,9 @@ export function setCheckedGoods (params) {
 }
 
 /**
- * 更新购物车中单个产品数量
+ * 更新购物车中单个产品Quantity
  * @param skuId 产品id
- * @param num   产品数量
+ * @param num   产品Quantity
  */
 export function setCartGoodsNum (params) {
   return request({
@@ -173,7 +173,7 @@ export function setCartGoodsNum (params) {
 }
 
 /**
- * 删除购物车中一个或多个产品
+ * delete购物车中一个或多个产品
  * @param skuIds 产品id数组
  */
 export function delCartGoods (params) {
@@ -186,8 +186,8 @@ export function delCartGoods (params) {
 }
 
 /**
- * 选择配送方式
- * @param shippingMethod SELF_PICK_UP(自提),LOCAL_TOWN_DELIVERY(同城配送),LOGISTICS(物流)
+ * selectDistribution mode
+ * @param shippingMethod SELF_PICK_UP(self-lifting),LOCAL_TOWN_DELIVERY(同城配送),LOGISTICS(logistics)
  * @param way 购物方式
  */
 export function shippingMethod (params) {
@@ -200,7 +200,7 @@ export function shippingMethod (params) {
 }
 
 /**
- * 选择发票
+ * select发票
  * @param receiptId 发票Id
  * @param way 购物方式
  */
@@ -214,7 +214,7 @@ export function receiptSelect (params) {
 }
 
 /**
- * 获取全部配送方式
+ * 获取全部Distribution mode
  */
  export function shippingMethodList(params) {
   return request({
@@ -226,7 +226,7 @@ export function receiptSelect (params) {
 }
 
 /**
- * 获取全部配送方式
+ * 获取全部Distribution mode
  */
  export function storeAddressList(params) {
   return request({
@@ -238,7 +238,7 @@ export function receiptSelect (params) {
 }
 
 /**
- * 设置自提地址ID
+ * 设置self-liftingaddressID
  * @param addressId
  */
  export function setStoreAddressId(storeAddressId,way) {
@@ -250,7 +250,7 @@ export function receiptSelect (params) {
 }
 
 /**
- * 提交配送方式
+ * SubmitDistribution mode
  * @param params
  */
  export function setShipMethod(params) {

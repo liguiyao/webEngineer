@@ -8,7 +8,7 @@
           </div>
           <div>
             <p class="hover-color" @click="linkTo(`/goodsDetail?skuId=${goods.goodsSku.id}&goodsId=${goods.goodsSku.goodsId}`)">{{goods.goodsSku.goodsName}}</p>
-            <p class="price">{{goods.goodsSku.price | unitPrice('￥')}}<span>&nbsp; x{{goods.num}}</span></p>
+            <p class="price">{{goods.goodsSku.price | unitPrice('RM')}}<span>&nbsp; x{{goods.num}}</span></p>
           </div>
           <span class="del hover-color" @click="delGoods(goods.goodsSku.id)">Delete</span>
         </li>
@@ -26,7 +26,7 @@
               v-for="(img,imgIndex) in order.orderItems"
               :key="imgIndex" width="40" height="40" alt="">
           </div>
-          <div class="order-handle"><span>{{ order.flowPrice | unitPrice("￥") }}</span><span class="hover-color" @click="linkTo(`home/OrderDetail?sn=${order.sn}`)">View order</span></div>
+          <div class="order-handle"><span>{{ order.flowPrice | unitPrice("RM") }}</span><span class="hover-color" @click="linkTo(`home/OrderDetail?sn=${order.sn}`)">View order</span></div>
         </li>
       </ul>
       <Button type="primary" @click="linkTo('/home/MyOrder')" long>Check my order</Button>
@@ -37,7 +37,7 @@
           <li v-for="(coupon, index) in couponList" class="coupon-item" :key="index">
             <div class="c-left">
               <div>
-                <span v-if="coupon.couponType === 'PRICE'" class="fontsize_12 global_color">￥<span class="price">{{coupon.price | unitPrice}}</span></span>
+                <span v-if="coupon.couponType === 'PRICE'" class="fontsize_12 global_color">RM<span class="price">{{coupon.price | unitPrice}}</span></span>
                 <span v-if="coupon.couponType === 'DISCOUNT'" class="fontsize_12 global_color"><span class="price">{{coupon.couponDiscount}}</span>discount</span>
                 <span class="describe">Full{{coupon.consumeThreshold}}available</span>
               </div>
@@ -56,7 +56,7 @@
         <li v-for="(track,trackIndex) in tracksList" :key="trackIndex">
           <img :src="track.thumbnail" :alt="track.thumbnail" @click="linkTo(`/goodsDetail?skuId=${track.id}&goodsId=${track.goodsId}`)" width="100" height="100">
           <div @click="addToCart(track.id)">Add cart</div>
-          <p class="global_color">{{track.price | unitPrice('￥')}}</p>
+          <p class="global_color">{{track.price | unitPrice('RM')}}</p>
         </li>
       </ul>
       <div class="hover-color" style="text-align:center;" @click="linkTo('/home/MyTracks')">More>></div>
@@ -69,7 +69,7 @@
           <span class="del-icon" @click.stop="cancelCollect(collect.skuId)">
             <Icon type="md-trash" />
           </span>
-          <p class="global_color">{{collect.price | unitPrice('￥')}}</p>
+          <p class="global_color">{{collect.price | unitPrice('RM')}}</p>
         </li>
       </ul>
       <div class="hover-color" style="text-align:center;" @click="linkTo('/home/Favorites')">More>></div>
@@ -115,7 +115,7 @@ export default {
     return {
       loading: false, // 控制spin显隐
       cartList: [], // 购物车列表
-      couponList: [], // 优惠券列表
+      couponList: [], // Coupon list
       orderList: [], // 订单列表
       collectList: [], // 收藏列表
       tracksList: [], // 足迹列表
@@ -159,7 +159,7 @@ export default {
         this.cartList = res.result.skuList
       })
     },
-    // 删除商品
+    // deleteGoods
     delGoods (id) {
       delCartGoods({ skuIds: id }).then((res) => {
         if (res.success) {
@@ -178,7 +178,7 @@ export default {
       const ob = this.orderStatusList.filter(e => { return e.status === status });
       return ob[0].name
     },
-    receive (item) { // 领取优惠券
+    receive (item) { // 领取coupon
       receiveCoupon(item.id).then(res => {
         if (res.success) {
           this.$Modal.confirm({
@@ -204,7 +204,7 @@ export default {
         }
       })
     },
-    useScope (type, storeName) { // 判断优惠券使用范围
+    useScope (type, storeName) { // 判断coupon使用范围
       let shop = 'platform';
       let goods = 'All goods'
       if (storeName !== 'platform') shop = storeName
@@ -221,7 +221,7 @@ export default {
       }
       return `${shop}${goods}available`
     },
-    addToCart (id) { // 添加商品到购物车
+    addToCart (id) { // 添加Goods到购物车
       const params = {
         num: 1,
         skuId: id
@@ -236,7 +236,7 @@ export default {
         }
       }).catch(() => { this.loading = false });
     },
-    getCouponList () { // 获取优惠券列表
+    getCouponList () { // 获取Coupon list
       // this.loading = true;
       const params = {
         pageNumber: 1,
@@ -275,7 +275,7 @@ export default {
         this.collectList = res.result.records
       })
     },
-    cancelCollect (id) { // 取消商品收藏
+    cancelCollect (id) { // CancelGoods收藏
       cancelCollect('GOODS', id).then(res => {
         if (res.success) {
           this.$Message.success('Cancel success')

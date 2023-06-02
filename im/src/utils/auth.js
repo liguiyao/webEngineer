@@ -49,7 +49,7 @@ export function getUserSettingCache () {
 }
 
 /**
- * 用户设置保存到浏览器缓存中
+ * 用户设置Save到浏览器缓存中
  *
  * @param {Object} state 用户设置相关信息
  */
@@ -58,7 +58,7 @@ export function setUserSettingCache (state) {
 }
 
 /**
- * 删除用户相关缓存信息
+ * delete用户相关缓存信息
  */
 export function removeAll () {
   localStorage.removeItem(USER_TOKEN)

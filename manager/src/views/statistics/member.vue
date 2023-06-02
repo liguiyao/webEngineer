@@ -8,7 +8,7 @@
 
     <Card class="card">
       <div>
-        <h4>客户增长趋势 <Button style="margin-left:10px" @click="()=>{enableShowMemberCount = !enableShowMemberCount; initMemberChart()}" size="small">{{enableShowMemberCount ? '关闭' : '显示'}}用户总人数</Button></h4>
+        <h4>客户增长趋势 <Button style="margin-left:10px" @click="()=>{enableShowMemberCount = !enableShowMemberCount; initMemberChart()}" size="small">{{enableShowMemberCount ? 'Close' : '显示'}}用户总人数</Button></h4>
         <div id="orderChart"></div>
       </div>
     </Card>
@@ -76,7 +76,7 @@ export default {
       ],
       year: "", // 当前年限
       orderChart: "", // 订单表格
-      params: { // 请求参数
+      params: { // Please 求参数
         searchType: "LAST_SEVEN",
         year: "",
         month: "",
@@ -102,7 +102,7 @@ export default {
   methods: {
     // 订单图
     initMemberChart() {
-      // 默认已经加载 legend-filter 交互
+      // default已经加载 legend-filter 交互
       /**
        * 将数据分成三组来进行展示
        */
@@ -116,21 +116,21 @@ export default {
           count.push({
             createDate: item.createDate,
             memberCount:item.memberCount,
-            title: "当前会员数量",
+            title: "当前会员Quantity",
           });
         }
         if (!this.enableShowMemberCount && (item.newlyAdded!="" || item.newlyAdded!=null)) {
           newly.push({
             createDate: item.createDate,
             memberCount: item.newlyAdded,
-            title: "新增会员数量",
+            title: "新增会员Quantity",
           });
         }
         if (!this.enableShowMemberCount && (item.activeQuantity!="" || item.activeQuantity!=null)) {
           actives.push({
             createDate: item.createDate,
             memberCount: item.activeQuantity,
-            title: "当日活跃数量",
+            title: "当日活跃Quantity",
           });
         }
       });

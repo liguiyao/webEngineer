@@ -7,7 +7,7 @@
           <span class="name">{{ fileName }}</span>
           <span class="size">({{ fileSize }})</span>
         </p>
-        <p class="notice">文件已成功发送, 文件助手永久保存</p>
+        <p class="notice">文件已success发送, 文件助手永久Save</p>
       </div>
     </div>
     <div class="footer">

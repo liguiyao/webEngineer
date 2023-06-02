@@ -17,9 +17,9 @@
       }"
     >
       <li class="hz-u-index" :title="`热区${index + 1}`">{{ index + 1 }}</li>
-      
+
       <li
-        title="删除该热区"
+        title="delete该热区"
         v-show="!hideZone"
         class="hz-u-close hz-icon hz-icon-trash"
         @click.prevent.stop="delItem(index)"
@@ -50,14 +50,14 @@
       <li class="hz-u-square hz-u-square-bc" data-pointer="dealBC"></li>
       <li class="hz-u-square hz-u-square-br" data-pointer="dealBR"></li>
     </ul>
-   
+
     <Modal
       v-model="showModal"
       title="编辑热区"
       draggable
       scrollable
       :mask="false"
-      ok-text="保存"
+      ok-text="Save"
       @on-ok="saveZone"
       @on-cancel="cancelZone"
     >
@@ -70,22 +70,22 @@
           <!-- <FormItem label="图片链接：">
             <Input v-model="zoneForm.img"></Input>
             <Button size="small" type="primary" @click="handleSelectImg"
-              >选择图片</Button
+              >select图片</Button
             >
             :v-model="zoneForm.type === 'goods' ? zoneForm.goodsName : zoneForm.link"
           </FormItem> -->
           <FormItem label="跳转链接：">
             <Input type="textarea" v-if="zoneForm.type === 'other' && zoneForm.title === '外部链接'" v-model="zoneForm.link" ></Input>
             <Button size="small" type="primary" @click="handleSelectLink"
-              >选择链接</Button
+              >select链接</Button
             >
           </FormItem>
         </Form>
       </div>
     </Modal>
-    <!-- 选择商品。链接 -->
+    <!-- selectGoods。链接 -->
     <liliDialog ref="liliDialog" @selectedLink="selectedLink"></liliDialog>
-    <!-- 选择图片 -->
+    <!-- select图片 -->
     <Modal width="1200px" v-model="picModelFlag" footer-hide>
       <ossManage
         @callback="callbackSelected"
@@ -160,18 +160,18 @@ export default {
       this.showModal = true;
       this.currentIndex = index;
     },
-    // 选择图片
+    // select图片
     handleSelectImg() {
       this.$refs.ossManage.selectImage = true;
       this.picModelFlag = true;
     },
-    // 选择图片回调
+    // select图片回调
     callbackSelected(item) {
       this.picModelFlag = false;
       this.zoneForm.img = item.url;
     },
 
-    // 调起选择链接弹窗
+    // 调起select链接弹窗
     handleSelectLink(item, index) {
       if (item) this.selectedNav = item;
       this.$refs.liliDialog.open("link");

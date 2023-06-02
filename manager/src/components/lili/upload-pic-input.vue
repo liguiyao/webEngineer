@@ -42,7 +42,7 @@
     <Modal title="图片预览" v-model="viewImage" :styles="{top: '30px'}" draggable>
       <img :src="currentValue" alt="该资源不存在" style="max-width: 300px;margin: 0 auto;display: block;" />
       <div slot="footer">
-        <Button @click="viewImage=false">关闭</Button>
+        <Button @click="viewImage=false">Close</Button>
       </div>
     </Modal>
   </div>
@@ -86,7 +86,7 @@ export default {
       currentValue: this.value, // 当前值
       loading: false, // 加载状态
       viewImage: false, // 预览图片modal
-      uploadFileUrl: uploadFile // 上传地址
+      uploadFileUrl: uploadFile // 上传address
     };
   },
   methods: {
@@ -104,7 +104,7 @@ export default {
         desc:
           "所选文件‘ " +
           file.name +
-          " ’格式不正确, 请选择 .jpg .jpeg .png .gif .bmp格式文件"
+          " ’格式不正确, Please select .jpg .jpeg .png .gif .bmp格式文件"
       });
     },
     // 大小校验
@@ -120,7 +120,7 @@ export default {
       this.loading = true;
       return true;
     },
-    // 上传成功
+    // 上传success
     handleSuccess(res, file) {
       this.loading = false;
       if (res.success) {
@@ -136,7 +136,7 @@ export default {
       this.loading = false;
       this.$Message.error(error.toString());
     },
-    // 上传成功回显
+    // 上传success回显
     handleChange(v) {
       this.$emit("input", this.currentValue);
       this.$emit("on-change", this.currentValue);

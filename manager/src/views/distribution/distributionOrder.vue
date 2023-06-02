@@ -6,7 +6,7 @@
           <Input
             type="text"
             v-model="searchForm.orderSn"
-            placeholder="请输入订单编号"
+            placeholder="Please enter 订单编号"
             clearable
             style="width: 200px"
           />
@@ -15,22 +15,22 @@
           <Input
             type="text"
             v-model="searchForm.distributionName"
-            placeholder="请输入分销商名称"
+            placeholder="Please enter 分销商名称"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="店铺名称">
-          <Select v-model="searchForm.storeId" placeholder="请选择" @on-query-change="searchChange" filterable
+        <Form-item label="store name">
+          <Select v-model="searchForm.storeId" placeholder="Please select" @on-query-change="searchChange" filterable
                   clearable style="width: 150px">
             <Option v-for="item in shopList" :value="item.id" :key="item.id">{{ item.storeName }}</Option>
           </Select>
         </Form-item>
         <Form-item label="订单时间">
-          <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="选择时间"
+          <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="select时间"
                       style="width: 210px"></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10">
         <template slot-scope="{row}" slot="goodsMsg">
@@ -40,7 +40,7 @@
               <div class="div-zoom">
                 <a @click="linkTo(row.goodsId,row.skuId)">{{row.goodsName}}</a>
               </div>
-              <div style="color:#999;font-size:10px">数量：x{{row.num}}</div>
+              <div style="color:#999;font-size:10px">Quantity：x{{row.num}}</div>
               <Poptip trigger="hover" title="扫码在手机中查看" transfer>
                 <div slot="content">
                   <vue-qr :text="wapLinkTo(row.goodsId,row.skuId)"  :margin="0" colorDark="#000" colorLight="#fff" :size="150"></vue-qr>
@@ -83,7 +83,7 @@
         shopList: [], // 店铺列表
         distributionId: this.$route.query.id, // 分销id
         loading: true, // 表单加载状态
-        searchForm: { // 搜索框初始化对象
+        searchForm: { // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
           sort:"create_time",
@@ -98,7 +98,7 @@
             tooltip: true
           },
           {
-            title: '商品信息',
+            title: 'Goods details',
             slot: 'goodsMsg',
             minWidth: 150
           },
@@ -110,7 +110,7 @@
             minWidth:80,
           },
           {
-            title: "店铺名称",
+            title: "store name",
             key: "storeName",
             minWidth:80,
             tooltip: true
@@ -127,16 +127,16 @@
             sortable: false,
             render: (h, params) => {
               if(params.row.rebate == null){
-                return h("div", this.$options.filters.unitPrice(0, '￥'));
+                return h("div", this.$options.filters.unitPrice(0, 'RM'));
               }else{
-                return h("div", this.$options.filters.unitPrice(params.row.rebate, '￥'));
+                return h("div", this.$options.filters.unitPrice(params.row.rebate, 'RM'));
               }
 
             }
           },
           {
             fixed: "right",
-            title: "创建时间",
+            title: "Create time",
             key: "createTime",
             minWidth:100,
             sortable: false,
@@ -162,7 +162,7 @@
         this.searchForm.pageSize = v;
         this.getDataList();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = 10;
@@ -178,7 +178,7 @@
           this.searchForm.startTime = this.$options.filters.unixToDate(startTime / 1000)
           this.searchForm.endTime = this.$options.filters.unixToDate(endTime / 1000)
         }
-        // 带多条件搜索参数获取表单数据 请自行修改接口
+        // 带多条件search参数获取表单数据 Please 自行modify接口
         getDistributionOrder(this.searchForm).then(res => {
           this.loading = false;
           if (res.success) {
@@ -190,7 +190,7 @@
         this.total = this.data.length;
         this.loading = false;
       },
-      getShopList(val) { // 获取店铺列表 搜索用
+      getShopList(val) { // 获取店铺列表 search用
         const params = {
           pageNumber: 1,
           pageSize: 10,
@@ -206,7 +206,7 @@
           this.shopList = res.result.records
         })
       },
-      searchChange(val) { // 店铺搜索，键盘点击回调
+      searchChange(val) { // 店铺search，键盘点击回调
         this.getShopList(val)
       },
       filterStatus (status) { // 过滤订单状态
@@ -215,8 +215,8 @@
           {status: 'NO_COMPLETED', title: '未完成'},
           {status: 'WAIT_CASH', title: '待提现'},
           {status: 'COMPLETE_CASH', title: '提现完成'},
-          {status: 'CANCEL', title: '订单取消'},
-          {status: 'REFUND', title: '退款'},
+          {status: 'CANCEL', title: '订单Cancel'},
+          {status: 'REFUND', title: 'refund'},
         ]
         for (let i=0;i<arr.length;i++) {
           if (arr[i].status === status) {

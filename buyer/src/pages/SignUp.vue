@@ -7,7 +7,7 @@
         :src="$store.state.logoImg"
         @click="$router.push('/')"
       />
-      <div>注册</div>
+      <div>Register</div>
     </div>
     <div class="login-container">
         <!-- 注册 -->
@@ -22,7 +22,7 @@
               type="text"
               v-model="formRegist.username"
               clearable
-              placeholder="用户名"
+              placeholder="Username"
             >
               <Icon type="md-person" slot="prepend"></Icon>
             </i-input>
@@ -32,7 +32,7 @@
               type="password"
               v-model="formRegist.password"
               clearable
-              placeholder="请输入大于6位密码"
+              placeholder="Please enter password greater than 6 characters"
             >
               <Icon type="md-lock" slot="prepend"> </Icon>
             </i-input>
@@ -42,7 +42,7 @@
               type="text"
               v-model="formRegist.mobilePhone"
               clearable
-              placeholder="手机号"
+              placeholder="phone number"
             >
               <Icon type="md-phone-portrait" slot="prepend"></Icon>
             </i-input>
@@ -52,7 +52,7 @@
               type="text"
               v-model="formRegist.code"
               clearable
-              placeholder="手机验证码"
+              placeholder="phone verification code"
             >
               <Icon
                 type="ios-text-outline"
@@ -63,14 +63,14 @@
             </i-input>
           </FormItem>
           <FormItem>
-            <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'验证通过':'点击完成安全验证'}}</Button>
+            <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'verification pass':'Click to complete'}}</Button>
           </FormItem>
           <FormItem>
             <Button type="error" size="large" @click="handleRegist" long
-              >注册</Button
+              >Register</Button
             >
           </FormItem>
-          <FormItem><span class="color999 ml_20">点击注册，表示您同意《<router-link to="/article?id=1371992704333905920" target="_blank">商城用户协议</router-link>》</span></FormItem>
+          <FormItem><span class="color999 ml_20">Click Register to indicate your agreement《<router-link to="/article?id=1371992704333905920" target="_blank">agreement</router-link>》</span></FormItem>
         </Form>
         <!-- 拼图验证码 -->
         <Verify
@@ -79,18 +79,18 @@
           :verifyType="verifyType"
           @change="verifyChange"
         ></Verify>
-        <div class="login-btn">已有账号？<a @click="$router.push('login')">立即登录</a></div>
+        <div class="login-btn">Have an account?<a @click="$router.push('login')">Login</a></div>
     </div>
     <div class="foot">
       <Row type="flex" justify="space-around" class="help">
-        <router-link to="/article" class="item" target="_blank">帮助</router-link>
-        <router-link to="/article?id=1371779927900160000" class="item" target="_blank">隐私</router-link>
-        <router-link to="/article?id=1371992704333905920" class="item" target="_blank">条款</router-link>
+        <router-link to="/article" class="item" target="_blank">Help</router-link>
+        <router-link to="/article?id=1371779927900160000" class="item" target="_blank">privacy</router-link>
+        <router-link to="/article?id=1371992704333905920" class="item" target="_blank">clause</router-link>
       </Row>
       <Row type="flex" justify="center" class="copyright">
         Copyright © {{year}} - Present
         <a href="https://pickmall.cn" target="_blank" style="margin: 0 5px">{{config.title}}</a>
-        版权所有
+        All rights reserved.
       </Row>
     </div>
   </div>
@@ -119,24 +119,24 @@ export default {
       },
       ruleInline: {
         // 验证规则
-        username: [{ required: true, message: '请输入用户名' }],
+        username: [{ required: true, message: 'Please enter username' }],
         password: [
-          { required: true, message: '请输入密码' },
-          { type: 'string', min: 6, message: '密码不能少于6位' }
+          { required: true, message: 'Please enter password' },
+          { type: 'string', min: 6, message: 'password cannot be less than 6 characters' }
         ],
         mobilePhone: [
-          { required: true, message: '请输入手机号码' },
+          { required: true, message: 'Please enter Phone number' },
           {
             pattern: RegExp.mobile,
             trigger: 'blur',
-            message: '请输入正确的手机号'
+            message: 'Please enter correctly phone number'
           }
         ],
-        code: [{ required: true, message: '请输入手机验证码' }]
+        code: [{ required: true, message: 'Please enter phone verification code' }]
       },
       verifyStatus: false, // 是否验证通过
       verifyType: 'REGISTER', // 验证状态
-      codeMsg: '发送验证码', // 提示文字
+      codeMsg: 'Send verification code', // Tips文字
       interval: '', // 定时器
       time: 60 // 倒计时
     };
@@ -150,7 +150,7 @@ export default {
           data.password = md5(data.password);
           apiLogin.regist(data).then((res) => {
             if (res.success) {
-              this.$Message.success('注册成功!');
+              this.$Message.success('register success!');
               this.$router.push('login');
             } else {
               this.$Message.warning(res.message);
@@ -163,11 +163,11 @@ export default {
     sendCode () {
       if (this.time === 60) {
         if (this.formRegist.mobilePhone === '') {
-          this.$Message.warning('请先填写手机号');
+          this.$Message.warning('Please enter phone number first');
           return;
         }
         if (!this.verifyStatus) {
-          this.$Message.warning('请先完成安全验证');
+          this.$Message.warning('Please complete security verification first');
           return;
         }
         let params = {
@@ -176,13 +176,13 @@ export default {
         };
         sendSms(params).then(res => {
           if (res.success) {
-            this.$Message.success('验证码发送成功');
+            this.$Message.success('Verification code sending success');
             let that = this;
             this.interval = setInterval(() => {
               that.time--;
               if (that.time === 0) {
                 that.time = 60;
-                that.codeMsg = '重新发送';
+                that.codeMsg = 'Resend';
                 that.verifyStatus = false;
                 clearInterval(that.interval);
               } else {
@@ -195,7 +195,7 @@ export default {
         });
       }
     },
-    // 图片验证码成功回调
+    // 图片验证码success回调
     verifyChange (con) {
       if (!con.status) return;
       this.$refs.verify.show = false;

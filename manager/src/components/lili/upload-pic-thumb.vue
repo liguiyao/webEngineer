@@ -46,7 +46,7 @@
     <Modal title="图片预览" v-model="viewImage" :styles="{top: '30px'}" draggable>
       <img :src="imgUrl" alt="无效的图片链接" style="width: 100%;margin: 0 auto;display: block;" />
       <div slot="footer">
-        <Button @click="viewImage=false">关闭</Button>
+        <Button @click="viewImage=false">Close</Button>
       </div>
     </Modal>
   </div>
@@ -80,10 +80,10 @@ export default {
   data() {
     return {
       accessToken: {}, // 验证token
-      uploadFileUrl: uploadFile, // 上传地址
+      uploadFileUrl: uploadFile, // 上传address
       uploadList: [], // 上传列表
       viewImage: false, // 预览modal
-      imgUrl: "" // 图片地址
+      imgUrl: "" // 图片address
     };
   },
   methods: {
@@ -108,17 +108,17 @@ export default {
       this.uploadList = this.uploadList.filter(i => i.url !== file.url);
       this.returnValue();
     },
-    // 上传成功
+    // 上传success
     handleSuccess(res, file) {
       if (res.success) {
         file.url = res.result;
         // 单张图片处理
         if (!this.multiple && this.uploadList.length > 0) {
-          // 删除第一张
+          // delete第一张
           this.uploadList.splice(0, 1);
         }
         this.uploadList.push(file);
-        // 返回组件值
+        // Back组件值
         this.returnValue();
       } else {
         this.$Message.error(res.message);
@@ -135,7 +135,7 @@ export default {
         desc:
           "所选文件‘ " +
           file.name +
-          " ’格式不正确, 请选择 .jpg .jpeg .png .gif图片格式文件"
+          " ’格式不正确, Please select .jpg .jpeg .png .gif图片格式文件"
       });
     },
     // 上传文件大小校验
@@ -154,7 +154,7 @@ export default {
       }
       return true;
     },
-    // 返回组件值
+    // Back组件值
     returnValue() {
       if (!this.uploadList || this.uploadList.length < 1) {
         if (!this.multiple) {

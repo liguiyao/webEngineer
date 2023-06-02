@@ -20,8 +20,8 @@
                     <time style="margin-right: 20px" title="最后编辑时间">
                       <i class="icon-time"></i>{{item.updateTime}}
                     </time>
-                    <Button @click="edit(item)" type="info">修改</Button>
-                    <Button @click="remove(item.id)" type="error">删除</Button>
+                    <Button @click="edit(item)" type="info">modify</Button>
+                    <Button @click="remove(item.id)" type="error">delete</Button>
                   </span>
                 </th>
               </tr>
@@ -41,13 +41,13 @@
                     {{children.firstCompany}}
                   </td>
                   <td>
-                    <span class="yuan">￥</span><span class="integer">{{children.firstPrice | unitPrice}}</span>
+                    <span class="yuan">RM</span><span class="integer">{{children.firstPrice | unitPrice}}</span>
                   </td>
                   <td>
                     {{children.continuedCompany}}
                   </td>
                   <td class="bdr">
-                    <span class="yuan">￥</span><span class="integer">{{children.continuedPrice | unitPrice}}</span>
+                    <span class="yuan">RM</span><span class="integer">{{children.continuedPrice | unitPrice}}</span>
                   </td>
                 </tr>
               </template>
@@ -68,7 +68,7 @@
             </FormItem>
 
             <FormItem label="详细设置" v-if="form.pricingMethod !== 'FREE'">
-              <Alert type="warning" >点击右侧修改按钮编辑数据</Alert>
+              <Alert type="warning" >点击右侧modify按钮编辑数据</Alert>
               <div class="ncsu-trans-type" data-delivery="TRANSTYPE">
                 <div class="entity">
                   <div class="tbl-except">
@@ -82,7 +82,7 @@
                           <th class="w110">首费</th>
                           <th class="w50">续件(重)</th>
                           <th class="w110">续费</th>
-                          <th class="w150">操作</th>
+                          <th class="w150">operation</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -114,10 +114,10 @@
                           </td>
                           <td class="nscs-table-handle">
                             <Button @click="editRegion(item,index)" type="info" size="small"
-                              style="margin-bottom: 5px">修改
+                              style="margin-bottom: 5px">modify
                             </Button>
                             <Button @click="removeTemplateChildren(index)"  type="error"
-                              size="small" style="margin-bottom: 5px">删除
+                              size="small" style="margin-bottom: 5px">delete
                             </Button>
                           </td>
                         </tr>
@@ -145,7 +145,7 @@
               <Button @click="addShipTemplateChildren(index)" v-if="form.pricingMethod !== 'FREE'"
                 icon="ios-create-outline">为指定城市设置运费模板
               </Button>
-              <Button @click="handleSubmit" type="primary" style="margin-right:5px">保存
+              <Button @click="handleSubmit" type="primary" style="margin-right:5px">Save
               </Button>
             </Form-item>
           </Form>
@@ -172,14 +172,14 @@ export default {
     return {
       gotop: false,
       index:'0',
-      selectedIndex: 0, //选中的地址模板下标
+      selectedIndex: 0, //选中的address模板下标
       item: "", //运费模板子模板
       shipInfo: {}, // 运费模板数据
       title: "添加运费模板", // 模态框标题
-      operation: "add", // 操作状态
+      operation: "add", // operation状态
       currentTab: "", // 当前模板tab
       // submitLoading:false,
-      saveError: false, // 是否显示错误提示
+      saveError: false, // 是否显示错误Tips
       csTab: false, // 添加运费模板显示
       form: {
         // 添加或编辑表单对象初始化数据
@@ -190,7 +190,7 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入模板名称",
+            message: "Please enter 模板名称",
             trigger: "blur",
           },
         ],
@@ -198,7 +198,7 @@ export default {
           // 计费方式
           {
             required: true,
-            message: "请选择计费方式",
+            message: "Please select计费方式",
             trigger: "blur",
           },
         ],
@@ -250,9 +250,9 @@ export default {
        let scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
       scrolltop > 30 ? (this.gotop = true) : (this.gotop = false);
     },
-    //修改运费模板
+    //modify运费模板
     edit(item) {
-      this.title = "修改运费模板";
+      this.title = "modify运费模板";
       this.csTab = true;
       this.operation = "EDIT";
       this.currentTab = "EDIT";
@@ -261,7 +261,7 @@ export default {
       this.form = item;
 
       let top = document.documentElement.scrollTop || document.body.scrollTop;
-      // 实现滚动效果 
+      // 实现滚动效果
       const timeTop = setInterval(() => {
         document.body.scrollTop = document.documentElement.scrollTop = top -= 50;
         if (top <= 0) {
@@ -269,7 +269,7 @@ export default {
         }
       }, 0);
     },
-    //选择地区
+    //select地区
     editRegion(item, index) {
       this.selectedIndex = index;
       this.item = item;
@@ -302,7 +302,7 @@ export default {
       });
     },
     /**
-     * 选择地址回调
+     * selectaddress回调
      */
     handleSelect(v) {
       console.log(v);
@@ -336,7 +336,7 @@ export default {
       this.item.area = area;
       this.item.areaId = areaId;
     },
-    //添加或者修改运费模板
+    //添加或者modify运费模板
     handleSubmit() {
       const headers = {
         "Content-Type": "application/json;charset=utf-8",
@@ -387,7 +387,7 @@ export default {
           if (this.operation == "ADD") {
             API_Shop.addShipTemplate(this.form, headers).then((res) => {
               if (res.success) {
-                this.$Message.success("新增成功");
+                this.$Message.success("新增success");
                 this.operation = "INFO";
                 this.currentTab = "INFO";
                 this.csTab = false;
@@ -398,7 +398,7 @@ export default {
             API_Shop.editShipTemplate(this.form.id, this.form, headers).then(
               (res) => {
                 if (res.success) {
-                  this.$Message.success("新增成功");
+                  this.$Message.success("新增success");
                   this.operation = "INFO";
                   this.currentTab = "INFO";
                   this.csTab = false;
@@ -423,7 +423,7 @@ export default {
       };
       this.form.freightTemplateChildList.push(params);
     },
-    //删除一个子模板
+    //delete一个子模板
     removeTemplateChildren(index) {
       if (Object.keys(this.form.freightTemplateChildList).length == 1) {
         this.$Message.error("必须保留一个子模板");
@@ -431,17 +431,17 @@ export default {
       }
       this.form.freightTemplateChildList.splice(index, 1);
     },
-    //删除运费模板
+    //delete运费模板
     remove(id) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除此运费模板 ?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "您确认要delete此运费模板 ?",
         loading: true,
         onOk: () => {
           API_Shop.deleteShipTemplate(id).then((res) => {
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
             }
             this.$Modal.remove();
             this.getData();

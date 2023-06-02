@@ -38,7 +38,7 @@
             @click="remove(scope.row)"
             size="small"
             style="margin-right:5px"
-          >删除
+          >delete
           </Button>
 
         </template>
@@ -63,8 +63,8 @@
           </FormItem>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="modalVisible=false">取消</Button>
-          <Button type="primary" :loading="submitLoading" @click="submit">提交</Button>
+          <Button type="text" @click="modalVisible=false">Cancel</Button>
+          <Button type="primary" :loading="submitLoading" @click="submit">Submit</Button>
         </div>
       </Modal>
     </Card>
@@ -85,7 +85,7 @@ export default {
   },
   data() {
     return {
-      submitLoading: false, // 提交loading
+      submitLoading: false, // Submitloading
       loading: false, //表格加载的loading
       modalType: 0, // 添加或编辑标识
       modalVisible: false, // 添加或编辑显示
@@ -117,7 +117,7 @@ export default {
           minWidth: "120px",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "left",
           headerAlign: "center",
@@ -181,18 +181,18 @@ export default {
       this.modalVisible = true;
 
     },
-    //提交编辑和添加
+    //Submit编辑和添加
     submit() {
       this.$refs.formAdd.validate(valid => {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.formAdd.id;
             API_Goods.addShopGoodsLabel(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
                 this.getAllList(0);
                 this.modalVisible = false;
               }
@@ -202,7 +202,7 @@ export default {
             API_Goods.editShopGoodsLabel(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("修改成功");
+                this.$Message.success("modifysuccess");
                 this.getAllList(0);
                 this.modalVisible = false;
               }
@@ -211,19 +211,19 @@ export default {
         }
       });
     },
-    // 确认删除分类
+    // 确认delete分类
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        // 记得确认修改此处
-        content: "您确认要删除 " + v.labelName + " ?",
+        title: "确认delete",
+        // 记得确认modify此处
+        content: "您确认要delete " + v.labelName + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           API_Goods.delCategdelShopGoodsLabel(v.id).then(res => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getAllList();
             }
           });

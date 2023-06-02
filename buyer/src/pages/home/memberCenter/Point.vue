@@ -1,11 +1,11 @@
 <template>
   <div class="point">
-    <card _Title="我的积分"/>
+    <card _Title="my bonus points"/>
     <div class="point-content">
-      <span>剩余积分：<span>{{ pointObj.point || 0 }}</span></span>
-      <span>累计获得：<span>{{ pointObj.totalPoint || 0 }}</span></span>
+      <span>Residual bonus points：<span>{{ pointObj.point || 0 }}</span></span>
+      <span>Cumulative acquisition：<span>{{ pointObj.totalPoint || 0 }}</span></span>
     </div>
-    <h3>积分日志</h3>
+    <h3>Integral log</h3>
     <Table :columns="logColumns" :data="logData.records">
       <template slot-scope="{ row }" slot="point">
         <div :style="{color:row.pointType === 'INCREASE' ? 'green' : 'red'}">
@@ -37,24 +37,24 @@ export default {
     return {
       logData: {}, // 积分日志
       pointObj: {}, // 积分明细
-      loading: false, // 请求接口加载框
-      params: { // 积分列表请求参数
+      loading: false, // Please 求接口加载框
+      params: { // 积分列表Please 求参数
         pageNumber: 1,
         pageSize: 10
       },
       logColumns: [ // table展示数据
         {
-          title: '日志内容',
+          title: 'Log content',
           key: 'content',
           align: 'center'
         },
         {
-          title: '时间',
+          title: 'Time',
           key: 'createTime',
           align: 'center'
         },
         {
-          title: '积分明细',
+          title: 'Details',
           slot: 'point',
           align: 'center'
         }
@@ -76,11 +76,11 @@ export default {
         if (res.success) this.pointObj = res.result
       })
     },
-    changePage (val) { // 修改页码
+    changePage (val) { // modify页码
       this.params.pageNumber = val
       this.getHistory()
     },
-    changePageSize (val) { // 修改页数
+    changePageSize (val) { // modify页数
       this.params.pageSize = val
       this.params.pageNumber = 1
       this.getHistory()

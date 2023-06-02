@@ -9,7 +9,7 @@
       <div class="join-box">
         <div class="join-item" v-for="item in 4" :key="item">
           <div class="item-img-box">
-           
+
             <img
               class="item-img"
               src="https://picsum.photos/id/268/200/200"
@@ -17,10 +17,10 @@
             />
           </div>
           <div class="item-price">
-            <span>￥120.00</span>
+            <span>RM120.00</span>
           </div>
           <div class="item-line-through">
-            <span>￥190.00</span>
+            <span>RM190.00</span>
           </div>
         </div>
       </div>

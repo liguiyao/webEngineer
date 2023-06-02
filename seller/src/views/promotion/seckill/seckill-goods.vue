@@ -12,8 +12,8 @@
 
       <Row class="operation">
         <template v-if="promotionStatus == 'NEW'">
-          <Button type="primary" @click="openSkuList">选择商品</Button>
-          <!-- <Button @click="delAll">批量删除</Button> -->
+          <Button type="primary" @click="openSkuList">selectGoods</Button>
+          <!-- <Button @click="delAll">批量delete</Button> -->
         </template>
       </Row>
       <Row class="operation">
@@ -34,7 +34,7 @@
               @on-selection-change="changeSelect"
             >
               <template slot-scope="{ row }" slot="originalPrice">
-                <div>{{ row.originalPrice | unitPrice("￥") }}</div>
+                <div>{{ row.originalPrice | unitPrice("RM") }}</div>
               </template>
 
               <template slot-scope="{ row, index }" slot="quantity">
@@ -101,7 +101,7 @@
                   size="small"
                   ghost
                   @click="delGoods(index, row)"
-                  >删除
+                  >delete
                 </Button>
               </template>
             </Table>
@@ -110,13 +110,13 @@
       </Row>
 
       <Row class="operation">
-        <Button @click="closeCurrentPage">返回</Button>
+        <Button @click="closeCurrentPage">Back</Button>
         <Button
           type="primary"
           :loading="submitLoading"
           v-if="promotionStatus === 'NEW'"
           @click="save"
-          >提交
+          >Submit
         </Button>
       </Row>
     </Card>
@@ -148,12 +148,12 @@ export default {
       promotionStatus: "", // 活动状态
       loading: false, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 0, // 当前页数
         pageSize: 1000, // 页面大小
       },
-      tabIndex: 0, // 选择商品的下标
-      submitLoading: false, // 添加或编辑提交状态
+      tabIndex: 0, // selectGoods的下标
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       data: [{}], // 表单数据
@@ -178,12 +178,12 @@ export default {
       ],
       goodsColumns: [
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           slot: "originalPrice",
           minWidth: 50,
         },
@@ -193,7 +193,7 @@ export default {
           minWidth: 40,
         },
         {
-          title: "活动价格",
+          title: "活动price",
           slot: "price",
           minWidth: 50,
         },
@@ -203,17 +203,17 @@ export default {
           minWidth: 30,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           minWidth: 50,
         },
       ],
-      goodsList: [], // 商品列表
-      defaultGoodsList: [], //默认查询秒杀的商品
+      goodsList: [], // Goods列表
+      defaultGoodsList: [], //default查询秒杀goods
     };
   },
   methods: {
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "seckill-goods");
       localStorage.storeOpenedList = JSON.stringify(
@@ -221,7 +221,7 @@ export default {
       );
       this.$router.go(-1);
     },
-    // 提交秒杀商品
+    // Submit秒杀Goods
     save() {
       let list = JSON.parse(JSON.stringify(this.goodsList));
       let params = {
@@ -242,7 +242,7 @@ export default {
       setSeckillGoods(params).then((res) => {
         this.submitLoading = false;
         if (res && res.success) {
-          this.$Message.success("提交活动商品成功");
+          this.$Message.success("Submit活动Goodssuccess");
           this.closeCurrentPage();
         }
       });
@@ -255,14 +255,14 @@ export default {
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
-    // 获取选择数据
+    // 获取select数据
     changeSelect(e) {
       this.selectList = e;
       this.selectCount = e.length;
     },
 
     getDataList() {
-      // 获取商品详情
+      // 获取Goods详情
       this.loading = true;
       this.searchForm.seckillId = this.$route.query.id;
       // 处理过的时间 为‘1:00’
@@ -306,7 +306,7 @@ export default {
       });
     },
     delGoods(index, row) {
-      // 删除商品
+      // deleteGoods
       if (row.promotionApplyStatus === "PASS") {
         const params = {
           seckillId: row.seckillId,
@@ -315,12 +315,12 @@ export default {
         delSeckillGoods(params).then((res) => {
           if (res.success) {
             this.goodsList[this.tabIndex].list.splice(index, 1);
-            this.$Message.success("删除成功！");
+            this.$Message.success("deletesuccess！");
           }
         });
       } else {
         this.goodsList[this.tabIndex].list.splice(index, 1);
-        this.$Message.success("删除成功！");
+        this.$Message.success("deletesuccess！");
       }
     },
     selectedGoodsData(callback) {
@@ -351,7 +351,7 @@ export default {
       // });
     },
     openSkuList() {
-      // 显示商品选择器
+      // 显示Goodsselect器
 
       this.$refs.skuSelect.open("goods");
       let data = this.goodsList[this.tabIndex].list;
@@ -375,17 +375,17 @@ export default {
       }
       return [];
     },
-    // 格式化申请状态
+    // 格式化Apply  状态
     promotionApplyStatus(key) {
       switch (key) {
         case "APPLY":
-          return "申请";
+          return "Apply  ";
         case "PASS":
           return "通过";
         case "REFUSE":
           return "拒绝";
         default:
-          return "未申请";
+          return "未Apply  ";
       }
     },
     // 展示审核拒绝原因
@@ -399,7 +399,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 如果是从详情页返回列表页，修改列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
   beforeRouteLeave(to, from, next) {
     if (to.name === "seckill") {
       to.meta.keepAlive = true;

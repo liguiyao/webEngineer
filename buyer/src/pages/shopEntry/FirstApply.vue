@@ -1,91 +1,91 @@
 <template>
   <div class="company-msg">
     <Form ref="firstForm" :model="form" :rules="rules" :label-width="140">
-      <h4>基础信息</h4>
-      <FormItem prop="companyName" label="公司名称">
+      <h4>Basic information</h4>
+      <FormItem prop="companyName" label="Company name">
         <Input
           type="text"
           v-model="form.companyName"
-          placeholder="请填写公司信息"
+          placeholder="Please enter Company information"
         />
       </FormItem>
-      <FormItem prop="companyAddressIdPath" label="公司所在地">
+      <FormItem prop="companyAddressIdPath" label="Location">
         <region
           style="width: 250px"
           @selected="selectedRegion"
           :addressId="address"
         />
       </FormItem>
-      <FormItem prop="companyAddress" label="公司详细地址">
+      <FormItem prop="companyAddress" label="Company Full address">
         <Input
           type="text"
           v-model="form.companyAddress"
-          placeholder="请填写公司详细信息"
+          placeholder="Please enter company detail information"
         />
       </FormItem>
-      <FormItem prop="employeeNum" label="员工总数">
+      <FormItem prop="employeeNum" label="Total number of employees">
         <Input
           type="text"
           v-model="form.employeeNum"
-          placeholder="请填写公司员工总数"
+          placeholder="Please enter Total number of employees"
           ><span slot="append">人</span>
           </Input>
       </FormItem>
-      <FormItem prop="companyPhone" label="公司电话">
+      <FormItem prop="companyPhone" label="Company telephone">
         <Input
           type="text"
           v-model="form.companyPhone"
-          placeholder="请填写公司电话"
+          placeholder="Please enter Company telephone"
           ></Input>
       </FormItem>
-      <FormItem prop="registeredCapital" label="注册资金">
+      <FormItem prop="registeredCapital" label="Registered capital">
         <Input
           type="text"
           v-model="form.registeredCapital"
-          placeholder="请填写注册资金"
-          ><span slot="append">万元</span></Input>
+          placeholder="Please enter Registered capital"
+          ><span slot="append">万ringgit</span></Input>
       </FormItem>
-      <FormItem prop="linkName" label="联系人姓名">
+      <FormItem prop="linkName" label="contact name">
         <Input
           type="text"
           v-model="form.linkName"
-          placeholder="请填写联系人姓名"
+          placeholder="Please enter contact name"
         />
       </FormItem>
-      <FormItem prop="linkPhone" label="联系人电话">
+      <FormItem prop="linkPhone" label="Contact number">
         <Input
           type="text"
           v-model="form.linkPhone"
-          placeholder="请填写联系人电话"
+          placeholder="Please enter Contact number"
         />
       </FormItem>
-      <FormItem prop="companyEmail" label="电子邮箱">
+      <FormItem prop="companyEmail" label="email">
         <Input
           type="text"
           v-model="form.companyEmail"
-          placeholder="请填写电子邮箱"
+          placeholder="Please enter email"
         />
       </FormItem>
 
-      <h4>营业执照信息</h4>
-      <FormItem prop="licenseNum" label="营业执照号">
+      <h4>Business license</h4>
+      <FormItem prop="licenseNum" label="Business license number">
         <Input
           type="text"
           v-model="form.licenseNum"
-          placeholder="请填写营业执照号"
+          placeholder="Please enter Business license number"
         />
       </FormItem>
-      <FormItem prop="scope" label="法定经营范围">
+      <FormItem prop="scope" label="Legal scope of business">
         <Input
           type="textarea"
           v-model="form.scope"
           maxlength="200"
           show-word-limit
           :rows="4"
-          placeholder="请输入营业执照所示经营范围"
+          placeholder="Please enter legal scope of business"
         />
       </FormItem>
-      <FormItem prop="licencePhoto" label="营业执照电子版">
+      <FormItem prop="licencePhoto" label="Electronic version of business license">
         <Upload
           ref="uploadLicence"
           :show-upload-list="false"
@@ -100,10 +100,10 @@
           :action="action"
           :headers="accessToken"
         >
-          <Button type="info" :loading="uploadLoading">证照上传</Button>
+          <Button type="info" :loading="uploadLoading">uploading</Button>
         </Upload>
         <div class="describe">
-          请压缩图片在2M以内，格式为gif，jpg，png，并确保文字清晰，以免上传或审核失败
+          Please
         </div>
         <div
           class="img-list"
@@ -124,20 +124,20 @@
         </div>
       </FormItem>
 
-      <h4>法人信息</h4>
-      <FormItem prop="legalName" label="法人姓名">
+      <h4>Legal person information</h4>
+      <FormItem prop="legalName" label="法人name">
         <Input
           type="text"
           v-model="form.legalName"
           maxlength="20"
-          placeholder="请输入法人姓名"
+          placeholder="Please enter name"
         />
       </FormItem>
       <FormItem prop="legalId" label="法人证件号">
         <Input
           type="text"
           v-model="form.legalId"
-          placeholder="请输入法人证件号"
+          placeholder="Please enter 法人证件号"
         />
       </FormItem>
       <FormItem prop="legalPhoto" label="法人证件电子版">
@@ -155,10 +155,10 @@
           :action="action"
           :headers="accessToken"
         >
-          <Button type="info" :loading="uploadLoading1">证照上传</Button>
+          <Button type="info" :loading="uploadLoading1">Certificate uploading</Button>
         </Upload>
         <div class="describe">
-          请压缩图片在2M以内，身份证正反面两张照片，确保图片清晰无缺角
+          Please
         </div>
         <div
           class="img-list"
@@ -180,7 +180,7 @@
       </FormItem>
       <FormItem>
         <Button type="primary" :loading="loading" @click="next"
-          >填写财务资质信息</Button
+          >enter Financial qualification information</Button
         >
       </FormItem>
     </Form>
@@ -205,52 +205,52 @@ export default {
   },
   data () {
     return {
-      action: commonUrl + '/common/common/upload/file', // 上传地址
+      action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       visible: false, // 预览图片
       loading: false, // 加载状态
-      address: '', // 地址
+      address: '', // address
       previewPicture: '', // 预览图片url
       form: { // 表单数据
         legalPhoto: [],
         licencePhoto: []
       },
       rules: { // 验证规则
-        companyName: [{ required: true, message: '请填写公司信息' }],
-        companyAddressIdPath: [{ required: true, message: '请选择公司所在地' }],
-        companyAddress: [{ required: true, message: '请填写公司详细地址' }],
+        companyName: [{ required: true, message: 'Please enter company info' }],
+        companyAddressIdPath: [{ required: true, message: 'Please select location' }],
+        companyAddress: [{ required: true, message: 'Please enter company Full address' }],
         employeeNum: [
-          { required: true, message: '请填写公司员工总数' },
-          { pattern: RegExp.integer, message: '只能填写正整数' }
+          { required: true, message: 'Please enter company employee quantity' },
+          { pattern: RegExp.integer, message: 'must enter positive integer' }
         ],
         registeredCapital: [
-          { required: true, message: '请填写公司注册资金' },
-          { pattern: RegExp.integer, message: '只能填写正整数' }
+          { required: true, message: 'Please enter Registered capital' },
+          { pattern: RegExp.integer, message: 'muse enter positive integer' }
         ],
-        linkName: [{ required: true, message: '请填写联系人姓名' }],
+        linkName: [{ required: true, message: 'Please enter contact name' }],
         linkPhone: [
-          { required: true, message: '请填写联系人电话' },
-          { pattern: RegExp.mobile, message: '请填写正确的号码' }
+          { required: true, message: 'Please enter contact number' },
+          { pattern: RegExp.mobile, message: 'Please enter correctly number' }
         ],
         companyPhone: [
-          { required: true, message: '请填写公司电话' },
-          { pattern: RegExp.mobile, message: '请填写正确的号码' }
+          { required: true, message: 'Please enter company contact' },
+          { pattern: RegExp.mobile, message: 'Please enter company contact' }
         ],
         companyEmail: [
-          { required: true, message: '请填写电子邮箱' },
-          { type: 'email', message: '请输入正确的邮箱' }
+          { required: true, message: 'Please enter email' },
+          { type: 'email', message: 'Please enter correctly email' }
         ],
         licenseNum: [
-          { required: true, message: '请填写营业执照号' },
-          { pattern: RegExp.licenseNum, message: '请输入正确的营业执照号' }
+          { required: true, message: 'Please enter Business license number' },
+          { pattern: RegExp.licenseNum, message: 'Please enter Business license number' }
         ],
-        scope: [{ required: true, message: '请填写营业执照所示经营范围' }],
-        legalPhoto: [{ required: true, message: '请上传法人身份证照片' }],
-        licencePhoto: [{ required: true, message: '请上传营业执照' }],
-        legalName: [{ required: true, message: '请输入法人姓名' }],
+        scope: [{ required: true, message: 'Please enter 营业执照所示经营范围' }],
+        legalPhoto: [{ required: true, message: 'Please 上传法人身份证照片' }],
+        licencePhoto: [{ required: true, message: 'Please 上传营业执照' }],
+        legalName: [{ required: true, message: 'Please enter 法人name' }],
         legalId: [
-          { required: true, message: '请输入法人证件号' },
-          { pattern: RegExp.IDCard, message: '请输入正确的证件号' }
+          { required: true, message: 'Please enter 法人证件号' },
+          { pattern: RegExp.IDCard, message: 'Please enter 正确的证件号' }
         ]
       },
       uploadLoading1: false, // 上传loading
@@ -279,7 +279,7 @@ export default {
         }
       });
     },
-    // 地址选择回显
+    // addressselect回显
     selectedRegion (item) {
       this.$set(this.form, 'companyAddressIdPath', item[0].toString());
       this.$set(
@@ -292,7 +292,7 @@ export default {
     beforeUpload () {
       this.uploadLoading = true;
       if (this.form.licencePhoto.length >= 3) {
-        this.$Message.warning('最多上传三张图片')
+        this.$Message.warning('Upload a maximum of three images')
         return false;
       }
     },
@@ -300,16 +300,16 @@ export default {
     beforeUpload1 () {
       this.uploadLoading1 = true;
       if (this.form.legalPhoto.length >= 2) {
-        this.$Message.warning('最多上传两张图片')
+        this.$Message.warning('Upload a maximum of two images')
         return false;
       }
     },
-    // 上传成功回调
+    // 上传success回调
     handleSuccess (res, file) {
       this.uploadLoading = false;
       this.form.licencePhoto.push(res.result);
     },
-    // 上传成功回调
+    // 上传success回调
     handleSuccess1 (res, file) {
       this.uploadLoading1 = false;
       this.form.legalPhoto.push(res.result);
@@ -325,7 +325,7 @@ export default {
       this.uploadLoading1 = false;
       this.$Notice.warning({
         title: 'The file format is incorrect',
-        desc: '上传文件格式不正确'
+        desc: 'format is incorrect'
       });
     },
     // 上传大小限制
@@ -334,7 +334,7 @@ export default {
       this.uploadLoading1 = false;
       this.$Notice.warning({
         title: 'Exceeding file size limit',
-        desc: '文件大小不能超过2M'
+        desc: 'file size cannot exceed 2 MB'
       });
     },
     // 图片查看
@@ -342,7 +342,7 @@ export default {
       this.previewPicture = item;
       this.visible = true;
     },
-    // 删除图片
+    // delete图片
     handleRemove (index, listName) {
       this.form[listName].splice(index, 1);
     }

@@ -42,14 +42,14 @@ export default {
   watch: {
     changed: {
       handler(val) {
-        this.$emit("selectedLink", val[0]); //因为是单选，所以直接返回第一个
+        this.$emit("selectedLink", val[0]); //因为是单选，所以直接Back第一个
       },
       deep: true
     }
   },
   mounted() {
     this.$nextTick(() => {
-      this.$refs["lili-component"][0].type = "single"; //商品页面设置成为单选
+      this.$refs["lili-component"][0].type = "single"; //Goods页面设置成为单选
     });
     let url  = window.location.href
     if(url.indexOf('/floorList/renovation') != -1){

@@ -1,5 +1,5 @@
 
-// 全部商品分类
+// All goods分类
 export const SET_CATEGORY = (state, data) => {
   state.category = data
 }

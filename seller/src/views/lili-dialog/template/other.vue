@@ -13,7 +13,7 @@
           <Poptip v-model="linkVisible">
               <Icon size="24" :type="linkItem.icon" />
               <p>{{linkItem.title}}</p>
-              <div slot="title">链接地址</div>
+              <div slot="title">链接address</div>
               <div slot="content">
                   <Input type="text" @keyup="handleLink(linkItem,linkList.length)" v-model="linkItem.url" placeholder="https://"></Input>
               </div>
@@ -40,12 +40,12 @@ export default {
           ___type: "cart",
         },
         {
-          title: "收藏商品",
+          title: "收藏Goods",
           icon: "md-heart",
           ___type: "collection",
         },
         {
-          title: "我的订单",
+          title: "My order",
           icon: "md-document",
           ___type: "order",
         },

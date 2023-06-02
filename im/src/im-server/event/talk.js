@@ -98,7 +98,7 @@ class Talk extends Base {
     let text = this.resource.content || this.resource.text;
     switch (this.resource.msg_type) {
       case 'GOODS':
-        text = "[商品链接]";
+        text = "[Goods链接]";
         break;
       case 'ORDERS':
         text = "[订单链接]";
@@ -115,7 +115,7 @@ class Talk extends Base {
     if (!this.isTalkPage()) {
       store.commit("INCR_UNREAD_NUM");
 
-      // 判断消息是否来自于我自己，否则会提示消息通知
+      // 判断消息是否来自于我自己，否则会Tips消息通知
       return !this.isCurrSender() && this.showMessageNocice();
     }
     // console.log("this.receiver_id", this.receiver_id);
@@ -131,7 +131,7 @@ class Talk extends Base {
   }
 
   /**
-   * 显示消息提示
+   * 显示消息Tips
    * @returns
    */
   showMessageNocice () {
@@ -200,7 +200,7 @@ class Talk extends Base {
 
     store.commit("PUSH_DIALOGUE", record);
 
-    // 获取聊天面板元素节点
+    // 获取聊天面板ringgit素节点
     let el = document.getElementById("lumenChatPanel");
 
     // 判断的滚动条是否在底部

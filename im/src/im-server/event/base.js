@@ -15,7 +15,7 @@ class Base {
   }
 
   /**
-   * 获取当前登录用户的ID
+   * 获取当前Login用户的ID
    */
   getAccountId() {
     // console.log("store.state", store.state.user);

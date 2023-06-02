@@ -44,7 +44,7 @@
           <div v-show="detail.friend_status == 2" class="card-row">
             <label>备注</label>
             <span v-if="editRemark.isShow == false">{{
-              detail.nickname_remark ? detail.nickname_remark : "暂无备注"
+              detail.nickname_remark ? detail.nickname_remark : "absent备注"
             }}</span>
             <span v-else>
               <input
@@ -84,7 +84,7 @@
           v-else-if="detail.friend_apply == 1"
           type="primary"
           size="small"
-          >已发送好友申请，请耐心等待...
+          >已发送好友Apply  ，Please 耐心等待...
         </el-button>
         <el-button
           v-else-if="detail.friend_status == 2"
@@ -96,15 +96,15 @@
         </el-button>
       </el-footer>
 
-      <!-- 添加好友申请表单 -->
+      <!-- 添加好友Apply  表单 -->
       <div
         v-outside="closeApply"
         class="friend-from"
         :class="{ 'friend-from-show': apply.isShow }"
       >
         <p>
-          <span>请填写好友申请备注：</span>
-          <span @click="closeApply">取消</span>
+          <span>Please enter 好友Apply  备注：</span>
+          <span @click="closeApply">Cancel</span>
         </p>
         <div>
           <input
@@ -114,7 +114,7 @@
             @keyup.enter="sendApply"
           />
           <el-button type="primary" size="small" @click="sendApply">
-            立即提交
+            立即Submit
           </el-button>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default {
       let arr = ["未知", "男", "女"];
       return arr[value] || "未知";
     },
-    // 手机号格式化
+    // Phone number格式化
     mobile(value) {
       return (
         value.substr(0, 3) + " " + value.substr(3, 4) + " " + value.substr(7, 4)
@@ -166,7 +166,7 @@ export default {
         text: "",
       },
 
-      // 好友申请表单
+      // 好友Apply  表单
       apply: {
         isShow: false,
         text: "",
@@ -203,7 +203,7 @@ export default {
     //   });
     // },
 
-    // 发送添加好友申请
+    // 发送添加好友Apply
     sendApply() {
       if (this.apply.text == "") return;
       ServeCreateContact({
@@ -215,7 +215,7 @@ export default {
           this.apply.text = "";
           this.detail.friend_apply = 1;
         } else {
-          this.$message.error("发送好友申请失败,请稍后再试...");
+          this.$message.error("发送好友Apply  失败,Please 稍后再试...");
         }
       });
     },
@@ -241,7 +241,7 @@ export default {
       });
     },
 
-    // 隐藏申请表单
+    // 隐藏Apply  表单
     closeApply() {
       this.apply.isShow = false;
     },
@@ -433,7 +433,7 @@ export default {
   }
 }
 
-/* 好友申请表单 */
+/* 好友Apply  表单 */
 .friend-from {
   position: absolute;
   background: #fbf6f6;

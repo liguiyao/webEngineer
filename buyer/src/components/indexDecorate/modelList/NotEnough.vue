@@ -23,7 +23,7 @@
         <img :src="item.img" width="210" height="210" :alt="item.name" />
         <p>{{ item.name }}</p>
         <p>
-          <span>{{ Number(item.price) | unitPrice("￥") }}</span>
+          <span>{{ Number(item.price) | unitPrice("RM") }}</span>
         </p>
       </div>
     </div>
@@ -81,14 +81,14 @@ export default {
     change(status){ //获取是否获取到图钉
       this.open = status
     },
-    gotoDemo(){ // 跳转到demo的位置 
+    gotoDemo(){ // 跳转到demo的位置
     if(this.open){ // 获取到图钉之后在跳转当前位置
        document.querySelector("#demo").scrollIntoView(true);
     }
-      //scrollIntoView()可以在所有的HTML元素上调用，通过滚动浏览器窗口或某个容器元素
+      //scrollIntoView()可以在所有的HTMLringgit素上调用，通过滚动浏览器窗口或某个容器ringgit素
     },
     changeCurr(index) {
-      // 选择分类
+      // select分类
       this.currentIndex = index;
     },
   },

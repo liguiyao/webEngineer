@@ -50,7 +50,7 @@ export default {
       this.thirdIndex = '';
       this.thirdLevel = []
       this.$emit("selected", [item]);
-      // 点击第一级的时候默认显示第二级第一个
+      // 点击第一级的时候default显示第二级第一个
       // this.handleClickSecondChild(item.children, 0);
     },
     // 点击二级

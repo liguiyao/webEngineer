@@ -9,26 +9,26 @@
         :label-width="70"
         class="search-form"
       >
-        <Form-item label="商品名称" prop="goodsName">
+        <Form-item label="goods name" prop="goodsName">
           <Input
             type="text"
             v-model="searchForm.goodsName"
-            placeholder="请输入商品名称"
+            placeholder="Please enter goods name"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="商品编号" prop="id">
+        <Form-item label="Goods编号" prop="id">
           <Input
             type="text"
             v-model="searchForm.id"
-            placeholder="请输入商品编号"
+            placeholder="Please enter Goods编号"
             clearable
             style="width: 200px"
           />
         </Form-item>
         <Button @click="handleSearch" class="search-btn" type="primary" icon="ios-search"
-          >搜索</Button
+          >search</Button
         >
       </Form>
       <Table
@@ -39,7 +39,7 @@
         ref="table"
         class="mt_10"
       >
-        <!-- 商品栏目格式化 -->
+        <!-- Goods栏目格式化 -->
         <template slot="goodsSlot" slot-scope="scope">
           <div style="margin-top: 5px; height: 80px; display: flex">
             <div style="">
@@ -83,39 +83,39 @@ export default {
   components: {},
   data() {
     return {
-      id: "", //要操作的id
+      id: "", //要operation的id
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "create_time", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "create_time", // default排序字段
+        order: "desc", // default排序方式
       },
       goodsAuditForm: {
-        // 商品编辑表单
+        // Goods编辑表单
         auth_flag: 1,
       },
       columns: [
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 180,
           slot: "goodsSlot",
           tooltip: true,
         },
         {
-          title: "商品编号",
+          title: "Goods编号",
           key: "id",
           minWidth: 100,
           tooltip: true,
         },
         {
-          title: "价格",
+          title: "price",
           key: "price",
           minWidth: 130,
           render: (h, params) => {
-            return h("div", this.$options.filters.unitPrice(params.row.price, "￥"));
+            return h("div", this.$options.filters.unitPrice(params.row.price, "RM"));
           },
         },
         {
@@ -155,13 +155,13 @@ export default {
         },
 
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 100,
           tooltip: true,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -237,12 +237,12 @@ export default {
       this.getDataList();
     },
     changePageSize(v) {
-      // 改变每页数量
+      // 改变每页Quantity
       this.searchForm.pageSize = v;
       this.getDataList();
     },
     handleSearch() {
-      // 搜索
+      // search
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
@@ -250,7 +250,7 @@ export default {
     getDataList() {
       // 获取列表数据
       this.loading = true;
-      // 带多条件搜索参数获取表单数据
+      // 带多条件search参数获取表单数据
       this.searchForm.authFlag = 0;
       getAuthGoodsListData(this.searchForm).then((res) => {
         this.loading = false;
@@ -261,7 +261,7 @@ export default {
       });
     },
     examine(v, authFlag) {
-      // 审核商品
+      // 审核Goods
       let examine = "通过";
       this.goodsAuditForm.authFlag = "PASS";
       if (authFlag != 1) {
@@ -276,14 +276,14 @@ export default {
           authGoods(v.id, this.goodsAuditForm).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("审核成功");
+              this.$Message.success("审核success");
               this.getDataList();
             }
           });
         },
       });
     },
-    //查看商品详情
+    //查看Goods详情
     showDetail(v) {
       let id = v.id;
       this.$router.push({

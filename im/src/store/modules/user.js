@@ -11,12 +11,12 @@ let state = {
   face: require("@/assets/image/detault-avatar.jpg"),
   // 名片背景
   visitCardBag: require("@/assets/image/default-user-banner.png"),
-  // 当前登录状态
+  // 当前Login状态
   loginStatus: false,
   toUser:""
 };
 
-// 判断用户是否登录
+// 判断用户是否Login
 if (getToken()) {
   let userInfo = getUserInfo();
   state.name = userInfo.name;
@@ -28,7 +28,7 @@ if (getToken()) {
 const User = {
   state,
   mutations: {
-    // 用户退出登录
+    // 用户退出Login
     USER_LOGOUT(state) {
       state.id = 0;
       state.face = "";
@@ -36,7 +36,7 @@ const User = {
       state.loginStatus = false;
     },
 
-    // 设置用户登录状态
+    // 设置用户Login状态
     UPDATE_LOGIN_STATUS(state) {
       state.loginStatus = true;
     },
@@ -49,7 +49,7 @@ const User = {
         }
       }
 
-      // 保存用户信息到缓存
+      // Save用户信息到缓存
       setUserInfo({
         id: state.id,
         face: state.face,
@@ -58,7 +58,7 @@ const User = {
     },
   },
   actions: {
-    // 退出登录处理操作
+    // 退出Login处理operation
     ACT_USER_LOGOUT({ commit }) {
       commit("USER_LOGOUT");
       // ServeLogout().finally(() => {

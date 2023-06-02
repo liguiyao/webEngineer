@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <div class="flex-two">
-      请选择促销活动(最多只能展示两个活动)
+      Please select促销活动(最多只能展示两个活动)
     </div>
   </div>
 </template>

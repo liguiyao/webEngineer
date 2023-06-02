@@ -33,9 +33,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="saveSetting"
-        >提交
+        >Submit
         </Button
         >
       </div>
@@ -54,7 +54,7 @@
 
     data() {
       return {
-        submitLoading: false, // 提交状态
+        submitLoading: false, // Submit状态
         template, // 模板
         selected: "", // 已选数据
         settingData: "", // 设置数据
@@ -68,13 +68,13 @@
       init() {
         settingInfo("SMS_SETTING")
       },
-      // 保存设置
+      // Save设置
       saveSetting() {
         setSetting("SMS_SETTING", this.form).then((res) => {
           if (res.success) {
-            this.$Message.success("保存成功!");
+            this.$Message.success("Savesuccess!");
           } else {
-            this.$Message.error("保存失败!");
+            this.$Message.error("Save失败!");
           }
           this.modalVisible = false
         });

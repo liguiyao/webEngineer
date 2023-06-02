@@ -14,7 +14,7 @@
         "
         type="primary"
         @click="selectStyle()"
-        >选择风格</Button
+        >select风格</Button
       >
       <Button
         style="margin-left: 20px"
@@ -23,26 +23,26 @@
         v-if="res.type == 'promotions' || res.drawerPromotions"
         type="primary"
         @click="selectPromotions()"
-        >选择促销活动</Button
+        >select促销活动</Button
       >
     </div>
-    <Alert type="warning" v-if="res.name == '商品分类'"
-      >装修提示
+    <Alert type="warning" v-if="res.name == 'Goods分类'"
+      >装修Tips
       <template slot="desc">
         <div style="color: red">
-          如果当前装修模块不是最后一项模块且模块内容绑定为分类，则会默认展示绑定分类的100条商品信息。
+          如果当前装修模块不是最后一项模块且模块内容绑定为分类，则会default展示绑定分类的100条Goods details。
         </div>
         <div style="color: red">
-          如果当前装修模块是最后一项模块且模块内容绑定为分类，则会默认会根据绑定分类触底加载商品信息。
+          如果当前装修模块是最后一项模块且模块内容绑定为分类，则会default会根据绑定分类触底加载Goods details。
         </div>
         <div style="color: red">
-          如果当前装修内容不为分类，则会展示当前商品的静态信息。
+          如果当前装修内容不为分类，则会展示当前Goods的静态信息。
         </div>
       </template>
     </Alert>
 
     <!-- 右侧显示抽屉 -->
-    <Drawer title="选择风格" :closable="false" width="400" v-model="styleFlag">
+    <Drawer title="select风格" :closable="false" width="400" v-model="styleFlag">
       <div class="drawer">
         <div
           class="drawer-item"
@@ -59,7 +59,7 @@
 
     <!-- 右侧显示抽屉 -->
     <Drawer
-      title="选择促销活动(最多只能展示两个活动)"
+      title="select促销活动(最多只能展示两个活动)"
       :closable="false"
       width="400"
       v-model="promotionsFlag"
@@ -128,7 +128,7 @@
               <div class="decorate-view-title">绑定</div>
               <div class="decorate-view-link">
                 <div v-if="res.options.list[0].listWay.length != 0">
-                  <!-- 绑定商品选择器回调已选择的商品 -->
+                  <!-- 绑定Goodsselect器回调已selectgoods -->
 
                   <div
                     v-if="
@@ -175,13 +175,13 @@
                 <Button
                   @click="bindGoodsId(title_item, title_index)"
                   size="small"
-                  >选择商品</Button
+                  >selectGoods</Button
                 >
                 <Button
                   @click="bindGoodsCategory(title_index)"
                   size="small"
                   style="margin-top: 20px"
-                  >选择分类</Button
+                  >select分类</Button
                 >
               </div>
             </div>
@@ -200,9 +200,9 @@
               >
             </div>
           </div>
-          <!-- 选择照片 -->
+          <!-- select照片 -->
           <div class="decorate-view" v-if="!res.notImg">
-            <div class="decorate-view-title">选择照片</div>
+            <div class="decorate-view-title">select照片</div>
             <div>
               <img class="show-image" :src="item.img" alt />
 
@@ -217,7 +217,7 @@
                 @click="handleClickFile(item, index)"
                 ghost
                 type="primary"
-                >选择照片</Button
+                >select照片</Button
               >
             </div>
           </div>
@@ -296,7 +296,7 @@
             </div>
           </div>
 
-          <!-- 填写标题 -->
+          <!-- enter 标题 -->
           <div
             class="decorate-view"
             v-if="item.title != void 0 && !res.notTitle && res.type != 'notice'"
@@ -320,7 +320,7 @@
               <Input v-model="item.color" />
             </div>
           </div>
-          <!-- 填写小标题 -->
+          <!-- enter 小标题 -->
           <div
             class="decorate-view"
             v-if="item.title1 != void 0 && !res.notTitle"
@@ -361,10 +361,10 @@
             </div>
           </div>
 
-          <!-- 填写链接 -->
+          <!-- enter 链接 -->
 
           <div class="decorate-view" v-if="res.onlyImg">
-            <div class="decorate-view-title">选择模式</div>
+            <div class="decorate-view-title">select模式</div>
 
             <div>
               <RadioGroup v-model="item.model" type="button">
@@ -375,7 +375,7 @@
           </div>
 
           <div class="decorate-view" v-if="!res.notLink">
-            <div class="decorate-view-title">选择链接</div>
+            <div class="decorate-view-title">select链接</div>
             <div
               v-if="item.url && item.url.length != 0"
               class="decorate-view-link"
@@ -393,37 +393,37 @@
                     : "发现"
                 }}
                 -
-                <!-- 当选择完链接之后的专题名称 -->
+                <!-- 当select完链接之后的专题名称 -->
                 <span v-if="item.url.pageType == 'special'">
                   {{ item.url.name }}</span
                 >
-                <!-- 当选择完链接之后的商品名称 -->
+                <!-- 当select完链接之后的goods name -->
                 <span v-if="item.url.___type == 'goods'">
                   {{ item.url.goodsName }}</span
                 >
-                <!-- 当选择完链接之后的分类回调 -->
+                <!-- 当select完链接之后的分类回调 -->
                 <span v-if="item.url.___type == 'category'">
                   {{ item.url.name }}</span
                 >
-                <!-- 当选择完链接之后的店铺回调 -->
+                <!-- 当select完链接之后的店铺回调 -->
                 <span v-if="item.url.___type == 'shops'">
                   {{ item.url.memberName }}</span
                 >
-                <!-- 当选择完链接之后的其他回调 -->
+                <!-- 当select完链接之后的Others回调 -->
                 <span v-if="item.url.___type == 'other'">
                   {{ item.url.title }}</span
                 >
 
-                <!-- 当选择完活动之后的其他回调 -->
+                <!-- 当select完活动之后的Others回调 -->
                 <span v-if="item.url.___type == 'marketing'">
                   <span v-if="item.url.___promotion == 'SECKILL'"> 秒杀 </span>
                   <span v-if="item.url.___promotion == 'FULL_DISCOUNT'">
-                    满减
+                    full减
                   </span>
                   <span v-if="item.url.___promotion == 'PINTUAN'"> 拼团 </span>
                   {{ item.url.title || item.url.goodsName }}
                 </span>
-                <!-- 当选择完活动之后的其他回调 -->
+                <!-- 当select完活动之后的Others回调 -->
                 <span v-if="item.url.___type == 'pages'">
                   {{ item.url.title }}</span
                 >
@@ -436,11 +436,11 @@
                 type="primary"
                 @click="clickLink(item, index, res)"
               >
-                {{ item.model === "hotzone" ? "绘制热区" : "选择链接" }}</Button
+                {{ item.model === "hotzone" ? "绘制热区" : "select链接" }}</Button
               >
             </div>
           </div>
-          <!-- 链接地址-->
+          <!-- 链接address-->
           <div
             class="decorate-view"
             v-if="
@@ -487,7 +487,7 @@
       @selectedGoodsData="selectedGoodsData"
     ></liliDialog>
 
-    <Modal width="800px" title="选择分类" v-model="enableSelectCategory">
+    <Modal width="800px" title="select分类" v-model="enableSelectCategory">
       <categoryTemplate
         v-if="enableSelectCategory"
         @selected="confirmCategory"
@@ -505,8 +505,8 @@
 import ossManage from "@/views/sys/oss-manage/ossManage";
 import { modelData } from "./config";
 import hotzone from "@/components/hotzone";
-import ways from "@/components/lili-dialog/wap.js"; // 选择链接的类型
-import categoryTemplate from "@/components/lili-dialog/template/category"; // 选择链接的类型
+import ways from "@/components/lili-dialog/wap.js"; // select链接的类型
+import categoryTemplate from "@/components/lili-dialog/template/category"; // select链接的类型
 export default {
   components: {
     ossManage,
@@ -515,21 +515,21 @@ export default {
   },
   data() {
     return {
-      ways, // 选择链接的类型
-      picModelFlag: false, //图片选择器
+      ways, // select链接的类型
+      picModelFlag: false, //图片select器
       linkType: "goods", // dialog弹窗口类型
       styleFlag: false, //广告魔方开关
       textAlign: this.res.options.list[0]
         ? this.res.options.list[0].textAlign
         : "center", //文字对齐方式
       promotionsFlag: false, //广告魔方开关
-      selectedLinkIndex: "", //选择链接的索引
+      selectedLinkIndex: "", //select链接的索引
       modelData, // 装修数据
-      selectedGoods: "", // 已选商品
+      selectedGoods: "", // 已选Goods
       selectedLinks: "", // 已选链接
       modelList: "", // 装修列表
-      enableSelectCategory: false, //商品是否绑定分类
-      goodsSelectedIndex: 0, //绑定商品分类的索引
+      enableSelectCategory: false, //Goods是否绑定分类
+      goodsSelectedIndex: 0, //绑定Goods分类的索引
     };
   },
   watch: {
@@ -540,7 +540,7 @@ export default {
   },
   props: ["res"],
   methods: {
-    // 选择分类
+    // select分类
     confirmCategory(val) {
       let data = {
         ...this.res.options.list[0].titleWay[this.goodsSelectedIndex],
@@ -562,23 +562,23 @@ export default {
 
       console.log(this.res.options.list[0]);
     },
-    // 商品排序
+    // Goods排序
     slotGoods(list, key, val) {
       const newVal = [];
       let newValIndex = 0;
-      // 给当前点击的商品分组
+      // 给当前点击goods分组
       list.forEach((item, index) => {
         if (item.___index == key) {
           newVal.push(item);
         }
       });
-      // 获得当前点击商品的索引
+      // 获得当前点击Goods的索引
       newVal.forEach((item, index) => {
         if (item.id == val.id) {
           newValIndex = index;
         }
       });
-      // 进行商品排序
+      // 进行Goods排序
       this.upData(newVal, newValIndex);
       if (list.length == newVal.length) {
         list = newVal;
@@ -630,14 +630,14 @@ export default {
         data.title.push(props.title[0]);
       }
     },
-    // 选择风格
+    // select风格
     selectStyle() {
       this.styleFlag = !this.styleFlag;
     },
     selectPromotions() {
       this.promotionsFlag = !this.promotionsFlag;
     },
-    // 回调选择的链接
+    // 回调select的链接
     selectedLink(val) {
       this.selectedLinks.zoneInfo = [];
       delete val.selected;
@@ -645,7 +645,7 @@ export default {
       delete val.mobileIntro;
       this.selectedLinks.url = val;
     },
-    // 回调的商品信息
+    // 回调goods信息
     selectedGoodsData(val) {
       if (!val) return false;
       let data = val.map((item) => {
@@ -666,7 +666,7 @@ export default {
         "";
       this.linkType = "";
     },
-    // 绑定商品
+    // 绑定Goods
     bindGoodsId(val, index) {
       this.selectedGoods = val;
       this.goodsSelectedIndex = index;
@@ -682,7 +682,7 @@ export default {
       this.$emit("handleDrawer", item);
       this.styleFlag = false;
     },
-    // 打开图片选择器
+    // 打开图片select器
     liliDialogFlag(flag) {
       this.$refs.liliDialog.clearGoodsSelected();
       this.$refs.liliDialog.goodsFlag = flag;
@@ -693,7 +693,7 @@ export default {
       this.res.options.list[0].textAlign = val;
       this.textAlign = val;
     },
-    // 点击链接赋值一个唯一值，并将当前选择的模块赋值
+    // 点击链接赋值一个唯一值，并将当前select的模块赋值
     clickLink(val, index, oval) {
       this.selectedLinks = val;
       if (val.model === "hotzone") {
@@ -755,12 +755,12 @@ export default {
       };
       this.res.options.list[0].points.push(way);
     },
-    // 图片选择器回显
+    // 图片select器回显
     callbackSelected(val) {
       this.picModelFlag = false;
       this.selectedGoods.img = val.url;
     },
-    // 点击选择图片
+    // 点击select图片
     handleClickFile(item, index) {
       this.$refs.ossManage.selectImage = true;
       this.selectedGoods = item;
@@ -771,7 +771,7 @@ export default {
         this.res.options.list[0].title.splice(index, 1);
       });
     },
-    // 关闭
+    // Close
     closeDecorate(index) {
       this.$nextTick(() => {
         this.res.options.list.splice(index, 1);

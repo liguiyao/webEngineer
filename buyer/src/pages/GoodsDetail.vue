@@ -7,7 +7,7 @@
     <div class="shop-item-path">
       <div class="shop-nav-container">
         <Breadcrumb>
-          <BreadcrumbItem to="/">首页</BreadcrumbItem>
+          <BreadcrumbItem to="/">Home page</BreadcrumbItem>
           <BreadcrumbItem v-for="(item, index) in categoryBar" :to="goGoodsList(index)" target="_blank" :key="index">
             {{ item.name }}
           </BreadcrumbItem>
@@ -20,22 +20,22 @@
           </span>
           <span @click="collect">
             <Icon type="ios-heart" :color="storeCollected ? '#ed3f14' : '#666'" />
-            {{ storeCollected? "已收藏店铺": "收藏店铺" }}
+            {{ storeCollected? "Collected shop": "Collection shop" }}
           </span>
-          <span class="ml_10" @click="IMService(goodsMsg.data.storeId)">联系客服</span>
+          <span class="ml_10" @click="IMService(goodsMsg.data.storeId)">Contact customer service</span>
         </div>
       </div>
     </div>
 
-    <!-- 商品信息展示 -->
+    <!-- Goods details展示 -->
     <ShowGoods @handleClickSku="targetClickSku" v-if="goodsMsg.data" :detail="goodsMsg"></ShowGoods>
-    <!-- 商品详细展示 -->
+    <!-- Goods详细展示 -->
     <ShowGoodsDetail v-if="goodsMsg.data" :detail="goodsMsg"></ShowGoodsDetail>
 
-    <empty _Title='当前商品已下架' v-if="takeDownSale">
+    <empty _Title='Goods off the shelves' v-if="takeDownSale">
       <div class="sale-btn">
-        <Button size="small" class="mr_10" @click="target('/')">返回首页</Button>
-        <Button size="small" @click="target('goodsList')">返回商品列表</Button>
+        <Button size="small" class="mr_10" @click="target('/')">Back to home page</Button>
+        <Button size="small" @click="target('goodsList')">Back Goods list</Button>
       </div>
     </empty>
     <Spin size="large" fix v-if="isLoading"></Spin>
@@ -70,17 +70,17 @@ export default {
   mixins: [imTalk],
   data () {
     return {
-      goodsMsg: {}, // 商品信息
+      goodsMsg: {}, // Goods details
       isLoading: false, // 加载状态
       categoryBar: [], // 分类
-      storeCollected: false, // 商品收藏
+      storeCollected: false, // Goods收藏
       storeMsg: {}, // 店铺信息
       takeDownSale:false, // 是否下架
 
     };
   },
   methods: {
-    // 跳转首页或商品页面
+    // 跳转首页或Goods页面
     target(url){
       this.$router.push({path: url})
 
@@ -89,7 +89,7 @@ export default {
     targetClickSku (val) {
       this.getGoodsDetail(val);
     },
-    // 获取商品详情
+    // 获取Goods详情
     getGoodsDetail (val) {
       this.isLoading = true;
       const params = val || this.$route.query;
@@ -107,7 +107,7 @@ export default {
         let _this = this;
         // 绑定关系
         getGoodsDistribution(params.distributionId).then((res) => {
-          // 绑定成功，则清除关系
+          // 绑定success，则清除关系
           if (res.success) {
             _this.Cookies.removeItem("distributionId");
           }
@@ -162,7 +162,7 @@ export default {
         });
     },
     goGoodsList (currIndex) {
-      // 跳转商品列表
+      // 跳转Goods列表
       const arr = [];
       this.categoryBar.forEach((e, index) => {
         if (index <= currIndex) {
@@ -176,14 +176,14 @@ export default {
       if (this.storeCollected) {
         let cancel = await cancelStoreCollect("STORE", this.goodsMsg.data.storeId);
         if (cancel.success) {
-          this.$Message.success("已取消收藏");
+          this.$Message.success("Cancel collection");
           this.storeCollected = false;
         }
       } else {
         let collect = await collectStore("STORE", this.goodsMsg.data.storeId);
         if (collect.code === 200) {
           this.storeCollected = true;
-          this.$Message.success("收藏店铺成功,可以前往个人中心我的收藏查看");
+          this.$Message.success("Collection shop success,You can check out my collection in the Personal center");
         }
       }
     },

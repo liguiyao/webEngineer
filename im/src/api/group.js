@@ -15,12 +15,12 @@ export const ServeCreateGroup = data => {
   return post('/group/create', data)
 }
 
-//  修改群信息
+//  modify群信息
 export const ServeEditGroup = data => {
   return post('/group/edit', data)
 }
 
-// 邀请好友加入群聊服务接口
+// 邀Please 好友加入群聊服务接口
 export const ServeInviteGroup = data => {
   return post('/group/invite', data)
 }
@@ -40,12 +40,12 @@ export const ServeSecedeGroup = data => {
   return post('/group/secede', data)
 }
 
-// 修改群聊名片服务接口
+// modify群聊名片服务接口
 export const ServeUpdateGroupCard = data => {
   return post('/group/set-group-card', data)
 }
 
-// 获取用户可邀请加入群组的好友列表
+// 获取用户可邀Please 加入群组的好友列表
 export const ServeGetInviteFriends = data => {
   return get('/group/invite-friends', data)
 }

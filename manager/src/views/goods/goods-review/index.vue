@@ -4,9 +4,9 @@
       <Row>
         <Form ref="searchForm" :model="searchForm" @keydown.enter.native="handleSearch" inline :label-width="70" class="search-form">
           <Form-item label="会员名称" prop="memberName">
-            <Input type="text" v-model="searchForm.memberName" placeholder="请输入会员名称" clearable style="width: 200px"/>
+            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter 会员名称" clearable style="width: 200px"/>
           </Form-item>
-          <Button @click="handleSearch" type="primary" class="search-btn" icon="ios-search">搜索</Button>
+          <Button @click="handleSearch" type="primary" class="search-btn" icon="ios-search">search</Button>
         </Form>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10">
@@ -25,7 +25,7 @@
               size="small" show-total show-elevator show-sizer></Page>
       </Row>
     </Card>
-    <!-- 评价详情 -->
+    <!-- Evaluate详情 -->
     <Modal v-model="infoFlag" width="800" :title="infoTitle">
 
       <div class="info-list" style="overflow: hidden">
@@ -45,31 +45,31 @@
         <div class="right-container">
           <div class="border-b">{{ infoData.goodsName }}</div>
           <div class="border-b">
-            <div class="div-height"> 店铺名称：{{ infoData.storeName }}</div>
-            <div class="div-height"> 订单号：{{ infoData.orderNo }}</div>
+            <div class="div-height"> store name：{{ infoData.storeName }}</div>
+            <div class="div-height"> Order number：{{ infoData.orderNo }}</div>
           </div>
-          
+
           <div class="border-b">
             <List>
-              
+
               <ListItem>
                 <ListItemMeta :avatar="infoData.memberProfile" :title="infoData.memberName"
                   :description="infoData.content"/>
               </ListItem>
               <div class="score-content">
-                <span>物流评分：{{infoData.deliveryScore}}</span>
+                <span>logistics评分：{{infoData.deliveryScore}}</span>
                 <span>服务评分：{{infoData.serviceScore}}</span>
                 <span>描述评分：{{infoData.descriptionScore}}</span>
               </div>
               <div class="" v-if="infoData.haveImage">
-                评价图
+                Evaluate图
                 <div style="margin-left: 40px">
                   <template v-if="infoData.images && infoData.images.length">
                     <img style="width: 100px;height: 110px;margin-left: 2px"
                        v-for="(img,index) in infoData.images.split(',')"  :src="img"
                        alt="" :key="index"/>
                   </template>
-                  
+
                 </div>
               </div>
             </List>
@@ -100,26 +100,26 @@
 import * as API_Member from "@/api/member";
 
 export default {
-  name: "goods-review", // 会员评价
+  name: "goods-review", // 会员Evaluate
   data() {
     return {
-      infoData: {}, // 商品信息
-      infoFlag: false, // 评价展示
+      infoData: {}, // Goods details
+      infoFlag: false, // Evaluate展示
       infoTitle: "", // modal名称
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
       },
       columns: [
         // 表头
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
           align: "left",
@@ -133,7 +133,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "评价",
+          title: "Evaluate",
           key: "grade",
           align: "left",
           width: 90,
@@ -148,7 +148,7 @@ export default {
           }
         },
         {
-          title: "物流评分",
+          title: "logistics评分",
           key: "deliveryScore",
           render: (h, params) => {
             return h('div',params.row.deliveryScore || 5 + '星')
@@ -169,7 +169,7 @@ export default {
           },
         },
         {
-          title: "评价时间",
+          title: "Evaluate时间",
           key: "createTime",
           align: "left",
           width: 170
@@ -182,7 +182,7 @@ export default {
           slot: "shopDisableSlot",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           width: 150,
           align: "center",
@@ -224,7 +224,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -240,7 +240,7 @@ export default {
       let status = val;
       API_Member.updateMemberReview(this.infoData.id, {status}).then(
         (res) => {
-          this.$Message.success("修改成功!");
+          this.$Message.success("modifysuccess!");
           this.init();
         }
       );
@@ -260,13 +260,13 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    //列表直接选择页面是否展示
+    //列表直接select页面是否展示
     changeSwitch(v) {
       let status = v.status;
       API_Member.updateMemberReview(v.id, {status: status}).then((res) => {
@@ -286,26 +286,26 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    //评价详情
+    //Evaluate详情
     info(v) {
       this.infoFlag = true;
-      this.infoTitle = `用户${v.memberName}的评价详情`;
+      this.infoTitle = `用户${v.memberName}的Evaluate详情`;
       API_Member.getMemberInfoReview(v.id).then((res) => {
         if (res.result) {
           this.infoData = res.result;
         }
       });
     },
-    // 删除评论
+    // delete评论
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除会员" + v.memberName + "的评论?",
+        title: "确认delete",
+        content: "您确认要delete会员" + v.memberName + "的评论?",
         loading: true,
         onOk: () => {
           API_Member.delMemberReview(v.id).then((res) => {
             this.$Modal.remove();
-            this.$Message.success("修改成功");
+            this.$Message.success("modifysuccess");
             this.init();
           });
         },

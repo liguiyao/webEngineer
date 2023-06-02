@@ -1,40 +1,40 @@
 <template>
   <div class="photo-msg">
     <Form ref="secondForm" :model="form" :rules="rules" :label-width="140">
-      <h4>基础信息</h4>
-      <FormItem prop="settlementBankAccountName" label="银行开户名">
+      <h4>Basic information</h4>
+      <FormItem prop="settlementBankAccountName" label="Bank account name">
         <Input
           type="text"
           v-model="form.settlementBankAccountName"
-          placeholder="请填写银行开户名称"
+          placeholder="Please enter Bank account name"
         />
       </FormItem>
-      <FormItem prop="settlementBankAccountNum" label="银行账号">
+      <FormItem prop="settlementBankAccountNum" label="Bank account">
         <Input
           type="text"
           v-model="form.settlementBankAccountNum"
-          placeholder="请填写银行账号"
+          placeholder="Please enter Bank account"
         />
       </FormItem>
-      <FormItem prop="settlementBankBranchName" label="开户银行支行名称">
+      <FormItem prop="settlementBankBranchName" label="Bank branch name">
         <Input
           type="text"
           v-model="form.settlementBankBranchName"
-          placeholder="请填写开户银行支行名称"
+          placeholder="Please enter Bank branch name"
         />
       </FormItem>
-      <FormItem prop="settlementBankJointName" label="支行联行号">
+      <FormItem prop="settlementBankJointName" label="Branch bank number">
         <Input
           type="text"
           v-model="form.settlementBankJointName"
-          placeholder="请填写支行联行号"
+          placeholder="Please enter Branch bank number"
         />
       </FormItem>
 
       <FormItem>
-        <Button @click="$emit('change', 0)">返回</Button>
+        <Button @click="$emit('change', 0)">Back</Button>
         <Button type="primary" :loading="loading" @click="next"
-          >填写其他信息</Button
+          >enter other information</Button
         >
       </FormItem>
     </Form>
@@ -55,16 +55,16 @@ export default {
       form: {}, // 表单数据
       rules: { // 验证规则
         settlementBankAccountName: [
-          { required: true, message: '请填写银行开户名称' }
+          { required: true, message: 'Please enter Bank account name' }
         ],
         settlementBankAccountNum: [
-          { required: true, message: '请填写银行账号' }
+          { required: true, message: 'Please enter Bank account' }
         ],
         settlementBankBranchName: [
-          { required: true, message: '请填写开户银行支行名称' }
+          { required: true, message: 'Please enter Bank branch name' }
         ],
         settlementBankJointName: [
-          { required: true, message: '请填写支行联行号' }
+          { required: true, message: 'Please enter Branch bank number' }
         ]
       }
     };

@@ -36,7 +36,7 @@ export default {
           link.href = localStorage.getItem("icon");
           link.rel = "shortcut icon";
           document.getElementsByTagName("head")[0].appendChild(link);
-          window.document.title = localStorage.getItem("title") + " - 运营后台";
+          window.document.title = localStorage.getItem("title") + " - Backstage";
         }
       }
     },
@@ -60,7 +60,7 @@ export default {
         link.href = domainLogo;
         link.rel = "shortcut icon";
         document.getElementsByTagName("head")[0].appendChild(link);
-        window.document.title = siteName + " - 运营后台";
+        window.document.title = siteName + " - Backstage";
       });
     },
   },

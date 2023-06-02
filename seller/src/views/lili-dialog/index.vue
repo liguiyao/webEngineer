@@ -32,21 +32,21 @@ export default {
   },
   data() {
     return {
-      title: "选择", // 模态框标题
-      goodsFlag: false, // 是否商品选择器
-      goodsData: [], //选择的商品
-      linkData: "", //选择的链接
+      title: "select", // 模态框标题
+      goodsFlag: false, // 是否Goodsselect器
+      goodsData: [], //selectgoods
+      linkData: "", //select的链接
       flag: false, // 控制模态框显隐
     };
   },
   methods: {
-    // 关闭弹窗
+    // Close弹窗
     clickClose() {
       this.$emit("closeFlag", false);
       this.goodsFlag = false;
     },
 
-    // 单选商品
+    // 单选Goods
     singleGoods(){
       var timer = setInterval(() => {
         if (this.$refs.goodsDialog) {
@@ -56,7 +56,7 @@ export default {
         }
       }, 100);
     },
-    clickOK() { // 确定按钮回调，
+    clickOK() { // Confirm按钮回调，
       if (this.goodsFlag) {
         this.$emit("selectedGoodsData", this.goodsData);
       } else {
@@ -64,7 +64,7 @@ export default {
       }
       this.clickClose();
     },
-    open (type) { // 父组件通过ref调用，打开商品选择器
+    open (type) { // 父组件通过ref调用，打开Goodsselect器
       this.flag = true;
       if(type == 'goods'){
         this.goodsFlag = true;
@@ -73,7 +73,7 @@ export default {
       }
 
     },
-    close(){ // 关闭组件
+    close(){ // Close组件
       this.flag = false;
     }
   },

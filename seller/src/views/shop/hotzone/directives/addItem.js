@@ -43,7 +43,7 @@ export default {
 
         // Not consider the direction of movement first, consider only the lower right drag point
         let minLimit = 0
-        // 添加热区时，判定鼠标释放时，满足（热区大于48*48时）条件时生效
+        // 添加热区时，判定鼠标释放时，full足（热区大于48*48时）条件时生效
         let styleInfo = _.dealBR(itemInfo, moveX, moveY, minLimit)
 
         // Boundary value processing 改变热区大小时边界条件的处理
@@ -84,7 +84,7 @@ export default {
         } else if (itemInfo.width > MIN_LIMIT && itemInfo.height > MIN_LIMIT) {
           vnode.context.changeItem(perInfo, true)
         } else {
-          // 当添加区域超出范围或小于最小区域（48*48）时触发，删除当亲绘制的热区并发送erase事件通知
+          // 当添加区域超出范围或小于最小区域（48*48）时触发，delete当亲绘制的热区并发送erase事件通知
           vnode.context.eraseItem()
         }
 

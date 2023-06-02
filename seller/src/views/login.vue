@@ -5,40 +5,40 @@
       <Header />
       <Row style="flex-direction: column">
         <Tabs v-model="loginType">
-          <Tab-pane label="账号密码登录" name="passwordLogin">
-            <!--账号密码登录-->
+          <Tab-pane label="Account login" name="passwordLogin">
+            <!--Account login-->
             <Form ref="usernameLoginForm" :model="form" :rules="rules" class="form">
               <FormItem prop="username">
-                <Input v-model="form.username" prefix="ios-contact" size="large" clearable placeholder="请输入用户名"
+                <Input v-model="form.username" prefix="ios-contact" size="large" clearable placeholder="Please enter username"
                   autocomplete="off" />
               </FormItem>
               <FormItem prop="password">
-                <Input type="password" v-model="form.password" prefix="ios-lock" size="large" password placeholder="请输入密码"
+                <Input type="password" v-model="form.password" prefix="ios-lock" size="large" password placeholder="Please enter password"
                   autocomplete="off" />
               </FormItem>
             </Form>
             <div class="register">
-              <a @click="$router.push('forgetPassword')">忘记密码</a>
+              <a @click="$router.push('forgetPassword')">Forget Password</a>
             </div>
           </Tab-pane>
-          <Tab-pane label="验证码登录" name="mobileLogin">
-            <!-- 验证码登录 -->
+          <Tab-pane label="SMS login" name="mobileLogin">
+            <!-- SMS login -->
             <Form ref="formSms" :model="formSms" :rules="ruleInline" @click.self='$refs.verify.show = false'>
               <FormItem prop="mobile">
-                <i-input type="text" v-model="formSms.mobile" clearable placeholder="手机号">
+                <i-input type="text" v-model="formSms.mobile" clearable placeholder="Phone number">
                   <Icon type="md-lock" slot="prepend"></Icon>
                 </i-input>
               </FormItem>
               <FormItem prop="code">
-                <i-input type="text" v-model="formSms.code" placeholder="手机验证码">
+                <i-input type="text" v-model="formSms.code" placeholder="phone verification code">
                   <Icon type="ios-text-outline" style="font-weight: bold" slot="prepend" />
                   <Button slot="append" @click="sendCode">{{ codeMsg }}</Button>
                 </i-input>
               </FormItem>
               <FormItem>
                 <Button @click.stop="verifyBtnClick" long :type="verifyStatus ? 'success' : 'default'">{{ verifyStatus ?
-                  '验证通过' :
-                  '点击完成安全验证' }}
+                  'Verify Pass' :
+                  'Click to verify' }}
                 </Button>
               </FormItem>
             </Form>
@@ -46,8 +46,8 @@
         </Tabs>
         <Row>
           <div class="login-btn" type="primary" size="large" :loading="loading" @click="submitLogin" long>
-            <span v-if="!loading">登录</span>
-            <span v-else>登录中</span>
+            <span v-if="!loading">Login</span>
+            <span v-else>Logging in</span>
           </div>
         </Row>
       </Row>
@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      saveLogin: true, // 保存登录状态
+      saveLogin: true, // SaveLogin状态
       loading: false, // 加载状态
       verifyStatus: false, // 是否图片验证通过
       time: 60, // 倒计时
@@ -97,35 +97,35 @@ export default {
         username: [
           {
             required: true,
-            message: "账号不能为空",
+            message: "Username cannot empty",
             trigger: "blur",
           },
         ],
         password: [
           {
             required: true,
-            message: "密码不能为空",
+            message: "password cannot be empty",
             trigger: "blur",
           },
         ],
       },
       ruleInline: {
         // 验证规则
-        username: [{ required: true, message: "请输入用户名" }],
+        username: [{ required: true, message: "Please enter username" }],
         password: [
-          { required: true, message: "请输入密码" },
-          { type: "string", min: 6, message: "密码不能少于6位" },
+          { required: true, message: "Please enter password" },
+          { type: "string", min: 6, message: "password cannot be less than 6 characters" },
         ],
         mobile: [
-          { required: true, message: "请输入手机号码" },
+          { required: true, message: "Please enter Phone number" },
           {
             pattern: RegExp.mobile,
-            message: "请输入正确的手机号",
+            message: "Please enter correctly phone number",
           },
         ],
-        code: [{ required: true, message: "请输入手机验证码" }],
+        code: [{ required: true, message: "Please enter phone verification code" }],
       },
-      codeMsg: "发送验证码", // 验证码文字
+      codeMsg: "Send verification code", // 验证码文字
     };
   },
   created() {
@@ -147,7 +147,7 @@ export default {
           console.log("Huoqu ");
           this.setStore("saveLogin", this.saveLogin);
           if (this.saveLogin) {
-            // 保存7天
+            // Save7天
             Cookies.set("userInfoSeller", JSON.stringify(res.result), {
               expires: 7,
             });
@@ -166,15 +166,15 @@ export default {
         }
       });
     },
-    // 发送手机验证码
+    // 发送phone verification code
     sendCode() {
       if (this.time === 60) {
         if (this.formSms.mobile === "") {
-          this.$Message.warning("请先填写手机号");
+          this.$Message.warning("Please 先enter Phone number");
           return;
         }
         if (!this.verifyStatus) {
-          this.$Message.warning("请先完成安全验证");
+          this.$Message.warning("Please verify first");
           return;
         }
         let params = {
@@ -183,13 +183,13 @@ export default {
         };
         sendSms(params).then((res) => {
           if (res.success) {
-            this.$Message.success("验证码发送成功");
+            this.$Message.success("SMS send success");
             let that = this;
             this.interval = setInterval(() => {
               that.time--;
               if (that.time === 0) {
                 that.time = 60;
-                that.codeMsg = "重新发送";
+                that.codeMsg = "resend";
                 that.verifyStatus = false;
                 clearInterval(that.interval);
               } else {
@@ -203,7 +203,7 @@ export default {
       }
     },
     submitLogin() {
-      // 登录提交
+      // LoginSubmit
       if (this.loginType == 'passwordLogin') {
         this.$refs.usernameLoginForm.validate((valid) => {
           if (valid) {
@@ -246,7 +246,7 @@ export default {
       this.$refs.verify.show = false;
     },
 
-    // 开启滑块验证
+    // Opening滑块验证
     verifyBtnClick() {
       if (!this.verifyStatus) {
         this.$refs.verify.init();
@@ -296,6 +296,6 @@ export default {
     opacity: 0.9;
     border-radius: 10px;
   }
-  
+
 }
 </style>

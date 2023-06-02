@@ -5,7 +5,7 @@
         <!-- 左侧侧边栏 -->
         <el-aside width="320px" class="aside-box">
           <el-container class="full-height" direction="vertical">
-            <!-- 搜索栏 -->
+            <!-- search栏 -->
             <el-header height="60px" class="header">
               <div class="user-login" v-popover:usercard>
                 <div class="user-box">
@@ -19,7 +19,7 @@
             </el-header>
             <el-header height="60px" class="header">
               <div class="from-search">
-                <el-input v-model="input" prefix-icon="el-icon-search" placeholder="搜索好友" size="small" />
+                <el-input v-model="input" prefix-icon="el-icon-search" placeholder="search好友" size="small" />
               </div>
             </el-header>
             <!-- <el-header height="118px" class="logo-header">
@@ -54,7 +54,7 @@
                 </p>
 
                 <p v-show="loadStatus === 1 && talkNum === 0" class="empty-data">
-                  暂无聊天消息
+                  absent聊天消息
                 </p>
 
                 <p v-show="loadStatus === 1 && talkNum > 0" class="main-menu">
@@ -107,7 +107,7 @@
                       </div>
                       <div class="talk-message">
                         <span v-if="item.lastMessageType === 'MESSAGE'">{{ item.lastTalkMessage }}</span>
-                        <span v-if="item.lastMessageType === 'GOODS'">[商品链接]</span>
+                        <span v-if="item.lastMessageType === 'GOODS'">[Goods链接]</span>
                         <span v-if="item.lastMessageType === 'ORDER'">[订单链接]</span>
                       </div>
                       <div class="content">
@@ -182,7 +182,7 @@ export default {
   },
   data () {
     return {
-      activeIndex: 9999999, //默认样式索引
+      activeIndex: 9999999, //default样式索引
       subHeaderShadow: false,
       launchGroupShow: false,
 
@@ -248,7 +248,7 @@ export default {
     talkItems (val) {
       val ? this.$set(this, "userTalkItem", val) : "";
     },
-    // 搜索用户的时候 根据当前用户表进行模糊搜索
+    // search用户的时候 根据当前用户表进行模糊search
     input (val, oldVal) {
       console.log(val, oldVal);
       if (val) {
@@ -298,8 +298,8 @@ export default {
     await this.loadUserSetting();
     /**
      * 如果说有id 说明是用户点击 “联系客服” 进入的该页面
-     * 所以创建会话 并请求用户列表
-     * 如果没有id说明当前商家登录 直接请求用户列表
+     * 所以创建会话 并Please 求用户列表
+     * 如果没有id说明当前商家Login 直接Please 求用户列表
      */
 
   },
@@ -432,13 +432,13 @@ export default {
         }
       });
     },
-    // 修改当前对话
+    // modify当前对话
     changeTalk (index_name) {
-      console.log("修改当前对话", index_name);
+      console.log("modify当前对话", index_name);
       sessionStorage.setItem("send_message_index_name", index_name);
       this.loadChatList();
     },
-    // 关闭当前对话及刷新对话列表
+    // Close当前对话及刷新对话列表
     closeTalk () {
       this.$store.commit("UPDATE_DIALOGUE_MESSAGE", {
         talk_type: 0,
@@ -461,7 +461,7 @@ export default {
             },
           },
           {
-            label: "修改备注",
+            label: "modify备注",
             icon: "el-icon-edit-outline",
             disabled: item.talk_type == 2 || item.is_robot == 1,
             onClick: () => {
@@ -469,14 +469,14 @@ export default {
             },
           },
           {
-            label: item.is_top == 0 ? "会话置顶" : "取消置顶",
+            label: item.is_top == 0 ? "会话置顶" : "Cancel置顶",
             icon: "el-icon-top",
             onClick: () => {
               this.topChatItem(item);
             },
           },
           {
-            label: item.is_disturb == 0 ? "消息免打扰" : "开启消息提示",
+            label: item.is_disturb == 0 ? "消息免打扰" : "Opening消息Tips",
             icon:
               item.is_disturb == 0
                 ? "el-icon-close-notification"
@@ -495,17 +495,17 @@ export default {
             },
           },
           {
-            label: item.talk_type == 1 ? "删除好友" : "退出群聊",
+            label: item.talk_type == 1 ? "delete好友" : "退出群聊",
             icon: "el-icon-delete",
             disabled: item.is_robot == 1,
             onClick: () => {
-              let title = item.talk_type == 1 ? "删除好友" : "退出群聊";
+              let title = item.talk_type == 1 ? "delete好友" : "退出群聊";
               this.$confirm(
-                `此操作将 <span style="color:red;font-size:16px;">${title}</span>, 是否继续?`,
-                "提示",
+                `此operation将 <span style="color:red;font-size:16px;">${title}</span>, 是否继续?`,
+                "Tips",
                 {
-                  confirmButtonText: "确定",
-                  cancelButtonText: "取消",
+                  confirmButtonText: "Confirm",
+                  cancelButtonText: "Cancel",
                   type: "warning",
                   center: true,
                   dangerouslyUseHTMLString: true,
@@ -530,7 +530,7 @@ export default {
       this.$contextmenu({
         items: [
           {
-            label: item.is_top == 0 ? "会话置顶" : "取消置顶",
+            label: item.is_top == 0 ? "会话置顶" : "Cancel置顶",
             icon: "el-icon-top",
             onClick: () => {
               this.topChatItem(item);
@@ -597,7 +597,7 @@ export default {
         }
       });
     },
-    // 修改好友备注信息
+    // modify好友备注信息
     editFriendRemarks (item) {
       let title = `您正在设置【${item.name}】好友的备注信息`;
 
@@ -605,11 +605,11 @@ export default {
         title += `，当前备注为【${item.remark_name}】`;
       }
 
-      this.$prompt(title, "修改备注", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$prompt(title, "modify备注", {
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
         customClass: "border-radius0",
-        inputPlaceholder: "请设置好友备注信息",
+        inputPlaceholder: "Please 设置好友备注信息",
         inputValue: item.remark_name ? item.remark_name : item.name,
         inputValidator (val) {
           return val == null || val == "" ? "好友备注不能为空" : true;
@@ -631,14 +631,14 @@ export default {
               });
 
               this.$notify({
-                title: "成功",
-                message: "好友备注修改成功...",
+                title: "success",
+                message: "好友备注modifysuccess...",
                 type: "success",
               });
             } else {
               this.$notify({
                 title: "消息",
-                message: "好友备注修改失败，请稍后再试...",
+                message: "好友备注modify失败，Please 稍后再试...",
                 type: "warning",
               });
             }

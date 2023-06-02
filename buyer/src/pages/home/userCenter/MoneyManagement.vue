@@ -5,13 +5,13 @@
     <div class="box">
       <div class="mb_20 account-price">
         <span class="subTips">账户余额：</span>
-        <span class="global_color mr_10" style="font-size:26px">￥{{ memberDeposit | unitPrice }}</span>
+        <span class="global_color mr_10" style="font-size:26px">RM{{ memberDeposit | unitPrice }}</span>
         <span class="subTips">冻结金额：</span>
-        <span class="">￥{{ frozenDeposit | unitPrice }}</span>
+        <span class="">RM{{ frozenDeposit | unitPrice }}</span>
       </div>
       <div class="account-btns">
         <Button type="primary" @click="recharge">在线充值</Button>
-        <Button @click="withdrawalApply">申请提现</Button>
+        <Button @click="withdrawalApply">Apply  提现</Button>
       </div>
     </div>
     <Modal v-model="modal" width="530">
@@ -29,7 +29,7 @@
         >
           <FormItem label="充值金额" prop="price">
             <Input v-model="formData.price" maxlength="9" number size="large"
-            ><span slot="append">元</span></Input>
+            ><span slot="append">ringgit</span></Input>
           </FormItem>
         </Form>
       </div>
@@ -37,7 +37,7 @@
         <Button size="large" type="success" @click="rechargePrice">充值</Button>
       </div>
     </Modal>
-    <!-- 提现申请 -->
+    <!-- 提现Apply   -->
     <Modal v-model="withdrawApplyModal" width="530">
       <p slot="header">
         <Icon type="edit"></Icon>
@@ -52,8 +52,8 @@
         >
           <FormItem label="提现类型" prop="type">
             <Select v-model="withdrawApplyFormData.type" disabled>
-              <Option value="ALI">支付宝</Option>
-              <Option value="WECHAT">微信</Option>
+              <Option value="ALI">Alipay</Option>
+              <Option value="WECHAT">Wechat</Option>
             </Select>
           </FormItem>
           <FormItem label="提现金额" prop="price">
@@ -62,10 +62,10 @@
               maxlength="9"
               number
               size="large"
-            ><span slot="append">元</span></Input>
-            <span style="color: red">最低提现金额 {{ withdrawApplyFormData.minPrice }}元</span>
+            ><span slot="append">ringgit</span></Input>
+            <span style="color: red">最低提现金额 {{ withdrawApplyFormData.minPrice }}ringgit</span>
           </FormItem>
-          <FormItem v-if="withdrawApplyFormData.type === 'ALI'" label="真实姓名" prop="realName">
+          <FormItem v-if="withdrawApplyFormData.type === 'ALI'" label="真实name" prop="realName">
             <Input
               v-model="withdrawApplyFormData.realName"
               maxlength="9"
@@ -73,7 +73,7 @@
               size="large"
             ></Input>
           </FormItem>
-          <FormItem v-if="withdrawApplyFormData.type === 'ALI'" label="第三方登录账号" prop="connectNumber">
+          <FormItem v-if="withdrawApplyFormData.type === 'ALI'" label="第三方Login账号" prop="connectNumber">
             <Input
               v-model="withdrawApplyFormData.connectNumber"
               maxlength="9"
@@ -167,7 +167,7 @@ export default {
       memberDeposit: 0, // 余额
 
       modal: false, // 余额充值
-      withdrawApplyModal: false, // 提现申请
+      withdrawApplyModal: false, // 提现Apply
       formData: {
         // 充值金额
         price: 1
@@ -182,45 +182,45 @@ export default {
       },
       // 余额日志
       walletForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1,
         pageSize: 10
       },
       // 充值记录
       rechargeForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10 // 页面大小
       },
       // 提现记录
       withdrawApplyForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10 // 页面大小
       },
-      // 提现申请校验
+      // 提现Apply  校验
       withdrawApplyFormValidate: {
         price: [
-          {required: true, message: '请输入大于0小于9999的合法提现金额'},
+          {required: true, message: 'Please enter 大于0小于9999的合法提现金额'},
           {
             pattern: /^[1-9]\d{0,3}(\.\d{1,2})?$/,
-            message: '请输入大于0小于9999的合法提现金额',
+            message: 'Please enter 大于0小于9999的合法提现金额',
             trigger: 'change'
           }
         ],
         realName: [
-          {required: true, message: '请输入真实姓名'},
+          {required: true, message: 'Please enter 真实name'},
         ],
         connectNumber: [
-          {required: true, message: '请输入第三方登录账号'},
+          {required: true, message: 'Please enter 第三方Login账号'},
         ],
       },
       formValidate: {
         price: [
-          {required: true, message: '请输入大于等于1小于9999的合法充值金额'},
+          {required: true, message: 'Please enter 大于等于1小于9999的合法充值金额'},
           {
             pattern: /^[1-9]\d{0,3}(\.\d{1,2})?$/,
-            message: '请输入大于等于1小于9999的合法充值金额',
+            message: 'Please enter 大于等于1小于9999的合法充值金额',
             trigger: 'change'
           }
         ]
@@ -304,9 +304,9 @@ export default {
             if (params.row.payStatus === 'PAID') {
               return h('div', [h('span', {}, '已付款')]);
             } else if (params.row.payStatus === 'UNPAID') {
-              return h('div', [h('span', {}, '未付款')]);
+              return h('div', [h('span', {}, 'Unpaid')]);
             } else if (params.row.payStatus === 'CANCEL') {
-              return h('div', [h('span', {}, '已取消')]);
+              return h('div', [h('span', {}, '已Cancel')]);
             }
           }
         },
@@ -315,9 +315,9 @@ export default {
           key: 'rechargeWay',
           render: (h, params) => {
             if (params.row.rechargeWay === 'ALIPAY') {
-              return h('div', [h('span', {}, '支付宝')]);
+              return h('div', [h('span', {}, 'Alipay')]);
             } else if (params.row.rechargeWay === 'WECHAT') {
-              return h('div', [h('span', {}, '微信')]);
+              return h('div', [h('span', {}, 'Wechat')]);
             } else if (params.row.rechargeWay === 'BANK_TRANSFER') {
               return h('div', [h('span', {}, '线下转账')]);
             } else {
@@ -335,7 +335,7 @@ export default {
       // 提现记录
       withdrawApplyColumns: [
         {
-          title: '申请时间',
+          title: 'Apply  时间',
           key: 'createTime',
           width: 168
         },
@@ -366,9 +366,9 @@ export default {
           width: 95,
           render: (h, params) => {
             if (params.row.applyStatus === 'APPLY') {
-              return h('div', [h('span', {}, '申请中')]);
+              return h('div', [h('span', {}, 'Apply  中')]);
             } else if (params.row.applyStatus === 'VIA_AUDITING') {
-              return h('div', [h('span', {}, '提现成功')]);
+              return h('div', [h('span', {}, '提现success')]);
             } else if (params.row.applyStatus === 'ERROR') {
               return h('div', [h('span', {}, '提现失败')]);
             } else {
@@ -487,7 +487,7 @@ export default {
         }
       });
     },
-    // 申请提现弹出框
+    // Apply  提现弹出框
     withdrawalApply() {
       this.withdrawApplyModal = true;
       this.withdrawApplyFormData.minPrice = 1;
@@ -509,7 +509,7 @@ export default {
         if (valid) {
           withdrawalApply(this.withdrawApplyFormData).then((res) => {
             if (res && res.success) {
-              this.$Message.success('提现申请成功，关注提现状态');
+              this.$Message.success('提现Apply  success，关注提现状态');
               this.withdrawApplyModal = false;
               this.init(); // 余额查询
               this.getWithdrawApplyData(); // 提现记录

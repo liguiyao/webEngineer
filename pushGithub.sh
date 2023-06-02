@@ -1,5 +1,5 @@
 echo '开始推送github'
-echo '切换git地址'
+echo '切换gitaddress'
 git remote rm origin
 
 git remote add origin git@github.com:lilishop/lilishop-ui.git

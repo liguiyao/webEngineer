@@ -23,13 +23,13 @@
         <div class="multi-icon pointer" @click="$emit('event', 'delete')">
           <i class="el-icon-delete" />
         </div>
-        <p>批量删除</p>
+        <p>批量delete</p>
       </div>
       <div class="btn-group">
         <div class="multi-icon pointer" @click="$emit('event', 'close')">
           <i class="el-icon-close" />
         </div>
-        <p>关闭</p>
+        <p>Close</p>
       </div>
     </div>
   </div>

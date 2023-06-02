@@ -3,7 +3,7 @@
     <Card>
       <Row class="operation">
         <Button @click="addRole" type="primary">添加角色</Button>
-        <Button @click="delAll">批量删除</Button>
+        <Button @click="delAll">批量delete</Button>
       </Row>
       <br>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom" @on-sort-change="changeSort" @on-selection-change="changeSelect"></Table>
@@ -24,8 +24,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="roleModalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitRole">提交
+        <Button type="text" @click="roleModalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitRole">Submit
         </Button>
       </div>
     </Modal>
@@ -37,7 +37,7 @@
         <Spin size="large" fix v-if="treeLoading"></Spin>
       </div>
       <div slot="footer">
-        <Button type="text" @click="permModalVisible = false">取消</Button>
+        <Button type="text" @click="permModalVisible = false">Cancel</Button>
         <Select v-model="openLevel" @on-change="changeOpen" style="width: 110px; text-align: left; margin-right: 10px">
           <Option value="0">展开所有</Option>
           <Option value="1">收合所有</Option>
@@ -50,8 +50,8 @@
     </Modal>
 
 
-    <!-- 保存权限弹出选择权限 -->
-    <Modal width="800" v-model="selectIsSuperModel" title="选择菜单权限" :loading="superModelLoading" @on-ok="saveRole">
+    <!-- Save权限弹出select权限 -->
+    <Modal width="800" v-model="selectIsSuperModel" title="select菜单权限" :loading="superModelLoading" @on-ok="saveRole">
       <div class="btns">
         <Button type="primary" @click="setRole()" class="btn-item">一键选中·数据权限</Button>
         <Button class="btn-item" @click="setRole('onlyView')">一键选中·查看权限</Button>
@@ -62,7 +62,7 @@
           <div class="content">
             <RadioGroup type="button" button-style="solid" v-model="item.isSuper">
               <Radio :label="1">
-                <span>操作数据权限</span>
+                <span>operation数据权限</span>
               </Radio>
               <Radio :label="0">
                 <span>查看权限</span>
@@ -91,15 +91,15 @@ export default {
   name: "role-manage",
   data() {
     return {
-      superModelLoading: false, //保存权限弹出选择权限保存
-      selectIsSuperModel: false, //保存权限弹出选择权限
+      superModelLoading: false, //Save权限弹出select权限Save
+      selectIsSuperModel: false, //Save权限弹出select权限
       rolePermsWay: [], //查询角色权限集合
       openLevel: "0", // 展开的级别
       loading: true, // 加载状态
       treeLoading: true, // 树加载
       depTreeLoading: true, // 部门树加载
-      submitPermLoading: false, // 权限提交加载
-      submitDepLoading: false, // 部门提交加载
+      submitPermLoading: false, // 权限Submit加载
+      submitDepLoading: false, // 部门Submit加载
       sortColumn: "", // 排序
       sortType: "desc", // 排序类型
       modalType: 0, // 0 添加 1 编辑
@@ -118,7 +118,7 @@ export default {
           { required: true, message: "角色名称不能为空", trigger: "blur" },
         ],
       },
-      submitLoading: false, // 提交loading
+      submitLoading: false, // Submitloading
       selectList: [], // 已选列表
       selectCount: 0, // 已选总数
       columns: [
@@ -140,7 +140,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "创建时间",
+          title: "Create time",
           key: "createTime",
           width: 170,
           sortable: true,
@@ -153,12 +153,12 @@ export default {
           sortable: true,
         },
         {
-          title: "最后操作人",
+          title: "最后operation人",
           key: "createBy",
           width: 150,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -214,7 +214,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -222,7 +222,7 @@ export default {
       ],
       data: [], // 角色数据
       pageNumber: 1, // 页数
-      pageSize: 10, // 每页数量
+      pageSize: 10, // 每页Quantity
       total: 0, // 总数
       permData: [], // 菜单权限数据
       editRolePermId: "", // 编辑权限id
@@ -231,7 +231,7 @@ export default {
       dataType: 0, // 数据类型
       editDepartments: [], // 编辑部门
 
-      saveRoleWay: [], //用户保存用户点击的菜单
+      saveRoleWay: [], //用户Save用户点击的菜单
     };
   },
   methods: {
@@ -296,7 +296,7 @@ export default {
                 },
               },
               data.isSuper == 1
-                ? "操作权限"
+                ? "operation权限"
                 : data.isSuper == 0
                 ? "查看权限"
                 : ""
@@ -305,13 +305,13 @@ export default {
         ]
       );
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.pageNumber = v;
       this.getRoleList();
       this.clearSelectAll();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.pageNumber = 1;
       this.pageSize = v;
@@ -385,7 +385,7 @@ export default {
         }
       });
     },
-    // 提交
+    // Submit
     submitRole() {
       this.$refs.roleForm.validate((valid) => {
         if (valid) {
@@ -396,7 +396,7 @@ export default {
             addRole(this.roleForm).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getRoleList();
                 this.roleModalVisible = false;
               }
@@ -408,7 +408,7 @@ export default {
             editRole(this.roleForm).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getRoleList();
                 this.roleModalVisible = false;
               }
@@ -444,17 +444,17 @@ export default {
       this.roleForm = roleInfo;
       this.roleModalVisible = true;
     },
-    // 删除
+    // delete
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除角色 " + v.name + " ?",
+        title: "确认delete",
+        content: "您确认要delete角色 " + v.name + " ?",
         loading: true,
         onOk: () => {
           deleteRole(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getRoleList();
             }
           });
@@ -470,15 +470,15 @@ export default {
       this.selectList = e;
       this.selectCount = e.length;
     },
-    // 批量删除
+    // 批量delete
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -489,7 +489,7 @@ export default {
           deleteRole(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.clearSelectAll();
               this.getRoleList();
             }
@@ -519,7 +519,7 @@ export default {
       });
 
       if (this.treeLoading) {
-        this.$Message.warning("菜单权限数据加载中，请稍后点击查看");
+        this.$Message.warning("菜单权限数据加载中，Please 稍后点击查看");
         return;
       }
       this.editRolePermId = v.id;
@@ -582,7 +582,7 @@ export default {
     /**分配菜单权限 */
     submitPermEdit() {
       this.saveRoleWay = [];
-      this.selectIsSuperModel = true; //打开选择权限
+      this.selectIsSuperModel = true; //打开select权限
       let selectedNodes = this.$refs.tree.getCheckedAndIndeterminateNodes();
       let way = [];
       selectedNodes.forEach((e) => {
@@ -600,13 +600,13 @@ export default {
       console.log(this.saveRoleWay)
     },
 
-    /**保存权限 */
+    /**Save权限 */
     saveRole() {
       this.superModelLoading = true;
       saveRoleMenu(this.editRolePermId, this.saveRoleWay).then((res) => {
         this.superModelLoading = false;
         if (res.success) {
-          this.$Message.success("操作成功");
+          this.$Message.success("operationsuccess");
           // 标记重新获取菜单数据
           this.$store.commit("setAdded", false);
           util.initRouter(this);

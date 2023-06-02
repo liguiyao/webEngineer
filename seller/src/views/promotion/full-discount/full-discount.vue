@@ -3,22 +3,22 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
         <Form-item label="活动名称">
-          <Input type="text" v-model="searchForm.promotionName" placeholder="请输入活动名称" clearable style="width: 200px" />
+          <Input type="text" v-model="searchForm.promotionName" placeholder="Please enter 活动名称" clearable style="width: 200px" />
         </Form-item>
         <Form-item label="活动状态" prop="promotionStatus">
-          <Select v-model="searchForm.promotionStatus" placeholder="请选择" clearable style="width: 200px">
+          <Select v-model="searchForm.promotionStatus" placeholder="Please select" clearable style="width: 200px">
             <Option value="NEW">未开始</Option>
             <Option value="START">已开始/上架</Option>
             <Option value="END">已结束/下架</Option>
-            <Option value="CLOSE">紧急关闭/作废</Option>
+            <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
         <Form-item label="活动时间">
-          <DatePicker v-model="selectDate" type="daterange" clearable placeholder="选择起始时间" style="width: 200px">
+          <DatePicker v-model="selectDate" type="daterange" clearable placeholder="select起始时间" style="width: 200px">
           </DatePicker>
         </Form-item>
         <Form-item>
-          <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+          <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
           <Button @click="handleReset" class="ml_10">重置</Button>
         </Form-item>
       </Form>
@@ -30,7 +30,7 @@
           {{ unixDate(row.applyEndTime) }}
         </template>
         <template slot-scope="{ row }" slot="promotionType">
-          {{ row.fullMinusFlag ? "满减" : "满折" }}
+          {{ row.fullMinusFlag ? "full减" : "fulloff" }}
         </template>
         <template slot-scope="{ row }" slot="hours">
           <Tag v-for="item in unixHours(row.hours)" :key="item">{{ item }}</Tag>
@@ -40,11 +40,11 @@
             <Button type="primary" v-if="row.promotionStatus == 'NEW'" size="small" @click="edit(row)">编辑</Button>
             <Button type="info" v-else size="small" @click="edit(row)">查看</Button>
             <Button type="success" v-if="row.promotionStatus === 'START'" style="margin-left: 5px" size="small"
-              @click="openOrClose(row)">关闭</Button>
+              @click="openOrClose(row)">Close</Button>
             <Button type="success" v-if="row.promotionStatus === 'CLOSE'" style="margin-left: 5px" size="small"
-              @click="openOrClose(row)">开启</Button>
+              @click="openOrClose(row)">Opening</Button>
             <Button type="error" :disabled="row.promotionStatus == 'START'" style="margin-left: 5px" size="small"
-              @click="del(row)">删除</Button>
+              @click="del(row)">delete</Button>
           </div>
         </template>
       </Table>
@@ -70,7 +70,7 @@ export default {
       selectDate: [],
       loading: false, // 表单加载状态
       searchForm: {
-        // 列表请求参数
+        // 列表Please 求参数
         pageNumber: 1,
         pageSize: 10,
         sort: "startTime",
@@ -114,7 +114,7 @@ export default {
               text = "已结束";
               color = "blue";
             } else if (params.row.promotionStatus == "CLOSE") {
-              text = "已关闭";
+              text = "已Close";
               color = "red";
             }
             return h("div", [
@@ -131,7 +131,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           width: 200,
@@ -159,7 +159,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch () {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -177,43 +177,43 @@ export default {
     edit (row) {
       this.$router.push({ name: "full-discount-detail", query: { id: row.id } });
     },
-    // 删除
+    // delete
     del (row) {
       this.$Modal.confirm({
-        title: "提示",
-        // 记得确认修改此处
-        content: "确认删除此活动吗?",
+        title: "Tips",
+        // 记得确认modify此处
+        content: "确认delete此活动吗?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           delFullDiscount(row.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getDataList();
             }
           });
         },
       });
     },
-    // 开启或关闭活动
+    // Opening或Close活动
     openOrClose (row) {
-      let name = "开启";
+      let name = "Opening";
       let status = "START";
       if (row.promotionStatus === "START") {
-        name = "关闭";
+        name = "Close";
         status = "CLOSE";
         this.$Modal.confirm({
-          title: "提示",
-          // 记得确认修改此处
-          content: `确认${name}此活动吗?需要一定时间才能生效，请耐心等待`,
+          title: "Tips",
+          // 记得确认modify此处
+          content: `确认${name}此活动吗?需要一定时间才能生效，Please 耐心等待`,
           loading: true,
           onOk: () => {
-            // 删除
+            // delete
             updateFullDiscount(row.id).then((res) => {
               this.$Modal.remove();
               if (res.success) {
-                this.$Message.success(`${name}成功`);
+                this.$Message.success(`${name}success`);
                 this.getDataList();
               }
             });
@@ -226,8 +226,8 @@ export default {
         this.openStartTime = sTime.getTime();
         this.openEndTime = eTime.getTime();
         this.$Modal.confirm({
-          title: "确认开启(默认为当前时间的十分钟之后)",
-          content: "您确认要开启此拼团活动?",
+          title: "确认Opening(default为当前时间的十分钟之后)",
+          content: "您确认要Opening此拼团活动?",
           onOk: () => {
             let params = {
               startTime: this.openStartTime,
@@ -236,7 +236,7 @@ export default {
             updateFullDiscount(row.id, params).then((res) => {
               this.$Modal.remove();
               if (res.success) {
-                this.$Message.success("开启活动成功");
+                this.$Message.success("Opening活动success");
                 this.getDataList();
               }
             });
@@ -246,7 +246,7 @@ export default {
               h("DatePicker", {
                 props: {
                   type: "datetimerange",
-                  placeholder: "请选择开始时间和结束时间",
+                  placeholder: "Please select开始时间和结束时间",
                   value: [sTime, eTime],
                 },
                 style: {
@@ -290,7 +290,7 @@ export default {
   mounted () {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，修改KeepAlive为false，保证进入该页面是刷新
+  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
   beforeRouteLeave (to, from, next) {
     from.meta.keepAlive = false;
     next();

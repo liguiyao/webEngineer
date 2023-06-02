@@ -5,7 +5,7 @@ import drawer from './drawer/Main' // 右侧bar
 import Header from '@/components/header/Header'; // 头部组件
 import FixedTopPage from '@/components/advertising/FixedTop'; // 顶部广告
 import Footer from '@/components/footer/Footer'; // 底部栏
-import Search from '@/components/Search' // 搜索框
+import Search from '@/components/Search' // search框
 import card from '@/components/card' // 个人中心 卡片
 import cateNav from '@/components/nav/CateNav' // 个人中心 卡片
 

@@ -1,6 +1,6 @@
 <template>
   <div class="msg-list">
-    <card _Title="我的消息" :_Tabs="status" :_Size="16"  @_Change="statusChange"/>
+    <card _Title="My message" :_Tabs="status" :_Size="16"  @_Change="statusChange"/>
 
     <Table v-if="params.status != 'ALREADY_REMOVE' " :columns="messageColumns" :data="messageData.records"></Table>
     <Table v-if="params.status == 'ALREADY_REMOVE' " :columns="messageDelColumns" :data="messageData.records"></Table>
@@ -25,27 +25,27 @@ export default {
   data() {
     return {
       messageData: {}, // 消息数据
-      status: ['未读', '已读', '回收站'],
-      params: { // 请求参数
+      status: ['unread', 'read', 'Recycling station'],
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         status: 'UN_READY'
       },
       messageDelColumns: [ // table展示数据
         {
-          title: '消息标题',
+          title: 'Message title',
           key: 'title',
           align: 'left',
           tooltip: true,
         },
         {
-          title: '消息内容',
+          title: 'Message content',
           key: 'content',
           align: 'left',
           tooltip: true
         },
         {
-          title: '发送时间',
+          title: 'Sending time',
           key: 'createTime',
           align: 'left',
           width: 240
@@ -53,25 +53,25 @@ export default {
       ],
       messageColumns: [ // table展示数据
         {
-          title: '消息标题',
+          title: 'Message title',
           key: 'title',
           align: 'left',
           tooltip: true,
         },
         {
-          title: '消息内容',
+          title: 'Message content',
           key: 'content',
           align: 'left',
           tooltip: true
         },
         {
-          title: '发送时间',
+          title: 'Sending time',
           key: 'createTime',
           align: 'left',
           width: 240
         },
         {
-          title: '操作',
+          title: 'operation',
           key: 'action',
           align: 'center',
           fixed: 'right',
@@ -109,7 +109,7 @@ export default {
                       }
                     }
                   },
-                  '删除'
+                  'delete'
                 )
               ]);
             } else if (params.row.status === 'ALREADY_READY') {
@@ -127,7 +127,7 @@ export default {
                       }
                     }
                   },
-                  '删除'
+                  'delete'
                 )
               ]);
             } else {
@@ -146,17 +146,17 @@ export default {
       if (index === 2) { this.params.status = 'ALREADY_REMOVE' }
       this.getList()
     },
-    // 修改页码
+    // modify页码
     changePage (v) {
       this.params.pageNumber = v;
       this.getList();
     },
-    // 修改页数
+    // modify页数
     changePageSize (v) {
       this.params.pageSize = v;
       this.getList();
     },
-    getList () { // 获取消息列表
+    getList () { // 获Cancel息列表
       memberMsgList(this.params).then(res => {
         if (res.success) {
           this.messageData = res.result;
@@ -174,16 +174,16 @@ export default {
     // 消息放入回收站
     removeMessage (id) {
       this.$Modal.confirm({
-        title: '确认删除',
-        // 记得确认修改此处
-        content: '确认要删除此消息?',
+        title: 'Confirm deletion',
+        // 记得确认modify此处
+        content: 'Confirm that you want to delete this message?',
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           delMemberMsg(id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success('消息已成功放入回收站');
+              this.$Message.success('Message was successfully placed in the recycle bin');
               this.getList();
             }
           });

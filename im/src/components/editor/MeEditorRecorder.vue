@@ -206,7 +206,7 @@ export default {
         this.pausePlayRecorder()
       }
 
-      // 销毁录音后关闭窗口
+      // 销毁录音后Close窗口
       this.destroyRecorder(() => {
         this.$emit('close', false)
       })
@@ -299,7 +299,7 @@ export default {
     },
 
     submit() {
-      alert('功能研发中,敬请期待...')
+      alert('功能研发中,敬Please 期待...')
     },
   },
 }

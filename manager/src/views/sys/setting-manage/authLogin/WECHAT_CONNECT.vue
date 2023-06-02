@@ -24,7 +24,7 @@
           <div class='pay-title'> {{way[item.clientType]}}</div>
           <div>
 
-            <Divider orientation="left">登录设置</Divider>
+            <Divider orientation="left">Login设置</Divider>
             <div class="pay-list">
               <Form style="width:100%;" ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
                 <FormItem label="appId" prop="appId">
@@ -34,7 +34,7 @@
                   <Input @on-enter="setupSetting" v-model="item.appSecret" />
                 </FormItem>
               </Form>
-                 <Button @click="setupSetting">保存设置</Button>
+                 <Button @click="setupSetting">Save设置</Button>
             </div>
           </div>
 
@@ -74,7 +74,7 @@ export default {
         this.setupSetting();
       }
     },
-    // 保存设置
+    // Save设置
     setupSetting() {
       this.$Spin.show();
       setTimeout(() => {
@@ -83,10 +83,10 @@ export default {
           wechatConnectSettingItems: this.formValidate,
         }).then((res) => {
           if (res.success) {
-            this.$Message.success("保存成功!");
+            this.$Message.success("Savesuccess!");
             this.$Modal.remove();
           } else {
-            this.$Message.error("保存失败!");
+            this.$Message.error("Save失败!");
             this.$Modal.remove();
           }
         });
@@ -99,7 +99,7 @@ export default {
         this.ruleValidate[item] = [
           {
             required: true,
-            message: "请填写必填项",
+            message: "Please enter 必填项",
             trigger: "blur",
           },
         ];

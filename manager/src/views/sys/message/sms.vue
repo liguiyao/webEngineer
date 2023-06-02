@@ -57,20 +57,20 @@
     <Modal :title="templateModalTitle" v-model="templateModalVisible" :mask-closable="false" :width="500">
       <Form ref="templateForm" :model="templateForm" :label-width="100" :rules="templateFormValidate">
         <FormItem label="模板名称" prop="templateName">
-          <Input v-model="templateForm.templateName" maxlength="30" clearable style="width: 90%" placeholder="请输入模板名称，不超过30字符" />
+          <Input v-model="templateForm.templateName" maxlength="30" clearable style="width: 90%" placeholder="Please enter 模板名称，不超过30字符" />
         </FormItem>
         <FormItem label="模板内容" prop="templateContent">
           <Input v-model="templateForm.templateContent" clearable type="textarea" style="width: 90%" maxlength="200" :autosize="{maxRows:5,minRows: 5}" show-word-limit
-            placeholder="请输入短信内容，不超过500字符，不支持【】、★、 ※、 →、 ●等特殊符号；" />
+            placeholder="Please enter 短信内容，不超过500字符，不支持【】、★、 ※、 →、 ●等特殊符号；" />
         </FormItem>
-        <FormItem label="申请说明" prop="remark">
+        <FormItem label="Apply  说明" prop="remark">
           <Input v-model="templateForm.remark" clearable type="textarea" style="width: 90%" maxlength="150" :autosize="{maxRows:4,minRows: 4}" show-word-limit
-            placeholder="请描述您的业务使用场景，不超过100字符；如：用于春节集五福" />
+            placeholder="Please 描述您的业务使用场景，不超过100字符；如：用于春节集五福" />
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="templateModalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="templateSubmit">提交
+        <Button type="text" @click="templateModalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="templateSubmit">Submit
         </Button>
       </div>
     </Modal>
@@ -104,13 +104,13 @@
               </p>
               <RadioGroup type="button" button-style="solid" @on-change="smsRangeChange" v-model="smsForm.smsRange">
                 <Radio label="1">全部会员</Radio>
-                <Radio label="2">自定义选择</Radio>
+                <Radio label="2">自定义select</Radio>
               </RadioGroup>
             </FormItem>
             <FormItem>
               <div class="choose-member" v-if="customSms">
                 <div class="source-member">
-                  <Input suffix="ios-search" @on-enter="memberSearch" v-model="memberSearchParam.mobile" @on-blur="memberSearch" placeholder="请输入手机号码" style="width: 92%" />
+                  <Input suffix="ios-search" @on-enter="memberSearch" v-model="memberSearchParam.mobile" @on-blur="memberSearch" placeholder="Please enter Phone number" style="width: 92%" />
                   <div style="margin-top: 5px">
                     <Scroll :on-reach-bottom="memberSearchEdge">
 
@@ -142,7 +142,7 @@
 
       </div>
       <div slot="footer">
-        <Button type="text" @click="sendSmsModal = false">取消</Button>
+        <Button type="text" @click="sendSmsModal = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="sendSms">发送</Button>
       </div>
     </Modal>
@@ -161,9 +161,9 @@ export default {
   data() {
     return {
       loading:false,
-      customSms: false, //当选择自动发送对象 展示
+      customSms: false, //当select自动发送对象 展示
       alreadyCheck: [], //已经选中的数据
-      alreadyCheckShow: [], //已经选择的值负责显示
+      alreadyCheckShow: [], //已经select的值负责显示
       memberPage: 0, // 会员信息
       members: [], //所有会员
       smsTemplateContent: "", //短信模板内容
@@ -177,9 +177,9 @@ export default {
       templateModalVisible: false, //添加短信模板弹出框
       templateModalTitle: "", //添加短信模板弹出框标题
       templateForm: {}, //短信模板添加form
-      submitLoading: false, // 提交加载状态
+      submitLoading: false, // Submit加载状态
       signSearchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
       },
@@ -218,14 +218,14 @@ export default {
         signName: [
           {
             required: true,
-            message: "请选择短信签名",
+            message: "Please select短信签名",
             trigger: "blur",
           },
         ],
         messageCode: [
           {
             required: true,
-            message: "请选择短信模板",
+            message: "Please select短信模板",
             trigger: "blur",
           },
         ],
@@ -234,21 +234,21 @@ export default {
         templateName: [
           {
             required: true,
-            message: "请输入短信模板名称",
+            message: "Please enter 短信模板名称",
             trigger: "blur",
           },
         ],
         templateContent: [
           {
             required: true,
-            message: "请输入短信模板内容",
+            message: "Please enter 短信模板内容",
             trigger: "blur",
           },
         ],
         remark: [
           {
             required: true,
-            message: "请输入短信模板申请说明",
+            message: "Please enter 短信模板Apply  说明",
             trigger: "blur",
           },
         ],
@@ -276,7 +276,7 @@ export default {
           width: 140,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 150,
@@ -335,7 +335,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           fixed: "right",
           width: 200,
@@ -382,7 +382,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -396,7 +396,7 @@ export default {
           key: "signName",
         },
         {
-          title: "申请说明",
+          title: "Apply  说明",
           key: "remark",
         },
         {
@@ -407,7 +407,7 @@ export default {
           slot: "signStatus",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           fixed: "right",
           width: 200,
@@ -456,7 +456,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -483,7 +483,7 @@ export default {
         }
       });
     },
-    //已经选择的人取消选中
+    //已经select的人Cancel选中
     alreadyCheckClose(val,index) {
       this.alreadyCheck.splice(index, 1);
       this.alreadyCheckShow.splice(index, 1);
@@ -499,7 +499,7 @@ export default {
     detail(){
 
     },
-    //选择接收人事件
+    //select接收人事件
     smsRangeChange(v) {
       this.memberNum = 0;
       this.smsForm.num = 0;
@@ -514,7 +514,7 @@ export default {
         this.getMembers();
       }
     },
-    //搜索会员
+    //search会员
     memberSearch() {
       this.memberSearchParam.pageNumber = 1;
       this.members = [];
@@ -523,7 +523,7 @@ export default {
     //移动会员
     moveMember(index, item) {
       if (!item.mobile) {
-        this.$Message.error("当前用户暂无手机号绑定");
+        this.$Message.error("当前用户absentPhone number绑定");
         return false;
       }
       item.____selected = true;
@@ -533,7 +533,7 @@ export default {
         this.smsForm.num++;
         this.memberNum++;
       } else {
-        //如果已选择数组内存在此用户则不在进行选择
+        //如果已select数组内存在此用户则不在进行select
         let result = this.alreadyCheck.indexOf(item.mobile);
         if (result < 0) {
           this.smsForm.num++;
@@ -587,7 +587,7 @@ export default {
         }
       });
       this.smsContent = "<div class='sms'>效果预览</div>";
-      //添加的时候将已经选过的手机号码置为空
+      //添加的时候将已经选过的Phone number置为空
       this.alreadyCheck = [];
       this.alreadyCheckShow = [];
       this.smsTemplateContent = "效果预览";
@@ -631,7 +631,7 @@ export default {
     },
     //短信模板变化方法
     selectSmsTemplate(v) {
-      //循环短信模板 如果选择短信模板匹配则查询出当前模板的内容
+      //循环短信模板 如果select短信模板匹配则查询出当前模板的内容
       this.smsTemplates.forEach((e) => {
         if (this.smsForm.messageCode == e.templateCode) {
           this.smsTemplateContent = e.templateContent;
@@ -651,20 +651,20 @@ export default {
       }
       this.smsForm.context = this.smsTemplateContent;
     },
-    //删除短信模板
+    //delete短信模板
     deleteSmsTemplate(v) {
       let params = {
         templateCode: v.templateCode,
       };
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除此短信模板？",
+        title: "确认delete",
+        content: "您确认要delete此短信模板？",
         loading: true,
         onOk: () => {
           API_Setting.deleteSmsTemplatePage(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getSmsTemplate();
             }
           });
@@ -679,7 +679,7 @@ export default {
         if (valid) {
           API_Setting.sendSms(this.smsForm).then((res) => {
             if (res.success) {
-              this.$Message.success("发送成功");
+              this.$Message.success("发送success");
               this.getSms();
               this.sendSmsModal = false;
             }
@@ -697,10 +697,10 @@ export default {
       this.templateModalTitle = "添加短信模板";
       this.templateForm = {};
     },
-    //修改短信模板
+    //modify短信模板
     editTemplate(v) {
       this.templateModalVisible = true;
-      this.templateModalTitle = "修改短信模板";
+      this.templateModalTitle = "modify短信模板";
       this.templateForm = v;
       this.modalType = 1;
     },
@@ -710,13 +710,13 @@ export default {
       API_Setting.syncSign().then((res) => {
         this.loading = false;
         if (res.success) {
-          this.$Message.success("同步成功");
+          this.$Message.success("同步success");
           this.getSmsSign();
         }
       });
       this.loading = false;
     },
-    //短信模板添加提交
+    //短信模板添加Submit
     templateSubmit() {
       this.$refs.templateForm.validate((valid) => {
         if (valid) {
@@ -726,7 +726,7 @@ export default {
               .then((res) => {
                 this.loading = false;
                 if (res.success) {
-                  this.$Message.success("添加成功");
+                  this.$Message.success("添加success");
                   this.loading = false;
                   this.templateModalVisible = false;
                   this.getSmsTemplate();
@@ -740,7 +740,7 @@ export default {
               .then((res) => {
                 this.loading = false;
                 if (res.success) {
-                  this.$Message.success("修改成功");
+                  this.$Message.success("modifysuccess");
                   this.loading = false;
                   this.templateModalVisible = false;
                   this.getSmsTemplate();
@@ -753,17 +753,17 @@ export default {
         }
       });
     },
-    //删除短信签名
+    //delete短信签名
     deleteSmsSign(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除此短信签名？",
+        title: "确认delete",
+        content: "您确认要delete此短信签名？",
         loading: true,
         onOk: () => {
           API_Setting.deleteSign(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getSmsTemplate();
             }
           });
@@ -776,7 +776,7 @@ export default {
       API_Setting.syncTemplate().then((res) => {
         this.loading = false;
         if (res.success) {
-          this.$Message.success("同步成功");
+          this.$Message.success("同步success");
           this.getSmsTemplate();
         }
       });
@@ -839,7 +839,7 @@ export default {
       this.signSearchForm.pageSize = v;
       this.getSmsSign();
     },
-    //修改短信签名
+    //modify短信签名
     editSign(v) {
       this.$router.push({ name: "add-sms-sign", query: { id: v.id } });
     },

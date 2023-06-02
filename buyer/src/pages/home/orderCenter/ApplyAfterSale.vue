@@ -1,6 +1,6 @@
 <template>
   <div class="apply-after-sale">
-    <card _Title="申请售后"></card>
+    <card _Title="Apply  after sale"></card>
     <Table
       border
       :columns="columns"
@@ -12,29 +12,29 @@
       </div>
     </template>
     <template slot-scope="{ row }" slot="goodsPrice">
-      <div>{{row.applyRefundPrice | unitPrice('￥')}}</div>
+      <div>{{row.applyRefundPrice | unitPrice('RM')}}</div>
     </template>
     </Table>
     <div>
       <Form :model="form" ref="form" class="mt_10" :rules="rules" :label-width="80">
-        <FormItem label="售后类别">
+        <FormItem label="after sale type">
           <RadioGroup v-model="form.serviceType" @on-change="changeReason" type="button" button-style="solid">
-            <Radio v-if="info.returnGoods" label="RETURN_GOODS">退货</Radio>
-            <Radio v-if="info.returnMoney" label="RETURN_MONEY">退款</Radio>
+            <Radio v-if="info.returnGoods" label="RETURN_GOODS">Return goods</Radio>
+            <Radio v-if="info.returnMoney" label="RETURN_MONEY">refund</Radio>
           </RadioGroup>
         </FormItem>
-        <FormItem label="提交数量" prop="num">
+        <FormItem label="Submit quantity" prop="num">
           <Input type="number" v-model="form.num" style="width:260px" />
         </FormItem>
-        <FormItem label="提交原因" prop="reason">
+        <FormItem label="Submit reason" prop="reason">
           <Select v-model="form.reason" style="width:260px">
             <Option v-for="item in reasonList" :value="item.id" :key="item.id">{{ item.reason }}</Option>
           </Select>
         </FormItem>
-        <FormItem label="问题描述" prop="problemDesc">
+        <FormItem label="Problem description" prop="problemDesc">
           <Input type="textarea" :rows="4" maxlength="500" style="width:260px" show-word-limit v-model="form.problemDesc" />
         </FormItem>
-        <FormItem label="图片信息">
+        <FormItem label="Picture info">
           <div style="display:flex;align-items:center;">
             <div class="demo-upload-list" v-for="(img, index) in uploadList" :key="index">
               <img :src="img">
@@ -57,25 +57,25 @@
             </Upload>
           </div>
         </FormItem>
-        <FormItem label="退款方式">
-          <div>{{info.refundWay == 'ORIGINAL' ? '原路退回' : '账号退款'}}</div>
+        <FormItem label="refund方式">
+          <div>{{info.refundWay == 'ORIGINAL' ? 'backtracking' : 'account refund'}}</div>
         </FormItem>
         <template v-if="info.accountType === 'BANK_TRANSFER' && info.applyRefundPrice != 0">
-          <FormItem label="开户行" prop="bankDepositName">
-            <Input v-model="form.bankDepositName" type="text" placeholder="请输入银行开户行" style="width:260px" />
+          <FormItem label="Opening bank" prop="bankDepositName">
+            <Input v-model="form.bankDepositName" type="text" placeholder="Please enter Bank of account" style="width:260px" />
           </FormItem>
-          <FormItem label="开户名" prop="bankAccountName">
-            <Input v-model="form.bankAccountName" type="text" placeholder="请输入银行开户名" style="width:260px" />
+          <FormItem label="Account name" prop="bankAccountName">
+            <Input v-model="form.bankAccountName" type="text" placeholder="Please enter Bank account name" style="width:260px" />
           </FormItem>
-          <FormItem label="银行账号" prop="bankAccountNumber">
-            <Input v-model="form.bankAccountNumber" type="text" placeholder="请输入银行账号" style="width:260px" />
+          <FormItem label="Bank account" prop="bankAccountNumber">
+            <Input v-model="form.bankAccountNumber" type="text" placeholder="Please enter Bank account" style="width:260px" />
           </FormItem>
         </template>
-        <FormItem label="返回方式" v-if="form.serviceType === 'RETURN_GOODS'">
-          <div>快递至第三方卖家</div>
+        <FormItem label="Back way" v-if="form.serviceType === 'RETURN_GOODS'">
+          <div>Express to third party seller</div>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="apply">提交申请</Button>
+          <Button type="primary" @click="apply">SubmitApply  </Button>
         </FormItem>
       </Form>
       <Modal title="View Image" v-model="visible">
@@ -94,52 +94,52 @@ export default {
     const checkNum = (rule, value, callback) => {
       if (value === '') {
         console.log(RegExp);
-        callback(new Error('请填写提交数量'));
+        callback(new Error('Please enter Submit quantity'));
       } else if (value > this.info.num) {
-        callback(new Error('提交数量不能大于购买数量'));
+        callback(new Error('Submit quantity cannot be greater than the purchased quantity'));
       } else if (!RegExp.integer.test(value)) {
-        callback(new Error('提交数量必须为正整数'));
+        callback(new Error('Submit quantity must be positive integer'));
       } else {
         callback();
       }
     };
     return {
       columns: [ // 表格表头
-        {title: '商品名称', slot: 'goodsName'},
-        {title: '价格', slot: 'goodsPrice'},
-        {title: '购买数量', key: 'num'}
+        {title: 'goods name', slot: 'goodsName'},
+        {title: 'price', slot: 'goodsPrice'},
+        {title: 'quantity', key: 'num'}
       ],
-      goodsData: [], // 商品数据
-      reasonList: [], // 售后原因列表
-      info: {}, // 售后信息
-      form: { // 售后数据
+      goodsData: [], // Goods数据
+      reasonList: [], // after sale原因列表
+      info: {}, // after sale信息
+      form: { // after sale数据
         serviceType: 'RETURN_GOODS',
         num: 1
       },
       uploadList: [], // 上传列表
-      action: commonUrl + '/common/common/upload/file', // 上传地址
+      action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       visible: false, // 图片预览
       previewImage: '', // 预览图片url
       rules: { // 验证规则
         num: [{ validator: checkNum }],
-        reason: [{ required: true, message: '请选择提交原因' }],
-        problemDesc: [{ required: true, message: '请输入问题描述' }],
+        reason: [{ required: true, message: 'Please selectSubmit reason' }],
+        problemDesc: [{ required: true, message: 'Please enter Problem description' }],
         bankAccountNumber: [
-          { required: true, message: '请输入银行卡号' },
+          { required: true, message: 'Please enter card number' },
           {
             type: 'string',
             pattern: /^[0-9]\d*$/,
-            message: '请输入正确的银行卡号'
+            message: 'Please enter correct number'
           }
         ],
-        bankAccountName: [{ required: true, message: '请输入银行开户名' }],
-        bankDepositName: [{ required: true, message: '请输入银行开户行' }]
+        bankAccountName: [{ required: true, message: 'Please enter Bank account name' }],
+        bankDepositName: [{ required: true, message: 'Please enter Bank of account' }]
       }
     }
   },
   methods: {
-    getInfo () { // 获取售后信息
+    getInfo () { // 获取after sale信息
       afterSaleInfo(this.$route.query.sn).then(res => {
         if (res.success) {
           this.info = res.result
@@ -151,15 +151,15 @@ export default {
         }
       })
     },
-    getReason (type) { // 获取售后原因
+    getReason (type) { // 获取after sale原因
       afterSaleReason(type).then(res => {
         if (res.success) this.reasonList = res.result
       })
     },
-    changeReason (type) { // 改变售后原因列表
+    changeReason (type) { // 改变after sale原因列表
       this.getReason(type)
     },
-    apply () { // 售后申请提交
+    apply () { // after saleApply  Submit
       this.$refs.form.validate(valid => {
         if (valid) {
           let params = Object.assign(this.info, this.form)
@@ -168,7 +168,7 @@ export default {
           params.reason = this.reasonList.find(item => item.id == params.reason).reason
           applyAfterSale(params).then(res => {
             if (res.success) {
-              this.$Message.success('售后申请提交成功，请到售后订单查看！')
+              this.$Message.success('after saleApply  Submit success，Please 到after sale订单查看！')
               this.$router.push({name: 'AfterSale'})
             }
           })
@@ -183,7 +183,7 @@ export default {
       this.uploadList.splice(index, 1)
       this.$forceUpdate()
     },
-    handleSuccess (res, file) { // 上传成功回调
+    handleSuccess (res, file) { // 上传success回调
       this.uploadList.push(res.result)
       this.$forceUpdate()
     },
@@ -191,7 +191,7 @@ export default {
       const check = this.uploadList.length < 6;
       if (!check) {
         this.$Notice.warning({
-          title: '最多可以上传5张图片'
+          title: 'Upload a maximum of 5 images'
         });
         return check;
       }
@@ -205,7 +205,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-/** 商品信息 */
+/** Goods details */
 .order-price {
   text-align: right;
   margin-top: 30px;

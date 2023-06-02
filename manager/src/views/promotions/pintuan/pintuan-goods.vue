@@ -4,7 +4,7 @@
       <h4>活动详情</h4>
       <Table style="margin: 10px 0" border :columns="columns" :data="data"></Table>
 
-      <h4>商品信息</h4>
+      <h4>Goods details</h4>
       <Table
         :loading="loading"
         border
@@ -71,7 +71,7 @@ export default {
     return {
       loading: false, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
       },
@@ -99,7 +99,7 @@ export default {
           key: "requiredNum",
         },
         {
-          title: "限购数量",
+          title: "限购Quantity",
           key: "limitNum",
         },
         {
@@ -113,7 +113,7 @@ export default {
       ],
       goodsColumns: [
         {
-          title: "商品名称",
+          title: "goods name",
           slot: "goodsName",
           minWidth: 120,
         },
@@ -125,15 +125,15 @@ export default {
         },
 
         {
-          title: "拼团价格",
+          title: "拼团price",
           key: "price",
           minWidth: 50,
           render: (h, params) => {
-            return h("div", this.$options.filters.unitPrice(params.row.price, "￥"));
+            return h("div", this.$options.filters.unitPrice(params.row.price, "RM"));
           },
         },
       ],
-      goodsData: [], // 商品数据
+      goodsData: [], // Goods数据
     };
   },
   methods: {
@@ -153,7 +153,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 获取拼团商品列表
+    // 获取拼团Goods列表
     getDataList() {
       this.loading = true;
       this.searchForm.pintuanId = this.$route.query.id;

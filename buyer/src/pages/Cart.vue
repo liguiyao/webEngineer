@@ -1,12 +1,12 @@
 <template>
   <div class="cart" @click="couponAvailable = false">
     <BaseHeader></BaseHeader>
-    <!-- LOGO 搜索 -->
+    <!-- LOGO search -->
     <div class="width_1200 logo">
       <div>
         <router-link to="/"><img :src="$store.state.logoImg" /></router-link>
         <div>
-          购物车(<span>{{ goodsTotal }}</span
+          Cart(<span>{{ goodsTotal }}</span
           >)
         </div>
       </div>
@@ -17,38 +17,38 @@
     <div class="cart-content width_1200 center">
       <div class="available-area">
         <div class="cart-steps">
-          <span :class="stepIndex == 0 ? 'active' : ''">1.我的购物车</span>
+          <span :class="stepIndex == 0 ? 'active' : ''">1.My cart</span>
           <Icon
             :class="stepIndex == 0 ? 'active-arrow' : ''"
             custom="icomoon icon-next"
           ></Icon>
-          <span :class="stepIndex == 1 ? 'active' : ''">2.填写订单信息</span>
+          <span :class="stepIndex == 1 ? 'active' : ''">2.enter order information</span>
           <Icon
             :class="stepIndex == 1 ? 'active-arrow' : ''"
             custom="icomoon icon-next"
           ></Icon>
-          <span :class="stepIndex == 2 ? 'active' : ''">3.成功提交订单</span>
+          <span :class="stepIndex == 2 ? 'active' : ''">3.success Submit order</span>
         </div>
       </div>
-      <!-- 购物车商品列表 -->
+      <!-- 购物车Goods列表 -->
       <div class="cart-goods">
         <div class="cart-goods-title">
           <div class="width_60">
             <Checkbox
               v-model="allChecked"
               @on-change="changeChecked(allChecked, 'all')"
-              >全选</Checkbox
+              >Select all</Checkbox
             >
           </div>
-          <div class="goods-title">商品</div>
-          <div class="width_150">单价（元）</div>
-          <div class="width_100">数量</div>
-          <div class="width_150">小计</div>
-          <div class="width_100">操作</div>
+          <div class="goods-title">Goods</div>
+          <div class="width_150">Price（ringgit）</div>
+          <div class="width_100">Quantity</div>
+          <div class="width_150">Subtotal</div>
+          <div class="width_100">operation</div>
         </div>
         <div v-if="cartList.length === 0" class="cart-empty">
-          <p>购物车空空如也</p>
-          <router-link to="/">去选购&gt;</router-link>
+          <p>Empty cart</p>
+          <router-link to="/">Go shopping&gt;</router-link>
         </div>
         <div
           v-else
@@ -72,7 +72,7 @@
               :class="couponAvailable === index ? 'shop-coupon-show' : ''"
               @click.stop="showCoupon(shop.id, index)"
             >
-              <!-- 优惠券模态框 -->
+              <!-- coupon模态框 -->
               <div v-if="couponAvailable === index">
                 <div
                   class="coupon-item"
@@ -80,12 +80,12 @@
                   :key="index"
                 >
                   <span v-if="item.couponType === 'PRICE'"
-                    >￥{{ item.price }}</span
+                    >RM{{ item.price }}</span
                   >
                   <span v-if="item.couponType === 'DISCOUNT'"
-                    >{{ item.couponDiscount }}折</span
+                    >{{ item.couponDiscount }}off</span
                   >
-                  <span>满{{ item.consumeThreshold }}元可用</span>
+                  <span>full{{ item.consumeThreshold }}ringgitavailable</span>
                   <Button
                     class="coupon-btn"
                     size="small"
@@ -130,7 +130,7 @@
                     class="goods-show-tag"
                     color="purple"
                   >
-                    批发商品
+                    wholesale Goods
                   </Tag></p>
                   <template
                     v-for="(promotion, promotionIndex) in goods.promotions"
@@ -140,7 +140,7 @@
                       :key="promotionIndex"
                       v-if="promotion.promotionType === 'SECKILL'"
                     >
-                      <span>秒杀</span>
+                      <span>seckill</span>
                       <promotion
                         :time="promotion.endTime"
                         type="cart"
@@ -155,7 +155,7 @@
                       :key="promotionIndex"
                       v-if="promotion.promotionType === 'FULL_DISCOUNT'"
                     >
-                      <span>满优惠活动</span>
+                      <span>full Preferential activities</span>
                       <promotion
                         :time="promotion.endTime"
                         type="cart"
@@ -165,7 +165,7 @@
                 </div>
               </div>
               <div class="width_150">
-                {{ goods.purchasePrice | unitPrice("￥") }}
+                {{ goods.purchasePrice | unitPrice("RM") }}
               </div>
               <div class="width_100">
                 <InputNumber
@@ -175,11 +175,11 @@
                   @on-change="changeNum(goods.num, goods.goodsSku.id)"
                 ></InputNumber>
                 <div class="fontsize_12">
-                  {{ goods.goodsSku.quantity > 0 ? "有货" : "无货" }}
+                  {{ goods.goodsSku.quantity > 0 ? "In stock" : "Out of stock" }}
                 </div>
               </div>
               <div class="width_150">
-                {{ goods.subTotal | unitPrice("￥") }}
+                {{ goods.subTotal | unitPrice("RM") }}
               </div>
               <div class="width_100">
                 <Button
@@ -187,7 +187,7 @@
                   size="small"
                   type="primary"
                   @click="delGoods(goods.goodsSku.id)"
-                  >删除</Button
+                  >delete</Button
                 >
                 <Button
                   v-if="!goods.errorMessage"
@@ -195,13 +195,13 @@
                   type="info"
                   @click="collectGoods(goods.goodsSku.id)"
                   style="margin-left: 10px"
-                  >收藏</Button
+                  >collect</Button
                 >
               </div>
               <div class="error-goods" v-if="goods.errorMessage">
                 <div style="margin-top: 20px">{{ goods.errorMessage }}</div>
                 <Button type="primary" @click="delGoods(goods.goodsSku.id)"
-                  >删除</Button
+                  >delete</Button
                 >
               </div>
             </div>
@@ -214,32 +214,32 @@
               <Checkbox
                 v-model="allChecked"
                 @on-change="changeChecked(allChecked, 'all')"
-                >全选</Checkbox
+                >select all</Checkbox
               >
             </div>
             <div class="width_100 handle-btn" @click="delGoods()">
-              删除选中商品
+              delete select Goods
             </div>
             <!-- <div class="width_100 handle-btn" @click="collectGoods">移到我的收藏</div> -->
             <div class="width_100 handle-btn" @click="clearCart">
-              清空购物车
+              Clear cart
             </div>
           </div>
           <div>
             <div class="selected-count">
-              已选择<span>{{ checkedNum }}</span
-              >件商品
+              select<span>{{ checkedNum }}</span
+              >Goods
             </div>
             <div class="ml_20 save-price">
-              已节省<span>{{
-                priceDetailDTO.discountPrice | unitPrice("￥")
+              saved<span>{{
+                priceDetailDTO.discountPrice | unitPrice("RM")
               }}</span>
             </div>
             <div class="ml_20 total-price">
-              总价（不含运费）:
-              <div>{{ priceDetailDTO.flowPrice | unitPrice("￥") }}</div>
+              Total price（Excluding freight）:
+              <div>{{ priceDetailDTO.flowPrice | unitPrice("RM") }}</div>
             </div>
-            <div class="pay ml_20" @click="pay">去结算</div>
+            <div class="pay ml_20" @click="pay">To payment</div>
           </div>
         </div>
       </div>
@@ -266,20 +266,20 @@ export default {
   },
   data() {
     return {
-      couponAvailable: false, // 展示优惠券
-      stepIndex: 0, // 当前处于哪一步，购物车==0，填写订单信息==1，成功提交订单==2
-      goodsTotal: 0, // 商品数量
-      checkedNum: 0, // 选中数量
+      couponAvailable: false, // 展示coupon
+      stepIndex: 0, // 当前处于哪一步，购物车==0，enter order information==1，success Submit order==2
+      goodsTotal: 0, // GoodsQuantity
+      checkedNum: 0, // 选中Quantity
       allChecked: false, // 全选
       loading: false, // 加载状态
       cartList: [], // 购物车列表
-      couponList: [], // 优惠券列表
-      priceDetailDTO: {}, // 价格明细
+      couponList: [], // Coupon list
+      priceDetailDTO: {}, // price明细
       skuList: [], // sku列表
     };
   },
   methods: {
-    // 跳转商品详情
+    // 跳转Goods详情
     goGoodsDetail(skuId, goodsId) {
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
@@ -295,15 +295,15 @@ export default {
       });
       window.open(routeUrl.href, "_blank");
     },
-    // 收藏商品
+    // 收藏Goods
     collectGoods(id) {
       this.$Modal.confirm({
-        title: "收藏",
-        content: "<p>商品收藏后可在个人中心我的收藏查看</p>",
+        title: "collection",
+        content: "<p>The goods collection can be viewed in my Collection at the Personal Center</p>",
         onOk: () => {
           APIMember.collectGoods("GOODS", id).then((res) => {
             if (res.success) {
-              this.$Message.success("收藏商品成功");
+              this.$Message.success("collection Goods success");
               this.getCartList();
             }
           });
@@ -311,7 +311,7 @@ export default {
         onCancel: () => {},
       });
     },
-    // 删除商品
+    // deleteGoods
     delGoods(id) {
       const idArr = [];
       if (!id) {
@@ -327,12 +327,12 @@ export default {
         idArr.push(id);
       }
       this.$Modal.confirm({
-        title: "删除",
-        content: "<p>确定要删除该商品吗？</p>",
+        title: "delete",
+        content: "<p>Do you confirm delete Goods？</p>",
         onOk: () => {
           APICart.delCartGoods({ skuIds: idArr.toString() }).then((res) => {
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getCartList();
             } else {
               this.$Message.error(res.message);
@@ -344,12 +344,12 @@ export default {
     // 清空购物车
     clearCart() {
       this.$Modal.confirm({
-        title: "提示",
-        content: "<p>确定要清空购物车吗？清空后不可恢复</p>",
+        title: "Tips",
+        content: "<p>Are you sure you want to empty the cart? Cannot be restored after clearing</p>",
         onOk: () => {
           APICart.clearCart().then((res) => {
             if (res.success) {
-              this.$Message.success("清空购物车成功");
+              this.$Message.success("clear cart success");
               this.getCartList();
             } else {
               this.$Message.error(res.message);
@@ -363,14 +363,14 @@ export default {
       if (this.checkedNum) {
         this.$router.push({ path: "/pay", query: { way: "CART" } });
       } else {
-        this.$Message.warning("请至少选择一件商品");
+        this.$Message.warning("Please as least select one Goods");
       }
     },
-    // 展示优惠券
+    // 展示coupon
     showCoupon(storeId, index) {
       this.couponAvailable = index;
     },
-    // 设置购买数量
+    // 设置quantity
     changeNum(val, id) {
       if (val) {
         APICart.setCartGoodsNum({ skuId: id, num: val }).then((res) => {
@@ -380,28 +380,28 @@ export default {
         });
       }
     },
-    // 设置商品选中状态
+    // 设置Goods选中状态
     async changeChecked(status, type, id) {
       const check = status ? 1 : 0;
       if (type === "all") {
         // 全选
         await APICart.setCheckedAll({ checked: check });
       } else if (type === "shop") {
-        // 选中店铺所有商品
+        // 选中店铺所有Goods
         await APICart.setCheckedSeller({ checked: check, storeId: id });
       } else {
-        // 单个商品
+        // 单个Goods
         await APICart.setCheckedGoods({ checked: check, skuId: id });
       }
 
       this.getCartList();
     },
-    // 领取优惠券
+    // 领取coupon
     async receiveShopCoupon(item) {
       let res = await APIMember.receiveCoupon(item.id);
       if (res.success) {
         this.$set(item, "disabled", true);
-        this.$Message.success("领取成功");
+        this.$Message.success("get success");
       } else {
         this.$Message.error(res.message);
       }
@@ -441,7 +441,7 @@ export default {
   mounted() {
     this.getCartList();
     APICart.cartCount().then((res) => {
-      // 购物车商品数量
+      // 购物车GoodsQuantity
       if (res.success) this.goodsTotal = res.result;
     });
   },
@@ -449,7 +449,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/** logo 搜索 start **/
+/** logo search start **/
 .logo {
   height: 40px;
   display: flex;
@@ -520,7 +520,7 @@ export default {
   justify-content: space-between;
   margin-bottom: 15px;
 }
-/** 商品列表 */
+/** Goods列表 */
 .cart-goods {
   &-title {
     height: 50px;
@@ -565,7 +565,7 @@ export default {
           color: $theme_color;
         }
       }
-      /** 优惠券 */
+      /** coupon */
       .shop-coupon {
         width: 80px;
         height: 24px;

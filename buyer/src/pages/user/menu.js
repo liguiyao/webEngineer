@@ -7,20 +7,20 @@
 // 订单中心
 const order = [{
   icon: '',
-  title: '订单中心',
+  title: 'Order',
   menus: [{
     icon: '',
-    title: '我的订单',
+    title: 'My order',
     path: 'MyOrder'
   },
   {
     icon: '',
-    title: '收货地址',
+    title: 'Delivery address',
     path: 'MyAddress'
   },
   {
     icon: '',
-    title: '售后订单',
+    title: 'after sale order',
     path: 'AfterSale'
   }
   ],
@@ -30,51 +30,51 @@ const order = [{
 // 会员中心
 const member = [{
   icon: '',
-  title: '会员中心',
+  title: 'Member',
   menus: [{
     icon: '',
-    title: '用户信息',
+    title: 'User information',
     path: 'Profile'
   },
   {
     icon: '',
-    title: '账户安全',
+    title: 'Account security',
     path: 'AccountSafe'
   },
   {
     icon: '',
-    title: '我的消息',
+    title: 'My message',
     path: 'MsgList'
   },
   {
     icon: '',
-    title: '我的足迹',
+    title: 'My tract',
     path: 'MyTracks'
   },
 
   {
     icon: '',
-    title: '我的收藏',
+    title: 'My collection',
     path: 'Favorites'
   },
   {
     icon: '',
-    title: '分销推荐',
+    title: 'Distribution',
     path: 'Distribution'
   },
   {
     icon: '',
-    title: '我的评论',
+    title: 'My comment',
     path: 'CommentList'
   },
   {
     icon: '',
-    title: '我的投诉',
+    title: 'My Complaint',
     path: 'ComplainList'
   },
   {
     icon: '',
-    title: '我的积分',
+    title: 'My integral',
     path: 'Point'
   }
   ],
@@ -84,15 +84,15 @@ const member = [{
 // 账户中心
 const user = [{
   icon: '',
-  title: '账户中心',
+  title: 'Account',
   menus: [{
     icon: '',
-    title: '我的优惠券',
+    title: 'My coupon',
     path: 'Coupons'
   },
   {
     icon: '',
-    title: '资金管理',
+    title: 'Fund management',
     path: 'MoneyManagement'
   }],
   display: true
@@ -130,7 +130,7 @@ const user = [{
 //       },
 //       {
 //         icon: '',
-//         title: '采购退货单',
+//         title: '采购Return goods单',
 //         path: 'MyOrder',
 //       },
 //       {

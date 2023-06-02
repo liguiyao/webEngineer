@@ -43,14 +43,14 @@ router.afterEach((route) => {
 
 Vue.prototype.linkTo = function (url) {
   if (url.substr(0, 1) === "/") {
-    // 非外部链接，没有origin，只有路由地址
+    // 非外部链接，没有origin，只有路由address
     if (router.mode === "hash") {
       window.open(location.origin + "/#" + url, "_blank");
     } else {
       window.open(location.origin + url, "_blank");
     }
   } else {
-    // 外部链接，完整的url地址
+    // 外部链接，完整的urladdress
     window.open(url, "_blank");
   }
 };

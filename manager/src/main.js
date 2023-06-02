@@ -36,9 +36,9 @@ if (aMapSecurityJsCode) {
 
 Vue.config.devtools = true;
 Vue.config.productionTip = false
-const PC_URL = BASE.PC_URL; // 跳转买家端地址 pc端
-const WAP_URL = BASE.WAP_URL; // 跳转买家端地址 wap端
-Vue.prototype.linkTo = function (goodsId, skuId) {  // 跳转买家端商品
+const PC_URL = BASE.PC_URL; // 跳转买家端address pc端
+const WAP_URL = BASE.WAP_URL; // 跳转买家端address wap端
+Vue.prototype.linkTo = function (goodsId, skuId) {  // 跳转买家端Goods
   window.open(`${PC_URL}/goodsDetail?skuId=${skuId}&goodsId=${goodsId}`, '_blank')
 };
 Vue.prototype.wapLinkTo = function (goodsId, skuId) { // app端二维码

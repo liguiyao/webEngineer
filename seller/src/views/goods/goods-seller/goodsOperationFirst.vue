@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 选择商品类型 -->
+    <!-- selectGoods类型 -->
     <Modal v-model="selectGoodsType" width="550" :closable="false">
       <div class="goods-type-list" v-if="!showGoodsTemplates">
         <div
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div v-else class="goods-type-list">
-        <h2 @click="showGoodsTemplates = !showGoodsTemplates">返回</h2>
+        <h2 @click="showGoodsTemplates = !showGoodsTemplates">Back</h2>
         <div class="goods-list-box">
           <Scroll :on-reach-bottom="handleReachBottom">
             <div
@@ -37,7 +37,7 @@
         </div>
       </div>
     </Modal>
-    <!-- 商品分类 -->
+    <!-- Goods分类 -->
     <div class="content-goods-publish">
       <div class="goods-category">
         <ul v-if="categoryListLevel1.length > 0">
@@ -74,19 +74,19 @@
         </ul>
       </div>
       <p class="current-goods-category">
-        您当前选择的商品类别是：
+        您当前selectgoods类别是：
         <span>{{ category[0].name }}</span>
         <span v-show="category[1].name">> {{ category[1].name }}</span>
         <span v-show="category[2].name">> {{ category[2].name }}</span>
       </p>
       <template v-if="selectedTemplate.goodsName">
-        <Divider>已选商品模版:{{ selectedTemplate.goodsName }}</Divider>
+        <Divider>已选Goods模版:{{ selectedTemplate.goodsName }}</Divider>
       </template>
     </div>
     <!-- 底部按钮 -->
     <div class="footer">
       <ButtonGroup>
-        <Button type="primary" @click="selectGoodsType = true">商品类型</Button>
+        <Button type="primary" @click="selectGoodsType = true">Goods类型</Button>
         <Button type="primary" @click="next">下一步</Button>
       </ButtonGroup>
     </div>
@@ -98,38 +98,38 @@ export default {
   data() {
     return {
       selectedTemplate: {}, // 已选模板
-      selectGoodsType: false, // 展示选择商品分类modal
-      goodsTemplates: [], // 商品模板列表
-      showGoodsTemplates: false, //是否显示选择商品模板
+      selectGoodsType: false, // 展示selectGoods分类modal
+      goodsTemplates: [], // Goods模板列表
+      showGoodsTemplates: false, //是否显示selectGoods模板
       goodsTypeWay: [
         {
-          title: "实物商品",
+          title: "实物Goods",
           img: require("@/assets/goodsType1.png"),
-          desc: "零售批发，物流配送",
+          desc: "零售批发，logistics配送",
           type: "PHYSICAL_GOODS",
           check: false,
         },
         {
-          title: "虚拟商品",
+          title: "虚拟Goods",
           img: require("@/assets/goodsType2.png"),
-          desc: "虚拟核验，无需物流",
+          desc: "虚拟核验，无需logistics",
           type: "VIRTUAL_GOODS",
           check: false,
         },
         {
-          title: "商品模板导入",
+          title: "Goods模板导入",
           img: require("@/assets/goodsTypeTpl.png"),
-          desc: "商品模板，一键导入",
+          desc: "Goods模板，一键导入",
           check: false,
         },
       ],
-      // 商品分类选择数组
+      // Goods分类select数组
       category: [
         { name: "", id: "" },
         { name: "", id: "" },
         { name: "", id: "" },
       ],
-      // 商品类型
+      // Goods类型
       goodsType: "",
       /** 1级分类列表*/
       categoryListLevel1: [],
@@ -148,7 +148,7 @@ export default {
     };
   },
   methods: {
-    // 商品模版触底加载
+    // Goods模版触底加载
     handleReachBottom() {
       setTimeout(() => {
         if (
@@ -160,7 +160,7 @@ export default {
         }
       }, 1000);
     },
-    // 点击商品类型
+    // 点击Goods类型
     handleClickGoodsType(val) {
       this.goodsTypeWay.map((item) => {
         return (item.check = false);
@@ -175,13 +175,13 @@ export default {
         this.selectedTemplate = {};
       }
     },
-    // 点击商品模板
+    // 点击Goods模板
     handleClickGoodsTemplate(val) {
       this.selectedTemplate = val;
       this.selectGoodsType = false;
       this.$emit("change", { tempId: val.id });
     },
-    // 获取商品模板
+    // 获取Goods模板
     GET_GoodsTemplate() {
       API_GOODS.getDraftGoodsListData(this.searchParams).then((res) => {
         if (res.success) {
@@ -190,7 +190,7 @@ export default {
         }
       });
     },
-    /** 选择商城商品分类 */
+    /** select商城Goods分类 */
     handleSelectCategory(row, index, level) {
       if (level === 1) {
         this.category.forEach((cate) => {
@@ -211,7 +211,7 @@ export default {
         this.category[2].id = row.id;
       }
     },
-    /** 查询下一级 商城商品分类*/
+    /** 查询下一级 商城Goods分类*/
     GET_NextLevelCategory(row) {
       const _id = row && row.id !== 0 ? row.id : 0;
       API_GOODS.getGoodsCategoryAll().then((res) => {
@@ -224,14 +224,14 @@ export default {
     next() {
       window.scrollTo(0, 0);
       if (!this.goodsType && !this.selectedTemplate.goodsName) {
-        this.$Message.error("请选择商品类型");
+        this.$Message.error("Please selectGoods类型");
         return;
       }
       if (!this.category[0].name) {
-        this.$Message.error("请选择商品分类");
+        this.$Message.error("Please selectGoods分类");
         return;
       } else if (!this.category[2].name) {
-        this.$Message.error("必须选择到三级分类");
+        this.$Message.error("必须select到三级分类");
         return;
       } else if (this.category[2].name) {
         let params = {

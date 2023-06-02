@@ -6,24 +6,24 @@
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="请输入会员名称"
+            placeholder="Please enter 会员名称"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="店铺名称" prop="storeName">
+        <Form-item label="store name" prop="storeName">
           <Input
             type="text"
             v-model="searchForm.storeName"
-            placeholder="请输入店铺名称"
+            placeholder="Please enter store name"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="创建时间" prop="createTime">
-          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+        <Form-item label="Create time" prop="createTime">
+          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10"></Table>
       <Row type="flex" justify="end" class="mt_10">
@@ -49,19 +49,19 @@
       return {
         loading: true, // 表单加载状态
         searchForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
           startDate: "", // 起始时间
           endDate: "", // 终止时间
         },
-        selectDate: null, // 创建时间
+        selectDate: null, // Create time
         columns: [
           // 表头
           {
-            title: "店铺名称",
+            title: "store name",
             key: "storeName",
             minWidth: 120,
             align: "left",
@@ -73,7 +73,7 @@
             minWidth: 120,
           },
           {
-            title: "店铺地址",
+            title: "店铺address",
             key: "storeAddressPath",
             width: 300,
             sortable: false,
@@ -83,7 +83,7 @@
               {
 
               },
-              params.row.storeAddressPath ||  "暂未填写"
+              params.row.storeAddressPath ||  "暂未enter "
             );
           },
           },
@@ -106,14 +106,14 @@
           },
 
           {
-            title: "创建时间",
+            title: "Create time",
             key: "createTime",
             align: "left",
             width: 170,
             sortable: false,
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             width: 170,
             align: "center",
@@ -167,7 +167,7 @@
         this.searchForm.pageSize = v;
         this.getDataList();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchForm.pageNumber = 1;
         this.getDataList();
@@ -182,7 +182,7 @@
       // 获取列表数据
       getDataList() {
         this.loading = true;
-        // 带多条件搜索参数获取表单数据 请自行修改接口
+        // 带多条件search参数获取表单数据 Please 自行modify接口
         this.searchForm.storeDisable='APPLYING'
         getShopListData(this.searchForm).then((res) => {
           this.loading = false;
@@ -198,7 +198,7 @@
       edit(v) {
         this.$router.push({ path: '/shop-operation', query: { shopId: v.id } });
       },
-      
+
     },
     mounted() {
       this.init();

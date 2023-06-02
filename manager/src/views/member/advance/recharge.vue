@@ -12,7 +12,7 @@
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="请输入会员名称"
+            placeholder="Please enter 会员名称"
             clearable
             style="width: 200px"
           />
@@ -21,7 +21,7 @@
           <Input
             type="text"
             v-model="searchForm.rechargeSn"
-            placeholder="请输入充值单号"
+            placeholder="Please enter 充值单号"
             clearable
             style="width: 200px"
           />
@@ -33,11 +33,11 @@
             format="yyyy-MM-dd HH:mm:ss"
             clearable
             @on-change="selectDateRange"
-            placeholder="选择起始时间"
+            placeholder="select起始时间"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Table
         :loading="loading"
@@ -75,16 +75,16 @@
       return {
         loading: true, // 表单加载状态
         searchForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
           startDate: "", // 起始时间
           endDate: "", // 终止时间
           memberName:""
         },
-        selectDate: null, // 选择区间时间
+        selectDate: null, // select区间时间
         columns: [
           {
             title: "会员名称",
@@ -93,7 +93,7 @@
             tooltip: true
           },
           {
-            title: "订单号",
+            title: "Order number",
             key: "rechargeSn",
             minWidth: 180,
             tooltip: true
@@ -106,7 +106,7 @@
             render: (h, params) => {
               return h(
                 "div",
-                this.$options.filters.unitPrice(params.row.rechargeMoney, "￥")
+                this.$options.filters.unitPrice(params.row.rechargeMoney, "RM")
               );
             },
           },
@@ -116,9 +116,9 @@
             width: 120,
             render: (h, params) => {
               if (params.row.rechargeWay === 'ALIPAY') {
-                return h('div', [h('span', {}, '支付宝')]);
+                return h('div', [h('span', {}, 'Alipay')]);
               } else if (params.row.rechargeWay === 'WECHAT') {
-                return h('div', [h('span', {}, '微信')]);
+                return h('div', [h('span', {}, 'Wechat')]);
               } else if (params.row.rechargeWay === 'BANK_TRANSFER') {
                 return h('div', [h('span', {}, '线下转账')]);
               } else {
@@ -136,7 +136,7 @@
               if (params.row.payStatus == "PAID") {
                 return h("Tag", {props: {color: "green",},}, "已付款");
               } else {
-                return h("Tag", {props: {color: "red",},}, "未付款");
+                return h("Tag", {props: {color: "red",},}, "Unpaid");
               }
             },
           },
@@ -175,7 +175,7 @@
         this.searchForm.pageSize = v;
         this.getDataList();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = 10;

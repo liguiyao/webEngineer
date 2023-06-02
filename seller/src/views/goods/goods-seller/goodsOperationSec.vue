@@ -13,33 +13,33 @@
         <div class="base-info-item">
           <h4>基本信息</h4>
           <div class="form-item-view">
-            <FormItem label="商品分类">
+            <FormItem label="Goods分类">
               <span class="goods-category-name">{{
                 this.baseInfoForm.categoryName[0]
               }}</span>
               <span> &gt; {{ this.baseInfoForm.categoryName[1] }}</span>
               <span> &gt; {{ this.baseInfoForm.categoryName[2] }}</span>
             </FormItem>
-            <FormItem label="商品名称" prop="goodsName">
+            <FormItem label="goods name" prop="goodsName">
               <Input
                 v-model="baseInfoForm.goodsName"
                 clearable
-                placeholder="商品名称"
+                placeholder="goods name"
                 style="width: 260px"
                 type="text"
               />
             </FormItem>
 
-            <FormItem label="商品价格" prop="price">
+            <FormItem label="Goodsprice" prop="price">
               <Input
                 v-model="baseInfoForm.price"
                 clearable
-                placeholder="商品价格"
+                placeholder="Goodsprice"
                 style="width: 260px"
                 type="text"
               />
             </FormItem>
-            <FormItem label="商品卖点" prop="sellingPoint">
+            <FormItem label="Goods卖点" prop="sellingPoint">
               <Input
                 v-model="baseInfoForm.sellingPoint"
                 :rows="4"
@@ -47,7 +47,7 @@
                 type="textarea"
               />
             </FormItem>
-            <FormItem label="商品品牌" prop="brandId">
+            <FormItem label="Goods品牌" prop="brandId">
               <Select
                 v-model="baseInfoForm.brandId"
                 filterable
@@ -62,7 +62,7 @@
               </Select>
             </FormItem>
           </div>
-          <h4>商品交易信息</h4>
+          <h4>Goods交易信息</h4>
           <div class="form-item-view">
             <FormItem
               class="form-item-view-el"
@@ -148,7 +148,7 @@
                           type="number"
                           @on-blur="checkWholesalePrice(index)"
                         >
-                          <span slot="append">元</span>
+                          <span slot="append">ringgit</span>
                         </Input>
                         <Button
                           v-if="index > 0"
@@ -156,7 +156,7 @@
                           style="margin-left: 5px"
                           type="error"
                           @click="handleDeleteWholesaleData(index)"
-                          >删除
+                          >delete
                         </Button>
                       </div>
                     </template>
@@ -168,7 +168,7 @@
                     style="margin-top: 10px"
                     @click="handleAddWholesaleData()"
                   >
-                    添加价格区间
+                    添加price区间
                   </Button>
                 </div>
                 <div class="form-item-view-wholesale-preview">
@@ -181,11 +181,11 @@
               </div>
             </FormItem>
           </div>
-          <h4>商品规格及图片</h4>
+          <h4>Goods规格及图片</h4>
           <div class="form-item-view">
             <FormItem
               class="form-item-view-el required"
-              label="商品图片"
+              label="Goods图片"
               prop="goodsGalleryFiles"
             >
               <div style="display: flex; flex-wrap: flex-start">
@@ -263,7 +263,7 @@
                             type="primary"
                             @click="handleCloseSkuItem($index, item)"
                           >
-                            删除规格
+                            delete规格
                           </Button>
                           <div>
                             <FormItem
@@ -275,7 +275,7 @@
                                 :data="skuData"
                                 :filter-method="filterMethod"
                                 :maxlength="30"
-                                placeholder="请输入规格名称"
+                                placeholder="Please enter 规格名称"
                                 style="width: 150px"
                                 @on-focus="changeSkuItem(item.name)"
                                 @on-change="
@@ -300,7 +300,7 @@
                                   :data="skuVal"
                                   :filter-method="filterMethod"
                                   :maxlength="30"
-                                  placeholder="请输入规格项"
+                                  placeholder="Please enter 规格项"
                                   style="width: 150px"
                                   @on-focus="changeSkuVals(val, item.name)"
                                   @on-blur="checkSkuVal(val, index)"
@@ -313,7 +313,7 @@
                                   type="primary"
                                   @click="handleCloseSkuValue(val, index, item)"
                                 >
-                                  删除
+                                  delete
                                 </Button>
                               </FormItem>
                             </Form>
@@ -362,7 +362,7 @@
                           <Input
                             v-model="row.sn"
                             clearable
-                            placeholder="请输入货号"
+                            placeholder="Please enter 货号"
                             @on-change="updateSkuTable(row, 'sn')"
                           />
                         </template>
@@ -374,7 +374,7 @@
                           <Input
                             v-model="row.weight"
                             clearable
-                            placeholder="请输入重量"
+                            placeholder="Please enter 重量"
                             @on-change="updateSkuTable(row, 'weight')"
                           >
                             <span slot="append">kg</span>
@@ -384,7 +384,7 @@
                           <Input
                             v-model="row.quantity"
                             clearable
-                            placeholder="请输入库存"
+                            placeholder="Please enter 库存"
                             @on-change="updateSkuTable(row, 'quantity')"
                           >
                             <span slot="append">{{
@@ -396,20 +396,20 @@
                           <Input
                             v-model="row.cost"
                             clearable
-                            placeholder="请输入成本价"
+                            placeholder="Please enter 成本价"
                             @on-change="updateSkuTable(row, 'cost')"
                           >
-                            <span slot="append">元</span>
+                            <span slot="append">ringgit</span>
                           </Input>
                         </template>
                         <template slot="price" slot-scope="{ row }">
                           <Input
                             v-model="row.price"
                             clearable
-                            placeholder="请输入价格"
+                            placeholder="Please enter price"
                             @on-change="updateSkuTable(row, 'price')"
                           >
-                            <span slot="append">元</span>
+                            <span slot="append">ringgit</span>
                           </Input>
                         </template>
                         <template slot="wholePrice0" slot-scope="{ row }">
@@ -419,7 +419,7 @@
                             clearable
                             disabled
                           >
-                            <span slot="append">元</span>
+                            <span slot="append">ringgit</span>
                           </Input>
                         </template>
                         <template slot="wholePrice1" slot-scope="{ row }">
@@ -429,7 +429,7 @@
                             clearable
                             disabled
                           >
-                            <span slot="append">元</span>
+                            <span slot="append">ringgit</span>
                           </Input>
                         </template>
                         <template slot="wholePrice2" slot-scope="{ row }">
@@ -439,7 +439,7 @@
                             clearable
                             disabled
                           >
-                            <span slot="append">元</span>
+                            <span slot="append">ringgit</span>
                           </Input>
                         </template>
                         <template slot="images" slot-scope="{ row }">
@@ -447,7 +447,7 @@
                           <Modal
                             v-model="showSkuPicture"
                             :styles="{ top: '30px' }"
-                            cancel-text="取消"
+                            cancel-text="Cancel"
                             class-name="sku-preview-modal"
                             ok-text="结束编辑"
                             title="编辑图片"
@@ -527,7 +527,7 @@
                 </FormItem>
               </div>
             </div>
-          <h4>商品详情描述</h4>
+          <h4>Goods详情描述</h4>
           <div class="form-item-view">
             <div class="tree-bar">
               <FormItem
@@ -548,7 +548,7 @@
             </div>
             <FormItem
               class="form-item-view-el"
-              label="PC商品描述"
+              label="PCGoods描述"
               prop="intro"
               style="width: 100%"
             >
@@ -561,7 +561,7 @@
               ></editor>
               <div class="promise-intro-btn">
                 <Button type="primary" @click="promiseIntroEditor"
-                  >将PC商品描述同步到移动端描述
+                  >将PCGoods描述同步到移动端描述
                 </Button>
               </div>
             </FormItem>
@@ -581,11 +581,11 @@
             </FormItem>
           </div>
           <div v-if="baseInfoForm.goodsType != 'VIRTUAL_GOODS'">
-            <h4>商品物流信息</h4>
+            <h4>Goodslogistics information</h4>
             <div class="form-item-view">
               <FormItem
                 class="form-item-view-el"
-                label="物流模板"
+                label="logistics模板"
                 prop="templateId"
               >
                 <Select v-model="baseInfoForm.templateId" style="width: 200px">
@@ -600,22 +600,22 @@
               <FormItem
                 v-if="baseInfoForm.salesModel == 'WHOLESALE'"
                 class="form-item-view-el"
-                label="商品重量"
+                label="Goods重量"
                 prop="weight"
               >
                 <Input
                   v-model="baseInfoForm.weight"
-                  placeholder="请输入商品重量"
+                  placeholder="Please enter Goods重量"
                 >
                   <span slot="append">kg</span></Input
                 >
               </FormItem>
             </div>
-            <h4>其他信息</h4>
+            <h4>other information</h4>
             <div class="form-item-view">
               <FormItem
                 class="form-item-view-el"
-                label="商品发布"
+                label="Goods发布"
                 prop="release"
               >
                 <RadioGroup
@@ -633,7 +633,7 @@
               </FormItem>
               <FormItem
                 class="form-item-view-el"
-                label="商品推荐"
+                label="Goods推荐"
                 prop="skuList"
               >
                 <RadioGroup
@@ -670,7 +670,7 @@
                       <Select
                         v-model="params.paramValue"
                         clearable
-                        placeholder="请选择"
+                        placeholder="Please select"
                         style="width: 200px"
                         @on-change="
                           selectParams(
@@ -703,9 +703,9 @@
       <ButtonGroup>
         <Button type="primary" @click="pre">上一步 </Button>
         <Button :loading="submitLoading" type="primary" @click="save">
-          {{ this.$route.query.id ? "保存" : "保存商品" }}
+          {{ this.$route.query.id ? "Save" : "SaveGoods" }}
         </Button>
-        <Button type="primary" @click="saveToDraft">保存为模版</Button>
+        <Button type="primary" @click="saveToDraft">Save为模版</Button>
       </ButtonGroup>
     </div>
   </div>
@@ -733,16 +733,16 @@ export default {
     },
   },
   data() {
-    // 表单验证项，商品价格
+    // 表单验证项，Goodsprice
     const checkPrice = (rule, value, callback) => {
       if (!value && value !== 0) {
-        return callback(new Error("商品价格不能为空"));
+        return callback(new Error("Goodsprice不能为空"));
       }
       setTimeout(() => {
         if (!regular.money.test(value)) {
-          callback(new Error("请输入正整数或者两位小数"));
+          callback(new Error("Please enter 正整数或者两位小数"));
         } else if (parseFloat(value) > 99999999) {
-          callback(new Error("商品价格设置超过上限值"));
+          callback(new Error("Goodsprice设置超过上限值"));
         } else {
           callback();
         }
@@ -756,26 +756,26 @@ export default {
       listImages:[],
       contentImage:"",
       visible: false, // 图片预览
-      previewImage: '', // 预览图片地址
+      previewImage: '', // 预览图片address
       global: 0,
       accessToken: "", //令牌token
       goodsParams: "",
-      categoryId: "", // 商品分类第三级id
-      //提交状态
+      categoryId: "", // Goods分类第三级id
+      //Submit状态
       submitLoading: false,
       //上传图片路径
       uploadFileUrl: uploadFile,
       // 预览图片路径
       previewPicture: "",
-      //商品图片
+      //Goods图片
       previewGoodsPicture: "",
       //展示图片层
       visible: false,
-      //展示商品图片
+      //展示Goods图片
       goodsPictureVisible: false,
       //展示sku图片
       showSkuPicture: false,
-      //选择的sku
+      //select的sku
       selectedSku: {},
       wholesalePreviewColumns: [
         {
@@ -783,9 +783,9 @@ export default {
           width: 300,
           render: (h, params) => {
             let guide =
-              "当商品购买数量 ≥" +
+              "当Goodsquantity ≥" +
               params.row.num +
-              " 时，售价为 ￥" +
+              " 时，售价为 RM" +
               params.row.price +
               " /" +
               this.baseInfoForm.goodsUnit;
@@ -795,13 +795,13 @@ export default {
       ],
       wholesaleColumns: [
         {
-          title: "购买数量",
+          title: "quantity",
           key: "num",
           align: "center",
           slot: "wholesaleNum",
         },
         {
-          title: "商品单价",
+          title: "GoodsPrice",
           key: "price",
           align: "center",
           width: "280px",
@@ -815,67 +815,67 @@ export default {
           goodsId: this.goodsId,
         },
       ],
-      /** 发布商品基本参数 */
+      /** 发布Goods基本参数 */
       baseInfoForm: {
         salesModel: "RETAIL",
-        /** 商品相册列表 */
+        /** Goods相册列表 */
         goodsGalleryFiles: [],
         /** 是否立即发布 true 立即发布 false 放入仓库 */
         release: 1,
-        /** 是否为推荐商品 */
+        /** 是否为推荐Goods */
         recommend: 1,
         /** 店铺分类 */
         storeCategoryPath: "",
         brandId: 0,
         /** 计量单位 **/
         goodsUnit: "",
-        /** 商品类型 **/
+        /** Goods类型 **/
         goodsType: "",
         /** 分类路径 **/
         categoryPath: "",
-        /** 商品卖点 **/
+        /** Goods卖点 **/
         sellingPoint: "",
-        /** 商品详情 **/
+        /** Goods详情 **/
         intro: "",
         mobileIntro: "",
         updateSku: true,
         /** 是否重新生成sku */
         regeneratorSkuFlag: false,
-        /** 物流模板id **/
+        /** logistics模板id **/
         templateId: "",
         /** 参数组*/
         goodsParamsDTOList: [],
-        /** 商品分类中文名 */
+        /** Goods分类中文名 */
         categoryName: [],
       },
       /** 表格头 */
       skuTableColumn: [],
       /** 表格数据 */
       skuTableData: [],
-      /** 默认的规格参数 */
+      /** default的规格参数 */
       skuData: [],
-      /** 默认的规格值 */
+      /** default的规格值 */
       skuVals: [],
       // 某一规格名下的规格值
       skuVal: [],
       // 规格展开的项
       open_panel: [1, 2],
-      /** 要提交的规格数据*/
+      /** 要Submit的规格数据*/
       skuInfo: [],
-      /** 物流模板 **/
+      /** logistics模板 **/
       logisticsTemplate: [],
 
-      /** 固定列校验提示内容 */
-      validatatxt: "请输入0~99999999之间的数字值",
+      /** 固定列校验Tips内容 */
+      validatatxt: "Please enter 0~99999999之间的数字值",
       //参数panel展示
       params_panel: [],
-      /** 存储未通过校验的单元格位置  */
+      /** 存储未通过校验的单ringgit格位置  */
       validateError: [],
       baseInfoFormRule: {
         goodsName: [regular.REQUIRED, regular.WHITE_SPACE, regular.VARCHAR60],
         price: [regular.REQUIRED, { validator: checkPrice }],
         sellingPoint: [regular.REQUIRED, regular.VARCHAR60],
-        goodsUnit: [{ required: true, message: "请选择计量单位" }],
+        goodsUnit: [{ required: true, message: "Please select计量单位" }],
         name: [regular.REQUIRED, regular.VARCHAR5],
         value: [regular.REQUIRED, regular.VARCHAR60],
         templateId: [regular.REQUIRED],
@@ -891,7 +891,7 @@ export default {
       brandList: [],
       /** 店铺分类列表 */
       shopCategory: [],
-      /** 商品单位列表 */
+      /** Goods单位列表 */
       goodsUnitList: [],
       ignoreColumn: [
         // 添加规格时需要忽略的参数
@@ -916,16 +916,16 @@ export default {
       this.showContent = true
       this.listImages = v
       if(this.listImages.images.length <= 0){
-        this.contentImage = '规格专属图片暂无'
+        this.contentImage = '规格专属图片absent'
       }else{
         this.contentImage = '当前规格专属图片'
       }
     },
     mouseLeave(){
       // this.showContent = false
-    },  
+    },
     /**
-     * 选择参数
+     * select参数
      * @paramsGroup 参数分组
      * @groupIndex 参数分组下标
      * @params 参数选项
@@ -1002,12 +1002,12 @@ export default {
         this.previewPicture = "";
       }
     },
-    // 查看商品大图
+    // 查看Goods大图
     handleViewGoodsPicture(url) {
       this.previewGoodsPicture = url;
       this.goodsPictureVisible = true;
     },
-    // 移除商品图片
+    // 移除Goods图片
     handleRemoveGoodsPicture(file) {
       this.baseInfoForm.goodsGalleryFiles =
         this.baseInfoForm.goodsGalleryFiles.filter((i) => i.url !== file.url);
@@ -1018,7 +1018,7 @@ export default {
       let _index = this.selectedSku._index;
       this.skuTableData[_index] = this.selectedSku;
     },
-    // sku图片上传成功
+    // sku图片上传success
     handleSuccess(res, file) {
       if (file.response) {
         file.url = file.response.result;
@@ -1035,7 +1035,7 @@ export default {
         this.wholesaleData.length === 1 &&
         (this.wholesaleData[0].price <= 0 || this.wholesaleData[0].num <= 0)
       ) {
-        this.$Message.error("请输入正确的销售规则");
+        this.$Message.error("Please enter 正确的销售规则");
         return;
       }
       if (this.wholesaleData.length < 3) {
@@ -1056,7 +1056,7 @@ export default {
     },
     checkWholesaleNum(index) {
       if (this.wholesaleData[index].num < 0) {
-        this.$Message.error("购买数量必须大于0");
+        this.$Message.error("quantity必须大于0");
         this.wholesaleData[index].num = 0;
         return;
       }
@@ -1066,7 +1066,7 @@ export default {
       ) {
         this.$Notice.error({
           title: "在批发模式的销售规则中",
-          desc: "下一个购买数量必须大于上一个购买数量",
+          desc: "下一个quantity必须大于上一个quantity",
           duration: 5,
         });
         this.wholesaleData[index].num = this.wholesaleData[index - 1].num + 1;
@@ -1075,7 +1075,7 @@ export default {
     },
     checkWholesalePrice(index) {
       if (this.wholesaleData[index].price < 0) {
-        this.$Message.error("商品单价必须大于0");
+        this.$Message.error("GoodsPrice必须大于0");
         this.wholesaleData[index].price = 0;
         return;
       }
@@ -1085,7 +1085,7 @@ export default {
       ) {
         this.$Notice.error({
           title: "在批发模式的销售规则中",
-          desc: "下一个商品单价必须小于上一个商品单价",
+          desc: "下一个GoodsPrice必须小于上一个GoodsPrice",
           duration: 5,
         });
         this.wholesaleData[index].price =
@@ -1093,7 +1093,7 @@ export default {
       }
       this.renderTableData(this.skuTableData);
     },
-    // 商品图片上传成功
+    // Goods图片上传success
     handleSuccessGoodsPicture(res, file) {
       if (file.response) {
         file.url = file.response.result;
@@ -1119,7 +1119,7 @@ export default {
       const check = this.baseInfoForm.goodsGalleryFiles.length < 5;
       if (!check) {
         this.$Notice.warning({
-          title: "图片数量不能大于五张",
+          title: "图片Quantity不能大于五张",
         });
         return false;
       }
@@ -1130,12 +1130,12 @@ export default {
         this.selectedSku.images !== undefined &&
         this.selectedSku.images.length > 5;
       if (check) {
-        this.$Notice.warning({ title: "图片数量不能大于五张" });
+        this.$Notice.warning({ title: "图片Quantity不能大于五张" });
         return false;
       }
     },
 
-    /** 查询商品品牌列表 */
+    /** 查询Goods品牌列表 */
     getGoodsBrandList() {
       API_GOODS.getCategoryBrandListDataSeller(this.categoryId).then(
         (response) => {
@@ -1144,7 +1144,7 @@ export default {
       );
     },
 
-    // 获取商品单位
+    // 获取Goods单位
     GET_GoodsUnit() {
       API_GOODS.getGoodsUnitList(this.params).then((res) => {
         if (res.success) {
@@ -1176,7 +1176,7 @@ export default {
         }
       });
     },
-    // 编辑时获取商品信息
+    // 编辑时获取Goods details
     async GET_GoodData(id, draftId) {
       let response = {};
       if (draftId) {
@@ -1190,7 +1190,7 @@ export default {
         ? (response.result.recommend = 1)
         : (response.result.recommend = 0);
       this.baseInfoForm = { ...this.baseInfoForm, ...response.result };
-      this.baseInfoForm.release = 1; //即使是被放入仓库，修改的时候也会显示会立即发布
+      this.baseInfoForm.release = 1; //即使是被放入仓库，modify的时候也会显示会立即发布
       this.categoryId = response.result.categoryPath.split(",")[2];
 
       if (
@@ -1220,9 +1220,9 @@ export default {
 
       /** 查询品牌列表 */
       this.getGoodsBrandList();
-      /** 查询商品参数 */
+      /** 查询Goods参数 */
       this.GET_GoodsParams();
-      /** 查询店铺商品分类 */
+      /** 查询店铺Goods分类 */
       this.GET_ShopGoodsLabel();
       this.GET_GoodsUnit();
 
@@ -1299,12 +1299,12 @@ export default {
       this.skuTableData = skus;
       this.renderTableData(skus);
     },
-    // 将pc商品描述同步给移动端
+    // 将pcGoods描述同步给移动端
     promiseIntroEditor() {
       this.baseInfoForm.mobileIntro = this.baseInfoForm.intro;
     },
 
-    /** 根据当前分类id查询商品应包含的参数 */
+    /** 根据当前分类id查询Goods应包含的参数 */
     GET_GoodsParams() {
       API_GOODS.getCategoryParamsListDataSeller(this.categoryId).then(
         (response) => {
@@ -1421,7 +1421,7 @@ export default {
         this.skuInfo = [];
         this.skuTableData = [];
       } else {
-        // 获取当前操作的规格项，在规格项数组中的位置（下标）
+        // 获取当前operation的规格项，在规格项数组中的位置（下标）
         let itemIndex = 0;
         this.skuInfo.forEach((i, _index) => {
           if (i.name === item.name) {
@@ -1429,10 +1429,10 @@ export default {
           }
         });
         if (itemIndex === this.skuInfo.length - 1) {
-          // 如果当前为最后一个规格项，则按照下标按照最后一个规格项生成规则删除
-          // 最后一个规格项生成规格数据规则： 如为最后一个规格项，则在规格列表每隔1个中删除n(n为最后一个规格项的规格值列表数量 - 1)个规格数据，生成一个规格数据
+          // 如果当前为最后一个规格项，则按照下标按照最后一个规格项生成规则delete
+          // 最后一个规格项生成规格数据规则： 如为最后一个规格项，则在规格列表每隔1个中deleten(n为最后一个规格项的规格值列表Quantity - 1)个规格数据，生成一个规格数据
 
-          // 除了当前操作的规格项的规格项列表，用于获取所有规格项的规格值列表总数
+          // 除了当前operation的规格项的规格项列表，用于获取所有规格项的规格值列表总数
           let filterSkuInfo = this.skuInfo.filter((i) => i.name !== item.name);
           let index = 1;
           let totalLength = 1;
@@ -1451,7 +1451,7 @@ export default {
           let currentNum =
             this.skuInfo[this.skuInfo.length - 1].spec_values.length;
           for (let i = this.skuInfo.length - 2; i > itemIndex; i--) {
-            // 计算每次删除规格数据后移动的位置（计算规则为，以最后的规格项的规格值数量为基础，乘以其他规格项的规格值总数）
+            // 计算每次delete规格数据后移动的位置（计算规则为，以最后的规格项的规格值Quantity为基础，乘以Others规格项的规格值总数）
             currentNum *= this.skuInfo[i].spec_values.length;
           }
           // 移除对应规格数据的起始索引，起始位置为每次生成条数的下一位
@@ -1463,7 +1463,7 @@ export default {
             totalLength *= skuInfo.spec_values.length;
           });
           for (let i = 0; i < totalLength; i++) {
-            // 移除对应的规格数据，删除数量为 每次生成条数 * （当前规格项的规格值总数 - 1）
+            // 移除对应的规格数据，deleteQuantity为 每次生成条数 * （当前规格项的规格值总数 - 1）
             this.skuTableData.splice(
               beginIndex,
               currentNum * (item.spec_values.length - 1)
@@ -1489,7 +1489,7 @@ export default {
       params.forEach((item) => {
         for (const key in item) {
           if (item[key] !== "0" && !item.value) {
-            this.$Message.error("请必填规格项");
+            this.$Message.error("Please 必填规格项");
             flag = false;
             return false; // 终止程序
           }
@@ -1589,7 +1589,7 @@ export default {
         });
       });
 
-      // 有成本价和价格的情况
+      // 有成本价和price的情况
       if (this.baseInfoForm.salesModel !== "WHOLESALE") {
         pushData.push(
           {
@@ -1597,7 +1597,7 @@ export default {
             slot: "cost",
           },
           {
-            title: "价格",
+            title: "price",
             slot: "price",
           }
         );
@@ -1741,7 +1741,7 @@ export default {
         ) {
           // 校验未通过 加入错误存储列表中
           this.validateError.push([index, item]);
-          this.validatatxt = "请输入0~99999999之间的数字值";
+          this.validatatxt = "Please enter 0~99999999之间的数字值";
           return;
         }
       } else if (item === "quantity") {
@@ -1752,7 +1752,7 @@ export default {
         ) {
           // 库存
           this.validateError.push([index, item]);
-          this.validatatxt = "请输入0~99999999之间的整数";
+          this.validatatxt = "Please enter 0~99999999之间的整数";
           return;
         }
       } else if (item === "cost" || item === "price") {
@@ -1761,9 +1761,9 @@ export default {
           parseInt(row[item]) < 0 ||
           parseInt(row[item]) > 99999999
         ) {
-          // 成本价 价格
+          // 成本价 price
           this.validateError.push([index, item]);
-          this.validatatxt = "请输入0~99999999之间的价格";
+          this.validatatxt = "Please enter 0~99999999之间的price";
           return;
         }
       }
@@ -1772,7 +1772,7 @@ export default {
       });
       // this.$set(this.skuTableData,[index][item],row[item])
     },
-    // 店内分类选择
+    // 店内分类select
     selectTree(v) {
       if (v.length > 0) {
         // 转换null为""
@@ -1797,11 +1797,11 @@ export default {
       ids = ids.substring(0, ids.length - 1);
 
       if (ids.length > 100) {
-        this.$Message.error("选择了过多的店铺分类，请谨慎选择");
+        this.$Message.error("select了过多的店铺分类，Please 谨慎select");
       }
       this.baseInfoForm.storeCategoryPath = ids;
     },
-    /**  添加商品 **/
+    /**  添加Goods **/
     save() {
       this.submitLoading = true;
       this.$refs["baseInfoForm"].validate((valid) => {
@@ -1821,7 +1821,7 @@ export default {
             submit.goodsGalleryFiles.length <= 0
           ) {
             this.submitLoading = false;
-            this.$Message.error("请上传商品图片");
+            this.$Message.error("Please 上传Goods图片");
             return;
           }
           if (submit.templateId === "") submit.templateId = 0;
@@ -1892,11 +1892,11 @@ export default {
         } else {
           this.submitLoading = false;
 
-          this.$Message.error("还有必填项未做处理，请检查表单");
+          this.$Message.error("还有必填项未做处理，Please 检查表单");
         }
       });
     },
-    /** 保存为模板 */
+    /** Save为模板 */
     saveToDraft() {
       this.baseInfoForm.skuList = this.skuTableData;
       if (this.baseInfoForm.goodsGalleryFiles.length > 0) {
@@ -1910,8 +1910,8 @@ export default {
         this.baseInfoForm.id = this.$route.query.draftId;
         this.$Modal.confirm({
           title: "当前模板已存在",
-          content: "当前模板已存在，保存为新模板或替换原模板",
-          okText: "保存新模板",
+          content: "当前模板已存在，Save为新模板或替换原模板",
+          okText: "Save新模板",
           cancelText: "替换旧模板",
           closable: true,
           onOk: () => {
@@ -1926,9 +1926,9 @@ export default {
       }
 
       this.$Modal.confirm({
-        title: "保存模板",
-        content: "是否确定保存",
-        okText: "保存",
+        title: "Save模板",
+        content: "是否ConfirmSave",
+        okText: "Save",
         closable: true,
         onOk: () => {
           this.SAVE_DRAFT_GOODS();
@@ -1939,10 +1939,10 @@ export default {
       if (this.baseInfoForm.salesModel === "WHOLESALE") {
         this.baseInfoForm.wholesaleList = this.wholesaleData;
       }
-      // 保存模板
+      // Save模板
       API_GOODS.saveDraftGoods(this.baseInfoForm).then((res) => {
         if (res.success) {
-          this.$Message.info("保存成功！");
+          this.$Message.info("Savesuccess！");
           this.$router.push({ name: "template-goods" });
         }
       });
@@ -1952,19 +1952,19 @@ export default {
     this.accessToken = {
       accessToken: this.getStore("accessToken"),
     };
-    // 获取物流模板
+    // 获取logistics模板
     API_Shop.getShipTemplate().then((res) => {
       if (res.success) {
         this.logisticsTemplate = res.result;
       }
     });
     if (this.$route.query.id || this.$route.query.draftId) {
-      // 编辑商品、模板
+      // 编辑Goods、模板
       this.GET_GoodData(this.$route.query.id, this.$route.query.draftId);
     } else {
-      // 新增商品、模板
+      // 新增Goods、模板
       if (this.firstData.tempId) {
-        // 选择模板
+        // select模板
         this.GET_GoodData("", this.firstData.tempId);
       } else {
         const cateId = [];
@@ -1975,13 +1975,13 @@ export default {
         this.categoryId = cateId[2];
         this.baseInfoForm.categoryPath = cateId.toString();
         this.baseInfoForm.goodsType = this.firstData.goodsType;
-        /** 获取该商城分类下 商品参数信息 */
+        /** 获取该商城分类下 Goods参数信息 */
         this.GET_GoodsParams();
         /** 查询品牌列表 */
         this.getGoodsBrandList();
         /** 查询分类绑定的规格信息 */
         this.Get_SkuInfoByCategory(this.categoryId);
-        // 获取商品单位
+        // 获取Goods单位
         this.GET_GoodsUnit();
         // 获取当前店铺分类
         this.GET_ShopGoodsLabel();

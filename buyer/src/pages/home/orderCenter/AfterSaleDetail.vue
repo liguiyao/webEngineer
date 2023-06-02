@@ -1,21 +1,21 @@
 <template>
   <div class="order-detail">
-    <card _Title="售后详情" :_Size="16"></card>
-    <!-- 操作按钮 -->
+    <card _Title="After-sale details" :_Size="16"></card>
+    <!-- operation按钮 -->
     <Card class="mb_10" v-if="(afterSale.serviceStatus == 'PASS' &&
           afterSale.serviceType != 'RETURN_MONEY') || (afterSale.afterSaleAllowOperationVO && afterSale.afterSaleAllowOperationVO.cancel)">
       <Button type="success" @click="openModal" v-if="afterSale.serviceStatus == 'PASS' &&
-          afterSale.serviceType != 'RETURN_MONEY'" size="small">提交物流</Button>&nbsp;
-      <Button type="error" @click="cancel(afterSale.sn)" v-if="afterSale.afterSaleAllowOperationVO && afterSale.afterSaleAllowOperationVO.cancel" size="small">取消售后</Button>
+          afterSale.serviceType != 'RETURN_MONEY'" size="small">Submit logistics</Button>&nbsp;
+      <Button type="error" @click="cancel(afterSale.sn)" v-if="afterSale.afterSaleAllowOperationVO && afterSale.afterSaleAllowOperationVO.cancel" size="small">Cancelafter sale</Button>
     </Card>
     <div class="order-card">
       <h3>{{afterSale.serviceName}}</h3>
       <p class="global_color fontsize_18">{{ afterSale.orderStatusValue }}</p>
-      <p>售后单号：{{ afterSale.sn }} &nbsp;&nbsp;&nbsp;订单号：{{afterSale.orderSn}}</p>
-      <div style="color:#999;" class="operation-time">创建时间：{{afterSale.createTime}}</div>
+      <p>After-sales order number：{{ afterSale.sn }} &nbsp;&nbsp;&nbsp;Order number：{{afterSale.orderSn}}</p>
+      <div style="color:#999;" class="operation-time">Create time：{{afterSale.createTime}}</div>
       <div class="service-after">
         <div>
-          本次售后服务由<span>{{afterSale.storeName}}</span>为您提供
+          This after-sales service is provided by<span>{{afterSale.storeName}}</span>provide for you
         </div>
         <div>
           <img :src="afterSale.goodsImage" alt="" width="60" height="60">
@@ -24,10 +24,10 @@
       </div>
     </div>
     <div class="order-card">
-      <h3>售后进程</h3>
+      <h3>process</h3>
       <Steps class="progress" :current="logList.length" direction="vertical">
         <Step
-          :content="'操作人：'+ log.operatorName + '   ' + log.createTime"
+          :content="'operator：'+ log.operatorName + '   ' + log.createTime"
           :title="log.message"
           v-for="(log, index) in logList"
           :key="index"
@@ -35,67 +35,67 @@
       </Steps>
     </div>
     <div class="order-card">
-      <h3 class="mb_10">服务单信息</h3>
+      <h3 class="mb_10">list information</h3>
       <table border="1" cellpadding='0' cellspacing="0">
         <tr>
-          <td>退款方式</td><td>{{afterSale.refundWay == 'ORIGINAL' ? '原路退回' : '账号退款'}}</td>
+          <td>Refund method</td><td>{{afterSale.refundWay == 'ORIGINAL' ? 'backtracking' : 'Account refund'}}</td>
         </tr>
         <tr>
-          <td>申请退款金额</td><td>{{afterSale.applyRefundPrice | unitPrice('￥')}}</td>
+          <td>Apply refund amount</td><td>{{afterSale.applyRefundPrice | unitPrice('RM')}}</td>
         </tr>
         <tr v-if="afterSale.actualRefundPrice">
-          <td>实际退款金额</td><td>{{afterSale.actualRefundPrice | unitPrice('￥')}}</td>
+          <td>real refund amount</td><td>{{afterSale.actualRefundPrice | unitPrice('RM')}}</td>
         </tr>
         <template v-if="afterSale.refundWay === 'OFFLINE'">
           <tr>
-            <td>退款开户行</td><td>{{afterSale.bankDepositName}}</td>
+            <td>Refund bank</td><td>{{afterSale.bankDepositName}}</td>
           </tr>
           <tr>
-            <td>退款开户名</td><td>{{afterSale.bankAccountName}}</td>
+            <td>Account name for refund</td><td>{{afterSale.bankAccountName}}</td>
           </tr>
           <tr>
-            <td>退款卡号</td><td>{{afterSale.bankAccountNumber}}</td>
+            <td>Refund card number</td><td>{{afterSale.bankAccountNumber}}</td>
           </tr>
         </template>
         <tr>
-          <td>商品处理方式</td><td>{{afterSale.serviceType == 'RETURN_MONEY' ? '退款' : '退货'}}</td>
+          <td>Way of handling goods</td><td>{{afterSale.serviceType == 'RETURN_MONEY' ? 'refund' : 'Return goods'}}</td>
         </tr>
         <tr>
-          <td>退款原因</td><td>{{afterSale.reasonName}}</td>
+          <td>Reason for refund</td><td>{{afterSale.reasonName}}</td>
         </tr>
         <tr>
-          <td>问题描述</td><td>{{afterSale.problemDesc}}</td>
+          <td>Problem description</td><td>{{afterSale.problemDesc}}</td>
         </tr>
       </table>
     </div>
     <div class="order-card" v-if="afterSale.afterSaleImage">
-      <h3 class="mb_10">图片信息</h3>
+      <h3 class="mb_10">Picture info</h3>
       <div v-for="img in afterSale.afterSaleImage.split(',')" :key="img">
         <img :src="img" width="200" height="200" @click="perviewImg(img)" class="hover-pointer" alt="">
       </div>
     </div>
     <Modal v-model="logisticsShow" width="530">
       <p slot="header">
-        <span>提交物流信息</span>
+        <span>Submitlogistics information</span>
       </p>
       <div>
         <Form ref="form" :model="form" label-position="left" :label-width="100" :rules="rules">
-          <FormItem label="物流公司" prop="logisticsId">
-            <Select v-model="form.logisticsId" placeholder="请选择物流公司">
+          <FormItem label="Logistics company " prop="logisticsId">
+            <Select v-model="form.logisticsId" placeholder="Please selectLogistics company ">
               <Option v-for="item in companyList" :value="item.id" :key="item.id">{{ item.name }}</Option>
             </Select>
           </FormItem>
-          <FormItem label="快递单号" prop="logisticsNo">
-            <Input v-model="form.logisticsNo" placeholder="请填写快递单号"></Input>
+          <FormItem label="Tracking number" prop="logisticsNo">
+            <Input v-model="form.logisticsNo" placeholder="Please enter Tracking number"></Input>
           </FormItem>
-          <FormItem label="发货时间" prop="mDeliverTime">
-            <DatePicker type="date" style="width:100%" v-model="form.mDeliverTime" @on-change="changeTime" format="yyyy-MM-dd" placeholder="选择发货时间"></DatePicker>
+          <FormItem label="Delivery time" prop="mDeliverTime">
+            <DatePicker type="date" style="width:100%" v-model="form.mDeliverTime" @on-change="changeTime" format="yyyy-MM-dd" placeholder="selectDelivery time"></DatePicker>
           </FormItem>
         </Form>
       </div>
       <div slot="footer" style="text-align: right">
-        <Button @click="logisticsShow = false">关闭</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitDelivery">提交</Button>
+        <Button @click="logisticsShow = false">Close</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitDelivery">Submit</Button>
       </div>
     </Modal>
   </div>
@@ -108,28 +108,28 @@ export default {
   name: 'aftersale-detail',
   data () {
     return {
-      afterSale: {}, // 售后详情数据
+      afterSale: {}, // After-sale details数据
       logList: [], // 日志
-      reasonList: [], // 售后原因列表
-      afterSaleStatusList, // 售后状态列表
-      companyList: [], // 物流公司列表
-      logisticsShow: false, // 物流信息modal
-      form: { // 物流信息数据
+      reasonList: [], // after sale原因列表
+      afterSaleStatusList, // after sale状态列表
+      companyList: [], // Logistics company 列表
+      logisticsShow: false, // logistics informationmodal
+      form: { // logistics information数据
         afterSaleSn: '',
         logisticsId: '',
         logisticsNo: '',
         mDeliverTime: ''
       },
       rules: { // 必填校验
-        logisticsId: [{ required: true, message: '请选择物流公司' }],
-        logisticsNo: [{ required: true, message: '请填写物流编号' }],
-        mDeliverTime: [{ required: true, message: '请选择发货时间' }]
+        logisticsId: [{ required: true, message: 'Please selectLogistics company ' }],
+        logisticsNo: [{ required: true, message: 'Please enter Logistics number' }],
+        mDeliverTime: [{ required: true, message: 'Please selectDelivery time' }]
       },
-      submitLoading: false // 提交加载状态
+      submitLoading: false // Submit加载状态
     };
   },
   methods: {
-    getDetail () { // 售后详情
+    getDetail () { // After-sale details
       afterSaleDetail(this.$route.query.sn).then(res => {
         if (res.success) {
           this.afterSale = res.result;
@@ -144,7 +144,7 @@ export default {
         }
       })
     },
-    getReason (type) { // 获取售后原因
+    getReason (type) { // 获取after sale原因
       afterSaleReason(type).then(res => {
         if (res.success) {
           this.reasonList = res.result
@@ -156,7 +156,7 @@ export default {
         }
       })
     },
-    getLog () { // 获取售后日志
+    getLog () { // 获取after sale日志
       afterSaleLog(this.$route.query.sn).then(res => {
         this.logList = res.result;
       })
@@ -168,14 +168,14 @@ export default {
     perviewImg (img) { // 查看图片
       window.open(img, '_blank')
     },
-    cancel (sn) { // 取消售后申请
+    cancel (sn) { // Cancelafter saleApply
       this.$Modal.confirm({
-        title: '取消',
-        content: '<p>确定取消此次售后申请吗？</p>',
+        title: 'Cancel',
+        content: '<p>Are you sure to cancel this after-sales application？</p>',
         onOk: () => {
           cancelAfterSale(sn).then(res => {
             if (res.success) {
-              this.$Message.success('取消售后申请成功')
+              this.$Message.success('Cancel the after-sales application successfully')
               this.getDetail()
             }
           })
@@ -183,7 +183,7 @@ export default {
         onCancel: () => {}
       });
     },
-    // 获取物流公司列表
+    // 获取Logistics company 列表
     getCompany () {
       getLogisticsCompany().then(res => {
         if (res.success) {
@@ -191,13 +191,13 @@ export default {
         }
       })
     },
-    // 提交物流信息
+    // Submitlogistics information
     submitDelivery () {
       this.submitLoading = true
       afterSaleDelivery(this.form).then(res => {
         if (res.success) {
           this.logisticsShow = false;
-          this.$Message.success('提交成功')
+          this.$Message.success('Submit success')
           this.getDetail()
         }
         this.submitLoading = false
@@ -205,7 +205,7 @@ export default {
         this.submitLoading = false
       })
     },
-    // 提交物流modal
+    // Submitlogisticsmodal
     openModal () {
       this.form.afterSaleSn = this.afterSale.sn
       this.logisticsShow = true;
@@ -272,7 +272,7 @@ export default {
     span{color: #999;}
   }
 }
-/** 售后进度条 */
+/** after sale进度条 */
 .progress {
   margin: 15px 0;
 }

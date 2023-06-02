@@ -42,7 +42,7 @@
                   ></Avatar>
                 </div>
                 <DropdownMenu slot="list">
-                  <DropdownItem name="changePass">修改密码</DropdownItem>
+                  <DropdownItem name="changePass">modify密码</DropdownItem>
                   <DropdownItem name="loginOut" divided>退出</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -86,7 +86,7 @@ export default {
   },
   data() {
     return {
-      sliceNum: 5, // 展示nav数量
+      sliceNum: 5, // 展示navQuantity
       userInfo: {}, // 用户信息
       navType: 1, // nav类型
       storeSideLogo: "", //logo图片
@@ -168,7 +168,7 @@ export default {
         }
       });
       if (!openpageHasTag) {
-        //  解决关闭当前标签后再点击回退按钮会退到当前页时没有标签的问题
+        //  解决Close当前标签后再点击回退按钮会退到当前页时没有标签的问题
         util.openNewPage(
           this,
           name,

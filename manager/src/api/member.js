@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {
   getRequest,
   putRequest,
@@ -11,7 +11,7 @@ export const getMember = (params) => {
   return getRequest("/member/getByPage", params);
 };
 
-// 分页获取会员评价
+// 分页获取会员Evaluate
 export const getMemberReview = (params) => {
   return getRequest("/member/evaluation/getByPage", params);
 };
@@ -21,16 +21,16 @@ export const getMemberInfoReview = (id) => {
   return getRequest(`/member/evaluation/get/${id}`);
 };
 
-// 删除评论
+// delete评论
 export const delMemberReview = (id) => {
   return putRequest(`/member/evaluation/delete/${id}`);
 };
-// 修改评价状态
+// modifyEvaluate状态
 export const updateMemberReview = (id, params) => {
   return getRequest(`/member/evaluation/updateStatus/${id}`, params);
 };
 
-//  添加或修改
+//  添加或modify
 export const insertOrUpdateSpec = (params) => {
   return postRequest("/memberNoticeSenter/insertOrUpdate", params);
 };
@@ -45,7 +45,7 @@ export const getMemberInfoData = (id) => {
   return getRequest(`/passport/member/${id}`);
 };
 
-//  修改会员基本信息
+//  modify会员基本信息
 export const updateMember = (params) => {
   return putRequest(`/passport/member`, params);
 };
@@ -60,12 +60,12 @@ export const getMemberAll = () => {
   return getRequest("/passport/member/getAll");
 };
 
-//  增加或修改会员列表
+//  增加或modify会员列表
 export const operationMemberListData = (params) => {
   return postRequest("/passport/member/insertOrUpdate", params);
 };
 
-//  增加或修改会员列表
+//  增加或modify会员列表
 export const deleteMemberListData = (ids) => {
   return deleteRequest(`/passport/member/delByIds/${ids}`);
 };
@@ -79,17 +79,17 @@ export const getUserWallet = (params) => {
   return getRequest("/wallet/log", params);
 };
 
-// 获取提现申请列表数据
+// 获取提现Apply  列表数据
 export const getUserWithdrawApply = (params) => {
   return getRequest("/wallet/withdrawApply", params);
 };
 
-// 审核提现申请
+// 审核提现Apply
 export const withdrawApply = (params) => {
   return postRequest("/wallet/withdrawApply", params);
 };
 
-//会员状态修改
+//会员状态modify
 export const updateMemberStatus = (params) => {
   return putRequest("/passport/member/updateMemberStatus", params);
 };
@@ -109,7 +109,7 @@ export const historyMemberChartList = () => {
   return getRequest("/statistics/view/online/history");
 };
 
-//查询会员数量
+//查询会员Quantity
 export const getMemberNum = (params) => {
   return getRequest("/passport/member/num", params);
 };
@@ -117,19 +117,19 @@ export const getMemberNum = (params) => {
 export const getHistoryPointData = (params) => {
   return getRequest(`/member/memberPointsHistory/getByPage`, params);
 };
-//查询会员的收货地址
+//查询会员的Delivery address
 export const getMemberAddressData = (id, params) => {
   return getRequest(`/member/address/${id}`, params);
 };
-//删除会员地址
+//delete会员address
 export const removeMemberAddress = (id) => {
   return deleteRequest(`/member/address/delById/${id}`);
 };
-//添加会员收货地址
+//添加会员Delivery address
 export const addMemberAddress = (params) => {
   return postRequest(`/member/address`, params);
 };
-//修改会员收货地址
+//modify会员Delivery address
 export const editMemberAddress = (params) => {
   return putRequest(`/member/address`, params);
 };

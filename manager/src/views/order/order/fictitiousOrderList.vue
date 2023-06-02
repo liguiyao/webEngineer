@@ -3,27 +3,27 @@
     <Card>
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-          <Form-item label="订单号" prop="orderSn">
-            <Input type="text" v-model="searchForm.orderSn" placeholder="请输入订单号" clearable style="width: 200px" />
+          <Form-item label="Order number" prop="orderSn">
+            <Input type="text" v-model="searchForm.orderSn" placeholder="Please enter Order number" clearable style="width: 200px" />
           </Form-item>
           <Form-item label="会员名称" prop="buyerName">
-            <Input type="text" v-model="searchForm.buyerName" placeholder="请输入会员名称" clearable style="width: 200px" />
+            <Input type="text" v-model="searchForm.buyerName" placeholder="Please enter 会员名称" clearable style="width: 200px" />
           </Form-item>
           <Form-item label="订单状态" prop="orderStatus">
-            <Select v-model="searchForm.orderStatus" placeholder="请选择" clearable style="width: 200px">
+            <Select v-model="searchForm.orderStatus" placeholder="Please select" clearable style="width: 200px">
               <Option value="NEW">新订单</Option>
               <Option value="CONFIRM">已确认</Option>
               <Option value="TAKE">待核验</Option>
-              <Option value="COMPLETE">已完成</Option>
+              <Option value="COMPLETE">completed</Option>
               <Option value="WAIT_PINTUAN">待成团</Option>
-              <Option value="CANCELLED">已取消</Option>
+              <Option value="CANCELLED">已Cancel</Option>
             </Select>
           </Form-item>
           <Form-item label="下单时间">
             <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd" clearable
-              @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px"></DatePicker>
+              @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
           </Form-item>
-          <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+          <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
 
         </Form>
       </Row>
@@ -47,11 +47,11 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "", // 默认排序字段
-        order: "", // 默认排序方式
+        sort: "", // default排序字段
+        order: "", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
         orderType: "VIRTUAL",
@@ -63,7 +63,7 @@ export default {
       selectDate: null, // 下单时间
       columns: [
         {
-          title: "订单号",
+          title: "Order number",
           key: "sn",
           minWidth: 230,
           tooltip: true
@@ -104,7 +104,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
@@ -115,21 +115,21 @@ export default {
           width: 95,
           render: (h, params) => {
             if (params.row.orderStatus == "UNPAID") {
-              return h("div", [h("tag", { props: { color: "magenta" } }, "未付款")]);
+              return h("div", [h("tag", { props: { color: "magenta" } }, "Unpaid")]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [h("tag", { props: { color: "blue" } }, "已付款")]);
             } else if (params.row.orderStatus == "COMPLETED") {
-              return h("div", [h("tag", { props: { color: "green" } }, "已完成")]);
+              return h("div", [h("tag", { props: { color: "green" } }, "completed")]);
             } else if (params.row.orderStatus == "TAKE") {
               return h("div", [h("tag", { props: { color: "volcano" } }, "待核验")]);
             } else if (params.row.orderStatus == "CANCELLED") {
-              return h("div", [h("tag", { props: { color: "red" } }, "已取消")]);
+              return h("div", [h("tag", { props: { color: "red" } }, "已Cancel")]);
             }
           }
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 200,
@@ -199,7 +199,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch () {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -238,12 +238,12 @@ export default {
     confirmPrice (v) {
       this.$Modal.confirm({
         title: "确认收款",
-        content: "您确定要收款吗？",
+        content: "您Confirm要收款吗？",
         loading: true,
         onOk: () => {
           API_Order.orderPay(v.sn).then(res => {
             if (res.success) {
-              this.$Message.success("收款成功")
+              this.$Message.success("收款success")
               this.getDataList()
             }
             this.$Modal.remove();
@@ -252,7 +252,7 @@ export default {
       });
 
     },
-    // 订单详情
+    // Order details
     detail (v) {
       console.log(v.orderType);
       let sn = v.sn;

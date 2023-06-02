@@ -14,7 +14,7 @@ export function regist (params) {
 }
 
 /**
- * 账号密码登录
+ * Account login
  */
 export function login (params) {
   return request({
@@ -27,7 +27,7 @@ export function login (params) {
 }
 
 /**
- * 手机号验证码登录
+ * Phone numberSMS login
  */
 export function smsLogin (params) {
   return request({
@@ -52,14 +52,14 @@ export function getMemberMsg (params) {
 }
 
 /**
- * 第三方登录 支付宝，微博，qq,微信
+ * 第三方Login Alipay，微博，qq,Wechat
  */
 export function webLogin (type) {
   window.open(`${buyerUrl}/buyer/passport/connect/connect/login/web/${type}`, 'blank');
 }
 
 /**
- * 第三方登录成功 回调接口
+ * 第三方Loginsuccess 回调接口
  */
 export function loginCallback (uuid) {
   return request({
@@ -70,7 +70,7 @@ export function loginCallback (uuid) {
 }
 
 /**
- * 忘记密码  验证手机验证码
+ * Forget Password  验证phone verification code
  */
 export function validateCode (params) {
   return request({
@@ -82,7 +82,7 @@ export function validateCode (params) {
 }
 
 /**
- * 忘记密码 重置密码
+ * Forget Password 重置密码
  */
 export function resetPassword (params) {
   return request({

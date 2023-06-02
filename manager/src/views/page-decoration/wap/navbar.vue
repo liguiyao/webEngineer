@@ -1,5 +1,5 @@
 <template>
-  <!-- 预览保存 -->
+  <!-- 预览Save -->
   <div class="model-title">
     <div>店铺装修</div>
     <div class="btns">
@@ -12,7 +12,7 @@
       >{{ item.title }}</Button>
     </div>
     <div class="model-title-view-btn">
-      <!-- TODO 后期会补全 目前版本暂无 -->
+      <!-- TODO 后期会补全 目前版本absent -->
       <!-- <Poptip placement="bottom" width="100">
         <Button size="default" @click="creatQrCode">预览模板</Button>
         <div slot="content" class="default-view-content">
@@ -20,10 +20,10 @@
           <div ref="qrCodeUrl"></div>
         </div>
       </Poptip>-->
-      <Button size="default" type="primary" @click="handleSpinShow">保存模板</Button>
+      <Button size="default" type="primary" @click="handleSpinShow">Save模板</Button>
 
       <Modal
-        title="保存中"
+        title="Save中"
         v-model="saveDialog"
         :closable="true"
         :mask-closable="false"
@@ -42,7 +42,7 @@
             </i-switch>
           </div>
 
-          <Button type="primary" @click="save()">保存</Button>
+          <Button type="primary" @click="save()">Save</Button>
         </div>
         <Progress v-else :percent="num" status="active"/>
       </Modal>
@@ -57,7 +57,7 @@ export default {
   data() {
     return {
       progress: true, // 展示进度
-      num: 20, // 提交进度
+      num: 20, // Submit进度
       saveDialog: false, // 加载状态
       way: [
         // 装修tab栏切换
@@ -114,19 +114,19 @@ export default {
     },
 
     /**
-     * 加载，并保存模板
+     * 加载，并Save模板
      */
     handleSpinShow() {
       this.saveDialog = true;
     },
 
-    // 填写是否发布，模板名称之后保存
+    // enter 是否发布，模板名称之后Save
     save() {
        if (
         this.$store.state.styleStore == void 0 &&
         (this.$route.query.pagetype && this.$route.query.pagetype != 'ALERT' &&  this.$route.query.pagetype != 'OPEN_SCREEN_ANIMATION')
       ) {
-        this.$Message.error("请装修楼层");
+        this.$Message.error("Please 装修楼层");
         return false;
       }
 
@@ -162,15 +162,15 @@ export default {
           this.num = 50;
           if (res.success) {
             this.num = 80;
-            /**制作保存成功动画¸ */
+            /**制作Savesuccess动画¸ */
             setTimeout(() => {
               this.saveDialog = false;
-              this.$Message.success("修改成功");
+              this.$Message.success("modifysuccess");
               this.goBack();
             }, 1000);
           } else {
             this.saveDialog = false;
-            this.$Message.error("修改失败，请稍后重试");
+            this.$Message.error("modify失败，Please 稍后重试");
           }
           console.log(res);
         })
@@ -182,7 +182,7 @@ export default {
     update(submitWay) {
       console.log(this.$store.state.openStyleStore[0], "123123123");
       if (this.$store.state.openStyleStore == void 0) {
-        this.$Message.error("请装修楼层!");
+        this.$Message.error("Please 装修楼层!");
         return false;
       }
       this.progress = false;
@@ -209,15 +209,15 @@ export default {
           this.num = 50;
           if (res.success) {
             this.num = 80;
-            /**制作保存成功动画¸ */
+            /**制作Savesuccess动画¸ */
             setTimeout(() => {
               this.saveDialog = false;
-              this.$Message.success("修改成功");
+              this.$Message.success("modifysuccess");
               this.goBack();
             }, 1000);
           } else {
             this.saveDialog = false;
-            this.$Message.error("修改失败，请稍后重试");
+            this.$Message.error("modify失败，Please 稍后重试");
           }
           console.log(res);
         })
@@ -226,14 +226,14 @@ export default {
 
 
 
-    // 返回查询数据页面
+    // Back查询数据页面
     goBack() {
       this.$router.push({
         path: "/wapList",
       });
     },
 
-    // 保存
+    // Save
     submit(submitWay) {
       this.progress = false;
       API_Other.setHomeSetup(submitWay)
@@ -241,16 +241,16 @@ export default {
           this.num = 50;
           if (res.success) {
             this.num = 80;
-            /**制作保存成功动画¸ */
+            /**制作Savesuccess动画¸ */
             setTimeout(() => {
               this.saveDialog = false;
-              this.$Message.success("保存成功");
+              this.$Message.success("Savesuccess");
               this.goBack();
             }, 1000);
           } else {
             this.progress = true;
             this.saveDialog = false;
-            this.$Message.error("保存失败，请稍后重试");
+            this.$Message.error("Save失败，Please 稍后重试");
           }
           console.log(res);
         })

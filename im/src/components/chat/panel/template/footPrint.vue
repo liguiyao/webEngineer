@@ -14,7 +14,7 @@
                   <a class="goods_name">{{ item.goodsName }}</a>
                   <div style="display: flex;">
                     <div style="margin-top: 20px;">
-                      <span class='goods-price'>{{ item.price | unitPrice("￥") }}</span>
+                      <span class='goods-price'>{{ item.price | unitPrice("RM") }}</span>
                       <div class="goods_store_button">
                        
                       </div>
@@ -36,13 +36,13 @@
             <dd  v-for="(item, index) in orderList" v-infinite-scroll="loadMore" :key="index">
               <div class="order-list">
                 <div class="order-top order-padding">
-                  <span class="order-sn" @click="linkToOrders(item.sn)">订单号:{{ item.sn }}</span>
+                  <span class="order-sn" @click="linkToOrders(item.sn)">Order number:{{ item.sn }}</span>
                 </div>
                 <div class="order-section order-padding">
                   <div class="order-items" v-for="(order,orderIndex) in item.orderItems" :key="orderIndex">
                       <img :src="order.image" alt="">
                       <span class="order-goods-name" @click="linkToOrders(item.sn)"> {{ order.name }}</span>
-                      <span class="price">{{order.goodsPrice | unitPrice("￥")}}</span>
+                      <span class="price">{{order.goodsPrice | unitPrice("RM")}}</span>
                   </div>
                   <!-- <img  :src="item.groupImages" alt=""> -->
                  
@@ -54,11 +54,11 @@
                 <div class="order-footer order-padding">
                   <span></span>
                   <el-tag  size='mini' :type="col[item.orderStatus]">{{
-                    item.orderStatus == 'STAY_PICKED_UP' ? '待自提'
-                      : item.orderStatus == 'CANCELLED' ? '已取消' : item.orderStatus == 'UNPAID' ? '未付款' : item.orderStatus
+                    item.orderStatus == 'STAY_PICKED_UP' ? '待self-lifting'
+                      : item.orderStatus == 'CANCELLED' ? '已Cancel' : item.orderStatus == 'UNPAID' ? 'Unpaid' : item.orderStatus
                         ==
                         'PAID' ? '已付款' : item.orderStatus == 'UNDELIVERED' ? '待发货' : item.orderStatus == 'DELIVERED'
-                          ? '已发货' : item.orderStatus == 'COMPLETED' ? '已完成' : item.orderStatus == 'TAKE' ? '待核销' :
+                          ? '已发货' : item.orderStatus == 'COMPLETED' ? 'completed' : item.orderStatus == 'TAKE' ? '待核销' :
                             ''
                   }}</el-tag>
                 </div>
@@ -88,8 +88,8 @@ export default {
   data () {
     return {
       noMoreList:{
-        'goods':{title:'暂无最近浏览',value:false},
-        'orders':{title:'暂无订单信息',value:false},
+        'goods':{title:'absent最近浏览',value:false},
+        'orders':{title:'absentorder information',value:false},
       },
       activeName: 'goods',
       btnHide: undefined,

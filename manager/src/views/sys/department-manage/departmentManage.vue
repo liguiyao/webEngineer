@@ -8,16 +8,16 @@
         </i-switch>
         <Button @click="addRoot">添加部门</Button>
         <Button @click="add" type="primary">添加子部门</Button>
-        <Button @click="delAll">批量删除</Button>
+        <Button @click="delAll">批量delete</Button>
         <Button @click="getParentList">刷新</Button>
       </Row>
       <Row type="flex" justify="start">
         <Col :md="8" :lg="8" :xl="6">
           <Alert show-icon>
-            当前选择编辑：
+            当前select编辑：
             <span class="select-title">{{ editTitle }}</span>
             <a class="select-clear" v-if="form.id" @click="cancelSelect"
-              >取消选择</a
+              >Cancelselect</a
             >
           </Alert>
           <div class="tree-bar" :style="{ maxHeight: maxHeight }">
@@ -51,10 +51,10 @@
                   transfer
                   trigger="click"
                   placement="right-start"
-                  title="选择上级部门"
+                  title="select上级部门"
                   width="250"
                 >
-                  <Button icon="md-list">选择部门</Button>
+                  <Button icon="md-list">select部门</Button>
                   <div
                     slot="content"
                     style="position: relative; min-height: 5vh"
@@ -72,10 +72,10 @@
             <FormItem label="部门名称" prop="title">
               <Input v-model="form.title" />
             </FormItem>
-            <FormItem label="选择角色">
+            <FormItem label="select角色">
               <Select
                 :loading="userLoading"
-                not-found-text="暂无角色"
+                not-found-text="absent角色"
                 v-model="selectedRole"
                 multiple
               >
@@ -110,7 +110,7 @@
                 @click="submitEdit"
                 :loading="submitLoading"
                 type="primary"
-                >修改并保存</Button
+                >modify并Save</Button
               >
               <Button @click="handleReset">重置</Button>
             </Form-item>
@@ -158,9 +158,9 @@
         </FormItem> -->
       </Form>
       <div slot="footer">
-        <Button type="text" @click="cancelAdd">取消</Button>
+        <Button type="text" @click="cancelAdd">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="submitAdd"
-          >提交</Button
+          >Submit</Button
         >
       </div>
     </Modal>
@@ -185,7 +185,7 @@ export default {
       loading: true, // 加载状态
       maxHeight: "500px", // 最大高度
       strict: true, // 级联还是单选
-      userLoading: false, // 选择角色加载状态
+      userLoading: false, // select角色加载状态
       loadingEdit: false, // 编辑加载状态
       modalVisible: false, // modal显隐
       selectList: [], // 已选列表
@@ -193,10 +193,10 @@ export default {
       showParent: false, // 展示父级
       modalTitle: "", // modal标题
       editTitle: "", // 编辑标题
-      selectedRole: [], //选择的角色
-      searchKey: "", // 搜索关键字
+      selectedRole: [], //select的角色
+      searchKey: "", // search关键字
       form: {
-        // 提交表单
+        // Submit表单
         id: "",
         title: "",
         parentId: "",
@@ -218,7 +218,7 @@ export default {
           },
         ],
       },
-      submitLoading: false, // 提交loading
+      submitLoading: false, // Submitloading
       data: [], // 部门数据
       dataEdit: [], // 编辑时部门数据
       users: [], // 用户
@@ -308,7 +308,7 @@ export default {
       return array;
     },
 
-    // 取消选择
+    // Cancelselect
     cancelSelect() {
       let data = this.$refs.tree.getSelectedNodes()[0];
       if (data) {
@@ -318,7 +318,7 @@ export default {
       delete this.form.id;
       this.editTitle = "";
     },
-    // 选择上级部门
+    // select上级部门
     selectTreeEdit(v) {
       if (v.length > 0) {
         // 转换null为""
@@ -333,7 +333,7 @@ export default {
         this.form.parentTitle = data.title;
       }
     },
-    // 取消添加部门
+    // Cancel添加部门
     cancelAdd() {
       this.modalVisible = false;
     },
@@ -342,12 +342,12 @@ export default {
       this.$refs.form.resetFields();
       this.form.status = 0;
     },
-    // 提交表单
+    // Submit表单
     submitEdit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           if (!this.form.id) {
-            this.$Message.warning("请先点击选择要修改的部门");
+            this.$Message.warning("Please 先点击select要modify的部门");
             return;
           }
           let roleWay = [];
@@ -365,7 +365,7 @@ export default {
           ]).then((res) => {
             this.submitLoading = false;
             if (res[0].success) {
-              this.$Message.success("编辑成功");
+              this.$Message.success("编辑success");
               this.init();
               this.modalVisible = false;
             }
@@ -381,7 +381,7 @@ export default {
           addDepartment(this.formAdd).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("添加成功");
+              this.$Message.success("添加success");
               this.init();
               this.modalVisible = false;
             }
@@ -392,7 +392,7 @@ export default {
     // 添加子部门
     add() {
       if (this.form.id == "" || this.form.id == null) {
-        this.$Message.warning("请先点击选择一个部门");
+        this.$Message.warning("Please 先点击select一个部门");
         return;
       }
       this.modalTitle = "添加子部门";
@@ -422,16 +422,16 @@ export default {
       this.selectCount = v.length;
       this.selectList = v;
     },
-    // 批量删除部门
+    // 批量delete部门
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未勾选要删除的数据");
+        this.$Message.warning("您还未勾选要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
+        title: "确认delete",
         content:
-          "您确认要删除所选的 " + this.selectCount + " 条数据及其下级所有数据?",
+          "您确认要delete所选的 " + this.selectCount + " 条数据及其下级所有数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -442,7 +442,7 @@ export default {
           deleteDepartment(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.selectList = [];
               this.selectCount = 0;
               this.cancelSelect();

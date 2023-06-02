@@ -6,7 +6,7 @@
         @mouseenter="showFirstLists"
         @mouseleave="showFirstList = false"
       >
-        全部商品分类
+        Total classification
       </div>
       <ul class="nav-item" v-if="showNavBar">
         <li
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <!-- 全部商品分类 -->
+    <!-- All goods分类 -->
     <div
       class="cate-list"
       v-show="showAlways || showFirstList"
@@ -113,7 +113,7 @@ export default {
       type: Boolean,
     },
     showNavBar: {
-      // 显示全部商品分类右侧导航条
+      // 显示All goods分类右侧导航条
       default: true,
       type: Boolean,
     },
@@ -137,7 +137,7 @@ export default {
       panel: false, // 二级分类展示
       panelData: [], // 二级分类数据
       showFirstList: false, // 始终展示一级列表
-      cateList: [], // 商品分类
+      cateList: [], // Goods分类
     };
   },
   computed: {
@@ -232,7 +232,7 @@ export default {
   position: relative;
   margin: 0 auto;
 }
-/** 商品分类 */
+/** Goods分类 */
 .nav-con {
   width: 1200px;
   height: 40px;
@@ -312,7 +312,7 @@ export default {
   color: #e1251b;
 }
 
-/*显示商品详细信息*/
+/*显示Goods详细信息*/
 .detail-item-panel {
   width: 1000px;
   min-height: 340px;

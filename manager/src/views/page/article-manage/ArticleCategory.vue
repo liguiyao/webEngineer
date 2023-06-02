@@ -32,7 +32,7 @@
             @click="remove(scope.row)"
             size="small"
             style="margin-right: 5px"
-            >删除
+            >delete
           </Button>
           <Button
             v-show="scope.row.level != 1"
@@ -79,9 +79,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="Submit"
-          >提交</Button
+          >Submit</Button
         >
       </div>
     </Modal>
@@ -137,7 +137,7 @@ export default {
           width: "100px",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           headerAlign: "center",
@@ -189,18 +189,18 @@ export default {
       this.formAdd.parentId = 0;
       this.modalVisible = true;
     },
-    // 提交
+    // Submit
     Submit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.formAdd.id;
             saveArticleCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
 
                 this.formAdd = {
                   // 添加或编辑表单对象初始化数据
@@ -220,7 +220,7 @@ export default {
             updateArticleCategory(this.formAdd, this.formAdd.id).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("修改成功");
+                this.$Message.success("modifysuccess");
               } else {
                 // this.$Message.error(res.message);
               }
@@ -232,18 +232,18 @@ export default {
         }
       });
     },
-    // 删除分类
+    // delete分类
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除 " + v.articleCategoryName + " ?",
+        title: "确认delete",
+        content: "您确认要delete " + v.articleCategoryName + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           delArticleCategory(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getAllList();
             }
           });
@@ -256,7 +256,7 @@ export default {
       getArticleCategory().then((res) => {
         this.loading = false;
         if (res.success) {
-          // 仅展开指定级数 默认后台已展开所有
+          // 仅展开指定级数 default后台已展开所有
           let expandLevel = this.expandLevel;
           res.result.forEach(function (e) {
             if (expandLevel == 1) {

@@ -3,15 +3,15 @@ export default {
     // 聊天消息未读数
     unreadNum: 0,
 
-    // 好友申请未读数
+    // 好友Apply  未读数
     applyNum: 0,
 
     // 好友键盘事件监听
     inputEvent: 0,
 
-    // 好友登录状态监听
+    // 好友Login状态监听
     friendStatus: {
-      // 登录状态[0:下线;1:在线;]
+      // Login状态[0:下线;1:在线;]
       status: 0,
       // 好友ID
       friend_id: 0,
@@ -24,7 +24,7 @@ export default {
       state.unreadNum++
     },
 
-    // 好友申请事件监听
+    // 好友Apply  事件监听
     INCR_APPLY_NUM(state) {
       state.applyNum++
     },
@@ -34,7 +34,7 @@ export default {
       state.unreadNum = value
     },
 
-    // 好友申请事件监听
+    // 好友Apply  事件监听
     SET_APPLY_NUM(state, value) {
       state.applyNum = value
     },
@@ -44,7 +44,7 @@ export default {
       state.inputEvent++
     },
 
-    // 更新好友登录状态
+    // 更新好友Login状态
     UPDATE_FRIEND_STATUS(state, value) {
       state.friendStatus = value
     },

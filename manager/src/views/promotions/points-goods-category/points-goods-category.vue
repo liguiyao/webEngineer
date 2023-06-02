@@ -2,7 +2,7 @@
   <div>
     <Card>
       <div class="operation mb_10">
-        <Button @click="addParent" type="primary" icon="md-add">添加积分商品分类</Button>
+        <Button @click="addParent" type="primary" icon="md-add">添加积分Goods分类</Button>
         <Button icon="md-refresh" @click="init">刷新</Button>
       </div>
       <tree-table
@@ -19,7 +19,7 @@
       >
         <template slot="action" slot-scope="scope">
           <Button @click.native="edit(scope.row)" style="margin-right:10px;" size="small">编辑</Button>
-          <Button @click.native="remove(scope.row)" type="primary" size="small">删除</Button>
+          <Button @click.native="remove(scope.row)" type="primary" size="small">delete</Button>
         </template>
       </tree-table>
     </Card>
@@ -43,9 +43,9 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="Submit"
-          >提交</Button
+          >Submit</Button
         >
       </div>
     </Modal>
@@ -84,7 +84,7 @@ export default {
       },
       // 表单验证规则
       formValidate: {
-        name: [{ required: true, message: "商品分类名称不能为空" }],
+        name: [{ required: true, message: "Goods分类名称不能为空" }],
       },
       columns: [
         {
@@ -93,7 +93,7 @@ export default {
           minWidth: "120px",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           headerAlign: "center",
@@ -123,7 +123,7 @@ export default {
     // 添加顶级分类
     addParent() {
       this.modalType = 0;
-      this.modalTitle = "添加积分商品分类";
+      this.modalTitle = "添加积分Goods分类";
       this.parentTitle = "顶级分类";
       this.showParent = true;
       this.$refs.form.resetFields();
@@ -131,19 +131,19 @@ export default {
       this.formAdd.parentId = 0;
       this.modalVisible = true;
     },
-    // 提交
+    // Submit
     Submit() {
       this.$refs.form.validate((valid) => {
         console.log(valid);
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.formAdd.id;
             addPointsGoodsCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
                 this.getAllList();
                 this.modalVisible = false;
                 this.$refs.form.resetFields();
@@ -154,7 +154,7 @@ export default {
             updatePointsGoodsCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("修改成功");
+                this.$Message.success("modifysuccess");
                 this.getAllList();
                 this.modalVisible = false;
                 this.$refs.form.resetFields();
@@ -164,18 +164,18 @@ export default {
         }
       });
     },
-    // 删除
+    // delete
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除 " + v.name + " ?",
+        title: "确认delete",
+        content: "您确认要delete " + v.name + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           deletePointsGoodsCategoryById(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getAllList();
             }
           });

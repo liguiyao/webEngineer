@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <card _Title="评论/晒单" />
+    <card _Title="Comment/publish" />
 
     <div class="order">
       <div class="order-title">
         <Row class="order-row title">
-          <i-col span="12">订单详情</i-col>
-          <i-col span="4">收货人</i-col>
-          <i-col span="4">评价</i-col>
+          <i-col span="12">Order details</i-col>
+          <i-col span="4">Consignee</i-col>
+          <i-col span="4">Evaluation</i-col>
           <i-col span="6"></i-col>
         </Row>
       </div>
@@ -16,9 +16,9 @@
       <div class="order-item" v-else v-for="(item, index) in list" :key="index">
         <div>
           <div class="title order-item-title">
-            <span>订单号:{{item.orderNo}}</span>
+            <span>Order number:{{item.orderNo}}</span>
             <span class="color999 ml_10">{{item.createTime}}</span>
-            <span class="hover-pointer fontsize_12 eval-detail" @click="evaluateDetail(item.id)">评价详情</span>
+            <span class="hover-pointer fontsize_12 eval-detail" @click="evaluateDetail(item.id)">Evaluation details</span>
           </div>
           <Row class="order-item-view">
             <i-col span="12" class="item-view-name">
@@ -31,7 +31,7 @@
             </i-col>
             <i-col span="4">{{item.createBy | secrecyMobile}}</i-col>
             <i-col span="4">
-              {{item.grade==='GOOD'?'好评' : item.grade === 'WORSE'?'差评' : '中评'}}
+              {{item.grade==='GOOD'?'好评' : item.grade === 'WORSE'?'Bad comment' : 'Medium comment'}}
             </i-col>
             <i-col span="4">
               <Tooltip transfer>
@@ -64,11 +64,11 @@ export default {
   name: 'CommentList',
   data () {
     return {
-      commentWay: [`待评价`, `待追评`, `已评价`], // 评价分类
+      commentWay: [`To be evaluated`, `Pending review`, `evaluated`], // Evaluate分类
       loading: false, // 加载状态
-      list: [], // 评价列表
-      total: 0, // 评价总数
-      params: { // 请求参数
+      list: [], // Evaluate列表
+      total: 0, // Evaluate总数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10
       }
@@ -78,7 +78,7 @@ export default {
     this.getList()
   },
   methods: {
-    getList () { // 获取评价列表
+    getList () { // 获取Evaluate列表
       evolutionList(this.params).then(res => {
         if (res.success) {
           const list = res.result.records;
@@ -90,16 +90,16 @@ export default {
         }
       })
     },
-    changePageNum (val) { // 修改页码
+    changePageNum (val) { // modify页码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // 修改页数
+    changePageSize (val) { // modify页数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()
     },
-    evaluateDetail (id) { // 跳转评价详情
+    evaluateDetail (id) { // 跳转Evaluate详情
       this.$router.push({path: '/home/evalDetail', query: { id }})
     }
   }
@@ -164,7 +164,7 @@ export default {
   display:-webkit-box;
   -webkit-box-orient:vertical;/*设置方向*/
   -webkit-line-clamp:3;/*设置超过为省略号的行数*/
-  word-break:break-all; 
+  word-break:break-all;
 }
 
 .eval-detail {

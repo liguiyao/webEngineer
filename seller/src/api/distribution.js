@@ -1,19 +1,19 @@
 
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {getRequest, postRequest, putRequest, deleteRequest, importRequest, getRequestWithNoToken} from '@/libs/axios';
 
 
-//获取分销商品列表
+//获取分销Goods列表
 export const getDistributionGoods = (params) => {
   return getRequest('/distribution/goods', params)
 }
 
-// 取消分销商品
+// Cancel分销Goods
 export const distributionGoodsCancel = (id) => {
   return deleteRequest(`/distribution/goods/cancel/${id}`)
 }
 
-// 选择分销商品
+// select分销Goods
 export const distributionGoodsCheck = (id,param) => {
   return putRequest(`/distribution/goods/checked/${id}`,param)
 }
@@ -38,7 +38,7 @@ export const resumeDistribution = (id, params) => {
     return putRequest(`/distribution/resume/${id}`, params)
 }
 
-//保存更新分销设置
+//Save更新分销设置
 export const saveDistributionSetting = (params) => {
     return postRequest('/distribution/setting/insertOrUpdate', params)
 }
@@ -55,7 +55,7 @@ export const getDistributionOrder = (params) => {
 }
 
 
-//删除分销商品
+//delete分销Goods
 export const delDistributionGoods = (ids) => {
     return deleteRequest(`/distribution/goods/delByIds/${ids}`)
 }
@@ -63,7 +63,7 @@ export const delDistributionGoods = (ids) => {
 export const getDistributionCash = (params) => {
     return getRequest('/distribution/cash/getByPage', params)
 }
-//审核分销佣金申请
+//审核分销佣金Apply
 export const auditDistributionCash = (id,params) => {
     return postRequest(`/distribution/cash/audit/${id}`, params)
 }

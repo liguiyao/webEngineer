@@ -38,7 +38,7 @@
             {{ item.title }}
           </div>
           <div class="goods-bottom">
-            <div class="goods-price">￥{{ item.price | unitPrice }}</div>
+            <div class="goods-price">RM{{ item.price | unitPrice }}</div>
           </div>
         </div>
       </div>
@@ -68,11 +68,11 @@ export default {
     },
   },
   methods: {
-    // 删除商品
+    // deleteGoods
     closeGoods(val, index) {
       this.res.list[0].listWay.splice(index, 1);
     },
-    // 切换商品列表
+    // 切换Goods列表
     handleClickTitle(val, index) {
       this.selected.index = index;
       this.selected.val = val.title;

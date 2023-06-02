@@ -3,12 +3,12 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form" @keydown.enter.native="handleSearch">
         <Form-item label="系统类型" prop="orderSn">
-          <Select v-model="searchForm.type" placeholder="请选择系统类型" clearable style="width: 200px">
+          <Select v-model="searchForm.type" placeholder="Please select系统类型" clearable style="width: 200px">
             <Option value="IOS">苹果</Option>
             <Option value="ANDROID">安卓</Option>
           </Select>
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search">search</Button>
       </Form>
 
       <Button class="mt_10 mb_10" @click="addAppVersion" type="primary">添加</Button>
@@ -32,7 +32,7 @@
           <span class="tips">在移动端项目->manifest.json->基础配置->应用版本名称中查看</span>
         </FormItem>
         <FormItem label="更新时间" prop="versionUpdateDate">
-          <DatePicker v-model="form.versionUpdateDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" clearable placeholder="请选择" style="width: 200px"></DatePicker>
+          <DatePicker v-model="form.versionUpdateDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" clearable placeholder="Please select" style="width: 200px"></DatePicker>
         </FormItem>
         <FormItem label="强制更新">
           <RadioGroup type="button" button-style="solid" v-model="form.forceUpdate">
@@ -52,13 +52,13 @@
             <Radio label="ANDROID">安卓</Radio>
           </RadioGroup>
         </FormItem>
-        <FormItem label="下载地址" prop="downloadUrl">
+        <FormItem label="下载address" prop="downloadUrl">
           <Input v-model="form.downloadUrl" maxlength="100" clearable style="width: 40%" />
           <span class="tips" v-if="form.type == 'IOS'">
             AppStore中App项目下载目录。可从下载App页面点击分享，拷贝链接
           </span>
           <span class="tips" v-else>
-            安卓该链接为应用的下载地址
+            安卓该链接为应用的下载address
           </span>
         </FormItem>
         <FormItem class="form-item-view-el" label="更新内容" prop="content">
@@ -66,8 +66,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="saveAppVersion">保存</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="saveAppVersion">Save</Button>
       </div>
     </Modal>
     <div>
@@ -98,7 +98,7 @@
             <span v-if="form.type == 'IOS'">IOS</span>
             <span v-else>安卓</span>
           </FormItem>
-          <FormItem label="下载地址:">
+          <FormItem label="下载address:">
             {{form.downloadUrl}}
           </FormItem>
           <FormItem label="更新内容:">
@@ -108,7 +108,7 @@
           </FormItem>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="queryModalVisible = false">取消</Button>
+          <Button type="text" @click="queryModalVisible = false">Cancel</Button>
         </div>
       </Modal>
     </div>
@@ -129,11 +129,11 @@ export default {
       modalTitle: "", // 添加app版本标题
       modalType: 0, // 新增、编辑标识
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         type: "",
       },
       form: {
@@ -156,11 +156,11 @@ export default {
           { required: true, message: "版本名称不能为空", trigger: "blur" },
         ],
         downloadUrl: [
-          { required: true, message: "下载地址不能为空", trigger: "blur" },
+          { required: true, message: "下载address不能为空", trigger: "blur" },
         ],
         versionUpdateDate: [{ required: true, message: "更新时间不能为空" }],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       columns: [
         {
           title: "版本名称",
@@ -209,7 +209,7 @@ export default {
         },
 
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 230,
@@ -251,7 +251,7 @@ export default {
                     },
                   },
                 },
-                "修改"
+                "modify"
               ),
               h(
                 "Button",
@@ -269,7 +269,7 @@ export default {
                     },
                   },
                 },
-                "删除"
+                "delete"
               ),
             ]);
           },
@@ -284,18 +284,18 @@ export default {
     init() {
       this.getData();
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getData();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getData();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.getData();
@@ -330,14 +330,14 @@ export default {
     //编辑app版本信息
     editAppVersion(v) {
       this.modalVisible = true;
-      this.modalTitle = "修改APP版本信息";
+      this.modalTitle = "modifyAPP版本信息";
       this.modalType = 1;
       v.forceUpdate ? (v.forceUpdate = 1) : (v.forceUpdate = 0);
       this.form = v;
 
       console.log(this.form);
     },
-    //保存app版本信息
+    //Saveapp版本信息
     saveAppVersion() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -350,12 +350,12 @@ export default {
             this.form.updateTime = versionUpdateDate;
           }
           if (this.modalType == 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.form.id;
             API_Setting.addVersion(this.form).then((res) => {
               this.submitLoading = false;
               if (res && res.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
                 this.modalVisible = false;
                 this.getData();
               }
@@ -364,7 +364,7 @@ export default {
             API_Setting.editVersion(this.form, this.form.id).then((res) => {
               this.submitLoading = false;
               if (res && res.success) {
-                this.$Message.success("修改成功");
+                this.$Message.success("modifysuccess");
                 this.modalVisible = false;
                 this.getData();
               }
@@ -373,18 +373,18 @@ export default {
         }
       });
     },
-    // 删除app版本信息
+    // deleteapp版本信息
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除么?",
+        title: "确认delete",
+        content: "您确认要delete么?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           API_Setting.deleteVersion(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getData();
             }
           });

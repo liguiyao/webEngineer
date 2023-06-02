@@ -2,9 +2,9 @@
   <div class="search">
     <Card style="height: 60px">
       <div>
-        <Button v-if="allowOperation.editPrice" @click="modifyPrice" type="primary">调整价格</Button>
-        <Button v-if="allowOperation.editConsignee" @click="editAddress" type="primary">修改收货地址</Button>
-        <Button v-if="allowOperation.showLogistics" @click="logistics" type="primary">查看物流</Button>
+        <Button v-if="allowOperation.editPrice" @click="modifyPrice" type="primary">调整price</Button>
+        <Button v-if="allowOperation.editConsignee" @click="editAddress" type="primary">modifyDelivery address</Button>
+        <Button v-if="allowOperation.showLogistics" @click="logistics" type="primary">查看logistics</Button>
         <Button @click="orderLogModal = true" type="primary">订单日志</Button>
         <Button @click="printOrder" type="primary" ghost style="float:right;">打印发货单</Button>
         <Button v-if="allowOperation.take" @click="orderTake" type="primary">订单核销</Button>
@@ -21,7 +21,7 @@
       <Row>
         <Col span="12">
         <div class="div-item">
-          <div class="div-item-left">订单号：</div>
+          <div class="div-item-left">Order number：</div>
           <div class="div-item-right">{{ orderInfo.order.sn }}</div>
         </div>
         <div class="div-item">
@@ -45,7 +45,7 @@
         </div>
         <div class="div-item" v-if="orderInfo.order.needReceipt == false">
           <div class="div-item-left">发票信息：</div>
-          <div class="div-item-right">暂无发票信息</div>
+          <div class="div-item-right">absent发票信息</div>
         </div>
         <template v-if="orderInfo.order.needReceipt == true && orderInfo.receipt">
           <div class="div-item">
@@ -54,7 +54,7 @@
               {{
                 orderInfo.receipt.receiptTitle
                 ? orderInfo.receipt.receiptTitle
-                : "暂无"
+                : "absent"
               }}
             </div>
           </div>
@@ -65,7 +65,7 @@
               {{
                 orderInfo.receipt.taxpayerId
                 ? orderInfo.receipt.taxpayerId
-                : "暂无"
+                : "absent"
               }}
             </div>
           </div>
@@ -76,7 +76,7 @@
               {{
                 orderInfo.receipt.receiptContent
                 ? orderInfo.receipt.receiptContent
-                : "暂无"
+                : "absent"
               }}
             </div>
           </div>
@@ -84,10 +84,10 @@
           <div class="div-item">
             <div class="div-item-left">发票金额：</div>
             <div class="div-item-right">
-              <span v-if="orderInfo.receipt.receiptPrice">￥</span>{{
+              <span v-if="orderInfo.receipt.receiptPrice">RM</span>{{
                 orderInfo.receipt.receiptPrice
                 ? orderInfo.receipt.receiptPrice
-                : "暂无" | unitPrice
+                : "absent" | unitPrice
               }}
             </div>
           </div>
@@ -111,7 +111,7 @@
           </div>
         </div>
         <div class="div-item" v-if="orderInfo.order.deliveryMethod == 'SELF_PICK_UP'">
-          <div class="div-item-left">自提信息：</div>
+          <div class="div-item-left">self-lifting信息：</div>
           <div class="div-item-right">
             {{ orderInfo.order.storeAddressPath }}
             {{ orderInfo.order.storeAddressMobile }}
@@ -130,12 +130,12 @@
         </div>
 
         <div class="div-item" v-if="orderInfo.order.orderType != 'VIRTUAL'">
-          <div class="div-item-left">配送方式：</div>
+          <div class="div-item-left">Distribution mode：</div>
           <div class="div-item-right">
             {{
               orderInfo.deliveryMethodValue
               ? orderInfo.deliveryMethodValue
-              : "暂无配送方式"
+              : "absentDistribution mode"
             }}
           </div>
         </div>
@@ -145,7 +145,7 @@
 
     <Card class="mt_10">
       <Table :loading="loading" border :columns="columns" :data="data" ref="table">
-        <!-- 商品栏目格式化 -->
+        <!-- Goods栏目格式化 -->
         <template slot="goodsSlot" slot-scope="{ row }">
           <div style="margin-top: 5px; height: 80px; display: flex">
             <div style="">
@@ -177,19 +177,19 @@
       <div class="goods-total">
         <ul>
           <li>
-            <span class="label">商品总额：</span>
+            <span class="label">Goods总额：</span>
             <span class="txt">{{
-              orderInfo.order.priceDetailDTO.goodsPrice | unitPrice("￥")
+              orderInfo.order.priceDetailDTO.goodsPrice | unitPrice("RM")
             }}</span>
           </li>
           <li v-if="orderInfo.order.priceDetailDTO.discountPrice && orderInfo.order.priceDetailDTO.discountPrice > 0">
             <span class="label">优惠金额：</span>
-            <span class="txt"> {{ orderInfo.order.priceDetailDTO.discountPrice | unitPrice('￥') }} </span>
+            <span class="txt"> {{ orderInfo.order.priceDetailDTO.discountPrice | unitPrice('RM') }} </span>
           </li>
 
           <li v-if="orderInfo.order.priceDetailDTO.couponPrice && orderInfo.order.priceDetailDTO.couponPrice > 0">
-            <span class="label">优惠券金额：</span>
-            <span class="txt"> {{ orderInfo.order.priceDetailDTO.couponPrice | unitPrice('￥') }} </span>
+            <span class="label">coupon金额：</span>
+            <span class="txt"> {{ orderInfo.order.priceDetailDTO.couponPrice | unitPrice('RM') }} </span>
           </li>
           <li
             v-if="orderInfo.order.priceDetailDTO.discountPriceDetail != undefined && orderInfo.order.priceDetailDTO.discountPriceDetail && orderInfo.order.priceDetailDTO.discountPriceDetail != null && orderInfo.order.priceDetailDTO.discountPriceDetail != ''">
@@ -221,14 +221,14 @@
           <li>
             <span class="label">运费：</span>
             <span class="txt">{{
-              orderInfo.order.freightPrice | unitPrice("￥")
+              orderInfo.order.freightPrice | unitPrice("RM")
             }}</span>
           </li>
           <li v-if="orderInfo.order.priceDetailDTO.updatePrice">
-            <span class="label">修改金额：</span>
+            <span class="label">modify金额：</span>
             <span class="txt theme_color">¥{{ orderInfo.order.priceDetailDTO.updatePrice | unitPrice }}</span>
           </li>
-          <!-- <li v-if="showPrices"  v-for="(item,index) in typeList" :key="index" > 
+          <!-- <li v-if="showPrices"  v-for="(item,index) in typeList" :key="index" >
             <hr style="border:1px dashed black;">
               <span class="label" v-if="index == 1 && typeList.length > 1" style="font-size:10px !important;"><a  @click="gotoHomes" style="display: inline-block;border-bottom: 1px dashed;color:black;width:80px;">{{item.promotionName}}：</a></span>
               <span class="txt" style="border-bottom: 1px dashed;font-size:10px !important;" v-if="index == 1 &&  typeList.length > 1">¥{{ item.discountPrice | unitPrice }}</span>
@@ -244,7 +244,7 @@
             }}</span>
           </li>
           <li>
-            <span class="label">应付金额：</span>
+            <span class="label">Amount payable：</span>
             <span class="txt flowPrice">¥{{ orderInfo.order.flowPrice | unitPrice }}</span>
             <!-- <template v-if="orderInfo.order.priceDetailDTO.discountPriceDetail != undefined && orderInfo.order.priceDetailDTO.discountPriceDetail && orderInfo.order.priceDetailDTO.discountPriceDetail != null && orderInfo.order.priceDetailDTO.discountPriceDetail != ''">
                 <Space style="height:20px;float: right;text-align: center;margin-left:30px;margin-right:53px;">
@@ -258,52 +258,52 @@
     <Modal v-model="modal" width="530">
       <p slot="header">
         <Icon type="edit"></Icon>
-        <span>修改金额</span>
+        <span>modify金额</span>
       </p>
       <div>
         <Form ref="modifyPriceForm" :model="modifyPriceForm" label-position="left" :label-width="100"
           :rules="modifyPriceValidate">
           <FormItem label="订单金额" prop="orderPrice">
             <InputNumber style="width: 100%" v-model="modifyPriceForm.orderPrice" size="large" :min="0.01" :max="99999">
-              <span slot="append">元</span>
+              <span slot="append">ringgit</span>
             </InputNumber>
           </FormItem>
         </Form>
       </div>
       <div slot="footer" style="text-align: right">
-        <Button @click="modal = false">关闭</Button>
+        <Button @click="modal = false">Close</Button>
         <Button type="primary" @click="modifyPriceSubmit">调整</Button>
       </div>
     </Modal>
-    <!--收件地址弹出框-->
+    <!--收件address弹出框-->
     <Modal v-model="addressModal" width="530">
       <p slot="header">
         <Icon type="edit"></Icon>
-        <span>修改收件信息</span>
+        <span>modify收件信息</span>
       </p>
       <div>
         <Form ref="addressForm" :model="addressForm" label-position="left" :label-width="100" :rules="addressRule">
-          <FormItem label="收件人" prop="consigneeName">
+          <FormItem label="Receiver" prop="consigneeName">
             <Input v-model="addressForm.consigneeName" size="large" maxlength="20"></Input>
           </FormItem>
           <FormItem label="联系方式" prop="consigneeMobile">
             <Input v-model="addressForm.consigneeMobile" size="large" maxlength="11"></Input>
           </FormItem>
-          <FormItem label="地址信息" prop="consigneeAddressPath">
+          <FormItem label="address信息" prop="consigneeAddressPath">
             <Input v-model="addressForm.consigneeAddressPath" disabled style="width: 325px" v-if="showRegion == false" />
             <Button v-if="showRegion == false" size="small" @click="regionClick" :loading="submitLoading" type="primary"
-              style="margin-left: 8px">修改
+              style="margin-left: 8px">modify
             </Button>
             <region style="width: 400px" @selected="selectedRegion" v-if="showRegion == true" />
           </FormItem>
-          <FormItem label="详细地址" prop="consigneeDetail">
+          <FormItem label="Full address" prop="consigneeDetail">
             <Input v-model="addressForm.consigneeDetail" size="large" maxlength="11"></Input>
           </FormItem>
         </Form>
       </div>
       <div slot="footer" style="text-align: right">
-        <Button @click="addressModal = false">关闭</Button>
-        <Button type="primary" @click="editAddressSubmit">修改</Button>
+        <Button @click="addressModal = false">Close</Button>
+        <Button type="primary" @click="editAddressSubmit">modify</Button>
       </div>
     </Modal>
     <!-- 订单核销 -->
@@ -321,7 +321,7 @@
         </Form>
       </div>
       <div slot="footer" style="text-align: right">
-        <Button @click="orderTakeModal = false">关闭</Button>
+        <Button @click="orderTakeModal = false">Close</Button>
         <Button type="primary" @click="orderTakeSubmit">核销</Button>
       </div>
     </Modal>
@@ -335,29 +335,29 @@
       </div>
 
       <div slot="footer" style="text-align: right">
-        <Button @click="orderLogModal = false">取消</Button>
+        <Button @click="orderLogModal = false">Cancel</Button>
       </div>
     </Modal>
-    <!-- 查询物流 -->
+    <!-- 查询logistics -->
     <Modal v-model="logisticsModal" width="40">
       <p slot="header">
-        <span>查询物流</span>
+        <span>查询logistics</span>
       </p>
       <div class="layui-layer-wrap">
         <dl>
-          <dt>订单号：</dt>
+          <dt>Order number：</dt>
           <dd>
             <div class="text-box">{{ sn }}</div>
           </dd>
         </dl>
         <dl>
-          <dt>物流公司：</dt>
+          <dt>Logistics company ：</dt>
           <dd>
             <div class="text-box">{{ logisticsInfo.shipper || orderInfo.order.logisticsName }}</div>
           </dd>
         </dl>
         <dl>
-          <dt>快递单号：</dt>
+          <dt>Tracking number：</dt>
           <dd>
             <div nctype="ordersSn" class="text-box">
               {{ logisticsInfo.logisticCode || orderInfo.order.logisticsNo }}
@@ -375,7 +375,7 @@
       </div>
 
       <div slot="footer" style="text-align: right">
-        <Button @click="logisticsModal = false">取消</Button>
+        <Button @click="logisticsModal = false">Cancel</Button>
       </div>
     </Modal>
     <!-- 订单发货 -->
@@ -385,8 +385,8 @@
       </p>
       <div>
         <Form :model="faceSheetForm" ref="faceSheetForm" v-if="facesheetFlag" :rules="faceSheetFormValidate">
-          <FormItem label="物流公司" prop="logisticsId" style="position: relative" :label-width="90">
-            <Select v-model="faceSheetForm.logisticsId" placeholder="请选择" style="width: 250px">
+          <FormItem label="Logistics company " prop="logisticsId" style="position: relative" :label-width="90">
+            <Select v-model="faceSheetForm.logisticsId" placeholder="Please select" style="width: 250px">
               <Option v-for="(item, i) in checkedLogistics" :key="i" :value="item.logisticsId">{{ item.name }}
               </Option>
             </Select>
@@ -394,21 +394,21 @@
         </Form>
         <Form v-else ref="orderDeliveryForm" :model="orderDeliveryForm" :label-width="90"
           :rules="orderDeliverFormValidate" style="position: relative">
-          <FormItem label="物流公司" prop="logisticsId">
-            <Select v-model="orderDeliveryForm.logisticsId" placeholder="请选择" style="width: 250px">
+          <FormItem label="Logistics company " prop="logisticsId">
+            <Select v-model="orderDeliveryForm.logisticsId" placeholder="Please select" style="width: 250px">
               <Option v-for="(item, i) in checkedLogistics" :key="i" :value="item.logisticsId">{{ item.name }}
               </Option>
             </Select>
           </FormItem>
           <!-- v-if="showOrder" -->
-          <FormItem label="物流单号" prop="logisticsNo">
+          <FormItem label="logistics number" prop="logisticsNo">
             <Input v-model="orderDeliveryForm.logisticsNo" style="width: 250px" />
           </FormItem>
         </Form>
       </div>
 
       <div slot="footer" style="text-align: right">
-        <Button @click="orderDeliverModal = false">关闭</Button>
+        <Button @click="orderDeliverModal = false">Close</Button>
         <Button type="primary" @click="orderDeliverySubmit">发货</Button>
       </div>
     </Modal>
@@ -429,23 +429,23 @@
           </Row>
           <Row>
             <Col span="12">
-            <p class="lineH30 f14">收件人：{{ orderInfo.order.consigneeName }}</p>
+            <p class="lineH30 f14">Receiver：{{ orderInfo.order.consigneeName }}</p>
             </Col>
             <Col span="12" v-if="orderInfo.order.consigneeMobile">
-            <p class="lineH30 f14" v-if="printHiddenFlag">手机号：{{
+            <p class="lineH30 f14" v-if="printHiddenFlag">Phone number：{{
               orderInfo.order.consigneeMobile.replace(/^(.{3})(?:\d+)(.{4})$/, "$1****$2") }}</p>
-            <p class="lineH30 f14" v-else>手机号：{{ orderInfo.order.consigneeMobile }}</p>
+            <p class="lineH30 f14" v-else>Phone number：{{ orderInfo.order.consigneeMobile }}</p>
             </Col>
           </Row>
           <Row>
             <Col span="24">
-            <p class="lineH30 f14">收货地址：{{ orderInfo.order.consigneeAddressPath }}{{ orderInfo.order.consigneeDetail }}
+            <p class="lineH30 f14">Delivery address：{{ orderInfo.order.consigneeAddressPath }}{{ orderInfo.order.consigneeDetail }}
             </p>
             </Col>
           </Row>
           <Row>
             <Col span="24">
-            <p class="printgoodtitle">商品信息</p>
+            <p class="printgoodtitle">Goods details</p>
             <div class="printgoodinfo">
               <div v-for="(item, index) in orderInfo.orderItems" :key="index" class="printgooditem">
                 <div class="printgoodname">
@@ -458,7 +458,7 @@
                     </span>
                   </div>
                 </div>
-                <span class="printgoodnumber">数量：{{ item.num }}</span>
+                <span class="printgoodnumber">Quantity：{{ item.num }}</span>
               </div>
             </div>
             </Col>
@@ -467,7 +467,7 @@
       </div>
 
       <div slot="footer" style="text-align: right">
-        <Button @click="printModal = false">关闭</Button>
+        <Button @click="printModal = false">Close</Button>
         <Button type="primary" v-print="printInfoObj">打印发货单</Button>
       </div>
     </Modal>
@@ -494,13 +494,13 @@ export default {
       printHiddenFlag: false,//隐藏信息
       printInfoObj: {
         id: "printInfo",//要打印的id名 无#号
-        popTitle: '&nbsp;',//页眉标题 默认浏览器标题 空字符串时显示undefined 使用html语言
-        extraHead: '',//头部文字 默认空
+        popTitle: '&nbsp;',//页眉标题 default浏览器标题 空字符串时显示undefined 使用html语言
+        extraHead: '',//头部文字 default空
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       region: [], //地区
       regionId: [], //地区id
-      logisticsType: 'KUAIDINIAO', //物流类型
+      logisticsType: 'KUAIDINIAO', //logistics类型
       showRegion: false,
       someJSONdata: '',
       faceSheetForm: {
@@ -508,29 +508,29 @@ export default {
       },
       faceSheetFormValidate: {
         logisticsId: [
-          { required: true, message: "请选择物流公司" },
+          { required: true, message: "Please selectLogistics company " },
         ],
       },
       facesheetFlag: false, //电子面单标识
-      orderLogModal: false, //弹出调整价格框
-      logisticsModal: false, //弹出查询物流框
+      orderLogModal: false, //弹出调整price框
+      logisticsModal: false, //弹出查询logistics框
       orderDeliverModal: false, //订单发货弹出框
       orderTakeModal: false, //订单核销弹出框
-      checkedLogistics: [], //选中的物流公司集合
+      checkedLogistics: [], //选中的Logistics company 集合
       allowOperation: {}, //订单可才做选项
       logisticsInfo: {
         shipper: "",
-      }, //物流信息
+      }, //logistics information
       sn: "", //订单编号
       orderInfo: {
-        // 订单信息
+        // order information
         order: {
           priceDetailDTO: {},
         },
       },
-      modal: false, //弹出调整价格框
+      modal: false, //弹出调整price框
       printModal: false,//弹出打印发货单
-      //调整价格表单
+      //调整price表单
       modifyPriceForm: {
         orderPrice: 0,
       },
@@ -547,21 +547,21 @@ export default {
       //订单发货
       orderDeliveryForm: {
         logisticsNo: "", //发货单号
-        logisticsId: "", //物流公司
+        logisticsId: "", //Logistics company
       },
       //验证要调整的订单金额
       modifyPriceValidate: {
         orderPrice: [
-          { required: true, message: "请输入大于等于0或小于99999的合法金额" },
+          { required: true, message: "Please enter 大于等于0或小于99999的合法金额" },
           {
             pattern: /^\d+(\.(([1-9])|(0[1-9])|([\d^0]\d)))?$/,
-            message: "请输入大于0小于9999的合法金额",
+            message: "Please enter 大于0小于9999的合法金额",
             trigger: "change",
           },
         ],
       },
-      addressModal: false, //弹出修改收件信息框
-      //收件地址表单
+      addressModal: false, //弹出modify收件信息框
+      //收件address表单
       addressForm: {
         consigneeName: "",
         consigneeMobile: "",
@@ -576,24 +576,24 @@ export default {
       },
       addressRule: {
         consigneeName: [
-          { required: true, message: "收货人姓名不能为空", trigger: "blur" },
+          { required: true, message: "receivername不能为空", trigger: "blur" },
         ],
         consigneeMobile: [
           { required: true, message: "联系方式不能为空", trigger: "blur" },
           {
             pattern: RegExp.mobile,
             trigger: "blur",
-            message: "请输入正确的手机号",
+            message: "Please enter correctly phone number",
           },
         ],
         consigneeDetail: [
-          { required: true, message: "详细地址不能为空", trigger: "blur" },
+          { required: true, message: "Full address不能为空", trigger: "blur" },
         ],
       },
 
       columns: [
         {
-          title: "商品",
+          title: "Goods",
           key: "goodsName",
           minWidth: 400,
           slot: "goodsSlot",
@@ -613,57 +613,57 @@ export default {
                 resultText += "秒杀 ";
               }
               if (type.indexOf("COUPON") != -1) {
-                resultText += "优惠券 ";
+                resultText += "coupon ";
               }
               if (type.indexOf("FULL_DISCOUNT") != -1) {
-                resultText += "满减 ";
+                resultText += "full减 ";
               }
               if (type.indexOf("POINTS_GOODS") != -1) {
-                resultText += "积分商品 ";
+                resultText += "积分Goods ";
               }
             }
             if (resultText === "") {
-              resultText = "暂无未参与任何促销";
+              resultText = "absent未参与任何促销";
             }
             return h("div", resultText);
           },
         },
         {
-          title: "单价",
+          title: "Price",
           key: "unitPrice",
           minWidth: 100,
           render: (h, params) => {
             if (!params.row.unitPrice) {
-              return h("div", this.$options.filters.unitPrice(0, "￥"));
+              return h("div", this.$options.filters.unitPrice(0, "RM"));
             }
             return h(
               "div",
               this.$options.filters.unitPrice(
                 params.row.unitPrice,
-                "￥"
+                "RM"
               )
             );
           },
         },
 
         {
-          title: "数量",
+          title: "Quantity",
           key: "num",
           minWidth: 80,
         },
         {
-          title: "小计",
+          title: "subtotal",
           key: "subTotal",
           minWidth: 100,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.flowPrice, "￥")
+              this.$options.filters.unitPrice(params.row.flowPrice, "RM")
             );
           },
         },
       ],
-      data: [], // 商品表单数据
+      data: [], // Goods表单数据
       orderLogColumns: [
         // 表头
         {
@@ -672,12 +672,12 @@ export default {
           minWidth: 120,
         },
         {
-          title: "操作者",
+          title: "operation者",
           key: "operatorName",
           minWidth: 120,
         },
         {
-          title: "操作类型",
+          title: "operation类型",
           key: "operatorType",
           minWidth: 120,
         },
@@ -692,7 +692,7 @@ export default {
     };
   },
   methods: {
-    //修改地址
+    //modifyaddress
     regionClick () {
       this.showRegion = true;
       this.regionId = "";
@@ -712,14 +712,14 @@ export default {
     printCancel () {
       // this.printHiddenFlag = false;
     },
-    //订单核销提交
+    //订单核销Submit
     orderTakeSubmit () {
       this.$refs.orderTakeForm.validate((valid) => {
         if (valid) {
           API_Order.orderTake(this.sn, this.orderTakeForm.qrCode).then(
             (res) => {
               if (res.success) {
-                this.$Message.success("订单核销成功");
+                this.$Message.success("订单核销success");
                 this.orderTakeModal = false;
                 this.getDataDetail();
               }
@@ -775,20 +775,20 @@ export default {
         }
       });
     },
-    // 修改订单金额
+    // modify订单金额
     modifyPrice () {
-      //默认要修改的金额为订单总金额
+      //default要modify的金额为订单总金额
       this.modifyPriceForm.orderPrice = this.orderInfo.order.flowPrice;
       this.modal = true;
     },
-    //修改订单金额提交
+    //modify订单金额Submit
     modifyPriceSubmit () {
       this.$refs.modifyPriceForm.validate((valid) => {
         if (valid) {
           API_Order.modifyOrderPrice(this.sn, this.modifyPriceForm).then(
             (res) => {
               if (res.success) {
-                this.$Message.success("修改订单金额成功");
+                this.$Message.success("modify订单金额success");
                 this.modal = false;
                 this.getDataDetail();
               }
@@ -797,12 +797,12 @@ export default {
         }
       });
     },
-    // 选中的地址
+    // 选中的address
     selectedRegion (val) {
       this.region = val[1];
       this.regionId = val[0];
     },
-    //查询物流
+    //查询logistics
     logistics () {
       this.logisticsModal = true;
       API_Order.getTraces(this.sn).then((res) => {
@@ -823,7 +823,7 @@ export default {
             API_Order.orderShunFengDelivery(this.sn).then((res) => {
               if (res.success) {
                 this.$Modal.remove();
-                this.$Message.success("订单发货成功");
+                this.$Message.success("订单发货success");
                 this.getDataDetail()
               }
             })
@@ -874,7 +874,7 @@ export default {
         this.orderDeliverModal = false;
       }
     },
-    //订单发货提交
+    //订单发货Submit
     orderDeliverySubmit () {
       if (this.facesheetFlag) {
         this.$refs['faceSheetForm'].validate((valid) => {
@@ -893,7 +893,7 @@ export default {
             API_Order.orderDelivery(this.sn, this.orderDeliveryForm).then(
               (res) => {
                 if (res.success) {
-                  this.$Message.success("订单发货成功");
+                  this.$Message.success("订单发货success");
                   this.orderDeliverModal = false;
                   this.getDataDetail();
                 }
@@ -903,7 +903,7 @@ export default {
         });
       }
     },
-    //弹出修改收货地址框
+    //弹出modifyDelivery address框
     editAddress () {
       this.addressModal = true;
       this.showRegion = false;
@@ -917,10 +917,10 @@ export default {
       this.addressForm.consigneeAddressIdPath =
         this.orderInfo.order.consigneeAddressIdPath;
     },
-    //修改收货地址
+    //modifyDelivery address
     editAddressSubmit () {
       if (this.regionId == "") {
-        this.$Message.error("请选择地址");
+        this.$Message.error("Please selectaddress");
         return;
       }
       this.addressForm.consigneeAddressPath = this.region;
@@ -930,7 +930,7 @@ export default {
           API_Order.editOrderConsignee(this.sn, this.addressForm).then(
             (res) => {
               if (res.success) {
-                this.$Message.success("收货地址修改成功");
+                this.$Message.success("Delivery addressmodifysuccess");
                 this.addressModal = false;
                 this.getDataDetail();
               }
@@ -954,7 +954,7 @@ export default {
     this.getDataDetail();
     this.getLogisticsSetting();
   },
-  // 如果是从详情页返回列表页，修改列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
   beforeRouteLeave (to, from, next) {
     if (to.name === 'orderList' || to.name === 'virtualOrderList') {
       to.meta.keepAlive = true
@@ -964,7 +964,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-// 建议引入通用样式 可删除下面样式代码
+// 建议引入通用样式 可delete下面样式代码
 // @import "@/styles/table-common.scss";
 .lineH30 {
   line-height: 30px;

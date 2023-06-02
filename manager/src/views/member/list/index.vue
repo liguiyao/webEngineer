@@ -4,17 +4,17 @@
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
           <Form-item label="会员名称" prop="username">
-            <Input type="text" v-model="searchForm.username" placeholder="请输入会员名称" clearable style="width: 200px" />
+            <Input type="text" v-model="searchForm.username" placeholder="Please enter 会员名称" clearable style="width: 200px" />
           </Form-item>
 
           <Form-item label="会员昵称" prop="nickName">
-            <Input type="text" v-model="searchForm.nickName" placeholder="请输入会员昵称" clearable style="width: 200px" />
+            <Input type="text" v-model="searchForm.nickName" placeholder="Please enter 会员昵称" clearable style="width: 200px" />
           </Form-item>
 
           <Form-item label="联系方式" prop="mobile">
-            <Input type="text" v-model="searchForm.mobile" placeholder="请输入会员联系方式" clearable style="width: 200px" />
+            <Input type="text" v-model="searchForm.mobile" placeholder="Please enter 会员联系方式" clearable style="width: 200px" />
           </Form-item>
-          <Button @click="handleSearch" class="search-btn" type="primary" icon="ios-search">搜索</Button>
+          <Button @click="handleSearch" class="search-btn" type="primary" icon="ios-search">search</Button>
         </Form>
       </Row>
       <Row class="operation padding-row" v-if="!selectedMember">
@@ -32,23 +32,23 @@
     <!-- 添加用户模态框 -->
     <Modal v-model="addFlag" title="添加会员">
       <Form ref="addMemberForm" :model="addMemberForm" :rules="addRule" :label-width="100">
-        <FormItem label="手机号码" prop="mobile" style="width: 90%;">
-          <Input v-model="addMemberForm.mobile" maxlength="11" placeholder="请输入手机号码" />
+        <FormItem label="Phone number" prop="mobile" style="width: 90%;">
+          <Input v-model="addMemberForm.mobile" maxlength="11" placeholder="Please enter Phone number" />
         </FormItem>
         <FormItem label="会员名称" prop="username" style="width: 90%">
-          <Input v-model="addMemberForm.username" maxlength="15" placeholder="请输入会员名称" />
+          <Input v-model="addMemberForm.username" maxlength="15" placeholder="Please enter 会员名称" />
         </FormItem>
 
         <FormItem label="会员密码" prop="password" style="width: 90%">
-          <Input type="password" password v-model="addMemberForm.password" maxlength="20" placeholder="请输入会员密码" />
+          <Input type="password" password v-model="addMemberForm.password" maxlength="20" placeholder="Please enter 会员密码" />
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button @click="addFlag = false">取消</Button>
-        <Button type="primary" @click="addMemberSubmit">确定</Button>
+        <Button @click="addFlag = false">Cancel</Button>
+        <Button type="primary" @click="addMemberSubmit">Confirm</Button>
       </div>
     </Modal>
-    <!-- 修改模态框 -->
+    <!-- modify模态框 -->
     <Modal v-model="descFlag" :title="descTitle" @on-ok="handleSubmitModal" width="500">
       <Form ref="form" :model="form" :rules="ruleValidate" :label-width="80">
 
@@ -59,7 +59,7 @@
           <Button type="text" class="upload" @click="() => {
                 this.picModelFlag = true;
                 this.$refs.ossManage.selectImage = true;
-              }">修改</Button>
+              }">modify</Button>
           <input type="file" style="display: none" id="file" />
         </FormItem>
         <FormItem label="用户名" prop="name">
@@ -78,7 +78,7 @@
             </Radio>
           </RadioGroup>
         </FormItem>
-        <FormItem label="修改密码" prop="password">
+        <FormItem label="modify密码" prop="password">
           <Input type="password" style="width: 220px" password v-model="form.newPassword" />
         </FormItem>
         <FormItem label="生日" prop="birthday">
@@ -89,7 +89,7 @@
             <Input disabled style="width: 250px" :value="form.region" />
             <Button type="text" @click="() => {
                   this.updateRegion = !this.updateRegion;
-                }">修改</Button>
+                }">modify</Button>
           </div>
           <div class="form-item" v-else>
             <region style="width: 250px" @selected="selectedRegion" />
@@ -129,7 +129,7 @@ export default {
         password: "",
       },
       searchForm: {
-        // 请求参数
+        // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         order: "desc",
@@ -137,21 +137,21 @@ export default {
         mobile: "",
         disabled: "OPEN",
       },
-      picModelFlag: false, // 选择图片
+      picModelFlag: false, // select图片
       form: {}, // 表单数据
       addRule: {
         // 验证规则
         mobile: [
-          { required: true, message: "请输入手机号码" },
+          { required: true, message: "Please enter Phone number" },
           {
             pattern: RegExp.mobile,
-            message: "请输入正确的手机号",
+            message: "Please enter correctly phone number",
           },
         ],
-        username: [{ required: true, message: "请输入会员名称" }],
-        password: [{ required: true, message: "请输入密码" }],
+        username: [{ required: true, message: "Please enter 会员名称" }],
+        password: [{ required: true, message: "Please enter 密码" }],
       },
-      ruleValidate: {}, //修改验证
+      ruleValidate: {}, //modify验证
       columns: [
         {
           title: "会员名称",
@@ -182,7 +182,7 @@ export default {
         },
 
         {
-          title: "积分数量",
+          title: "积分Quantity",
           align: "left",
           width: 100,
           render: (h, params) => {
@@ -194,7 +194,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           width: 200,
@@ -226,7 +226,7 @@ export default {
                       },
                     },
                   },
-                  params.row.___selected ? "已选择" : "选择"
+                  params.row.___selected ? "已select" : "select"
                 ),
 
                 h(
@@ -294,7 +294,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      selectMember: [], //保存选中的用户
+      selectMember: [], //Save选中的用户
     };
   },
   props: {
@@ -303,7 +303,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    // 已选择用户数据
+    // 已select用户数据
     selectedList: {
       type: null,
       default: () => {
@@ -336,7 +336,7 @@ export default {
       if (!findUser) {
         this.selectMember.push(val);
       } else {
-        // 有重复数据就删除
+        // 有重复数据就delete
         this.selectMember.map((item, index) => {
           if (item.id == findUser.id) {
             this.selectMember.splice(index, 1);
@@ -372,13 +372,13 @@ export default {
       this.searchForm.pageNumber = 1;
       this.getData();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getData();
     },
-    //查看详情修改
+    //查看详情modify
     editPerm(val) {
       this.descTitle = `查看用户 ${val.username}`;
       this.descFlag = true;
@@ -415,7 +415,7 @@ export default {
       this.picModelFlag = false;
       this.form.face = val.url;
     },
-    //添加会员提交
+    //添加会员Submit
     addMemberSubmit() {
       this.addMemberForm.password = this.md5(this.addMemberForm.password);
       this.$refs.addMemberForm.validate((valid) => {
@@ -424,7 +424,7 @@ export default {
             if (res.result) {
               this.$refs.addMemberForm.resetFields();
               this.getData();
-              this.$Message.success("添加成功！");
+              this.$Message.success("添加success！");
               this.addFlag = false;
             }
           });
@@ -432,7 +432,7 @@ export default {
       });
     },
 
-    // 选中的地址
+    // 选中的address
     selectedRegion(val) {
       this.region = val[1];
       this.regionId = val[0];
@@ -449,12 +449,12 @@ export default {
         disabled: false,
       };
       this.$Modal.confirm({
-        title: "提示",
+        title: "Tips",
         content: "<p>确认禁用此会员？</p>",
         onOk: () => {
           API_Member.updateMemberStatus(params).then((res) => {
             if (res.success) {
-              this.$Message.success("禁用成功");
+              this.$Message.success("禁用success");
               this.getData();
             } else {
               // this.$Message.error(res.message);
@@ -464,7 +464,7 @@ export default {
       });
     },
 
-    // 提交修改数据
+    // Submitmodify数据
     handleSubmitModal() {
       debugger
       const { nickName, sex, username, face, newPassword,id } = this.form;
@@ -490,7 +490,7 @@ export default {
       }
       API_Member.updateMember(submit).then((res) => {
         if (res.result) {
-          this.$Message.success("修改成功！");
+          this.$Message.success("modifysuccess！");
           this.init();
         }
       });

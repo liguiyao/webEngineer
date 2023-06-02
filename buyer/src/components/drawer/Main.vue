@@ -40,18 +40,18 @@ export default {
     userInfo () {
       return Storage.getItem('userInfo');
     },
-    // 购物车商品数量
+    // 购物车GoodsQuantity
     cartNum () {
       return this.$store.state.cartNum
     }
   },
   methods: {
-    showCartNum (item) { // 获取购物车数量
+    showCartNum (item) { // 获取购物车Quantity
       if (this.userInfo && item.title === 'Cart') {
         this.getCartList()
       }
     },
-    clickBar (val) { // tabbar点击操作
+    clickBar (val) { // tabbar点击operation
       if (!this.userInfo) {
         this.$Modal.confirm({
           title: 'Please login',
@@ -85,7 +85,7 @@ export default {
         }
       }
     },
-    openBlank (path) { // 新页面打开地址
+    openBlank (path) { // 新页面打开address
       let routerUrl = this.$router.resolve({
         path: path
       })

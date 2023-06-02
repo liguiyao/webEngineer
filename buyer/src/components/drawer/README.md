@@ -30,10 +30,10 @@ titleShow //是否显示title
 
 > 账户信息
 > 购物车
-> 我的订单
-> 优惠券
+> My order
+> coupon
 > 我的资产
-> 我的足迹
+> My tract
 > 我的收藏
 > 邮箱订阅
 

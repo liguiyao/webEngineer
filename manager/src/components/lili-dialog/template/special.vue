@@ -36,9 +36,9 @@ import { getHomeList }  from "@/api/other.js";
 export default {
   data() {
     return {
-      loading: true, //表格请求数据为true
+      loading: true, //表格Please 求数据为true
       promotionList: "", // 活动列表
-      selectedIndex: 0, //左侧菜单选择
+      selectedIndex: 0, //左侧菜单select
       promotions: "", //选中的活动key
       index: 999, // 已选下标
       data:[],
@@ -60,7 +60,7 @@ export default {
         //   width: 200,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           fixed: "right",
           width: 100,
@@ -81,7 +81,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "选择"
+                this.index == params.index ? "已选" : "select"
               ),
             ]);
           },

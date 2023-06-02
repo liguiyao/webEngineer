@@ -6,7 +6,7 @@ export const loginRouter = {
   path: "/login",
   name: "login",
   meta: {
-    title: `登录 - ${config.title}商家后台`
+    title: `Login - ${config.title}商家后台`
   },
   component: () => import("@/views/login.vue")
 };
@@ -31,7 +31,7 @@ export const otherRouter = {
     },
     {
       path: "change-password",
-      title: "修改密码",
+      title: "modify密码",
       name: "change_pass",
       component: () => import("@/views/change-password/change-password.vue")
     },
@@ -43,13 +43,13 @@ export const otherRouter = {
     },
     {
       path: "goods-operation",
-      title: "添加商品",
+      title: "添加Goods",
       name: "goods-operation",
       component: () => import("@/views/goods/goods-seller/goodsOperation.vue")
     },
     {
       path: "goods-operation-edit",
-      title: "编辑商品",
+      title: "编辑Goods",
       name: "goods-operation-edit",
       component: () => import("@/views/goods/goods-seller/goodsOperation.vue")
     },
@@ -67,7 +67,7 @@ export const otherRouter = {
     },
     {
       path: "add-coupon",
-      title: "店铺优惠券",
+      title: "店铺coupon",
       name: "add-coupon",
       component: () => import("@/views/promotion/coupon/coupon-publish.vue")
     },
@@ -85,13 +85,13 @@ export const otherRouter = {
     },
     {
       path: "seckill-goods",
-      title: "限时抢购商品",
+      title: "限时抢购Goods",
       name: "seckill-goods",
       component: () => import("@/views/promotion/seckill/seckill-goods.vue")
     },
     {
       path: "pintuan-goods",
-      title: "拼团商品",
+      title: "拼团Goods",
       name: "pintuan-goods",
       component: () => import("@/views/promotion/pintuan/pintuan-goods.vue")
     },
@@ -103,7 +103,7 @@ export const otherRouter = {
     },
     {
       path: "order-detail",
-      title: "订单详情",
+      title: "Order details",
       name: "order-detail",
       component: () => import("@/views/order/order/orderDetail.vue")
     },
@@ -121,21 +121,21 @@ export const otherRouter = {
     },
     {
       path: "order-complaint-detail",
-      title: "投诉详情",
+      title: "Complaint详情",
       name: "order-complaint-detail",
       component: () =>
         import("@/views/order/after-order/orderComplaintDetail.vue")
     },
     {
       path: "return-goods-order-detail",
-      title: "售后详情",
+      title: "After-sale details",
       name: "return-goods-order-detail",
       component: () =>
         import("@/views/order/after-order/reurnGoodsOrderDetail.vue")
     },
     {
       path: "full-discount-detail",
-      title: "添加满额活动",
+      title: "添加full额活动",
       name: "full-discount-detail",
       component: () => import("@/views/promotion/full-discount/full-discount-add.vue")
     },
@@ -147,7 +147,7 @@ export const otherRouter = {
     },
     {
       path: "order-detail",
-      title: "订单详情",
+      title: "Order details",
       name: "order-detail",
       component: () => import("@/views/order/order/orderDetail.vue")
     },
@@ -165,7 +165,7 @@ export const otherRouter = {
     },
     {
       path: "promotions/coupon-receive",
-      title: "优惠券领取记录",
+      title: "coupon领取记录",
       name: "coupon-receive",
       component: () => import("@/views/promotion/coupon/coupon-receive.vue"),
     },

@@ -11,7 +11,7 @@
                   <Input
                     type="text"
                     v-model="searchMessageForm.title"
-                    placeholder="请输入消息标题"
+                    placeholder="Please enter 消息标题"
                     clearable
                     style="width: 200px"
                   />
@@ -21,13 +21,13 @@
                   <Input
                     type="text"
                     v-model="searchMessageForm.content"
-                    placeholder="请输入消息内容"
+                    placeholder="Please enter 消息内容"
                     clearable
                     style="width: 200px"
                   />
                 </Form-item>
 
-                <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+                <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
 
               </Form>
               <Row class="operation" style="margin-top: 20px">
@@ -94,7 +94,7 @@
       <div class="message-title">
         <p>1、左侧#{xxx}为消息变量</p>
         <p>2、如果要发送的消息包含消息变量则将消息变量复制到消息内容中即可，注意格式</p>
-        <p>3、例：比如消息变量为#{订单号}，发送的内容为：订单号为xxx的订单已经发货注意查收，完整的消息内容应该为订单号为#{订单号}的订单已经发货注意查收</p>
+        <p>3、例：比如消息变量为#{Order number}，发送的内容为：Order number为xxx的订单已经发货注意查收，完整的消息内容应该为Order number为#{Order number}的订单已经发货注意查收</p>
       </div>
       <div class="send-setting">
         <div class="left-show">
@@ -120,8 +120,8 @@
 
       </div>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
-        <Button type="primary" :loading="submitLoading" @click="handleSubmit">保存</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
+        <Button type="primary" :loading="submitLoading" @click="handleSubmit">Save</Button>
       </div>
     </Modal>
 
@@ -169,9 +169,9 @@
             </Option>
           </Select>
         </FormItem>
-        <FormItem label="选择会员" prop="scopeType"
+        <FormItem label="select会员" prop="scopeType"
                   v-if="memberShow">
-          <Button type="primary" icon="ios-add" @click="addVip" ghost>选择会员</Button>
+          <Button type="primary" icon="ios-add" @click="addVip" ghost>select会员</Button>
           <div style="margin-top:24px;" v-if="messageSendForm.messageClient == 'member'">
             <Table border :columns="userColumns" :data="selectedMember">
             </Table>
@@ -182,7 +182,7 @@
         </Modal>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="messageModalVisible = false">取消</Button>
+        <Button type="text" @click="messageModalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="sendMessageSubmit"
         >发送
         </Button>
@@ -278,7 +278,7 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="messageDetailModalVisible = false">取消</Button>
+        <Button type="text" @click="messageDetailModalVisible = false">Cancel</Button>
       </div>
     </Modal>
   </div>
@@ -297,8 +297,8 @@
     },
     data() {
       return {
-        checkUserList: false, //会员选择器
-        selectedMember: [], //选择的会员
+        checkUserList: false, //会员select器
+        selectedMember: [], //select的会员
         loading: true, // 表单加载状态
         modalVisible: false, // 添加或编辑显示
         modalTitle: "", // 添加或编辑标题
@@ -309,11 +309,11 @@
         memberShow: false, //指定会员是否出现
         shopList: [],//店铺列表
         searchForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
         },
         messageFormValidate: {
           title: [
@@ -327,19 +327,19 @@
         },
         //管理端消息汇总
         searchMessageForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
         },
         //发送给店铺的消息
         searchShopMessageForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
         },
         //发送给会员的消息
         searchMemberMessageForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
         },
@@ -357,17 +357,17 @@
         // 表单验证规则
         formValidate: {
           noticeNode: [
-            {required: true, message: '请输入通知节点', trigger: 'blur'},
+            {required: true, message: 'Please enter 通知节点', trigger: 'blur'},
           ],
           noticeTitle: [
-            {required: true, message: '请输入通知标题', trigger: 'blur'},
+            {required: true, message: 'Please enter 通知标题', trigger: 'blur'},
           ],
           noticeContent: [
-            {required: true, message: '请输通知内容', trigger: 'blur'},
+            {required: true, message: 'Please 输通知内容', trigger: 'blur'},
           ],
 
         },
-        submitLoading: false, // 添加或编辑提交状态
+        submitLoading: false, // 添加或编辑Submit状态
         selectCount: 0, // 多选计数
         noticeColumns: [
           {
@@ -395,14 +395,14 @@
             sortType: "desc",
             render: (h, params) => {
               if (params.row.noticeStatus == "OPEN") {
-                return h("Badge", {props: {status: "success", text: "开启"}})
+                return h("Badge", {props: {status: "success", text: "Opening"}})
               } else if (params.row.noticeStatus == "CLOSE") {
-                return h("Badge", {props: {status: "processing", text: "关闭"}})
+                return h("Badge", {props: {status: "processing", text: "Close"}})
               }
             }
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             fixed: "right",
@@ -425,7 +425,7 @@
                       }
                     }
                   },
-                  "关闭"
+                  "Close"
                 );
               } else {
                 enableOrDisable = h(
@@ -444,7 +444,7 @@
                       }
                     }
                   },
-                  "开启"
+                  "Opening"
                 );
               }
               return h("div", [
@@ -479,14 +479,14 @@
             minWidth: 120,
           },
           {
-            title: "手机号",
+            title: "Phone number",
             key: "mobile",
             render: (h, params) => {
-              return h("div", params.row.mobile || "暂未填写");
+              return h("div", params.row.mobile || "暂未enter ");
             },
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             minWidth: 50,
             align: "center",
@@ -505,7 +505,7 @@
                     },
                   },
                 },
-                "删除"
+                "delete"
               );
             },
           },
@@ -568,7 +568,7 @@
             sortable: false,
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             fixed: "right",
@@ -609,7 +609,7 @@
                       }
                     }
                   },
-                  "删除"
+                  "delete"
                 ),
               ]);
             }
@@ -625,7 +625,7 @@
             sortable: false,
           },
           {
-            title: "店铺名称",
+            title: "store name",
             key: "storeName",
             sortable: false,
           },
@@ -682,9 +682,9 @@
       init() {
         this.getMessage();
       },
-      // 返回已选择的用户
+      // Back已select的用户
       callbackSelectUser(val) {
-        // 每次将返回的数据回调判断
+        // 每次将Back的数据回调判断
         let findUser = this.selectedMember.find((item) => {
           return item.id === val.id;
         });
@@ -692,7 +692,7 @@
         if (!findUser) {
           this.selectedMember.push(val);
         } else {
-          // 有重复数据就删除
+          // 有重复数据就delete
           this.selectedMember.map((item, index) => {
             if (item.id === findUser.id) {
               this.selectedMember.splice(index, 1);
@@ -702,12 +702,12 @@
         this.reSelectMember();
       },
 
-      // 删除选择的会员
+      // deleteselect的会员
       delUser(index) {
         this.selectedMember.splice(index, 1);
         this.reSelectMember();
       },
-      //更新选择的会员
+      //更新select的会员
       reSelectMember() {
         this.form.memberDTOS = this.selectedMember.map((item) => {
           return {
@@ -745,18 +745,18 @@
           this.getMessage()
         }
       },
-      // 分页 修改页码
+      // 分页 modify页码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getNoticeMessage();
       },
-      // 分页 修改页数
+      // 分页 modify页数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;
         this.getNoticeMessage();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchMessageForm.pageNumber = 1;
         this.getMessage();
@@ -818,18 +818,18 @@
           this.messageSendForm.userNames.push(item.label)
         })
       },
-      //删除站内信
+      //delete站内信
       delete(id) {
         console.warn(id)
         this.$Modal.confirm({
-          title: "确认删除",
-          // 记得确认修改此处
-          content: "您确认删除此站内信 ?",
+          title: "确认delete",
+          // 记得确认modify此处
+          content: "您确认delete此站内信 ?",
           loading: true,
           onOk: () => {
             API_Setting.deleteMessage(id).then((res) => {
               if (res.success) {
-                this.$Message.success("删除成功");
+                this.$Message.success("deletesuccess");
               }
               this.$Modal.remove();
               this.getMessage();
@@ -855,7 +855,7 @@
             userNames: [],
           }
       },
-      //管理员发送站内信提交
+      //管理员发送站内信Submit
       sendMessageSubmit() {
         let userIds = [];
         let userNames = [];
@@ -870,7 +870,7 @@
         }
 
         if (this.messageSendForm.userIds.length <= 0 && this.messageSendForm.messageRange == "APPOINT") {
-          this.$Message.error("请选择发送对象");
+          this.$Message.error("Please select发送对象");
           return
         }
         this.$refs["messageSendForm"].validate(valid => {
@@ -878,7 +878,7 @@
             API_Other.sendMessage(this.messageSendForm).then((res) => {
               this.loading = false;
               if (res.success) {
-                this.$Message.success("发送成功");
+                this.$Message.success("发送success");
                 this.messageModalVisible = false
                 this.getMessage();
               }
@@ -888,13 +888,13 @@
         })
 
       },
-      //发送对象选择
+      //发送对象select
       selectObject(v) {
         this.messageSendForm.messageRange = "ALL"
         this.shopShow = false
         this.memberShow =false
       },
-      //弹出选择商家的框
+      //弹出select商家的框
       selectShop(v) {
         if (v == "APPOINT") {
           this.getShopList()
@@ -935,7 +935,7 @@
         });
         this.loading = false;
       },
-      //保存通知类站内信
+      //Save通知类站内信
       handleSubmit() {
         this.$refs.form.validate((valid) => {
           if (valid) {
@@ -946,7 +946,7 @@
             API_Setting.editNoticeMessage(this.form.id, params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("修改成功");
+                this.$Message.success("modifysuccess");
                 this.modalVisible = false;
                 this.getNoticeMessage();
               }
@@ -1001,7 +1001,7 @@
       disable(v) {
         API_Setting.updateMessageStatus(v.id, "CLOSE").then((res) => {
           if (res.success) {
-            this.$Message.success("禁用成功");
+            this.$Message.success("禁用success");
             this.getNoticeMessage();
           }
         });
@@ -1010,7 +1010,7 @@
       enable(v) {
         API_Setting.updateMessageStatus(v.id, "OPEN").then((res) => {
           if (res.success) {
-            this.$Message.success("启用成功");
+            this.$Message.success("启用success");
             this.getNoticeMessage();
           }
         });

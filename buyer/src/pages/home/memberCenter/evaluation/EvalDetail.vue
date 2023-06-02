@@ -1,25 +1,25 @@
 <template>
   <div class="add-eval">
     <div class="title">
-      <card _Title="评价详情" :_Size="16"></card>
+      <card _Title="Evaluation details" :_Size="16"></card>
       <p>
-        <span class="color999">创建人：</span
+        <span class="color999">Creator：</span
         ><span>{{ orderGoods.createBy | secrecyMobile }}</span>
         <span class="color999 ml_20">{{ orderGoods.createTime }}</span>
       </p>
     </div>
-    <!-- 物流评分、服务评分 -->
+    <!-- logistics评分、服务评分 -->
     <div class="delivery-rate">
-      <div class="fontsize_16">物流服务评价：</div>
+      <div class="fontsize_16">Service evaluate：</div>
       <div class="color999">
-        <span>物流评价：<Rate disabled :value="Number(orderGoods.deliveryScore)" /></span>
-        <span>服务评价：<Rate disabled :value="Number(orderGoods.serviceScore)" /></span>
+        <span>Logistics：<Rate disabled :value="Number(orderGoods.deliveryScore)" /></span>
+        <span>Service：<Rate disabled :value="Number(orderGoods.serviceScore)" /></span>
         <span
-          >服务评价：<Rate disabled :value="Number(orderGoods.descriptionScore)"
+          >Service：<Rate disabled :value="Number(orderGoods.descriptionScore)"
         /></span>
       </div>
     </div>
-    <!-- 添加订单评价  左侧商品详情  右侧评价框 -->
+    <!-- 添加订单Evaluate  左侧Goods详情  右侧Evaluate框 -->
     <ul class="goods-eval">
       <li>
         <div class="goods-con">
@@ -40,16 +40,16 @@
 
         <div class="eval-con">
           <div>
-            <span class="color999">商品评价：</span>
+            <span class="color999">Goods evaluation：</span>
             <RadioGroup
               style="margin-bottom: 5px; color: #999"
               v-model="orderGoods.grade"
               type="button"
               button-style="solid"
             >
-              <Radio label="GOOD" disabled>好评</Radio>
-              <Radio label="MODERATE" disabled>中评</Radio>
-              <Radio label="WORSE" disabled>差评</Radio>
+              <Radio label="GOOD" disabled>Good</Radio>
+              <Radio label="MODERATE" disabled>Medium</Radio>
+              <Radio label="WORSE" disabled>Bad</Radio>
             </RadioGroup>
             <Input
               type="textarea"
@@ -61,7 +61,7 @@
             />
           </div>
           <div>
-            <span class="color999">商家回复：</span>
+            <span class="color999">Store reply：</span>
             <span>{{ orderGoods.reply }}</span>
           </div>
           <div style="display: flex; align-items: center">
@@ -91,8 +91,8 @@ import { evaluationDetail } from "@/api/member.js";
 export default {
   data() {
     return {
-      order: {}, // 订单详情
-      orderGoods: {}, // 订单商品
+      order: {}, // Order details
+      orderGoods: {}, // 订单Goods
       visible: false, // 图片预览
       previewImage: "", // 预览图片链接
       loading: false, // 加载状态
@@ -100,13 +100,13 @@ export default {
   },
   methods: {
     getDetail() {
-      // 获取评价详情
+      // 获取Evaluate详情
       evaluationDetail(this.$route.query.id).then((res) => {
         if (res.success) this.orderGoods = res.result;
       });
     },
     goGoodsDetail(skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routerUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },

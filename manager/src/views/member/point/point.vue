@@ -14,12 +14,12 @@
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="请输入会员名称"
+            placeholder="Please enter 会员名称"
             clearable
             style="width: 200px"
           />
           </Form-item>
-        <Button @click="handleSearch" class="search-btn" type="primary" icon="ios-search">搜索</Button >
+        <Button @click="handleSearch" class="search-btn" type="primary" icon="ios-search">search</Button >
       </Form>
       <Table
         :loading="loading"
@@ -63,7 +63,7 @@
     data() {
       return {
         loading: true, // 表单加载状态
-        searchForm: { // 请求参数
+        searchForm: { // Please 求参数
           pageNumber: 1,
           pageSize: 10,
         },
@@ -75,7 +75,7 @@
             tooltip: true
           },
           {
-            title: "操作内容",
+            title: "operation内容",
             key: "content",
             minWidth: 180,
             tooltip: true
@@ -118,7 +118,7 @@
             width: 110,
           },
           {
-            title: "操作时间",
+            title: "operation时间",
             key: "createTime",
             width: 170
           },
@@ -148,7 +148,7 @@
         this.searchForm.pageSize = v;
         this.getData();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = 10;

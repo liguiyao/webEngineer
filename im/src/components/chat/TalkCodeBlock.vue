@@ -4,7 +4,7 @@
       <el-container class="full-height">
         <el-header class="header no-padding" height="50px">
           <div class="tools">
-            <span>选择编程语言:&nbsp;&nbsp;</span>
+            <span>select编程语言:&nbsp;&nbsp;</span>
             <el-select v-model="language" size="mini" filterable placeholder="语言类型" :disabled="!editMode">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
@@ -13,7 +13,7 @@
           <i class="iconfont icon-full-screen" :class="{
               'icon-tuichuquanping': isFullScreen,
               'icon-quanping ': !isFullScreen,
-            }" :title="isFullScreen ? '关闭全屏模式' : '打开全屏模式'" @click="isFullScreen = !isFullScreen" />
+            }" :title="isFullScreen ? 'Close全屏模式' : '打开全屏模式'" @click="isFullScreen = !isFullScreen" />
         </el-header>
 
         <el-main class="main no-padding">
@@ -31,7 +31,7 @@
 
           <div class="buttom-group">
             <el-button size="small" plain @click="close">
-              {{ editMode ? '取消编辑' : '关闭预览' }}
+              {{ editMode ? 'Cancel编辑' : 'Close预览' }}
             </el-button>
 
             <el-button v-show="editMode" type="primary" size="small" @click="submit">发送代码
@@ -191,7 +191,7 @@ export default {
       }
 
       if (this.language == "") {
-        this.$message.error("请选择语言");
+        this.$message.error("Please select语言");
         return false;
       }
 

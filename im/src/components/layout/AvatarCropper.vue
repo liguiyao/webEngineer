@@ -2,7 +2,7 @@
   <div class="lum-dialog-mask">
     <el-container class="lum-dialog-box">
       <el-header class="header" height="50px">
-        <p>选择头像</p>
+        <p>select头像</p>
         <p class="tools">
           <i class="el-icon-close" @click="$emit('close', 0)" />
         </p>
@@ -80,7 +80,7 @@
             </div>
             <div class="tools">
               <el-button type="primary" size="small" @click="uploadService">
-                保存图片
+                Save图片
               </el-button>
             </div>
           </el-main>
@@ -112,7 +112,7 @@ export default {
         original: false,
         canMoveBox: true,
         autoCrop: true,
-        // 只有自动截图开启 宽度高度才生效
+        // 只有自动截图Opening 宽度高度才生效
         autoCropWidth: 200,
         autoCropHeight: 150,
         centerBox: false,
@@ -188,11 +188,11 @@ export default {
           if (res.code == 200) {
             this.$emit('close', 1, res.data.avatar)
           } else {
-            this.$message('文件上传失败,请稍后再试...')
+            this.$message('文件上传失败,Please 稍后再试...')
           }
         })
         .catch(() => {
-          this.$message('文件上传失败,请稍后再试...')
+          this.$message('文件上传失败,Please 稍后再试...')
         })
     },
   },

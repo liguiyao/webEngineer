@@ -9,7 +9,7 @@
           </div>
         </FormItem>
         <FormItem label="活动时间" prop="rangeTime">
-          <DatePicker type="datetimerange" v-model="form.rangeTime" format="yyyy-MM-dd HH:mm:ss" placeholder="请选择" :options="options" style="width: 260px">
+          <DatePicker type="datetimerange" v-model="form.rangeTime" format="yyyy-MM-dd HH:mm:ss" placeholder="Please select" :options="options" style="width: 260px">
           </DatePicker>
         </FormItem>
 
@@ -19,23 +19,23 @@
           </Input>
           <span style="color: #cccccc">参团人数不少于2人，不得超过10人。</span>
         </FormItem>
-        <FormItem label="限购数量" prop="limitNum" :label-width="130">
+        <FormItem label="限购Quantity" prop="limitNum" :label-width="130">
           <Input v-model="form.limitNum" type="number" style="width: 260px">
           <span slot="append">件/人</span>
           </Input>
-          <span style="color: #cccccc">如果设置为0则视为不限制购买数量</span>
+          <span style="color: #cccccc">如果设置为0则视为不限制quantity</span>
         </FormItem>
         <FormItem label="虚拟成团" prop="fictitious">
           <RadioGroup type="button" button-style="solid" v-model="form.fictitious">
-            <Radio title="开启" :label="1">
-              <span>开启</span>
+            <Radio title="Opening" :label="1">
+              <span>Opening</span>
             </Radio>
-            <Radio title="关闭" :label="0">
-              <span>关闭</span>
+            <Radio title="Close" :label="0">
+              <span>Close</span>
             </Radio>
           </RadioGroup>
           <br />
-          <span style="color: #cccccc">开启虚拟成团后，24小时人数未满的团，系统将会模拟匿名买家凑满人数，使该团成团；您只需要对已付款参团的真实买家发货；建议合理开启以提高</span>
+          <span style="color: #cccccc">Opening虚拟成团后，24小时人数未full的团，系统将会模拟匿名买家凑full人数，使该团成团；您只需要对已付款参团的真实买家发货；建议合理Opening以提高</span>
         </FormItem>
         <FormItem label="拼团规则" prop="pintuanRule">
           <Input v-model="form.pintuanRule" type="textarea" :rows="4" clearable maxlength="255" style="width: 260px" />
@@ -44,8 +44,8 @@
         </FormItem>
       </Form>
       <div>
-        <Button type="text" @click="closeCurrentPage">返回</Button>
-        <Button type="primary" :loading="submitLoading" @click="handleSubmit">提交</Button>
+        <Button type="text" @click="closeCurrentPage">Back</Button>
+        <Button type="primary" :loading="submitLoading" @click="handleSubmit">Submit</Button>
       </div>
     </Card>
   </div>
@@ -84,9 +84,9 @@ export default {
             message: "限购数不合法",
           },
         ],
-        rangeTime: [{ required: true, message: "请选择活动时间" }],
+        rangeTime: [{ required: true, message: "Please select活动时间" }],
       },
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       options: {
         // 不可选取时间
         disabledDate(date) {
@@ -102,7 +102,7 @@ export default {
   },
 
   methods: {
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "new-pintuan");
       localStorage.storeOpenedList = JSON.stringify(
@@ -110,7 +110,7 @@ export default {
       );
       this.$router.go(-1);
     },
-    // 提交活动
+    // Submit活动
     handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -139,12 +139,12 @@ export default {
 
           delete params.rangeTime;
           if (!this.id) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete params.id;
             savePintuan(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("拼团活动发布成功");
+                this.$Message.success("拼团活动发布success");
                 this.closeCurrentPage();
               }
             });
@@ -155,7 +155,7 @@ export default {
             editPintuan(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.closeCurrentPage();
               }
             });
@@ -173,7 +173,7 @@ export default {
           this.form = data;
           // 此处将值转换为 1 true ，0 false 不然ivew radio组件会报错
           this.form.fictitious ? this.$set(this.form, "fictitious", 1)  : this.$set(this.form, "fictitious", 0);
-    
+
        }
       });
     },

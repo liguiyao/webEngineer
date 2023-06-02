@@ -13,7 +13,7 @@
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="请输入会员名称"
+              placeholder="Please enter 会员名称"
               clearable
               style="width: 200px"
             />
@@ -22,7 +22,7 @@
             @click="handleSearch"
             type="primary"
             class="search-btn"
-            >搜索</Button
+            >search</Button
           >
         </Form>
       </Row>
@@ -61,11 +61,11 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
       },
@@ -77,17 +77,17 @@ export default {
           tooltip: true,
         },
         {
-          title: "会员姓名",
+          title: "会员name",
           key: "name",
           minWidth: 120,
         },
         {
-          title: "提交时间",
+          title: "Submit时间",
           key: "createTime",
           minWidth: 150,
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -151,7 +151,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -182,14 +182,14 @@ export default {
       };
       this.$Modal.confirm({
         title: "确认" + test,
-        // 记得确认修改此处
+        // 记得确认modify此处
         content: "您确认要" + test + " " + v.memberName + " ?",
         loading: true,
         onOk: () => {
           auditDistribution(v.id, params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

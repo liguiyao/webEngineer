@@ -35,7 +35,7 @@
           &nbsp;
           <Dropdown trigger="click">
             <Button size="small">
-              操作
+              operation
               <Icon type="ios-arrow-down"></Icon>
             </Button>
             <DropdownMenu slot="list">
@@ -50,7 +50,7 @@
                 @click.native="disable(scope.row)"
                 >禁用</DropdownItem
               >
-              <DropdownItem @click.native="remove(scope.row)">删除</DropdownItem>
+              <DropdownItem @click.native="remove(scope.row)">delete</DropdownItem>
             </DropdownMenu>
           </Dropdown>
           &nbsp;
@@ -127,8 +127,8 @@
           </FormItem>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="modalVisible = false">取消</Button>
-          <Button type="primary" :loading="submitLoading" @click="Submit">提交</Button>
+          <Button type="text" @click="modalVisible = false">Cancel</Button>
+          <Button type="primary" :loading="submitLoading" @click="Submit">Submit</Button>
         </div>
       </Modal>
 
@@ -146,9 +146,9 @@
           </Select>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="modalBrandVisible = false">取消</Button>
+          <Button type="text" @click="modalBrandVisible = false">Cancel</Button>
           <Button type="primary" :loading="submitLoading" @click="saveCategoryBrand"
-            >提交</Button
+            >Submit</Button
           >
         </div>
       </Modal>
@@ -171,9 +171,9 @@
           </Select>
         </Form>
         <div slot="footer">
-          <Button type="text" @click="modalSpecVisible = false">取消</Button>
+          <Button type="text" @click="modalSpecVisible = false">Cancel</Button>
           <Button type="primary" :loading="submitLoading" @click="saveCategorySpec"
-            >提交</Button
+            >Submit</Button
           >
         </div>
       </Modal>
@@ -210,7 +210,7 @@ export default {
       brands: [], //品牌集合
       specifications: [], //规格集合
       categoryId: "", // 分类id
-      categorySpecs: [], //已经选择的规格
+      categorySpecs: [], //已经select的规格
       modalType: 0, // 添加或编辑标识
       modalVisible: false, // 添加或编辑显示
       modalBrandVisible: false, //品牌关联编辑显示
@@ -233,7 +233,7 @@ export default {
       brandForm: {
         categoryBrands: [],
       },
-      brandWay: "", //请求绑定品牌的信息
+      brandWay: "", //Please 求绑定品牌的信息
       specForm: {}, // 规格数据
       // 表单验证规则
       formValidate: {
@@ -258,7 +258,7 @@ export default {
           slot: "commissionRate",
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
 
           slot: "action",
@@ -308,22 +308,22 @@ export default {
         this.modalSpecVisible = true;
       });
     },
-    //保存分类规格绑定
+    //Save分类规格绑定
     saveCategorySpec() {
       saveCategorySpec(this.categoryId, this.specForm).then((res) => {
         this.submitLoading = false;
         if (res.success) {
-          this.$Message.success("操作成功");
+          this.$Message.success("operationsuccess");
           this.modalSpecVisible = false;
         }
       });
     },
-    //保存分类品牌绑定
+    //Save分类品牌绑定
     saveCategoryBrand() {
       saveCategoryBrand(this.categoryId, this.brandForm).then((res) => {
         this.submitLoading = false;
         if (res.success) {
-          this.$Message.success("操作成功");
+          this.$Message.success("operationsuccess");
           this.modalBrandVisible = false;
         }
       });
@@ -370,18 +370,18 @@ export default {
       this.formAdd.parentId = 0;
       this.modalVisible = true;
     },
-    // 提交
+    // Submit
     Submit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得删除
+            // 添加 避免编辑后传入id等数据 记得delete
             delete this.formAdd.id;
             insertCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
                 this.getAllList(this.categoryIndex);
                 this.modalVisible = false;
                 this.$refs.form.resetFields();
@@ -392,7 +392,7 @@ export default {
             updateCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("修改成功");
+                this.$Message.success("modifysuccess");
                 this.getAllList(this.categoryIndex);
                 this.modalVisible = false;
                 this.$refs.form.resetFields();
@@ -402,18 +402,18 @@ export default {
         }
       });
     },
-    // 删除分类
+    // delete分类
     remove(v) {
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除 " + v.name + " ?",
+        title: "确认delete",
+        content: "您确认要delete " + v.name + " ?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           delCategory(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getAllList(0);
             }
           });
@@ -489,7 +489,7 @@ export default {
           disableCategory(v.id, { enableOperations: 0 }).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getAllList(0);
             }
           });
@@ -511,7 +511,7 @@ export default {
           disableCategory(v.id, { enableOperations: true }).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getAllList(0);
             }
           });

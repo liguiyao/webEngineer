@@ -1,5 +1,5 @@
 <template>
-  <!-- 新消息提示组件 -->
+  <!-- 新消息Tips组件 -->
   <div class="notify-box pointer">
     <div class="lbox">
       <el-avatar size="medium" shape="square" :src="avatar" />

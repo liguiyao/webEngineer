@@ -1,6 +1,6 @@
 <template>
   <div class="order-detail" v-if="order.order">
-    <card _Title="订单详情" :_Size="16"></card>
+    <card _Title="Order details" :_Size="16"></card>
     <Card
       class="mb_10"
       v-if="
@@ -14,31 +14,31 @@
         @click="goPay(order.order.sn)"
         size="small"
         v-if="order.allowOperationVO.pay"
-        >去支付</Button
+        >payment</Button
       >
       <Button
         type="info"
         @click="received(order.order.sn)"
         size="small"
         v-if="order.allowOperationVO.rog"
-        >确认收货</Button
+        >Confirm receipt</Button
       >
       <Button
         type="error"
         @click="handleCancelOrder(order.order.sn)"
         v-if="order.allowOperationVO.cancel"
         size="small"
-        >取消订单</Button
+        >Cancel order</Button
       >
     </Card>
     <p class="verificationCode" v-if="order.order.verificationCode">
-      核验码：<span>{{ order.order.verificationCode }}</span>
+      Check code：<span>{{ order.order.verificationCode }}</span>
     </p>
     <div class="order-card">
       <p class="global_color fontsize_18">{{ order.orderStatusValue }}</p>
-      <p>订单号：{{ order.order.sn }}</p>
+      <p>Order number：{{ order.order.sn }}</p>
       <div style="color: #999" class="operation-time">
-        操作时间：{{ order.order.updateTime || order.order.createTime }}
+        Operating time：{{ order.order.updateTime || order.order.createTime }}
       </div>
       <Steps
         class="progress"
@@ -54,37 +54,37 @@
       </Steps>
     </div>
     <div class="order-card" v-if="order.order.deliveryMethod == 'LOGISTICS'">
-      <h3>收货人信息</h3>
-      <p>收货人：{{ order.order.consigneeName }}</p>
-      <p>手机号码：{{ order.order.consigneeMobile | secrecyMobile }}</p>
+      <h3>Consignee info</h3>
+      <p>receiver：{{ order.order.consigneeName }}</p>
+      <p>Phone number：{{ order.order.consigneeMobile | secrecyMobile }}</p>
       <p>
-        收货地址：{{ order.order.consigneeAddressPath | unitAddress }}
+        Delivery address：{{ order.order.consigneeAddressPath | unitAddress }}
         {{ order.order.consigneeDetail }}
       </p>
     </div>
     <div class="order-card" v-if="order.order.deliveryMethod == 'SELF_PICK_UP'">
-      <h3>自提点信息</h3>
-      <p>自提点名称：{{ order.order.storeAddressPath }}</p>
-      <p>联系方式：{{ order.order.storeAddressMobile }}</p>
+      <h3>Self-extracting point information</h3>
+      <p>name：{{ order.order.storeAddressPath }}</p>
+      <p>contact：{{ order.order.storeAddressMobile }}</p>
     </div>
     <div class="order-card">
-      <h3>付款信息</h3>
-      <p>支付方式：{{ order.paymentMethodValue }}</p>
-      <p>付款状态：{{ order.payStatusValue }}</p>
+      <h3>Payment</h3>
+      <p>Method：{{ order.paymentMethodValue }}</p>
+      <p>State：{{ order.payStatusValue }}</p>
     </div>
     <div class="order-card" v-if="!order.order.verificationCode">
-      <h3>配送信息</h3>
-      <p>配送方式：{{ order.deliveryMethodValue }}</p>
-      <p v-if="order.order.deliveryMethod === 'LOGISTICS'">配送状态：{{ order.deliverStatusValue }}</p>
+      <h3>Distribution</h3>
+      <p>Mode：{{ order.deliveryMethodValue }}</p>
+      <p v-if="order.order.deliveryMethod === 'LOGISTICS'">State：{{ order.deliverStatusValue }}</p>
       <p v-if="logistics">
-        物流信息：{{ logistics.shipper || "暂无物流信息" }}
+        logistics information：{{ logistics.shipper || "absent logistics info" }}
       </p>
       <p v-if="logistics">
-        物流单号：{{ logistics.logisticCode || "暂无物流单号" }}
+        logistics number：{{ logistics.logisticCode || "absent logistics number" }}
       </p>
       <div class="div-express-log" v-if="logistics">
         <div class="express-log">
-          <p>订单日志：</p>
+          <p>Order log：</p>
           <div v-for="(item, index) in logistics.traces" :key="index">
             <span class="time">{{ item.AcceptTime }}</span>
             <span class="detail">{{ item.AcceptStation }}</span>
@@ -92,18 +92,18 @@
         </div>
       </div>
     </div>
-    <div class="order-card" v-if="order.order.payStatus === 'PAID'">
-      <h3>发票信息</h3>
-      <template v-if="order.order.needReceipt">
-        <p>发票抬头：{{ order.receipt.receiptTitle }}</p>
-        <p>发票内容：{{ order.receipt.receiptContent }}</p>
-        <p v-if="order.receipt.taxpayerId">
-          纳税人识别号：{{ order.receipt.taxpayerId }}
-        </p>
-      </template>
-      <div v-else style="color: #999; margin-left: 5px">未开发票</div>
-    </div>
-    <!-- 订单商品 -->
+<!--    <div class="order-card" v-if="order.order.payStatus === 'PAID'">-->
+<!--      <h3>发票信息</h3>-->
+<!--      <template v-if="order.order.needReceipt">-->
+<!--        <p>发票抬头：{{ order.receipt.receiptTitle }}</p>-->
+<!--        <p>发票内容：{{ order.receipt.receiptContent }}</p>-->
+<!--        <p v-if="order.receipt.taxpayerId">-->
+<!--          纳税人识别号：{{ order.receipt.taxpayerId }}-->
+<!--        </p>-->
+<!--      </template>-->
+<!--      <div v-else style="color: #999; margin-left: 5px">未开发票</div>-->
+<!--    </div>-->
+    <!-- 订单Goods -->
     <div class="goods">
       <div class="shop-name">
         <span @click="shopPage(order.order.storeId)">{{
@@ -113,12 +113,12 @@
       <table>
         <thead>
           <tr>
-            <th width="40%">商品</th>
-            <th width="20%">货号</th>
-            <th width="10%">单价</th>
-            <th width="10%">数量</th>
-            <th width="10%">小计</th>
-            <th width="10%">操作</th>
+            <th width="40%">Goods</th>
+            <th width="20%">Item number</th>
+            <th width="10%">Unit price</th>
+            <th width="10%">Quantity</th>
+            <th width="10%">Subtotal</th>
+            <th width="10%">Operation</th>
           </tr>
         </thead>
         <tbody>
@@ -139,9 +139,9 @@
               </div>
             </td>
             <td>{{ goods.id }}</td>
-            <td>{{ goods.goodsPrice | unitPrice("￥") }}</td>
+            <td>{{ goods.goodsPrice | unitPrice("RM") }}</td>
             <td>{{ goods.num }}</td>
-            <td>{{ (goods.goodsPrice * goods.num) | unitPrice("￥") }}</td>
+            <td>{{ (goods.goodsPrice * goods.num) | unitPrice("RM") }}</td>
             <td>
               <Button
                 v-if="
@@ -152,7 +152,7 @@
                 type="info"
                 size="small"
                 class="mb_5"
-                >申请售后</Button
+                >Apply  after sale</Button
               >
               <Button
                 v-if="goods.commentStatus == 'UNFINISHED'"
@@ -160,7 +160,7 @@
                 size="small"
                 type="success"
                 class="fontsize_12 mb_5"
-                >评价</Button
+                >Evaluate</Button
               >
               <Button
                 v-if="goods.complainStatus == 'NO_APPLY'"
@@ -168,50 +168,50 @@
                 type="warning"
                 class="fontsize_12"
                 size="small"
-                >投诉</Button
+                >Complaint</Button
               >
             </td>
           </tr>
         </tbody>
       </table>
-      <!-- 订单价格 -->
+      <!-- 订单price -->
       <div class="order-price">
         <div>
-          <span>商品件数：</span><span>{{ order.order.goodsNum }}件</span>
+          <span>Number：</span><span>{{ order.order.goodsNum }}件</span>
         </div>
         <div>
-          <span>商品总价：</span
-          ><span>{{ order.order.goodsPrice | unitPrice("￥") }}</span
+          <span>Total price：</span
+          ><span>{{ order.order.goodsPrice | unitPrice("RM") }}</span
           ><br />
         </div>
         <div>
-          <span>运费：</span
-          ><span>+{{ order.order.freightPrice | unitPrice("￥") }}</span
+          <span>freight：</span
+          ><span>+{{ order.order.freightPrice | unitPrice("RM") }}</span
           ><br />
         </div>
         <div v-if="order.order.priceDetailDTO.couponPrice">
-          <span>优惠券：</span
+          <span>coupon：</span
           ><span
             >-{{
-              order.order.priceDetailDTO.couponPrice || 0 | unitPrice("￥")
+              order.order.priceDetailDTO.couponPrice || 0 | unitPrice("RM")
             }}</span
           >
         </div>
         <div v-if="order.order.discountPrice">
-          <span>活动优惠：</span
-          ><span>-{{ order.order.discountPrice | unitPrice("￥") }}</span>
+          <span>discount：</span
+          ><span>-{{ order.order.discountPrice | unitPrice("RM") }}</span>
         </div>
         <div>
-          <span>应付金额：</span>
+          <span>Need pay：</span>
           <span class="actrual-price">{{
-            order.order.flowPrice | unitPrice("￥")
+            order.order.flowPrice | unitPrice("RM")
           }}</span>
         </div>
       </div>
     </div>
     <Modal
       v-model="cancelAvail"
-      title="请选择取消订单原因"
+      title="Please selectCancel order reason"
       @on-ok="sureCancel"
       @on-cancel="cancelAvail = false"
     >
@@ -240,21 +240,21 @@ export default {
   name: "order-detail",
   data() {
     return {
-      order: {}, // 订单详情数据
+      order: {}, // Order details数据
       progressList: [], // 订单流程
-      logistics: "", // 物流数据
+      logistics: "", // logistics数据
       cancelParams: {
-        // 取消售后参数
+        // Cancelafter sale参数
         orderSn: "",
         reason: "",
       },
-      cancelAvail: false, // 取消订单modal控制
-      cancelReason: [], // 取消订单原因
+      cancelAvail: false, // Cancel ordermodal控制
+      cancelReason: [], // Cancel order reason
     };
   },
   methods: {
     goodsDetail(skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },
@@ -270,7 +270,7 @@ export default {
       window.open(routeUrl.href, "_blank");
     },
     getDetail() {
-      // 获取订单详情
+      // 获取Order details
       orderDetail(this.$route.query.sn).then((res) => {
         if (res.success) {
           this.order = res.result;
@@ -282,7 +282,7 @@ export default {
       });
     },
     traces() {
-      // 物流信息
+      // logistics information
       getTraces(this.$route.query.sn).then((res) => {
         if (res.success) {
           this.logistics = res.result;
@@ -290,38 +290,38 @@ export default {
       });
     },
     received(sn) {
-      // 确认收货
+      // Confirm receipt
       sureReceived(sn).then((res) => {
         if (res.success) {
-          this.$Message.success("确认收货成功");
+          this.$Message.success("Confirm receiptsuccess");
           this.getDetail();
         }
       });
     },
     goPay(sn) {
-      // 去支付
+      // payment
       this.$router.push({
         path: "/payment",
         query: { orderType: "ORDER", sn },
       });
     },
     applyAfterSale(sn) {
-      // 申请售后
+      // Apply  after sale
       this.$router.push({ name: "ApplyAfterSale", query: { sn: sn } });
     },
     comment(sn, goodsIndex) {
-      // 评价
+      // Evaluate
       this.$router.push({
         path: "/home/addEval",
         query: { sn, index: goodsIndex },
       });
     },
     complain(sn, goodsIndex) {
-      // 投诉
+      // Complaint
       this.$router.push({ name: "Complain", query: { sn, index: goodsIndex } });
     },
     handleCancelOrder(sn) {
-      // 取消订单
+      // Cancel order
       this.cancelParams.orderSn = sn;
       afterSaleReason("CANCEL").then((res) => {
         if (res.success) {
@@ -332,10 +332,10 @@ export default {
       });
     },
     sureCancel() {
-      // 确定取消
+      // ConfirmCancel
       cancelOrder(this.cancelParams).then((res) => {
         if (res.success) {
-          this.$Message.success("取消订单成功");
+          this.$Message.success("Cancel ordersuccess");
           this.getDetail();
           this.cancelAvail = false;
         }
@@ -381,7 +381,7 @@ export default {
     top: 20px;
   }
 }
-/** 店铺名称 */
+/** store name */
 .shop-name {
   margin: 15px 0;
   span {
@@ -399,7 +399,7 @@ export default {
     }
   }
 }
-/** 商品列表 */
+/** Goods列表 */
 table {
   border: 1px solid #ddd;
   color: #999;
@@ -431,7 +431,7 @@ table {
     }
   }
 }
-/** 订单价格 */
+/** 订单price */
 .order-price {
   text-align: right;
   margin-top: 30px;

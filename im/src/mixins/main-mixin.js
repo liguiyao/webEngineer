@@ -6,7 +6,7 @@ import { formatTalkItem } from "@/utils/talk";
 export default {
   
   created() {
-    // 判断用户是否登录
+    // 判断用户是否Login
     
   },
   methods: {
@@ -21,7 +21,7 @@ export default {
 
       if(this.$route.query.id){
         ServeGetUserSetting().then(async ({ code, result }) => {
-          // 如果result有值说明用户创建成功
+          // 如果result有值说明用户创建success
           if (result) {
             store.commit("UPDATE_USER_INFO", {
               id: result.id,

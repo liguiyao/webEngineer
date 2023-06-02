@@ -9,12 +9,12 @@
         v-if="res.type == 'tpl_ad_list' || res.type == 'tpl_activity_list' || res.drawer"
         type="primary"
         @click="selectStyle()"
-        >选择风格</Button
+        >select风格</Button
       >
     </div>
 
     <!-- 右侧显示抽屉 -->
-    <Drawer title="选择风格" :closable="false" width="400" v-model="styleFlag">
+    <Drawer title="select风格" :closable="false" width="400" v-model="styleFlag">
       <div class="drawer">
         <div
           class="drawer-item"
@@ -66,12 +66,12 @@
               </div>
             </div>
             <div class="decorate-view">
-              <div class="decorate-view-title">绑定商品</div>
+              <div class="decorate-view-title">绑定Goods</div>
               <div
                 class="decorate-view-link"
                 v-if="res.options.list[0].listWay.length != 0"
               >
-                <!-- 绑定商品选择器回调已选择的商品 -->
+                <!-- 绑定Goodsselect器回调已selectgoods -->
                 <div
                   v-if="
                     title_item.___index == bindGoods.___index ||
@@ -85,14 +85,14 @@
               </div>
               <div>
                 <Button @click="bindGoodsId(title_item)" size="small" ghost type="primary"
-                  >选择商品</Button
+                  >selectGoods</Button
                 >
               </div>
             </div>
           </div>
-          <!-- 选择照片 -->
+          <!-- select照片 -->
           <div class="decorate-view" v-if="!res.notImg">
-            <div class="decorate-view-title">选择照片</div>
+            <div class="decorate-view-title">select照片</div>
             <div>
               <img class="show-image" :src="item.img" alt />
 
@@ -107,11 +107,11 @@
                 @click="handleClickFile(item, index)"
                 ghost
                 type="primary"
-                >选择照片</Button
+                >select照片</Button
               >
             </div>
           </div>
-          <!-- 填写标题 -->
+          <!-- enter 标题 -->
           <div class="decorate-view" v-if="item.title != void 0 && !res.notTitle">
             <div class="decorate-view-title">菜单标题</div>
             <div>
@@ -120,7 +120,7 @@
           </div>
 
           <div class="decorate-view" v-if="res.onlyImg">
-            <div class="decorate-view-title">选择模式</div>
+            <div class="decorate-view-title">select模式</div>
 
             <div>
               <RadioGroup v-model="item.model" type="button">
@@ -131,7 +131,7 @@
           </div>
 
           <div class="decorate-view" v-if="!res.notLink">
-            <div class="decorate-view-title">选择链接</div>
+            <div class="decorate-view-title">select链接</div>
             <div
               v-if="item.url && item.url.length != 0"
               class="decorate-view-link"
@@ -149,41 +149,41 @@
                     : "发现"
                 }}
                 -
-                <!-- 当选择完链接之后的专题名称 -->
+                <!-- 当select完链接之后的专题名称 -->
                 <span v-if="item.url.pageType == 'special'">
                   {{ item.url.name }}</span
                 >
-                <!-- 当选择完链接之后的商品名称 -->
+                <!-- 当select完链接之后的goods name -->
                 <span v-if="item.url.___type == 'goods'">
                   {{ item.url.goodsName }}</span
                 >
-                <!-- 当选择完链接之后的分类回调 -->
+                <!-- 当select完链接之后的分类回调 -->
                 <span v-if="item.url.___type == 'category'">
                   {{ item.url.name }}</span
                 >
-                <!-- 当选择完链接之后的店铺回调 -->
+                <!-- 当select完链接之后的店铺回调 -->
                 <span v-if="item.url.___type == 'shops'">
                   {{ item.url.memberName }}</span
                 >
-                <!-- 当选择完链接之后的其他回调 -->
+                <!-- 当select完链接之后的Others回调 -->
                 <span v-if="item.url.___type == 'other'">
                   {{ item.url.title }}</span
                 >
-                <!-- 当选择完链接之后的其他回调 -->
+                <!-- 当select完链接之后的Others回调 -->
                 <span v-if="item.url.___type == 'brand'">
                   {{ item.url.name }}</span
                 >
 
-                <!-- 当选择完活动之后的其他回调 -->
+                <!-- 当select完活动之后的Others回调 -->
                 <span v-if="item.url.___type == 'marketing'">
                   <span v-if="item.url.___promotion == 'SECKILL'"> 秒杀 </span>
                   <span v-if="item.url.___promotion == 'FULL_DISCOUNT'">
-                    满减
+                    full减
                   </span>
                   <span v-if="item.url.___promotion == 'PINTUAN'"> 拼团 </span>
                   {{ item.url.title || item.url.goodsName }}
                 </span>
-                <!-- 当选择完活动之后的其他回调 -->
+                <!-- 当select完活动之后的Others回调 -->
                 <span v-if="item.url.___type == 'pages'">
                   {{ item.url.title }}</span
                 >
@@ -196,11 +196,11 @@
                 type="primary"
                 @click="clickLink(item, index, res)"
               >
-                {{ item.model === "hotzone" ? "绘制热区" : "选择链接" }}</Button
+                {{ item.model === "hotzone" ? "绘制热区" : "select链接" }}</Button
               >
             </div>
           </div>
-          <!-- 链接地址-->
+          <!-- 链接address-->
 
         </div>
       </div>
@@ -229,7 +229,7 @@
 import ossManage from "@/views/sys/oss-manage/ossManage";
 import hotzone from "@/views/shop/hotzone";
 import { modelData } from "./config";
-import ways from "@/views/lili-dialog/wap.js"; // 选择链接的类型
+import ways from "@/views/lili-dialog/wap.js"; // select链接的类型
 export default {
   components: {
     ossManage,
@@ -237,13 +237,13 @@ export default {
   },
   data() {
     return {
-      ways, // 选择链接的类型
-      picModelFlag: false, //图片选择器
+      ways, // select链接的类型
+      picModelFlag: false, //图片select器
       linkType: "goods", // dialog弹窗口类型
       styleFlag: false, //广告魔方开关
-      selectedLinkIndex: "", //选择链接的索引
+      selectedLinkIndex: "", //select链接的索引
       modelData, // 装修数据
-      selectedGoods: "", // 已选商品
+      selectedGoods: "", // 已选Goods
       selectedLinks: "", // 已选链接
       modelList: "", // 装修列表
     };
@@ -256,20 +256,20 @@ export default {
   },
   props: ["res"],
   methods: {
-    // 选择风格
+    // select风格
     selectStyle() {
       this.styleFlag = !this.styleFlag;
     },
-    // 回调选择的链接
+    // 回调select的链接
     selectedLink(val) {
       this.selectedLinks.zoneInfo = [];
-      // 需删除图片中 intro 和 mobileIntro 可能存在转义符导致json出错问题
+      // 需delete图片中 intro 和 mobileIntro 可能存在转义符导致json出错问题
       delete val.selected;
       delete val.intro;
       delete val.mobileIntro;
       this.selectedLinks.url = val;
     },
-    // 回调的商品信息
+    // 回调goods信息
     selectedGoodsData(val) {
       if (!val) return false;
       let data = val.map((item) => {
@@ -288,7 +288,7 @@ export default {
       this.res.options.list[0].listWay.push(...data);
       this.linkType = "";
     },
-    // 绑定商品
+    // 绑定Goods
     bindGoodsId(val) {
       this.selectedGoods = val;
       this.liliDialogFlag(true);
@@ -298,13 +298,13 @@ export default {
       this.$emit("handleDrawer", item);
       this.styleFlag = false;
     },
-    // 打开图片选择器
+    // 打开图片select器
     liliDialogFlag(flag) {
       this.$refs.liliDialog.goodsFlag = flag;
       this.$refs.liliDialog.flag = true;
     },
 
-    // 点击链接赋值一个唯一值，并将当前选择的模块赋值
+    // 点击链接赋值一个唯一值，并将当前select的模块赋值
     clickLink(val, index, oval) {
       this.selectedLinks = val;
       if (val.model === "hotzone") {
@@ -346,18 +346,18 @@ export default {
       };
       this.res.options.list.push(way);
     },
-    // 图片选择器回显
+    // 图片select器回显
     callbackSelected(val) {
       this.picModelFlag = false;
       this.selectedGoods.img = val.url;
     },
-    // 点击选择图片
+    // 点击select图片
     handleClickFile(item, index) {
       this.$refs.ossManage.selectImage = true;
       this.selectedGoods = item;
       this.picModelFlag = true;
     },
-    // 关闭
+    // Close
     closeDecorate(index) {
       this.$nextTick(() => {
         this.res.options.list.splice(index, 1);

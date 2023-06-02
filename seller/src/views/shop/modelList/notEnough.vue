@@ -16,8 +16,8 @@
                 <img :src="item.img" width="210" height="210" :alt="item.name">
                 <p>{{item.name}}</p>
                 <p>
-                    <span>{{item.price | unitPrice('￥')}}</span> 
-                    <!-- <span>{{item.price | unitPrice('￥')}}</span> -->
+                    <span>{{item.price | unitPrice('RM')}}</span>
+                    <!-- <span>{{item.price | unitPrice('RM')}}</span> -->
                 </p>
                 <div class="setup-box">
                     <div>
@@ -41,7 +41,7 @@
                         <tr>
                             <th width="250">主标题</th>
                             <th width="250">描述</th>
-                            <th width="250">操作</th>
+                            <th width="250">operation</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,14 +49,14 @@
                             <td><Input v-model="item.title" /></td>
                             <td><Input v-model="item.desc" /></td>
                             <td v-if="index!=0">
-                                <Button type="error" size="small" @click="handleDelNav(index)">删除</Button>
+                                <Button type="error" size="small" @click="handleDelNav(index)">delete</Button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </Modal>
-        <!-- 选择商品。链接 -->
+        <!-- selectGoods。链接 -->
         <liliDialog
             ref="liliDialog"
             @selectedGoodsData="selectedGoodsData"
@@ -73,11 +73,11 @@ export default {
     },
     data() {
         return {
-            currentIndex:0, // 当前商品index
+            currentIndex:0, // 当前Goodsindex
             conData:this.data, // 当前数据
             selected:{}, // 已选数据
             showModal:false, // modal显隐
-            showContent:true, // 选择后刷新数据用
+            showContent:true, // select后刷新数据用
         }
     },
     watch:{
@@ -98,14 +98,14 @@ export default {
             this.selected = item;
             this.showModal = true
         },
-        handleSelectGoods(item) { // 调起选择商品弹窗
+        handleSelectGoods(item) { // 调起selectGoods弹窗
             if(item) this.selected = item;
             this.$refs.liliDialog.open('goods', 'single')
             setTimeout(() => {
                 this.$refs.liliDialog.goodsData = [this.selected]
             }, 500);
         },
-        // 选择商品回调
+        // selectGoods回调
         selectedGoodsData(val){
             console.log(val)
             let goods = val[0]
@@ -114,7 +114,7 @@ export default {
             this.selected.name = goods.goodsName
             this.selected.url = `/goodsDetail?skuId=${goods.id}&goodsId=${goods.goodsId}`
         },
-        handleDelNav(index){ // 删除导航
+        handleDelNav(index){ // delete导航
             this.conData.options.navList.splice(index,1)
             this.conData.options.list.splice(index,1)
         },
@@ -175,16 +175,16 @@ export default {
             cursor: pointer;
         }
         border-right: 1px solid #eee;
-        
+
     }
     li:last-of-type{
         border: none;
     }
-   
+
     .curr{
         p:nth-child(1){
             background-color: $theme_color;
-            
+
             color: #fff;
         }
         p:nth-child(2){

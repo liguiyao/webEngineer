@@ -4,7 +4,7 @@ import request, {
 
 /**
  * 获取支付详情
- * @param orderType 交易类型,可用值:TRADE,ORDER,RECHARGE
+ * @param orderType 交易类型,available值:TRADE,ORDER,RECHARGE
  * @param sn   订单编号
  * @param clientType  调起方式，PC
  */
@@ -19,9 +19,9 @@ export function tradeDetail (params) {
 
 /**
  * 支付
- * @param orderType 交易类型,可用值:TRADE,ORDER,RECHARGE
- * @param paymentMethod 支付方式 可用值:ALIPAY,WECHAT
- * @param payClient  调起方式 可用值：APP,NATIVE,JSAPI,H5
+ * @param orderType 交易类型,available值:TRADE,ORDER,RECHARGE
+ * @param paymentMethod 支付方式 available值:ALIPAY,WECHAT
+ * @param payClient  调起方式 available值：APP,NATIVE,JSAPI,H5
  * @param sn   订单编号
  */
 export function pay (params) {
@@ -35,7 +35,7 @@ export function pay (params) {
 
 /**
  * 支付结果查询
- * @param orderType 交易类型,可用值:TRADE,ORDER,RECHARGE
+ * @param orderType 交易类型,available值:TRADE,ORDER,RECHARGE
  * @param sn   订单编号
  */
 export function payCallback (params) {
@@ -49,7 +49,7 @@ export function payCallback (params) {
 
 /**
  * 支付结果查询
- * @param orderType 交易类型,可用值:TRADE,ORDER,RECHARGE
+ * @param orderType 交易类型,available值:TRADE,ORDER,RECHARGE
  * @param sn   订单编号
  */
 export function withdrawalSettingVO (params) {

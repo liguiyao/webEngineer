@@ -5,7 +5,7 @@ export default {
     el.addEventListener('mousedown', handleMouseDown,{ passive: false })
 
     function handleMouseDown (e) {
-      let pointer = e.target.dataset.pointer //元素上绑定的方法名
+      let pointer = e.target.dataset.pointer //ringgit素上绑定的方法名
 
       if (!pointer) {
         return

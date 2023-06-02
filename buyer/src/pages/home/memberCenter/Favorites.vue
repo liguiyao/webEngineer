@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <card _Title="近期收藏" :_Tabs="favoriteWay" @_Change="change" :_Size="16" v-if="!homePage"/>
-    <card _Title="近期收藏" :_Size="16" :_Tabs="favoriteWay" @_Change="change" _More="全部收藏" _Src="/home/Favorites" v-else></card>
+    <card _Title="Recent collection" :_Tabs="favoriteWay" @_Change="change" :_Size="16" v-if="!homePage"/>
+    <card _Title="Recent collection" :_Size="16" :_Tabs="favoriteWay" @_Change="change" _More="All collection" _Src="/home/Favorites" v-else></card>
     <div v-if="list.length">
       <template v-for="(item) in list">
         <div class="goodsItem" :key="item.skuId">
@@ -18,14 +18,14 @@
             {{item.storeName}}
           </div>
           <div class="goodsPrice">
-            <span v-if="params.type === 'GOODS'">{{item.price | unitPrice('￥')}}</span>
-            <Tag color="error" v-if="item.selfOperated">商家自营</Tag>
+            <span v-if="params.type === 'GOODS'">{{item.price | unitPrice('RM')}}</span>
+            <Tag color="error" v-if="item.selfOperated">Self-support</Tag>
           </div>
           <div class="goodsBuy">
-            <Button size="small" type="primary" @click="buynow(item.skuId, item.goodsId)" v-if="params.type === 'GOODS'">立即购买</Button>
-            <Button size="small" type="primary" @click="goShop(item.id)" v-else>店铺购买</Button>
-            <Button size="small" v-if="params.type === 'GOODS'" @click="cancel(item.skuId)">取消收藏</Button>
-            <Button size="small" v-if="params.type === 'STORE'" @click="cancelStore(item.id)">取消收藏</Button>
+            <Button size="small" type="primary" @click="buynow(item.skuId, item.goodsId)" v-if="params.type === 'GOODS'">Buy now</Button>
+            <Button size="small" type="primary" @click="goShop(item.id)" v-else>Shop purchase</Button>
+            <Button size="small" v-if="params.type === 'GOODS'" @click="cancel(item.skuId)">uncollect</Button>
+            <Button size="small" v-if="params.type === 'STORE'" @click="cancelStore(item.id)">uncollect</Button>
           </div>
         </div>
       </template>
@@ -47,10 +47,10 @@ export default {
   },
   data () {
     return {
-      favoriteWay: ['收藏商品', '收藏店铺'], // 收藏分类
+      favoriteWay: ['Collection goods', 'Collection shop'], // 收藏分类
       list: [], // 收藏列表
       total: 0, // 收藏总数
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 100,
         type: 'GOODS'
@@ -77,11 +77,11 @@ export default {
       if (index === 0) { this.params.type = 'GOODS',this.getList()}
       if (index === 1) { this.params.type = 'STORE',this.getStoreList()}
     },
-    cancel (id) { // 取消收藏
-      let typeName = this.params.type === 'GOODS' ? '商品' : '店铺'
+    cancel (id) { // Cancel收藏
+      let typeName = this.params.type === 'GOODS' ? 'Goods' : 'Store'
       this.$Modal.confirm({
         title: 'Title',
-        content: `<p>确定取消收藏该${typeName}吗？</p>`,
+        content: `<p>Make sure to unbookmark this${typeName}？</p>`,
         onOk: () => {
           cancelCollect(this.params.type, id).then(res => {
             if (res.success) {
@@ -91,11 +91,11 @@ export default {
         }
       });
     },
-    cancelStore (id) { // 取消收藏
-      let typeName = this.params.type === 'GOODS' ? '商品' : '店铺'
+    cancelStore (id) { // Cancel收藏
+      let typeName = this.params.type === 'GOODS' ? 'Goods' : 'Store'
       this.$Modal.confirm({
         title: 'Title',
-        content: `<p>确定取消收藏该${typeName}吗？</p>`,
+        content: `<p>Make sure to unbookmark this${typeName}？</p>`,
         onOk: () => {
           cancelStoreCollect(this.params.type, id).then(res => {
             if (res.success) {

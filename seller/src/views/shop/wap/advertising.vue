@@ -25,9 +25,9 @@
               <div>设置</div>
             </div>
             <div class="decorate-item-box">
-              <!-- 选择照片 -->
+              <!-- select照片 -->
               <div class="decorate-view">
-                <div class="decorate-view-title">选择图片</div>
+                <div class="decorate-view-title">select图片</div>
                 <div>
                   <img class="show-image" :src="item.img" alt />
                   <input
@@ -48,21 +48,21 @@
                     @click="handleClickFile(item, index)"
                     ghost
                     type="primary"
-                    >选择照片</Button
+                    >select照片</Button
                   >
                 </div>
               </div>
 
-              <!-- 选择连接 -->
+              <!-- select连接 -->
               <div class="decorate-view">
-                <div class="decorate-view-title">选择图片</div>
+                <div class="decorate-view-title">select图片</div>
                 <div>
                   <Button
                     ghost
                     type="primary"
                     size="small"
                     @click="clickLink(item)"
-                    >选择链接</Button
+                    >select链接</Button
                   >
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default {
         },
       ],
 
-      linkType: "", // 选择类型
+      linkType: "", // select类型
     };
   },
   methods: {
@@ -112,7 +112,7 @@ export default {
         };
       });
     },
-    // 点击选择照片
+    // 点击select照片
     handleClickFile(item, index) {
       document.getElementById("files" + index).click();
     },

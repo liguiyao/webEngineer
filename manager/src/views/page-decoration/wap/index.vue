@@ -127,7 +127,7 @@ export default {
       this.handleComponent(this.contentData.list[newIndex], newIndex);
     },
 
-    // 关闭楼层装修
+    // Close楼层装修
     closeComponent(index) {
       this.$nextTick(() => {
         this.decorateData = "";

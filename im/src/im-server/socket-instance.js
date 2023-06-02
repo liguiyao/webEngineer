@@ -35,7 +35,7 @@ class SocketInstance {
         onError: (evt) => {
           console.log("Websocket 连接失败回调方法");
         },
-        // Websocket 连接成功回调方法
+        // Websocket 连接success回调方法
         onOpen: (evt) => {
           this.updateSocketStatus(true);
         },
@@ -87,7 +87,7 @@ class SocketInstance {
 
     this.socket.on("event_error", (data) => {
       Notification({
-        title: "友情提示",
+        title: "友情Tips",
         message: data.message,
         type: "warning",
       });

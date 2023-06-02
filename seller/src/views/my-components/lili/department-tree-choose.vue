@@ -9,14 +9,14 @@
         :clearable="clearable"
         @on-clear="clearSelect"
       />
-      <Poptip transfer trigger="click" placement="right" title="选择部门" width="250">
-        <Button icon="md-list">选择部门</Button>
+      <Poptip transfer trigger="click" placement="right" title="select部门" width="250">
+        <Button icon="md-list">select部门</Button>
         <div slot="content">
           <Input
             v-model="searchKey"
             suffix="ios-search"
             @on-change="searchDep"
-            placeholder="输入部门名搜索"
+            placeholder="输入部门名search"
             clearable
           />
           <div class="dep-tree-bar">
@@ -48,14 +48,14 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "点击选择部门"
+      default: "点击select部门"
     }
   },
   data() {
     return {
       depLoading: false, // 加载状态
       departmentTitle: "", // modal标题
-      searchKey: "", // 搜索关键词
+      searchKey: "", // search关键词
       dataDep: [], // 部门列表
       selectDep: [], // 已选部门
       departmentId: [] // 部门id
@@ -71,7 +71,7 @@ export default {
       });
     },
     searchDep() {
-      // 搜索部门
+      // search部门
       if (this.searchKey) {
         this.depLoading = true;
         searchDepartment({title: this.searchKey}).then(res => {
@@ -90,7 +90,7 @@ export default {
         this.initDepartmentData();
       }
     },
-    // 选择回调
+    // select回调
     selectTree(v) {
       if (v.length === 0) {
         this.$emit("on-change", null);

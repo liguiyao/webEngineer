@@ -1,4 +1,4 @@
-// 统一请求路径前缀在libs/axios.js中修改
+// 统一Please 求路径前缀在libs/axios.js中modify
 import {
   getRequest,
   postRequest,
@@ -47,11 +47,11 @@ export const logout = () => {
   return postRequest("/passport/login/logout");
 };
 
-// 获取用户登录信息
+// 获取用户Login信息
 export const userInfo = params => {
   return getRequest("/user/info", params);
 };
-// 获取登录信息
+// 获取Login信息
 export const userMsg = params => {
   return getRequest('/settings/storeSettings', params)
 }
@@ -63,7 +63,7 @@ export const validateCode = params => {
 export const initCaptcha = params => {
   return getRequestWithNoToken("/common/captcha/init", params);
 };
-// 发送登录短信验证码
+// 发送Login短信验证码
 export const sendLoginSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendLoginSms/${mobile}`, params);
 };
@@ -75,7 +75,7 @@ export const sendRegistSms = (mobile, params) => {
 export const sendResetSms = (mobile, params) => {
   return getRequest(`${commonUrl}/common/captcha/sendResetSms/${mobile}`, params);
 };
-// 发送修改绑定手机短信验证码
+// 发送modify绑定手机短信验证码
 export const sendEditMobileSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendEditMobileSms/${mobile}`, params);
 };
@@ -87,7 +87,7 @@ export const resetByMobile = params => {
 export const sendResetEmail = (email, params) => {
   return getRequest(`/email/sendResetCode/${email}`, params);
 };
-// 发送修改绑定邮件验证码
+// 发送modify绑定邮件验证码
 export const sendEditEmail = (email, params) => {
   return getRequest(`/email/sendEditCode/${email}`, params);
 };
@@ -95,7 +95,7 @@ export const sendEditEmail = (email, params) => {
 export const resetByEmail = params => {
   return postRequest("/email/resetByEmail", params);
 };
-// 短信验证码登录
+// 短信SMS login
 export const smsLogin = params => {
   return postRequest("/user/smsLogin", params);
 };
@@ -107,23 +107,23 @@ export const ipInfo = params => {
 export const userInfoEdit = params => {
   return postRequest("/user/edit", params);
 };
-// 个人中心发送修改邮箱验证邮件
+// 个人中心发送modify邮箱验证邮件
 export const sendCodeEmail = (email, params) => {
   return getRequest(`/email/sendCode/${email}`, params);
 };
-// 个人中心发送修改邮箱验证邮件
+// 个人中心发送modify邮箱验证邮件
 export const editEmail = params => {
   return postRequest("/email/editEmail", params);
 };
-// 忘记密码并修改
+// Forget Password并modify
 export const forgetAndModify = params => {
   return postRequest("/passport/login/resetPassword", params);
 };
-// 个人中心修改密码
+// 个人中心modify密码
 export const changePass = params => {
   return postRequest("/passport/login/modifyPass", params);
 };
-// 个人中心修改手机
+// 个人中心modify手机
 export const changeMobile = params => {
   return postRequest("/user/changeMobile", params);
 };
@@ -143,7 +143,7 @@ export const getRelatedListData = params => {
 export const getUserListData = params => {
   return getRequest("/clerk", params);
 };
-// 通过用户名搜索
+// 通过用户名search
 export const searchUserByName = (username, params) => {
   return getRequest("/user/searchByName/" + username, params);
 };
@@ -168,7 +168,7 @@ export const enableUser = (id, params) => {
 export const disableUser = (id, params) => {
   return postRequest(`/user/admin/disable/${id}`, params);
 };
-// 删除用户
+// delete用户
 export const deleteUser = (ids, params) => {
   return deleteRequest(`/user/delByIds/${ids}`, params);
 };
@@ -182,7 +182,7 @@ export const resetUserPass = params => {
 export const getLogListData = params => {
   return getRequest("/log/getAllByPage", params);
 };
-// 分页获取消息数据
+// 分页获Cancel息数据
 export const getMessageData = params => {
   return getRequest("/message/storeMessage/getByCondition", params);
 };
@@ -202,7 +202,7 @@ export const editMessage = params => {
 export const reductionMessage = (ids, params) => {
   return putRequest(`/message/storeMessage/${ids}/reduction`, params);
 };
-// 彻底删除消息
+// 彻底delete消息
 export const clearMessage = (ids, params) => {
   return deleteRequest(`/message/storeMessage/${ids}`, params);
 };
@@ -210,7 +210,7 @@ export const clearMessage = (ids, params) => {
 export const deleteMessage = (ids, params) => {
   return deleteRequest(`/message/storeMessage/${ids}/delete`, params);
 };
-// 分页获取消息推送数据
+// 分页获Cancel息推送数据
 export const getMessageSendData = params => {
   return getRequest("/message/storeMessage", params);
 };
@@ -222,7 +222,7 @@ export const getAllMessage = params => {
 export const read = (id) => {
   return putRequest(`/message/storeMessage/${id}/read`);
 };
-// 删除发送消息
+// delete发送消息
 export const deleteMessageSend = (ids, params) => {
   return deleteRequest(`/message/storeMessageSend/delByIds/${ids}`, params);
 };
@@ -241,7 +241,7 @@ export const copyFile = params => {
 export const renameFile = params => {
   return postRequest(`${commonUrl}/common/common/file/rename`, params);
 };
-// 删除文件
+// delete文件
 export const deleteFile = (ids, params) => {
   return deleteRequest(`${commonUrl}/common/common/file/delete/${ids}`, params);
 };
@@ -259,19 +259,19 @@ export const base64Upload = params => {
 
 
 
-// 添加商品计量单位
+// 添加Goods计量单位
 export const addGoodsUnit = (params) => {
   return postRequest(`/goods/goodsUnit`, params);
 };
-// 分页获取商品计量单位
+// 分页获取Goods计量单位
 export const getGoodsUnitPage = (params) => {
   return getRequest(`/goods/goodsUnit`, params);
 };
-// 编辑商品计量单位
+// 编辑Goods计量单位
 export const updateGoodsUnit = (id, params) => {
   return putRequest(`/goods/goodsUnit/${id}`, params);
 };
-// 删除商品计量单位
+// deleteGoods计量单位
 export const delGoodsUnit = (ids) => {
   return deleteRequest(`/goods/goodsUnit/delete/${ids}`);
 };
@@ -289,7 +289,7 @@ export const initDepartment = (params) => {
 export const addDepartment = (params) => {
   return postRequest("/department", params);
 };
-// 删除部门
+// delete部门
 export const deleteDepartment = (ids, params) => {
   return deleteRequest(`/department/${ids}`, params);
 };
@@ -301,7 +301,7 @@ export const editDepartment = (ids, params) => {
 export const loadDepartment = (id) => {
   return getRequest(`/department/${id}`);
 };
-// 搜索部门
+// search部门
 export const searchDepartment = (params) => {
   return getRequest("/department", params);
 };
@@ -316,7 +316,7 @@ export const getRoleList = (params) => {
   return getRequest("/role", params);
 };
 
-// 通过部门修改绑定角色
+// 通过部门modify绑定角色
 export const updateDepartmentRole = (id, params) => {
   return putRequestWithNoForm(`/departmentRole/${id}`, params);
 };
@@ -330,7 +330,7 @@ export const getAllPermissionList = (params) => {
 export const addRole = (params) => {
   return postRequest("/role", params);
 };
-// 删除角色
+// delete角色
 export const deleteRole = (ids, params) => {
   return deleteRequest(`/role/${ids}`, params);
 };
@@ -347,7 +347,7 @@ export const editRolePerm = (params) => {
 export const selectRoleMenu = (params) => {
   return getRequest(`/roleMenu/${params}`);
 };
-// 保存角色菜单
+// Save角色菜单
 export const saveRoleMenu = (id, params) => {
   return postRequestWithNoForm(`/roleMenu/${id}`, params);
 };
@@ -363,7 +363,7 @@ export const checkClerk = (mobile) => {
 export const resetPassword = (params) => {
   return postRequest(`/clerk/resetPassword/${params}`);
 };
-// 删除用户
+// delete用户
 export const deleteClerk = (ids) => {
   return deleteRequest(`/clerk/delByIds/${ids}`);
 };
@@ -382,7 +382,7 @@ export const editOtherUser = (id, params) => {
 };
 
 // /**
-//  *  搜索部门 先加入此api防止运行warn
+//  *  search部门 先加入此api防止运行warn
 //  */
 // export const searchDepartment = (params) => {
 //   return getRequest("/permission/department/search", params);

@@ -2,7 +2,7 @@
   <div>
     <div class="userBox">
       <div class="box">
-        <!-- 我的订单组件 -->
+        <!-- My order组件 -->
         <myOrderPage :homePage="true" />
       </div>
       <div class="box">

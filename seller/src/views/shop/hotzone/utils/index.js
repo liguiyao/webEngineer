@@ -82,7 +82,7 @@ _.handleEgdeCollisions = (rect1, rect2) => {
  * @param {Object} container
  */
 _.dealEdgeValue = (itemInfo, styleInfo, container, zones, currentIndex = zones.length - 1) => {
-  
+
   if (Object.prototype.hasOwnProperty.call(styleInfo, "left") && styleInfo.left < 0) {
     styleInfo.left = 0
     styleInfo.width = itemInfo.width + itemInfo.left
@@ -104,7 +104,7 @@ _.dealEdgeValue = (itemInfo, styleInfo, container, zones, currentIndex = zones.l
       styleInfo.height = container.height - itemInfo.top
     }
   }
-  // 与其他热区重叠，则修正 检测是否发生碰撞
+  // 与Others热区重叠，则修正 检测是否发生碰撞
   if (zones.length > 1) {
     let currentzones = JSON.parse(JSON.stringify(zones)).map((zone) => {
       return {
@@ -249,7 +249,7 @@ _.dealBC = (itemInfo, moveX, moveY, minLimit = _.MIN_LIMIT) => {
 
   return styleInfo
 }
-// 添加热区时，判定鼠标释放点满足一下条件时生效
+// 添加热区时，判定鼠标释放点full足一下条件时生效
 _.dealBR = (itemInfo, moveX, moveY, minLimit = _.MIN_LIMIT) => {
   let styleInfo = {}
   let width = itemInfo.width + moveX

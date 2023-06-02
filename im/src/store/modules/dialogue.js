@@ -75,7 +75,7 @@ export default {
       }
     },
 
-    // 删除对话记录
+    // delete对话记录
     DELETE_DIALOGUE (state, index) {
       state.records.splice(index, 1);
     },

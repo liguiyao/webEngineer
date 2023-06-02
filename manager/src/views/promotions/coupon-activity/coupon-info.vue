@@ -3,7 +3,7 @@
     <div class="content-goods-publish">
       <Form ref="form" :label-width="70">
         <div class="base-info-item">
-          <h4>优惠券活动详情</h4>
+          <h4>coupon活动详情</h4>
           <div class="form-item-view">
             <FormItem label="活动名称">
               <span>{{ couponActivity.promotionName }}</span>
@@ -36,10 +36,10 @@
               <span v-if="couponActivity.promotionStatus === 'NEW'">未开始</span>
               <span v-if="couponActivity.promotionStatus === 'START'">已开始</span>
               <span v-if="couponActivity.promotionStatus === 'END'">已结束</span>
-              <span v-if="couponActivity.promotionStatus === 'CLOSE'">已关闭</span>
+              <span v-if="couponActivity.promotionStatus === 'CLOSE'">已Close</span>
             </FormItem>
           </div>
-          <h4>优惠券列表</h4>
+          <h4>Coupon list</h4>
           <Table :columns="couponColumn" :data="couponData" ref="table"> </Table>
           <template v-if="couponActivity.activityScopeInfo && memberData.length > 0">
             <h4 class="mt_10">会员列表列表</h4>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="footer">
-      <Button type="primary" @click="back">返回活动列表</Button>
+      <Button type="primary" @click="back">Back活动列表</Button>
     </div>
   </div>
 </template>
@@ -66,16 +66,16 @@ export default {
       couponActivity: {}, //券活动
       couponColumn: [
         {
-          title: "优惠券名称",
+          title: "coupon名称",
           key: "couponName",
         },
         {
-          title: "优惠券金额",
+          title: "coupon金额",
           key: "price",
           render: (h, params) => {
             let text = "未知";
             if (params.row.couponType === "DISCOUNT") {
-              text = params.row.couponDiscount + "折";
+              text = params.row.couponDiscount + "off";
             } else if (params.row.couponType === "PRICE") {
               text = "¥" + params.row.price;
             }
@@ -83,12 +83,12 @@ export default {
           },
         },
         {
-          title: "优惠券类型",
+          title: "coupon类型",
           key: "couponType",
           render: (h, params) => {
             let text = "未知";
             if (params.row.couponType == "DISCOUNT") {
-              text = "打折";
+              text = "打off";
             } else if (params.row.couponType == "PRICE") {
               text = "减免现金";
             }
@@ -96,7 +96,7 @@ export default {
           },
         },
         {
-          title: "赠送数量",
+          title: "赠送Quantity",
           key: "num",
         },
       ],
@@ -118,7 +118,7 @@ export default {
     this.getCouponActivity();
   },
   methods: {
-    //获取优惠券活动
+    //获取coupon活动
     getCouponActivity() {
       getCouponActivity(this.id).then((res) => {
         this.couponActivity = res.result;
@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*选择商品品类*/
+/*selectGoods品类*/
 .content-goods-publish {
   padding: 15px;
   margin: 0 auto;

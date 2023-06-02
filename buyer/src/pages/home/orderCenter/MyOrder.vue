@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <!-- 卡片组件 -->
-    <card _Title="我的订单" :_Size="16" :_Tabs="changeWay" @_Change="change" v-if="!homePage"></card>
-    <card _Title="我的订单" :_Size="16" :_Tabs="changeWay" @_Change="change" _More="全部订单" _Src="/home/MyOrder" v-else></card>
-    <!-- 搜索 筛选 -->
+    <card _Title="My order" :_Size="16" :_Tabs="changeWay" @_Change="change" v-if="!homePage"></card>
+    <card _Title="My order" :_Size="16" :_Tabs="changeWay" @_Change="change" _More="All order" _Src="/home/MyOrder" v-else></card>
+    <!-- search 筛选 -->
     <div class="mb_24 box" v-if="!homePage">
       <div class="global_float_right" >
         <Input
@@ -12,7 +12,7 @@
           enter-button
           v-model="params.keywords"
           @on-search="getList"
-          placeholder="请输入订单号搜索"
+          placeholder="Please enter Order number search"
         />
       </div>
     </div>
@@ -28,12 +28,12 @@
           <div>
             <div>{{ filterOrderStatus(order.orderStatus) }}</div>
             <div>
-              订单号：{{ order.sn }} &nbsp; &nbsp; &nbsp;{{order.createTime}}
+              Order number：{{ order.sn }} &nbsp; &nbsp; &nbsp;{{order.createTime}}
             </div>
           </div>
           <div>
             <Button v-if="order.orderStatus === 'COMPLETED'" @click="delOrder(order.sn)" class="del-btn mr_10 fontsize_16" style="margin-top:-5px;" type="text" icon="ios-trash-outline" size="small"></Button>
-            <span>{{ order.flowPrice | unitPrice("￥") }}</span>
+            <span>{{ order.flowPrice | unitPrice("RM") }}</span>
           </div>
         </div>
         <div class="order-body">
@@ -52,11 +52,11 @@
                 <div class="hover-color" @click="goodsDetail(goods.skuId, goods.goodsId)">{{ goods.name }}</div>
                 <div class="mt_10">
                   <span class="global_color"
-                    >{{ goods.goodsPrice | unitPrice("￥") }} </span
+                    >{{ goods.goodsPrice | unitPrice("RM") }} </span
                   >x {{ goods.num }}
                 </div>
-                <Button v-if="goods.commentStatus == 'UNFINISHED'" @click="comment(order.sn, goodsIndex)" size="small" type="success" class="fontsize_12" style="position:relative;top:-22px;left:100px;margin-right:10px">评价</Button>
-                <Button v-if="goods.complainStatus == 'NO_APPLY'" @click="complain(order.sn, goodsIndex)" type="warning" class="fontsize_12" size="small" style="position:relative;top:-22px;left:100px">投诉</Button>
+                <Button v-if="goods.commentStatus == 'UNFINISHED'" @click="comment(order.sn, goodsIndex)" size="small" type="success" class="fontsize_12" style="position:relative;top:-22px;left:100px;margin-right:10px">Evaluate</Button>
+                <Button v-if="goods.complainStatus == 'NO_APPLY'" @click="complain(order.sn, goodsIndex)" type="warning" class="fontsize_12" size="small" style="position:relative;top:-22px;left:100px">Complaint</Button>
               </div>
             </div>
           </div>
@@ -64,13 +64,13 @@
             <span @click="shopPage(order.storeId)">{{ order.storeName }}</span>
           </div>
           <div>
-            <!-- 订单基础操作 -->
-            <Button @click="orderDetail(order.sn)" type="info" size="small">订单详情</Button>
-            <Button @click="handleCancelOrder(order.sn)" type="error" v-if="order.allowOperationVO.cancel" size="small">取消订单</Button>
-            <Button @click="goPay(order.sn)" size="small" type="success" v-if="order.allowOperationVO.pay">去支付</Button>
-            <Button @click="received(order.sn)" size="small" type="warning" v-if="order.allowOperationVO.rog">确认收货</Button>
-            <!-- 售后 -->
-            <Button v-if="order.groupAfterSaleStatus && order.groupAfterSaleStatus.includes('NOT_APPLIED')" @click="applyAfterSale(order.orderItems)" size="small">申请售后</Button>
+            <!-- 订单基础operation -->
+            <Button @click="orderDetail(order.sn)" type="info" size="small">Order details</Button>
+            <Button @click="handleCancelOrder(order.sn)" type="error" v-if="order.allowOperationVO.cancel" size="small">Cancel order</Button>
+            <Button @click="goPay(order.sn)" size="small" type="success" v-if="order.allowOperationVO.pay">payment</Button>
+            <Button @click="received(order.sn)" size="small" type="warning" v-if="order.allowOperationVO.rog">Confirm receipt</Button>
+            <!-- after sale -->
+            <Button v-if="order.groupAfterSaleStatus && order.groupAfterSaleStatus.includes('NOT_APPLIED')" @click="applyAfterSale(order.orderItems)" size="small">Apply  after sale</Button>
           </div>
         </div>
       </div>
@@ -85,8 +85,8 @@
         show-sizer>
       </Page>
     </div>
-    <!-- 选择售后商品 -->
-    <Modal v-model="afterSaleModal" title="请选择申请售后的商品">
+    <!-- selectafter saleGoods -->
+    <Modal v-model="afterSaleModal" title="Please selectApply  after sale goods">
       <div>
         <Table
           border
@@ -98,7 +98,7 @@
       </div>
       <div slot="footer"></div>
     </Modal>
-    <Modal v-model="cancelAvail" title="请选择取消订单原因" @on-ok="sureCancel" @on-cancel="cancelAvail = false">
+    <Modal v-model="cancelAvail" title="Please selectCancel order reason" @on-ok="sureCancel" @on-cancel="cancelAvail = false">
       <RadioGroup v-model="cancelParams.reason" vertical type="button" button-style="solid">
         <Radio :label="item.reason" v-for="item in cancelReason" :key="item.id">
            {{item.reason}}
@@ -123,30 +123,30 @@ export default {
   data () {
     return {
       orderList: [], // 订单列表
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 10,
         // orderStatus: 'ALL',
         keywords: '',
         tag: 'ALL'
       },
-      cancelParams: { // 取消售后参数
+      cancelParams: { // Cancelafter sale参数
         orderSn: '',
         reason: ''
       },
       // 状态数组
       orderStatusList,
-      changeWay: ['全部订单', '待付款', '待收货', '已完成'], // 订单状态
+      changeWay: ['All order', 'To be paid', 'To be receive', 'completed'], // 订单状态
       total: 0, // 数据总数
       spinShow: false, // 加载状态
-      afterSaleModal: false, // 选择售后商品模态框
-      afterSaleColumns: [ // 售后商品表头
-        {title: '商品名称', key: 'name'},
-        {title: '价格', key: 'goodsPrice'}
+      afterSaleModal: false, // selectafter saleGoods模态框
+      afterSaleColumns: [ // after saleGoods表头
+        {title: 'goods name', key: 'name'},
+        {title: 'price', key: 'goodsPrice'}
       ],
-      afterSaleArr: [], // 售后商品列表
-      cancelAvail: false, // 取消订单modal控制
-      cancelReason: [] // 取消订单原因
+      afterSaleArr: [], // after saleGoods列表
+      cancelAvail: false, // Cancel ordermodal控制
+      cancelReason: [] // Cancel order reason
     };
   },
   mounted () {
@@ -155,7 +155,7 @@ export default {
   },
   methods: {
     goodsDetail (skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: { skuId, goodsId }
@@ -189,21 +189,21 @@ export default {
       window.open(routeUrl.href, '_blank');
     },
     orderDetail (sn) {
-      // 跳转订单详情
+      // 跳转Order details
       this.$router.push({ name: 'OrderDetail', query: {sn} });
     },
-    received (sn) { // 确认收货
+    received (sn) { // Confirm receipt
       sureReceived(sn).then(res => {
         if (res.success) {
-          this.$Message.success('确认收货成功')
+          this.$Message.success('Confirm receiptsuccess')
           this.getList()
         }
       })
     },
-    goPay (sn) { // 去支付
+    goPay (sn) { // payment
       this.$router.push({path: '/payment', query: {orderType: 'ORDER', sn}});
     },
-    applyAfterSale (goodsItem) { // 申请售后
+    applyAfterSale (goodsItem) { // Apply  after sale
       let arr = []
       goodsItem.forEach(e => {
         if (e.afterSaleStatus === 'NOT_APPLIED') {
@@ -217,24 +217,24 @@ export default {
         this.afterSaleModal = true
       }
     },
-    // 申请售后
+    // Apply  after sale
     afterSaleSelect (item) {
       this.$router.push({name: 'ApplyAfterSale', query: {sn: item.sn}})
     },
-    comment (sn, goodsIndex) { // 评价
+    comment (sn, goodsIndex) { // Evaluate
       this.$router.push({path: '/home/addEval', query: {sn, index: goodsIndex}})
     },
-    complain (sn, goodsIndex) { // 投诉
+    complain (sn, goodsIndex) { // Complaint
       this.$router.push({name: 'Complain', query: {sn, index: goodsIndex}})
     },
-    delOrder (sn) { // 删除订单
+    delOrder (sn) { // delete order
       this.$Modal.confirm({
-        title: '删除订单',
-        content: '<p>确认删除当前订单吗？</p>',
+        title: 'delete order',
+        content: '<p>delete current order ？</p>',
         onOk: () => {
           delOrder(sn).then(res => {
             if (res.success) {
-              this.$Message.success('删除成功');
+              this.$Message.success('deletesuccess');
               this.getList()
             }
           })
@@ -256,17 +256,17 @@ export default {
         }
       });
     },
-    changePageNum (val) { // 修改页码
+    changePageNum (val) { // modify页码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // 修改页数
+    changePageSize (val) { // modify页数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()
     },
     handleCancelOrder (sn) {
-      // 取消订单
+      // Cancel order
       this.cancelParams.orderSn = sn;
       afterSaleReason('CANCEL').then(res => {
         if (res.success) {
@@ -276,10 +276,10 @@ export default {
         }
       })
     },
-    sureCancel () { // 确定取消
+    sureCancel () { // ConfirmCancel
       cancelOrder(this.cancelParams).then(res => {
         if (res.success) {
-          this.$Message.success('取消订单成功')
+          this.$Message.success('Cancel ordersuccess')
           this.getList()
           this.cancelAvail = false
         }

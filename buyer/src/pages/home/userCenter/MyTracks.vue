@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <!-- 卡片组件 -->
-    <card _Title="我的足迹" :_Size="16"></card>
-    <Button class="del-btn" @click="clearAll" type="primary">删除全部</Button>
+    <card _Title="My tract" :_Size="16"></card>
+    <Button class="del-btn" @click="clearAll" type="primary">delete all</Button>
     <!-- 订单列表 -->
     <empty v-if="list.length === 0" />
     <ul class="track-list" v-else>
@@ -13,7 +13,7 @@
       >
         <img :src="item.thumbnail" :alt="item.thumbnail" width="200" height="200" />
         <p class="ellipsis">{{ item.goodsName }}</p>
-        <p>{{ item.price | unitPrice("￥") }}</p>
+        <p>{{ item.price | unitPrice("RM") }}</p>
         <span class="del-icon" @click.stop="clearById(item.goodsId)">
           <Icon type="md-trash" />
         </span>
@@ -39,7 +39,7 @@ export default {
   name: "MyTrack",
   data() {
     return {
-      list: [], // 我的足迹，商品列表
+      list: [], // My tract，Goods列表
       spinShow: false, // 控制loading是否加载
       params: {
         pageNumber: 1,
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     goodsDetail(skuId, goodsId) {
-      // 跳转商品详情
+      // 跳转Goods详情
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },
@@ -73,12 +73,12 @@ export default {
     clearAll() {
       // 清除全部足迹
       this.$Modal.confirm({
-        title: "删除",
-        content: "<p>确定要删除全部足迹吗？</p>",
+        title: "delete",
+        content: "<p>Are you sure to delete all?</p>",
         onOk: () => {
           clearTracks().then((res) => {
             if (res.success) {
-              this.$Message.success("删除成功");
+              this.$Message.success("deletesuccess");
               this.getList();
             }
           });
@@ -90,18 +90,18 @@ export default {
       // 清除全部足迹
       clearTracksById(id).then((res) => {
         if (res.success) {
-          this.$Message.success("删除成功");
+          this.$Message.success("deletesuccess");
           this.getList();
         }
       });
     },
     changePageNum(val) {
-      // 修改页码
+      // modify页码
       this.params.pageNumber = val;
       this.getList();
     },
     changePageSize(val) {
-      // 修改页数
+      // modify页数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList();

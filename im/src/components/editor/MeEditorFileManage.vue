@@ -14,7 +14,7 @@
     <el-main class="no-padding mian lum-scrollbar">
       <div class="empty-data" v-show="total == 0">
         <SvgNotData />
-        <p>暂无上传文件</p>
+        <p>absent上传文件</p>
       </div>
 
       <div
@@ -35,7 +35,7 @@
               正在上传...
             </span>
             <span v-else-if="file.status == 2" style="color: #67c23a">
-              已完成
+              completed
             </span>
             <span v-else style="color: red">网络异常</span>
           </div>
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div v-show="file.status == 2 || file.status == 3" class="file-means">
-          <div class="btns" @click="removeFile(file.hashName)">删除</div>
+          <div class="btns" @click="removeFile(file.hashName)">delete</div>
           <div
             v-show="file.status == 3"
             class="btns"
@@ -178,7 +178,7 @@ export default {
       const splitNum = Math.ceil(file.size / eachSize) // 分片总数
       const forms = []
 
-      // 处理每个分片的上传操作
+      // 处理每个分片的上传operation
       for (let i = 0; i < splitNum; i++) {
         let start = i * eachSize
         let end = Math.min(file.size, start + eachSize)

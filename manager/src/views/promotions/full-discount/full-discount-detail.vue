@@ -21,7 +21,7 @@
                 v-model="form.rangeTime"
                 disabled
                 format="yyyy-MM-dd HH:mm:ss"
-                placeholder="请选择"
+                placeholder="Please select"
                 :options="options"
                 style="width: 320px"
               >
@@ -52,14 +52,14 @@
               />
               <span class="describe">消费达到当前金额可以参与优惠</span>
             </FormItem>
-            <FormItem label="赠送优惠券">
+            <FormItem label="赠送coupon">
               <RadioGroup
                 type="button"
                 button-style="solid"
                 v-model="form.discountType"
               >
                 <Radio label="fullMinusFlag" disabled>减现金</Radio>
-                <Radio label="fullRateFlag" disabled>打折</Radio>
+                <Radio label="fullRateFlag" disabled>打off</Radio>
               </RadioGroup>
             </FormItem>
             <FormItem
@@ -78,34 +78,34 @@
             </FormItem>
             <FormItem
               v-if="form.discountType == 'fullRateFlag'"
-              label="优惠折扣"
+              label="优惠off扣"
               prop="fullRate"
             >
               <Input
                 type="text"
                 v-model="form.fullRate"
-                placeholder="优惠折扣"
+                placeholder="优惠off扣"
                 disabled
                 clearable
                 style="width: 260px"
               />
-              <span class="describe">优惠折扣为0-10之间数字，可有一位小数</span>
+              <span class="describe">优惠off扣为0-10之间数字，可有一位小数</span>
             </FormItem>
             <FormItem label="额外赠送">
               <Checkbox v-model="form.freeFreightFlag" disabled>免邮费</Checkbox
               >&nbsp;
-              <Checkbox v-model="form.couponFlag" disabled>送优惠券</Checkbox
+              <Checkbox v-model="form.couponFlag" disabled>送coupon</Checkbox
               >&nbsp;
               <Checkbox v-model="form.giftFlag" disabled>送赠品</Checkbox>&nbsp;
               <Checkbox v-model="form.pointFlag" disabled>送积分</Checkbox>
             </FormItem>
-            <FormItem v-if="form.couponFlag" label="赠送优惠券" prop="couponId">
+            <FormItem v-if="form.couponFlag" label="赠送coupon" prop="couponId">
               <Select
                 v-model="form.couponId"
                 :disabled="form.promotionStatus != 'NEW'"
                 filterable
                 :remote-method="getCouponList"
-                placeholder="输入优惠券名称搜索"
+                placeholder="输入coupon名称search"
                 :loading="couponLoading"
                 style="width: 280px"
               >
@@ -122,7 +122,7 @@
                 v-model="form.giftId"
                 filterable
                 :remote-method="getGiftList"
-                placeholder="输入赠品名称搜索"
+                placeholder="输入赠品名称search"
                 disabled
                 :loading="giftLoading"
                 style="width: 260px"
@@ -150,7 +150,7 @@
                 v-model="form.scopeType"
               >
                 <Radio label="ALL" disabled>全品类</Radio>
-                <Radio label="PORTION_GOODS" disabled>指定商品</Radio>
+                <Radio label="PORTION_GOODS" disabled>指定Goods</Radio>
               </RadioGroup>
             </FormItem>
 
@@ -191,7 +191,7 @@
             <div>
               <Button
                 @click="$router.push({ name: 'promotions/full-discount' })"
-                >返回</Button
+                >Back</Button
               >
             </div>
           </div>
@@ -219,7 +219,7 @@ export default {
         promotionGoodsList: [],
       },
       id: this.$route.query.id, // 活动id
-      couponList: [], // 优惠券列表
+      couponList: [], // Coupon list
       giftList: [], // 赠品列表
       giftLoading: false, // 赠品加载状态
       columns: [
@@ -229,18 +229,18 @@ export default {
           align: "center",
         },
         {
-          title: "商品名称",
+          title: "goods name",
           slot: "goodsName",
           minWidth: 120,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           minWidth: 40,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -286,7 +286,7 @@ export default {
       });
     },
     getCouponList(query) {
-      // 优惠券列表
+      // Coupon list
       let params = {
         pageSize: 10,
         pageNumber: 0,

@@ -12,7 +12,7 @@
           <Input
             type="text"
             v-model="searchForm.promotionName"
-            placeholder="请输入活动名称"
+            placeholder="Please enter 活动名称"
             clearable
             style="width: 200px"
           />
@@ -20,14 +20,14 @@
         <Form-item label="活动状态" prop="promotionStatus">
           <Select
             v-model="searchForm.promotionStatus"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           >
             <Option value="NEW">未开始</Option>
             <Option value="START">已开始/上架</Option>
             <Option value="END">已结束/下架</Option>
-            <Option value="CLOSE">紧急关闭/作废</Option>
+            <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
         <Form-item label="活动时间">
@@ -35,11 +35,11 @@
             v-model="selectDate"
             type="daterange"
             clearable
-            placeholder="选择起始时间"
+            placeholder="select起始时间"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
       </Form>
       <Table
         :loading="loading"
@@ -58,7 +58,7 @@
             size="small"
             v-if="row.promotionStatus === 'START' || row.promotionStatus === 'NEW'"
             @click="close(row)"
-            >关闭
+            >Close
           </Button>
         </template>
       </Table>
@@ -91,11 +91,11 @@ export default {
       selectDate: [], //选中的数据
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
         sort: "createTime",
-        order: "desc", // 默认排序方式
+        order: "desc", // default排序方式
       },
       columns: [
         // 表头
@@ -133,7 +133,7 @@ export default {
 
         {
           fixed: "right",
-          title: "操作",
+          title: "operation",
           slot: "action",
           align: "center",
           width: 200,
@@ -148,19 +148,19 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 修改页码
+    // 分页 modify页码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 修改页数
+    // 分页 modify页数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -184,23 +184,23 @@ export default {
         }
       });
     },
-    // 查看拼团商品
+    // 查看拼团Goods
     view(v) {
       this.$router.push({ name: "pintuan-goods", query: { id: v.id } });
     },
-    // 关闭当前活动
+    // Close当前活动
     close(v) {
       this.$Modal.confirm({
-        title: "确认关闭",
-        // 记得确认修改此处
-        content: "您确认要关闭此拼团活动?",
+        title: "确认Close",
+        // 记得确认modify此处
+        content: "您确认要Close此拼团活动?",
         loading: true,
         onOk: () => {
-          // 删除
+          // delete
           updatePintuanStatus(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("操作成功");
+              this.$Message.success("operationsuccess");
               this.getDataList();
             }
           });

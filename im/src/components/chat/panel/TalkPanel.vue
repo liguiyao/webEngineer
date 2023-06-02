@@ -72,7 +72,7 @@
                     </div>
                    
                   </div>
-                   <div v-if="item.webSocketStatus" class="tips">网络异常发送失败，请重新发送。</div>
+                   <div v-if="item.webSocketStatus" class="tips">网络异常发送失败，Please 重新发送。</div>
 
                   <div v-if="item.messageType == 'GOODS' && item.text != null" class="goodsStyle " :class="{
                     left: item.float == 'left',
@@ -89,7 +89,7 @@
                           </el-tooltip>
                         </div>
                         <div class="price">
-                          <span>{{ item.text.price | unitPrice('￥') }}</span>
+                          <span>{{ item.text.price | unitPrice('RM') }}</span>
                         </div>
                       </div>
                     </div>
@@ -101,7 +101,7 @@
                   
                     <div class="oedersn">
                       <el-tooltip class="item" effect="dark" :content="item.text.sn" placement="top-start">
-                        <a> 订单号:{{ item.text.sn }} </a>
+                        <a> Order number:{{ item.text.sn }} </a>
                       </el-tooltip>
                     </div>
                     <div class="goods-shared-box">
@@ -111,24 +111,24 @@
                         <div>
                           <span class="orderGoodsName">{{ order.name }}</span>
                           <div class="goods-item-price">
-                           <span>{{ order.goodsPrice | unitPrice('￥') }}</span>
+                           <span>{{ order.goodsPrice | unitPrice('RM') }}</span>
                           </div> 
                         </div>
                       </div>
                       <div class="shared-goods">
                       <div class="orderGoodsTime">{{ item.text.paymentTime }}</div>
                       <span class="orderFlowPrice">
-                        订单金额：<span>{{ item.text.flowPrice | unitPrice('￥') }}</span>
+                        订单金额：<span>{{ item.text.flowPrice | unitPrice('RM') }}</span>
                       </span> 
                       <div class="order-status">
                         <el-tag 
                           size="mini"
                           :type="item.text.orderStatus == 'CANCELLED' || item.text.orderStatus == 'UNPAID' || item.text.orderStatus == ' TAKE' ? 'info' : 'danger'">{{
-                            item.text.orderStatus == 'CANCELLED' ? '已取消' : item.text.orderStatus == 'UNPAID' ? '未付款' :
+                            item.text.orderStatus == 'CANCELLED' ? '已Cancel' : item.text.orderStatus == 'UNPAID' ? 'Unpaid' :
                               item.text.orderStatus ==
                                 'PAID' ? '已付款' : item.text.orderStatus == 'UNDELIVERED' ? '待发货' : item.text.orderStatus ==
                                   'DELIVERED'
-                                  ? '已发货' : item.text.orderStatus == ' COMPLETED' ? '已完成' : item.text.orderStatus == ' TAKE' ?
+                                  ? '已发货' : item.text.orderStatus == ' COMPLETED' ? 'completed' : item.text.orderStatus == ' TAKE' ?
                                     '待校验' : ''
                           }}</el-tag>
                       </div>
@@ -262,7 +262,7 @@ export default {
         pageNumber: 0,
       },
 
-      // 多选相关操作
+      // 多选相关operation
       multiSelect: {
         isOpen: false,
         items: [],
@@ -448,7 +448,7 @@ export default {
       // console.log("插入对话记录",'')
       // 插入对话记录
       this.$store.commit("PUSH_DIALOGUE", insterChat);
-      // 获取聊天面板元素节点
+      // 获取聊天面板ringgit素节点
       let el = document.getElementById("lumenChatPanel");
 
       // 判断的滚动条是否在底部
@@ -517,7 +517,7 @@ export default {
       let el = document.getElementById('lumenChatPanel')
       let scrollHeight = el.scrollHeight
       ServeTalkRecords(data).then((res) => {
-        // 防止点击切换过快消息返回延迟，导致信息错误
+        // 防止点击切换过快消息Back延迟，导致信息错误
         // console.log("读取历史数据", res);
         const records = res.result.map((item) => {
           let key = new Date().getTime();
@@ -578,7 +578,7 @@ export default {
       } else if (value == "delete") {
         this.multiSelect.mode = 3;
 
-        // 批量删除
+        // 批量delete
         let ids = this.multiSelect.items;
         ServeRemoveRecords({
           talk_type: this.params.talk_type,
@@ -616,7 +616,7 @@ export default {
           this.closeMultiSelect();
           this.$notify({
             title: "消息转发",
-            message: "消息转发成功...",
+            message: "消息转发success...",
             type: "success",
           });
         }
@@ -643,7 +643,7 @@ export default {
       // 当前时间5分钟内时间不显示
       if (currTime - time < 300) return false;
 
-      // 判断是否是最后一条消息,最后一条消息默认显示时间
+      // 判断是否是最后一条消息,最后一条消息default显示时间
       if (index == this.records.length - 1) {
         return true;
       }
@@ -672,7 +672,7 @@ export default {
       });
     },
 
-    // 删除消息
+    // delete消息
     removeRecords (index, item) {
       let receiver_id = item.receiver_id;
       if (item.talk_type == 1 && item.user_id != this.id) {
@@ -690,18 +690,18 @@ export default {
       });
     },
 
-    // 从列表中删除记录
+    // 从列表中delete记录
     delRecords (arr) {
       this.$store.commit("BATCH_DELETE_DIALOGUE", arr);
       return this;
     },
 
-    // 开启多选模式
+    // Opening多选模式
     openMultiSelect () {
       this.multiSelect.isOpen = true;
     },
 
-    // 关闭多选模式
+    // Close多选模式
     closeMultiSelect () {
       this.multiSelect.isOpen = false;
       this.multiSelect.items = [];
@@ -720,8 +720,8 @@ export default {
       } else {
         if (this.multiSelect.items.length >= 30) {
           this.$notify({
-            title: "温馨提示",
-            message: "批量操作最大支持30条数据...",
+            title: "温馨Tips",
+            message: "批量operation最大支持30条数据...",
           });
           return false;
         }
@@ -729,7 +729,7 @@ export default {
       }
     },
 
-    // 验证是否存在选择的指定类型的消息
+    // 验证是否存在select的指定类型的消息
     verifyMultiSelectType (type) {
       return this.records.some((item) => {
         return this.verifyMultiSelect(item.id) && item.messageType == type;
@@ -771,7 +771,7 @@ export default {
       }
 
       menus.push({
-        label: "删除",
+        label: "delete",
         icon: "el-icon-delete",
         customClass: "cus-contextmenu-item",
         onClick: () => {
@@ -825,7 +825,7 @@ export default {
       this.group.panel = false;
     },
 
-    // 修改群聊免打扰状态
+    // modify群聊免打扰状态
     disturbChange (detail) {
       this.$store.commit("UPDATE_TALK_ITEM", {
         index_name: `2_${this.params.receiver_id}`,

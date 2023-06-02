@@ -3,10 +3,10 @@
     <Card>
       <Form @keydown.enter.native="handleSearch" ref="searchForm" :model="searchForm" inline :label-width="70"
         class="search-form">
-        <Form-item label="商品名称" prop="goodsName">
-          <Input type="text" v-model="searchForm.goodsName" placeholder="请输入商品名称" clearable style="width: 200px" />
+        <Form-item label="goods name" prop="goodsName">
+          <Input type="text" v-model="searchForm.goodsName" placeholder="Please enter goods name" clearable style="width: 200px" />
         </Form-item>
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Row class="operation" style="margin:10px 0;">
         <Button @click="delAll" type="primary">批量下架</Button>
@@ -49,11 +49,11 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
       },
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
@@ -66,7 +66,7 @@ export default {
           fixed: "left",
         },
         {
-          title: "商品图片",
+          title: "Goods图片",
           fixed: "left",
           key: "thumbnail",
           width: 120,
@@ -88,19 +88,19 @@ export default {
           },
         },
         {
-          title: "商品名称",
+          title: "goods name",
           slot: "goodsName",
           minWidth: 200,
           tooltip: true,
         },
         {
-          title: "商品价格",
+          title: "Goodsprice",
           key: "price",
           minWidth: 100,
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -115,7 +115,7 @@ export default {
           minWidth: 100,
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 100,
           tooltip: true,
@@ -128,12 +128,12 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.commission, "￥")
+              this.$options.filters.unitPrice(params.row.commission, "RM")
             );
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -179,7 +179,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
@@ -207,7 +207,7 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 下架商品
+    // 下架Goods
     remove(v) {
       this.$Modal.confirm({
         title: "确认下架",
@@ -218,7 +218,7 @@ export default {
           delDistributionGoods(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架成功");
+              this.$Message.success("下架success");
               this.getDataList();
             }
           });
@@ -228,7 +228,7 @@ export default {
     // 批量下架
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要下架的数据");
+        this.$Message.warning("您还未select要下架的数据");
         return;
       }
       this.$Modal.confirm({
@@ -244,7 +244,7 @@ export default {
           delDistributionGoods(ids.toString()).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架成功");
+              this.$Message.success("下架success");
               this.clearSelectAll();
               this.getDataList();
             }

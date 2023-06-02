@@ -1,5 +1,5 @@
 <template>
-    <div class="layout">请选择风格</div>
+    <div class="layout">Please select风格</div>
 </template>
 <script>
 export default {

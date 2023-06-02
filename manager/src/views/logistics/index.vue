@@ -14,7 +14,7 @@
         <!-- 页面展示 -->
         <template slot="disableSlot" slot-scope="{row}">
           <i-switch size="large"  :true-value="true" :false-value="false"  :value="row.switch" @on-change="changeSwitch(row)">
-            <span slot="open">开启</span>
+            <span slot="open">Opening</span>
             <span slot="close">禁用</span>
           </i-switch>
         </template>
@@ -41,10 +41,10 @@
       :width="500"
     >
       <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
-        <FormItem label="物流公司名称" prop="name">
+        <FormItem label="Logistics company 名称" prop="name">
           <Input v-model="form.name" clearable style="width: 100%"/>
         </FormItem>
-        <FormItem label="物流公司代码" prop="code">
+        <FormItem label="Logistics company 代码" prop="code">
           <Input v-model="form.code" clearable style="width: 100%"/>
         </FormItem>
         <FormItem label="支持电子面单">
@@ -59,15 +59,15 @@
         <FormItem label="禁用状态" prop="disabled">
 
           <i-switch true-value="OPEN" false-value="CLOSE" v-model="form.disabled" size="large">
-            <span slot="open">开启</span>
+            <span slot="open">Opening</span>
             <span slot="close">禁用</span>
           </i-switch>
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="text" @click="modalVisible = false">取消</Button>
+        <Button type="text" @click="modalVisible = false">Cancel</Button>
         <Button type="primary" :loading="submitLoading" @click="handleSubmit"
-        >提交
+        >Submit
         </Button
         >
       </div>
@@ -91,11 +91,11 @@
         modalVisible: false, // 添加或编辑显示
         modalTitle: "", // 添加或编辑标题
         searchForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 20, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
           name: "",
         },
         form: {
@@ -108,21 +108,21 @@
           name: [
             {
               required: true,
-              message: "请输入物流公司名称",
+              message: "Please enter Logistics company 名称",
               trigger: "blur",
             },
           ],
         },
-        submitLoading: false, // 添加或编辑提交状态
+        submitLoading: false, // 添加或编辑Submit状态
         columns: [
           {
-            title: "物流公司名称",
+            title: "Logistics company 名称",
             key: "name",
             minWidth: 120,
             sortable: false,
           },
           {
-            title: "物流公司编码",
+            title: "Logistics company 编码",
             key: "code",
             minWidth: 120,
             sortable: false,
@@ -134,13 +134,13 @@
             slot: "disableSlot",
           },
           {
-            title: "创建时间",
+            title: "Create time",
             key: "createTime",
             width: 180,
             sortable: false,
           },
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             width: 150,
@@ -162,7 +162,7 @@
                       },
                     },
                   },
-                  "修改"
+                  "modify"
                 ),
                 h(
                   "Button",
@@ -180,7 +180,7 @@
                       },
                     },
                   },
-                  "删除"
+                  "delete"
                 ),
               ]);
             },
@@ -234,26 +234,26 @@
         this.form.disabled = v.disabled === 'CLOSE' ? 'OPEN' : 'CLOSE';
         updateLogistics(v.id, this.form).then((res) => {
           if (res.success) {
-            this.$Message.success("操作成功");
+            this.$Message.success("operationsuccess");
             this.getDataList();
           }
         });
       },
-      // 确认提交
+      // 确认Submit
       handleSubmit() {
         this.$refs.form.validate((valid) => {
           if (valid) {
             this.submitLoading = true;
 
             if (this.modalTitle == "添加") {
-              // 添加 避免编辑后传入id等数据 记得删除
+              // 添加 避免编辑后传入id等数据 记得delete
               delete this.form.id;
 
 
               addLogistics(this.form).then((res) => {
                 this.submitLoading = false;
                 if (res.success) {
-                  this.$Message.success("操作成功");
+                  this.$Message.success("operationsuccess");
                   this.getDataList();
                   this.modalVisible = false;
                 }
@@ -263,7 +263,7 @@
               updateLogistics(this.id, this.form).then((res) => {
                 this.submitLoading = false;
                 if (res.success) {
-                  this.$Message.success("操作成功");
+                  this.$Message.success("operationsuccess");
                   this.getDataList();
                   this.modalVisible = false;
                 }
@@ -283,7 +283,7 @@
       // 编辑
       detail(v) {
         this.id = v.id;
-        this.modalTitle = "修改";
+        this.modalTitle = "modify";
         this.modalVisible = true;
 
         this.form.name = v.name;
@@ -296,19 +296,19 @@
 
         this.form.disabled = v.disabled
       },
-      // 删除物流公司
+      // deleteLogistics company
       remove(v) {
         this.$Modal.confirm({
-          title: "确认删除",
-          // 记得确认修改此处
-          content: "您确认要删除 " + v.name + " ?",
+          title: "确认delete",
+          // 记得确认modify此处
+          content: "您确认要delete " + v.name + " ?",
           loading: true,
           onOk: () => {
-            // 删除
+            // delete
             delLogistics(v.id).then((res) => {
               this.$Modal.remove();
               if (res.success) {
-                this.$Message.success("操作成功");
+                this.$Message.success("operationsuccess");
                 this.getDataList();
               }
             });

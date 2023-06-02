@@ -1,7 +1,7 @@
 import Base from './base'
 
 /**
- * 好友邀请消息处理
+ * 好友邀Please 消息处理
  */
 class GroupJoin extends Base {
   /**
@@ -22,7 +22,7 @@ class GroupJoin extends Base {
 
   handle() {
     this.$notify({
-      message: '您有一条入群消息通知,请注意查收...',
+      message: '您有一条入群消息通知,Please 注意查收...',
       duration: 5000,
     })
   }

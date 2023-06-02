@@ -10,7 +10,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.goodsNum || 0 }}</div>
-            <div>商品数量</div>
+            <div>GoodsQuantity</div>
           </div>
         </div>
         <div class="count-item" @click="navigateTo('memberList')">
@@ -19,7 +19,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.memberNum || 0 }}</div>
-            <div>会员数量</div>
+            <div>会员Quantity</div>
           </div>
         </div>
         <div class="count-item" @click="navigateTo('orderList')">
@@ -28,7 +28,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.orderNum || 0 }}</div>
-            <div>订单数量</div>
+            <div>订单Quantity</div>
           </div>
         </div>
         <div class="count-item" @click="navigateTo('shopList')">
@@ -37,7 +37,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.storeNum || 0 }}</div>
-            <div>店铺数量</div>
+            <div>店铺Quantity</div>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
       <div class="todo-list flex">
         <div class="todo-item" @click="navigateTo('applyGoods')">
           <div class="counts">{{ $store.state.notices.goods || 0 }}</div>
-          <div>待审核商品</div>
+          <div>待审核Goods</div>
         </div>
         <div class="todo-item" @click="navigateTo('shopAuth')">
           <div class="counts">{{ $store.state.notices.store || 0 }}</div>
@@ -57,11 +57,11 @@
         </div>
         <div class="todo-item" @click="navigateTo('orderComplaint')">
           <div class="counts">{{ $store.state.notices.complain || 0 }}</div>
-          <div>待审核投诉</div>
+          <div>待审核Complaint</div>
         </div>
         <div class="todo-item" @click="navigateTo('afterSaleOrder')">
           <div class="counts">{{ $store.state.notices.refund || 0 }}</div>
-          <div>待审核售后</div>
+          <div>待审核after sale</div>
         </div>
         <div class="todo-item">
           <div class="counts">
@@ -129,9 +129,9 @@
             <div class="today-item">
               <div>今日交易额</div>
               <span v-if="homeData.todayOrderPrice"
-                >￥{{ homeData.todayOrderPrice | unitPrice }}</span
+                >RM{{ homeData.todayOrderPrice | unitPrice }}</span
               >
-              <span v-else>￥0.00</span>
+              <span v-else>RM0.00</span>
             </div>
             <div class="today-item">
               <div>今日新增店铺</div>
@@ -142,7 +142,7 @@
               <span>{{ homeData.todayMemberNum || 0 }}</span>
             </div>
             <div class="today-item">
-              <div>今日上架商品数量</div>
+              <div>今日上架GoodsQuantity</div>
               <span>{{ homeData.todayGoodsNum || 0 }}</span>
             </div>
             <div class="today-item">
@@ -173,9 +173,9 @@
       </div>
     </div>
 
-    <!-- top10商品 -->
+    <!-- top10Goods -->
     <div class="card transform">
-      <h4>热卖商品TOP10</h4>
+      <h4>热卖GoodsTOP10</h4>
       <Table
         stripe
         :columns="tophotGoodsColumns"
@@ -223,17 +223,17 @@ export default {
           align: "center",
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
         },
 
         {
-          title: "价格",
+          title: "price",
           key: "price",
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -253,17 +253,17 @@ export default {
           align: "center",
         },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
         },
 
         {
-          title: "价格",
+          title: "price",
           key: "price",
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.price, "￥")
+              this.$options.filters.unitPrice(params.row.price, "RM")
             );
           },
         },
@@ -274,7 +274,7 @@ export default {
           sortable: true,
         },
       ],
-      topHotGoodsData: [], //热卖商品集合
+      topHotGoodsData: [], //热卖Goods集合
       topHotShopsData: [], //热卖店铺集合
       awaitTodoData: "", //今日待办集合
       homeData: "", // 首页数据
@@ -282,7 +282,7 @@ export default {
       orderChart: "", // 订单统计
       historyMemberChart: "", // 最近会员流量统计
       params: {
-        // 请求参数
+        // Please 求参数
         searchType: "LAST_SEVEN",
       },
       // 订单传参
@@ -301,7 +301,7 @@ export default {
         name,
       });
     },
-    // top10热卖商品
+    // top10热卖Goods
     async toHotGoods() {
       let res = await hotGoods(this.params);
       res.success ? (this.topHotGoodsData = res.result) : "";
@@ -357,7 +357,7 @@ export default {
 
     // 订单表
     initOrderChart() {
-      // 默认已经加载 legend-filter 交互
+      // default已经加载 legend-filter 交互
       let data = this.chartList;
 
       data.forEach((item) => {
@@ -485,7 +485,7 @@ export default {
     },
     // 历史在线人数
     initHistoryMemberChart() {
-      // 默认已经加载 legend-filter 交互
+      // default已经加载 legend-filter 交互
       let data = this.chartList;
       let num = [];
       let lastNum = [];

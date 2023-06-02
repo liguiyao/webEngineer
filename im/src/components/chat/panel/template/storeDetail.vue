@@ -7,7 +7,7 @@
       <div class="store-detail">
         <div>
         <div class="div-zoom">
-          <span class="title_left_name"> 店铺名称:</span> <span class="title_right_name">{{ storeInfo.storeName }}</span>
+          <span class="title_left_name"> store name:</span> <span class="title_right_name">{{ storeInfo.storeName }}</span>
           <el-tag style="margin-left: 10px;" type="danger" v-if="storeInfo.selfOperated" size="mini">自营</el-tag>
         </div>
         <div>
@@ -27,7 +27,7 @@
       <div class="separate">服务评分: <el-rate v-model="storeInfo.descriptionScore" disabled show-score text-color="#ff9900"
           score-template="{value}">
         </el-rate></div>
-      <div class="separate">物流评分: <el-rate v-model="storeInfo.deliveryScore" disabled show-score text-color="#ff9900"
+      <div class="separate">logistics评分: <el-rate v-model="storeInfo.deliveryScore" disabled show-score text-color="#ff9900"
           score-template="{value}">
         </el-rate></div>
     </div>

@@ -51,7 +51,7 @@ export default {
       return classList.join(" ");
     }
 
-    // 根据type渲染单元格Label
+    // 根据type渲染单ringgit格Label
     function renderLabel(column, columnIndex) {
       if (
         this.isSelectionCell(this.table, columnIndex) &&

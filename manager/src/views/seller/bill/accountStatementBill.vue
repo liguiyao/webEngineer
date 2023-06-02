@@ -3,14 +3,14 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
         <Form-item label="账单编号" prop="sn">
-          <Input type="text" v-model="searchForm.sn" placeholder="请输入账单编号" clearable style="width: 200px" />
+          <Input type="text" v-model="searchForm.sn" placeholder="Please enter 账单编号" clearable style="width: 200px" />
         </Form-item>
         <Form-item label="出帐时间" prop="createTime">
-          <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="选择起始时间" style="width: 200px">
+          <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px">
           </DatePicker>
         </Form-item>
 
-        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10" @on-selection-change="changeSelect">
       </Table>
@@ -32,15 +32,15 @@ export default {
     return {
       loading: true, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
-        sort: "createTime", // 默认排序字段
-        order: "desc", // 默认排序方式
+        sort: "createTime", // default排序字段
+        order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
       },
-      selectDate: null, // 选择一个事件段
+      selectDate: null, // select一个事件段
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -70,7 +70,7 @@ export default {
           },
         },
         {
-          title: "店铺名称",
+          title: "store name",
           key: "storeName",
           minWidth: 120,
           tooltip: true,
@@ -83,7 +83,7 @@ export default {
           render: (h, params) => {
             return h(
               "div",
-              this.$options.filters.unitPrice(params.row.billPrice, "￥")
+              this.$options.filters.unitPrice(params.row.billPrice, "RM")
             );
           },
         },
@@ -104,7 +104,7 @@ export default {
           },
         },
         {
-          title: "操作",
+          title: "operation",
           key: "action",
           align: "center",
           fixed: "right",
@@ -154,7 +154,7 @@ export default {
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 搜索
+    // search
     handleSearch() {
       this.searchForm.pageNumber = 1;
       this.getDataList();

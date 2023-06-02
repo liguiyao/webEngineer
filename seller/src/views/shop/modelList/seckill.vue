@@ -1,6 +1,6 @@
 <template>
   <div class="seckill">
-    <div class="desc">秒杀商品需要在促销活动中添加商品，有商品时才会在首页展示</div>
+    <div class="desc">秒杀Goods需要在促销活动中添加Goods，有Goods时才会在首页展示</div>
     <div class="aside">
       <div class="title">{{ actName }}</div>
       <div class="hour">
@@ -25,8 +25,8 @@
             <img :src="item.img" width="140" height="140" :alt="item.name" />
             <div class="ellipsis">{{ item.name }}</div>
             <div>
-              <span>{{ item.price | unitPrice("￥") }}</span>
-              <span>{{ item.originalPrice | unitPrice("￥") }}</span>
+              <span>{{ item.price | unitPrice("RM") }}</span>
+              <span>{{ item.originalPrice | unitPrice("RM") }}</span>
             </div>
           </div>
         </swiper-slide>
@@ -102,7 +102,7 @@ export default {
     // 倒计时
     countDown(list) {
       /**
-       * 默认倒计时两小时
+       * default倒计时两小时
        * 如果没有开始，则显示未开始
        * 进行中显示倒计时
        * 今天的秒杀结束则显示已结束

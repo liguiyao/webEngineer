@@ -302,7 +302,7 @@ export const modelData = [{
   },
   {
     type: 'discountAdvert',
-    name: '折扣广告',
+    name: 'off扣广告',
     icon: 'md-image',
     options: {
       bgImg: {
@@ -480,35 +480,35 @@ export const modelData = [{
         url: '',
         list: [{
             name: '新年心愿单',
-            describe: '满269减50,满999减100',
+            describe: 'full269减50,full999减100',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "160*160"
           },
           {
             name: 'Ms.Maggie 冬季时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: 'Ms.Maggie 冬季时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: 'Ms.Maggie 冬季时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
@@ -522,42 +522,42 @@ export const modelData = [{
         url: '',
         list: [{
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
           },
           {
             name: '阿迪达斯 领跑时尚',
-            describe: '满269减50',
+            describe: 'full269减50',
             img: require('@/assets/nav/decorate6.jpeg'),
             url: '',
             size: "90*90"
@@ -616,7 +616,7 @@ export const modelData = [{
     options: {
       list: [{
           name: '生鲜',
-          describe: "年货带回家 满199减60",
+          describe: "年货带回家 full199减60",
           img: require('@/assets/nav/decorate8.png'),
           url: '',
           fromColor: '#e89621',
@@ -634,7 +634,7 @@ export const modelData = [{
         },
         {
           name: '生鲜',
-          describe: "年货带回家 满199减60",
+          describe: "年货带回家 full199减60",
           img: require('@/assets/nav/decorate8.png'),
           url: '',
           fromColor: "#1c9daf",
@@ -652,7 +652,7 @@ export const modelData = [{
         },
         {
           name: '生鲜',
-          describe: "年货带回家 满199减60",
+          describe: "年货带回家 full199减60",
           img: require('@/assets/nav/decorate8.png'),
           url: '',
           fromColor: "#ca4283",

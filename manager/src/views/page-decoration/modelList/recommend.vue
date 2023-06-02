@@ -153,15 +153,15 @@
             class="ml_10"
             type="primary"
             @click="handleSelectLink"
-            >选择链接</Button
+            >select链接</Button
           >
         </div>
         <div>
           <Button size="small" type="primary" @click="handleSelectImg"
-            >选择图片</Button
+            >select图片</Button
           >&nbsp;
           <Button size="small" type="primary" @click="handleSelectGoods"
-            >选择商品</Button
+            >selectGoods</Button
           >
         </div>
       </div>
@@ -189,7 +189,7 @@
             class="ml_10"
             type="primary"
             @click="handleSelectLink"
-            >选择链接</Button
+            >select链接</Button
           >
         </div>
         <div>
@@ -198,13 +198,13 @@
         </div>
       </div>
     </Modal>
-    <!-- 选择商品。链接 -->
+    <!-- selectGoods。链接 -->
     <liliDialog
       ref="liliDialog"
       @selectedLink="selectedLink"
       @selectedGoodsData="selectedGoodsData"
     ></liliDialog>
-    <!-- 选择图片 -->
+    <!-- select图片 -->
     <Modal width="1200px" v-model="picModelFlag" footer-hide>
       <ossManage
         @callback="callbackSelected"
@@ -233,7 +233,7 @@ export default {
       showModal: false, // modal显隐
       showModal1: false, // modal显隐
       selected: {}, // 已选数据
-      picModelFlag: false, // 图片选择
+      picModelFlag: false, // 图片select
     };
   },
   methods: {
@@ -247,20 +247,20 @@ export default {
       }
     },
     handleSelectLink(item, index) {
-      // 调起选择链接弹窗
+      // 调起select链接弹窗
       this.$refs.liliDialog.open("link");
     },
     handleSelectGoods(item) {
-      // 调起选择商品
+      // 调起selectGoods
       this.$refs.liliDialog.open("goods", "single");
     },
-    // 选择链接回调
+    // select链接回调
     selectedLink(val) {
       this.selected.url = this.$options.filters.formatLinkType(val);
       this.selected.type =
         val.___type === "other" && val.url === "" ? "link" : "other";
     },
-    // 选择商品回调
+    // selectGoods回调
     selectedGoodsData(val) {
       console.log(val);
       let goods = val[0];
@@ -270,11 +270,11 @@ export default {
       this.selected.url = `/goodsDetail?skuId=${goods.id}&goodsId=${goods.goodsId}`;
     },
     handleSelectImg() {
-      // 选择图片
+      // select图片
       this.$refs.ossManage.selectImage = true;
       this.picModelFlag = true;
     },
-    // 选择图片回调
+    // select图片回调
     callbackSelected(val) {
       this.picModelFlag = false;
       this.selected.img = val.url;

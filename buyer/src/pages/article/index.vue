@@ -3,11 +3,11 @@
     <BaseHeader></BaseHeader>
     <Search></Search>
     <cateNav></cateNav>
-    <div class="title-bg"><p>文章帮助中心</p></div>
+    <div class="title-bg"><p>Article help center</p></div>
     <div class="container width_1200">
       <Layout class="layoutAll">
         <Sider class="side-bar" ref="side" :collapsed-width="78">
-          <div class="article-cate">文章分类列表</div>
+          <div class="article-cate">Article classification list</div>
           <Menu
             class="side-menu"
             theme="light"
@@ -45,7 +45,7 @@
             </ul>
             <transition mode="out-in">
               <div v-show="!showList">
-                <a class="back-btn" @click="showList = true">&lt;返回上一级</a>
+                <a class="back-btn" @click="showList = true">&lt;Return upper level</a>
                 <h2 class="mt_10 mb_10">{{detail.title}}</h2>
                 <div class="mt_10 mb_10" v-html="detail.content"></div>
               </div>
@@ -68,7 +68,7 @@ export default {
       articleList: [], // 分类下的文章列表
       activeName: '1347456734864367616', // 左侧激活项
       openName: [], // 展开的名称
-      params: { // 请求参数
+      params: { // Please 求参数
         pageNumber: 1,
         pageSize: 100,
         categoryId: '',

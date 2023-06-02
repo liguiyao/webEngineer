@@ -11,7 +11,7 @@
             type="date"
             v-model="searchForm.startDate"
             format="yyyy-MM-dd HH:mm:ss"
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           ></DatePicker>
@@ -22,19 +22,19 @@
             v-model="searchForm.endDate"
             format="yyyy-MM-dd HH:mm:ss"
             di
-            placeholder="请选择"
+            placeholder="Please select"
             clearable
             style="width: 200px"
           ></DatePicker>
         </Form-item>
         <Form-item label="状态" prop="orderStatus">
-          <Select v-model="searchForm.billStatus" placeholder="请选择" clearable style="width: 200px">
+          <Select v-model="searchForm.billStatus" placeholder="Please select" clearable style="width: 200px">
             <Option value="OUT">已出账</Option>
             <Option value="CHECK">已对账</Option>
-            <Option value="COMPLETE">已完成</Option>
+            <Option value="COMPLETE">completed</Option>
           </Select>
         </Form-item>
-        <Button @click="handleSearch" type="primary" class="search-btn">搜索</Button>
+        <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
         <Button @click="handleReset" class="search-btn">重置</Button>
       </Form>
       <Table
@@ -72,11 +72,11 @@
       return {
         loading: true, // 表单加载状态
         searchForm: {
-          // 搜索框初始化对象
+          // search框初始化对象
           pageNumber: 1, // 当前页数
           pageSize: 10, // 页面大小
-          sort: "createTime", // 默认排序字段
-          order: "desc", // 默认排序方式
+          sort: "createTime", // default排序字段
+          order: "desc", // default排序方式
           startDate: "", // 起始时间
           endDate: "", // 终止时间
         },
@@ -108,7 +108,7 @@
             render: (h, params) => {
               return h(
                 "div",
-                this.$options.filters.unitPrice(params.row.billPrice, "￥")
+                this.$options.filters.unitPrice(params.row.billPrice, "RM")
               );
             },
           },
@@ -132,7 +132,7 @@
           },
 
           {
-            title: "操作",
+            title: "operation",
             key: "action",
             align: "center",
             width: 120,
@@ -180,7 +180,7 @@
         this.searchForm.pageSize = v;
         this.getDataList();
       },
-      // 搜索
+      // search
       handleSearch() {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = 10;
@@ -219,7 +219,7 @@
     mounted () {
       this.init();
     },
-    // 页面缓存处理，从该页面离开时，修改KeepAlive为false，保证进入该页面是刷新
+    // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
     beforeRouteLeave(to, from, next) {
       from.meta.keepAlive = false
       next()
@@ -227,7 +227,7 @@
   };
 </script>
 <style lang="scss" scoped>
-  // 建议引入通用样式 可删除下面样式代码
+  // 建议引入通用样式 可delete下面样式代码
    @import "@/styles/table-common.scss";
 
 </style>

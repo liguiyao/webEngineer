@@ -17,8 +17,8 @@ export let homeData = {};
  * ad_drawer:true 活动魔方右侧显示
  * notAdd: true 没有添加按钮
  * notLink: true 没有链接功能
- * notImg: true 没有选择图片功能
- * close:true 右侧关闭按钮
+ * notImg: true 没有select图片功能
+ * close:true 右侧Close按钮
  */
 export const modelData = [
 
@@ -487,7 +487,7 @@ export const modelData = [
   },
   {
     type: "search",
-    name: "搜索",
+    name: "search",
     img: "md-image",
     notAdd: true,
     notLink: true,
@@ -495,14 +495,14 @@ export const modelData = [
     options: {
       list: [
         {
-          title: "搜索"
+          title: "search"
         }
       ]
     }
   },
   {
     type: "goods",
-    name: "商品分类",
+    name: "Goods分类",
     img: "md-image",
     notAdd: true,
     notLink: true,
@@ -512,7 +512,7 @@ export const modelData = [
         {
           /**
            * 2021/12/9
-           * 新增索引（‘index’）判断商品归属分类
+           * 新增索引（‘index’）判断Goods归属分类
            * 之前代码没有配置index也不会收到印象
            * 新建的楼层将采用索引判断分类
            */
@@ -606,7 +606,7 @@ export const modelData = [
     promotionsType: "PINTUAN",
     name: "拼团活动",
     subBkColor: "#e1212b",
-    subName: "惊喜折扣",
+    subName: "惊喜off扣",
     subColor: "#fff",
     img: "md-image",
     options: {

@@ -14,17 +14,17 @@
           <TabPane label="基本信息" class="tab" name="base">
             <Divider orientation="left">基本信息</Divider>
             <!-- 遮罩层  -->
-            <div v-if="isRead" class="mask">只读不可修改</div>
+            <div v-if="isRead" class="mask">只读不可modify</div>
             <div>
               <FormItem label="会员名称" prop="memberName">
                 <div class="item">
                   <Input disabled v-model="shopForm.memberName" />
                   <Button @click="selectMember()" v-if="!$route.query.shopId"
-                    >选择会员</Button
+                    >select会员</Button
                   >
                 </div>
               </FormItem>
-              <FormItem label="店铺名称" prop="storeName">
+              <FormItem label="store name" prop="storeName">
                 <Input v-model="shopForm.storeName" clearable style="width: 350px" />
               </FormItem>
 
@@ -59,7 +59,7 @@
                   style="width: 350px"
                 />
               </FormItem>
-              <FormItem label="店铺详细地址" prop="storeAddressDetail">
+              <FormItem label="店铺Full address" prop="storeAddressDetail">
                 <Input
                   v-model="shopForm.storeAddressDetail"
                   clearable
@@ -78,12 +78,12 @@
                 />
                 <div>
                   <Button @click="handleCLickImg('storeLogo')" type="primary"
-                    >选择图片</Button
+                    >select图片</Button
                   >
                 </div>
               </FormItem>
 
-              <FormItem label="店铺简介" prop="storeDesc" style="width: 350px">
+              <FormItem label="store details" prop="storeDesc" style="width: 350px">
                 <Input
                   v-model="shopForm.storeDesc"
                   type="textarea"
@@ -95,15 +95,15 @@
                 />
               </FormItem>
               <br />
-              <Divider orientation="left">退货收件地址</Divider>
-              <FormItem label="收件人姓名">
+              <Divider orientation="left">Return goods收件address</Divider>
+              <FormItem label="Receivername">
                 <Input
                   v-model="shopForm.salesConsigneeName"
                   clearable
                   style="width: 350px"
                 />
               </FormItem>
-              <FormItem label="收件人手机">
+              <FormItem label="Receiver手机">
                 <Input
                   v-model="shopForm.salesConsigneeMobile"
                   clearable
@@ -111,14 +111,14 @@
                   style="width: 350px"
                 />
               </FormItem>
-              <FormItem label="地址信息">
+              <FormItem label="address信息">
                 <region
                   style="width: 350px"
                   @selected="selectedConsigneeRegion"
                   :addressId="returnAddress"
                 />
               </FormItem>
-              <FormItem label="详细地址">
+              <FormItem label="Full address">
                 <Input
                   v-model="shopForm.salesConsigneeDetail"
                   clearable
@@ -139,7 +139,7 @@
           <!-- 入驻信息 -->
           <TabPane label="入驻信息" class="tab" name="entry">
             <!-- 遮罩层  -->
-            <div v-if="isRead" class="mask">只读不可修改</div>
+            <div v-if="isRead" class="mask">只读不可modify</div>
             <Divider orientation="left">公司信息</Divider>
             <div>
               <FormItem label="公司名称" prop="companyName">
@@ -156,7 +156,7 @@
                   :addressId="address"
                 />
               </FormItem>
-              <FormItem label="公司详细地址" prop="companyAddress">
+              <FormItem label="公司Full address" prop="companyAddress">
                 <Input v-model="shopForm.companyAddress" clearable style="width: 350px" />
               </FormItem>
               <FormItem label="员工总数" prop="employeeNum">
@@ -178,7 +178,7 @@
                 </InputNumber>
                 <span style="margin-left: 10px">万</span>
               </FormItem>
-              <FormItem label="联系人姓名" prop="linkName">
+              <FormItem label="联系人name" prop="linkName">
                 <Input v-model="shopForm.linkName" clearable style="width: 200px" />
               </FormItem>
               <FormItem label="联系人手机" prop="linkPhone">
@@ -205,7 +205,7 @@
 
               <Divider orientation="left">法人信息</Divider>
 
-              <FormItem label="法人姓名" prop="legalName">
+              <FormItem label="法人name" prop="legalName">
                 <Input v-model="shopForm.legalName" clearable style="width: 200px" />
               </FormItem>
               <FormItem label="法人证件号" prop="legalId">
@@ -232,14 +232,14 @@
               </FormItem>
 
               <Divider orientation="left">结算银行信息</Divider>
-              <FormItem label="银行开户名" prop="settlementBankAccountName">
+              <FormItem label="Bank account name" prop="settlementBankAccountName">
                 <Input
                   v-model="shopForm.settlementBankAccountName"
                   clearable
                   style="width: 200px"
                 />
               </FormItem>
-              <FormItem label="银行账号" prop="settlementBankAccountNum">
+              <FormItem label="Bank account" prop="settlementBankAccountNum">
                 <Input
                   v-model="shopForm.settlementBankAccountNum"
                   clearable
@@ -253,7 +253,7 @@
                   style="width: 200px"
                 />
               </FormItem>
-              <FormItem label="支行联行号" prop="settlementBankJointName">
+              <FormItem label="Branch bank number" prop="settlementBankJointName">
                 <Input
                   v-model="shopForm.settlementBankJointName"
                   clearable
@@ -272,7 +272,7 @@
                 />
                 <div>
                   <Button @click="handleCLickImg('licencePhoto')" type="primary"
-                    >选择图片</Button
+                    >select图片</Button
                   >
                 </div>
               </FormItem>
@@ -281,7 +281,7 @@
           </TabPane>
           <TabPane label="经营范围" class="tab" name="category">
             <!-- 遮罩层  -->
-            <div v-if="isRead" class="mask">只读不可修改</div>
+            <div v-if="isRead" class="mask">只读不可modify</div>
             <FormItem label="经营类目" prop="goodsManagementCategory">
               <div>
                 <Checkbox
@@ -370,7 +370,7 @@
           @click="save"
           v-if="!isRead"
         >
-          {{ shopId ? "修改" : "保存" }}
+          {{ shopId ? "modify" : "Save" }}
         </Button>
       </div>
     </Card>
@@ -430,14 +430,14 @@ export default {
   data() {
     return {
       shopId: this.$route.query.shopId, // 店铺id
-      isRead: false, // 是否只读，只有在店铺通过审核才可修改
+      isRead: false, // 是否只读，只有在店铺通过审核才可modify
       selectedFormBtnName: "", // 点击图片绑定form
       loading: false,
       auditModel: false,
       auditModalLoading: false,
-      picModalFlag: false, // 图片选择器
-      address: "", // 地址
-      returnAddress: "", // 退货地址
+      picModalFlag: false, // 图片select器
+      address: "", // address
+      returnAddress: "", // Return goodsaddress
       memberModalFlag: false, // 商家账号
       settlementShow: false, // 是否展示结算日输入框
       addSettlementConfirmBtn: false, // 添加结算日确认按钮
@@ -448,10 +448,10 @@ export default {
       shopValidate: {
         // 表单验证规则
         memberName: [{ required: true, message: "会员不能为空" }],
-        storeName: [{ required: true, message: "店铺名称不能为空" }],
-        companyAddress: [{ required: true, message: "公司地址不能为空" }],
-        storeAddressDetail: [{ required: true, message: "店铺详细地址不能为空" }],
-        storeDesc: [{ required: true, message: "店铺简介不能为空" }],
+        storeName: [{ required: true, message: "store name不能为空" }],
+        companyAddress: [{ required: true, message: "公司address不能为空" }],
+        storeAddressDetail: [{ required: true, message: "店铺Full address不能为空" }],
+        storeDesc: [{ required: true, message: "store details不能为空" }],
         storeCenter: [{ required: true, message: "店铺未定位" }],
         companyName: [{ required: true, message: "公司名称不能为空" }],
         companyPhone: [{ required: true, message: "公司电话不能为空" }],
@@ -463,7 +463,7 @@ export default {
             trigger: "blur",
           },
         ],
-        companyAddressIdPath: [{ required: true, message: "请选择公司地址" }],
+        companyAddressIdPath: [{ required: true, message: "Please select公司address" }],
         registeredCapital: [
           {
             required: true,
@@ -472,13 +472,13 @@ export default {
             trigger: "blur",
           },
         ],
-        linkName: [{ required: true, message: "联系人姓名不能为空" }],
+        linkName: [{ required: true, message: "联系人name不能为空" }],
         linkPhone: [
-          { required: true, message: "联系人手机号不能为空" },
+          { required: true, message: "联系人Phone number不能为空" },
           {
             type: "string",
             pattern: /^1[3|4|5|6|7|8][0-9]{9}$/,
-            message: "手机号格式出错",
+            message: "Phone number格式出错",
             trigger: "blur",
           },
         ],
@@ -488,18 +488,18 @@ export default {
         ],
         licenseNum: [{ required: true, message: "营业执照号不能为空" }],
         scope: [{ required: true, message: "法定经营范围不能为空" }],
-        legalName: [{ required: true, message: "法人姓名不能为空" }],
+        legalName: [{ required: true, message: "法人name不能为空" }],
         legalId: [{ required: true, message: "法人证件号不能为空" }],
-        settlementBankAccountName: [{ required: true, message: "银行开户名不能为空" }],
-        settlementBankAccountNum: [{ required: true, message: "银行账号不能为空" }],
+        settlementBankAccountName: [{ required: true, message: "Bank account name不能为空" }],
+        settlementBankAccountNum: [{ required: true, message: "Bank account不能为空" }],
         settlementBankBranchName: [{ required: true, message: "银行支行名称不能为空" }],
-        settlementBankJointName: [{ required: true, message: "支行联行号不能为空" }],
+        settlementBankJointName: [{ required: true, message: "Branch bank number不能为空" }],
 
         salesConsigneeMobile: [
           {
             type: "string",
             pattern: /^1[3|4|5|6|7|8][0-9]{9}$/,
-            message: "手机号格式出错",
+            message: "Phone number格式出错",
             trigger: "blur",
           },
         ],
@@ -507,7 +507,7 @@ export default {
       indeterminate: true, // 复选框全选样式
       checkAll: false, // 全选
       checkAllGroup: [], // 全选数组
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       settlementCycle: [], // 结算周期
       shopForm: {
         // 店铺数据
@@ -549,10 +549,10 @@ export default {
     };
   },
   methods: {
-    // 选择会员的回调
+    // select会员的回调
     callbackMember(val) {
       if (val) {
-        //选择会员后需要检验此会员是否开过店铺
+        //select会员后需要检验此会员是否开过店铺
         getShopByMemberId(val.id).then((res) => {
           if (res.success) {
             if (res.result != null) {
@@ -567,18 +567,18 @@ export default {
       }
     },
 
-    //选择会员
+    //select会员
     selectMember() {
       this.$refs["memberLayout"].selectedMember = true;
       this.memberModalFlag = true;
     },
 
-    //修改地址
+    //modifyaddress
     regionClick() {
       this.showRegion = true;
       this.regionId = "";
     },
-    //删除所选择的结算日
+    //delete所select的结算日
     removesettlementCycle(event, name) {
       this.settlementCycle = this.settlementCycle.filter((i) => i !== name);
     },
@@ -591,7 +591,7 @@ export default {
     //添加结算日
     addsettlementCycleConfirm() {
       if (!this.day) {
-        this.$Message.warning("请输入正确的结算周期，1-31的整数");
+        this.$Message.warning("Please enter 正确的结算周期，1-31的整数");
         return;
       }
       if (this.settlementCycle.includes(this.day)) {
@@ -604,7 +604,7 @@ export default {
       this.settlementShow = false;
       this.day = 1;
     },
-    // 选择公司地址
+    // select公司address
     selectedRegion(val) {
       this.$set(this.shopForm, "companyAddressIdPath", val[0].toString());
       this.$set(
@@ -613,7 +613,7 @@ export default {
         val[1].toString().replace(/\s/g, "")
       );
     },
-    // 选择退货收件地址
+    // selectReturn goods收件address
     selectedConsigneeRegion(val) {
       this.$set(this.shopForm, "salesConsigneeAddressId", val[0].toString());
       this.$set(
@@ -622,7 +622,7 @@ export default {
         val[1].toString().replace(/\s/g, "")
       );
     },
-    // 选择图片modal
+    // select图片modal
     handleCLickImg(val, index) {
       this.$refs.ossManage.selectImage = true;
       this.picModalFlag = true;
@@ -678,17 +678,17 @@ export default {
         }
       });
     },
-    // 保存
+    // Save
     save() {
       this.$refs.shopForm.validate((valid) => {
         //校验结算日是否已经确认完成
         if (this.settlementShow) {
-          this.$Message.error("请确认当前所填结算日信息");
+          this.$Message.error("Please 确认当前所填结算日信息");
           return;
         }
         //校验经营类目
         if (this.checkAllGroup == "") {
-          this.$Message.error("请选择店铺经营类目");
+          this.$Message.error("Please select店铺经营类目");
           this.tabName = "cagetory";
           return;
         }
@@ -701,19 +701,19 @@ export default {
             delete params.memberId;
             shopEdit(this.shopId, params).then((res) => {
               if (res.success) {
-                this.$Message.success("编辑成功");
+                this.$Message.success("编辑success");
                 this.$router.push({ name: "shopList" });
               }
             });
           } else {
             //添加店铺单独需要检验的参数
             if (params.memberName == "") {
-              this.$Message.error("请选择开店的会员");
+              this.$Message.error("Please select开店的会员");
               return;
             }
             shopAdd(params).then((resp) => {
               if (resp.success) {
-                this.$Message.success("添加成功");
+                this.$Message.success("添加success");
                 this.shopForm = {};
                 this.$router.push({ name: "shopList" });
               }
@@ -722,7 +722,7 @@ export default {
         }
       });
     },
-    // 点击定位获取店铺地址
+    // 点击定位获取店铺address
     getAddress(item) {
       this.shopForm.storeCenter = item.position.lng + "," + item.position.lat;
       this.$set(this.shopForm, "storeAddressPath", item.addr);
@@ -745,7 +745,7 @@ export default {
         this.checkAllGroup = [];
       }
     },
-    // 经营类目的选择
+    // 经营类目的select
     checkAllGroupChange(data) {
       if (data.length === this.categories.length) {
         this.indeterminate = false;
@@ -776,7 +776,7 @@ export default {
         shopAudit(id, 0).then((res) => {
           this.auditModel = false;
           if (res.success) {
-            this.$Message.success("操作成功");
+            this.$Message.success("operationsuccess");
             this.$router.push({ name: "shopAuth" });
           }
         });
@@ -784,7 +784,7 @@ export default {
         shopAudit(id, 1).then((res) => {
           this.auditModel = false;
           if (res.success) {
-            this.$Message.success("操作成功");
+            this.$Message.success("operationsuccess");
             this.$router.push({ name: "shopAuth" });
           }
         });

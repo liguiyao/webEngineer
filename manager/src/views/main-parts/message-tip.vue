@@ -3,24 +3,24 @@
     <Dropdown trigger="click">
 
       <a href="javascript:void(0)">
-        {{ value > 0 ? "有" + value + "条待办事项" : "无待办事项" }}
+        {{ value > 0 ? "got" + value + "items to do list" : "No to do list" }}
         <Icon v-if="value!=0" type="ios-arrow-down"></Icon>
       </a>
       <DropdownMenu v-if="value!=0" slot="list">
         <DropdownItem v-if="res.balanceCash" @click.native="navigateTo('deposit')">
-          <Badge :count="res.balanceCash">待处理预存款提现申请 </Badge>
+          <Badge :count="res.balanceCash">待处理预存款提现Apply   </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.complain" @click.native="navigateTo('orderComplaint')">
-          <Badge :count="res.complain">待处理投诉审核 </Badge>
+          <Badge :count="res.complain">待处理Complaint审核 </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.distributionCash" @click.native="navigateTo('distributionCash')">
-          <Badge :count="res.distributionCash">待处理分销商提现申请 </Badge>
+          <Badge :count="res.distributionCash">待处理分销商提现Apply   </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.goods" @click.native="navigateTo('applyGoods')">
-          <Badge :count="res.goods">待处理商品审核 </Badge>
+          <Badge :count="res.goods">待处理Goods审核 </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.refund" @click.native="navigateTo('afterSaleOrder')">
-          <Badge :count="res.refund">待处理售后申请 </Badge>
+          <Badge :count="res.refund">待处理after saleApply   </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.store" @click.native="navigateTo('shopAuth')">
           <Badge :count="res.store">待处理店铺入驻审核 </Badge>
@@ -39,7 +39,7 @@ export default {
   name: "messageTip",
   data() {
     return {
-      value: 0, // 消息数量
+      value: 0, // 消息Quantity
       empty: false, // 是否为空
     };
   },

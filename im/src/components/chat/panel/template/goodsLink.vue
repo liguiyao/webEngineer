@@ -8,7 +8,7 @@
       <div style="margin-left: 13px">
         <a @click="linkToGoods(goodsDetail.goodsId, goodsDetail.id)"> {{ goodsDetail.goodsName }} </a>
         <div>
-          <span style="color: red;">{{ goodsDetail.price | unitPrice('￥') }}</span>
+          <span style="color: red;">{{ goodsDetail.price | unitPrice('RM') }}</span>
         </div>
         <div v-if="hide">
           <el-button class="store-button" type="danger" v-if="btnHide == 1 && toUser.storeFlag" size="mini"
@@ -92,7 +92,7 @@ export default {
       // console.log("插入对话记录",'')
       // 插入对话记录
       this.$store.commit("PUSH_DIALOGUE", insterChat);
-      // 获取聊天面板元素节点
+      // 获取聊天面板ringgit素节点
       let el = document.getElementById("lumenChatPanel");
       // 判断的滚动条是否在底部
       let isBottom =

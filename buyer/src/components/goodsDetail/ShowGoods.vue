@@ -39,7 +39,7 @@
           >
         </div>
       </div>
-      <!-- 右侧商品信息、活动信息、操作展示 -->
+      <!-- 右侧Goods details、活动信息、operation展示 -->
       <div class="item-detail-right">
         <div class="item-detail-title">
           <p>
@@ -54,10 +54,10 @@
           v-if="promotionMap['SECKILL']"
           :time="promotionMap['SECKILL'].endTime"
         ></Promotion>
-        <!-- 商品详细 价格、优惠券、促销 -->
+        <!-- Goods详细 price、coupon、促销 -->
         <div class="item-detail-price-row">
           <div class="item-price-left">
-            <!-- 秒杀价格 -->
+            <!-- 秒杀price -->
             <div
               class="item-price-row"
               v-if="skuDetail.promotionPrice && promotionMap['SECKILL']"
@@ -67,16 +67,16 @@
                   >seconds &nbsp;杀&nbsp;价</span
                 >
                 <span class="item-price">{{
-                  skuDetail.promotionPrice | unitPrice("￥")
+                  skuDetail.promotionPrice | unitPrice("RM")
                 }}</span>
                 <span class="item-price-old">{{
-                  skuDetail.price | unitPrice("￥")
+                  skuDetail.price | unitPrice("RM")
                 }}</span>
               </p>
             </div>
-            <!-- 商品原价 -->
+            <!-- Goods原价 -->
             <div class="item-price-row" v-else>
-              <!-- 批发价格 -->
+              <!-- 批发price -->
               <div v-if="wholesaleNum && wholesaleNum.length">
                 <div class="flex">
                   <div class="item-price-title">
@@ -88,7 +88,7 @@
                     :key="index"
                     class="item-price item-num"
                   >
-                    {{ item | unitPrice("￥") }}
+                    {{ item | unitPrice("RM") }}
                   </div>
                 </div>
                 <div class="flex">
@@ -103,17 +103,17 @@
                 </div>
               </div>
 
-              <!-- 普通价格 -->
+              <!-- 普通price -->
               <div v-else>
                 <span class="item-price-title"
                   >Price</span
                 >
                 <span class="item-price">{{
-                  skuDetail.price | unitPrice("￥")
+                  skuDetail.price | unitPrice("RM")
                 }}</span>
               </div>
             </div>
-            <!-- 优惠券展示 -->
+            <!-- coupon展示 -->
             <div class="item-price-coupon-row" v-if="promotionMap['COUPON'].length">
               <p class="Ellipsis">
                 <span class="item-price-title">Coupon</span>
@@ -157,7 +157,7 @@
                   </div>
               </p>
             </div>
-            <!-- 满减展示 -->
+            <!-- full减展示 -->
             <div class="item-price-row" v-if="promotionMap['FULL_DISCOUNT']">
               <p>
                 <span class="item-price-title"
@@ -195,7 +195,7 @@
             </div>
           </div>
         </div>
-        <!-- 选择颜色 -->
+        <!-- select颜色 -->
         <div
           class="item-select"
           v-for="(sku, index) in formatList"
@@ -307,7 +307,7 @@ import { addCartGoods } from "@/api/cart.js";
 export default {
   name: "ShowGoods",
   props: {
-    // 商品数据
+    // Goods数据
     detail: {
       type: Object,
       default: null,
@@ -330,21 +330,21 @@ export default {
   data() {
     return {
       wholesaleList: [],
-      count: 1, // 商品数量
+      count: 1, // GoodsQuantity
       imgIndex: 0, // 展示图片下标
-      currentSelceted: [], // 当前商品sku
-      imgList: [{ url: "" }], // 商品图片列表
+      currentSelceted: [], // 当前Goodssku
+      imgList: [{ url: "" }], // Goods图片列表
       skuDetail: {
         specList: [],
       }, // sku详情
-      goodsSpecList: this.detail.specs, // 商品spec
+      goodsSpecList: this.detail.specs, // Goodsspec
       promotionMap: {
         // 活动状态
         SECKILL: null,
         FULL_DISCOUNT: null,
         COUPON: [],
       }, // 促销活动
-      formatList: [], // 选择商品品类的数组
+      formatList: [], // selectGoods品类的数组
       loading: false, // 立即购买loading
       loading1: false, // 加入购物车loading
       isCollected: false, // 是否收藏
@@ -377,7 +377,7 @@ export default {
       }
     },
     select(index, value) {
-      // 选择规格
+      // select规格
       this.$set(this.currentSelceted, index, value);
       let selectedSkuId = this.goodsSpecList.find((i) => {
         let matched = true;
@@ -428,7 +428,7 @@ export default {
         skuId: this.skuDetail.id,
         cartType: "BUY_NOW",
       };
-      // 虚拟商品购买
+      // 虚拟Goods购买
       if (this.skuDetail.goodsType === "VIRTUAL_GOODS") {
         params.cartType = "VIRTUAL";
       }
@@ -450,7 +450,7 @@ export default {
         });
     },
     async collect() {
-      // 收藏商品
+      // 收藏Goods
       if (this.isCollected) {
         let cancel = await cancelCollect("GOODS", this.skuDetail.id);
         if (cancel.success) {
@@ -514,7 +514,7 @@ export default {
       this.skuList = list;
     },
     receiveCoupon(id) {
-      // 领取优惠券
+      // 领取coupon
       receiveCoupon(id).then((res) => {
         if (res.success) {
           this.$Message.success("get success");
@@ -524,7 +524,7 @@ export default {
       });
     },
     promotion() {
-      // 格式化促销活动，返回当前促销的对象
+      // 格式化促销活动，Back当前促销的对象
       if (!this.detail.promotionMap) return false;
       let keysArr = Object.keys(this.detail.promotionMap);
       if (keysArr.length === 0) return false;
@@ -547,7 +547,7 @@ export default {
     },
   },
   mounted() {
-    // 用户登录才会判断是否收藏
+    // 用户Login才会判断是否收藏
     if (this.Cookies.getItem("userInfo")) {
       isCollection("GOODS", this.skuDetail.id).then((res) => {
         if (res.success && res.result) {
@@ -564,7 +564,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/******************商品图片及购买详情开始******************/
+/******************Goods图片及购买详情开始******************/
 .item-detail-see {
   width: 175px;
   margin-left: 30px;
@@ -631,7 +631,7 @@ export default {
   width: 100%;
 }
 
-/*商品选购详情*/
+/*Goods选购详情*/
 .item-detail-right {
   flex: 1;
   display: flex;
@@ -653,14 +653,14 @@ export default {
   color: #fff;
 }
 
-/*商品标签*/
+/*Goods标签*/
 .item-detail-tag {
   padding: 8px 0;
   font-size: 12px;
   color: $theme_color;
 }
 
-/*价格详情等*/
+/*price详情等*/
 .item-detail-price-row {
   padding: 10px;
   display: flex;
@@ -869,5 +869,5 @@ export default {
   color: red;
   margin-bottom: 5px;
 }
-/******************商品图片及购买详情结束******************/
+/******************Goods图片及购买详情结束******************/
 </style>

@@ -4,20 +4,20 @@
       <Table style="margin: 10px 0" border :columns="columns" :data="data"></Table>
 
       <Row class="operation" v-if="status == 'manager'">
-        <Button type="primary" @click="openSkuList">选择商品</Button>
-        <Button @click="delAll">批量删除</Button>
+        <Button type="primary" @click="openSkuList">selectGoods</Button>
+        <Button @click="delAll">批量delete</Button>
         <Button @click="getDataList" icon="md-refresh">刷新</Button>
         <Button type="dashed" @click="openTip = !openTip">{{
-          openTip ? "关闭提示" : "开启提示"
+          openTip ? "CloseTips" : "OpeningTips"
         }}</Button>
       </Row>
       <Row v-show="openTip" v-if="status == 'manager'">
         <Alert show-icon>
-          已选择 <span>{{ selectCount }}</span> 项
+          已select <span>{{ selectCount }}</span> 项
           <a class="select-clear" @click="clearSelectAll">清空</a>
         </Alert>
       </Row>
-      <h3 class="act-goods">活动商品</h3>
+      <h3 class="act-goods">活动Goods</h3>
       <Table
         class="mt_10"
         :loading="loading"
@@ -41,7 +41,7 @@
             ghost
             v-if="status === 'manager'"
             @click="delGoods(index)"
-            >删除</Button
+            >delete</Button
           >
         </template>
       </Table>
@@ -60,13 +60,13 @@
         ></Page>
       </Row>
       <Row class="operation">
-        <Button @click="closeCurrentPage">返回</Button>
+        <Button @click="closeCurrentPage">Back</Button>
         <Button
           v-if="status == 'manager'"
           type="primary"
           :loading="submitLoading"
           @click="save"
-          >保存</Button
+          >Save</Button
         >
       </Row>
     </Card>
@@ -87,20 +87,20 @@ export default {
   },
   data() {
     return {
-      openTip: true, // 显示提示
+      openTip: true, // 显示Tips
       loading: false, // 表单加载状态
       searchForm: {
-        // 搜索框初始化对象
+        // search框初始化对象
         pageNumber: 1, // 当前页数
         pageSize: 10, // 页面大小
       },
 
-      submitLoading: false, // 添加或编辑提交状态
+      submitLoading: false, // 添加或编辑Submit状态
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      status: this.$route.query.status, // 查看还是修改
+      status: this.$route.query.status, // 查看还是modify
       columns: [
         // 活动详情表头
         {
@@ -135,7 +135,7 @@ export default {
               text = "已结束";
               color = "blue";
             } else if (params.row.promotionStatus == "CLOSE") {
-              text = "已关闭";
+              text = "已Close";
               color = "red";
             }
             return h("div", [h("Tag", { props: { color: color } }, text)]);
@@ -143,10 +143,10 @@ export default {
         },
       ],
       goodsColumns: [
-        // 活动商品表头
+        // 活动Goods表头
         { type: "selection", width: 60, align: "center" },
         {
-          title: "商品名称",
+          title: "goods name",
           key: "goodsName",
           minWidth: 120,
         },
@@ -156,23 +156,23 @@ export default {
           minWidth: 40,
         },
         {
-          title: "拼团价格",
+          title: "拼团price",
           key: "price",
           slot: "price",
           minWidth: 50,
         },
         {
-          title: "操作",
+          title: "operation",
           slot: "action",
           minWidth: 50,
           align: "center",
         },
       ],
-      goodsData: [], // 商品列表
+      goodsData: [], // Goods列表
     };
   },
   methods: {
-    // 关闭当前页面
+    // Close当前页面
     closeCurrentPage() {
       this.$store.commit("removeTag", "pintuan-goods");
       localStorage.storeOpenedList = JSON.stringify(
@@ -180,18 +180,18 @@ export default {
       );
       this.$router.go(-1);
     },
-    // 保存商品
+    // SaveGoods
     save() {
       if (this.goodsData.length == 0) {
-        this.$Modal.warning({ title: "提示", content: "请选择活动商品" });
+        this.$Modal.warning({ title: "Tips", content: "Please select活动Goods" });
         return;
       }
       for (let i = 0; i < this.goodsData.length; i++) {
         let data = this.goodsData[i];
         if (!data.price) {
           this.$Modal.warning({
-            title: "提示",
-            content: `请填写【${data.goodsName}】的价格`,
+            title: "Tips",
+            content: `Please enter 【${data.goodsName}】的price`,
           });
           return;
         }
@@ -206,7 +206,7 @@ export default {
       editPintuan(this.data[0]).then((res) => {
         this.submitLoading = false;
         if (res.success) {
-          this.$Message.success("修改拼团商品成功");
+          this.$Message.success("modify拼团Goodssuccess");
           this.closeCurrentPage();
         }
       });
@@ -231,7 +231,7 @@ export default {
     },
 
     handleSearch() {
-      // 搜索
+      // search
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
@@ -250,13 +250,13 @@ export default {
       this.$refs.table.selectAll(false);
     },
     changeSelect(e) {
-      // 获取选择数据
+      // 获取select数据
       this.selectList = e;
       this.selectCount = e.length;
     },
 
     getDataList() {
-      // 获取商品列表
+      // 获取Goods列表
       this.loading = true;
       this.searchForm.pintuanId = this.$route.query.id;
 
@@ -275,18 +275,18 @@ export default {
       });
     },
     delGoods(index) {
-      // 删除商品
+      // deleteGoods
       this.goodsData.splice(index, 1);
     },
     delAll() {
-      // 批量删除商品
+      // 批量deleteGoods
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未选择要删除的数据");
+        this.$Message.warning("您还未select要delete的数据");
         return;
       }
       this.$Modal.confirm({
-        title: "确认删除",
-        content: "您确认要删除所选的 " + this.selectCount + " 条数据?",
+        title: "确认delete",
+        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
         onOk: () => {
           let ids = [];
           this.selectList.forEach(function (e) {
@@ -299,7 +299,7 @@ export default {
       });
     },
     selectedGoodsData(item) {
-      // 选择商品
+      // selectGoods
       console.log(item);
       let list = [];
       item.forEach((e) => {
@@ -320,7 +320,7 @@ export default {
       this.goodsData = list;
     },
     openSkuList() {
-      // 显示商品选择器
+      // 显示Goodsselect器
       this.$refs.skuSelect.open("goods");
       let data = JSON.parse(JSON.stringify(this.goodsData));
       data.forEach((e) => {
