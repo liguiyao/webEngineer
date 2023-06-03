@@ -1,8 +1,6 @@
 ## shop国际化 B2B2C
 
 
-![image-20210511171611793](https://static.pickmall.cn/images/h5-qrcode.png)
-
 [![star](https://gitee.com/beijing_hongye_huicheng/lilishop/badge/star.svg?theme=dark)](https://gitee.com/beijing_hongye_huicheng/lilishop/stargazers)
 &nbsp;&nbsp;![github](https://img.shields.io/github/stars/hongyehuicheng/lilishop.svg?style=social&logo=#181717)
 
