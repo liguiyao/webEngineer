@@ -4,14 +4,14 @@
       <div class="main-content">
         <div class="div-flow-left">
           <div class="div-form-default">
-            <h3>Complaint信息</h3>
+            <h3>Complaint Information</h3>
             <dl>
               <dt>ComplaintGoods</dt>
               <dd>{{complaintInfo.goodsName}}</dd>
             </dl>
             <dl>
               <dt>Complaint状态</dt>
-              <dd v-if="complaintInfo.complainStatus =='NEW'">新Complaint</dd>
+              <dd v-if="complaintInfo.complainStatus =='NEW'">New Complaint</dd>
               <dd v-if="complaintInfo.complainStatus =='CANCEL'">已撤销</dd>
               <dd v-if="complaintInfo.complainStatus =='WAIT_APPEAL'">待申诉</dd>
               <dd v-if="complaintInfo.complainStatus =='COMMUNICATION'">对话中</dd>

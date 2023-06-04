@@ -47,7 +47,7 @@ export default {
               children: []
             };
 
-            if (child.level === 'street' || item.label === '香港特别行政区') {
+            if (child.level === 'street' || item.label === 'HongKong') {
               item.children.push({
                 value: child.id,
                 label: child.name
@@ -66,7 +66,7 @@ export default {
       data.result.forEach((item) => {
         let obj;
         // 台湾省做处理
-        if (item.name === '台湾省') {
+        if (item.name === 'Taiwan') {
           obj = {
             value: item.id,
             label: item.name
@@ -95,7 +95,7 @@ export default {
       data.result.forEach((item) => {
         let obj;
         // 台湾省做处理
-        if (item.name === '台湾省') {
+        if (item.name === 'Taiwan') {
           obj = {
             value: item.id,
             label: item.name
@@ -152,7 +152,7 @@ export default {
           children: []
         };
 
-        if (child.level === 'street' || item.label === '香港特别行政区') {
+        if (child.level === 'street' || item.label === 'HongKong') {
           item.push({
             value: child.id,
             label: child.name

@@ -10,8 +10,8 @@
           </span></div>
         <p class="error403-body-con-message">You don't have permission</p>
         <div class="error403-btn-con">
-          <Button @click="goHome" size="large" style="width: 200px;" type="text">Back首页</Button>
-          <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">Back上一页</Button>
+          <Button @click="goHome" size="large" style="width: 200px;" type="text">Back to homepage</Button>
+          <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">Back last page</Button>
         </div>
       </Card>
     </div>

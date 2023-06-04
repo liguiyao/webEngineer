@@ -3,27 +3,27 @@
     <Card>
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-          <Form-item label="订单编号" prop="orderSn">
+          <Form-item label="Order code" prop="orderSn">
             <Input
               type="text"
               v-model="searchForm.orderSn"
-              placeholder="Please enter 订单编号"
+              placeholder="Please enter order number"
               clearable
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="会员名称" prop="memberName">
+          <Form-item label="Member name" prop="memberName">
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="Please enter 会员名称"
+              placeholder="Please enter Member name"
               clearable
               style="width: 200px"
             />
           </Form-item>
           <Form-item label="状态" prop="status">
             <Select v-model="searchForm.status" placeholder="Please select" clearable style="width: 200px">
-              <Option value="NEW">新Complaint</Option>
+              <Option value="NEW">New Complaint</Option>
               <Option value="CANCEL">已撤销</Option>
               <Option value="WAIT_APPEAL">待申诉</Option>
               <Option value="COMMUNICATION">对话中</Option>
@@ -44,7 +44,7 @@
       >
         <template slot-scope="{row}" slot="goodsName">
           <a class="mr_10" @click="linkTo(row.goodsId,row.skuId)">{{row.goodsName}}</a>
-          <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+          <Poptip trigger="hover" title="Scan QR to view" transfer>
             <div slot="content">
               <vue-qr :text="wapLinkTo(row.goodsId,row.skuId)"  :margin="0" colorDark="#000" colorLight="#fff" :size="150"></vue-qr>
             </div>
@@ -91,7 +91,7 @@
         columns: [
           // 表头
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             width: 200,
             sortable: false,

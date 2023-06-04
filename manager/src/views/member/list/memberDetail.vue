@@ -1,7 +1,7 @@
 <template>
   <div>
     <Card style="height: 240px;padding: 12px 12px 0px">
-      <div class="head-title">基本信息</div>
+      <div class="head-title">Basic</div>
       <div class="detail-body">
         <div class="ant-col-md-6">
           <div class="info">
@@ -24,8 +24,8 @@
               <p>
                 <i-switch size="large" v-model="memberInfo.disabled" :true-value="true" :false-value="false"
                           @on-change="memberStatusChange">
-                  <span slot="open">启用</span>
-                  <span slot="close">禁用</span>
+                  <span slot="open">enable</span>
+                  <span slot="close">disable</span>
                 </i-switch>
               </p>
             </div>
@@ -33,31 +33,31 @@
         </div>
         <div class="ant-col-md-6">
           <p class="item">
-            <span class="label">昵称：</span>
+            <span class="label">nick name：</span>
             <span class="info">{{memberInfo.nickName}}</span>
           </p>
           <p class="item">
-            <span class="label">会员名称：</span>
+            <span class="label">Member name：</span>
             <span class="info">{{memberInfo.username}}</span>
           </p>
           <p class="item">
-            <span class="label">性别：</span>
+            <span class="label">Sex：</span>
             <span v-if="memberInfo.sex===1" class="info">男</span>
             <span v-else class="info">女</span>
           </p>
           <p class="item">
-            <span class="label">生日：</span>
-            <span v-if="memberInfo.birthday == null || memberInfo.birthday == 'undefined'">暂未完善</span>
+            <span class="label">Brithday：</span>
+            <span v-if="memberInfo.birthday == null || memberInfo.birthday == 'undefined'">None</span>
             <span v-else class="info">{{memberInfo.birthday}}</span>
           </p>
           <p class="item">
-            <span class="label">地区：</span>
+            <span class="label">Location：</span>
             <span v-if="memberInfo.region == null || memberInfo.region =='' || memberInfo.region === 'undefined'"
-                  class="info">暂未完善</span>
+                  class="info">none</span>
             <span v-else class="info">{{memberInfo.region}}</span>
           </p>
           <p class="item">
-            <span class="label">注册时间：</span>
+            <span class="label">register time：</span>
             <span class="info">{{memberInfo.createTime}}</span>
           </p>
         </div>
@@ -66,11 +66,11 @@
 
     <Card class="mt_10">
       <Tabs value="point" @on-click="memberInfoChange">
-        <TabPane label="TA的积分" name="point">
+        <TabPane label="TA point" name="point">
           <div class="pointsTitle" style="justify-content: flex-start; text-align: left;">
             <div style="width: 120px;">
               <div class="points-top-title">
-                剩余积分
+                remaining points
               </div>
               <div class="points-top-text">
                 {{memberInfo.point?memberInfo.point:0}}
@@ -104,7 +104,7 @@
             </Row>
           </div>
         </TabPane>
-        <TabPane label="TA的订单" name="order" style="min-height: 200px">
+        <TabPane label="TA point" name="order" style="min-height: 200px">
           <Row>
             <Form ref="searchForm" :model="orderSearchForm" inline :label-width="70" class="search-form">
               <Form-item label="Order number" prop="orderSn">
@@ -116,48 +116,48 @@
                   style="width: 200px"
                 />
               </Form-item>
-              <Form-item label="订单状态" prop="orderStatus">
+              <Form-item label="Order status" prop="orderStatus">
                 <Select v-model="orderSearchForm.orderStatus" placeholder="Please select" clearable style="width: 200px">
                   <Option value="UNPAID">Unpaid</Option>
-                  <Option value="PAID">已付款</Option>
-                  <Option value="UNDELIVERED">待发货</Option>
-                  <Option value="DELIVERED">已发货</Option>
+                  <Option value="PAID">Paid</Option>
+                  <Option value="UNDELIVERED">wait delivered</Option>
+                  <Option value="DELIVERED">delivered</Option>
                   <Option value="COMPLETED">completed</Option>
-                  <Option value="TAKE">待核验</Option>
-                  <Option value="CANCELLED">已Cancel</Option>
+                  <Option value="TAKE">verified</Option>
+                  <Option value="CANCELLED">Cancel</Option>
                 </Select>
               </Form-item>
-              <Form-item label="支付状态" prop="payStatus">
+              <Form-item label="Payment status" prop="payStatus">
                 <Select v-model="orderSearchForm.payStatus" placeholder="Please select" clearable style="width: 200px">
                   <Option value="UNPAID">Unpaid</Option>
-                  <Option value="PAID">已付款</Option>
+                  <Option value="PAID">Paid</Option>
                 </Select>
               </Form-item>
-              <Form-item label="订单类型" prop="orderType">
+              <Form-item label="Order type" prop="orderType">
                 <Select v-model="orderSearchForm.orderType" placeholder="Please select" clearable style="width: 200px">
-                  <Option value="NORMAL">普通订单</Option>
-                  <Option value="VIRTUAL">虚拟订单</Option>
-                  <Option value="GIFT">赠品订单</Option>
-                  <Option value="PINTUAN">拼团订单</Option>
+                  <Option value="NORMAL">normal</Option>
+                  <Option value="VIRTUAL">virtual</Option>
+                  <Option value="GIFT">gift</Option>
+                  <Option value="PINTUAN">Group</Option>
                 </Select>
               </Form-item>
-              <Form-item label="订单来源" prop="clientType">
+              <Form-item label="Order source" prop="clientType">
                 <Select v-model="orderSearchForm.clientType" placeholder="Please select" clearable style="width: 200px">
-                  <Option value="H5">移动端</Option>
-                  <Option value="PC">PC端</Option>
-                  <Option value="WECHAT_MP">小程序</Option>
-                  <Option value="APP">移动应用端</Option>
-                  <Option value="UNKNOWN">未知</Option>
+                  <Option value="H5">mobile</Option>
+                  <Option value="PC">PC</Option>
+                  <Option value="WECHAT_MP">Wechat</Option>
+                  <Option value="APP">Mobile App</Option>
+                  <Option value="UNKNOWN">Unknown</Option>
                 </Select>
               </Form-item>
-              <Form-item label="下单时间">
+              <Form-item label="order time">
                 <DatePicker
                   v-model="selectDate"
                   type="datetimerange"
                   format="yyyy-MM-dd HH:mm:ss"
                   clearable
                   @on-change="selectDateRange"
-                  placeholder="select起始时间"
+                  placeholder="select start time"
                   style="width: 200px"
                 ></DatePicker>
               </Form-item>
@@ -193,7 +193,7 @@
         </TabPane>
         <TabPane label="TADelivery address" name="address">
           <Row class="operation padding-row">
-            <Button @click="addMemberAddress" type="primary">新增</Button>
+            <Button @click="addMemberAddress" type="primary">Add</Button>
           </Row>
           <Table
             :loading="loading"
@@ -221,11 +221,11 @@
             ></Page>
           </Row>
         </TabPane>
-        <TabPane label="TA的余额" name="wallet">
+        <TabPane label="balance" name="wallet">
           <div class="pointsTitle" style="justify-content: flex-start; text-align: left;">
             <div style="min-width: 120px; margin-right:20px">
               <div class="points-top-title">
-                余额
+                Balance
               </div>
 
               <div class="points-top-text">
@@ -234,7 +234,7 @@
             </div>
             <div style="min-width: 120px;">
               <div class="points-top-title">
-                冻结余额
+                frozen balance
               </div>
               <div class="points-top-text">
                 {{memberWalletInfo.memberFrozenWallet?memberWalletInfo.memberFrozenWallet:0 | unitPrice('RM')}}
@@ -266,7 +266,7 @@
             ></Page>
           </Row>
         </TabPane>
-        <TabPane label="TA的发票" name="receipt">
+        <TabPane label="invoice" name="receipt">
           <Row>
             <Form ref="searchForm" :model="receiptRecordSearchForm" inline :label-width="70" class="search-form">
               <Form-item label="Order number" prop="orderSn">
@@ -323,7 +323,7 @@
         <FormItem label="receivername" prop="name">
           <Input v-model="addressForm.name" maxlength="8" clearable style="width: 80%"/>
         </FormItem>
-        <FormItem label="receiver手机" prop="mobile">
+        <FormItem label="receiver phone" prop="mobile">
           <Input v-model="addressForm.mobile" clearable style="width: 80%" maxlength="11"/>
         </FormItem>
         <FormItem label="receiver address" prop="consigneeAddressPath">
@@ -338,8 +338,8 @@
         </FormItem>
         <FormItem label="default" prop="isDefault">
           <RadioGroup type="button" button-style="solid" v-model="addressForm.isDefault">
-            <Radio label="1">是</Radio>
-            <Radio label="0">否</Radio>
+            <Radio label="1">Yes</Radio>
+            <Radio label="0">No</Radio>
           </RadioGroup>
         </FormItem>
       </Form>
@@ -383,7 +383,7 @@
         selectDate: null, // select时间段
         submitLoading: false, // 添加或编辑Submit状态
         addressFormValidate: {
-          name: [{required: true, message: "receivername不能为空"}],
+          name: [{required: true, message: "receiver name cannot empyt"}],
           mobile: [
             {required: true, message: 'Please enter receiverPhone number'},
             {
@@ -391,30 +391,30 @@
               message: 'Please enter correctly phone number'
             }
           ],
-          consigneeAddressPath: [{required: true, message: "receiver address不能为空"}],
-          detail: [{required: true, message: "receiverFull address不能为空"}],
-          alias: [{required: true, message: "receiver address alias不能为空"}],
+          consigneeAddressPath: [{required: true, message: "receiver address cannot empyt"}],
+          detail: [{required: true, message: "receiverFull address cannot empyt"}],
+          alias: [{required: true, message: "receiver address alias cannot empyt"}],
         },//会员addressoperation表单校验
         //历史积分表格
         pointsColumns: [
           {
-            title: "operation内容",
+            title: "operation content",
             key: "content",
             minWidth: 120,
             tooltip: true
           },
           {
-            title: "operation时间",
+            title: "operation time",
             key: "createTime",
             width: 200
           },
           {
-            title: "之前积分",
+            title: "points",
             key: "beforePoint",
             width: 150,
           },
           {
-            title: "变动积分",
+            title: "points",
             key: "variablePoint",
             width: 150,
             render: (h, params) => {
@@ -438,7 +438,7 @@
             }
           },
           {
-            title: "当前积分",
+            title: "points",
             key: "point",
             width: 150,
           },
@@ -453,13 +453,13 @@
         },
         orderColumns: [
           {
-            title: "订单编号",
+            title: "Order number",
             key: "sn",
             minWidth: 100,
             tooltip: true
           },
           {
-            title: "订单金额",
+            title: "Order amount",
             key: "flowPrice",
             width: 130,
             render: (h, params) => {
@@ -467,33 +467,33 @@
             }
           },
           {
-            title: "订单类型",
+            title: "Order type",
             key: "orderType",
             width: 100,
             render: (h, params) => {
               if (params.row.orderType == "NORMAL") {
-                return h('div', [h('span', {}, '普通订单'),]);
+                return h('div', [h('span', {}, 'normal'),]);
               } else if (params.row.orderType == "VIRTUAL") {
-                return h('div', [h('span', {}, '虚拟订单'),]);
+                return h('div', [h('span', {}, 'virtual'),]);
               } else if (params.row.orderType == "GIFT") {
-                return h('div', [h('span', {}, '赠品订单'),]);
+                return h('div', [h('span', {}, 'gift'),]);
               } else if (params.row.orderType == "PINTUAN") {
-                return h('div', [h('span', {}, '拼团订单'),]);
+                return h('div', [h('span', {}, 'group'),]);
               }
             }
           },
           {
-            title: "来源",
+            title: "Source",
             key: "clientType",
             width: 80,render: (h, params) => {
               if (params.row.clientType == "H5") {
-                return h("div",{},"移动端");
+                return h("div",{},"mobile");
               }else if(params.row.clientType == "PC") {
-                return h("div",{},"PC端");
+                return h("div",{},"PC");
               }else if(params.row.clientType == "WECHAT_MP") {
-                return h("div",{},"小程序端");
+                return h("div",{},"Wechat");
               }else if(params.row.clientType == "APP") {
-                return h("div",{},"移动应用端");
+                return h("div",{},"Mobile App");
               }
               else{
                 return h("div",{},params.row.clientType);
@@ -501,83 +501,83 @@
             },
           },
           {
-            title: "订单状态",
+            title: "Order status",
             key: "orderStatus",
             width: 95,
             render: (h, params) => {
               if (params.row.orderStatus == "UNPAID") {
                 return h('div', [h('span', {}, 'Unpaid'),]);
               } else if (params.row.orderStatus == "PAID") {
-                return h('div', [h('span', {}, '已付款'),]);
+                return h('div', [h('span', {}, 'Paid'),]);
               } else if (params.row.orderStatus == "UNDELIVERED") {
-                return h('div', [h('span', {}, '待发货'),]);
+                return h('div', [h('span', {}, 'Wait delivered'),]);
               } else if (params.row.orderStatus == "DELIVERED") {
-                return h('div', [h('span', {}, '已发货'),]);
+                return h('div', [h('span', {}, 'DELIVERED'),]);
               } else if (params.row.orderStatus == "COMPLETED") {
                 return h('div', [h('span', {}, 'completed'),]);
               } else if (params.row.orderStatus == "TAKE") {
-                return h('div', [h('span', {}, '待核验'),]);
+                return h('div', [h('span', {}, 'Verify'),]);
               } else if (params.row.orderStatus == "CANCELLED") {
-                return h('div', [h('span', {}, '已Cancel'),]);
+                return h('div', [h('span', {}, 'Cancel'),]);
               }
             }
           },
           {
-            title: "支付状态",
+            title: "Payment status",
             key: "payStatus",
             width: 95,
             render: (h, params) => {
               if (params.row.payStatus == "UNPAID") {
                 return h('div', [h('span', {}, 'Unpaid'),]);
               } else if (params.row.payStatus == "PAID") {
-                return h('div', [h('span', {}, '已付款'),]);
+                return h('div', [h('span', {}, 'PAID'),]);
               }
             }
           },
           {
-            title: "after sale状态",
+            title: "after sale status",
             key: "groupAfterSaleStatus",
             width: 100,
             render: (h, params) => {
               if (params.row.groupAfterSaleStatus == "NEW") {
-                return h('div', [h('span', {}, '未Apply  '),]);
+                return h('div', [h('span', {}, 'Not Apply  '),]);
               } else if (params.row.groupAfterSaleStatus == "NOT_APPLIED") {
-                return h('div', [h('span', {}, '未Apply  '),]);
+                return h('div', [h('span', {}, 'Not Apply  '),]);
               } else if (params.row.groupAfterSaleStatus == "ALREADY_APPLIED") {
-                return h('div', [h('span', {}, '已Apply  '),]);
+                return h('div', [h('span', {}, 'Apply  '),]);
               } else if (params.row.groupAfterSaleStatus == "EXPIRED") {
-                return h('div', [h('span', {}, '已失效'),]);
+                return h('div', [h('span', {}, 'expired'),]);
               }
             }
           },
           {
-            title: "Complaint状态",
+            title: "Complaint status",
             key: "groupComplainStatus",
             width: 95,
             render: (h, params) => {
               if (params.row.groupComplainStatus == "NEW") {
-                return h('div', [h('span', {}, '未Apply  '),]);
+                return h('div', [h('span', {}, 'Not Apply  '),]);
               } else if (params.row.groupComplainStatus == "NO_APPLY") {
-                return h('div', [h('span', {}, '未Apply  '),]);
+                return h('div', [h('span', {}, 'Not Apply  '),]);
               } else if (params.row.groupComplainStatus == "APPLYING") {
-                return h('div', [h('span', {}, 'Apply  中'),]);
+                return h('div', [h('span', {}, 'Applying'),]);
               } else if (params.row.groupComplainStatus == "COMPLETE") {
                 return h('div', [h('span', {}, 'completed'),]);
               } else if (params.row.groupComplainStatus == "EXPIRED") {
-                return h('div', [h('span', {}, '已失效'),]);
+                return h('div', [h('span', {}, 'EXPIRED'),]);
               } else if (params.row.groupComplainStatus == "CANCEL") {
                 return h('div', [h('span', {}, 'CancelComplaint'),]);
               }
             }
           },
           {
-            title: "购买店铺",
+            title: "Store",
             key: "storeName",
             width: 120,
             tooltip: true
           },
           {
-            title: "下单时间",
+            title: "Order time",
             key: "createTime",
             width: 170,
           },
@@ -610,7 +610,7 @@
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 ),
               ]);
             },
@@ -666,11 +666,11 @@
             render: (h, params) => {
               if (params.row.isDefault == "1") {
                 return h('div', [
-                  h('span', {}, "是"),
+                  h('span', {}, "Yes"),
                 ]);
               } else {
                 return h('div', [
-                  h('span', {}, "否"),
+                  h('span', {}, "No"),
                 ]);
               }
 
@@ -740,7 +740,7 @@
         //消费记录
         walletColumns: [
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             minWidth: 120,
           },
@@ -750,15 +750,15 @@
           width: 200,
           render: (h, params) => {
             if (params.row.serviceType == "WALLET_WITHDRAWAL") {
-              return h("div", [h("span", {}, "余额提现")]);
+              return h("div", [h("span", {}, "Balance Withdraw")]);
             } else if (params.row.serviceType == "WALLET_PAY") {
               return h("div", [h("span", {}, "Balance payment")]);
             } else if (params.row.serviceType == "WALLET_REFUND") {
-              return h("div", [h("span", {}, "余额refund")]);
+              return h("div", [h("span", {}, "Balance refund")]);
             } else if (params.row.serviceType == "WALLET_RECHARGE") {
-              return h("div", [h("span", {}, "余额充值")]);
+              return h("div", [h("span", {}, "WALLET RECHARGE")]);
             } else {
-              return h("div", [h("span", {}, "佣金提成")]);
+              return h("div", [h("span", {}, "xxxx")]);
             }
           },
         },

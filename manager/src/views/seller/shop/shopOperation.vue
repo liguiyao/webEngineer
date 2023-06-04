@@ -16,7 +16,7 @@
             <!-- 遮罩层  -->
             <div v-if="isRead" class="mask">只读不可modify</div>
             <div>
-              <FormItem label="会员名称" prop="memberName">
+              <FormItem label="Member name" prop="memberName">
                 <div class="item">
                   <Input disabled v-model="shopForm.memberName" />
                   <Button @click="selectMember()" v-if="!$route.query.shopId"

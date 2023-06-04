@@ -12,12 +12,12 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="会员名称" prop="memberName">
+          <Form-item label="Member name" prop="memberName">
             <Input
               type="text"
               v-model="searchForm.memberName"
               clearable
-              placeholder="Please enter 会员名称"
+              placeholder="Please enter Member name"
               style="width: 200px"
             />
           </Form-item>
@@ -38,7 +38,7 @@
               format="yyyy-MM-dd HH:mm:ss"
               clearable
               @on-change="selectDateRange"
-              placeholder="select起始时间"
+              placeholder="select start time"
               style="width: 200px"
             ></DatePicker>
           </Form-item>
@@ -150,7 +150,7 @@
             },
           },
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             minWidth: 120,
           },

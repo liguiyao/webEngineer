@@ -18,11 +18,11 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="Goods编号" prop="id">
+        <Form-item label="Goods number" prop="id">
           <Input
             type="text"
             v-model="searchForm.id"
-            placeholder="Please enter Goods编号"
+            placeholder="Please enter Goods number"
             clearable
             style="width: 200px"
           />
@@ -36,37 +36,37 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="状态" prop="status">
+        <Form-item label="status" prop="status">
           <Select
             v-model="searchForm.marketEnable"
             placeholder="Please select"
             clearable
             style="width: 200px"
           >
-            <Option value="UPPER">上架</Option>
-            <Option value="DOWN">下架</Option>
+            <Option value="UPPER">put on</Option>
+            <Option value="DOWN">put off</Option>
           </Select>
         </Form-item>
-        <Form-item label="销售模式" prop="status">
+        <Form-item label="sales model" prop="status">
           <Select
             v-model="searchForm.salesModel"
             placeholder="Please select"
             clearable
             style="width: 200px"
           >
-            <Option value="RETAIL">零售</Option>
-            <Option value="WHOLESALE">批发</Option>
+            <Option value="RETAIL">retail</Option>
+            <Option value="WHOLESALE">wholesale</Option>
           </Select>
         </Form-item>
-        <Form-item label="Goods类型" prop="status">
+        <Form-item label="Goods type" prop="status">
           <Select
             v-model="searchForm.goodsType"
             placeholder="Please select"
             clearable
             style="width: 200px"
           >
-            <Option value="PHYSICAL_GOODS">实物Goods</Option>
-            <Option value="VIRTUAL_GOODS">虚拟Goods</Option>
+            <Option value="PHYSICAL_GOODS">Physical Goods</Option>
+            <Option value="VIRTUAL_GOODS">Virtual Goods</Option>
           </Select>
         </Form-item>
         <Button
@@ -99,7 +99,7 @@
               <div class="div-zoom">
                 <a @click="linkTo(row.id, row.skuId)">{{ row.goodsName }}</a>
               </div>
-              <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+              <Poptip trigger="hover" title="Scan QR to view" transfer>
                 <div slot="content">
                   <vue-qr
                     :text="wapLinkTo(row.id, row.skuId)"
@@ -190,7 +190,7 @@ export default {
           slot: "goodsSlot",
         },
         {
-          title: "Goods编号",
+          title: "Goods number",
           key: "id",
           minWidth: 150,
           tooltip: true,
@@ -207,35 +207,35 @@ export default {
           },
         },
         {
-          title: "销售模式",
+          title: "Sales model",
           key: "salesModel",
           width: 100,
           render: (h, params) => {
             if (params.row.salesModel === "RETAIL") {
-              return h("Tag", { props: { color: "orange" } }, "零售");
+              return h("Tag", { props: { color: "orange" } }, "Retail");
             } else if (params.row.salesModel === "WHOLESALE") {
-              return h("Tag", { props: { color: "magenta" } }, "批发");
+              return h("Tag", { props: { color: "magenta" } }, "Wholesale");
             } else {
-              return h("Tag", { props: { color: "volcano" } }, "Others类型");
+              return h("Tag", { props: { color: "volcano" } }, "Others type");
             }
           },
         },
         {
-          title: "Goods类型",
+          title: "Goods type",
           key: "goodsType",
           width: 130,
           render: (h, params) => {
             if (params.row.goodsType === "PHYSICAL_GOODS") {
-              return h("Tag", { props: { color: "green" } }, "实物Goods");
+              return h("Tag", { props: { color: "green" } }, "Physical Goods");
             } else if (params.row.goodsType === "VIRTUAL_GOODS") {
-              return h("Tag", { props: { color: "volcano" } }, "虚拟Goods");
+              return h("Tag", { props: { color: "volcano" } }, "Virtual Goods");
             } else {
-              return h("Tag", { props: { color: "geekblue" } }, "电子卡券");
+              return h("Tag", { props: { color: "geekblue" } }, "Coupon");
             }
           },
         },
         {
-          title: "状态",
+          title: "status",
           key: "marketEnable",
           width: 100,
           render: (h, params) => {
@@ -247,16 +247,16 @@ export default {
           },
         },
         {
-          title: "审核状态",
+          title: "audit status",
           key: "authFlag",
           width: 130,
           render: (h, params) => {
             if (params.row.authFlag == "TOBEAUDITED") {
-              return h("Tag", { props: { color: "volcano" } }, "待审核");
+              return h("Tag", { props: { color: "volcano" } }, "wait");
             } else if (params.row.authFlag == "PASS") {
-              return h("Tag", { props: { color: "green" } }, "通过");
+              return h("Tag", { props: { color: "green" } }, "pass");
             } else if (params.row.authFlag == "REFUSE") {
-              return h("Tag", { props: { color: "red" } }, "拒绝");
+              return h("Tag", { props: { color: "red" } }, "reject");
             }
           },
         },
@@ -305,7 +305,7 @@ export default {
                       },
                     },
                   },
-                  "查看"
+                  "view"
                 ),
               ]);
             } else {
@@ -326,7 +326,7 @@ export default {
                       },
                     },
                   },
-                  "下架"
+                  "take off"
                 ),
                 h(
                   "Button",
@@ -340,7 +340,7 @@ export default {
                       },
                     },
                   },
-                  "查看"
+                  "view"
                 ),
               ]);
             }
@@ -407,14 +407,14 @@ export default {
     // 商家
     upper(v) {
       this.$Modal.confirm({
-        title: "确认上架",
-        content: "您确认要上架 " + v.goodsName + " ?",
+        title: "Confirm the shelf",
+        content: "Confirm the shelf " + v.goodsName + " ?",
         loading: true,
         onOk: () => {
           upGoods(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("上架success");
+              this.$Message.success("shelf success");
               this.getDataList();
             }
           });

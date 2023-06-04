@@ -11,14 +11,14 @@
         </p>
         <div class="error404-btn-con">
           <Button @click="goHome" size="large" style="width: 200px" type="text"
-            >Back首页</Button
+            >Back homepage</Button
           >
           <Button
             @click="backPage"
             size="large"
             style="width: 200px; margin-left: 40px"
             type="primary"
-            >Back上一页</Button
+            >Back last page</Button
           >
         </div>
       </Card>

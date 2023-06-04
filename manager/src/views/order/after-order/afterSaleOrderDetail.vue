@@ -6,15 +6,15 @@
           <div class="div-form-default">
             <h3>Return goodsApply  </h3>
             <dl>
-              <dt>Return goods状态</dt>
+              <dt>Return goods status</dt>
               <dd>{{ afterSaleInfo.serviceName }}</dd>
             </dl>
             <dl>
-              <dt>Return goodsrefund编号</dt>
+              <dt>Return goods refund code</dt>
               <dd>{{ afterSaleInfo.sn }}</dd>
             </dl>
             <dl>
-              <dt>Return goodsrefund原因</dt>
+              <dt>Return goods refund reason</dt>
               <dd>{{ afterSaleInfo.reason }}</dd>
             </dl>
             <dl>
@@ -26,7 +26,7 @@
               <dd>RM{{ afterSaleInfo.actualRefundPrice | unitPrice }}</dd>
             </dl>
             <dl v-if="afterSaleInfo.refundPoint">
-              <dt>退还积分</dt>
+              <dt>return points</dt>
               <dd>{{ afterSaleInfo.refundPoint }}</dd>
             </dl>
             <dl>
@@ -59,7 +59,7 @@
               </dd>
             </dl>
             <dl>
-              <dt>是否同意</dt>
+              <dt>Agree or not</dt>
               <dd>
                 <div class="div-content">
                   <RadioGroup
@@ -68,10 +68,10 @@
                     v-model="params.serviceStatus"
                   >
                     <Radio label="PASS">
-                      <span>同意</span>
+                      <span>Agree</span>
                     </Radio>
                     <Radio label="REFUSE">
-                      <span>拒绝</span>
+                      <span>Disagree</span>
                     </Radio>
                   </RadioGroup>
                 </div>
@@ -88,7 +88,7 @@
               </dd>
             </dl>
             <dl>
-              <dt>备注信息</dt>
+              <dt>Note</dt>
               <dd>
                 <Input
                   v-model="params.remark"
@@ -116,9 +116,9 @@
             </dl>
           </div>
           <div class="div-form-default" v-if="afterSaleInfo.serviceStatus != 'APPLY'">
-            <h3>商家处理</h3>
+            <h3>Store</h3>
             <dl>
-              <dt>商家</dt>
+              <dt>Store</dt>
               <dd>
                 <div class="div-content">
                   {{ afterSaleInfo.storeName }}
@@ -140,9 +140,9 @@
               </dd>
             </dl> -->
             <dl>
-              <dt>备注信息</dt>
+              <dt>Note</dt>
               <dd>
-                {{ afterSaleInfo.auditRemark || "absent备注信息" }}
+                {{ afterSaleInfo.auditRemark || "absent note" }}
               </dd>
             </dl>
           </div>
@@ -150,7 +150,7 @@
         <div class="div-flow-center"></div>
         <div class="div-flow-right">
           <div class="div-form-default">
-            <h3>相关Goods交易信息</h3>
+            <h3>Goods info</h3>
             <dl>
               <dt>
                 <img :src="afterSaleInfo.goodsImage" height="60px" />
@@ -160,7 +160,7 @@
                   <a @click="linkTo(afterSaleInfo.goodsId, afterSaleInfo.skuId)">{{
                     afterSaleInfo.goodsName
                   }}</a>
-                  <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+                  <Poptip trigger="hover" title="Scan QR to view" transfer>
                     <div slot="content">
                       <vue-qr
                         :text="wapLinkTo(afterSaleInfo.goodsId, afterSaleInfo.skuId)"
@@ -187,9 +187,9 @@
             </dl>
           </div>
           <div class="div-form-default">
-            <h3>订单相关信息</h3>
+            <h3>Order info</h3>
             <dl>
-              <dt>订单编号</dt>
+              <dt>Order info</dt>
               <dd>
                 {{ afterSaleInfo.orderSn }}
               </dd>

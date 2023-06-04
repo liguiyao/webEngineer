@@ -17,12 +17,12 @@
             style="width: 160px"
           />
         </Form-item>
-        <Form-item label="会员名称" prop="buyerName">
+        <Form-item label="Member name" prop="buyerName">
           <Input
             type="text"
             v-model="searchForm.buyerName"
             clearable
-            placeholder="Please enter 会员名称"
+            placeholder="Please enter Member name"
             style="width: 160px"
           />
         </Form-item>
@@ -63,7 +63,7 @@
             format="yyyy-MM-dd"
             clearable
             @on-change="selectDateRange"
-            placeholder="select起始时间"
+            placeholder="select start time"
             style="width: 160px"
           ></DatePicker>
         </Form-item>

@@ -2,8 +2,8 @@
   <div class="search">
     <Card>
       <Row class="operation">
-        <Button @click="add" type="primary">添加</Button>
-        <Button @click="delAll">批量delete</Button>
+        <Button @click="add" type="primary">Add</Button>
+        <Button @click="delAll">batch delete</Button>
       </Row>
       <Table
         :loading="loading"
@@ -36,7 +36,7 @@
       :width="500"
     >
       <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
-        <FormItem label="计量单位" prop="name">
+        <FormItem label="Unit" prop="name">
           <Input v-model="form.name" clearable style="width: 100%" />
         </FormItem>
       </Form>
@@ -97,7 +97,7 @@ export default {
           align: "center",
         },
         {
-          title: "计量单位",
+          title: "Unit",
           key: "name",
           minWidth: 120
         },
@@ -108,12 +108,12 @@ export default {
           width: 180
         },
         {
-          title: "更新时间",
+          title: "update time",
           key: "updateTime",
           width: 180
         },
         {
-          title: "operation人",
+          title: "operator",
           key: "createBy",
           minWidth: 150
         },
@@ -219,10 +219,10 @@ export default {
         if (valid) {
           this.submitLoading = true;
 
-          if (this.modalTitle == "添加") {
+          if (this.modalTitle == "add") {
 
             if(this.data.find(item=>item.name == this.form.name)){
-              this.$Message.error('Please 勿添加重复计量单位!')
+              this.$Message.error('Please dont repeat add!')
               this.submitLoading = false
               return
             }
@@ -252,7 +252,7 @@ export default {
     },
     // 添加
     add() {
-      this.modalTitle = "添加";
+      this.modalTitle = "add";
       this.form = {};
       this.$refs.form.resetFields();
 
@@ -268,16 +268,16 @@ export default {
     // delete
     remove(v) {
       this.$Modal.confirm({
-        title: "确认delete",
+        title: "confirm delete",
         // 记得确认modify此处
-        content: "您确认要delete " + v.name + " ?",
+        content: "confirm to delete " + v.name + " ?",
         loading: true,
         onOk: () => {
           // delete
           delGoodsUnit(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getDataList();
             }
           });
@@ -287,12 +287,12 @@ export default {
     // 全部delete
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未select要delete的数据");
+        this.$Message.warning("no select data");
         return;
       }
       this.$Modal.confirm({
-        title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        title: "confirm delete",
+        content: "confirm delete selected " + this.selectCount + " data?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -304,7 +304,7 @@ export default {
           delGoodsUnit(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.clearSelectAll();
               this.getDataList();
             }

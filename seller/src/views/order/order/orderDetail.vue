@@ -286,7 +286,7 @@
           <FormItem label="Receiver" prop="consigneeName">
             <Input v-model="addressForm.consigneeName" size="large" maxlength="20"></Input>
           </FormItem>
-          <FormItem label="联系方式" prop="consigneeMobile">
+          <FormItem label="contact" prop="consigneeMobile">
             <Input v-model="addressForm.consigneeMobile" size="large" maxlength="11"></Input>
           </FormItem>
           <FormItem label="address信息" prop="consigneeAddressPath">
@@ -579,7 +579,7 @@ export default {
           { required: true, message: "receivername不能为空", trigger: "blur" },
         ],
         consigneeMobile: [
-          { required: true, message: "联系方式不能为空", trigger: "blur" },
+          { required: true, message: "contact不能为空", trigger: "blur" },
           {
             pattern: RegExp.mobile,
             trigger: "blur",

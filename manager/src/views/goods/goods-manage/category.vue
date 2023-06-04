@@ -2,7 +2,7 @@
   <div>
     <Card>
       <div class="mb_10">
-        <Button @click="addParent" icon="md-add">添加一级分类</Button>
+        <Button @click="addParent" icon="md-add">Add classification</Button>
       </div>
       <Table
       update-show-children
@@ -16,18 +16,18 @@
         <template slot="action" slot-scope="scope">
           <Dropdown v-show="scope.row.level == 2" trigger="click">
             <Button size="small">
-              绑定
+              band
               <Icon type="ios-arrow-down"></Icon>
             </Button>
             <DropdownMenu slot="list">
               <DropdownItem @click.native="brandOperation(scope.row)"
-                >编辑绑定品牌</DropdownItem
+                >edit band</DropdownItem
               >
               <DropdownItem @click.native="specOperation(scope.row)"
-                >编辑绑定规格</DropdownItem
+                >edit specification</DropdownItem
               >
               <DropdownItem @click.native="parameterOperation(scope.row)"
-                >编辑绑定参数</DropdownItem
+                >edit parameter</DropdownItem
               >
             </DropdownMenu>
           </Dropdown>
@@ -43,12 +43,12 @@
               <DropdownItem
                 v-if="scope.row.deleteFlag == 1"
                 @click.native="enable(scope.row)"
-                >启用</DropdownItem
+                >enable</DropdownItem
               >
               <DropdownItem
                 v-if="scope.row.deleteFlag == 0"
                 @click.native="disable(scope.row)"
-                >禁用</DropdownItem
+                >disable</DropdownItem
               >
               <DropdownItem @click.native="remove(scope.row)">delete</DropdownItem>
             </DropdownMenu>
@@ -61,7 +61,7 @@
             size="small"
             icon="md-add"
             style="margin-right: 5px"
-            >添加子分类
+            >add sub classification
           </Button>
         </template>
 
@@ -74,7 +74,7 @@
             :class="{ ml_10: row.deleteFlag }"
             :color="row.deleteFlag == false ? 'success' : 'error'"
           >
-            {{ row.deleteFlag == false ? "正常启用" : "禁用" }}</Tag
+            {{ row.deleteFlag == false ? "enable" : "disable" }}</Tag
           >
         </template>
       </Table>
@@ -87,7 +87,7 @@
       >
         <Form ref="form" :model="formAdd" :label-width="100" :rules="formValidate">
           <div v-if="showParent">
-            <FormItem label="上级分类" prop="parentId">
+            <FormItem label="super classification" prop="parentId">
               {{ parentTitle }}
               <Input
                 v-model="formAdd.parentId"
@@ -96,33 +96,33 @@
               />
             </FormItem>
           </div>
-          <FormItem label="层级" prop="level" style="display: none">
+          <FormItem label="level" prop="level" style="display: none">
             <Input v-model="formAdd.level" clearable style="width: 100%" />
           </FormItem>
-          <FormItem label="分类名称" prop="name">
+          <FormItem label="level name" prop="name">
             <Input v-model="formAdd.name" clearable style="width: 100%" />
           </FormItem>
-          <FormItem label="分类图标" prop="image" v-if="formAdd.level !== 1">
+          <FormItem label="classification icon" prop="image" v-if="formAdd.level !== 1">
             <upload-pic-input
               v-model="formAdd.image"
               style="width: 100%"
             ></upload-pic-input>
           </FormItem>
-          <FormItem label="排序值" prop="sortOrder" style="width: 345px">
+          <FormItem label="sort number" prop="sortOrder" style="width: 345px">
             <InputNumber v-model="formAdd.sortOrder"></InputNumber>
           </FormItem>
-          <FormItem label="佣金比例(%)" prop="commissionRate" style="width: 345px">
+          <FormItem label="commission(%)" prop="commissionRate" style="width: 345px">
             <InputNumber v-model="formAdd.commissionRate"></InputNumber>
           </FormItem>
-          <FormItem label="是否启用" prop="deleteFlag">
+          <FormItem label="enable" prop="deleteFlag">
             <i-switch
               size="large"
               v-model="formAdd.deleteFlag"
               :true-value="0"
               :false-value="1"
             >
-              <span slot="open">启用</span>
-              <span slot="close">禁用</span>
+              <span slot="open">enable</span>
+              <span slot="close">disable</span>
             </i-switch>
           </FormItem>
         </Form>
@@ -243,16 +243,16 @@ export default {
       },
       columns: [
         {
-          title: "分类名称",
+          title: "classification name",
           key: "name",
           tree: true,
         },
         {
-          title: "状态",
+          title: "status",
           slot: "deleteFlag",
         },
         {
-          title: "佣金",
+          title: "commission",
           key: "commissionRate",
 
           slot: "commissionRate",
@@ -294,7 +294,7 @@ export default {
     brandOperation(v) {
       getCategoryBrandListData(v.id).then((res) => {
         this.categoryId = v.id;
-        this.modalBrandTitle = "品牌关联";
+        this.modalBrandTitle = "bind brand";
         this.brandForm.categoryBrands = res.result.map((item) => item.id);
         this.modalBrandVisible = true;
       });
@@ -303,7 +303,7 @@ export default {
     specOperation(v) {
       getCategorySpecListData(v.id).then((res) => {
         this.categoryId = v.id;
-        this.modalSpecTitle = "规格关联";
+        this.modalSpecTitle = "specification";
         this.specForm.categorySpecs = res.map((item) => item.id);
         this.modalSpecVisible = true;
       });
@@ -335,7 +335,7 @@ export default {
     // 添加子分类
     addChildren(v) {
       this.modalType = 0;
-      this.modalTitle = "添加子分类";
+      this.modalTitle = "add sub classification";
       this.parentTitle = v.name;
       this.formAdd.level = eval(v.level + "+1");
       this.formAdd.commissionRate = v.commissionRate;
@@ -347,7 +347,7 @@ export default {
     // 编辑分类
     edit(v) {
       this.modalType = 1;
-      this.modalTitle = "编辑";
+      this.modalTitle = "edit";
       this.formAdd.id = v.id;
       this.formAdd.name = v.name;
       this.formAdd.level = v.level;
@@ -362,8 +362,8 @@ export default {
     // 添加一级分类
     addParent() {
       this.modalType = 0;
-      this.modalTitle = "添加一级分类";
-      this.parentTitle = "顶级分类";
+      this.modalTitle = "add classification";
+      this.parentTitle = "super classification";
       this.showParent = true;
       this.$refs.form.resetFields();
       delete this.formAdd.id;
@@ -381,7 +381,7 @@ export default {
             insertCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("添加success");
+                this.$Message.success("add success");
                 this.getAllList(this.categoryIndex);
                 this.modalVisible = false;
                 this.$refs.form.resetFields();
@@ -392,7 +392,7 @@ export default {
             updateCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("modifysuccess");
+                this.$Message.success("modify success");
                 this.getAllList(this.categoryIndex);
                 this.modalVisible = false;
                 this.$refs.form.resetFields();
@@ -405,15 +405,15 @@ export default {
     // delete分类
     remove(v) {
       this.$Modal.confirm({
-        title: "确认delete",
-        content: "您确认要delete " + v.name + " ?",
+        title: "delete",
+        content: "confirm delete " + v.name + " ?",
         loading: true,
         onOk: () => {
           // delete
           delCategory(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getAllList(0);
             }
           });
@@ -480,16 +480,16 @@ export default {
     // 启用分类
     enable(v) {
       this.$Modal.confirm({
-        title: "确认启用",
-        content: "您是否要启用当前分类 " + v.name + " 及其子分类?",
+        title: "confirm",
+        content: "confirm enable " + v.name + " and classification ?",
         loading: true,
-        okText: "是",
-        cancelText: "否",
+        okText: "Yes",
+        cancelText: "No",
         onOk: () => {
           disableCategory(v.id, { enableOperations: 0 }).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getAllList(0);
             }
           });
@@ -502,16 +502,16 @@ export default {
     // 禁用分类
     disable(v) {
       this.$Modal.confirm({
-        title: "确认禁用",
-        content: "您是否要禁用当前分类 " + v.name + " 及其子分类?",
+        title: "confirm",
+        content: "confirm delete " + v.name + " and sub classification?",
         loading: true,
-        okText: "是",
-        cancelText: "否",
+        okText: "Yes",
+        cancelText: "No",
         onOk: () => {
           disableCategory(v.id, { enableOperations: true }).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getAllList(0);
             }
           });

@@ -21,8 +21,8 @@
             <div class="wap-content-desc">
               <div class="wap-content-desc-title">{{ item.storeName }}</div>
 
-              <div class="self-operated" :class="{'theme_color':item.selfOperated }">{{ item.selfOperated ? '自营' : '非自营' }}</div>
-              <div class="wap-sku" :class="{'theme_color':(item.storeDisable === 'OPEN' ? true : false) }">{{ item.storeDisable === 'OPEN' ? 'Opening' : '未Opening' }}</div>
+              <div class="self-operated" :class="{'theme_color':item.selfOperated }">{{ item.selfOperated ? 'Self' : 'Non-self' }}</div>
+              <div class="wap-sku" :class="{'theme_color':(item.storeDisable === 'OPEN' ? true : false) }">{{ item.storeDisable === 'OPEN' ? 'Opening' : 'Not Opening' }}</div>
             </div>
           </div>
           <Spin size="large" fix v-if="loading"></Spin>

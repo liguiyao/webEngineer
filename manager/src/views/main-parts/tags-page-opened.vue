@@ -42,7 +42,7 @@ export default {
       contextMenuTop: 0, // 内容上偏移量
       actionList: {
         others: 'CloseOthers',
-        clearAll: 'Close所有'
+        clearAll: 'Close all'
       },
       refsTag: [], // 所有已打开标签
       tagsCount: 1 // 标签Quantity

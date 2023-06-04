@@ -2,7 +2,7 @@
   <div>
     <!-- 统计 -->
     <div class="card">
-      <h4>基本信息</h4>
+      <h4>Basic</h4>
       <div class="count-list flex">
         <div class="count-item" @click="navigateTo('managerGoods')">
           <div>
@@ -10,7 +10,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.goodsNum || 0 }}</div>
-            <div>GoodsQuantity</div>
+            <div>Goods Quantity</div>
           </div>
         </div>
         <div class="count-item" @click="navigateTo('memberList')">
@@ -19,7 +19,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.memberNum || 0 }}</div>
-            <div>会员Quantity</div>
+            <div>Member Quantity</div>
           </div>
         </div>
         <div class="count-item" @click="navigateTo('orderList')">
@@ -28,7 +28,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.orderNum || 0 }}</div>
-            <div>订单Quantity</div>
+            <div>Order Quantity</div>
           </div>
         </div>
         <div class="count-item" @click="navigateTo('shopList')">
@@ -37,7 +37,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.storeNum || 0 }}</div>
-            <div>店铺Quantity</div>
+            <div>Store Quantity</div>
           </div>
         </div>
       </div>
@@ -45,33 +45,33 @@
 
     <!-- 今日待办 -->
     <div class="card">
-      <h4>今日待办</h4>
+      <h4>To do today</h4>
       <div class="todo-list flex">
         <div class="todo-item" @click="navigateTo('applyGoods')">
           <div class="counts">{{ $store.state.notices.goods || 0 }}</div>
-          <div>待审核Goods</div>
+          <div>Wait audit Goods</div>
         </div>
         <div class="todo-item" @click="navigateTo('shopAuth')">
           <div class="counts">{{ $store.state.notices.store || 0 }}</div>
-          <div>待审核店铺</div>
+          <div>Wait audit store</div>
         </div>
         <div class="todo-item" @click="navigateTo('orderComplaint')">
           <div class="counts">{{ $store.state.notices.complain || 0 }}</div>
-          <div>待审核Complaint</div>
+          <div>Wait audit Complaint</div>
         </div>
         <div class="todo-item" @click="navigateTo('afterSaleOrder')">
           <div class="counts">{{ $store.state.notices.refund || 0 }}</div>
-          <div>待审核after sale</div>
+          <div>wait aduit after sale</div>
         </div>
         <div class="todo-item">
           <div class="counts">
             {{ $store.state.notices.distributionCash || 0 }}
           </div>
-          <div>待审核分销提现</div>
+          <div>1111</div>
         </div>
         <div class="todo-item" @click="navigateTo('accountStatementBill')">
           <div class="counts">{{ $store.state.notices.waitPayBill || 0 }}</div>
-          <div>待审核分账</div>
+          <div>1111</div>
         </div>
       </div>
     </div>
@@ -81,22 +81,22 @@
       <div class="flow-list flex">
         <div class="flow-item">
           <div class="flow-member">
-            <div>当前在线人数</div>
+            <div>Current online</div>
             <span>
               {{ homeData.currentNumberPeopleOnline || 0 }}
             </span>
           </div>
           <div class="flow-wrapper">
-            <h4>流量概括</h4>
+            <h4>flow</h4>
             <div class="card flow-box flex">
               <div class="flow-box-item">
-                <div>今日访客数</div>
+                <div>Today's visitors</div>
                 <div class="counts">
                   {{ homeData.todayUV || 0 }}
                 </div>
               </div>
               <div class="flow-box-item">
-                <div>昨日访客数</div>
+                <div>yesterday visitors</div>
                 <div class="counts">
                   {{ homeData.yesterdayUV || 0 }}
                 </div>
@@ -105,13 +105,13 @@
 
             <div class="flow-splice flex">
               <div class="flow-box-splice">
-                <div>前七日访客数</div>
+                <div>last 7 days visitors</div>
                 <div class="counts">
                   {{ homeData.lastSevenUV || 0 }}
                 </div>
               </div>
               <div class="flow-box-splice">
-                <div>前三十日访客数</div>
+                <div>last 30 days visitors</div>
                 <div class="counts">
                   {{ homeData.lastThirtyUV || 0 }}
                 </div>
@@ -120,33 +120,33 @@
           </div>
         </div>
         <div class="today-box">
-          <h4>今日概括</h4>
+          <h4>Today cover</h4>
           <div class="today-list flex">
             <div class="today-item">
-              <div>今日订单数</div>
+              <div>Today order</div>
               <span>{{ homeData.todayOrderNum }}</span>
             </div>
             <div class="today-item">
-              <div>今日交易额</div>
+              <div>Today trade</div>
               <span v-if="homeData.todayOrderPrice"
                 >RM{{ homeData.todayOrderPrice | unitPrice }}</span
               >
               <span v-else>RM0.00</span>
             </div>
             <div class="today-item">
-              <div>今日新增店铺</div>
+              <div>Today new store</div>
               <span>{{ homeData.todayStoreNum || 0 }}</span>
             </div>
             <div class="today-item">
-              <div>今日新增会员数</div>
+              <div>Today new member</div>
               <span>{{ homeData.todayMemberNum || 0 }}</span>
             </div>
             <div class="today-item">
-              <div>今日上架GoodsQuantity</div>
+              <div>Today take on Goods Quantity</div>
               <span>{{ homeData.todayGoodsNum || 0 }}</span>
             </div>
             <div class="today-item">
-              <div>今日新增评论</div>
+              <div>Today new common</div>
               <span>{{ homeData.todayMemberEvaluation || 0 }}</span>
             </div>
           </div>
@@ -157,25 +157,25 @@
     <!-- chart -->
     <div class="card transform">
       <div>
-        <h4>最近48小时在线人数（整点为准）</h4>
+        <h4>online users in the last 48 hours (according to the hour)</h4>
         <div id="historyMemberChart"></div>
       </div>
     </div>
     <!-- chart -->
     <div class="charts flex">
       <div class="chart-item">
-        <h4>流量走势</h4>
+        <h4>flow</h4>
         <div id="pvChart"></div>
       </div>
       <div class="chart-item">
-        <h4>交易趋势</h4>
+        <h4>trade</h4>
         <div id="orderChart"></div>
       </div>
     </div>
 
     <!-- top10Goods -->
     <div class="card transform">
-      <h4>热卖GoodsTOP10</h4>
+      <h4>Hot Goods TOP10</h4>
       <Table
         stripe
         :columns="tophotGoodsColumns"
@@ -185,7 +185,7 @@
 
     <!-- top10店铺 -->
     <div class="card transform">
-      <h4>热卖店铺TOP10</h4>
+      <h4>Hot store TOP10</h4>
       <Table
         stripe
         :columns="tophotShopsColumns"
@@ -219,7 +219,7 @@ export default {
         {
           type: "index",
           width: 100,
-          title: "排名",
+          title: "Ranking",
           align: "center",
         },
         {
@@ -238,7 +238,7 @@ export default {
           },
         },
         {
-          title: "销量",
+          title: "Sales",
           key: "num",
           width: 100,
           sortable: true,
@@ -249,7 +249,7 @@ export default {
         {
           type: "index",
           width: 100,
-          title: "排名",
+          title: "Ranking",
           align: "center",
         },
         {
@@ -268,7 +268,7 @@ export default {
           },
         },
         {
-          title: "销量",
+          title: "Sales",
           key: "num",
           width: 100,
           sortable: true,
@@ -362,7 +362,7 @@ export default {
 
       data.forEach((item) => {
         item.createTime = item.createTime.split(" ")[0];
-        item.title = "交易额";
+        item.title = "sale amount";
       });
       this.orderChart.data(data);
 
@@ -401,7 +401,7 @@ export default {
         uv.push({
           date: item.date,
           uvNum: item.uvNum,
-          title: "访客数UV",
+          title: "Visitor UV",
           pv: item.uvNum,
         });
 
@@ -409,7 +409,7 @@ export default {
           date: item.date,
           pvNum: item.pvNum,
           pv: item.pvNum,
-          title: "浏览量PV",
+          title: "ViewsPV",
         });
       });
 
@@ -492,14 +492,14 @@ export default {
       data.forEach((item) => {
         num.push({
           date: item.date.substring(5),
-          title: "最近48小时",
+          title: "last 48 hours",
           num: item.num,
           res: item.num,
         });
 
         lastNum.push({
           date: item.date.substring(5),
-          title: "上一周期",
+          title: "last cycle",
           lastNum: item.lastNum || 0,
           res: item.lastNum || 0,
         });

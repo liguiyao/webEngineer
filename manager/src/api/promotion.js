@@ -243,7 +243,7 @@ export const updatePointsGoods = params => {
     "Content-type": "application/json"
   });
 };
-// modify积分Goods状态
+// modify积分goods status
 export const editPointsGoodsStatus = (id, params) => {
   return putRequest(`/promotion/pointsGoods/status/${id}`, params);
 };

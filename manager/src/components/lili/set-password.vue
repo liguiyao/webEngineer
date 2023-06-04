@@ -14,15 +14,15 @@
         :readonly="readonly"
       />
       <div :class="tipStyle" slot="content">
-        <div class="words">强度 : {{strength}}</div>
+        <div class="words">strength : {{strength}}</div>
         <Progress
           :percent="strengthValue"
           :status="progressStatus"
           hide-info
           style="margin: 13px 0;"
         />
-        <br />Please 至少输入 6 个字符。Please 不要使
-        <br />用容易被猜到的密码。
+        <br />Please at least 6 character.
+        <br />
       </div>
     </Poptip>
   </div>
@@ -36,7 +36,7 @@ export default {
     size: String,
     placeholder: {
       type: String,
-      default: "Please enter 密码，长度为6-20个字符"
+      default: "Please enter password，length 6-20 characters"
     },
     disabled: {
       type: Boolean,
@@ -86,7 +86,7 @@ export default {
     strengthChange() {
       if (!this.currentValue) {
         this.tipStyle = "password-tip-none";
-        this.strength = "无";
+        this.strength = "None";
         this.strengthValue = 0;
         return;
       }
@@ -94,17 +94,17 @@ export default {
       if (grade <= 1) {
         this.progressStatus = "wrong";
         this.tipStyle = "password-tip-weak";
-        this.strength = "弱";
+        this.strength = "weak";
         this.strengthValue = 33;
       } else if (grade >= 2 && grade <= 4) {
         this.progressStatus = "normal";
         this.tipStyle = "password-tip-middle";
-        this.strength = "中";
+        this.strength = "middle";
         this.strengthValue = 66;
       } else {
         this.progressStatus = "success";
         this.tipStyle = "password-tip-strong";
-        this.strength = "强";
+        this.strength = "strong";
         this.strengthValue = 100;
       }
     },

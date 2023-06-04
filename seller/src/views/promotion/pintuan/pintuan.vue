@@ -36,7 +36,7 @@
               v-model="selectDate"
               type="daterange"
               clearable
-              placeholder="select起始时间"
+              placeholder="select start time"
               style="width: 200px"
             ></DatePicker>
           </Form-item>

@@ -6,7 +6,7 @@
           <Input type="text" v-model="searchForm.sn" placeholder="Please enter 账单编号" clearable style="width: 200px" />
         </Form-item>
         <Form-item label="出帐时间" prop="createTime">
-          <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px">
+          <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px">
           </DatePicker>
         </Form-item>
 

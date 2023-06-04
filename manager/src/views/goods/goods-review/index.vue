@@ -3,8 +3,8 @@
     <Card>
       <Row>
         <Form ref="searchForm" :model="searchForm" @keydown.enter.native="handleSearch" inline :label-width="70" class="search-form">
-          <Form-item label="会员名称" prop="memberName">
-            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter 会员名称" clearable style="width: 200px"/>
+          <Form-item label="Member name" prop="memberName">
+            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter member name" clearable style="width: 200px"/>
           </Form-item>
           <Button @click="handleSearch" type="primary" class="search-btn" icon="ios-search">search</Button>
         </Form>
@@ -14,8 +14,8 @@
         <template slot="shopDisableSlot" slot-scope="scope">
           <i-switch size="large" true-value="OPEN" false-value="CLOSE" v-model="scope.row.status"
                     @on-change="changeSwitch(scope.row)">
-            <span slot="open">展示</span>
-            <span slot="close">隐藏</span>
+            <span slot="open">display</span>
+            <span slot="close">hidden</span>
           </i-switch>
         </template>
       </Table>
@@ -34,11 +34,11 @@
             <img class="img" :src=infoData.goodsImage>
           </div>
           <div class="show">
-            <label>页面展示：</label>
+            <label>page display：</label>
             <i-switch size="large" true-value="OPEN" false-value="CLOSE" v-model="infoData.status"
                       @on-change="changeSwitchView" style="margin-top: 3px">
-              <span slot="open">展示</span>
-              <span slot="close">隐藏</span>
+              <span slot="open">display</span>
+              <span slot="close">hidden</span>
             </i-switch>
           </div>
         </div>
@@ -57,12 +57,12 @@
                   :description="infoData.content"/>
               </ListItem>
               <div class="score-content">
-                <span>logistics评分：{{infoData.deliveryScore}}</span>
-                <span>服务评分：{{infoData.serviceScore}}</span>
-                <span>描述评分：{{infoData.descriptionScore}}</span>
+                <span>logistics score：{{infoData.deliveryScore}}</span>
+                <span>service score：{{infoData.serviceScore}}</span>
+                <span>describe score：{{infoData.descriptionScore}}</span>
               </div>
               <div class="" v-if="infoData.haveImage">
-                Evaluate图
+                Evaluate image
                 <div style="margin-left: 40px">
                   <template v-if="infoData.images && infoData.images.length">
                     <img style="width: 100px;height: 110px;margin-left: 2px"
@@ -77,7 +77,7 @@
           <div class="border-b" v-if="infoData.reply">
             <div>
               <div>
-                <div style="float: left"> 商家回复：</div>
+                <div style="float: left"> Store reply：</div>
                 <div style="margin-left: 60px">{{ infoData.reply }}</div>
               </div>
               <div v-if="infoData.haveReplyImage">
@@ -126,7 +126,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "会员名称",
+          title: "Member name",
           key: "memberName",
           minWidth: 120,
           align: "left",

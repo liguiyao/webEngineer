@@ -2,20 +2,20 @@
   <div>
     <Card>
       <Form ref="searchForm" @keydown.enter.native="handleSearch" :model="searchForm" inline :label-width="70" class="search-form">
-        <Form-item label="订单编号"  prop="orderSn">
+        <Form-item label="Order number"  prop="orderSn">
           <Input
             type="text"
             v-model="searchForm.orderSn"
-            placeholder="Please enter 订单编号"
+            placeholder="Please enter order number"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="分销商" prop="distributionName">
+        <Form-item label="distribution" prop="distributionName">
           <Input
             type="text"
             v-model="searchForm.distributionName"
-            placeholder="Please enter 分销商名称"
+            placeholder="Please enter distribute store"
             clearable
             style="width: 200px"
           />
@@ -26,7 +26,7 @@
             <Option v-for="item in shopList" :value="item.id" :key="item.id">{{ item.storeName }}</Option>
           </Select>
         </Form-item>
-        <Form-item label="订单时间">
+        <Form-item label="order time">
           <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="select时间"
                       style="width: 210px"></DatePicker>
         </Form-item>
@@ -41,7 +41,7 @@
                 <a @click="linkTo(row.goodsId,row.skuId)">{{row.goodsName}}</a>
               </div>
               <div style="color:#999;font-size:10px">Quantity：x{{row.num}}</div>
-              <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+              <Poptip trigger="hover" title="scan to view" transfer>
                 <div slot="content">
                   <vue-qr :text="wapLinkTo(row.goodsId,row.skuId)"  :margin="0" colorDark="#000" colorLight="#fff" :size="150"></vue-qr>
                 </div>
@@ -91,7 +91,7 @@
         },
         columns: [
           {
-            title: "订单编号",
+            title: "order number",
             key: "orderSn",
             minWidth: 180,
             fixed: "left",
@@ -116,12 +116,12 @@
             tooltip: true
           },
           {
-            title: "状态",
+            title: "status",
             slot: "distributionOrderStatus",
             minWidth:80,
           },
           {
-            title: "佣金金额",
+            title: "amount",
             key: "rebate",
             minWidth:80,
             sortable: false,

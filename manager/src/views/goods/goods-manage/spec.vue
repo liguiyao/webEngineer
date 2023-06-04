@@ -3,14 +3,14 @@
     <Card>
       <Form @keydown.enter.native="handleSearch" ref="searchForm" :model="searchForm" inline :label-width="70"
         class="search-form">
-        <Form-item label="规格名称" prop="specName">
-          <Input type="text" v-model="searchForm.specName" placeholder="Please enter 规格名称" clearable style="width: 200px" />
+        <Form-item label="Specification" prop="specName">
+          <Input type="text" v-model="searchForm.specName" placeholder="Please enter Spec name" clearable style="width: 200px" />
         </Form-item>
         <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
       </Form>
       <Row class="operation padding-row">
-        <Button @click="add" type="primary">添加</Button>
-        <Button @click="delAll">批量delete</Button>
+        <Button @click="add" type="primary">add</Button>
+        <Button @click="delAll">batch delete</Button>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom"
         @on-sort-change="changeSort" @on-selection-change="changeSelect">
@@ -23,11 +23,11 @@
     </Card>
     <Modal :title="modalTitle" v-model="modalVisible" :mask-closable="false" :width="500">
       <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
-        <FormItem label="规格名称" prop="specName">
+        <FormItem label="Spec" prop="specName">
           <Input v-model="form.specName" maxlength="30" clearable style="width: 100%" />
         </FormItem>
-        <FormItem label="规格值" prop="specValue">
-          <Select v-model="form.specValue" placeholder="输入后回车添加" multiple filterable allow-create
+        <FormItem label="Spec value" prop="specValue">
+          <Select v-model="form.specValue" placeholder="enter to add" multiple filterable allow-create
             :popper-append-to-body="false" popper-class="spec-values-popper"
             style="width: 100%; text-align: left; margin-right: 10px" @on-create="handleCreate2">
             <Option v-for="item in specValue" :value="item" :label="item" :key="item">
@@ -89,12 +89,12 @@ export default {
           align: "center",
         },
         {
-          title: "规格名称",
+          title: "Spec name",
           key: "specName",
           width: 200,
         },
         {
-          title: "规格值",
+          title: "vlaue",
           key: "specValue",
           minWidth: 250,
           tooltip: true,
@@ -123,7 +123,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -219,7 +219,7 @@ export default {
           this.submitLoading = true;
           if (this.modalType === 0) {
             if (this.data.find((item) => item.specName == this.form.specName)) {
-              this.$Message.error("Please 勿添加重复规格名称!");
+              this.$Message.error("Please dont repeat !");
               this.submitLoading = false;
               return;
             }
@@ -228,7 +228,7 @@ export default {
             insertSpec(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("operationsuccess");
+                this.$Message.success("operation success");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -238,7 +238,7 @@ export default {
             updateSpec(this.form.id, this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("operationsuccess");
+                this.$Message.success("operation success");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -250,7 +250,7 @@ export default {
     //弹出添加框
     add () {
       this.modalType = 0;
-      this.modalTitle = "添加";
+      this.modalTitle = "add";
       this.$refs.form.resetFields();
       this.specValue = "";
       delete this.form.id;
@@ -259,7 +259,7 @@ export default {
     //弹出编辑框
     edit (v) {
       this.modalType = 1;
-      this.modalTitle = "编辑";
+      this.modalTitle = "edit";
       // 转换null为""
       for (let attr in v) {
         if (v[attr] === null) {
@@ -284,14 +284,14 @@ export default {
     // delete规格
     remove (v) {
       this.$Modal.confirm({
-        title: "确认delete",
-        content: "您确认要delete " + v.specName + " ?",
+        title: "confirm delete",
+        content: "confirm to delete " + v.specName + " ?",
         loading: true,
         onOk: () => {
           delSpec(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getDataList();
             }
           });
@@ -301,12 +301,12 @@ export default {
     // 批量delete
     delAll () {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未select要delete的数据");
+        this.$Message.warning("confirm batch delete data");
         return;
       }
       this.$Modal.confirm({
-        title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        title: "confirm delete",
+        content: "confirm delete selected " + this.selectCount + " data?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -317,7 +317,7 @@ export default {
           delSpec(ids).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("deletesuccess");
+              this.$Message.success("delete success");
               this.clearSelectAll();
               this.searchForm.pageNumber = 1;
               this.getDataList();

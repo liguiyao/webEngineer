@@ -1,17 +1,17 @@
 <template>
   <div>
     <Card class="change-pass">
-      <p slot="title">modify密码</p>
+      <p slot="title">modify password</p>
       <div class="mt_10">
         <Form ref="editPasswordForm" :model="editPasswordForm" :label-width="100" label-position="right" :rules="passwordValidate" style="width:450px">
-          <FormItem label="原密码" prop="oldPass">
-            <Input type="password" v-model="editPasswordForm.oldPassword" placeholder="Please enter 现在使用的密码"></Input>
+          <FormItem label="Old password" prop="oldPass">
+            <Input type="password" v-model="editPasswordForm.oldPassword" placeholder="Please enter old password"></Input>
           </FormItem>
-          <FormItem label="新密码" prop="newPass">
+          <FormItem label="New password" prop="newPass">
             <SetPassword  v-model="editPasswordForm.newPassword" @on-change="changeInputPass" />
           </FormItem>
-          <FormItem label="确认新密码" prop="rePass">
-            <Input type="password" v-model="editPasswordForm.rePassword" placeholder="Please 再次输入新密码"></Input>
+          <FormItem label="Confirm password" prop="rePass">
+            <Input type="password" v-model="editPasswordForm.rePassword" placeholder="Please reenter password"></Input>
           </FormItem>
           <FormItem>
             <Button type="primary" class="mr_10" :loading="savePassLoading" @click="saveEditPass">Save
@@ -36,7 +36,7 @@ export default {
   data() {
     const valideRePassword = (rule, value, callback) => {
       if (value !== this.editPasswordForm.newPassword) {
-        callback(new Error("两次输入密码不一致"));
+        callback(new Error("password different"));
       } else {
         callback();
       }
@@ -53,31 +53,31 @@ export default {
         oldPassword: [
           {
             required: true,
-            message: "Please enter 原密码",
+            message: "Please enter old password",
             trigger: "blur",
           },
         ],
         newPassword: [
           {
             required: true,
-            message: "Please enter 新密码",
+            message: "Please enter new password",
             trigger: "blur",
           },
           {
             min: 6,
-            message: "Please 至少输入6个字符",
+            message: "Please enter at least 6 character",
             trigger: "blur",
           },
           {
             max: 32,
-            message: "最多输入32个字符",
+            message: "Max 32 character",
             trigger: "blur",
           },
         ],
         rePassword: [
           {
             required: true,
-            message: "Please 再次输入新密码",
+            message: "Please reenter password",
             trigger: "blur",
           },
           {
@@ -107,8 +107,8 @@ export default {
             this.savePassLoading = false;
             if (res.success) {
               this.$Modal.success({
-                title: "modify密码success",
-                content: "modify密码success，需重新Login",
+                title: "modify password success",
+                content: "modify password success，need Login again",
                 onOk: () => {
                   this.$store.commit("logout", this);
                   this.$router.push({

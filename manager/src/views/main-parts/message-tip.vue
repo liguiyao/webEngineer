@@ -8,25 +8,25 @@
       </a>
       <DropdownMenu v-if="value!=0" slot="list">
         <DropdownItem v-if="res.balanceCash" @click.native="navigateTo('deposit')">
-          <Badge :count="res.balanceCash">待处理预存款提现Apply   </Badge>
+          <Badge :count="res.balanceCash"> Pending deposit withdrawal application  </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.complain" @click.native="navigateTo('orderComplaint')">
-          <Badge :count="res.complain">待处理Complaint审核 </Badge>
+          <Badge :count="res.complain">waiting Complaint audit </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.distributionCash" @click.native="navigateTo('distributionCash')">
-          <Badge :count="res.distributionCash">待处理分销商提现Apply   </Badge>
+          <Badge :count="res.distributionCash">Pending deposit withdrawal application   </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.goods" @click.native="navigateTo('applyGoods')">
-          <Badge :count="res.goods">待处理Goods审核 </Badge>
+          <Badge :count="res.goods">Pending Goods audti </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.refund" @click.native="navigateTo('afterSaleOrder')">
-          <Badge :count="res.refund">待处理after saleApply   </Badge>
+          <Badge :count="res.refund">Pending after sale Apply   </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.store" @click.native="navigateTo('shopAuth')">
-          <Badge :count="res.store">待处理店铺入驻审核 </Badge>
+          <Badge :count="res.store">Pending store entry </Badge>
         </DropdownItem>
         <DropdownItem v-if="res.waitPayBill" @click.native="navigateTo('accountStatementBill')">
-          <Badge :count="res.waitPayBill">待与商家对账</Badge>
+          <Badge :count="res.waitPayBill">Pending talk to store</Badge>
         </DropdownItem>
         <div></div>
       </DropdownMenu>

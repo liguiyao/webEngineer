@@ -1,4 +1,4 @@
-<template>
+2<template>
   <div class="verify-content" v-if="show" @mousemove="mouseMove" @mouseup="mouseUp" @click.stop>
     <div class="imgBox" :style="{width:data.originalWidth+'px',height:data.originalHeight + 'px'}">
       <img :src="data.backImage" style="width:100%;height:100%" alt="">
@@ -40,7 +40,7 @@ export default {
       flag: false, // 判断滑块是否按下
       downX: 0, // 鼠标按下位置
       bgColor: '#04ad11', // 滑动背景颜色
-      verifyText: '拖动滑块解锁' // 文字Tips
+      verifyText: 'Drag to unlock' // 文字Tips
     };
   },
   methods: {
@@ -75,11 +75,11 @@ export default {
         if (res.success) {
           if (res.result) {
             this.bgColor = 'green';
-            this.verifyText = '解锁success';
+            this.verifyText = 'unlock success';
             this.$emit('change', { status: true, distance: this.distance });
           } else {
             this.bgColor = 'red';
-            this.verifyText = '解锁失败';
+            this.verifyText = 'unlock failed';
             let that = this;
             setTimeout(() => {
               that.init();
@@ -99,13 +99,13 @@ export default {
       this.downX = 0;
       this.distance = 0;
       this.bgColor = '#04ad11';
-      this.verifyText = '拖动滑块解锁';
+      this.verifyText = 'Drag to unlock';
       getVerifyImg(this.type).then(res => {
         if (res.result) {
           this.data = res.result;
           this.show = true;
         } else {
-          this.$Message.warning('Please 求失败Please 重试！')
+          this.$Message.warning('request failed Please try again ！')
         }
       });
     }

@@ -9,7 +9,7 @@
         <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Row class="operation" style="margin:10px 0;">
-        <Button @click="delAll" type="primary">批量下架</Button>
+        <Button @click="delAll" type="primary">Bulk removal</Button>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" sortable="custom"
         @on-selection-change="changeSelect">
@@ -18,7 +18,7 @@
             <div class="div-zoom">
               <a @click="linkTo(row.goodsId,row.skuId)">{{row.goodsName}}</a>
             </div>
-            <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+            <Poptip trigger="hover" title="Scan code to view" transfer>
               <div slot="content">
                 <vue-qr :text="wapLinkTo(row.goodsId,row.skuId)" :margin="0" colorDark="#000" colorLight="#fff"
                   :size="150"></vue-qr>
@@ -66,7 +66,7 @@ export default {
           fixed: "left",
         },
         {
-          title: "Goods图片",
+          title: "Goods image",
           fixed: "left",
           key: "thumbnail",
           width: 120,
@@ -75,7 +75,7 @@ export default {
             return h("img", {
               attrs: {
                 src: params.row.thumbnail || '',
-                alt: "加载图片失败",
+                alt: "load failed",
               },
               style: {
                 cursor: "pointer",
@@ -105,12 +105,12 @@ export default {
           },
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           minWidth: 80,
         },
         {
-          title: "添加时间",
+          title: "add time",
           key: "createTime",
           minWidth: 100,
         },
@@ -121,7 +121,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "佣金金额",
+          title: "amount",
           key: "commission",
           minWidth: 100,
           sortable: false,
@@ -153,7 +153,7 @@ export default {
                     },
                   },
                 },
-                "下架"
+                "Take off"
               ),
             ]);
           },
@@ -210,15 +210,15 @@ export default {
     // 下架Goods
     remove(v) {
       this.$Modal.confirm({
-        title: "确认下架",
-        content: "您确认要下架么?",
+        title: "confirm take off",
+        content: "confirm to Take off ?",
         loading: true,
         onOk: () => {
           // 下架
           delDistributionGoods(v.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架success");
+              this.$Message.success("Take off success");
               this.getDataList();
             }
           });
@@ -228,12 +228,12 @@ export default {
     // 批量下架
     delAll() {
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未select要下架的数据");
+        this.$Message.warning("not select Take off data");
         return;
       }
       this.$Modal.confirm({
-        title: "确认下架",
-        content: "您确认要下架所选的 " + this.selectCount + " 条数据?",
+        title: "confirm Take off",
+        content: "confirm Take off " + this.selectCount + " data ?",
         loading: true,
         onOk: () => {
           let ids = [];
@@ -244,7 +244,7 @@ export default {
           delDistributionGoods(ids.toString()).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架success");
+              this.$Message.success("Take off success");
               this.clearSelectAll();
               this.getDataList();
             }

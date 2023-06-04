@@ -53,7 +53,7 @@ export default {
       total: 0, // 表单数据总数
       columns: [
         {
-          title: "专题名称",
+          title: "name",
           key: "name",
           tooltip: true,
           // slot: 'name'
@@ -81,7 +81,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "select"
+                this.index == params.index ? "selected" : "select"
               ),
             ]);
           },

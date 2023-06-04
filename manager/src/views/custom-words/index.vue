@@ -2,7 +2,7 @@
   <div class="search">
     <Card>
       <Row class="operation">
-        <Button @click="add" type="primary">添加</Button>
+        <Button @click="add" type="primary">Add</Button>
       </Row>
         <Table
           :loading="loading"
@@ -35,7 +35,7 @@
       :width="500"
     >
       <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
-        <FormItem label="自定义分词" prop="name">
+        <FormItem label="custom" prop="name">
           <Input v-model="form.name" clearable style="width: 100%" />
         </FormItem>
       </Form>
@@ -96,7 +96,7 @@ export default {
           align: "center",
         },
         {
-          title: "自定义分词",
+          title: "custom",
           key: "name",
           minWidth: 120
         },
@@ -106,12 +106,12 @@ export default {
           width: 200
         },
         {
-          title: "更新时间",
+          title: "update time",
           key: "updateTime",
           width: 200
         },
         {
-          title: "operation人",
+          title: "operator",
           key: "createBy",
           minWidth: 150
         },

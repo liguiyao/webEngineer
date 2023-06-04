@@ -11,11 +11,11 @@
         :readonly="readonly"
         :maxlength="maxlength"
       >
-          <Poptip slot="append" transfer trigger="hover" title="图片预览" placement="right">
+          <Poptip slot="append" transfer trigger="hover" title="picture view" placement="right">
             <Icon type="md-eye" class="see-icon" />
             <div slot="content">
-              <img :src="currentValue" alt="该资源不存在" style="max-width: 300px;margin: 0 auto;display: block;" />
-              <a @click="viewImage=true" style="margin-top:5px;text-align:right;display:block">查看大图</a>
+              <img :src="currentValue" alt="no resource" style="max-width: 300px;margin: 0 auto;display: block;" />
+              <a @click="viewImage=true" style="margin-top:5px;text-align:right;display:block">check photo</a>
             </div>
           </Poptip>
       </Input>
@@ -35,12 +35,12 @@
         ref="up"
         class="upload"
       >
-        <Button :loading="loading" :size="size" :disabled="disabled">上传图片</Button>
+        <Button :loading="loading" :size="size" :disabled="disabled">Photo upload</Button>
       </Upload>
     </div>
 
-    <Modal title="图片预览" v-model="viewImage" :styles="{top: '30px'}" draggable>
-      <img :src="currentValue" alt="该资源不存在" style="max-width: 300px;margin: 0 auto;display: block;" />
+    <Modal title="photo view" v-model="viewImage" :styles="{top: '30px'}" draggable>
+      <img :src="currentValue" alt="no resource" style="max-width: 300px;margin: 0 auto;display: block;" />
       <div slot="footer">
         <Button @click="viewImage=false">Close</Button>
       </div>
@@ -60,7 +60,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "图片链接"
+      default: "photo link"
     },
     showInput: {
       type: Boolean,
@@ -100,19 +100,19 @@ export default {
     handleFormatError(file) {
       this.loading = false;
       this.$Notice.warning({
-        title: "不支持的文件格式",
+        title: "not support photo",
         desc:
-          "所选文件‘ " +
+          "file‘ " +
           file.name +
-          " ’格式不正确, Please select .jpg .jpeg .png .gif .bmp格式文件"
+          " ’incorrect , Please select .jpg .jpeg .png .gif .bmp file"
       });
     },
     // 大小校验
     handleMaxSize(file) {
       this.loading = false;
       this.$Notice.warning({
-        title: "文件大小过大",
-        desc: "所选文件大小过大, 不得超过1M."
+        title: "too big",
+        desc: "too big "
       });
     },
     // 上传前

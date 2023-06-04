@@ -9,16 +9,16 @@
           :label-width="70"
           class="search-form"
         >
-          <Form-item label="会员名称" prop="memberName">
+          <Form-item label="Member name" prop="memberName">
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="Please enter 会员名称"
+              placeholder="Please enter member name"
               clearable
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="状态">
+          <Form-item label="status">
             <Select
               v-model="searchForm.distributionStatus"
               style="width: 200px"
@@ -88,19 +88,19 @@ export default {
       },
       columns: [
         {
-          title: "会员名称",
+          title: "member name",
           key: "memberName",
           minWidth: 120,
           tooltip: true,
         },
         {
-          title: "推广单数",
+          title: "promotions number",
           key: "distributionOrderCount",
           minWidth: 120,
           width: 150,
         },
         {
-          title: "分销金额",
+          title: "Distribution amount",
           key: "rebateTotal",
           width: 150,
           sortable: false,
@@ -112,7 +112,7 @@ export default {
           },
         },
         {
-          title: "available金额",
+          title: "available amount",
           key: "canRebate",
           width: 150,
           sortable: false,
@@ -124,7 +124,7 @@ export default {
           },
         },
         {
-          title: "冻结金额",
+          title: "frozen amount",
           key: "commissionFrozen",
           width: 150,
           sortable: false,
@@ -136,19 +136,19 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "status",
           key: "distributionStatus",
           width: 150,
           sortable: false,
           render: (h, params) => {
             if (params.row.distributionStatus == "PASS") {
-              return h("Tag", {props: {color: "green",},},"通过");
+              return h("Tag", {props: {color: "green",},},"pass");
             } else if (params.row.distributionStatus == "APPLY") {
-              return h("Tag", {props: {color: "geekblue",},},"待审核");
+              return h("Tag", {props: {color: "geekblue",},},"wait audit");
             } else if (params.row.distributionStatus == "RETREAT") {
-              return h("Tag", {props: {color: "volcano",},},"清退");
+              return h("Tag", {props: {color: "volcano",},},"clear out");
             } else if (params.row.distributionStatus == "REFUSE") {
-              return h("Tag", {props: {color: "red",},},"拒绝");
+              return h("Tag", {props: {color: "red",},},"reject");
             }
           },
         },
@@ -210,7 +210,7 @@ export default {
                       },
                     },
                   },
-                  "恢复"
+                  "recover"
                 ),
               ]
             );
@@ -259,7 +259,7 @@ export default {
       this.$Modal.confirm({
         title: "Tips",
         // 记得确认modify此处
-        content: "您确认要清退 " + v.memberName + " ?",
+        content: "confirm to clear out " + v.memberName + " ?",
         loading: true,
         onOk: () => {
           // delete
@@ -278,7 +278,7 @@ export default {
       this.$Modal.confirm({
         title: "Tips",
         // 记得确认modify此处
-        content: "您确认要恢复 " + v.memberName + " ?",
+        content: "confirm to recover " + v.memberName + " ?",
         loading: true,
         onOk: () => {
           // delete

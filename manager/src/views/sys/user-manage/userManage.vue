@@ -11,11 +11,11 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="联系方式">
+        <Form-item label="contact">
           <Input
             type="text"
             v-model="searchForm.mobile"
-            placeholder="Please enter 联系方式"
+            placeholder="Please enter contact"
             clearable
             style="width: 200px"
           />

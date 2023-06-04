@@ -3,22 +3,22 @@
     <Card>
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-          <Form-item label="会员名称" prop="username">
-            <Input type="text" v-model="searchForm.username" placeholder="Please enter 会员名称" clearable style="width: 200px" />
+          <Form-item label="Member name" prop="username">
+            <Input type="text" v-model="searchForm.username" placeholder="Please enter Member name" clearable style="width: 200px" />
           </Form-item>
 
-          <Form-item label="会员昵称" prop="nickName">
-            <Input type="text" v-model="searchForm.nickName" placeholder="Please enter 会员昵称" clearable style="width: 200px" />
+          <Form-item label="nick name" prop="nickName">
+            <Input type="text" v-model="searchForm.nickName" placeholder="Please enter nick name" clearable style="width: 200px" />
           </Form-item>
 
-          <Form-item label="联系方式" prop="mobile">
-            <Input type="text" v-model="searchForm.mobile" placeholder="Please enter 会员联系方式" clearable style="width: 200px" />
+          <Form-item label="contact" prop="mobile">
+            <Input type="text" v-model="searchForm.mobile" placeholder="Please enter member contact" clearable style="width: 200px" />
           </Form-item>
           <Button @click="handleSearch" class="search-btn" type="primary" icon="ios-search">search</Button>
         </Form>
       </Row>
       <Row class="operation padding-row" v-if="!selectedMember">
-        <Button @click="addMember" type="primary">添加会员</Button>
+        <Button @click="addMember" type="primary">add member</Button>
       </Row>
 
       <Table :loading="loading" border :columns="columns" class="mt_10" :data="data" ref="table"></Table>
@@ -30,17 +30,17 @@
     </Card>
 
     <!-- 添加用户模态框 -->
-    <Modal v-model="addFlag" title="添加会员">
+    <Modal v-model="addFlag" title="add member">
       <Form ref="addMemberForm" :model="addMemberForm" :rules="addRule" :label-width="100">
         <FormItem label="Phone number" prop="mobile" style="width: 90%;">
           <Input v-model="addMemberForm.mobile" maxlength="11" placeholder="Please enter Phone number" />
         </FormItem>
-        <FormItem label="会员名称" prop="username" style="width: 90%">
-          <Input v-model="addMemberForm.username" maxlength="15" placeholder="Please enter 会员名称" />
+        <FormItem label="Member name" prop="username" style="width: 90%">
+          <Input v-model="addMemberForm.username" maxlength="15" placeholder="Please enter Member name" />
         </FormItem>
 
-        <FormItem label="会员密码" prop="password" style="width: 90%">
-          <Input type="password" password v-model="addMemberForm.password" maxlength="20" placeholder="Please enter 会员密码" />
+        <FormItem label="member password" prop="password" style="width: 90%">
+          <Input type="password" password v-model="addMemberForm.password" maxlength="20" placeholder="Please enter member password" />
         </FormItem>
       </Form>
       <div slot="footer">
@@ -54,7 +54,7 @@
 
         <Input v-model="form.id" v-show="false"/>
 
-        <FormItem label="头像">
+        <FormItem label="avatar">
           <img :src="form.face" class="face" />
           <Button type="text" class="upload" @click="() => {
                 this.picModelFlag = true;
@@ -62,29 +62,29 @@
               }">modify</Button>
           <input type="file" style="display: none" id="file" />
         </FormItem>
-        <FormItem label="用户名" prop="name">
+        <FormItem label="username" prop="name">
           <Input v-model="form.username" style="width: 200px" disabled />
         </FormItem>
-        <FormItem label="用户昵称" prop="name">
+        <FormItem label="nickname" prop="name">
           <Input v-model="form.nickName" style="width: 200px" />
         </FormItem>
-        <FormItem label="性别" prop="sex">
+        <FormItem label="gender" prop="sex">
           <RadioGroup type="button" button-style="solid" v-model="form.sex">
             <Radio :label="1">
-              <span>男</span>
+              <span>male</span>
             </Radio>
             <Radio :label="0">
-              <span>女</span>
+              <span>female</span>
             </Radio>
           </RadioGroup>
         </FormItem>
-        <FormItem label="modify密码" prop="password">
+        <FormItem label="modify password" prop="password">
           <Input type="password" style="width: 220px" password v-model="form.newPassword" />
         </FormItem>
-        <FormItem label="生日" prop="birthday">
+        <FormItem label="birthday" prop="birthday">
           <DatePicker type="date" format="yyyy-MM-dd" v-model="form.birthday" style="width: 220px"></DatePicker>
         </FormItem>
-        <FormItem label="所在地" prop="mail">
+        <FormItem label="location" prop="mail">
           <div class="form-item" v-if="!updateRegion">
             <Input disabled style="width: 250px" :value="form.region" />
             <Button type="text" @click="() => {
@@ -148,23 +148,23 @@ export default {
             message: "Please enter correctly phone number",
           },
         ],
-        username: [{ required: true, message: "Please enter 会员名称" }],
+        username: [{ required: true, message: "Please enter Member name" }],
         password: [{ required: true, message: "Please enter 密码" }],
       },
       ruleValidate: {}, //modify验证
       columns: [
         {
-          title: "会员名称",
+          title: "Member name",
           key: "username",
           tooltip: true,
         },
         {
-          title: "会员昵称",
+          title: "nick name",
           key: "nickName",
           tooltip: true,
         },
         {
-          title: "联系方式",
+          title: "contact",
           width: 130,
           key: "mobile",
           render: (h, params) => {

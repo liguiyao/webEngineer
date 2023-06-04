@@ -2,8 +2,8 @@
   <div class="search">
     <Card>
       <Form ref="searchForm" :model="searchForm" @keydown.enter.native="handleSearch" inline :label-width="70" class="search-form">
-        <Form-item label="会员名称" prop="memberName">
-          <Input type="text" v-model="searchForm.memberName" clearable placeholder="Please enter 会员名称" style="width: 200px" />
+        <Form-item label="Member name" prop="memberName">
+          <Input type="text" v-model="searchForm.memberName" clearable placeholder="Please enter Member name" style="width: 200px" />
         </Form-item>
         <Form-item label="goods name" prop="goodsName">
           <Input type="text" v-model="searchForm.goodsName" clearable placeholder="Please enter Goods名" style="width: 200px" />
@@ -16,7 +16,7 @@
           </Select>
         </Form-item>
         <Form-item label="评论日期">
-          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
+          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px"></DatePicker>
         </Form-item>
         <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
         <Button @click="handleReset" class="search-btn">重置</Button>
@@ -100,7 +100,7 @@ export default {
       columns: [
         // 表头
         {
-          title: "会员名称",
+          title: "Member name",
           key: "memberName",
           minWidth: 150,
           tooltip: true,

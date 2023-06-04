@@ -10,21 +10,21 @@
             :label-width="70"
             class="search-form"
           >
-            <Form-item label="会员名称" prop="username">
+            <Form-item label="Member name" prop="username">
               <Input
                 type="text"
                 v-model="searchForm.username"
-                placeholder="Please enter 会员名称"
+                placeholder="Please enter Member name"
                 clearable
                 style="width: 200px"
               />
             </Form-item>
 
-            <Form-item label="联系方式" prop="mobile">
+            <Form-item label="contact" prop="mobile">
               <Input
                 type="text"
                 v-model="searchForm.mobile"
-                placeholder="Please enter 会员联系方式"
+                placeholder="Please enter member contact"
                 clearable
                 style="width: 200px"
               />
@@ -93,31 +93,31 @@
           </Button>
           <input type="file" style="display: none" id="file" />
         </FormItem>
-        <FormItem label="会员名称" prop="name">
+        <FormItem label="Member name" prop="name">
           <Input
             v-model="formValidate.username"
             style="width: 200px"
             disabled
           />
         </FormItem>
-        <FormItem label="用户昵称" prop="name">
+        <FormItem label="Nickname" prop="name">
           <Input v-model="formValidate.nickName" style="width: 200px" />
         </FormItem>
-        <FormItem label="性别" prop="sex">
+        <FormItem label="sex" prop="sex">
           <RadioGroup
             type="button"
             button-style="solid"
             v-model="formValidate.sex"
           >
             <Radio :label="1">
-              <span>男</span>
+              <span>male</span>
             </Radio>
             <Radio :label="0">
-              <span>女</span>
+              <span>female</span>
             </Radio>
           </RadioGroup>
         </FormItem>
-        <FormItem label="modify密码" prop="password">
+        <FormItem label="modify password" prop="password">
           <Input
             type="password"
             style="width: 220px"
@@ -125,7 +125,7 @@
             v-model="formValidate.newPassword"
           />
         </FormItem>
-        <FormItem label="生日" prop="birthday">
+        <FormItem label="birthday" prop="birthday">
           <DatePicker
             type="date"
             format="yyyy-MM-dd"
@@ -133,7 +133,7 @@
             style="width: 220px"
           ></DatePicker>
         </FormItem>
-        <FormItem label="所在地" prop="mail">
+        <FormItem label="location" prop="mail">
           <div class="form-item" v-if="!updateRegion">
             <Input disabled style="width: 250px" :value="formValidate.region" />
             <Button
@@ -191,7 +191,7 @@ export default {
       ruleValidate: {}, //modify验证
       columns: [
         {
-          title: "会员名称",
+          title: "Member name",
           align: "left",
           key: "username",
           tooltip: true,
@@ -203,7 +203,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "联系方式",
+          title: "contact",
           width: 130,
           key: "mobile",
           render: (h, params) => {

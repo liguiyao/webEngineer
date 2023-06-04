@@ -3,7 +3,7 @@
     <div class="wap-content">
       <div class="query-wrapper">
         <div class="query-item">
-          <div>search范围</div>
+          <div>search range</div>
           <Input
             placeholder="goods name"
             @on-clear="
@@ -64,7 +64,7 @@
             <div class="wap-content-desc">
               <div class="wap-content-desc-title">{{ item.goodsName }}</div>
               <div class="wap-sku">{{ item.goodsUnit }}</div>
-              <div class="wap-sku"><Tag :color="item.salesModel === 'RETAIL' ? 'default' : 'geekblue'">{{item.salesModel === "RETAIL" ? "零售型" : "批发型"}}</Tag></div>
+              <div class="wap-sku"><Tag :color="item.salesModel === 'RETAIL' ? 'default' : 'geekblue'">{{item.salesModel === "RETAIL" ? "retail" : "Wholesale"}}</Tag></div>
               <div class="wap-content-desc-bottom">
                 <div>RM{{ item.price | unitPrice }}</div>
               </div>

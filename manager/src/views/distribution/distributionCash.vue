@@ -2,17 +2,17 @@
   <div>
     <Card>
         <Form ref="searchForm" :model="searchForm"  class="search-form">
-          <Form-item label="会员名称"  class="flex" prop="memberName">
+          <Form-item label="member name"  class="flex" prop="memberName">
             <Input
               type="text" v-model="searchForm.memberName" clearable
               style="width: 200px"></Input>
           </Form-item>
-          <Form-item label="编号" class="flex">
+          <Form-item label="code" class="flex">
             <Input
               type="text" v-model="searchForm.sn" clearable
               style="width: 200px"></Input>
           </Form-item>
-          <Form-item label="状态"
+          <Form-item label="status"
                      style="width: 200px">
             <Select v-model="searchForm.distributionCashStatus" clearable style="width: 150px">
                 <Option v-for="item in cashStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
@@ -29,19 +29,19 @@
     </Card>
     <Modal :title="modalTitle" v-model="modalVisible" :mask-closable='false' :width="500">
       <Form ref="form" :model="form" :label-width="100"  >
-      <FormItem label="编号">
+      <FormItem label="code">
           <Input disabled v-model="form.sn" clearable style="width:100%"/>
         </FormItem>
-        <FormItem label="会员名称">
+        <FormItem label="member name">
           <Input disabled v-model="form.distributionName" clearable style="width:100%"/>
         </FormItem>
-        <FormItem label="金额">
+        <FormItem label="amount">
           <Input disabled v-model="form.price" clearable style="width:100%"/>
         </FormItem>
-        <FormItem label="是否通过" prop="result" v-if="handleStatus =='edit'">
+        <FormItem label="pass or not" prop="result" v-if="handleStatus =='edit'">
              <RadioGroup v-model="result" type="button" button-style="solid">
-                 <Radio label="VIA_AUDITING">通过</Radio>
-                 <Radio label="FAIL_AUDITING">拒绝</Radio>
+                 <Radio label="VIA_AUDITING">pass</Radio>
+                 <Radio label="FAIL_AUDITING">reject</Radio>
              </RadioGroup>
         </FormItem>
       </Form>
@@ -83,17 +83,17 @@ export default {
       submitLoading: false, // 添加或编辑Submit状态
       columns: [
         {
-          title: "编号",
+          title: "code",
           key: "sn",
           minWidth: 200
         },
         {
-          title: "会员名称",
+          title: "member name",
           key: "distributionName",
           minWidth: 120
         },
         {
-          title: "Apply  金额",
+          title: "Apply  amount",
           key: "price",
           minWidth: 90,
           render: (h, params) => {
@@ -101,28 +101,28 @@ export default {
           }
         },
         {
-          title: "Apply  时间",
+          title: "Apply time",
           key: "createTime",
           minWidth: 130
         },
         {
-          title: "处理时间",
+          title: "during time",
           key: "updateTime",
           minWidth: 130
         },
         {
-          title: "状态",
+          title: "status",
           key: "distributionCashStatus",
           minWidth: 100,
           render: (h, params) => {
               if (params.row.distributionCashStatus == 'APPLY') {
-                   return h("div", "待处理");
+                   return h("div", "waiting");
               }
               if (params.row.distributionCashStatus == 'VIA_AUDITING') {
-                   return h("div", "通过");
+                   return h("div", "pass");
               }
               if (params.row.distributionCashStatus == 'FAIL_AUDITING') {
-                   return h("div", "审核拒绝");
+                   return h("div", "reject");
               }
             },
          },
@@ -151,7 +151,7 @@ export default {
                         }
                       }
                     },
-                    "查看"
+                    "check"
                   ),
 
                 ]);
@@ -173,7 +173,7 @@ export default {
                         }
                       }
                     },
-                    "审核"
+                    "audit"
                   ),
 
                 ]);
@@ -222,21 +222,21 @@ export default {
     },
     // 通过还是拒绝Apply
     handleSubmit() {
-      let result = "拒绝"
+      let result = "reject"
       if(this.result == 'VIA_AUDITING'){
-        result = "通过"
+        result = "pass"
       }
       this.$refs.form.validate(valid => {
         if (valid) {
           this.$Modal.confirm({
-            title: "确认审核",
-            content: "您确认要审核"+result+"么?",
+            title: "confirm",
+            content: "sure to "+result+"?",
             loading: true,
             onOk: () => {
                 auditDistributionCash(this.form.id,{result:this.result}).then(res => {
                     if (res.success) {
                       this.$Modal.remove();
-                      this.$Message.success("审核success");
+                      this.$Message.success("audit success");
                       this.getDataList();
                       this.modalVisible = false;
                     } else {
@@ -250,7 +250,7 @@ export default {
     },
     // 弹出modal 审核
     edit(v) {
-      this.modalTitle = "审核";
+      this.modalTitle = "audit";
       this.handleStatus = 'edit';
       this.$refs.form.resetFields();
       // 转换null为""
@@ -264,7 +264,7 @@ export default {
     },
     // 弹出modal 查看
     view(v){
-      this.modalTitle = "查看";
+      this.modalTitle = "check";
       this.handleStatus = 'view';
       this.$refs.form.resetFields();
       // 转换null为""

@@ -14,7 +14,7 @@
           </Select>
         </Form-item>
         <Form-item label="活动时间">
-          <DatePicker v-model="selectDate" type="daterange" clearable placeholder="select起始时间" style="width: 200px">
+          <DatePicker v-model="selectDate" type="daterange" clearable placeholder="select start time" style="width: 200px">
           </DatePicker>
         </Form-item>
         <Form-item>

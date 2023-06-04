@@ -5,8 +5,8 @@
         <Form-item label="订单编号" prop="orderSn">
           <Input type="text" v-model="searchForm.orderSn" clearable placeholder="Please enter 订单编号" style="width: 200px" />
         </Form-item>
-        <Form-item label="会员名称" prop="memberName">
-          <Input type="text" v-model="searchForm.memberName" clearable placeholder="Please enter 会员名称" style="width: 200px" />
+        <Form-item label="Member name" prop="memberName">
+          <Input type="text" v-model="searchForm.memberName" clearable placeholder="Please enter Member name" style="width: 200px" />
         </Form-item>
         <Form-item label="发票抬头" prop="receiptTitle">
           <Input type="text" v-model="searchForm.receiptTitle" clearable placeholder="Please enter 发票抬头" style="width: 200px" />
@@ -58,7 +58,7 @@ export default {
           slot: "orderSlot",
         },
         {
-          title: "会员名称",
+          title: "Member name",
           key: "memberName",
           minWidth: 90,
           tooltip: true,

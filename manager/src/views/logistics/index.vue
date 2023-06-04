@@ -2,7 +2,7 @@
   <div class="search">
     <Card>
       <Row class="operation padding-row">
-        <Button @click="add" type="primary">添加</Button>
+        <Button @click="add" type="primary">Add</Button>
       </Row>
       <Table
         :loading="loading"
@@ -15,7 +15,7 @@
         <template slot="disableSlot" slot-scope="{row}">
           <i-switch size="large"  :true-value="true" :false-value="false"  :value="row.switch" @on-change="changeSwitch(row)">
             <span slot="open">Opening</span>
-            <span slot="close">禁用</span>
+            <span slot="close">disable</span>
           </i-switch>
         </template>
       </Table>
@@ -41,26 +41,26 @@
       :width="500"
     >
       <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
-        <FormItem label="Logistics company 名称" prop="name">
+        <FormItem label="Logistics company name" prop="name">
           <Input v-model="form.name" clearable style="width: 100%"/>
         </FormItem>
-        <FormItem label="Logistics company 代码" prop="code">
+        <FormItem label="Logistics company code" prop="code">
           <Input v-model="form.code" clearable style="width: 100%"/>
         </FormItem>
         <FormItem label="支持电子面单">
           <i-switch   v-model="form.standBy" size="large">
-            <span slot="open">开</span>
-            <span slot="close">关</span>
+            <span slot="open">ON</span>
+            <span slot="close">OFF</span>
           </i-switch>
         </FormItem>
         <FormItem label="电子面单表单">
           <Input v-model="form.formItems" clearable style="width: 100%"/>
         </FormItem>
-        <FormItem label="禁用状态" prop="disabled">
+        <FormItem label="status" prop="disabled">
 
           <i-switch true-value="OPEN" false-value="CLOSE" v-model="form.disabled" size="large">
-            <span slot="open">Opening</span>
-            <span slot="close">禁用</span>
+            <span slot="open">Enable</span>
+            <span slot="close">Disable</span>
           </i-switch>
         </FormItem>
       </Form>
@@ -116,19 +116,19 @@
         submitLoading: false, // 添加或编辑Submit状态
         columns: [
           {
-            title: "Logistics company 名称",
+            title: "Logistics company name",
             key: "name",
             minWidth: 120,
             sortable: false,
           },
           {
-            title: "Logistics company 编码",
+            title: "Logistics company code",
             key: "code",
             minWidth: 120,
             sortable: false,
           },
           {
-            title: "状态",
+            title: "status",
             key: "disabled",
             width: 150,
             slot: "disableSlot",
@@ -274,7 +274,7 @@
       },
       // 添加信息
       add() {
-        this.modalTitle = "添加";
+        this.modalTitle = "add";
         this.form = {};
         this.$refs.form.resetFields();
 
@@ -299,9 +299,9 @@
       // deleteLogistics company
       remove(v) {
         this.$Modal.confirm({
-          title: "确认delete",
+          title: "confirm delete",
           // 记得确认modify此处
-          content: "您确认要delete " + v.name + " ?",
+          content: "confirm to delete " + v.name + " ?",
           loading: true,
           onOk: () => {
             // delete

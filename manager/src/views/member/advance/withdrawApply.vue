@@ -3,18 +3,18 @@
     <Card>
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-          <Form-item label="会员名称" prop="memberName">
-            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter 会员名称" clearable style="width: 200px" />
+          <Form-item label="Member name" prop="memberName">
+            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter member name" clearable style="width: 200px" />
           </Form-item>
-          <Form-item label="审核状态" prop="applyStatus">
+          <Form-item label="audit status" prop="applyStatus">
             <Select v-model="searchForm.applyStatus" clearable style="width: 200px">
-              <Option value="APPLY">Apply  中</Option>
-              <Option value="VIA_AUDITING">审核通过(提现success)</Option>
-              <Option value="FAIL_AUDITING">审核拒绝</Option>
+              <Option value="APPLY">Applying</Option>
+              <Option value="VIA_AUDITING">pass(success)</Option>
+              <Option value="FAIL_AUDITING">reject</Option>
             </Select>
           </Form-item>
-          <Form-item label="Apply  时间">
-            <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
+          <Form-item label="Apply time">
+            <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px"></DatePicker>
           </Form-item>
           <Form-item style="margin-left: -35px" class="br">
             <Button @click="handleSearch" type="primary" icon="ios-search">search
@@ -30,61 +30,61 @@
     </Card>
     <Modal :title="modalTitle" v-model="roleModalVisible" :mask-closable="false" :width="500">
       <Form :label-width="80">
-        <FormItem label="Apply  编号">
+        <FormItem label="Apply code">
           <span>{{showList.sn}}</span>
         </FormItem>
-        <FormItem label="用户名称">
+        <FormItem label="user name">
           <span>{{showList.memberName}}</span>
         </FormItem>
-        <FormItem label="Apply  金额">
+        <FormItem label="Apply amount">
           <span>{{showList.applyMoney | unitPrice}}</span>
         </FormItem>
-        <FormItem label="提现状态">
+        <FormItem label="withdraw">
           <span>{{showList.applyStatus | paramTypeFilter}}</span>
         </FormItem>
-        <FormItem label="Apply  时间">
+        <FormItem label="Apply time">
           <span>{{showList.createTime}}</span>
         </FormItem>
-        <FormItem label="审核备注">
+        <FormItem label="note">
           <Input v-model="audit" />
         </FormItem>
 
       </Form>
       <div slot="footer" v-if="showList.applyStatus == 'APPLY'">
-        <Button type="text" @click="submitRole(false)">拒绝</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitRole(true)">通过
+        <Button type="text" @click="submitRole(false)">reject</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitRole(true)">pass
         </Button>
       </div>
     </Modal>
 
     <Modal :title="modalTitle" v-model="queryModalVisible" :mask-closable="false" :width="500">
       <Form :label-width="80">
-        <FormItem label="Apply  编号：">
+        <FormItem label="Apply  code：">
           <span>{{showList.sn}}</span>
         </FormItem>
-        <FormItem label="用户名称：">
+        <FormItem label="user name：">
           <span>{{showList.memberName}}</span>
         </FormItem>
-        <FormItem label="Apply  金额：">
+        <FormItem label="Apply  amount：">
           <span>{{showList.applyMoney}}</span>
         </FormItem>
-        <FormItem label="提现状态：">
+        <FormItem label="withdraw status：">
           <span>{{showList.applyStatus | paramTypeFilter}}</span>
         </FormItem>
-        <FormItem label="Apply  时间：">
+        <FormItem label="Apply  time：">
           <span>{{showList.createTime}}</span>
         </FormItem>
-        <FormItem label="审核时间：">
+        <FormItem label="audit time：">
           <span>{{showList.inspectTime}}</span>
         </FormItem>
-        <FormItem label="审核备注：">
+        <FormItem label="note：">
           <span>{{showList.inspectRemark}}</span>
         </FormItem>
 
       </Form>
       <div slot="footer" v-if="showList.applyStatus == 'APPLY'">
-        <Button type="text" @click="submitRole(false)">拒绝</Button>
-        <Button type="primary" :loading="submitLoading" @click="submitRole(true)">通过
+        <Button type="text" @click="submitRole(false)">reject</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitRole(true)">pass
         </Button>
       </div>
       <div slot="footer" v-else>
@@ -154,7 +154,7 @@ export default {
           },
         },
         {
-          title: "提现状态",
+          title: "withdraw status",
           align: "left",
           key: "applyStatus",
           width: 120,
@@ -162,24 +162,24 @@ export default {
             if (params.row.applyStatus == "APPLY") {
               return h("Tag", { props: { color: "volcano" } }, "Apply  中");
             } else if (params.row.applyStatus == "VIA_AUDITING") {
-              return h("Tag", { props: { color: "green" } }, "审核通过");
+              return h("Tag", { props: { color: "green" } }, "pass");
             } else if (params.row.applyStatus == "SUCCESS") {
-              return h("Tag", { props: { color: "blue" } }, "提现success");
+              return h("Tag", { props: { color: "blue" } }, "withdraw success");
             } else if (params.row.applyStatus == "ERROR") {
-              return h("Tag", { props: { color: "blue" } }, "提现失败");
+              return h("Tag", { props: { color: "blue" } }, "withdraw fail");
             } else {
-              return h("Tag", { props: { color: "red" } }, "审核拒绝");
+              return h("Tag", { props: { color: "red" } }, "reject");
             }
           }
         },
         {
-          title: "Apply  时间",
+          title: "Apply  time",
           key: "createTime",
           align: "left",
           width: 170,
         },
         {
-          title: "审核时间",
+          title: "audit time",
           key: "inspectTime",
           align: "left",
           width: 170,
@@ -211,7 +211,7 @@ export default {
                     },
                   },
                 },
-                "审核"
+                "audit"
               );
             } else {
               return h(
@@ -229,11 +229,11 @@ export default {
                       this.showList = {};
                       this.queryModalVisible = true;
                       this.showList = params.row;
-                      this.modalTitle = "查看";
+                      this.modalTitle = "view";
                     },
                   },
                 },
-                "查看"
+                "view"
               );
             }
           },
@@ -246,15 +246,15 @@ export default {
   filters: {
     paramTypeFilter(val) {
       if (val === "APPLY") {
-        return "Apply  中";
+        return "Applying";
       } else if (val === "VIA_AUDITING") {
-        return "审核通过(提现success)";
+        return "pass(success)";
       } else if (val === "FAIL_AUDITING") {
-        return "审核拒绝";
+        return "reject";
       } else if (val === "ERROR") {
-        return "提现失败";
+        return "fail";
       } else {
-        return "未知状态";
+        return "unknown status";
       }
     },
   },
@@ -265,13 +265,13 @@ export default {
       params.result = res;
       params.remark = this.audit;
       if (res === false && params.remark === "") {
-        this.$Message.error("审核备注不能为空");
+        this.$Message.error("can not empty");
         return;
       }
       withdrawApply(params).then((res) => {
         this.loading = false;
         if (res == true) {
-          this.$Message.success("operationsuccess");
+          this.$Message.success("operation success");
           this.roleModalVisible = false;
           this.getDataList();
         }

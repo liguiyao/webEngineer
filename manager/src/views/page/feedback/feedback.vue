@@ -84,7 +84,7 @@
         formValidate: false, // modal显隐
         columns: [ // 表头
           {
-            title: "会员名称",
+            title: "Member name",
             key: "userName",
             minWidth: 120,
             tooltip: true

@@ -3,13 +3,13 @@
     <Card>
       <Form ref="searchForm" @keydown.enter.native="handleSearch" :model="searchForm" inline :label-width="70"
             class="search-form">
-        <Form-item label="品牌名称">
+        <Form-item label="Brand">
           <Input type="text" v-model="searchForm.name" placeholder="Please enter 品牌名称" clearable style="width: 200px"/>
         </Form-item>
         <Button @click="handleSearch" type="primary">search</Button>
       </Form>
       <Row class="operation padding-row">
-        <Button @click="add" type="primary">添加</Button>
+        <Button @click="add" type="primary">add</Button>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table"></Table>
       <Row type="flex" justify="end" class="mt_10">
@@ -20,10 +20,10 @@
     </Card>
     <Modal :title="modalTitle" v-model="modalVisible" :mask-closable="false" :width="500">
       <Form ref="form" :model="form" :label-width="100" :rules="formValidate">
-        <FormItem label="品牌名称" prop="name">
+        <FormItem label="Brand name" prop="name">
           <Input v-model="form.name" clearable style="width: 100%"/>
         </FormItem>
-        <FormItem label="品牌图标" prop="logo">
+        <FormItem label="Brand icon" prop="logo">
           <upload-pic-input v-model="form.logo" style="width: 100%"></upload-pic-input>
         </FormItem>
       </Form>
@@ -85,21 +85,21 @@ export default {
       submitLoading: false, // 添加或编辑Submit状态
       columns: [
         {
-          title: "品牌名称",
+          title: "Brand name",
           key: "name",
           width: 200,
           resizable: true,
           sortable: false,
         },
         {
-          title: "品牌图标",
+          title: "Brand icon",
           key: "logo",
           align: "left",
           render: (h, params) => {
             return h("img", {
               attrs: {
                 src: params.row.logo || '',
-                alt: "加载图片失败",
+                alt: "load failed",
               },
               style: {
                 cursor: "pointer",
@@ -112,23 +112,23 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "status",
           key: "deleteFlag",
           align: "left",
           render: (h, params) => {
             if (params.row.deleteFlag == 0) {
-              return h("Tag", {props: {color: "green",},}, "启用");
+              return h("Tag", {props: {color: "green",},}, "enable");
             } else if (params.row.deleteFlag == 1) {
-              return h("Tag", {props: {color: "volcano",},}, "禁用");
+              return h("Tag", {props: {color: "volcano",},}, "disable");
             }
           },
           filters: [
             {
-              label: "启用",
+              label: "enable",
               value: 0,
             },
             {
-              label: "禁用",
+              label: "disable",
               value: 1,
             },
           ],
@@ -166,7 +166,7 @@ export default {
                     },
                   },
                 },
-                "禁用"
+                "disable"
               );
             } else {
               enableOrDisable = h(
@@ -185,7 +185,7 @@ export default {
                     },
                   },
                 },
-                "启用"
+                "enable"
               );
             }
             return h("div", [
@@ -205,7 +205,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               enableOrDisable,
 
@@ -240,7 +240,7 @@ export default {
       let res = await delBrand(id);
 
       if (res.success) {
-        this.$Message.success("品牌deletesuccess!");
+        this.$Message.success("brand delete success!");
         this.getDataList();
       }
     },
@@ -286,7 +286,7 @@ export default {
             addBrand(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("operationsuccess");
+                this.$Message.success("operation success");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -296,7 +296,7 @@ export default {
             updateBrand(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("operationsuccess");
+                this.$Message.success("operation success");
                 this.getDataList();
                 this.modalVisible = false;
               }
@@ -308,7 +308,7 @@ export default {
     // 添加
     add() {
       this.modalType = 0;
-      this.modalTitle = "添加";
+      this.modalTitle = "add";
       this.$refs.form.resetFields();
       delete this.form.id;
       this.modalVisible = true;
@@ -316,7 +316,7 @@ export default {
     // 编辑
     edit(v) {
       this.modalType = 1;
-      this.modalTitle = "编辑";
+      this.modalTitle = "edit";
       this.$refs.form.resetFields();
       // 转换null为""
       for (let attr in v) {
@@ -332,14 +332,14 @@ export default {
     // 启用品牌
     enable(v) {
       this.$Modal.confirm({
-        title: "确认启用",
-        content: "您确认要启用品牌 " + v.name + " ?",
+        title: "confirm",
+        content: "confirm enable " + v.name + " ?",
         loading: true,
         onOk: () => {
           disableBrand(v.id, {disable: false}).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getDataList();
             }
           });
@@ -349,14 +349,14 @@ export default {
     // 禁用
     disable(v) {
       this.$Modal.confirm({
-        title: "确认禁用",
-        content: "您确认要禁用品牌 " + v.name + " ?",
+        title: "confirm disable",
+        content: "confirm disable " + v.name + " ?",
         loading: true,
         onOk: () => {
           disableBrand(v.id, {disable: true}).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("operationsuccess");
+              this.$Message.success("operation success");
               this.getDataList();
             }
           });

@@ -4,14 +4,14 @@
       <span @click="clickBreadcrumb(item,index)" :class="{'active':item.selected}" v-for="(item,index) in dateList"
         :key="index"> {{item.title}}</span>
       <div class="date-picker">
-        <Select @on-change="changeSelect(selectedWay)" v-model="month" placeholder="年月查询" clearable
+        <Select @on-change="changeSelect(selectedWay)" v-model="month" placeholder="year month search" clearable
           style="width:200px;margin-left:10px;">
           <Option v-for="(item,index) in dates" :value="item.year+'-'+item.month" :key="index" clearable>
-            {{ item.year+'年'+item.month+'月' }}</Option>
+            {{ item.year+'year'+item.month+'month' }}</Option>
         </Select>
       </div>
       <div class="shop-list" v-if="!closeShop">
-        <Select clearable @on-change="changeshop(selectedWay)" v-model="storeId" placeholder="店铺查询"
+        <Select clearable @on-change="changeshop(selectedWay)" v-model="storeId" placeholder="store search"
           style="width:200px;margin-left:10px;">
           <Scroll :on-reach-bottom="handleReachBottom">
             <Option v-for="(item,index) in shopsData" :value="item.id" :key="index">{{ item.storeName }}</Option>
@@ -31,7 +31,7 @@ export default {
 
       selectedWay: {
         // 可选时间项
-        title: "最近7天",
+        title: "nearly 7 days",
         selected: true,
         searchType: "LAST_SEVEN",
       },
@@ -46,22 +46,22 @@ export default {
       dateList: [
         // 筛选条件
         {
-          title: "今天",
+          title: "Today",
           selected: false,
           searchType: "TODAY",
         },
         {
-          title: "昨天",
+          title: "Yesterday",
           selected: false,
           searchType: "YESTERDAY",
         },
         {
-          title: "最近7天",
+          title: "Near 7 days",
           selected: true,
           searchType: "LAST_SEVEN",
         },
         {
-          title: "最近30天",
+          title: "Near 30 days",
           selected: false,
           searchType: "LAST_THIRTY",
         },

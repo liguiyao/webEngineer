@@ -10,11 +10,11 @@
         :label-width="70"
         class="search-form"
       >
-        <Form-item label="会员名称" prop="username">
+        <Form-item label="Member name" prop="username">
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="Please enter 会员名称"
+            placeholder="Please enter Member name"
             clearable
             style="width: 200px"
           />
@@ -69,7 +69,7 @@
         },
         columns: [
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             minWidth: 120,
             tooltip: true

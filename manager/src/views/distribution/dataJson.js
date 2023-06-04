@@ -2,48 +2,48 @@
 export const distributionStatusList= [
     {
         value:'APPLY',
-        label:'Apply  中'
+        label:'Applying'
     },
     {
         value:'RETREAT',
-        label:'已清退'
+        label:'Cleared'
     },
     {
         value:'REFUSE',
-        label:'审核拒绝'
+        label:'Reject'
     },
     {
         value:'PASS',
-        label:'审核通过'
+        label:'Pass'
     },
 ]
 // 分销佣金状态列表
 export const cashStatusList = [
     {
         value:'APPLY',
-        label:'待处理'
+        label:'Wait'
     },
     {
         value:'FAIL_AUDITING',
-        label:'拒绝'
+        label:'Reject'
     },
     {
         value:'VIA_AUDITING',
-        label:'通过'
+        label:'Pass'
     }
 ]
 // 分销订单状态列表
 export const orderStatusList = [
     {
         value:'WAIT_BILL',
-        label:'待结算'
+        label:'Wait'
     },
     {
         value:'WAIT_CASH',
-        label:'待提现'
+        label:'pending withdrawal'
     },
     {
         value:'COMPLETE_CASH',
-        label:'提现完成'
+        label:'finish'
     }
 ]

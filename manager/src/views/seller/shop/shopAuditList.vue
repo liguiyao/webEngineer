@@ -2,11 +2,11 @@
   <div class="search">
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-        <Form-item label="会员名称" prop="memberName">
+        <Form-item label="Member name" prop="memberName">
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="Please enter 会员名称"
+            placeholder="Please enter Member name"
             clearable
             style="width: 200px"
           />
@@ -21,7 +21,7 @@
           />
         </Form-item>
         <Form-item label="Create time" prop="createTime">
-          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
+          <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px"></DatePicker>
         </Form-item>
         <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
@@ -67,7 +67,7 @@
             align: "left",
           },
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             align: "left",
             minWidth: 120,

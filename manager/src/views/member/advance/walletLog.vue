@@ -4,11 +4,11 @@
     <Card>
       <Row @keydown.enter.native="handleSearch">
         <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-          <Form-item label="会员名称" prop="memberName">
-            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter 会员名称" clearable style="width: 200px" />
+          <Form-item label="Member name" prop="memberName">
+            <Input type="text" v-model="searchForm.memberName" placeholder="Please enter member name" clearable style="width: 200px" />
           </Form-item>
-          <Form-item label="支付时间">
-            <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
+          <Form-item label="payment time">
+            <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px"></DatePicker>
           </Form-item>
           <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
         </Form>
@@ -43,12 +43,12 @@ export default {
       columns: [
         // 表头
         {
-          title: "会员名称",
+          title: "member name",
           key: "memberName",
           minWidth: 100,
         },
         {
-          title: "变动金额",
+          title: "change amount",
           key: "money",
           width: 150,
           render: (h, params) => {
@@ -81,30 +81,30 @@ export default {
         },
 
         {
-          title: "变更时间",
+          title: "change time",
           key: "createTime",
           width: 200,
         },
         {
-          title: "业务类型",
+          title: "business time",
           key: "serviceType",
           width: 200,
           render: (h, params) => {
             if (params.row.serviceType == "WALLET_WITHDRAWAL") {
-              return h("div", [h("span", {}, "余额提现")]);
+              return h("div", [h("span", {}, "balance withdraw")]);
             } else if (params.row.serviceType == "WALLET_PAY") {
               return h("div", [h("span", {}, "Balance payment")]);
             } else if (params.row.serviceType == "WALLET_REFUND") {
-              return h("div", [h("span", {}, "余额refund")]);
+              return h("div", [h("span", {}, "balance refund")]);
             } else if (params.row.serviceType == "WALLET_RECHARGE") {
-              return h("div", [h("span", {}, "余额充值")]);
+              return h("div", [h("span", {}, "balance recharge")]);
             } else {
-              return h("div", [h("span", {}, "佣金提成")]);
+              return h("div", [h("span", {}, "commission")]);
             }
           },
         },
         {
-          title: "详细",
+          title: "detail",
           key: "detail",
           minWidth: 300,
           tooltip: true,

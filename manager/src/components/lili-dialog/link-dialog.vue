@@ -65,14 +65,14 @@ export default {
               return cur;
       }, []);
       this.wap.forEach((items,indexs) => {
-        if(items.title == '活动'){
+        if(items.title == 'activity'){
           console.log(32323232323232)
           this.wap.splice(indexs,1)
         }
       })
     }else{
       this.wap.push( {
-        title: "活动",
+        title: "activity",
         url: "3",
         name: "marketing"
       })

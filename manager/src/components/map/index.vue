@@ -6,7 +6,7 @@
 
       <div class="search-con">
         <Input
-          placeholder="输入关键字search"
+          placeholder="enter keyword to search"
           id="input-map"
           v-model="mapSearch"
         />
@@ -137,7 +137,7 @@ export default {
     selectAddr(location) {
       // select坐标
       if (!location) {
-        this.$Message.warning("Please select正确点位");
+        this.$Message.warning("Please select correct location");
         return false;
       }
       const lnglat = [location.lng, location.lat];

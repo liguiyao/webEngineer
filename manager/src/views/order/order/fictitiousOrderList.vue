@@ -6,22 +6,22 @@
           <Form-item label="Order number" prop="orderSn">
             <Input type="text" v-model="searchForm.orderSn" placeholder="Please enter Order number" clearable style="width: 200px" />
           </Form-item>
-          <Form-item label="会员名称" prop="buyerName">
-            <Input type="text" v-model="searchForm.buyerName" placeholder="Please enter 会员名称" clearable style="width: 200px" />
+          <Form-item label="Member name" prop="buyerName">
+            <Input type="text" v-model="searchForm.buyerName" placeholder="Please enter Member name" clearable style="width: 200px" />
           </Form-item>
-          <Form-item label="订单状态" prop="orderStatus">
+          <Form-item label="Order status" prop="orderStatus">
             <Select v-model="searchForm.orderStatus" placeholder="Please select" clearable style="width: 200px">
-              <Option value="NEW">新订单</Option>
-              <Option value="CONFIRM">已确认</Option>
-              <Option value="TAKE">待核验</Option>
+              <Option value="NEW">New Order</Option>
+              <Option value="CONFIRM">Confirm</Option>
+              <Option value="TAKE">Verify</Option>
               <Option value="COMPLETE">completed</Option>
-              <Option value="WAIT_PINTUAN">待成团</Option>
-              <Option value="CANCELLED">已Cancel</Option>
+              <Option value="WAIT_PINTUAN">Wait</Option>
+              <Option value="CANCELLED">Cancel</Option>
             </Select>
           </Form-item>
-          <Form-item label="下单时间">
+          <Form-item label="Order time">
             <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd" clearable
-              @on-change="selectDateRange" placeholder="select起始时间" style="width: 200px"></DatePicker>
+              @on-change="selectDateRange" placeholder="select start time" style="width: 200px"></DatePicker>
           </Form-item>
           <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
 

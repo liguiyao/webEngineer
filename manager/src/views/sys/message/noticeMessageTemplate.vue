@@ -654,7 +654,7 @@
             sortable: false,
           },
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             sortable: false,
           },

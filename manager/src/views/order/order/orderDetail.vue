@@ -3,13 +3,13 @@
     <div>
       <Card style="height: 60px">
         <div style="">
-          <Button v-if="allowOperation.editPrice" @click="modifyPrice">调整price</Button>
+          <Button v-if="allowOperation.editPrice" @click="modifyPrice">Change price</Button>
           <Button v-if="allowOperation.editConsignee" @click="editAddress" type="primary" ghost>modifyDelivery address</Button>
-          <Button v-if="allowOperation.cancel" @click="orderCancel" type="warning" ghost>订单Cancel</Button>
-          <Button v-if="orderInfo.order.orderStatus === 'UNPAID'" @click="confirmPrice" type="primary">收款</Button>
-          <Button @click="orderLog" type="info" ghost>订单日志</Button>
+          <Button v-if="allowOperation.cancel" @click="orderCancel" type="warning" ghost>Order Cancel</Button>
+          <Button v-if="orderInfo.order.orderStatus === 'UNPAID'" @click="confirmPrice" type="primary">Receive</Button>
+          <Button @click="orderLog" type="info" ghost>Order Log</Button>
           <Button @click="printOrder" type="primary" ghost style="float:right;"
-            v-if="$route.query.orderType != 'VIRTUAL'">打印发货单</Button>
+            v-if="$route.query.orderType != 'VIRTUAL'">Print</Button>
         </div>
       </Card>
       <Card class="mt_10 clearfix">
@@ -19,21 +19,21 @@
             <div class="div-item-right">{{ orderInfo.order.sn }}</div>
           </div>
           <div class="div-item">
-            <div class="div-item-left">订单来源：</div>
+            <div class="div-item-left">source：</div>
             <div class="div-item-right">
               {{ orderInfo.order.clientType | clientTypeWay }}
             </div>
           </div>
 
           <div class="div-item">
-            <div class="div-item-left">订单状态：</div>
+            <div class="div-item-left">Order status：</div>
             <div class="div-item-right">
               {{ orderInfo.orderStatusValue }}
             </div>
           </div>
 
           <div class="div-item">
-            <div class="div-item-left">下单时间：</div>
+            <div class="div-item-left">order time：</div>
             <div class="div-item-right">
               {{ orderInfo.order.createTime }}
             </div>
@@ -41,12 +41,12 @@
         </div>
         <div style="width: 30%; float: left; margin-left: 20px">
           <div class="div-item" v-if="orderInfo.order.needReceipt == false">
-            <div class="div-item-left">发票信息：</div>
-            <div class="div-item-right">absent发票信息</div>
+            <div class="div-item-left">Invoice Information：</div>
+            <div class="div-item-right">Invoice Information</div>
           </div>
 
           <div class="div-item" v-if="orderInfo.order.needReceipt == true">
-            <div class="div-item-left">发票抬头：</div>
+            <div class="div-item-left">Head：</div>
             <div class="div-item-right">
               {{
                 orderInfo.receipt && orderInfo.receipt.receiptTitle ? orderInfo.receipt.receiptTitle : "absent"
@@ -341,7 +341,7 @@
           <FormItem label="Receiver" prop="consigneeName">
             <Input v-model="addressForm.consigneeName" size="large" maxlength="20"></Input>
           </FormItem>
-          <FormItem label="联系方式" prop="consigneeMobile">
+          <FormItem label="contact" prop="consigneeMobile">
             <Input v-model="addressForm.consigneeMobile" size="large" maxlength="11"></Input>
           </FormItem>
           <FormItem label="address信息" prop="consigneeAddressPath">
@@ -528,7 +528,7 @@ export default {
           { required: true, message: "receivername不能为空", trigger: "blur" },
         ],
         consigneeMobile: [
-          { required: true, message: "联系方式不能为空", trigger: "blur" },
+          { required: true, message: "contact不能为空", trigger: "blur" },
           {
             pattern: RegExp.mobile,
             trigger: "blur",

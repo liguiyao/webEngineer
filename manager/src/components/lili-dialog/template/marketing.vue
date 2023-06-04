@@ -75,7 +75,7 @@ export default {
       pintuanColumns: [
         // 表头
         {
-          title: "活动标题",
+          title: "activity time",
           key: "title",
           tooltip: true,
           width: 250,
@@ -91,12 +91,12 @@ export default {
           tooltip: true,
         },
         {
-          title: "开始时间",
+          title: "start time",
           key: "startTime",
           tooltip: true,
         },
         {
-          title: "结束时间",
+          title: "end time",
           key: "endTime",
           tooltip: true,
         },
@@ -120,7 +120,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "select"
+                this.index == params.index ? "selected" : "select"
               ),
             ]);
           },
@@ -139,16 +139,16 @@ export default {
           tooltip: true,
         },
         {
-          title: "活动时间",
+          title: "activity time",
           key: "timeLine",
           tooltip: true,
           render: (h, params) => {
-            return h("div", {}, `${params.row.timeLine}点`);
+            return h("div", {}, `${params.row.timeLine}`);
           },
         },
 
         {
-          title: "原价",
+          title: "origin price",
           key: "originalPrice",
           tooltip: true,
           render: (h, params) => {
@@ -160,7 +160,7 @@ export default {
           },
         },
         {
-          title: "现价",
+          title: "now price",
           key: "price",
           tooltip: true,
           render: (h, params) => {
@@ -174,7 +174,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "status",
           key: "promotionApplyStatus",
           tooltip: true,
           render: (h, params) => {
@@ -212,7 +212,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "select"
+                this.index == params.index ? "selected" : "select"
               ),
             ]);
           },
@@ -223,7 +223,7 @@ export default {
 
       columns: [
         {
-          title: "活动标题",
+          title: "activity time",
           key: "title",
           tooltip: true,
           width: 200,
@@ -234,12 +234,12 @@ export default {
           tooltip: true,
         },
         {
-          title: "活动开始时间",
+          title: "start time",
           key: "startTime",
           tooltip: true,
         },
         {
-          title: "活动结束时间",
+          title: "end time",
           key: "endTime",
           tooltip: true,
         },
@@ -263,7 +263,7 @@ export default {
                     },
                   },
                 },
-                this.index == params.index ? "已选" : "select"
+                this.index == params.index ? "selected" : "select"
               ),
             ]);
           },
@@ -300,7 +300,7 @@ export default {
       switch (type) {
         case "FULL_DISCOUNT":
           return {
-            title: "full减",
+            title: "full increase",
             methodsed: () => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;
@@ -310,7 +310,7 @@ export default {
           };
         case "PINTUAN":
           return {
-            title: "拼团",
+            title: "make group",
             methodsed: (id) => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;
@@ -320,7 +320,7 @@ export default {
 
         case "KANJIA":
           return {
-            title: "砍价",
+            title: "sale",
             methodsed: (id) => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;
@@ -329,7 +329,7 @@ export default {
           };
         case "SECKILL":
           return {
-            title: "秒杀",
+            title: "spike",
             methodsed: () => {
               this.showPromotionList = [];
               this.activeColumns = this.seckillColumns;
@@ -347,7 +347,7 @@ export default {
           };
         case "POINTS_GOODS":
           return {
-            title: "积分Goods",
+            title: "Point Goods",
             methodsed: () => {
               this.showPromotionList = [];
               this.activeColumns = this.pintuanColumns;

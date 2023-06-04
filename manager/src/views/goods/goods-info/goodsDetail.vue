@@ -3,9 +3,9 @@
     <Form :label-width="120">
       <Card>
         <div class="base-info-item">
-          <h4>基本信息</h4>
+          <h4>Basic Info</h4>
           <div class="form-item-view">
-            <FormItem label="Goods分类">
+            <FormItem label="Goods category">
               <span v-for="(item, index) in goods.categoryName" :key="index">
                 {{ item }}
                 <i v-if="index !== goods.categoryName.length - 1">&gt;</i>
@@ -15,17 +15,17 @@
               {{ goods.goodsName }}
             </FormItem>
 
-            <FormItem label="Goods卖点">
+            <FormItem label="Goods sale point">
               {{ goods.sellingPoint }}
             </FormItem>
           </div>
           <h4>Goods交易信息</h4>
           <div class="form-item-view">
-            <FormItem label="计量单位"> {{ goods.goodsUnit }}</FormItem>
-            <FormItem label="销售模式">
-              {{ goods.salesModel === "RETAIL" ? "零售型" : "批发型" }}
+            <FormItem label="unit"> {{ goods.goodsUnit }}</FormItem>
+            <FormItem label="Sale model">
+              {{ goods.salesModel === "RETAIL" ? "retail" : "wholesale" }}
             </FormItem>
-            <FormItem label="销售规则" v-if="goods.salesModel !== 'RETAIL'">
+            <FormItem label="sales rules" v-if="goods.salesModel !== 'RETAIL'">
               <Table
                 border
                 :columns="wholesalePreviewColumns"
@@ -34,13 +34,13 @@
               </Table>
             </FormItem>
           </div>
-          <h4>Goods规格及图片</h4>
+          <h4>Goods Specification</h4>
           <div class="form-item-view">
-            <FormItem label="Goods编号"> {{ goods.id }}</FormItem>
+            <FormItem label="Goods number"> {{ goods.id }}</FormItem>
             <FormItem label="Goodsprice">
               ¥{{ goods.price | unitPrice }}
             </FormItem>
-            <FormItem label="Goods图片">
+            <FormItem label="Goods photo">
               <div
                 class="demo-upload-list"
                 v-for="(item, __index) in goods.goodsGalleryList"
@@ -62,7 +62,7 @@
                 </Modal>
               </div>
             </FormItem>
-            <FormItem label="Goods规格">
+            <FormItem label="Goods Specification">
               <Table :columns="skuColumn" :data="skuData">
                 <template slot="showImage" slot-scope="scope">
                   <div style="margin-top: 5px; height: 80px; display: flex">
@@ -107,12 +107,12 @@
               </Table>
             </FormItem>
           </div>
-          <h4>Goods详情描述</h4>
+          <h4>Goods details</h4>
           <div class="form-item-view">
-            <FormItem label="Goods描述">
+            <FormItem label="Goods details">
               <div v-html="goods.intro"></div>
             </FormItem>
-            <FormItem label="移动端描述">
+            <FormItem label="mobile details">
               <div v-html="goods.mobileIntro"></div>
             </FormItem>
           </div>
@@ -132,11 +132,11 @@ export default {
       goodsPictureVisible: false, // 预览图片模态框
       wholesalePreviewColumns: [
         {
-          title: "销售规则",
+          title: "rules",
           width: 300,
           render: (h, params) => {
             let guide =
-              "当Goodsquantity ≥" +
+              "Goodsquantity ≥" +
               params.row.num +
               " 时，售价为 RM" +
               params.row.price +
@@ -150,15 +150,15 @@ export default {
       skuColumn: [
         // 规格表头
         {
-          title: "规格",
+          title: "Specification",
           key: "specs",
         },
         {
-          title: "编号",
+          title: "code",
           key: "sn",
         },
         {
-          title: "重量(kg)",
+          title: "weight(kg)",
           key: "weight",
         },
       ],
@@ -187,14 +187,14 @@ export default {
         if (res.result.salesModel === "WHOLESALE" && res.result.wholesaleList) {
           res.result.wholesaleList.forEach((item, index) => {
             this.skuColumn.push({
-              title: "购买量 ≥ " + item.num,
+              title: "quality ≥ " + item.num,
               slot: "wholePrice" + index,
             });
           });
         } else {
           this.skuColumn.push(
             {
-              title: "成本",
+              title: "cost",
               key: "cost",
             },
             {
@@ -204,7 +204,7 @@ export default {
           );
         }
         this.skuColumn.push({
-          title: "图片",
+          title: "image",
           slot: "showImage",
         });
         this.wholesaleData = res.result.wholesaleList;

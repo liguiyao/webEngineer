@@ -1,11 +1,11 @@
 <template>
   <div style="width: 100%">
     <Card>
-      <Button @click="handleAddParamsGroup" type="primary">添加</Button>
+      <Button @click="handleAddParamsGroup" type="primary">Add</Button>
     </Card>
 
     <div class="row">
-      <Card v-if="paramsGroup.length == 0"> absent参数绑定信息 </Card>
+      <Card v-if="paramsGroup.length == 0"> absent bind info </Card>
       <div class="paramsGroup" v-else>
         <Card
           style="width: 350px; margin: 7px"
@@ -24,7 +24,7 @@
               </a>
               <Dropdown-menu slot="list">
                 <Dropdown-item @click.native="handleEditParamsGroup(group)"
-                  >编辑</Dropdown-item
+                  >edit</Dropdown-item
                 >
                 <Dropdown-item @click.native="handleDeleteParamGroup(group)"
                   >delete</Dropdown-item
@@ -43,7 +43,7 @@
 
               <span>
                 <i-button type="text" @click="handleEditParams(group, param)"
-                  >编辑</i-button
+                  >edit</i-button
                 >
                 <i-button
                   type="text"
@@ -55,10 +55,10 @@
               </span>
             </div>
           </template>
-          <div v-else style="align-content: center">absent数据...</div>
+          <div v-else style="align-content: center">absent data...</div>
           <div style="text-align: center">
             <i-button type="text" @click="handleAddParams(group)"
-              >添加</i-button
+              >add</i-button
             >
           </div>
         </Card>
@@ -77,13 +77,13 @@
           :label-width="100"
           :rules="formValidate"
         >
-          <FormItem label="参数名称" prop="paramName">
+          <FormItem label="parameter name" prop="paramName">
             <Input v-model="paramForm.paramName" style="width: 100%" />
           </FormItem>
-          <FormItem label="可选值" prop="options">
+          <FormItem label="optional" prop="options">
             <Select
               v-model="paramForm.options"
-              placeholder="输入后回车添加"
+              placeholder="enter to add"
               multiple
               filterable
               allow-create
@@ -101,11 +101,11 @@
               </Option>
             </Select>
           </FormItem>
-          <FormItem label="选项" prop="specName3">
-            <Checkbox label="1" v-model="paramForm.required">必填</Checkbox>
-            <Checkbox label="1" v-model="paramForm.isIndex">可索引</Checkbox>
+          <FormItem label="options" prop="specName3">
+            <Checkbox label="1" v-model="paramForm.required">required</Checkbox>
+            <Checkbox label="1" v-model="paramForm.isIndex">indexable</Checkbox>
           </FormItem>
-          <FormItem label="排序" prop="sort">
+          <FormItem label="sort" prop="sort">
             <InputNumber
               :min="0"
               type="number"
@@ -184,13 +184,13 @@ export default {
       categoryId: this.$route.query.id,
       /** 参数组 */
       paramsGroup: [],
-      /** 添加或编辑标识 */
+      /** add或edit标识 */
       modalType: 0,
-      /** 添加或编辑标题 */
+      /** add或edit标题 */
       modalTitle: "",
-      /** 参数添加或编辑弹出框 */
+      /** 参数add或edit弹出框 */
       dialogParamsVisible: false,
-      /** 参数组添加或编辑弹出框 */
+      /** 参数组add或edit弹出框 */
       dialogParamsGroupVisible: false,
       //参数表单
       paramForm: {
@@ -202,7 +202,7 @@ export default {
       },
       // 参数表单
       paramGroupForm: {},
-      /** 添加、编辑参数 规格 */
+      /** add、edit参数 规格 */
       formValidate: {
         paramName: [regular.REQUIRED, regular.VARCHAR5],
         options: [regular.REQUIRED, regular.VARCHAR255],
@@ -216,7 +216,7 @@ export default {
   },
   filters: {
     paramTypeFilter(val) {
-      return val === 1 ? "输入项" : "select项";
+      return val === 1 ? "enter value" : "select";
     },
   },
 
@@ -225,7 +225,7 @@ export default {
     init() {
       this.getDataList();
     },
-    //弹出添加参数框
+    //弹出add参数框
     handleAddParams(group) {
       this.paramForm = {
         paramName: "",
@@ -237,7 +237,7 @@ export default {
         groupId: group.groupId,
         categoryId: this.categoryId,
       };
-      this.modalTitle = "添加参数";
+      this.modalTitle = "add parameter";
       this.modalType = 0;
       this.dialogParamsVisible = true;
     },
@@ -256,7 +256,7 @@ export default {
       };
       this.ops.options = this.paramForm.options;
       this.modalType = 1;
-      this.modalTitle = "modify参数";
+      this.modalTitle = "modify parameter";
       this.dialogParamsVisible = true;
     },
     //弹出modify参数组框
@@ -267,16 +267,16 @@ export default {
         id: group.groupId,
       };
       this.modalType = 1;
-      this.modalTitle = "modify参数组";
+      this.modalTitle = "modify parameter";
       this.dialogParamsGroupVisible = true;
     },
-    // 添加参数
+    // add参数
     handleAddParamsGroup() {
       this.paramGroupForm = {};
       this.ops = {};
       (this.paramGroupForm.categoryId = this.categoryId), (this.modalType = 0);
 
-      this.modalTitle = "添加参数组";
+      this.modalTitle = "add parameter";
       this.dialogParamsGroupVisible = true;
     },
     //Save参数组
@@ -287,7 +287,7 @@ export default {
             insertParamsGroup(this.paramGroupForm).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数组modifysuccess");
+                this.$Message.success("parameter modify success");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -297,7 +297,7 @@ export default {
             updateParamsGroup(this.paramGroupForm).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数组modifysuccess");
+                this.$Message.success("parameter modify success");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -319,7 +319,7 @@ export default {
             insertGoodsParams(data).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数添加success");
+                this.$Message.success("parameter add success");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -331,7 +331,7 @@ export default {
             updateGoodsParams(data).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("参数modifysuccess");
+                this.$Message.success("parameter modify success");
                 this.getDataList();
                 this.dialogParamsVisible = false;
               }
@@ -351,16 +351,16 @@ export default {
     //delete参数方法
     handleDeleteParam(group, param) {
       this.$Modal.confirm({
-        title: "确认delete",
+        title: "confirm delete",
         // 记得确认modify此处
-        content: "您确认要delete " + param.paramName + " ?",
+        content: "confirm delete " + param.paramName + " ?",
         loading: true,
         onOk: () => {
           // delete
           deleteParams(param.id).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("delete参数success");
+              this.$Message.success("delete parameter success");
               this.getDataList();
             }
           });
@@ -370,16 +370,16 @@ export default {
     //delete参数组方法
     handleDeleteParamGroup(group) {
       this.$Modal.confirm({
-        title: "确认delete",
+        title: "confirm delete",
         // 记得确认modify此处
-        content: "您确认要delete " + group.groupName + " ?",
+        content: "confirm to delete " + group.groupName + " ?",
         loading: true,
         onOk: () => {
           // delete
           deleteParamsGroup(group.groupId).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("delete参数success");
+              this.$Message.success("delete parameter success");
               this.getDataList();
             }
           });

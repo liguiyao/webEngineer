@@ -18,38 +18,38 @@
             style="width: 160px"
           />
         </Form-item>
-        <Form-item label="会员名称" prop="buyerName">
+        <Form-item label="Member name" prop="buyerName">
           <Input
             type="text"
             v-model="searchForm.buyerName"
-            placeholder="Please enter 会员名称"
+            placeholder="Please enter Member name"
             clearable
             style="width: 160px"
           />
         </Form-item>
 
-        <Form-item label="订单类型" prop="orderType">
+        <Form-item label="Order type" prop="orderType">
           <Select
             v-model="searchForm.orderPromotionType"
             placeholder="Please select"
             clearable
             style="width: 160px"
           >
-            <Option value="NORMAL">普通订单</Option>
-            <Option value="PINTUAN">拼团订单</Option>
-            <Option value="GIFT">赠品订单</Option>
-            <Option value="POINTS">积分订单</Option>
-            <Option value="KANJIA">砍价订单</Option>
+            <Option value="NORMAL">normal</Option>
+            <Option value="PINTUAN">group</Option>
+            <Option value="GIFT">gift</Option>
+            <Option value="POINTS">point</Option>
+            <Option value="KANJIA">xxx</Option>
           </Select>
         </Form-item>
-        <Form-item label="下单时间">
+        <Form-item label="Order time">
           <DatePicker
             v-model="selectDate"
             type="datetimerange"
             format="yyyy-MM-dd"
             clearable
             @on-change="selectDateRange"
-            placeholder="select起始时间"
+            placeholder="select start time"
             style="width: 160px"
           ></DatePicker>
         </Form-item>
@@ -61,13 +61,13 @@
             style="width: 160px"
           >
             <Option value="UNPAID">Unpaid</Option>
-            <Option value="PAID">已付款</Option>
-            <Option value="UNDELIVERED">待发货</Option>
-            <Option value="DELIVERED">已发货</Option>
-            <Option value="COMPLETED">completed</Option>
-            <Option value="TAKE">待核验</Option>
-            <Option value="CANCELLED">已Cancel</Option>
-            <Option value="STAY_PICKED_UP">待self-lifting</Option>
+            <Option value="PAID">Paid</Option>
+            <Option value="UNDELIVERED">Wait delivered</Option>
+            <Option value="DELIVERED">Delivered</Option>
+            <Option value="COMPLETED">Completed</Option>
+            <Option value="TAKE">Verify</Option>
+            <Option value="CANCELLED">Cancel</Option>
+            <Option value="STAY_PICKED_UP">wait self-lifting</Option>
           </Select>
         </Form-item>
         <Button
@@ -86,7 +86,7 @@
           :fetch="exportOrder"
           name="Goods订单.xls"
         >
-          <Button type="info" class="export"> 导出订单 </Button>
+          <Button type="info" class="export"> export order </Button>
         </download-excel>
       </div>
 

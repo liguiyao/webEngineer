@@ -33,7 +33,7 @@
             format="yyyy-MM-dd"
             clearable
             @on-change="selectDateRange"
-            placeholder="select起始时间"
+            placeholder="select start time"
             style="width: 200px"
           ></DatePicker>
         </Form-item>

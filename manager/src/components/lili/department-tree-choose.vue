@@ -10,13 +10,13 @@
         @on-clear="clearSelect"
       />
       <Poptip transfer trigger="click" placement="right" title="select部门" width="250">
-        <Button icon="md-list">select部门</Button>
+        <Button icon="md-list">select department</Button>
         <div slot="content">
           <Input
             v-model="searchKey"
             suffix="ios-search"
             @on-change="searchDep"
-            placeholder="输入部门名search"
+            placeholder="enter department"
             clearable
           />
           <div class="dep-tree-bar">
@@ -48,7 +48,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "点击select部门"
+      default: "select department"
     }
   },
   data() {
@@ -79,7 +79,7 @@ export default {
           if (res.success) {
             res.result.forEach(function (e) {
               if (e.status == -1) {
-                e.title = "[已禁用] " + e.title;
+                e.title = "[Baned] " + e.title;
                 e.disabled = true;
               }
             });

@@ -274,7 +274,7 @@
                   format="yyyy-MM-dd HH:mm:ss"
                   clearable
                   @on-change="selectDateRange"
-                  placeholder="select起始时间"
+                  placeholder="select start time"
                   style="width: 200px"
                   transfer
                 ></DatePicker>
@@ -357,7 +357,7 @@
                   format="yyyy-MM-dd HH:mm:ss"
                   clearable
                   @on-change="selectRefundGoodsDateRange"
-                  placeholder="select起始时间"
+                  placeholder="select start time"
                   style="width: 200px"
                   transfer
                 ></DatePicker>
@@ -371,11 +371,11 @@
                   style="width: 200px"
                 />
               </Form-item>
-              <Form-item label="会员名称" prop="memberName">
+              <Form-item label="Member name" prop="memberName">
                 <Input
                   type="text"
                   v-model="refundGoodsOrderSearchForm.memberName"
-                  placeholder="Please enter 会员名称"
+                  placeholder="Please enter Member name"
                   clearable
                   style="width: 200px"
                 />
@@ -480,7 +480,7 @@
                   format="yyyy-MM-dd HH:mm:ss"
                   clearable
                   @on-change="selectRefundDateRange"
-                  placeholder="select起始时间"
+                  placeholder="select start time"
                   style="width: 200px"
                   transfer
                 ></DatePicker>
@@ -494,11 +494,11 @@
                   style="width: 200px"
                 />
               </Form-item>
-              <Form-item label="会员名称" prop="memberName">
+              <Form-item label="Member name" prop="memberName">
                 <Input
                   type="text"
                   v-model="refundOrderSearchForm.memberName"
-                  placeholder="Please enter 会员名称"
+                  placeholder="Please enter Member name"
                   clearable
                   style="width: 200px"
                 />
@@ -757,7 +757,7 @@
             slot: "goodsSlot",
           },
           {
-            title: "会员名称",
+            title: "Member name",
             key: "memberName",
             width: 140,
           },

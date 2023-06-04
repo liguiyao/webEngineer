@@ -18,11 +18,11 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="会员名称" prop="memberName">
+        <Form-item label="Member name" prop="memberName">
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="Please enter 会员名称"
+            placeholder="Please enter Member name"
             clearable
             style="width: 200px"
           />
@@ -45,7 +45,7 @@
             v-model="selectDate"
             type="daterange"
             clearable
-            placeholder="select起始时间"
+            placeholder="select start time"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
@@ -111,7 +111,7 @@ export default {
       columns: [
         // 表头
         {
-          title: "会员名称",
+          title: "Member name",
           key: "memberName",
           fixed: "left",
         },

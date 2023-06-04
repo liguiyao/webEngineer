@@ -8,32 +8,32 @@
         :label-width="70"
         class="search-form"
       >
-        <Form-item label="会员名称" prop="memberName">
+        <Form-item label="Member name" prop="memberName">
           <Input
             type="text"
             v-model="searchForm.memberName"
-            placeholder="Please enter 会员名称"
+            placeholder="Please enter member name"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="充值单号" prop="rechargeSn">
+        <Form-item label="recharge number" prop="rechargeSn">
           <Input
             type="text"
             v-model="searchForm.rechargeSn"
-            placeholder="Please enter 充值单号"
+            placeholder="Please enter recharge number"
             clearable
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="支付时间">
+        <Form-item label="payment time">
           <DatePicker
             v-model="selectDate"
             type="datetimerange"
             format="yyyy-MM-dd HH:mm:ss"
             clearable
             @on-change="selectDateRange"
-            placeholder="select起始时间"
+            placeholder="select start time"
             style="width: 200px"
           ></DatePicker>
         </Form-item>
@@ -87,7 +87,7 @@
         selectDate: null, // select区间时间
         columns: [
           {
-            title: "会员名称",
+            title: "member name",
             key: "memberName",
             minWidth: 120,
             tooltip: true
@@ -99,7 +99,7 @@
             tooltip: true
           },
           {
-            title: "充值金额",
+            title: "recharge amount",
             key: "rechargeMoney",
             width: 160,
             sortable: true,
@@ -111,7 +111,7 @@
             },
           },
           {
-            title: "充值方式",
+            title: "payment method",
             key: "rechargeWay",
             width: 120,
             render: (h, params) => {
@@ -127,7 +127,7 @@
             }
           },
           {
-            title: "支付状态",
+            title: "payment status",
             key: "payStatus",
             align: "left",
             width: 120,
@@ -141,14 +141,14 @@
             },
           },
           {
-            title: "充值时间",
+            title: "payment time",
             key: "createTime",
             align: "left",
             width: 190,
             sortable: false,
           },
           {
-            title: "支付时间",
+            title: "payment time",
             key: "payTime",
             align: "left",
             width: 190,

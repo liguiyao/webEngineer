@@ -13,11 +13,11 @@
               </dl>
 
               <dl>
-                <dt>Return goodsrefund编号</dt>
+                <dt>Return goods refund code</dt>
                 <dd>{{ afterSaleInfo.sn }}</dd>
               </dl>
               <dl>
-                <dt>Return goodsrefund原因</dt>
+                <dt>Return goods refund reason</dt>
                 <dd>{{ afterSaleInfo.reason }}</dd>
               </dl>
               <dl>
@@ -29,7 +29,7 @@
                 <dd>{{ afterSaleInfo.actualRefundPrice | unitPrice('RM') }}</dd>
               </dl>
               <dl v-if="afterSaleInfo.refundPoint">
-                <dt>退还积分</dt>
+                <dt>return points</dt>
                 <dd>{{ afterSaleInfo.refundPoint }}</dd>
               </dl>
               <dl>

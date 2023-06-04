@@ -9,11 +9,11 @@
           :label-width="70"
           class="search-form"
         >
-          <Form-item label="会员名称" prop="memberName">
+          <Form-item label="Member name" prop="memberName">
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="Please enter 会员名称"
+              placeholder="Please enter member name"
               clearable
               style="width: 200px"
             />
@@ -71,18 +71,18 @@ export default {
       },
       columns: [
         {
-          title: "会员名称",
+          title: "member name",
           key: "memberName",
           minWidth: 150,
           tooltip: true,
         },
         {
-          title: "会员name",
+          title: "member name",
           key: "name",
           minWidth: 120,
         },
         {
-          title: "Submit时间",
+          title: "Submit time",
           key: "createTime",
           minWidth: 150,
         },
@@ -110,7 +110,7 @@ export default {
                     },
                   },
                 },
-                "通过"
+                "pass"
               ),
               h(
                 "Button",
@@ -125,7 +125,7 @@ export default {
                     },
                   },
                 },
-                "拒绝"
+                "reject"
               ),
             ]);
           },
@@ -173,17 +173,17 @@ export default {
     },
     //审核
     audit(v, status) {
-      let test = "拒绝";
+      let test = "reject";
       if (status == "PASS") {
-        test = "通过";
+        test = "pass";
       }
       let params = {
         status: status,
       };
       this.$Modal.confirm({
-        title: "确认" + test,
+        title: "confirm" + test,
         // 记得确认modify此处
-        content: "您确认要" + test + " " + v.memberName + " ?",
+        content: "confirm" + test + " " + v.memberName + " ?",
         loading: true,
         onOk: () => {
           auditDistribution(v.id, params).then((res) => {

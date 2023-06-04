@@ -96,7 +96,7 @@ export default {
       params: {
         pageNumber: 1,
         pageSize: 10,
-        auditStatus: 2, //Goods状态
+        auditStatus: 2, //goods status
       },
       // Goods审核状态
       liveTabWay: [

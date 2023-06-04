@@ -51,7 +51,7 @@
               format="yyyy-MM-dd HH:mm:ss"
               clearable
               @on-change="selectDateRange"
-              placeholder="select起始时间"
+              placeholder="select start time"
               style="width: 200px"
             ></DatePicker>
           </Form-item>
@@ -64,11 +64,11 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="会员名称" prop="memberName">
+          <Form-item label="Member name" prop="memberName">
             <Input
               type="text"
               v-model="searchForm.memberName"
-              placeholder="Please enter 会员名称"
+              placeholder="Please enter Member name"
               clearable
               style="width: 200px"
             />
@@ -207,7 +207,7 @@ export default {
           slot: "goodsSlot",
         },
         {
-          title: "会员名称",
+          title: "Member name",
           key: "memberName",
           width: 140,
         },

@@ -18,11 +18,11 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="Goods编号" prop="id">
+        <Form-item label="Goods number" prop="id">
           <Input
             type="text"
             v-model="searchForm.id"
-            placeholder="Please enter Goods编号"
+            placeholder="Please enter Goods number"
             clearable
             style="width: 200px"
           />
@@ -105,7 +105,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "Goods编号",
+          title: "Goods number",
           key: "id",
           minWidth: 100,
           tooltip: true,
@@ -119,7 +119,7 @@ export default {
           },
         },
         {
-          title: "审核状态",
+          title: "audit status",
           key: "authFlag",
           minWidth: 130,
           render: (h, params) => {
@@ -128,7 +128,7 @@ export default {
                 h("Badge", {
                   props: {
                     status: "error",
-                    text: "待审核",
+                    text: "wait",
                   },
                 }),
               ]);
@@ -137,7 +137,7 @@ export default {
                 h("Badge", {
                   props: {
                     status: "success",
-                    text: "审核通过",
+                    text: "pass",
                   },
                 }),
               ]);
@@ -146,7 +146,7 @@ export default {
                 h("Badge", {
                   props: {
                     status: "error",
-                    text: "审核拒绝",
+                    text: "reject",
                   },
                 }),
               ]);
@@ -184,7 +184,7 @@ export default {
                     },
                   },
                 },
-                "通过"
+                "pass"
               ),
               h(
                 "Button",
@@ -202,7 +202,7 @@ export default {
                     },
                   },
                 },
-                "拒绝"
+                "reject"
               ),
               h(
                 "Button",
@@ -216,7 +216,7 @@ export default {
                     },
                   },
                 },
-                "查看"
+                "view"
               ),
             ]);
           },
@@ -262,21 +262,21 @@ export default {
     },
     examine(v, authFlag) {
       // 审核Goods
-      let examine = "通过";
+      let examine = "pass";
       this.goodsAuditForm.authFlag = "PASS";
       if (authFlag != 1) {
-        examine = "拒绝";
+        examine = "reject";
         this.goodsAuditForm.authFlag = "REFUSE";
       }
       this.$Modal.confirm({
-        title: "确认审核",
-        content: "您确认要审核" + examine + " " + v.goodsName + " ?",
+        title: "confirm",
+        content: "confirm audit " + examine + " " + v.goodsName + " ?",
         loading: true,
         onOk: () => {
           authGoods(v.id, this.goodsAuditForm).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("审核success");
+              this.$Message.success("audit success");
               this.getDataList();
             }
           });
