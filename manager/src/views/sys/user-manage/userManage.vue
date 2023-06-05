@@ -2,11 +2,11 @@
   <div class="search">
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70" class="search-form">
-        <Form-item label="用户名">
+        <Form-item label="Username">
           <Input
             type="text"
             v-model="searchForm.username"
-            placeholder="Please enter 用户名"
+            placeholder="Please enter username"
             clearable
             style="width: 200px"
           />
@@ -20,15 +20,15 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="部门">
+        <Form-item label="department">
           <department-choose @on-change="handleSelectDep" style="width: 150px;" ref="dep"></department-choose>
         </Form-item>
         <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
       </Form>
       <Row class="operation padding-row">
-        <Button @click="add" type="primary">添加</Button>
-        <Button @click="delAll">批量delete</Button>
-        <Button @click="resetPass">重置密码</Button>
+        <Button @click="add" type="primary">Add</Button>
+        <Button @click="delAll">Batch delete</Button>
+        <Button @click="resetPass">reset password</Button>
       </Row>
       <Table
         :loading="loading"
@@ -64,28 +64,28 @@
       :styles="{top: '30px'}"
     >
       <Form ref="form" :model="form" :label-width="70" :rules="formValidate">
-        <FormItem label="用户名" prop="username">
+        <FormItem label="Username" prop="username">
           <Input v-model="form.username" autocomplete="off"/>
         </FormItem>
-        <FormItem label="昵称" prop="username">
+        <FormItem label="nickname" prop="username">
           <Input v-model="form.nickName" autocomplete="off"/>
         </FormItem>
-        <FormItem label="密码" prop="password" v-if="modalType==0" :error="errorPass">
+        <FormItem label="password" prop="password" v-if="modalType==0" :error="errorPass">
           <Input type="password" password v-model="form.password" autocomplete="off"/>
         </FormItem>
-        <FormItem label="邮箱" prop="email">
+        <FormItem label="email" prop="email">
           <Input v-model="form.email"/>
         </FormItem>
         <FormItem label="Phone number" prop="mobile">
           <Input v-model="form.mobile"/>
         </FormItem>
-        <Form-item label="头像" prop="avatar">
+        <Form-item label="icon" prop="avatar">
           <upload-pic-input v-model="form.avatar"></upload-pic-input>
         </Form-item>
-        <Form-item label="所属部门">
+        <Form-item label="department">
           <department-tree-choose @on-change="handleSelectDepTree" ref="depTree"></department-tree-choose>
         </Form-item>
-        <FormItem label="角色" prop="roles">
+        <FormItem label="role" prop="roles">
           <Select v-model="form.roles" multiple>
             <Option v-for="item in roleList" :value="item.id" :key="item.id" :label="item.name">
 
@@ -153,18 +153,18 @@ export default {
       errorPass: "", // 错误Tips
       formValidate: { // 验证规则
         username: [
-          {required: true, message: "用户名不能为空", trigger: "blur"}
+          {required: true, message: "Username cannot be empty", trigger: "blur"}
         ],
         password: [
           {required: true, message: "password cannot be empty", trigger: "blur"}
         ],
         mobile: [
-          {required: true, message: "Phone number不能为空", trigger: "blur"},
+          {required: true, message: "Phone number cannot be empty", trigger: "blur"},
           {validator: validateMobile, trigger: "blur"}
         ],
         email: [
-          {required: true, message: "Please enter 邮箱address"},
-          {type: "email", message: "邮箱格式不正确"}
+          {required: true, message: "Please enter email address"},
+          {type: "email", message: "email format wrong"}
         ]
       },
       submitLoading: false, // Submit状态
@@ -176,14 +176,14 @@ export default {
           fixed: "left"
         },
         {
-          title: "用户名",
+          title: "username",
           key: "username",
           minWidth: 120,
           sortable: true,
           fixed: "left"
         },
         {
-          title: "头像",
+          title: "icon",
           key: "avatar",
           width: 80,
           align: "center",
@@ -196,18 +196,18 @@ export default {
           }
         },
         {
-          title: "手机",
+          title: "phone",
           key: "mobile",
           width: 125
         },
         {
-          title: "邮箱",
+          title: "email",
           key: "email",
           minWidth: 180,
           sortable: true
         },
         {
-          title: "状态",
+          title: "status",
           key: "status",
           align: "center",
           width: 110,
@@ -217,7 +217,7 @@ export default {
                 h("Badge", {
                   props: {
                     status: "success",
-                    text: "启用"
+                    text: "enable"
                   }
                 })
               ]);
@@ -226,7 +226,7 @@ export default {
                 h("Badge", {
                   props: {
                     status: "error",
-                    text: "禁用"
+                    text: "disable"
                   }
                 })
               ]);
@@ -234,11 +234,11 @@ export default {
           },
           filters: [
             {
-              label: "启用",
+              label: "enable",
               value: true
             },
             {
-              label: "禁用",
+              label: "disable",
               value: false
             }
           ],

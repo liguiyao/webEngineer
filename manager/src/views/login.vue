@@ -16,7 +16,7 @@
                 prefix="ios-contact"
                 size="large"
                 clearable
-                placeholder="Please enter 用户名"
+                placeholder="Please enter username"
                 autocomplete="off"
               />
             </FormItem>
@@ -27,7 +27,7 @@
                 prefix="ios-lock"
                 size="large"
                 password
-                placeholder="Please enter 密码"
+                placeholder="Please enter password"
                 autocomplete="off"
               />
             </FormItem>
@@ -92,7 +92,7 @@ export default {
         username: [
           {
             required: true,
-            message: "账号不能为空",
+            message: "Account cannot be empty",
             trigger: "blur",
           },
         ],

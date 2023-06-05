@@ -1,7 +1,7 @@
 <template>
   <div>
     <Card class="change-pass">
-      <p slot="title"><Icon type="key"></Icon>modify密码</p>
+      <p slot="title"><Icon type="key"></Icon>modify password</p>
       <div>
         <Form
           ref="editPasswordForm"

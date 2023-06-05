@@ -21,7 +21,7 @@
               <div>Status：{{ userData.storeDisable == 'OPEN' ? 'Opening' : 'Close' }}</div>
             </div>
             <div class="box-item" @click="im()">
-              <Button type="info" :loading='load'>点击Login客服</Button>
+              <Button type="info" :loading='load'>Click Login customer service</Button>
             </div>
           </div>
 
@@ -31,10 +31,10 @@
                 :percent="(userData.serviceScore * 20)" stroke-linecap="square">
                 <div class="demo-Circle-custom">
 
-                  <p class="bold">{{ userData.serviceScore }}分</p>
+                  <p class="bold">{{ userData.serviceScore }}point</p>
                 </div>
               </i-circle>
-              <h5>服务得分</h5>
+              <h5>Service score</h5>
             </div>
             <div>
               <i-circle :size="120" stroke-color="#a7c5eb" :trail-width="4" :stroke-width="5"
@@ -44,7 +44,7 @@
                   <p class="bold">{{ userData.deliveryScore }}分</p>
                 </div>
               </i-circle>
-              <h5>交货得分</h5>
+              <h5>Delivery score</h5>
             </div>
             <div>
               <i-circle :size="120" stroke-color="#848ccf" :trail-width="4" :stroke-width="5"
@@ -53,7 +53,7 @@
                   <p class="bold">{{ userData.descriptionScore }}分</p>
                 </div>
               </i-circle>
-              <h5>Evaluate得分</h5>
+              <h5>Evaluate score</h5>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="detail-item" @click="navigateTo('orderList')">
               <div>
                 <span>{{ homeData.unDeliveredOrder || 0 }}</span>
-                <div>待发货</div>
+                <div>wait ship</div>
               </div>
               <div>
                 <span>{{ homeData.deliveredOrder || 0 }}</span>
@@ -95,7 +95,7 @@
               </div>
               <div @click="navigateTo('memberComment')">
                 <span>{{ homeData.memberEvaluation || 0 }}</span>
-                <div>待Evaluate</div>
+                <div>Wait Evaluate</div>
               </div>
               <div class="detail-title">
                 After transaction
@@ -104,7 +104,7 @@
             <div class="detail-item" @click="navigateTo('orderComplaint')">
               <div>
                 <span>{{ homeData.complaint || 0 }}</span>
-                <div>待处理</div>
+                <div>To be processed</div>
               </div>
 
               <div class="detail-title">
@@ -114,11 +114,11 @@
             <div class="detail-item" @click="navigateTo('goods')">
               <div>
                 <span>{{ homeData.waitUpper || 0 }}</span>
-                <div>待上架</div>
+                <div>To be put on</div>
               </div>
               <div>
                 <span>{{ homeData.waitAuth || 0 }}</span>
-                <div>审核中</div>
+                <div>Under review</div>
               </div>
               <div class="detail-title">
                 Goods
@@ -128,11 +128,11 @@
             <div class="detail-item">
               <div @click="navigateTo('seckill')">
                 <span>{{ homeData.seckillNum || 0 }}</span>
-                <div>秒杀活动</div>
+                <div>Sec-kill</div>
               </div>
               <div @click="navigateTo('accountStatementBill')">
                 <span>{{ homeData.waitPayBill || 0 }}</span>
-                <div>等待对账</div>
+                <div>reconciliation</div>
               </div>
               <div class="detail-title">
                 Others
@@ -144,7 +144,7 @@
       </div>
       <!-- 公告 -->
       <div class="card box-right">
-        <h4>平台公告</h4>
+        <h4>announcement</h4>
         <div>
           <div class="notice-title" v-for="(item, index) in notices" :key="index">
             <a @click="clickLinkNotices(item)">{{ item.title }}</a>
@@ -154,7 +154,7 @@
     </div>
 
     <div class="card ">
-      <h4>整体数据</h4>
+      <h4>Aggregate data</h4>
       <div class="count-list flex">
         <div class="count-item" @click="navigateTo('goods')">
           <div>
@@ -172,7 +172,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.orderPrice || 0 | unitPrice('RM') }}</div>
-            <div>订单总额</div>
+            <div>Total order</div>
           </div>
 
         </div>
@@ -183,7 +183,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.orderNum || 0 }}</div>
-            <div>订单Quantity</div>
+            <div>Order Quantity</div>
           </div>
 
         </div>
@@ -193,7 +193,7 @@
           </div>
           <div>
             <div class="counts">{{ homeData.storeUV || 0 }}</div>
-            <div>访客Quantity</div>
+            <div>Visitor Quantity</div>
           </div>
 
         </div>
@@ -267,7 +267,7 @@ export default {
         window.open(`${this.IMLink}?token=` + accessToken);
       }
       else{
-        this.$Message.error("Please Login后再联系客服");
+        this.$Message.error("Please Login first");
       }
     },
 

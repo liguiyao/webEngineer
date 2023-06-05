@@ -31,16 +31,16 @@
         :model="form"
         :label-width="80"
       >
-        <FormItem label="用户名" prop="userName">
+        <FormItem label="Username" prop="userName">
           <span> {{form.userName}}</span>
         </FormItem>
         <FormItem label="Phone number" prop="mobile">
           <span> {{form.mobile}}</span>
         </FormItem>
         <FormItem label="类型" prop="type">
-          <span v-if="form.type == 'FUNCTION'">功能建议</span>
-          <span v-if="form.type == 'OPTIMIZE'">优化反馈</span>
-          <span v-if="form.type == 'OTHER'">Others意见</span>
+          <span v-if="form.type == 'FUNCTION'">suggestion</span>
+          <span v-if="form.type == 'OPTIMIZE'">feedback</span>
+          <span v-if="form.type == 'OTHER'">Others advise</span>
         </FormItem>
         <FormItem label="反馈内容" prop="context">
           <Input style="width: 85%" v-model="form.context" type="textarea" disabled :autosize="{minRows: 3,maxRows: 5}"

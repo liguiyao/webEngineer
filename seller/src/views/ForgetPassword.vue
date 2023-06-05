@@ -7,7 +7,7 @@
         :src="$store.state.logoImg" width='150'
         @click="$router.push('/')"
       />
-      <div>modify密码</div>
+      <div>modify password</div>
     </div>
     <div class="login-container">
         <!-- 验证Phone number -->
@@ -44,7 +44,7 @@
             </i-input>
           </FormItem>
           <FormItem>
-            <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'验证通过':'点击完成安全验证'}}</Button>
+            <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'verify pass':'click to finish'}}</Button>
           </FormItem>
           <FormItem>
             <Button type="error" @click="next" :loading="loading" long>下一步</Button>
@@ -62,7 +62,7 @@
               type="password"
               v-model="form.password"
               clearable
-              placeholder="Please enter 至少六位密码"
+              placeholder="Please enter at least 6 character"
             >
               <Icon type="md-lock" slot="prepend"></Icon>
             </i-input>
@@ -72,7 +72,7 @@
               type="password"
               v-model="form.oncePasd"
               clearable
-              placeholder="Please 再次输入密码"
+              placeholder="Please enter again"
             >
               <Icon type="md-lock" slot="prepend"></Icon>
             </i-input>
@@ -88,20 +88,20 @@
           :verifyType="verifyType"
           @change="verifyChange"
         ></verify>
-        <div class="login-btn"><a @click="$router.push('login')">前往Login</a></div>
+        <div class="login-btn"><a @click="$router.push('login')">Go to Login</a></div>
     </div>
     <div class="foot">
       <Row type="flex" justify="space-around" class="help">
-        <a class="item" href="https://pickmall.cn/" target="_blank">帮助</a>
-        <a class="item" href="https://pickmall.cn/" target="_blank">隐私</a>
-        <a class="item" href="https://pickmall.cn/" target="_blank">条款</a>
+        <a class="item" href="https://pickmall.cn/" target="_blank">help</a>
+        <a class="item" href="https://pickmall.cn/" target="_blank">privacy</a>
+        <a class="item" href="https://pickmall.cn/" target="_blank">clause</a>
       </Row>
       <Row type="flex" justify="center" class="copyright">
         Copyright © {{year}} - Present
         <a href="https://pickmall.cn/" target="_blank" style="margin: 0 5px"
           >{{config.title}}</a
         >
-        版权所有
+        All rights reserved.
       </Row>
     </div>
   </div>
@@ -176,7 +176,7 @@ export default {
         if (valid) {
           let params = JSON.parse(JSON.stringify(this.form));
           if (params.password !== params.oncePasd) {
-            this.$Message.warning('两次输入密码不一致');
+            this.$Message.warning('passwords are inconsistent');
             return;
           };
           params.mobile = this.formFirst.mobile;
@@ -198,11 +198,11 @@ export default {
     sendCode () { // Send verification code
       if (this.time === 60) {
         if (this.formFirst.mobile === '') {
-          this.$Message.warning('Please 先enter Phone number');
+          this.$Message.warning('Please enter Phone number first');
           return;
         }
         if (!this.verifyStatus) {
-          this.$Message.warning('Please 先完成安全验证');
+          this.$Message.warning('Please finish verify first');
           return;
         }
         let params = {
@@ -211,13 +211,13 @@ export default {
         };
         sendSms(params).then(res => {
           if (res.success) {
-            this.$Message.success('验证码发送success');
+            this.$Message.success('SMS send success');
             let that = this;
             this.interval = setInterval(() => {
               that.time--;
               if (that.time === 0) {
                 that.time = 60;
-                that.codeMsg = '重新发送';
+                that.codeMsg = 'resend';
                 that.verifyStatus = false;
                 clearInterval(that.interval);
               } else {

@@ -42,8 +42,8 @@
                   ></Avatar>
                 </div>
                 <DropdownMenu slot="list">
-                  <DropdownItem name="changePass">modify密码</DropdownItem>
-                  <DropdownItem name="loginOut" divided>退出</DropdownItem>
+                  <DropdownItem name="changePass">modify password</DropdownItem>
+                  <DropdownItem name="loginOut" divided>exit</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </Row>

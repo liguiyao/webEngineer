@@ -7,7 +7,7 @@
           @on-change="search"
           type="date"
           placement="bottom-end"
-          placeholder="select查看日期"
+          placeholder="select veiw date"
           style="width: 200px"
           v-model="yestDate"
         ></DatePicker>
@@ -16,7 +16,7 @@
     <Row>
       <p>
         <Alert type="success">
-          这里展示历史某一天的热词数据统计，可根据需求配置每日持久化多少条数据。
+          This section displays statistics on hot words of a historical day. You can configure the number of data to be persisted daily as required.
         </Alert>
       </p>
     </Row>
@@ -40,7 +40,7 @@ export default {
       yestDate:new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toString(),
       yestDate:this.$options.filters.unixToDate(
           (new Date().getTime() / 1000) - (24 * 60 * 60),
-          "yyyy年MM月dd日"
+          "yyyy MM dd "
         ),
       params: {
         date: this.$options.filters.unixToDate(

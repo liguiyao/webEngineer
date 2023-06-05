@@ -2,11 +2,11 @@
   <div class="search">
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="70"  @keydown.enter.native="handleSearch" class="search-form">
-        <Form-item label="订单编号" prop="orderSn">
-          <Input type="text" v-model="searchForm.orderSn" placeholder="Please enter 订单编号" clearable style="width: 200px" />
+        <Form-item label="Order Code" prop="orderSn">
+          <Input type="text" v-model="searchForm.orderSn" placeholder="Please enter order code" clearable style="width: 200px" />
         </Form-item>
-        <Form-item label="订单时间">
-          <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="select时间" style="width: 210px"></DatePicker>
+        <Form-item label="Order time">
+          <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="select time" style="width: 210px"></DatePicker>
         </Form-item>
         <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
       </Form>

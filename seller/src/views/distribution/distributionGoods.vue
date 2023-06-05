@@ -10,7 +10,7 @@
         </Form>
       </Row>
       <Row class="operation padding-row">
-        <Button @click="add" type="primary">添加</Button>
+        <Button @click="add" type="primary">Add</Button>
       </Row>
       <Table class="mt_10" :loading="loading" border :columns="columns" :data="data" ref="table" >
         <!-- Goods栏目格式化 -->

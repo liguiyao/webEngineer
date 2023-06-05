@@ -7,7 +7,7 @@
       :model="formValidate"
       :rules="ruleValidate"
     >
-      <FormItem label="热词default配置" prop="hotWordsSettingItems">
+      <FormItem label="hot word default set" prop="hotWordsSettingItems">
         <div
           class="item-label"
           v-for="(item, index) in formValidate.hotWordsSettingItems"
@@ -15,11 +15,11 @@
         >
           <div>
             <div class="item-keyword">
-              <div>热词：</div>
+              <div>Hot word：</div>
               <Input type="text" v-model="item.keywords"> </Input>
             </div>
             <div class="item-score">
-              <div>分数：</div>
+              <div>Score：</div>
               <InputNumber :max="5" :min="0" v-model="item.score"></InputNumber>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <Button type="primary" @click="formValidate.hotWordsSettingItems.splice(index,1)">delete</Button>
           </div>
         </div>
-        <Button @click="addSetItem">添加配置</Button>
+        <Button @click="addSetItem">Setting</Button>
       </FormItem>
       <FormItem label="每日持久化热词Quantity" prop="saveNum">
         <InputNumber :min="0" v-model="formValidate.saveNum" />

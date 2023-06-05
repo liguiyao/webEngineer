@@ -3,7 +3,7 @@
     <Card>
       <div class="operation mb_10">
         <Button @click="addParent" type="primary" icon="md-add"
-          >添加一级分类</Button
+          >Add first level category</Button
         >
       </div>
       <tree-table
@@ -24,7 +24,7 @@
             @click="edit(scope.row)"
             size="small"
             style="margin-right: 5px"
-            >编辑
+            >edit
           </Button>
 
           <Button
@@ -40,7 +40,7 @@
             @click="addChildren(scope.row)"
             size="small"
             style="margin-right: 5px"
-            >添加子分类
+            >add sub
           </Button>
         </template>
       </tree-table>

@@ -170,7 +170,7 @@ export default {
     sendCode() {
       if (this.time === 60) {
         if (this.formSms.mobile === "") {
-          this.$Message.warning("Please 先enter Phone number");
+          this.$Message.warning("Please enter Phone number first");
           return;
         }
         if (!this.verifyStatus) {

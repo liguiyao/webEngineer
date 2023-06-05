@@ -17,7 +17,7 @@
               style="width: 100%"
               class="search-form"
             >
-              <Form-item label="文章标题" prop="title">
+              <Form-item label="article title" prop="title">
                 <Input
                   type="text"
                   v-model="searchForm.title"
@@ -53,8 +53,8 @@
                 v-model="scope.row.openStatus"
                 @on-change="changeSwitch(scope.row)"
               >
-                <span slot="open">展示</span>
-                <span slot="close">隐藏</span>
+                <span slot="open">display</span>
+                <span slot="close">hide</span>
               </i-switch>
             </template>
           </Table>
