@@ -57,7 +57,7 @@ Vue.prototype.linkToStore = function (storeId) {  // 跳转商家端Goods
   console.log(`${config.PC_URL}/Merchant?id=${storeId}`)
   window.open(`${config.PC_URL}/Merchant?id=${storeId}`, '_blank')
 };
-// 订单跳转商家订单页面
+// 订单跳转商家订单Page面
 Vue.prototype.linkToOrders = function (sn) {
   if (localStorage.getItem('storeFlag') == 'false') {
     // 商家

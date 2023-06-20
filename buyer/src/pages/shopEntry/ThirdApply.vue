@@ -127,8 +127,8 @@ export default {
   components: { liliMap: Map, region },
   data () {
     return {
-      loading: false, // 加载状态
-      uploadLoading: false, // 上传加载状态
+      loading: false, // 加载state
+      uploadLoading: false, // 上传加载state
       action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       previewPicture: '', // 预览图片
@@ -152,7 +152,7 @@ export default {
     };
   },
   methods: {
-    // 下一步
+    // Next
     next () {
       this.$refs.thirdForm.validate((valid) => {
         if (valid) {
@@ -207,7 +207,7 @@ export default {
     uploadErr () {
       this.uploadLoading = false;
     },
-    // 查看图片
+    // View图片
     handleView (item) {
       this.previewPicture = item;
       this.visible = true;
@@ -224,7 +224,7 @@ export default {
         item.position.lng + ',' + item.position.lat
       );
     },
-    // 获取Goods分类
+    // 获取Goods Category
     getCategoryList () {
       getCategory(0).then((res) => {
         if (res.success) this.categoryList = res.result;

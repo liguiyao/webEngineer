@@ -8,7 +8,7 @@
           <span>{{serviceTypeList[res.serviceType]}}</span>
         </div>
         <div class="label-item">
-          <span>after sale单状态</span>
+          <span>after sale单state</span>
           <span>{{serviceStatusList[res.serviceStatus]}}</span>
         </div>
 
@@ -45,7 +45,7 @@
         </div>
 
       </div>
-      <h3>Goods详情</h3>
+      <h3>Goods Detail</h3>
       <div class="shop-item">
 
         <div class="goods-item">
@@ -78,9 +78,9 @@ export default {
       orderStatusList: {
         UNDELIVERED: "待发货",
         UNPAID: "Unpaid",
-        PAID: "已付款",
+        PAID: "Paid",
         DELIVERED: "已发货",
-        CANCELLED: "已Cancel",
+        CANCELLED: "Cancel",
         COMPLETED: "completed",
         TAKE: "completed",
       },
@@ -93,7 +93,7 @@ export default {
       },
       serviceStatusList: {
         APPLY: "Apply  after sale",
-        PASS: "通过after sale",
+        PASS: "passafter sale",
         REFUSE: "拒绝after sale",
         BUYER_RETURN: "买家Return goods，待卖家收货",
         SELLER_RE_DELIVERY: "商家换货/补发",

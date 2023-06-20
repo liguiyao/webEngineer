@@ -50,12 +50,12 @@
             </div>
             <div class="item-select-row">
               <InputNumber :min="1" :disabled="goodsSku.quantity === 0" v-model="count"></InputNumber>
-              <span class="inventory"> 库存{{goodsSku.quantity}}</span>
+              <span class="inventory"> stock{{goodsSku.quantity}}</span>
             </div>
           </div>
           <div class="item-select" v-if="goodsSku.goodsType !== 'VIRTUAL_GOODS' && goodsSku.weight !== 0">
             <div class="item-select-title">
-              <p>重量</p>
+              <p>weight</p>
             </div>
             <div class="item-select-row">
               <span class="inventory"> {{goodsSku.weight}}kg</span>
@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-    <!-- Goods详情 -->
+    <!-- Goods Detail -->
     <div class="base-width item-intro" ref="itemIntroGoods">
       <div>Goods介绍</div>
       <div v-html="goodsSku.intro" class="mt_10 ml_10" v-if="goodsSku.intro"></div>
@@ -99,15 +99,15 @@ export default {
     return {
       goodsMsg: {}, // Goods details
       goodsSku: {}, // Goodssku
-      isLoading: false, // 加载状态
+      isLoading: false, // 加载state
       categoryBar: [], // 分类
       onceFlag: true, // 只调用一次
       count: 1, // 购买GoodsQuantity
-      loading: false // Submit加载状态
+      loading: false // Submit加载state
     };
   },
   methods: {
-    // 获取积分Goods详情
+    // 获取积分Goods Detail
     getGoodsDetail () {
       this.isLoading = true;
       pointGoodsDetail(this.$route.query.id).then((res) => {
@@ -141,7 +141,7 @@ export default {
         this.loading = false;
       });
     },
-    handleScroll () { // 监听页面滚动
+    handleScroll () { // 监听Page面滚动
       if (this.onceFlag) {
         this.$nextTick(() => {
           this.changeHeight()
@@ -149,7 +149,7 @@ export default {
         this.onceFlag = false
       }
     },
-    changeHeight () { // 设置Goods详情高度
+    changeHeight () { // 设置Goods Detail高度
       let goodsDetailCon = document.querySelector('.item-intro')
       let heightCss = window.getComputedStyle(goodsDetailCon).height;
       heightCss = parseInt(heightCss.substr(0, heightCss.length - 2)) + 89;
@@ -174,7 +174,7 @@ export default {
   padding-left: 10px;
   margin-top: 10px;
 }
-// Goods图片，price等
+// Goods images，price等
 .item-detail-show {
   width: 1200px;
   margin: 0 auto;
@@ -341,7 +341,7 @@ export default {
   color: red;
   margin-bottom: 5px;
 }
-// Goods详情
+// Goods Detail
 .item-intro {
   margin-top: 10px;
   >div:nth-child(1) {

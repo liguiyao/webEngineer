@@ -280,7 +280,7 @@ export default {
   components: { vueQr },
   data() {
     return {
-      status: 0, // Apply  状态，0为未Apply   1 Apply  中 2 Apply  完成 3 功能暂未Opening
+      status: 0, // Apply  state，0为未Apply   1 Apply  中 2 Apply  完成 3 功能暂未Opening
       applyForm: {}, // Apply  表单
       rules: {
         // 验证规则
@@ -315,7 +315,7 @@ export default {
           },
           {
             validator: (rule, value, callback) => {
-              // 上面有说，Backtrue表示校验通过，Backfalse表示不通过
+              // 上面有说，Backtrue表示校验pass，Backfalse表示不pass
               // this.$u.test.mobile()就是Backtrue或者false的
               return checkBankno(value);
             },
@@ -325,8 +325,8 @@ export default {
       },
       tabName: "goodsChecked", // 当前所在tab
       result: {}, // 审核结果
-      applyLoading: false, // Apply  加载状态
-      goodsLoading: false, // 列表加载状态
+      applyLoading: false, // Apply  加载state
+      goodsLoading: false, // 列表加载state
       withdrawApplyModal: false, // 提现表单显隐
       withdrawPrice: 0, // 提现金额
       goodsData: {}, // Goods数据
@@ -429,12 +429,12 @@ export default {
       }
     },
     changePage(val) {
-      // modify页码
+      // modifyPage码
       this.params.pageNumber = val;
       this.getGoodsData();
     },
     changePageLog(val) {
-      // modify页码 日志
+      // modifyPage码 日志
       this.logParams.pageNumber = val;
       this.getLog();
     },

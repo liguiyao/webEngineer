@@ -59,7 +59,7 @@ export default {
         APP: "移动应用端",
         H5: "移动端",
         WECHAT_MP: "小程序端",
-        PC: "PC端",
+        PC: "PC",
       },
       formValidate: {} // 表单数据
     };

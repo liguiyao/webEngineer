@@ -76,7 +76,7 @@ export default {
 
               // 将市区继续循环
               item.children.forEach((child, childIndex) => {
-                // 判断当前市区是否是已选中状态
+                // 判断当前市区是否是已选中state
                 if (item.checked) {
                   this.$set(child, "checked", true);
                 }
@@ -88,13 +88,13 @@ export default {
           });
         });
 
-        // 禁用
+        // disable
         disabledData.forEach((dis) => {
           // 循环出已经选中的addressid
           dis.areaId.split(",").forEach((ids) => {
             // 循环出省份
             this.data.forEach((item) => {
-              // 如果当前省份下市区全部选中则禁用该省份
+              // 如果当前省份下市区全部选中则disable该省份
               if (dis.selectedAll) {
                 dis.area.split(",").forEach((area) => {
                   if (area == item.name) {
@@ -104,7 +104,7 @@ export default {
               }
               // 将市区继续循环
               item.children.forEach((child, childIndex) => {
-                // 判断当前市区是否是已禁用状态
+                // 判断当前市区是否是已disablestate
                 if (item.disabled) {
                   this.$set(child, "disabled", true);
                 } else {

@@ -1,5 +1,5 @@
 import { Notification, MessageBox  } from "element-ui";
-let wsSignIn; // ws 是否是掉线状态
+let wsSignIn; // ws 是否是掉线state
 import store from "@/store";
 class WsSocket {
   /**
@@ -122,7 +122,7 @@ class WsSocket {
   reconnect() {
     
     /**
-     * 长时间挂载页面中并且重连次数为空的时候进行Tips
+     * 长时间挂载Page面中并且重连次数为空的时候进行Tips
      */
     if (this.config.reconnect.number == 0) {
       MessageBox("当前对话链接已失效，Please 从Close重新进入。", "Tips", {
@@ -136,7 +136,7 @@ class WsSocket {
           window.close();
           Notification({
             title: "对话链接已失效Tips",
-            message: "Please 手动Close当前页面",
+            message: "Please 手动Close当前Page面",
             type: "error",
             position: "top-right",
           });
@@ -144,7 +144,7 @@ class WsSocket {
         .catch(() => {
           Notification({
             title: "对话链接已失效Tips",
-            message: "Please 手动Close当前页面",
+            message: "Please 手动Close当前Page面",
             type: "error",
             position: "top-right",
           });
@@ -159,7 +159,7 @@ class WsSocket {
       position: "top-right",
       duration: 0,
     });
-    // 掉线更改消息状态
+    // 掉线更改消息state
     store.commit('SET_WS_STATUS',true);
     let reconnect = this.config.reconnect;
     if (reconnect.lockReconnect || reconnect.number == 0) {

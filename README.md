@@ -15,7 +15,7 @@ SpringBoot 研发，前端使用 Vue、uniapp开发， **系统全端全部代�
 api不需要单独部署，只需启动一个jar包就可以正常运转 如有需要，可以点击跳转
 https://gitee.com/beijing_hongye_huicheng/lilishop-simplify
 
-### 开发/使用/常见问题 帮助文档
+### 开发/使用/常见问题 help文档
 
 https://docs.pickmall.cn
 
@@ -26,7 +26,7 @@ gitee : https://gitee.com/beijing_hongye_huicheng
 github 镜像: https://github.com/lilishop?tab=repositories
 
 商城UI 项目下3个文件夹 
-buyer：买家PC端，seller：商家端，manager：后台管理端
+buyer：买家PC，seller：商家端，manager：后台管理端
 
 
 ### 演示address
@@ -36,7 +36,7 @@ PS：phone verification code为 ‘111111’
 
 **店铺管理端**：https://store-b2b2c.pickmall.cn 账号：13011111111/111111
 
-**商城PC页面**：https://pc-b2b2c.pickmall.cn
+**商城PCPage面**：https://pc-b2b2c.pickmall.cn
 
 **商城 小程序/公众号/APP**：扫描二维码
 
@@ -105,7 +105,7 @@ PS：phone verification code为 ‘111111’
 | ---------- | ---------- | ---------- | ------- |
 | 构建工具   | webpack    | JS版本     | ES6     |
 | 基础JS框架 | Vue.js     | 视频播放器 | Dplayer |
-| 路由管理   | Vue Router | 状态管理   | Vuex    |
+| 路由管理   | Vue Router | state管理   | Vuex    |
 | 基础UI库   | iView      | UI界面基于 | iView   |
 | 网络Please 求   | axios      |            |         |
 

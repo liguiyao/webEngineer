@@ -10,7 +10,7 @@
         </Form>
       </Row>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10">
-        <!-- 页面展示 -->
+        <!-- Page面展示 -->
         <template slot="shopDisableSlot" slot-scope="scope">
           <i-switch size="large" true-value="OPEN" false-value="CLOSE" v-model="scope.row.status"
                     @on-change="changeSwitch(scope.row)">
@@ -106,11 +106,11 @@ export default {
       infoData: {}, // Goods details
       infoFlag: false, // Evaluate展示
       infoTitle: "", // modal名称
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -175,7 +175,7 @@ export default {
           width: 170
         },
         {
-          title: "页面展示",
+          title: "Page面展示",
           key: "shopDisable",
           align: "left",
           width: 100,
@@ -206,7 +206,7 @@ export default {
                     },
                   },
                 },
-                "查看"
+                "View"
               ),
               h(
                 "Button",
@@ -235,7 +235,7 @@ export default {
     };
   },
   methods: {
-    // 切换查看switch
+    // 切换Viewswitch
     changeSwitchView(val) {
       let status = val;
       API_Member.updateMemberReview(this.infoData.id, {status}).then(
@@ -249,13 +249,13 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -266,7 +266,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    //列表直接select页面是否展示
+    //列表直接selectPage面是否展示
     changeSwitch(v) {
       let status = v.status;
       API_Member.updateMemberReview(v.id, {status: status}).then((res) => {

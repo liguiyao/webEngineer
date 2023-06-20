@@ -28,9 +28,9 @@ npm run lint
 ### Customize configuration
 详情点击 [https://cli.vuejs.org/zn/config/](https://cli.vuejs.org/zn/config/).
 
-####  login.vue页面，测试时不走权限，直接return  318行
+####  login.vuePage面，测试时不走权限，直接return  318行
 ####  util.initRouter 方法，开发时注释掉Login验证，调用路由接口验证
-####  Main.vue 页面，241行，modify，避免报错
+####  Main.vue Page面，241行，modify，避免报错
 
 #### main-components  头部，左侧所有内容
 

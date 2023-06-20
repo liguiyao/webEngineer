@@ -18,7 +18,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="活动状态" prop="promotionStatus">
+          <Form-item label="活动state" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
               placeholder="Please select"
@@ -26,8 +26,8 @@
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
-              <Option value="START">已开始/上架</Option>
-              <Option value="END">已结束/下架</Option>
+              <Option value="START">已开始/On</Option>
+              <Option value="END">已结束/Off</Option>
               <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
@@ -68,11 +68,11 @@
                 class="mr_5"
                 v-if="row.promotionStatus === 'CLOSE' || row.promotionStatus === 'NEW'"
                 @click="edit(row)"
-                >编辑</Button
+                >edit</Button
               >
 
               <Button type="info" size="small" class="mr_5" v-else @click="manage(row)"
-                >查看</Button
+                >View</Button
               >
 
               <Button
@@ -141,11 +141,11 @@ export default {
   data() {
     return {
       selectDate: [],
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime",
         order: "desc", // default排序方式
       },
@@ -171,7 +171,7 @@ export default {
         },
 
         {
-          title: "活动状态",
+          title: "活动state",
           key: "promotionStatus",
           width: 100,
           render: (h, params) => {
@@ -209,12 +209,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -227,7 +227,7 @@ export default {
       this.getDataList();
     },
     edit(v) {
-      // 编辑
+      // edit
       this.$router.push({ name: "manager-seckill-add", query: { id: v.id } });
     },
     manage(v) {
@@ -236,14 +236,14 @@ export default {
     },
 
     off(v) {
-      // 下架
+      // Off
       this.$Modal.confirm({
         title: "Tips",
-        content: "您Confirm要下架该活动吗？",
+        content: "您Confirm要Off该活动吗？",
         onOk: () => {
           updateSeckillStatus(v.id).then((res) => {
             if (res.success) {
-              this.$Message.success("下架success");
+              this.$Message.success("Offsuccess");
               this.getDataList();
             }
           });
@@ -275,7 +275,7 @@ export default {
         this.searchForm.startTime = null;
         this.searchForm.endTime = null;
       }
-      // 带多条件search参数获取表单数据
+      // 带多items件search参数获取表单数据
       getSeckillList(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {

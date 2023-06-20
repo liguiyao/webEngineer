@@ -28,7 +28,7 @@
       <Row class="operation padding-row">
         <Button @click="add" type="primary">添加</Button>
         <Button @click="delAll">批量delete</Button>
-        <Button @click="resetPass">重置密码</Button>
+        <Button @click="resetPass">reset密码</Button>
       </Row>
       <br>
       <Table
@@ -181,7 +181,7 @@ export default {
   data() {
     return {
       open:0,
-      loading: true, // 加载状态
+      loading: true, // 加载state
       selectCount: 0, // 已选Quantity
       selectList: [], // 已选数据列表
       searchForm: { // Please 求参数
@@ -192,7 +192,7 @@ export default {
         sort: "createTime",
         order: "desc"
       },
-      modalType: 0, // 新增编辑标识
+      modalType: 0, // 新增edit标识
       userModalVisible: false, // 用户modal显隐
       userEditModalVisible:false,
       modalTitle: "", // modal标题
@@ -232,7 +232,7 @@ export default {
           {validator: validateMobile, trigger: "blur"}
         ]
       },
-      submitLoading: false, // Submit状态
+      submitLoading: false, // Submitstate
       columns: [ // 表头
         {
           type: "selection",
@@ -308,7 +308,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "state",
           key: "status",
           align: "center",
           width: 130,
@@ -327,7 +327,7 @@ export default {
                 h("Badge", {
                   props: {
                     status: "error",
-                    text: "禁用"
+                    text: "disable"
                   }
                 })
               ]);
@@ -339,7 +339,7 @@ export default {
               value: true
             },
             {
-              label: "禁用",
+              label: "disable",
               value: false
             }
           ],
@@ -379,7 +379,7 @@ export default {
                     }
                   }
                 },
-                "禁用"
+                "disable"
               );
             } else {
               enableOrDisable = h(
@@ -418,7 +418,7 @@ export default {
                     }
                   }
                 },
-                "编辑"
+                "edit"
               ),
               enableOrDisable,
               h(
@@ -508,20 +508,20 @@ export default {
     handleSelectDep(v) {
       this.searchForm.departmentId = v;
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getUserList();
       this.clearSelectAll();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.searchForm.pageNumber = 1;
       this.getUserList();
     },
     getUserList() {
-      // 多条件search用户列表
+      // 多items件search用户列表
       this.loading = true;
       getUserListData(this.searchForm).then(res => {
         this.loading = false;
@@ -557,18 +557,18 @@ export default {
         }
       });
     },
-    // 重置密码
+    // reset密码
     resetPass() {
       if (this.selectCount == 0) {
         this.$Message.warning('Please 选中数据后重试!');
         return
       }
       this.$Modal.confirm({
-        title: "确认重置",
+        title: "确认reset",
         content:
-          "您确认要重置所选的 " +
+          "您确认要reset所选的 " +
           this.selectCount +
-          " 条用户数据密码为【123456】?",
+          " items用户数据密码为【123456】?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -604,7 +604,7 @@ export default {
     submitUser() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          // 添加用户 避免编辑后传入id
+          // 添加用户 避免edit后传入id
           const params = JSON.parse(JSON.stringify(this.form))
           console.warn(params)
           delete params.id;
@@ -653,7 +653,7 @@ export default {
       this.newMember = false
       this.userModalVisible = true;
     },
-    // 编辑用户
+    // edit用户
     edit(v) {
       console.warn(v)
       getClerk(v.id).then(res => {
@@ -700,14 +700,14 @@ export default {
         }
       });
     },
-    // 禁用
+    // disable
     disable(v) {
       let params = {
         status: false
       }
       this.$Modal.confirm({
-        title: "确认禁用",
-        content: "您确认要禁用用户 " + v.clerkName + " ?",
+        title: "确认disable",
+        content: "您确认要disable用户 " + v.clerkName + " ?",
         loading: true,
         onOk: () => {
           enableClerk(v.id, params).then(res => {
@@ -737,12 +737,12 @@ export default {
         }
       });
     },
-    // 选中状态
+    // 选中state
     showSelect(e) {
       this.selectList = e;
       this.selectCount = e.length;
     },
-    // 清除选中状态
+    // 清除选中state
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
@@ -754,7 +754,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条店员?",
+        content: "您确认要delete所选的 " + this.selectCount + " items店员?",
         loading: true,
         onOk: () => {
           let ids = "";

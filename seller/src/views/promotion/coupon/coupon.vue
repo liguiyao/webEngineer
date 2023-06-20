@@ -18,7 +18,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="活动状态" prop="promotionStatus">
+          <Form-item label="活动state" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
               placeholder="Please select"
@@ -26,8 +26,8 @@
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
-              <Option value="START">已开始/上架</Option>
-              <Option value="END">已结束/下架</Option>
+              <Option value="START">已开始/On</Option>
+              <Option value="END">已结束/Off</Option>
               <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
@@ -47,7 +47,7 @@
             icon="ios-search"
             >search</Button
           >
-          <Button @click="handleReset" class="search-btn">重置</Button>
+          <Button @click="handleReset" class="search-btn">reset</Button>
         </Form>
       </Row>
       <Row class="operator padding-row">
@@ -72,10 +72,10 @@
             type="info"
             size="small"
             @click="see(row)"
-            >编辑</Button
+            >edit</Button
           >
           <Button v-else type="default" size="small" @click="see(row, 'only')"
-            >查看</Button
+            >View</Button
           >
           <Button
             v-if="
@@ -126,11 +126,11 @@ export default {
   data() {
     return {
       selectDate: [],
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "startTime", // default排序字段
         order: "desc", // default排序方式
       },
@@ -225,7 +225,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "state",
           width: 100,
           key: "promotionStatus",
           fixed: "right",
@@ -259,7 +259,7 @@ export default {
     add() {
       this.$router.push({ name: "add-coupon" });
     },
-    /** 跳转至领取详情页面 */
+    /** 跳转至领取详情Page面 */
     receiveInfo(v) {
       this.$router.push({ name: "member-receive-coupon", query: { id: v.id } });
     },
@@ -312,17 +312,17 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 跳转编辑coupon页面
+    // 跳转editcouponPage面
     see(v, only) {
       let data;
       only ? (data = { onlyView: true, id: v.id }) : (data = { id: v.id });
       this.$router.push({ name: "add-coupon", query: data });
     },
-    // 下架coupon
+    // Offcoupon
     remove(v) {
       this.$Modal.confirm({
-        title: "确认下架",
-        content: "确认要下架此coupon么?",
+        title: "confirm take off",
+        content: "确认要Off此coupon么?",
         loading: true,
         onOk: () => {
           this.loading = false;
@@ -332,7 +332,7 @@ export default {
           updateCouponStatus(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架success");
+              this.$Message.success("Offsuccess");
               this.clearSelectAll();
               this.getDataList();
             }
@@ -341,7 +341,7 @@ export default {
       });
     },
 
-    // 批量下架
+    // 批量Off
     delAll() {
       if (this.selectCount <= 0) {
         this.$Message.warning("您还未select要Close的coupon");
@@ -349,7 +349,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认Close",
-        content: "您确认要Close所选的 " + this.selectCount + " 条数据?",
+        content: "您确认要Close所选的 " + this.selectCount + " items数据?",
         loading: true,
         onOk: () => {
           let ids = [];
@@ -363,7 +363,7 @@ export default {
           updateCouponStatus(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架success");
+              this.$Message.success("Offsuccess");
               this.clearSelectAll();
               this.getDataList();
             }

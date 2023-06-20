@@ -502,7 +502,7 @@ export const modelData = [
   },
   {
     type: "goods",
-    name: "Goods分类",
+    name: "Goods Category",
     img: "md-image",
     notAdd: true,
     notLink: true,
@@ -576,7 +576,7 @@ export const modelData = [
     options: {
       list: [
         {
-          title: [{ context: "这是一条公告" }],
+          title: [{ context: "这是一items公告" }],
           color: "#666",
           bk_color: "#FFF",
           direction: "horizontal",

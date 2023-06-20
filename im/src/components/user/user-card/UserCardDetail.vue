@@ -25,7 +25,7 @@
         <div class="user-sign">
           <div class="sign-arrow"></div>
           <i class="iconfont icon-bianji" />
-          <span>编辑个签，展示我的独特态度。 </span>
+          <span>edit个签，展示我的独特态度。 </span>
         </div>
 
         <div class="card-rows no-select">
@@ -185,7 +185,7 @@ export default {
       this.$emit("close");
     },
 
-    // 点击编辑备注信息
+    // 点击edit备注信息
     clickEditRemark() {
       this.editRemark.isShow = true;
       this.editRemark.text = this.detail.nickname_remark;
@@ -220,7 +220,7 @@ export default {
       });
     },
 
-    // 编辑好友备注信息
+    // edit好友备注信息
     editRemarkSubmit() {
       let data = {
         friend_id: this.detail.user_id,

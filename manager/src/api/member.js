@@ -6,12 +6,12 @@ import {
   deleteRequest,
 } from "@/libs/axios";
 
-//   获取分页
+//   获取分Page
 export const getMember = (params) => {
   return getRequest("/member/getByPage", params);
 };
 
-// 分页获取会员Evaluate
+// 分Page获取会员Evaluate
 export const getMemberReview = (params) => {
   return getRequest("/member/evaluation/getByPage", params);
 };
@@ -25,7 +25,7 @@ export const getMemberInfoReview = (id) => {
 export const delMemberReview = (id) => {
   return putRequest(`/member/evaluation/delete/${id}`);
 };
-// modifyEvaluate状态
+// modifyEvaluatestate
 export const updateMemberReview = (id, params) => {
   return getRequest(`/member/evaluation/updateStatus/${id}`, params);
 };
@@ -89,7 +89,7 @@ export const withdrawApply = (params) => {
   return postRequest("/wallet/withdrawApply", params);
 };
 
-//会员状态modify
+//会员statemodify
 export const updateMemberStatus = (params) => {
   return putRequest("/passport/member/updateMemberStatus", params);
 };

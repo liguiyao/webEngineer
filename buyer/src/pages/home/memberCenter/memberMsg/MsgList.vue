@@ -4,7 +4,7 @@
 
     <Table v-if="params.status != 'ALREADY_REMOVE' " :columns="messageColumns" :data="messageData.records"></Table>
     <Table v-if="params.status == 'ALREADY_REMOVE' " :columns="messageDelColumns" :data="messageData.records"></Table>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <Page
       style="float:right;margin-top:10px"
       :current="params.pageNumber"
@@ -139,19 +139,19 @@ export default {
     }
   },
   methods: {
-    // 消息状态发生变化
+    // 消息state发生变化
     statusChange (index) {
       if (index === 0) { this.params.status = 'UN_READY' }
       if (index === 1) { this.params.status = 'ALREADY_READY' }
       if (index === 2) { this.params.status = 'ALREADY_REMOVE' }
       this.getList()
     },
-    // modify页码
+    // modifyPage码
     changePage (v) {
       this.params.pageNumber = v;
       this.getList();
     },
-    // modify页数
+    // modifyPage数
     changePageSize (v) {
       this.params.pageSize = v;
       this.getList();

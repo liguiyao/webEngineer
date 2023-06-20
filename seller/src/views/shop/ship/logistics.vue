@@ -97,11 +97,11 @@ export default {
     return {
       row: {},
       openModal: false,
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
       },
@@ -134,7 +134,7 @@ export default {
           sortable: false,
         },
         {
-          title: "状态",
+          title: "state",
           key: "selected",
           minWidth: 120,
           sortable: true,
@@ -219,7 +219,7 @@ export default {
     };
   },
   methods: {
-    //获取状态
+    //获取state
     getfaceSheetFlag(e) {
       console.log(e);
       if (e === true) {

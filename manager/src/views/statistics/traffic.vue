@@ -177,7 +177,7 @@ export default {
 
       this.orderChart.render();
     },
-    // 通过时间来筛选
+    // pass时间来筛选
     clickBreadcrumb(item, index) {
       let callback = JSON.parse(JSON.stringify(item));
 

@@ -67,17 +67,17 @@
     },
     data() {
       return {
-        loading: true, // 表单加载状态
-        modalType: 0, // 添加或编辑标识
-        modalVisible: false, // 添加或编辑显示
-        modalTitle: "", // 添加或编辑标题
+        loading: true, // 表单加载state
+        modalType: 0, // 添加或edit标识
+        modalVisible: false, // 添加或edit显示
+        modalTitle: "", // 添加或edit标题
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         form: {
-          // 添加或编辑表单对象初始化数据
+          // 添加或edit表单对象初始化数据
           addressName: "",
           center: "",
           address:"",//Full address
@@ -125,7 +125,7 @@
             },
           ],
         },
-        submitLoading: false, // 添加或编辑Submit状态
+        submitLoading: false, // 添加或editSubmitstate
         columns: [
           // 表头
           {
@@ -200,12 +200,12 @@
       init() { // 初始化数据
         this.getDataList();
       },
-      // 分页 改变页码
+      // 分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageSize = v;
         this.getDataList();
@@ -216,7 +216,7 @@
         this.searchForm.pageSize = 10;
         this.getDataList();
       },
-      // 重置
+      // reset
       handleReset() {
         this.$refs.searchForm.resetFields();
         this.searchForm.pageNumber = 1;
@@ -262,7 +262,7 @@
         this.form.latitude = v.center.split(',')[1]
       },
 
-      //Save或者编辑
+      //Save或者edit
       handleSubmit() {
         this.$refs.form.validate((valid) => {
           if (valid) {
@@ -279,7 +279,7 @@
                 }
               });
             } else {
-              // 编辑
+              // edit
               API_Shop.editShopAddress(this.form.id, this.form).then((res) => {
                 this.submitLoading = false;
                 if (res.success) {

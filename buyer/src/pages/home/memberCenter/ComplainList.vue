@@ -6,7 +6,7 @@
       <div class="order-title">
         <Row class="order-row title">
           <i-col span="12">Goods details</i-col>
-          <i-col span="4">Complaint状态</i-col>
+          <i-col span="4">Complaintstate</i-col>
           <i-col span="4">Complaint主题</i-col>
           <i-col span="6"></i-col>
         </Row>
@@ -47,7 +47,7 @@
       </div>
       <Spin v-if="loading"></Spin>
     </div>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <div class="page-size">
       <Page :total="total" @on-change="changePageNum"
         @on-page-size-change="changePageSize"
@@ -65,14 +65,14 @@ export default {
   name: 'ComplainList',
   data () {
     return {
-      loading: false, // 加载状态
+      loading: false, // 加载state
       list: [], // Complaint列表
-      statusLabel: { // Complaint状态
+      statusLabel: { // Complaintstate
         NO_APPLY: '未Apply  ',
         APPLYING: 'Apply  中',
         COMPLETE: 'completed',
         EXPIRED: '已失效',
-        CANCEL: '已Cancel',
+        CANCEL: 'Cancel',
         NEW: '新订单'
       },
       total: 0, // Complaint总数
@@ -95,11 +95,11 @@ export default {
         }
       })
     },
-    changePageNum (val) { // 改变页码
+    changePageNum (val) { // 改变Page码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // 改变页数
+    changePageSize (val) { // 改变Page数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()

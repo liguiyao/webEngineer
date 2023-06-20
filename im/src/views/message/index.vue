@@ -84,7 +84,7 @@
                             }}
                           </p>
                           <div v-show="item.unread" class="larkc-tag">
-                            {{ item.unread }}条未读
+                            {{ item.unread }}items未读
                           </div>
                           <div v-show="item.is_top" class="larkc-tag top">
                             TOP
@@ -205,7 +205,7 @@ export default {
       // header 工具菜单
       subMenu: false,
 
-      // 对话消息列表加载状态[0:加载中;1:加载完成;2:加载失败;]
+      // 对话消息列表加载state[0:加载中;1:加载完成;2:加载失败;]
       loadStatus: 0,
 
       // 消息未读数计时器
@@ -238,7 +238,7 @@ export default {
       return `${len}px`;
     },
 
-    // 当前对话好友在线状态
+    // 当前对话好友在线state
     isFriendOnline () {
       let index = findTalkIndex(this.index_name);
       return index >= 0 && this.talks[index].is_online == 1;
@@ -276,7 +276,7 @@ export default {
       }
     },
 
-    // 监听好友在线状态
+    // 监听好友在线state
     monitorFriendsStatus (value) {
       this.$store.commit("UPDATE_TALK_ITEM", {
         index_name: `1_${value.friend_id}`,
@@ -297,7 +297,7 @@ export default {
     await this.initialize();
     await this.loadUserSetting();
     /**
-     * 如果说有id 说明是用户点击 “联系客服” 进入的该页面
+     * 如果说有id 说明是用户点击 “联系客服” 进入的该Page面
      * 所以创建会话 并Please 求用户列表
      * 如果没有id说明当前商家Login 直接Please 求用户列表
      */
@@ -354,7 +354,7 @@ export default {
       }
     },
 
-    // 监听自定义滚动条事件
+    // 监听自定义滚动items事件
     scrollEvent () {
       let scrollbarEl = this.$refs.menusScrollbar.wrap;
       scrollbarEl.onscroll = () => {

@@ -78,13 +78,13 @@
           businessLicense: "",
           license: "",
         },
-        loading: false, // 加载状态
+        loading: false, // 加载state
         formValidate: { // 验证规则
           signName: [{required: true, message: "签名名称不能为空", trigger: "blur"}],
           remark: [{required: true, message: "Apply  说明不能为空", trigger: "blur"}],
           businessLicense: [{required: true, message: " ", trigger: "blur"}],
         },
-        submitLoading: false //Submit加载状态
+        submitLoading: false //Submit加载state
       }
 
     },

@@ -15,7 +15,7 @@
             <Icon type="md-eye" class="see-icon" />
             <div slot="content">
               <img :src="currentValue" alt="该资源不存在" style="width: 100%;margin: 0 auto;display: block;" />
-              <a @click="viewImage=true" style="margin-top:5px;text-align:right;display:block">查看大图</a>
+              <a @click="viewImage=true" style="margin-top:5px;text-align:right;display:block">View大图</a>
             </div>
           </Poptip>
       </Input>
@@ -81,7 +81,7 @@ export default {
     return {
       accessToken: {}, // 验证token
       currentValue: this.value, // 当前值
-      loading: false, // 加载状态
+      loading: false, // 加载state
       viewImage: false, // 是否预览图片
       uploadFileUrl: uploadFile // 上传路径
     };

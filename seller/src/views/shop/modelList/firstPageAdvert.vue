@@ -9,7 +9,7 @@
             </div>
             <img :src="item.img" width="170" height="170" alt="">
             <div class="setup-box">
-                <div><Button size="small" @click.stop="handleSelectModel(item)">编辑</Button></div>
+                <div><Button size="small" @click.stop="handleSelectModel(item)">edit</Button></div>
             </div>
         </div>
         <Modal

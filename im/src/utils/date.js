@@ -46,7 +46,7 @@ export function formatDate(date, fmt) {
  *
  * @param {[long]} timestamp 时间戳（单位：毫秒），形如：1550789954260
  * @param {boolean} mustIncludeTime true表示输出的格式里一定会包含“时间:分钟”
- * ，否则不包含（参考Wechat，不包含时分的情况，用于首页“消息”中显示时）
+ * ，否则不包含（参考Wechat，不包含时分的情况，用于Home“消息”中显示时）
  *
  * @return {string} 输出格式形如：“刚刚”、“10:30”、“昨天 12:04”、“前天 20:51”、“星期二”、“2019/2/21 12:09”等形式
  */

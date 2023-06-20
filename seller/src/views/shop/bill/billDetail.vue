@@ -14,7 +14,7 @@
       <p slot="title">账单详细</p>
 
       <div class="tips-status">
-        <span>账单状态</span>
+        <span>账单state</span>
 
         <span class="theme_color">{{
           bill.billStatus | unixSellerBillStatus
@@ -161,8 +161,8 @@ export default {
       id: "", // 账单id
       bill: {}, // 商家信息
       orderParam: {
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "id", // default排序字段
         order: "desc", // default排序方式
         flowType: "PAY",
@@ -177,7 +177,7 @@ export default {
           key: "orderSn",
         },
         {
-          title: "订单金额",
+          title: "Amount",
           key: "finalPrice",
           render: (h, params) => {
             return h(
@@ -297,8 +297,8 @@ export default {
       orderTotal: 0, // 订单Quantity
       //退单部分
       refundParam: {
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "id", // default排序字段
         order: "desc", // default排序方式
         flowType: "REFUND",
@@ -401,8 +401,8 @@ export default {
       refundTotal: 0, // 退单Quantity
       //分销佣金部分
       distributionParam: {
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "id", // default排序字段
         order: "desc", // default排序方式
       },
@@ -599,7 +599,7 @@ export default {
       this.data[2].name = "出帐日期";
       this.data[2].value = bill.createTime;
 
-      this.data[3].name = "当前状态";
+      this.data[3].name = "当前state";
       this.data[3].value = filters.unixSellerBillStatus(bill.billStatus);
 
       this.data[4].name = "当前店铺";
@@ -608,7 +608,7 @@ export default {
       this.data[5].name = "平台打款时间";
       this.data[5].value = bill.payTime === null ? "Unpaid" : bill.payTime;
 
-      this.data[6].name = "订单付款总金额";
+      this.data[6].name = "Order pay总金额";
       this.data[6].value = filters.unitPrice(
         bill.orderPrice ? bill.orderPrice : 0,
         "¥"
@@ -623,7 +623,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情PageBack列表Page，modify列表PagekeepAlive为true，确保不刷新Page面
   beforeRouteLeave(to, from, next) {
     if (to.name === "accountStatementBill" || to.name === "storeBill") {
       to.meta.keepAlive = true;

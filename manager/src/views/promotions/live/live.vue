@@ -125,7 +125,7 @@ export default {
         },
 
         {
-          title: "直播状态",
+          title: "直播state",
           render: (h, params) => {
             if (params.row.status == "NEW") {
               return h("div", [h("tag", { props: { color: "blue" } }, "未开始")]);
@@ -164,7 +164,7 @@ export default {
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 ),
               ]
             );
@@ -175,7 +175,7 @@ export default {
     };
   },
   watch: {
-    // 直播状态
+    // 直播state
     "searchForm.status": {
       handler() {
         this.liveData = [];
@@ -207,14 +207,14 @@ export default {
     },
 
     /**
-     * 页面数据大小分页回调
+     * Page面数据大小分Page回调
      */
     changePageSize(val) {
       this.searchForm.pageSize = val;
       this.getStoreLives();
     },
     /**
-     * 分页回调
+     * 分Page回调
      */
     changePageNumber(val) {
       this.searchForm.pageNumber = val;

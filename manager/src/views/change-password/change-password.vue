@@ -42,8 +42,8 @@ export default {
       }
     };
     return {
-      savePassLoading: false, // Save加载状态
-      editPasswordForm: { // 编辑密码表单
+      savePassLoading: false, // Save加载state
+      editPasswordForm: { // edit密码表单
         oldPassword: "",
         newPassword: "",
         rePassword: "",

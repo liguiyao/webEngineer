@@ -32,12 +32,12 @@ router.beforeEach((to, from, next) => {
   const name = to.name;
 
   if (!Cookies.get('userInfoManager') && name !== 'login') {
-    // 判断是否已经Login且前往的页面不是Login页
+    // 判断是否已经Login且前往的Page面不是LoginPage
     next({
       name: 'login'
     });
   } else if (Cookies.get('userInfoManager') && name === 'login') {
-    // 判断是否已经Login且前往的是Login页
+    // 判断是否已经Login且前往的是LoginPage
     Util.title();
     next({
       name: 'home_index'

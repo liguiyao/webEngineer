@@ -51,7 +51,7 @@ export default {
   },
   data () {
     return {
-      loading: false, // 加载状态
+      loading: false, // 加载state
       form: {}, // 表单数据
       rules: { // 验证规则
         settlementBankAccountName: [
@@ -70,7 +70,7 @@ export default {
     };
   },
   methods: {
-    // 下一步
+    // Next
     next () {
       this.$refs.secondForm.validate((valid) => {
         if (valid) {

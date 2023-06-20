@@ -11,7 +11,7 @@ let util = {
 };
 
 util.title = function (title) {
-  title = title || `${config.title} 商家后台`;
+  title = title || `${config.title} background`;
   window.document.title = title;
 };
 
@@ -151,7 +151,7 @@ util.setCurrentPath = function (vm, name) {
     if (currentPathObj.children.length <= 1 && currentPathObj.name == 'home') {
       currentPathArr = [
         {
-          title: '首页',
+          title: 'Home',
           path: '',
           name: 'home_index'
         }
@@ -159,7 +159,7 @@ util.setCurrentPath = function (vm, name) {
     } else if (currentPathObj.children.length <= 1 && currentPathObj.name !== 'home') {
       currentPathArr = [
         {
-          title: '首页',
+          title: 'Home',
           path: '/home',
           name: 'home_index'
         },
@@ -175,7 +175,7 @@ util.setCurrentPath = function (vm, name) {
       })[0];
       currentPathArr = [
         {
-          title: '首页',
+          title: 'Home',
           path: '/home',
           name: 'home_index'
         },
@@ -206,7 +206,7 @@ util.openNewPage = function (vm, name, argu, query) {
   let i = 0;
   let tagHasOpened = false;
   while (i < openedPageLen) {
-    if (name == storeOpenedList[i].name) { // 页面已经打开
+    if (name == storeOpenedList[i].name) { // Page面已经打开
       vm.$store.commit('storeOpenedList', {
         index: i,
         argu: argu,
@@ -317,7 +317,7 @@ util.initRouter = function (vm) { // 初始化路由
     path: '/*',
     name: 'error-404',
     meta: {
-      title: '404-页面不存在'
+      title: '404-Page面不存在'
     },
     component: 'error-page/404'
   }];
@@ -341,7 +341,7 @@ util.initRouter = function (vm) { // 初始化路由
         let tt = t[k].children;
         for (let z = 0; z < tt.length; z++) {
           tt[z].children = null
-          // 给所有三级路由添加字段，显示一级菜单name，方便点击页签时的选中筛选
+          // 给所有三级路由添加字段，显示一级菜单name，方便点击Page签时的选中筛选
           tt[z].firstRouterName = menuData[i].name
         }
       }
@@ -444,8 +444,8 @@ util.initRouterNode = function (routers, data) {  // data为所有子菜单数�
       util.initRouterNode(menu.children, item.children);
     }
     let meta = {};
-    // 给页面添加标题
-    meta.title = menu.title ? menu.title + " - " + config.title + "商家后台" : null;
+    // 给Page面添加标题
+    meta.title = menu.title ? menu.title + " - " + config.title + "background" : null;
     meta.firstRouterName = item.firstRouterName
     meta.keepAlive = menu.keepAlive ? true : false
     menu.meta = meta;

@@ -171,7 +171,7 @@ export default {
 
       this.orderChart.render();
     },
-    // 条件查询
+    // items件查询
     clickBreadcrumb(item, index) {
       let callback = item;
 

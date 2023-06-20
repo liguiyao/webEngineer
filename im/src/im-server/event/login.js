@@ -1,7 +1,7 @@
 import Base from './base'
 
 /**
- * 好友状态事件
+ * 好友state事件
  */
 class Login extends Base {
   /**

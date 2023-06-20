@@ -173,9 +173,9 @@ export default {
     return {
       selectedMember: false, //是否是Others组件调用
       descTitle: "", // modal标题
-      descFlag: false, //编辑查看框
+      descFlag: false, //editView框
       openSearch: true, // 显示search
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       updateRegion: false, // 显示所在地
       searchForm: {
         // Please 求参数
@@ -282,7 +282,7 @@ export default {
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 ),
 
                 h(
@@ -322,7 +322,7 @@ export default {
                       },
                     },
                   },
-                  "编辑"
+                  "edit"
                 ),
               ]
             );
@@ -342,12 +342,12 @@ export default {
     init() {
       this.getData();
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getData();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -359,15 +359,15 @@ export default {
       this.searchForm.pageSize = 10;
       this.getData();
     },
-    //查看详情modify
+    //View详情modify
     editPerm(val) {
-      this.descTitle = `查看用户 ${val.username}`;
+      this.descTitle = `View用户 ${val.username}`;
       this.descFlag = true;
       this.updateRegion = false;
       this.getMemberInfo(val.id);
     },
     /**
-     * 查询查看会员详情
+     * 查询View会员详情
      */
     getMemberInfo(id) {
       API_Member.getMemberInfoData(id).then((res) => {
@@ -414,7 +414,7 @@ export default {
         onOk: () => {
           API_Member.updateMemberStatus(params).then((res) => {
             if (res.success) {
-              this.$Message.success("禁用success");
+              this.$Message.success("disablesuccess");
               this.getData();
             } else {
               // this.$Message.error(res.message);

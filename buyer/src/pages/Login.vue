@@ -190,7 +190,7 @@ export default {
         code: "",
         mobile: "",
       },
-      verifyStatus: false, // 是否图片验证通过
+      verifyStatus: false, // 是否图片验证pass
       ruleInline: {
         // 验证规则
         username: [{required: true, message: "Please enter username"}],
@@ -374,7 +374,7 @@ export default {
       if (!this.qrCodeTimer) {
         this.qrCodeTimer = setInterval(() => {
 
-          this.qrCodeStatus = 'fail' // 如果过期将二维码转为失效状态
+          this.qrCodeStatus = 'fail' // 如果过期将二维码转为失效state
         }, 10 * 1000);
       }
     },

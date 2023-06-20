@@ -11,14 +11,14 @@
         <Form-item label="发票抬头" prop="receiptTitle">
           <Input type="text" v-model="searchForm.receiptTitle" clearable placeholder="Please enter 发票抬头" style="width: 200px" />
         </Form-item>
-        <Form-item label="状态" prop="receiptStatus">
+        <Form-item label="state" prop="receiptStatus">
           <Select v-model="searchForm.receiptStatus" placeholder="Please select" clearable style="width: 200px">
             <Option :value="0">未开票</Option>
             <Option :value="1">已开票</Option>
           </Select>
         </Form-item>
         <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-        <Button @click="handleReset" class="search-btn">重置</Button>
+        <Button @click="handleReset" class="search-btn">reset</Button>
       </Form>
       <Table class="mt_10" :loading="loading" border :columns="columns" :data="data" ref="table">
         <!-- Order details格式化 -->
@@ -41,14 +41,14 @@ export default {
   name: "receipt",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
-        receiptStatus: "", // 发票状态
+        receiptStatus: "", // 发票state
       },
       columns: [
         {
@@ -103,7 +103,7 @@ export default {
           },
         },
         {
-          title: "发票状态",
+          title: "发票state",
           key: "receiptStatus",
           width: 100,
           tooltip: true,
@@ -120,7 +120,7 @@ export default {
           },
         },
         {
-          title: "订单状态",
+          title: "Status",
           key: "orderStatus",
           width: 100,
           render: (h, params) => {
@@ -130,7 +130,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [
-                h("tag", { props: { color: "blue" } }, "已付款"),
+                h("tag", { props: { color: "blue" } }, "Paid"),
               ]);
             } else if (params.row.orderStatus == "UNDELIVERED") {
               return h("div", [
@@ -150,7 +150,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "CANCELLED") {
               return h("div", [
-                h("tag", { props: { color: "red" } }, "已Cancel"),
+                h("tag", { props: { color: "red" } }, "Cancel"),
               ]);
             }
           },
@@ -203,12 +203,12 @@ export default {
     init() {
       this.getData();
     },
-    // 改变页码
+    // 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getData();
     },
-    // 改变页数
+    // 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getData();
@@ -219,7 +219,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getData();
     },
-    // 重置search条件
+    // resetsearchitems件
     handleReset() {
       this.searchForm = {};
       this.searchForm.pageNumber = 1;

@@ -28,7 +28,7 @@
             <Option value="ACTIVITY">活动获取</Option>
           </Select>
         </Form-item>
-        <Form-item label="活动状态" prop="promotionStatus">
+        <Form-item label="活动state" prop="promotionStatus">
           <Select
             v-model="searchForm.promotionStatus"
             placeholder="Please select"
@@ -36,8 +36,8 @@
             style="width: 200px"
           >
             <Option value="NEW">未开始</Option>
-            <Option value="START">已开始/上架</Option>
-            <Option value="END">已结束/下架</Option>
+            <Option value="START">已开始/On</Option>
+            <Option value="END">已结束/Off</Option>
             <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
@@ -80,14 +80,14 @@
             type="info"
             size="small"
             @click="see(row)"
-            >编辑
+            >edit
           </Button>
           <Button
             v-else
             type="default"
             size="small"
             @click="see(row, 'onlyView')"
-            >查看
+            >View
           </Button>
           <Button
             class="ml_5"
@@ -150,11 +150,11 @@ export default {
   name: "coupon",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "create_time", // default排序字段
         order: "desc", // default排序方式
         getType: "", // default排序方式
@@ -274,7 +274,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "state",
           width: 100,
           key: "promotionStatus",
           align: "center",
@@ -293,7 +293,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      refreshTable: true, // modify选中状态后刷新表格
+      refreshTable: true, // modify选中state后刷新表格
       selectDate: [], //选中的信息
     };
   },
@@ -367,20 +367,20 @@ export default {
       this.getDataList();
     },
     add() {
-      // 跳转添加页面
+      // 跳转添加Page面
       this.$router.push({ name: "add-platform-coupon" });
     },
     info(v) {
-      // 查看coupon
+      // Viewcoupon
       this.$router.push({ name: "platform-coupon-info", query: { id: v.id } });
     },
     changePage(v) {
-      // 改变页码
+      // 改变Page码
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
     changePageSize(v) {
-      // 改变页数
+      // 改变Page数
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -392,7 +392,7 @@ export default {
       this.getDataList();
     },
     clearSelectAll() {
-      // 清除选中状态
+      // 清除选中state
       this.$refs.table.selectAll(false);
     },
     /**
@@ -426,13 +426,13 @@ export default {
     },
 
     see(v, only) {
-      // 跳转编辑页面
+      // 跳转editPage面
       let data;
       only ? (data = { onlyView: true, id: v.id }) : (data = { id: v.id });
       this.$router.push({ name: "edit-platform-coupon", query: data });
     },
     close(v) {
-      // 下架coupon
+      // Offcoupon
       this.$Modal.confirm({
         title: "确认Close",
         // 记得确认modify此处
@@ -458,7 +458,7 @@ export default {
       });
     },
     remove(v) {
-      // 下架coupon
+      // Offcoupon
       this.$Modal.confirm({
         title: "确认delete",
         // 记得确认modify此处
@@ -481,14 +481,14 @@ export default {
       });
     },
     delAll() {
-      // 批量下架
+      // 批量Off
       if (this.selectCount <= 0) {
-        this.$Message.warning("您还未select要下架的coupon");
+        this.$Message.warning("您还未select要Off的coupon");
         return;
       }
       this.$Modal.confirm({
-        title: "确认下架",
-        content: "您确认要下架所选的 " + this.selectCount + " 条数据?",
+        title: "confirm take off",
+        content: "您确认要Off所选的 " + this.selectCount + " items数据?",
         loading: true,
         onOk: () => {
           let ids = [];
@@ -503,7 +503,7 @@ export default {
           updatePlatformCouponStatus(params).then((res) => {
             this.$Modal.remove();
             if (res.success) {
-              this.$Message.success("下架success");
+              this.$Message.success("Offsuccess");
               this.clearSelectAll();
               this.getDataList();
             }

@@ -137,13 +137,13 @@
       </Row>
     </Card>
     <Modal
-      title="下架operation"
+      title="Offoperation"
       v-model="modalVisible"
       :mask-closable="false"
       :width="500"
     >
       <Form ref="underForm" :model="underForm" :label-width="100">
-        <FormItem label="下架原因" prop="reason">
+        <FormItem label="Off原因" prop="reason">
           <Input v-model="underForm.reason" clearable style="width: 100%" />
         </FormItem>
       </Form>
@@ -168,20 +168,20 @@ export default {
   data() {
     return {
       id: "", //要operation的id
-      loading: true, // 表单加载状态
-      modalVisible: false, // 添加或编辑显示
+      loading: true, // 表单加载state
+      modalVisible: false, // 添加或edit显示
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "create_time", // default排序字段
         order: "desc", // default排序方式
       },
       underForm: {
-        // 下架原因
+        // Off原因
         reason: "",
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       columns: [
         {
           title: "goods name",
@@ -240,9 +240,9 @@ export default {
           width: 100,
           render: (h, params) => {
             if (params.row.marketEnable == "DOWN") {
-              return h("Tag", { props: { color: "volcano" } }, "下架");
+              return h("Tag", { props: { color: "volcano" } }, "Off");
             } else if (params.row.marketEnable == "UPPER") {
-              return h("Tag", { props: { color: "green" } }, "上架");
+              return h("Tag", { props: { color: "green" } }, "On");
             }
           },
         },
@@ -291,7 +291,7 @@ export default {
                       },
                     },
                   },
-                  "上架"
+                  "On"
                 ),
                 h(
                   "Button",
@@ -356,12 +356,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -383,7 +383,7 @@ export default {
         }
       });
     },
-    // 编辑
+    // edit
     edit(v) {
       this.id = v.id;
       if (v.underMessage) {
@@ -393,7 +393,7 @@ export default {
       }
       this.modalVisible = true;
     },
-    // 下架
+    // Off
     lower() {
       lowGoods(this.id, this.underForm).then((res) => {
         this.$Modal.remove();
@@ -422,7 +422,7 @@ export default {
       });
     },
 
-    //查看Goods详情
+    //ViewGoods Detail
     showDetail(v) {
       let id = v.id;
       this.$router.push({

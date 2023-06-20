@@ -140,7 +140,7 @@ export default {
         }
       });
     },
-    // 下一步
+    // Next
     nextPage(step) {
       this.currentIndex = step;
       this.getData("next");

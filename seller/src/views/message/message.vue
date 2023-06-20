@@ -220,8 +220,8 @@
         loading: true, // 列表加载的loading
         params: { // Please 求消息列表参数
           status: "UN_READY",
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc" // default排序方式
         },
@@ -229,12 +229,12 @@
         totalUnread: 0, // 未读总数
         totalRead: 0, // 已读总数
         totalRemove: 0, // 回收站消息数
-        currentMesList: [], // 当前状态消息
+        currentMesList: [], // 当前state消息
         unreadMesList: [], // 未读消息
         hasReadMesList: [], // 已读消息
         recyclebinList: [], // 回收站消息
-        currentMessageType: "unread", // 当前列表消息状态
-        showMesTitleList: true, // 是否展示消息状态列表
+        currentMessageType: "unread", // 当前列表消息state
+        showMesTitleList: true, // 是否展示消息state列表
         unReadCount: 0, // 未读消息Quantity
         hasReadCount: 0, // 已读消息Quantity
         recycleBinCount: 0, // 回收站消息Quantity
@@ -315,12 +315,12 @@
       };
     },
     methods: {
-      // 改变页数
+      // 改变Page数
       changePage(v) {
         this.params.pageNumber = v;
         this.refreshMessage();
       },
-      // 改变页码
+      // 改变Page码
       changePageSize(v) {
         this.params.pageSize = v;
         this.refreshMessage();
@@ -396,7 +396,7 @@
       this.getAll();
     },
     watch: {
-      // 监听路由变化通过id获取数据
+      // 监听路由变化passid获取数据
       $route(to, from) {
         if (to.name == "message_index") {
           this.getAll();

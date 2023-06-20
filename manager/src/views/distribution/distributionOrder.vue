@@ -26,7 +26,7 @@
             <Option v-for="item in shopList" :value="item.id" :key="item.id">{{ item.storeName }}</Option>
           </Select>
         </Form-item>
-        <Form-item label="order time">
+        <Form-item label="Time">
           <DatePicker type="daterange" v-model="timeRange" format="yyyy-MM-dd" placeholder="select时间"
                       style="width: 210px"></DatePicker>
         </Form-item>
@@ -79,13 +79,13 @@
     data() {
       return {
         timeRange: [], // 范围时间
-        orderStatusList, // 订单状态列表
+        orderStatusList, // Status列表
         shopList: [], // 店铺列表
         distributionId: this.$route.query.id, // 分销id
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: { // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort:"create_time",
           order:"desc"
         },
@@ -152,12 +152,12 @@
         this.getDataList();
         this.getShopList()
       },
-      //分页 改变页码
+      //分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageSize = v;
         this.getDataList();
@@ -178,7 +178,7 @@
           this.searchForm.startTime = this.$options.filters.unixToDate(startTime / 1000)
           this.searchForm.endTime = this.$options.filters.unixToDate(endTime / 1000)
         }
-        // 带多条件search参数获取表单数据 Please 自行modify接口
+        // 带多items件search参数获取表单数据 Please 自行modify接口
         getDistributionOrder(this.searchForm).then(res => {
           this.loading = false;
           if (res.success) {
@@ -209,7 +209,7 @@
       searchChange(val) { // 店铺search，键盘点击回调
         this.getShopList(val)
       },
-      filterStatus (status) { // 过滤订单状态
+      filterStatus (status) { // 过滤Status
         const arr = [
           {status: 'WAIT_BILL', title: '待结算'},
           {status: 'NO_COMPLETED', title: '未完成'},
@@ -224,7 +224,7 @@
           }
         }
       },
-      filterStatusColor (status) { // 状态tag标签颜色
+      filterStatusColor (status) { // statetag标签颜色
         const arr = [
           {status: 'WAIT_BILL', color: 'blue'},
           {status: 'WAIT_CASH', color: 'orange'},

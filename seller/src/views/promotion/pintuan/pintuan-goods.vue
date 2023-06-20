@@ -88,19 +88,19 @@ export default {
   data() {
     return {
       openTip: true, // 显示Tips
-      loading: false, // 表单加载状态
+      loading: false, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
 
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      status: this.$route.query.status, // 查看还是modify
+      status: this.$route.query.status, // View还是modify
       columns: [
         // 活动详情表头
         {
@@ -119,7 +119,7 @@ export default {
           minWidth: 120,
         },
         {
-          title: "状态",
+          title: "state",
           key: "promotionStatus",
           minWidth: 100,
           render: (h, params) => {
@@ -151,7 +151,7 @@ export default {
           minWidth: 120,
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           minWidth: 40,
         },
@@ -172,7 +172,7 @@ export default {
     };
   },
   methods: {
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "pintuan-goods");
       localStorage.storeOpenedList = JSON.stringify(
@@ -218,14 +218,14 @@ export default {
     },
 
     changePage(v) {
-      // 分页 改变页数
+      // 分Page 改变Page数
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
 
     changePageSize(v) {
-      // 分页 改变每页数
+      // 分Page 改变每Page数
       this.searchForm.pageSize = v;
       this.getDataList();
     },
@@ -238,7 +238,7 @@ export default {
     },
 
     handleReset() {
-      // 重置
+      // reset
       this.searchForm.pageNumber = 1;
       this.searchForm.promotionName = "";
       this.selectDate = null;
@@ -286,7 +286,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        content: "您确认要delete所选的 " + this.selectCount + " items数据?",
         onOk: () => {
           let ids = [];
           this.selectList.forEach(function (e) {

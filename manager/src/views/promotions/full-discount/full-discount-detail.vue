@@ -164,7 +164,7 @@
                     <a class="mr_10" @click="linkTo(row.goodsId, row.skuId)">{{
                       row.goodsName
                     }}</a>
-                    <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+                    <Poptip trigger="hover" title="扫码在手机中View" transfer>
                       <div slot="content">
                         <vue-qr
                           :text="wapLinkTo(row.goodsId, row.skuId)"
@@ -221,7 +221,7 @@ export default {
       id: this.$route.query.id, // 活动id
       couponList: [], // Coupon list
       giftList: [], // 赠品列表
-      giftLoading: false, // 赠品加载状态
+      giftLoading: false, // 赠品加载state
       columns: [
         {
           type: "selection",
@@ -245,7 +245,7 @@ export default {
           },
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           minWidth: 40,
         },

@@ -57,11 +57,11 @@ export default {
   name: "shop",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -262,7 +262,7 @@ export default {
                     },
                   },
                 },
-                "查看"
+                "View"
               ),
               h(
                 "Button",
@@ -303,12 +303,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -331,7 +331,7 @@ export default {
     getDataList() {
       console.log(this.searchForm)
       this.loading = true;
-      // 带多条件search参数获取表单数据 Please 自行modify接口
+      // 带多items件search参数获取表单数据 Please 自行modify接口
       getShopListData(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -367,7 +367,7 @@ export default {
         },
       });
     },
-    //查看店铺详细
+    //View店铺详细
     detail(row){
       this.$router.push({ name: "shop-detail", query: { id: row.id } });
     },
@@ -375,8 +375,8 @@ export default {
     audit(v) {
       this.$Modal.confirm({
         title: "审核店铺",
-        content: "您确认要审核通过店铺 " + v.storeName + " ?",
-        okText: "通过",
+        content: "您确认要审核pass店铺 " + v.storeName + " ?",
+        okText: "pass",
         cancelText: "驳回",
         loading: true,
         onOk: () => {

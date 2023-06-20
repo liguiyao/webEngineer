@@ -84,12 +84,12 @@ export default {
   watch: {},
   data() {
     return {
-      modalType: 0, // 是否编辑
+      modalType: 0, // 是否edit
       form: {
         promotionGoodsList: [], // 活动Goods列表
       },
       id: this.$route.query.id, // 砍价活动id
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectedGoods: [], // 已选Goods列表，便于delete
       promotionGoodsList: [], // 活动Goods列表
       formRule: {
@@ -116,7 +116,7 @@ export default {
           },
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           width: 100,
         },
@@ -136,7 +136,7 @@ export default {
           width: 110,
         },
         {
-          title: "活动库存",
+          title: "活动stock",
           slot: "stock",
           width: 110,
         },
@@ -207,13 +207,13 @@ export default {
           );
           delete params.rangeTime;
           let checkResult = true;
-          //如果添加活动的时候select了Goods 则对selectgoods参数做一些校验
+          //如果添加活动的时候select了Goods 则对selectParameter做一些校验
           if (this.form.promotionGoodsList.length > 0) {
             this.form.promotionGoodsList.forEach((res) => {
-              //校验库存参数
+              //校验stock参数
               if (res.stock <= 0 || res.stock > res.quantity) {
                 checkResult = false;
-                this.$Message.error("活动库存不能为0且不能超过Goods库存");
+                this.$Message.error("活动stock不能为0且不能超过Goodsstock");
                 return;
               }
 
@@ -274,7 +274,7 @@ export default {
         }
       });
     },
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-kan-jia-goods");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);

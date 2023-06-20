@@ -7,7 +7,7 @@
             </li>
             <div class="setup-box" style="width:100px;left:1100px;">
                 <div>
-                    <Button size="small" @click.stop="handleSelectModel">编辑</Button>
+                    <Button size="small" @click.stop="handleSelectModel">edit</Button>
                 </div>
             </div>
         </ul>
@@ -21,7 +21,7 @@
                 </p>
                 <div class="setup-box">
                     <div>
-                        <Button size="small" @click.stop="handleSelectGoods(item)">编辑</Button>
+                        <Button size="small" @click.stop="handleSelectGoods(item)">edit</Button>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@ export default {
         changeCurr(index){
             this.currentIndex = index;
         },
-        // 编辑
+        // edit
         handleSelectModel (item,type) {
             this.selected = item;
             this.showModal = true

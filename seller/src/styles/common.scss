@@ -1,4 +1,4 @@
-//自动移滚动条样式
+//自动移滚动items样式
 ::-webkit-scrollbar {
   width: 1px;
   height: 5px;
@@ -128,7 +128,7 @@ li {
 $success_color: #68cabe;
 $warning_color: #fa6419;
 $error_color: #ff3c2a;
-$theme_color: #FF5C58;  
+$theme_color: #FF5C58;
 .theme_color {
   color: $theme_color !important;
 }

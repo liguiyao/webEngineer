@@ -4,19 +4,19 @@
       <h3>Order details</h3>
       <div class="shop-item">
         <div class="label-item">
-          <span>订单来源</span>
+          <span>source</span>
           <span>{{res.clientType}}</span>
         </div>
         <div class="label-item">
-          <span>订单状态</span>
+          <span>Status</span>
           <span>{{orderStatusList[res.orderStatus]}}</span>
         </div>
         <div class="label-item">
-          <span>付款状态</span>
+          <span>付款state</span>
           <span>{{res.payStatus == "UNPAID"
                 ? "Unpaid"
                 : res.payStatus == "PAID"
-                ? "已付款"
+                ? "Paid"
                 : ""}}</span>
         </div>
         <div class="label-item">
@@ -45,7 +45,7 @@
         </div>
 
       </div>
-      <h3>Goods详情</h3>
+      <h3>Goods Detail</h3>
       <div class="shop-item">
 
         <div class="goods-item" v-for="(item,index) in res.orderItems" :key="index">
@@ -77,9 +77,9 @@ export default {
       orderStatusList: {
         UNDELIVERED: "待发货",
         UNPAID: "Unpaid",
-        PAID: "已付款",
+        PAID: "Paid",
         DELIVERED: "已发货",
-        CANCELLED: "已Cancel",
+        CANCELLED: "Cancel",
         COMPLETED: "completed",
         TAKE: "completed",
       },

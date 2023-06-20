@@ -8,7 +8,7 @@
         <h4>阿里云短信</h4></div>
       <div class="bar">
         <div class="status" style="color: rgb(53, 189, 129);">已启用</div>
-        <div><a class="links">编辑</a></div>
+        <div><a class="links">edit</a></div>
       </div>
     </div>
     <!-- 阿里云的短信参数 -->
@@ -54,7 +54,7 @@
 
     data() {
       return {
-        submitLoading: false, // Submit状态
+        submitLoading: false, // Submitstate
         template, // 模板
         selected: "", // 已选数据
         settingData: "", // 设置数据
@@ -79,7 +79,7 @@
           this.modalVisible = false
         });
       },
-      // 查看
+      // View
       settingInfo(v) {
         alert()
         this.selected = v

@@ -470,7 +470,7 @@ export const modelData = [
   // },
   {
     type: "goods",
-    name: "Goods分类",
+    name: "Goods Category",
     img: "md-image",
     notAdd: true,
     notLink: true,

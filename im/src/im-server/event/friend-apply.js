@@ -28,7 +28,7 @@ class FriendApply extends Base {
     this.$notify({
       title: '好友Apply  ',
       dangerouslyUseHTMLString: true,
-      message: `<p style="color:red;margin-top:10px;">您有一条好友Apply  消息,Please 注意查收...</p>`,
+      message: `<p style="color:red;margin-top:10px;">您有一items好友Apply  消息,Please 注意查收...</p>`,
       duration: 0,
       type: 'info',
       customClass: 'pointer',

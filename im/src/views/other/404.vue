@@ -6,10 +6,10 @@
       </div>
       <div class="not-found-right">
         <h1>404</h1>
-        <p>抱歉，你访问的页面不存在或仍在开发中...</p>
+        <p>抱歉，你访问的Page面不存在或仍在开发中...</p>
         <div>
           <el-button type="primary" size="small" @click="toHome">
-            Back首页 ({{ second }}S)
+            BackHome ({{ second }}S)
           </el-button>
         </div>
       </div>

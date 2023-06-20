@@ -9,9 +9,9 @@ export default {
     // 好友键盘事件监听
     inputEvent: 0,
 
-    // 好友Login状态监听
+    // 好友Loginstate监听
     friendStatus: {
-      // Login状态[0:下线;1:在线;]
+      // Loginstate[0:下线;1:在线;]
       status: 0,
       // 好友ID
       friend_id: 0,
@@ -44,7 +44,7 @@ export default {
       state.inputEvent++
     },
 
-    // 更新好友Login状态
+    // 更新好友Loginstate
     UPDATE_FRIEND_STATUS(state, value) {
       state.friendStatus = value
     },

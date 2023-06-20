@@ -33,7 +33,7 @@
           </div>
 
           <div class="div-item">
-            <div class="div-item-left">order time：</div>
+            <div class="div-item-left">Time：</div>
             <div class="div-item-right">
               {{ orderInfo.order.createTime }}
             </div>
@@ -190,7 +190,7 @@
                     {{ key }} : {{ item }}
                   </span>
                 </span>
-                <Poptip trigger="hover" style="display: block" title="扫码在手机中查看" transfer>
+                <Poptip trigger="hover" style="display: block" title="扫码在手机中View" transfer>
                   <div slot="content">
                     <vue-qr :text="wapLinkTo(row.goodsId, row.skuId)" :margin="0" colorDark="#000" colorLight="#fff"
                       :size="150"></vue-qr>
@@ -299,7 +299,7 @@
       <div>
         <Form ref="modifyPriceForm" :model="modifyPriceForm" label-position="left" :label-width="70"
           :rules="modifyPriceValidate">
-          <FormItem label="订单金额" prop="price">
+          <FormItem label="Amount" prop="price">
             <InputNumber style="width: 100px" v-model="modifyPriceForm.price" :min="0" :max="999999"></InputNumber>
             <span class="ml_10">ringgit</span>
           </FormItem>
@@ -454,11 +454,11 @@ export default {
       printHiddenFlag: false,//隐藏信息
       printInfoObj: {
         id: "printInfo",//要打印的id名 无#号
-        popTitle: '&nbsp;',//页眉标题 default浏览器标题 空字符串时显示undefined 使用html语言
+        popTitle: '&nbsp;',//Page眉标题 default浏览器标题 空字符串时显示undefined 使用html语言
         extraHead: '',//头部文字 default空
       },
       loading: false, //加载表格
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       addr: "", //地区
       regionId: [], //地区id
       showRegion: false, // 显示地区
@@ -474,8 +474,8 @@ export default {
       },
       modal: false, //弹出调整price框
       searchForm: {
-        pageNumber: 1, // 当前页数
-        pageSize: 100, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 100, // Page面大小
         orderSn: "", //订单sn
       },
       //调整price表单
@@ -493,7 +493,7 @@ export default {
         logisticsNo: "", //发货单号
         logisticsId: "", //Logistics company
       },
-      //验证要调整的订单金额
+      //验证要调整的Amount
       modifyPriceValidate: {
         reason: [
           { required: true, message: "Please enter 大于0小于99999的合法金额" },
@@ -648,7 +648,7 @@ export default {
       this.$Modal.confirm({
         title: "Tips",
         content:
-          "<p>您Confirm要收款吗？线下收款涉及库存变更，需异步进行，等待约一分钟刷新列表查看</p>",
+          "<p>您Confirm要收款吗？线下收款涉及stock变更，需异步进行，等待约一分钟刷新列表View</p>",
         onOk: () => {
           API_Order.orderPay(this.sn).then((res) => {
             if (res.success) {
@@ -703,13 +703,13 @@ export default {
       this.modifyPriceForm.price = this.orderInfo.order.flowPrice;
       this.modal = true;
     },
-    //modify订单金额Submit
+    //modifyAmountSubmit
     modifyPriceSubmit () {
       this.$refs.modifyPriceForm.validate((valid) => {
         if (valid) {
           API_Order.updateOrderPrice(this.sn, this.modifyPriceForm).then((res) => {
             if (res.success) {
-              this.$Message.success("modify订单金额success");
+              this.$Message.success("modifyAmountsuccess");
               this.modal = false;
               this.getDataList();
             }

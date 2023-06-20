@@ -159,7 +159,7 @@
                 <Radio :disabled="disabled" label="ALL">全品类</Radio>
                 <Radio :disabled="disabled" label="PORTION_GOODS">指定Goods</Radio>
                 <Radio :disabled="disabled" label="PORTION_GOODS_CATEGORY"
-                  >Partial goods分类</Radio
+                  >Partial Goods Category</Radio
                 >
               </RadioGroup>
             </FormItem>
@@ -288,7 +288,7 @@ export default {
     return {
       disabled: this.$route.query.onlyView,
       rangeTimeType: 1, // 当前时间类型
-      modalType: 0, // 是否编辑
+      modalType: 0, // 是否edit
       form: {
         /** 店铺承担比例 */
         storeCommission: 0,
@@ -310,9 +310,9 @@ export default {
         effectiveDays:1,
       },
       id: this.$route.query.id, // couponid
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectedGoods: [], // 已选Goods列表，便于delete
-      goodsCategoryList: [], // Goods分类列表
+      goodsCategoryList: [], // Goods Category列表
       formRule: {
         promotionName: [{ required: true, message: "活动名称不能为空" }],
         couponName: [{ required: true, message: "coupon名称不能为空" }],
@@ -363,7 +363,7 @@ export default {
           },
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           minWidth: 40,
         },
@@ -487,7 +487,7 @@ export default {
             params.scopeType == "PORTION_GOODS_CATEGORY" &&
             (!params.scopeIdGoods || params.scopeIdGoods.length == 0)
           ) {
-            this.$Modal.warning({ title: "Tips", content: "Please selectGoods分类" });
+            this.$Modal.warning({ title: "Tips", content: "Please selectGoods Category" });
             return;
           }
 
@@ -500,7 +500,7 @@ export default {
           } else if (params.scopeType == "ALL") {
             delete params.promotionGoodsList;
           } else if (params.scopeType == "PORTION_GOODS_CATEGORY") {
-            //Partial goods分类
+            //Partial Goods Category
             scopeId = this.filterCategoryId(params.scopeIdGoods, []);
             params.scopeId = scopeId.toString();
             delete params.promotionGoodsList;
@@ -509,7 +509,7 @@ export default {
 
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete params.id;
 
             savePlatformCoupon(params).then((res) => {
@@ -520,7 +520,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             delete params.consumeLimit;
             delete params.updateTime;
 
@@ -535,7 +535,7 @@ export default {
         }
       });
     },
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-platform-coupon");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
@@ -600,7 +600,7 @@ export default {
       this.form.promotionGoodsList = list;
     },
     async getCagetoryList() {
-      // 获取All goods分类
+      // 获取All Goods Category
       let data = await getCategoryTree();
       this.goodsCategoryList = data.result;
       // 过滤出可显示的值

@@ -6,13 +6,13 @@
       <!-- 主体信息 -->
       <el-main class="main-box no-padding">
         <div id="lumenChatPanel" class="talks-container lum-scrollbar" @scroll="talkPanelScroll($event)">
-          <!-- 数据加载状态栏 -->
+          <!-- 数据加载state栏 -->
           <div class="loading-toolbar">
             <span v-if="loadRecord.status == 0" class="color-blue">
               <i class="el-icon-loading" /> 正在加载数据中...
             </span>
             <span v-if="loadRecord.status == 1" class="pointer color-blue" @click="loadChatRecords">
-              <i class="el-icon-bottom" /> 查看更多消息...
+              <i class="el-icon-bottom" /> View更多消息...
             </span>
             <span v-if="loadRecord.status == 2"> 没有更多消息了... </span>
           </div>
@@ -118,15 +118,15 @@
                       <div class="shared-goods">
                       <div class="orderGoodsTime">{{ item.text.paymentTime }}</div>
                       <span class="orderFlowPrice">
-                        订单金额：<span>{{ item.text.flowPrice | unitPrice('RM') }}</span>
+                        Amount：<span>{{ item.text.flowPrice | unitPrice('RM') }}</span>
                       </span> 
                       <div class="order-status">
                         <el-tag 
                           size="mini"
                           :type="item.text.orderStatus == 'CANCELLED' || item.text.orderStatus == 'UNPAID' || item.text.orderStatus == ' TAKE' ? 'info' : 'danger'">{{
-                            item.text.orderStatus == 'CANCELLED' ? '已Cancel' : item.text.orderStatus == 'UNPAID' ? 'Unpaid' :
+                            item.text.orderStatus == 'CANCELLED' ? 'Cancel' : item.text.orderStatus == 'UNPAID' ? 'Unpaid' :
                               item.text.orderStatus ==
-                                'PAID' ? '已付款' : item.text.orderStatus == 'UNDELIVERED' ? '待发货' : item.text.orderStatus ==
+                                'PAID' ? 'Paid' : item.text.orderStatus == 'UNDELIVERED' ? '待发货' : item.text.orderStatus ==
                                   'DELIVERED'
                                   ? '已发货' : item.text.orderStatus == ' COMPLETED' ? 'completed' : item.text.orderStatus == ' TAKE' ?
                                     '待校验' : ''
@@ -157,7 +157,7 @@
         <div v-show="tipsBoard && unreadMessage.num" class="talk-bubble pointer no-select"
           @click="talkPanelScrollBottom">
           <i class="el-icon-chat-dot-round" />
-          <span>新消息({{ unreadMessage.num }}条)</span>
+          <span>新消息({{ unreadMessage.num }}items)</span>
           <span>
             &nbsp;#{{ unreadMessage.nickname }}#
             {{ unreadMessage.content }}
@@ -165,7 +165,7 @@
         </div>
       </el-main>
 
-      <!-- 页脚信息 -->
+      <!-- Page脚信息 -->
       <el-footer class="footer-box" height="180">
         <template v-if="multiSelect.isOpen === false">
           <MeEditor @send="submitSendMessage" @keyboard-event="onKeyboardEvent" />
@@ -451,7 +451,7 @@ export default {
       // 获取聊天面板ringgit素节点
       let el = document.getElementById("lumenChatPanel");
 
-      // 判断的滚动条是否在底部
+      // 判断的滚动items是否在底部
       let isBottom =
         Math.ceil(el.scrollTop) + el.clientHeight >= el.scrollHeight;
 
@@ -467,7 +467,7 @@ export default {
       }
     },
 
-    // 推送编辑事件消息
+    // 推送edit事件消息
     onKeyboardEvent (text) {
       this.$store.commit("UPDATE_TALK_ITEM", {
         index_name: this.index_name,
@@ -643,7 +643,7 @@ export default {
       // 当前时间5分钟内时间不显示
       if (currTime - time < 300) return false;
 
-      // 判断是否是最后一条消息,最后一条消息default显示时间
+      // 判断是否是最后一items消息,最后一items消息default显示时间
       if (index == this.records.length - 1) {
         return true;
       }
@@ -656,7 +656,7 @@ export default {
       );
     },
 
-    // 查看好友用户信息
+    // View好友用户信息
     catFriendDetail (value) {
       this.$user(value);
     },
@@ -721,7 +721,7 @@ export default {
         if (this.multiSelect.items.length >= 30) {
           this.$notify({
             title: "温馨Tips",
-            message: "批量operation最大支持30条数据...",
+            message: "Batch最大支持30items数据...",
           });
           return false;
         }
@@ -825,7 +825,7 @@ export default {
       this.group.panel = false;
     },
 
-    // modify群聊免打扰状态
+    // modify群聊免打扰state
     disturbChange (detail) {
       this.$store.commit("UPDATE_TALK_ITEM", {
         index_name: `2_${this.params.receiver_id}`,
@@ -975,7 +975,7 @@ export default {
   position: relative;
 }
 
-/* 面板页脚 */
+/* 面板Page脚 */
 .footer-box {
   height: 160px !important;
   padding: 0;

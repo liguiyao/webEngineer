@@ -153,7 +153,7 @@ export default {
         promotionStatus: "NEW",
       },
       id: this.$route.query.id, // 活动id
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectedGoods: [], // 已选Goods列表，便于delete
       formRule: {
         // 验证规则
@@ -183,7 +183,7 @@ export default {
       },
       couponList: [], // 店铺Coupon list
       giftList: [], // 赠品列表
-      giftLoading: false, // Please 求赠品状态
+      giftLoading: false, // Please 求赠品state
       columns: [
         // 表头
         {
@@ -208,7 +208,7 @@ export default {
           },
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           minWidth: 40,
         },
@@ -235,7 +235,7 @@ export default {
     await this.getGiftList();
   },
   methods: {
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage () {
       this.$store.commit("removeTag", "full-cut-detail");
       localStorage.storeOpenedList = JSON.stringify(
@@ -316,7 +316,7 @@ export default {
           delete params.rangeTime;
           this.submitLoading = true;
           if (!this.id) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete params.id;
             newFullDiscount(params).then((res) => {
               this.submitLoading = false;
@@ -326,13 +326,13 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             delete params.updateTime;
 
             editFullDiscount(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
-                this.$Message.success("编辑活动success");
+                this.$Message.success("edit活动success");
                 this.closeCurrentPage();
               }
             });

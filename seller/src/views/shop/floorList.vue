@@ -11,13 +11,13 @@
       </div>
     </Card> -->
     <Card class="content">
-      <Button type="primary" @click="createTemp">添加页面</Button>
+      <Button type="primary" @click="createTemp">添加Page面</Button>
       <div class="list">
         <Spin size="large" fix v-if="loading"></Spin>
         <div class="item item-title">
-          <div>页面名称</div>
+          <div>Page面名称</div>
           <div class="item-config">
-            <div>状态</div>
+            <div>state</div>
             <div>operation</div>
           </div>
         </div>
@@ -37,7 +37,7 @@
               placement="right"
               @click="Template(item)"
               size="small"
-              >编辑</Button
+              >edit</Button
             >
             <Button
               type="success"
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       showModal: false, // 添加modal的显示
-      selectedIndex: 0, // 首页还是专题select的index
+      selectedIndex: 0, // Home还是专题select的index
       total: 0,
       formData: {
         // 新建模态框的数据
@@ -109,11 +109,11 @@ export default {
       columns: [
         // 列表展示的column
         {
-          title: "页面名称",
+          title: "Page面名称",
           key: "name",
         },
         {
-          title: "状态",
+          title: "state",
         },
         {
           title: "operation",
@@ -121,12 +121,12 @@ export default {
         },
       ],
 
-      loading: false, // 加载状态
+      loading: false, // 加载state
       pageTypes: [
         // 那种类别的模板
         {
           type: "INDEX",
-          title: "首页",
+          title: "Home",
         },
         // {
         //   type: "SPECIAL",
@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     newTemplate() {
-      // 添加，编辑模板
+      // 添加，edit模板
       this.$refs.form.validate((valid) => {
         if (valid) {
           const data = this.formData;
@@ -150,7 +150,7 @@ export default {
           (data.pageType = "STORE"), (data.pageClientType = "PC");
           if (data.id) {
             API_floor.updateHome(data.id, data).then((res) => {
-              this.$Message.success("编辑模板success");
+              this.$Message.success("edit模板success");
               this.showModal = false;
               this.getTemplateList();
             });
@@ -174,7 +174,7 @@ export default {
     },
 
     Template(item) {
-      // 编辑表单
+      // edit表单
       item.status = item.pageShow;
       this.formData = item;
       this.showModal = true;
@@ -188,12 +188,12 @@ export default {
       });
     },
 
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePageNum(val) {
       this.searchForm.pageNumber = val;
       this.getTemplateList();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(val) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = val;

@@ -6,7 +6,7 @@ import { ServeCreateTalkList } from "@/api/chat";
 const KEY_INDEX_NAME = "send_message_index_name";
 
 /**
- * 通过对话索引查找对话列表下标
+ * pass对话索引查找对话列表下标
  *
  * @param {String} index_name
  */
@@ -17,7 +17,7 @@ export function findTalkIndex (index_name) {
 }
 
 /**
- * 通过对话索引查找对话列表
+ * pass对话索引查找对话列表
  *
  * @param {String} index_name
  */

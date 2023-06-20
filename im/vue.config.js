@@ -27,7 +27,7 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
-  // 公共路径(必须有的)
+  // 公total路径(必须有的)
   publicPath: '/',
   // 输出文件目录
   outputDir: 'dist',

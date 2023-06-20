@@ -28,7 +28,7 @@
         @mousemove.stop
       ></li>
       <li
-        title="编辑该热区"
+        title="edit该热区"
         v-show="!hideZone"
         class="hz-u-close hz-icon hz-icon-edit"
         @click.prevent.stop="showModalFn(index)"
@@ -53,7 +53,7 @@
 
     <Modal
       v-model="showModal"
-      title="编辑热区"
+      title="edit热区"
       draggable
       scrollable
       :mask="false"

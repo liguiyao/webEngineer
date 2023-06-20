@@ -17,7 +17,7 @@
             <FormItem label="Goodsprice">
               <div>{{ form.goodsSku.price | unitPrice('RM') }}</div>
             </FormItem>
-            <FormItem label="Goods库存">
+            <FormItem label="Goodsstock">
               <div>{{ form.goodsSku.quantity }}</div>
             </FormItem>
             <FormItem label="结算price" prop="settlementPrice">
@@ -52,12 +52,12 @@
               />
             </FormItem>
 
-            <FormItem label="活动库存" prop="stock">
+            <FormItem label="活动stock" prop="stock">
               <Input
                 :disabled="onlyView"
                 type="number"
                 v-model="form.stock"
-                placeholder="Please enter 活动库存"
+                placeholder="Please enter 活动stock"
                 clearable
                 style="width: 260px"
               />
@@ -145,14 +145,14 @@
         }
       };
       return {
-        modalType: 0, // 是否编辑
+        modalType: 0, // 是否edit
         form: {
           purchasePrice:0,
           goodsSku: {},
         },
         id: this.$route.query.id, // 砍价活动id
         onlyView:this.$route.query.onlyView, // 是否为只读
-        submitLoading: false, // 添加或编辑Submit状态
+        submitLoading: false, // 添加或editSubmitstate
         formRule: {
           settlementPrice: [
             {required: true, message: "Please enter 结算金额"},
@@ -168,7 +168,7 @@
             {validator: checkHighestPrice},
           ],
           rangeTime: [{required: true, message: "Please select活动时间"}],
-          stock: [{required: true, message: "Please enter 活动库存"}],
+          stock: [{required: true, message: "Please enter 活动stock"}],
         },
         options: {
           disabledDate(date) {
@@ -211,9 +211,9 @@
             );
             delete params.rangeTime
             console.warn(params)
-            //校验库存参数
+            //校验stock参数
             if (params.stock <= 0 || params.stock > params.goodsSku.quantity) {
-              this.$Message.error("活动库存不能为0且不能超过Goods库存");
+              this.$Message.error("活动stock不能为0且不能超过Goodsstock");
               return
             }
 
@@ -253,7 +253,7 @@
             }
 
             this.submitLoading = true;
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             editKanJiaActivityGoods(params).then((res) => {
               this.submitLoading = false;
               if (res.success) {
@@ -264,7 +264,7 @@
           }
         });
       },
-      // Close当前页面
+      // Close当前Page面
       closeCurrentPage() {
         this.$store.commit("removeTag", "add-kan-jia-goods");
         localStorage.pageOpenedList = JSON.stringify(

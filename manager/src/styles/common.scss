@@ -1,6 +1,6 @@
 
 
-//自动移滚动条样式
+//自动移滚动items样式
 ::-webkit-scrollbar{
   width: 1px;
   height: 5px;
@@ -13,7 +13,7 @@
   border-radius: 1em;
   background-color: rgba(50,50,50,.1);
 }
-.ivu-table table{ 
+.ivu-table table{
   width: 100%!important;
 }
 

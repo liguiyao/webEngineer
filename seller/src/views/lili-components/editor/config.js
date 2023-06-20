@@ -8,7 +8,7 @@ export const initEditor = {
   menubar: "file edit  view format table", // 菜单:指定应该出现哪些菜单
   toolbar: toobar, // 分组工具栏控件
   plugins: plugins, // 插件(比如: advlist | link | image | preview等)
-  object_resizing: false, // 是否禁用表格图片大小调整
+  object_resizing: false, // 是否disable表格图片大小调整
   end_container_on_empty_block: true, // enter键 分块
   powerpaste_word_import: "merge", // 是否保留word粘贴样式  clean | merge
   advlist_bullet_styles: "square", // 无序列表 有序列表
@@ -51,7 +51,7 @@ export const initEditor = {
 
     ul,ol{ list-style-position:inside; }
     `, // 设置样式
-  statusbar: false, // 隐藏编辑器底部的状态栏
-  elementpath: false, // 禁用编辑器底部的状态栏
+  statusbar: false, // 隐藏edit器底部的state栏
+  elementpath: false, // disableedit器底部的state栏
   paste_data_images: true, // 允许粘贴图像
 };

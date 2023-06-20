@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        // 状态
+        // state
 
     },
     mutations: {

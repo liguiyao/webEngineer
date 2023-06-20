@@ -168,7 +168,7 @@ export default {
           params.reason = this.reasonList.find(item => item.id == params.reason).reason
           applyAfterSale(params).then(res => {
             if (res.success) {
-              this.$Message.success('after saleApply  Submit success，Please 到after sale订单查看！')
+              this.$Message.success('after saleApply  Submit success，Please 到after sale订单View！')
               this.$router.push({name: 'AfterSale'})
             }
           })

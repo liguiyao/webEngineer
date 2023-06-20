@@ -18,7 +18,7 @@
       <div class="setup-box">
         <div>
           <Button size="small" @click.stop="handleSelectModel(item)"
-            >编辑</Button
+            >edit</Button
           >
         </div>
       </div>

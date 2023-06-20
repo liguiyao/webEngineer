@@ -208,7 +208,7 @@ export default {
       action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       visible: false, // 预览图片
-      loading: false, // 加载状态
+      loading: false, // 加载state
       address: '', // address
       previewPicture: '', // 预览图片url
       form: { // 表单数据
@@ -258,7 +258,7 @@ export default {
     };
   },
   methods: {
-    // 下一步
+    // Next
     next () {
       this.$refs.firstForm.validate((valid) => {
         if (valid) {
@@ -337,7 +337,7 @@ export default {
         desc: 'file size cannot exceed 2 MB'
       });
     },
-    // 图片查看
+    // 图片View
     handleView (item) {
       this.previewPicture = item;
       this.visible = true;

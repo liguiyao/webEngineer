@@ -43,7 +43,7 @@ export function getRegion (id) {
 }
 
 /**
- * 分页获取文章列表
+ * 分Page获取文章列表
  * @param cateId 文章分类id
  */
 export function articleList (params) {
@@ -55,7 +55,7 @@ export function articleList (params) {
 }
 
 /**
- * 获取帮助中心文章分类列表
+ * 获取help中心文章分类列表
  * @param cateId 文章分类id
  */
 export function articleCateList () {
@@ -65,7 +65,7 @@ export function articleCateList () {
   });
 }
 
-// 通过id获取文章
+// passid获取文章
 export function articleDetail (id) {
   return request({
     url: `/buyer/other/article/get/${id}`,

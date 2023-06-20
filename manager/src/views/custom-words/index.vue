@@ -62,20 +62,20 @@ export default {
   name: "custom-words",
   data() {
     return {
-      loading: true, // 表单加载状态
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: true, // 表单加载state
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         words: "",
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         name: "",
       },
       // 表单验证规则
@@ -85,7 +85,7 @@ export default {
           regular.VARCHAR20
         ],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -188,7 +188,7 @@ export default {
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
-    // 选中状态变更
+    // 选中state变更
     changeSelect(e) {
       this.selectList = e;
       this.selectCount = e.length;
@@ -225,7 +225,7 @@ export default {
             });
           } else {
             this.form.id = this.id;
-            // 编辑
+            // edit
             updateCustomWords(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
@@ -282,7 +282,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        content: "您确认要delete所选的 " + this.selectCount + " items数据?",
         loading: true,
         onOk: () => {
           let ids = "";

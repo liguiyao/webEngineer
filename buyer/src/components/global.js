@@ -1,6 +1,6 @@
 // 全局组件配置
 
-import empty from './empty/Main' // 空状态组件
+import empty from './empty/Main' // 空state组件
 import drawer from './drawer/Main' // 右侧bar
 import Header from '@/components/header/Header'; // 头部组件
 import FixedTopPage from '@/components/advertising/FixedTop'; // 顶部广告

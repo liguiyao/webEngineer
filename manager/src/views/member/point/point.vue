@@ -54,7 +54,7 @@
   import ossManage from "@/views/sys/oss-manage/ossManage";
 
   export default {
-    // 积分历史页面
+    // 积分历史Page面
     name: "point",
     components: {
       region,
@@ -62,7 +62,7 @@
     },
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: { // Please 求参数
           pageNumber: 1,
           pageSize: 10,
@@ -137,12 +137,12 @@
       init() {
         this.getData();
       },
-      // 分页 改变页码
+      // 分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getData();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;

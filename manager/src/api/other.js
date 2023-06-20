@@ -16,7 +16,7 @@ export const setHomeSetup = params => {
 };
 
 /**
- * 获取页面信息
+ * 获取Page面信息
  *
  */
 export const getHomeData = params => {
@@ -55,7 +55,7 @@ export const removePageHome = (id) => {
 
 
 /**
- * 发布页面
+ * 发布Page面
  *
  */
 export const releasePageHome = (id) => {

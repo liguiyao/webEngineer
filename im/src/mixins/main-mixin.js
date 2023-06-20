@@ -10,7 +10,7 @@ export default {
     
   },
   methods: {
-    // 页面初始化设置
+    // Page面初始化设置
     initialize() {
       SocketInstance.connect();
     },

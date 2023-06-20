@@ -76,7 +76,7 @@ _.handleEgdeCollisions = (rect1, rect2) => {
   )
 }
 /**
- * Treatment of boundary conditions when changing the size of the hotzone 改变热区大小时边界条件的处理（如果要避免热区重叠，代码要加载这里）
+ * Treatment of boundary conditions when changing the size of the hotzone 改变热区大小时边界items件的处理（如果要避免热区重叠，代码要加载这里）
  * @param {Object} itemInfo
  * @param {Object} styleInfo
  * @param {Object} container
@@ -249,7 +249,7 @@ _.dealBC = (itemInfo, moveX, moveY, minLimit = _.MIN_LIMIT) => {
 
   return styleInfo
 }
-// 添加热区时，判定鼠标释放点full足一下条件时生效
+// 添加热区时，判定鼠标释放点full足一下items件时生效
 _.dealBR = (itemInfo, moveX, moveY, minLimit = _.MIN_LIMIT) => {
   let styleInfo = {}
   let width = itemInfo.width + moveX

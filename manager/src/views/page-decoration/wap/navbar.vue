@@ -58,11 +58,11 @@ export default {
     return {
       progress: true, // 展示进度
       num: 20, // Submit进度
-      saveDialog: false, // 加载状态
+      saveDialog: false, // 加载state
       way: [
         // 装修tab栏切换
         {
-          title: "首页",
+          title: "Home",
           name: "index",
           selected: true,
         },
@@ -91,13 +91,13 @@ export default {
       handler(val) {
         this.way.length = 0;
         if (val == "INDEX") {
-          this.way.push({ title: "首页", name: "index", selected: true });
+          this.way.push({ title: "Home", name: "index", selected: true });
         } else if (val == "SPECIAL") {
           this.way.push({ title: "专题", name: "special", selected: true });
         } else if (val == "ALERT") {
           this.way.push({ title: "开屏广告", name: "alert", selected: true });
         }else if (val == "OPEN_SCREEN_ANIMATION") {
-          this.way.push({ title: "app开屏页面", name: "OPEN_SCREEN_ANIMATION", selected: true });
+          this.way.push({ title: "app开屏Page面", name: "OPEN_SCREEN_ANIMATION", selected: true });
         }
       },
       immediate: true,
@@ -226,7 +226,7 @@ export default {
 
 
 
-    // Back查询数据页面
+    // Back查询数据Page面
     goBack() {
       this.$router.push({
         path: "/wapList",

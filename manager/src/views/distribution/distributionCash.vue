@@ -63,24 +63,24 @@ export default {
   name: "distributionCash",
   data() {
     return {
-      cashStatusList, // 状态列表
-      loading: true, // 表单加载状态
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
-      result: 'FAIL_AUDITING', // 是否通过
+      cashStatusList, // state列表
+      loading: true, // 表单加载state
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
+      result: 'FAIL_AUDITING', // 是否pass
       searchForm: { // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
       },
-      handleStatus:'edit',// 判断是编辑还是查看
-      form: { // 添加或编辑表单对象初始化数据
+      handleStatus:'edit',// 判断是edit还是View
+      form: { // 添加或edit表单对象初始化数据
         sn: "",
         memberName: "",
         price: "",
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       columns: [
         {
           title: "code",
@@ -190,12 +190,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 改变页数
+    // 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -209,7 +209,7 @@ export default {
     // 获取列表数据
     getDataList() {
       this.loading = true;
-      // 带多条件search参数获取表单数据 Please 自行modify接口
+      // 带多items件search参数获取表单数据 Please 自行modify接口
       getDistributionCash(this.searchForm).then(res => {
         this.loading = false;
         if (res.success) {
@@ -220,7 +220,7 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 通过还是拒绝Apply
+    // pass还是拒绝Apply
     handleSubmit() {
       let result = "reject"
       if(this.result == 'VIA_AUDITING'){
@@ -262,7 +262,7 @@ export default {
       this.form = JSON.parse(JSON.stringify(v));
       this.modalVisible = true;
     },
-    // 弹出modal 查看
+    // 弹出modal View
     view(v){
       this.modalTitle = "check";
       this.handleStatus = 'view';

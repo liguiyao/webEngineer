@@ -71,7 +71,7 @@ export const sendLoginSms = (mobile, params) => {
 export const sendRegistSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendRegistSms/${mobile}`, params);
 };
-// 发送重置密码短信验证码
+// 发送reset密码短信验证码
 export const sendResetSms = (mobile, params) => {
   return getRequest(`${commonUrl}/common/captcha/sendResetSms/${mobile}`, params);
 };
@@ -79,11 +79,11 @@ export const sendResetSms = (mobile, params) => {
 export const sendEditMobileSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendEditMobileSms/${mobile}`, params);
 };
-// 通过手机重置密码
+// pass手机reset密码
 export const resetByMobile = params => {
   return postRequest("/user/resetByMobile", params);
 };
-// 发送重置密码邮件验证码
+// 发送reset密码邮件验证码
 export const sendResetEmail = (email, params) => {
   return getRequest(`/email/sendResetCode/${email}`, params);
 };
@@ -91,7 +91,7 @@ export const sendResetEmail = (email, params) => {
 export const sendEditEmail = (email, params) => {
   return getRequest(`/email/sendEditCode/${email}`, params);
 };
-// 通过邮件重置密码
+// pass邮件reset密码
 export const resetByEmail = params => {
   return postRequest("/email/resetByEmail", params);
 };
@@ -103,7 +103,7 @@ export const smsLogin = params => {
 export const ipInfo = params => {
   return getRequest("/common/ip/info", params);
 };
-// 个人中心编辑
+// 个人中心edit
 export const userInfoEdit = params => {
   return postRequest("/user/edit", params);
 };
@@ -135,15 +135,15 @@ export const relatedInfo = (username, params) => {
 export const unRelate = params => {
   return postRequest("/relate/delByIds", params);
 };
-// 分页获取绑定账号信息
+// 分Page获取绑定账号信息
 export const getRelatedListData = params => {
   return getRequest("/relate/findByCondition", params);
 };
-// 获取用户数据 多条件
+// 获取用户数据 多items件
 export const getUserListData = params => {
   return getRequest("/clerk", params);
 };
-// 通过用户名search
+// pass用户名search
 export const searchUserByName = (username, params) => {
   return getRequest("/user/searchByName/" + username, params);
 };
@@ -156,7 +156,7 @@ export const getAllUserData = params => {
 export const addUser = params => {
   return postRequest("/clerk", params);
 };
-// 编辑用户
+// edit用户
 export const editUser = params => {
   return postRequest("/user/admin/edit", params);
 };
@@ -164,7 +164,7 @@ export const editUser = params => {
 export const enableUser = (id, params) => {
   return postRequest(`/user/admin/enable/${id}`, params);
 };
-// 禁用用户
+// disable用户
 export const disableUser = (id, params) => {
   return postRequest(`/user/admin/disable/${id}`, params);
 };
@@ -172,17 +172,17 @@ export const disableUser = (id, params) => {
 export const deleteUser = (ids, params) => {
   return deleteRequest(`/user/delByIds/${ids}`, params);
 };
-// 重置用户密码
+// reset用户密码
 export const resetUserPass = params => {
   return postRequest("/user/resetPass", params);
 };
 /****************************** 权限结束 */
 
-// 分页获取日志数据
+// 分Page获取日志数据
 export const getLogListData = params => {
   return getRequest("/log/getAllByPage", params);
 };
-// 分页获Cancel息数据
+// 分Page获Cancel息数据
 export const getMessageData = params => {
   return getRequest("/message/storeMessage/getByCondition", params);
 };
@@ -194,7 +194,7 @@ export const getMessageDataById = (id, params) => {
 export const addMessage = params => {
   return postRequest("/message/storeMessage/add", params);
 };
-// 编辑消息
+// edit消息
 export const editMessage = params => {
   return postRequest("/message/storeMessage/edit", params);
 };
@@ -210,7 +210,7 @@ export const clearMessage = (ids, params) => {
 export const deleteMessage = (ids, params) => {
   return deleteRequest(`/message/storeMessage/${ids}/delete`, params);
 };
-// 分页获Cancel息推送数据
+// 分Page获Cancel息推送数据
 export const getMessageSendData = params => {
   return getRequest("/message/storeMessage", params);
 };
@@ -227,7 +227,7 @@ export const deleteMessageSend = (ids, params) => {
   return deleteRequest(`/message/storeMessageSend/delByIds/${ids}`, params);
 };
 
-// 分页获取文件数据
+// 分Page获取文件数据
 export const getFileListData = params => {
   return getRequest(`${commonUrl}/common/common/file`, params);
 };
@@ -259,19 +259,19 @@ export const base64Upload = params => {
 
 
 
-// 添加Goods计量单位
+// Add goodsUnit
 export const addGoodsUnit = (params) => {
   return postRequest(`/goods/goodsUnit`, params);
 };
-// 分页获取Goods计量单位
+// 分Page获取GoodsUnit
 export const getGoodsUnitPage = (params) => {
   return getRequest(`/goods/goodsUnit`, params);
 };
-// 编辑Goods计量单位
+// editGoodsUnit
 export const updateGoodsUnit = (id, params) => {
   return putRequest(`/goods/goodsUnit/${id}`, params);
 };
-// deleteGoods计量单位
+// deleteGoodsUnit
 export const delGoodsUnit = (ids) => {
   return deleteRequest(`/goods/goodsUnit/delete/${ids}`);
 };
@@ -293,7 +293,7 @@ export const addDepartment = (params) => {
 export const deleteDepartment = (ids, params) => {
   return deleteRequest(`/department/${ids}`, params);
 };
-// 编辑部门
+// edit部门
 export const editDepartment = (ids, params) => {
   return putRequest(`/department/${ids} `, params);
 };
@@ -306,17 +306,17 @@ export const searchDepartment = (params) => {
   return getRequest("/department", params);
 };
 
-// 通过部门获取全部角色数据
+// pass部门获取全部角色数据
 export const getUserByDepartmentId = (id, params) => {
   return getRequest(`/departmentRole/${id}`, params);
 };
 
-// 分页获取角色数据
+// 分Page获取角色数据
 export const getRoleList = (params) => {
   return getRequest("/role", params);
 };
 
-// 通过部门modify绑定角色
+// pass部门modify绑定角色
 export const updateDepartmentRole = (id, params) => {
   return putRequestWithNoForm(`/departmentRole/${id}`, params);
 };
@@ -334,7 +334,7 @@ export const addRole = (params) => {
 export const deleteRole = (ids, params) => {
   return deleteRequest(`/role/${ids}`, params);
 };
-// 编辑角色
+// edit角色
 export const editRole = (params) => {
   return putRequest(`/role/${params.roleId}`, params);
 };
@@ -343,7 +343,7 @@ export const editRole = (params) => {
 export const editRolePerm = (params) => {
   return postRequest("/role/editRolePerm", params);
 };
-// 查看某角色拥有的菜单
+// View某角色拥有的菜单
 export const selectRoleMenu = (params) => {
   return getRequest(`/roleMenu/${params}`);
 };
@@ -359,7 +359,7 @@ export const checkClerk = (mobile) => {
   return postRequest(`/clerk/${mobile}/check`);
 };
 
-// 重置用户密码
+// reset用户密码
 export const resetPassword = (params) => {
   return postRequest(`/clerk/resetPassword/${params}`);
 };

@@ -67,7 +67,7 @@ Vue.prototype.setStore = setStore;
 Vue.prototype.getStore = getStore;
 Vue.prototype.removeStore = removeStore;
 Vue.prototype.md5 = md5;
-const PC_URL = BASE.PC_URL; // 跳转买家端address pc端
+const PC_URL = BASE.PC_URL; // 跳转买家端address PC
 const WAP_URL = BASE.WAP_URL; // 跳转买家端address wap端
 Vue.prototype.linkTo = function (goodsId, skuId) {
   // 跳转买家端Goods
@@ -104,7 +104,7 @@ new Vue({
     util.initRouter(this);
 
     this.currentPageName = this.$route.name;
-    // 显示打开的页面的列表
+    // 显示打开的Page面的列表
     this.$store.commit("setOpenedList");
     this.$store.commit("initCachepage");
   }

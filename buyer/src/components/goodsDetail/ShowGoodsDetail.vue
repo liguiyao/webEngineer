@@ -69,7 +69,7 @@
                 </div>
               </div>
             </TabPane>
-            <TabPane label="Goods参数">
+            <TabPane label="Parameter">
               <template v-if="detail.goodsParamsDTOList && detail.goodsParamsDTOList.length">
                 <div class="goods-params" style="height:inherit;" v-for="item in detail.goodsParamsDTOList" :key="item.groupId">
                   <span class="ml_10">{{item.groupName}}</span>
@@ -94,7 +94,7 @@ import { goodsComment, goodsCommentNum } from '@/api/member.js';
 export default {
   name: 'ShowGoodsDetail',
   props: {
-    detail: { // Goods详情
+    detail: { // Goods Detail
       type: Object,
       default: null
     }
@@ -114,22 +114,22 @@ export default {
     };
   },
   computed: {
-    // Goods详情
+    // Goods Detail
     skuDetail () {
       return this.detail.data;
     }
   },
   methods: {
-    changeHeight (name) { // 设置Goods详情高度
+    changeHeight (name) { // 设置Goods Detail高度
       let heightCss = window.getComputedStyle(this.$refs[name]).height;
       heightCss = parseInt(heightCss.substr(0, heightCss.length - 2)) + 89;
       this.$refs.itemIntroDetail.style.height = heightCss + 'px';
     },
-    changePageNum (val) { // modify评论页码
+    changePageNum (val) { // modify评论Page码
       this.commentParams.pageNumber = val;
       this.getList();
     },
-    changePageSize (val) { // modify评论页数
+    changePageSize (val) { // modify评论Page数
       this.commentParams.pageNumber = 1;
       this.commentParams.pageSize = val;
       this.getList();
@@ -153,7 +153,7 @@ export default {
       this.commentParams.pageNumber = 1;
       this.getList();
     },
-    tabClick (name) { // Goods详情和Evaluate之间的tab切换
+    tabClick (name) { // Goods Detail和Evaluate之间的tab切换
       if (name === 0) {
         this.$nextTick(() => {
           this.changeHeight('itemIntroGoods')
@@ -191,7 +191,7 @@ export default {
         }
       }
     },
-    handleScroll () { // 监听页面滚动
+    handleScroll () { // 监听Page面滚动
       if (this.onceFlag) {
         this.$nextTick(() => {
           this.changeHeight('itemIntroGoods')
@@ -219,7 +219,7 @@ export default {
     display:block;
   }
 }
-/***************Goods详情介绍和推荐侧边栏开始***************/
+/***************Goods Detail介绍和推荐侧边栏开始***************/
 .item-intro-show{
 
   width: 1200px;
@@ -316,7 +316,7 @@ export default {
 .item-intro-img img{
   max-width: 1000px;
 }
-/************* Goods参数 *************/
+/************* Parameter *************/
 .item-param-container {
   display: flex;
   flex-wrap: wrap;
@@ -450,8 +450,8 @@ export default {
   display: flex;
   justify-content:flex-end;
 }
-/***************Goods详情介绍和推荐侧边栏结束***************/
-/* 改变便签页样式 */
+/***************Goods Detail介绍和推荐侧边栏结束***************/
+/* 改变便签Page样式 */
 .ivu-tabs-ink-bar {
   background-color: $theme_color !important;
 }

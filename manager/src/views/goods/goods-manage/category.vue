@@ -39,7 +39,7 @@
               <Icon type="ios-arrow-down"></Icon>
             </Button>
             <DropdownMenu slot="list">
-              <DropdownItem @click.native="edit(scope.row)">编辑</DropdownItem>
+              <DropdownItem @click.native="edit(scope.row)">edit</DropdownItem>
               <DropdownItem
                 v-if="scope.row.deleteFlag == 1"
                 @click.native="enable(scope.row)"
@@ -204,24 +204,24 @@ export default {
   },
   data() {
     return {
-      submitLoading: false, //加载状态
+      submitLoading: false, //加载state
       categoryList: [], // 分类列表
-      loading: false, // 加载状态
+      loading: false, // 加载state
       brands: [], //品牌集合
       specifications: [], //规格集合
       categoryId: "", // 分类id
       categorySpecs: [], //已经select的规格
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalBrandVisible: false, //品牌关联编辑显示
-      modalSpecVisible: false, //品牌关联编辑显示
-      modalTitle: "", // 添加或编辑标题
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalBrandVisible: false, //品牌关联edit显示
+      modalSpecVisible: false, //品牌关联edit显示
+      modalTitle: "", // 添加或edit标题
       showParent: false, // 是否展示上级菜单
       parentTitle: "", // 父级菜单名称
       modalBrandTitle: "", // 品牌弹窗标题
       modalSpecTitle: "", // 规格弹窗标题
       formAdd: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         parentId: "",
         name: "",
         image: "",
@@ -328,7 +328,7 @@ export default {
         }
       });
     },
-    // 编辑绑定参数
+    // edit绑定参数
     parameterOperation(v) {
       this.$router.push({ name: "parameter", query: { id: v.id } });
     },
@@ -344,7 +344,7 @@ export default {
       this.formAdd.parentId = v.id;
       this.modalVisible = true;
     },
-    // 编辑分类
+    // edit分类
     edit(v) {
       this.modalType = 1;
       this.modalTitle = "edit";
@@ -376,7 +376,7 @@ export default {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.formAdd.id;
             insertCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
@@ -388,7 +388,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             updateCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {
@@ -445,7 +445,7 @@ export default {
       }
     },
 
-    // 通过递归children来实现手动加载数据
+    // pass递归children来实现手动加载数据
     deepCategoryChildren(id, list) {
       if (id != "0" && list.length != 0) {
         for (let i = 0; i < list.length; i++) {
@@ -499,7 +499,7 @@ export default {
         },
       });
     },
-    // 禁用分类
+    // disable分类
     disable(v) {
       this.$Modal.confirm({
         title: "confirm",

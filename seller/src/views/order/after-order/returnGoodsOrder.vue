@@ -43,7 +43,7 @@
             ></DatePicker>
           </Form-item>
           <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-          <Button @click="handleReset" class="search-btn">重置</Button>
+          <Button @click="handleReset" class="search-btn">reset</Button>
         </Form>
       </Row>
       <Table
@@ -66,7 +66,7 @@
               <div class="div-zoom">
                 <a @click="linkTo(row.goodsId,row.skuId)">{{row.goodsName}}</a>
               </div>
-              <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+              <Poptip trigger="hover" title="扫码在手机中View" transfer>
                 <div slot="content">
                   <vue-qr :text="wapLinkTo(row.goodsId,row.skuId)"  :margin="0" colorDark="#000" colorLight="#fff" :size="150"></vue-qr>
                 </div>
@@ -103,11 +103,11 @@
     components: {},
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
           startDate: "", // 起始时间
@@ -155,7 +155,7 @@
             minWidth: 120,
           },
           {
-            title: "状态",
+            title: "state",
             align: "center",
             key: "serviceStatus",
             width: 200,
@@ -163,7 +163,7 @@
               if (params.row.serviceStatus == "APPLY") {
                 return h('div', [h('tag', {props: {color: "blue"}}, 'Apply  中'),]);
               } else if (params.row.serviceStatus == "PASS") {
-                return h('div', [h('tag', {props: {color: "cyan"}}, '通过after sale'),]);
+                return h('div', [h('tag', {props: {color: "cyan"}}, 'passafter sale'),]);
               } else if (params.row.serviceStatus == "REFUSE") {
                 return h('div', [h('tag', {props: {color: "volcano"}}, '拒绝after sale'),]);
               } else if (params.row.serviceStatus == "BUYER_RETURN") {
@@ -210,7 +210,7 @@
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 ),
               ]);
             },
@@ -225,12 +225,12 @@
       init() {
         this.getDataList();
       },
-      // 改变页码
+      // 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 改变页数
+      // 改变Page数
       changePageSize(v) {
         this.searchForm.pageSize = v;
         this.getDataList();
@@ -241,7 +241,7 @@
         this.searchForm.pageSize = 10;
         this.getDataList();
       },
-      // 重置
+      // reset
       handleReset() {
         this.searchForm = {};
         this.selectDate = ''
@@ -282,7 +282,7 @@
     mounted () {
       this.init();
     },
-    // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+    // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
     beforeRouteLeave(to, from, next) {
       from.meta.keepAlive = false
       next()

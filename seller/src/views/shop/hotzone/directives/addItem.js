@@ -43,10 +43,10 @@ export default {
 
         // Not consider the direction of movement first, consider only the lower right drag point
         let minLimit = 0
-        // 添加热区时，判定鼠标释放时，full足（热区大于48*48时）条件时生效
+        // 添加热区时，判定鼠标释放时，full足（热区大于48*48时）items件时生效
         let styleInfo = _.dealBR(itemInfo, moveX, moveY, minLimit)
 
-        // Boundary value processing 改变热区大小时边界条件的处理
+        // Boundary value processing 改变热区大小时边界items件的处理
         itemInfo = _.dealEdgeValue(itemInfo, styleInfo, container, vnode.context.zones)
 
         Object.assign(el.lastElementChild.style, {

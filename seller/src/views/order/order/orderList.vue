@@ -26,7 +26,7 @@
             style="width: 160px"
           />
         </Form-item>
-        <Form-item label="订单状态" prop="orderStatus">
+        <Form-item label="Status" prop="orderStatus">
           <Select
             v-model="searchForm.orderStatus"
             placeholder="Please select"
@@ -34,29 +34,29 @@
             style="width: 160px"
           >
             <Option value="UNPAID">Unpaid</Option>
-            <Option value="PAID">已付款</Option>
+            <Option value="PAID">Paid</Option>
             <Option value="UNDELIVERED">待发货</Option>
             <Option value="DELIVERED">已发货</Option>
             <Option value="COMPLETED">completed</Option>
-            <Option value="CANCELLED">已Cancel</Option>
+            <Option value="CANCELLED">Cancel</Option>
             <Option value="STAY_PICKED_UP">待self-lifting</Option>
           </Select>
         </Form-item>
-        <Form-item label="订单类型" prop="orderType">
+        <Form-item label="Order Type" prop="orderType">
           <Select
             v-model="searchForm.orderPromotionType"
             placeholder="Please select"
             clearable
             style="width: 160px"
           >
-            <Option value="NORMAL">普通订单</Option>
+            <Option value="NORMAL">Normal</Option>
             <Option value="PINTUAN">拼团订单</Option>
             <Option value="GIFT">赠品订单</Option>
             <Option value="POINTS">积分订单</Option>
             <Option value="KANJIA">砍价订单</Option>
           </Select>
         </Form-item>
-        <Form-item label="下单时间">
+        <Form-item label="Time">
           <DatePicker
             v-model="selectDate"
             type="datetimerange"
@@ -70,7 +70,7 @@
         <Button @click="handleSearch" type="primary" class="search-btn"
           >search</Button
         >
-        <Button @click="handleReset" class="search-btn">重置</Button>
+        <Button @click="handleReset" class="search-btn">reset</Button>
       </Form>
       <div class="export">
         <Button type="primary" class="mr_10" @click="expressOrderDeliver">
@@ -122,11 +122,11 @@ export default {
   },
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "", // default排序字段
         order: "", // default排序方式
         startDate: "", // 起始时间
@@ -145,14 +145,14 @@ export default {
           tooltip: true,
         },
         {
-          title: "订单来源",
+          title: "source",
           key: "clientType",
           width: 120,
           render: (h, params) => {
             if (params.row.clientType == "H5") {
               return h("div", {}, "移动端");
             } else if (params.row.clientType == "PC") {
-              return h("div", {}, "PC端");
+              return h("div", {}, "PC");
             } else if (params.row.clientType == "WECHAT_MP") {
               return h("div", {}, "小程序端");
             } else if (params.row.clientType == "APP") {
@@ -163,13 +163,13 @@ export default {
           },
         },
         {
-          title: "订单类型",
+          title: "Order Type",
           key: "orderPromotionType",
           width: 120,
           render: (h, params) => {
             if (params.row.orderPromotionType == "NORMAL") {
               return h("div", [
-                h("tag", { props: { color: "blue" } }, "普通订单"),
+                h("tag", { props: { color: "blue" } }, "Normal"),
               ]);
             } else if (params.row.orderPromotionType == "PINTUAN") {
               return h("div", [
@@ -191,13 +191,13 @@ export default {
           },
         },
         {
-          title: "买家名称",
+          title: "Buyer",
           key: "memberName",
           minWidth: 130,
           tooltip: true,
         },
         {
-          title: "订单金额",
+          title: "Amount",
           key: "flowPrice",
           minWidth: 100,
           tooltip: true,
@@ -210,7 +210,7 @@ export default {
         },
 
         {
-          title: "订单状态",
+          title: "Status",
           key: "orderStatus",
           minWidth: 100,
           render: (h, params) => {
@@ -220,7 +220,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [
-                h("tag", { props: { color: "blue" } }, "已付款"),
+                h("tag", { props: { color: "blue" } }, "Paid"),
               ]);
             } else if (params.row.orderStatus == "UNDELIVERED") {
               return h("div", [
@@ -244,13 +244,13 @@ export default {
               ]);
             } else if (params.row.orderStatus == "CANCELLED") {
               return h("div", [
-                h("tag", { props: { color: "red" } }, "已Cancel"),
+                h("tag", { props: { color: "red" } }, "Cancel"),
               ]);
             }
           },
         },
         {
-          title: "下单时间",
+          title: "Time",
           key: "createTime",
           width: 170,
         },
@@ -277,7 +277,7 @@ export default {
                     },
                   },
                 },
-                "查看"
+                "View"
               ),
             ]);
           },
@@ -314,12 +314,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 改变页数
+    // 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -330,7 +330,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置
+    // reset
     handleReset() {
       this.searchForm = {};
       this.searchForm.pageNumber = 1;
@@ -364,8 +364,8 @@ export default {
       let userInfo = JSON.parse(Cookies.get("userInfoSeller"));
       const params = {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10000, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10000, // Page面大小
         sort: "startDate", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -401,7 +401,7 @@ export default {
         this.$Message.warning("导出订单失败，Please 重试");
       }
     },
-    // 查看Order details
+    // ViewOrder details
     detail(v) {
       let sn = v.sn;
       this.$router.push({
@@ -413,7 +413,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+  // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
   beforeRouteLeave(to, from, next) {
     from.meta.keepAlive = false;
     next();

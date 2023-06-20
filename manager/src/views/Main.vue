@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <!-- 已打开的页面标签 -->
+      <!-- 已打开的Page面标签 -->
       <div class="tags-con">
         <tags-page-opened :pageTagsList="pageTagsList"></tags-page-opened>
       </div>
@@ -108,7 +108,7 @@ export default {
       return this.$store.state.app.loading;
     },
     pageTagsList() {
-      return this.$store.state.app.pageOpenedList; // 打开的页面的页面对象
+      return this.$store.state.app.pageOpenedList; // 打开的Page面的Page面对象
     },
     avatarPath() {
       return localStorage.avatorImgPath;
@@ -183,7 +183,7 @@ export default {
         }
       });
       if (!openpageHasTag) {
-        //  解决Close当前标签后再点击回退按钮会退到当前页时没有标签的问题
+        //  解决Close当前标签后再点击回退按钮会退到当前Page时没有标签的问题
         util.openNewPage(
           this,
           name,
@@ -218,7 +218,7 @@ export default {
     });
   },
   created() {
-    // 显示打开的页面的列表
+    // 显示打开的Page面的列表
     this.$store.commit("setOpenedList");
   },
 };

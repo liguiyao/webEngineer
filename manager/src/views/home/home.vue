@@ -277,7 +277,7 @@ export default {
       topHotGoodsData: [], //热卖Goods集合
       topHotShopsData: [], //热卖店铺集合
       awaitTodoData: "", //今日待办集合
-      homeData: "", // 首页数据
+      homeData: "", // Home数据
       pvChart: "", // 流量统计
       orderChart: "", // 订单统计
       historyMemberChart: "", // 最近会员流量统计
@@ -318,7 +318,7 @@ export default {
       res.success ? (this.awaitTodoData = res.result) : "";
     },
 
-    //首页统计数据
+    //Home统计数据
     async getHomeData() {
       let res = await homeStatistics();
       if (res.success) {

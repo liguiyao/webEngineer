@@ -18,7 +18,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="活动状态" prop="promotionStatus">
+          <Form-item label="活动state" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
               placeholder="Please select"
@@ -26,8 +26,8 @@
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
-              <Option value="START">已开始/上架</Option>
-              <Option value="END">已结束/下架</Option>
+              <Option value="START">已开始/On</Option>
+              <Option value="END">已结束/Off</Option>
               <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
@@ -70,7 +70,7 @@
         </template>
         <template slot-scope="{ row }" slot="action">
           <div>
-            <Button type="info" size="small" @click="view(row)">查看</Button>
+            <Button type="info" size="small" @click="view(row)">View</Button>
             <Button
               type="error"
               v-if="row.promotionStatus === 'NEW' || row.promotionStatus === 'START'"
@@ -108,7 +108,7 @@ export default {
     return {
       selectDate: [],
       total: 0,
-      loading: false, // 表单加载状态
+      loading: false, // 表单加载state
       searchForm: {
         // Please 求参数
         pageNumber: 1,
@@ -144,7 +144,7 @@ export default {
           minWidth: 60,
         },
         {
-          title: "活动状态",
+          title: "活动state",
           key: "promotionStatus",
           minWidth: 60,
           render: (h, params) => {
@@ -190,12 +190,12 @@ export default {
       }
     },
     changePage(v) {
-      // 改变页数
+      // 改变Page数
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
     changePageSize(v) {
-      // 改变页码
+      // 改变Page码
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -226,7 +226,7 @@ export default {
       });
     },
     view(row) {
-      // 查看
+      // View
       this.$router.push({ name: "full-discount-detail", query: { id: row.id } });
     },
   },

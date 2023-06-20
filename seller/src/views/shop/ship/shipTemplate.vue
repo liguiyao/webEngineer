@@ -17,7 +17,7 @@
                   <span class="temp-name">{{item.name}}</span>
                   <Tag v-if="item.pricingMethod==='FREE'" class="baoyou" color="warning">包邮</Tag>
                   <span class="fr m-r-5">
-                    <time style="margin-right: 20px" title="最后编辑时间">
+                    <time style="margin-right: 20px" title="最后edit时间">
                       <i class="icon-time"></i>{{item.updateTime}}
                     </time>
                     <Button @click="edit(item)" type="info">modify</Button>
@@ -61,14 +61,14 @@
             </FormItem>
             <FormItem label="计价方式" prop="pricingMethod">
               <RadioGroup type="button" button-style="solid" v-model="form.pricingMethod">
-                <Radio label="WEIGHT">按重量</Radio>
+                <Radio label="WEIGHT">按weight</Radio>
                 <Radio label="NUM">按件数</Radio>
                 <Radio label="FREE">包邮</Radio>
               </RadioGroup>
             </FormItem>
 
             <FormItem label="详细设置" v-if="form.pricingMethod !== 'FREE'">
-              <Alert type="warning" >点击右侧modify按钮编辑数据</Alert>
+              <Alert type="warning" >点击右侧modify按钮edit数据</Alert>
               <div class="ncsu-trans-type" data-delivery="TRANSTYPE">
                 <div class="entity">
                   <div class="tbl-except">
@@ -176,13 +176,13 @@ export default {
       item: "", //运费模板子模板
       shipInfo: {}, // 运费模板数据
       title: "添加运费模板", // 模态框标题
-      operation: "add", // operation状态
+      operation: "add", // operationstate
       currentTab: "", // 当前模板tab
       // submitLoading:false,
       saveError: false, // 是否显示错误Tips
       csTab: false, // 添加运费模板显示
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         name: "",
         pricingMethod: "WEIGHT",
       },

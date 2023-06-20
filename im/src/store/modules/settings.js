@@ -49,13 +49,13 @@ const Settings = {
       setUserSettingCache(state)
     },
 
-    // 设置消息Tips音状态
+    // 设置消息Tips音state
     SET_NOTIFY_CUE_TONE(state, isTrue) {
       state.notifyCueTone = isTrue
       setUserSettingCache(state)
     },
 
-    // 设置键盘输入事件消息推送状态
+    // 设置键盘输入事件消息推送state
     SET_KEYBOARD_EVENT_NOTIFY(state, isTrue) {
       state.keyboardEventNotify = isTrue
       setUserSettingCache(state)

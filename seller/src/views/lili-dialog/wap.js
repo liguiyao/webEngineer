@@ -17,7 +17,7 @@ export default [
   //   name: "marketing"
   // },
   // {
-  //   title: "页面",
+  //   title: "Page面",
   //   url: "3",
   //   name: "pages"
   // },
@@ -28,7 +28,7 @@ export default [
   //   name: "marketing"
   // },
   // {
-  //   title: "页面",
+  //   title: "Page面",
   //   url: "3",
   //   name: "pages"
   // },

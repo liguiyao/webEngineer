@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    navList: [], // 首页快捷导航
+    navList: [], // Home快捷导航
     cartNum: storage.getItem('cartNum') || 0,
     logoImg: storage.getItem('logoImg') || require('@/assets/images/logo2.png'),
     siteName:storage.getItem('siteName')|| 'easyshop',

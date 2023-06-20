@@ -31,7 +31,7 @@ export const getClientDataList = (params) => {
 export const addClient = (params) => {
     return postRequest('/client/save', params)
 }
-// 编辑客户端
+// edit客户端
 export const updateClient = (params) => {
     return putRequest('/client/update', params)
 }

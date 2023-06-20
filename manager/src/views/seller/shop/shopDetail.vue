@@ -28,7 +28,7 @@
                 <i-switch size="large" v-model="storeInfo.storeDisable" :true-value="true" :false-value="false"
                           @on-change="shopStatusChange">
                   <span slot="open">启用</span>
-                  <span slot="close">禁用</span>
+                  <span slot="close">disable</span>
                 </i-switch>
               </p>
             </div>
@@ -81,7 +81,7 @@
             <span class="info">{{storeInfo.memberName}}</span>
           </p>
           <p class="item">
-            <span class="label">库存预警数：</span>
+            <span class="label">stock预警数：</span>
             <span class="info">{{storeInfo.stockWarning?storeInfo.stockWarning:'0'}}</span>
           </p>
           <p class="item">
@@ -233,41 +233,41 @@
                   style="width: 200px"
                 />
               </Form-item>
-              <Form-item label="订单状态" prop="orderStatus">
+              <Form-item label="Status" prop="orderStatus">
                 <Select v-model="orderSearchForm.orderStatus" placeholder="Please select" clearable style="width: 200px">
                   <Option value="UNPAID">Unpaid</Option>
-                  <Option value="PAID">已付款</Option>
+                  <Option value="PAID">Paid</Option>
                   <Option value="UNDELIVERED">待发货</Option>
                   <Option value="DELIVERED">已发货</Option>
                   <Option value="COMPLETED">completed</Option>
                   <Option value="TAKE">待核验</Option>
-                  <Option value="CANCELLED">已Cancel</Option>
+                  <Option value="CANCELLED">Cancel</Option>
                 </Select>
               </Form-item>
-              <Form-item label="支付状态" prop="payStatus">
+              <Form-item label="支付state" prop="payStatus">
                 <Select v-model="orderSearchForm.payStatus" placeholder="Please select" clearable style="width: 200px">
                   <Option value="UNPAID">Unpaid</Option>
-                  <Option value="PAID">已付款</Option>
+                  <Option value="PAID">Paid</Option>
                 </Select>
               </Form-item>
-              <Form-item label="订单类型" prop="orderType">
+              <Form-item label="Order Type" prop="orderType">
                 <Select v-model="orderSearchForm.orderType" placeholder="Please select" clearable style="width: 200px">
-                  <Option value="NORMAL">普通订单</Option>
+                  <Option value="NORMAL">Normal</Option>
                   <Option value="VIRTUAL">虚拟订单</Option>
                   <Option value="GIFT">赠品订单</Option>
                   <Option value="PINTUAN">拼团订单</Option>
                 </Select>
               </Form-item>
-              <Form-item label="订单来源" prop="clientType">
+              <Form-item label="source" prop="clientType">
                 <Select v-model="orderSearchForm.clientType" placeholder="Please select" clearable style="width: 200px">
                   <Option value="H5">移动端</Option>
-                  <Option value="PC">PC端</Option>
+                  <Option value="PC">PC</Option>
                   <Option value="WECHAT_MP">小程序</Option>
                   <Option value="APP">移动应用端</Option>
                   <Option value="UNKNOWN">未知</Option>
                 </Select>
               </Form-item>
-              <Form-item label="下单时间">
+              <Form-item label="Time">
                 <DatePicker
                   v-model="selectDate"
                   type="datetimerange"
@@ -335,11 +335,11 @@
                   style="width: 200px"
                 />
               </Form-item>
-              <Form-item label="after sale状态">
+              <Form-item label="after salestate">
                 <Select v-model="refundGoodsOrderSearchForm.serviceStatus" placeholder="全部" clearable
                         style="width: 200px">
                   <Option value="APPLY">Apply  after sale</Option>
-                  <Option value="PASS">通过after sale</Option>
+                  <Option value="PASS">passafter sale</Option>
                   <Option value="REFUSE">拒绝after sale</Option>
                   <Option value="BUYER_RETURN">买家Return goods，待卖家收货</Option>
                   <Option value="SELLER_RE_DELIVERY">商家换货/补发</Option>
@@ -458,11 +458,11 @@
                   style="width: 200px"
                 />
               </Form-item>
-              <Form-item label="after sale状态">
+              <Form-item label="after salestate">
                 <Select v-model="refundOrderSearchForm.serviceStatus" placeholder="全部" clearable
                         style="width: 200px">
                   <Option value="APPLY">Apply  after sale</Option>
-                  <Option value="PASS">通过after sale</Option>
+                  <Option value="PASS">passafter sale</Option>
                   <Option value="REFUSE">拒绝after sale</Option>
                   <Option value="BUYER_RETURN">买家Return goods，待卖家收货</Option>
                   <Option value="SELLER_RE_DELIVERY">商家换货/补发</Option>
@@ -584,7 +584,7 @@
       return {
         id: "",//店铺id
         categories: [], //店铺静音范围
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         storeInfo: {},//店铺信息
         checkAllGroup: [], //选中的经营分类
         selectDate: null, // Apply  时间
@@ -598,7 +598,7 @@
             slot: "orderSlot",
           },
           {
-            title: "订单金额",
+            title: "Amount",
             key: "flowPrice",
             width: 140,
             render: (h, params) => {
@@ -606,12 +606,12 @@
             }
           },
           {
-            title: "订单类型",
+            title: "Order Type",
             key: "orderType",
             width: 100,
             render: (h, params) => {
               if (params.row.orderType == "NORMAL") {
-                return h('div', [h('span', {}, '普通订单'),]);
+                return h('div', [h('span', {}, 'Normal'),]);
               } else if (params.row.orderType == "VIRTUAL") {
                 return h('div', [h('span', {}, '虚拟订单'),]);
               } else if (params.row.orderType == "GIFT") {
@@ -630,7 +630,7 @@
               if (params.row.clientType == "H5") {
                 return h("div",{},"移动端");
               }else if(params.row.clientType == "PC") {
-                return h("div",{},"PC端");
+                return h("div",{},"PC");
               }else if(params.row.clientType == "WECHAT_MP") {
                 return h("div",{},"小程序端");
               }else if(params.row.clientType == "APP") {
@@ -642,14 +642,14 @@
             },
           },
           {
-            title: "订单状态",
+            title: "Status",
             key: "orderStatus",
             width: 95,
             render: (h, params) => {
               if (params.row.orderStatus == "UNPAID") {
                 return h('div', [h('span', {}, 'Unpaid'),]);
               } else if (params.row.orderStatus == "PAID") {
-                return h('div', [h('span', {}, '已付款'),]);
+                return h('div', [h('span', {}, 'Paid'),]);
               } else if (params.row.orderStatus == "UNDELIVERED") {
                 return h('div', [h('span', {}, '待发货'),]);
               } else if (params.row.orderStatus == "DELIVERED") {
@@ -659,25 +659,25 @@
               } else if (params.row.orderStatus == "TAKE") {
                 return h('div', [h('span', {}, '待核验'),]);
               } else if (params.row.orderStatus == "CANCELLED") {
-                return h('div', [h('span', {}, '已Cancel'),]);
+                return h('div', [h('span', {}, 'Cancel'),]);
               }
             }
           },
           {
-            title: "支付状态",
+            title: "支付state",
             key: "payStatus",
             width: 95,
             render: (h, params) => {
               if (params.row.payStatus == "UNPAID") {
                 return h('div', [h('span', {}, 'Unpaid'),]);
               } else if (params.row.payStatus == "PAID") {
-                return h('div', [h('span', {}, '已付款'),]);
+                return h('div', [h('span', {}, 'Paid'),]);
               }
             }
           },
 
           {
-            title: "after sale状态",
+            title: "after salestate",
             key: "groupAfterSaleStatus",
             width: 100,
             render: (h, params) => {
@@ -693,7 +693,7 @@
             }
           },
           {
-            title: "Complaint状态",
+            title: "Complaintstate",
             key: "groupComplainStatus",
             width: 95,
             render: (h, params) => {
@@ -719,18 +719,18 @@
             tooltip: true
           },
           {
-            title: "下单时间",
+            title: "Time",
             key: "createTime",
             width: 170,
           },
 
         ],
         orderData: [],//订单数据
-        orderTotal: 0,//订单总条数
+        orderTotal: 0,//订单总items数
         //TA的订单form
         orderSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           payStatus: "",
           orderSn: "",
           orderType: "",
@@ -802,14 +802,14 @@
           },
 
           {
-            title: "after sale状态",
+            title: "after salestate",
             key: "serviceStatus",
             width: 110,
             render: (h, params) => {
               if (params.row.serviceStatus == "APPLY") {
                 return h('div', [h('span', {}, 'Apply  中'),]);
               } else if (params.row.serviceStatus == "PASS") {
-                return h('div', [h('span', {}, '通过after sale'),]);
+                return h('div', [h('span', {}, 'passafter sale'),]);
               } else if (params.row.serviceStatus == "REFUSE") {
                 return h('div', [h('span', {}, '拒绝after sale'),]);
               } else if (params.row.serviceStatus == "BUYER_RETURN") {
@@ -839,19 +839,19 @@
           },
         ],
         refundGoodsOrderData: [],//after sale单数据
-        refundGoodsOrderTotal: 0,//after sale单总条数
+        refundGoodsOrderTotal: 0,//after sale单总items数
         //TA的Return goods单form
         refundGoodsOrderSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         //TA的refund单form
         refundOrderSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         refundOrderData: [],//after sale单数据
-        refundOrderTotal: 0,//after sale单总条数
+        refundOrderTotal: 0,//after sale单总items数
       };
     },
     methods: {
@@ -946,37 +946,37 @@
           }
         });
       },
-      //after sale单页数变化
+      //after sale单Page数变化
       refundGoodsOrderChangePage(v) {
         this.refundGoodsOrderSearchForm.pageNumber = v;
         this.getRefundGoodsOrderData()
       }
       ,
-      //after sale单页数变化
+      //after sale单Page数变化
       refundGoodsOrderChangePageSize(v) {
         this.refundGoodsOrderSearchForm.pageSize = v;
         this.refundGoodsOrderSearchForm.pageNumber = 1;
         this.getRefundGoodsOrderData();
       },
-      //refund单页数变化
+      //refund单Page数变化
       refundOrderChangePage(v) {
         this.refundOrderSearchForm.pageNumber = v;
         this.getRefundOrder()
       }
       ,
-      //after sale单页数变化
+      //after sale单Page数变化
       refundOrderChangePageSize(v) {
         this.refundOrderSearchForm.pageSize = v;
         this.refundOrderSearchForm.pageNumber = 1;
         this.getRefundOrder();
       },
-      //订单记录页数变化
+      //订单记录Page数变化
       orderChangePage(v) {
         this.orderSearchForm.pageNumber = v;
         this.getOrderData()
       }
       ,
-      //订单记录页数变化
+      //订单记录Page数变化
       orderChangePageSize(v) {
         this.orderSearchForm.pageSize = v;
         this.orderSearchForm.pageNumber = 1;

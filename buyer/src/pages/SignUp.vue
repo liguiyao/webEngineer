@@ -134,8 +134,8 @@ export default {
         ],
         code: [{ required: true, message: 'Please enter phone verification code' }]
       },
-      verifyStatus: false, // 是否验证通过
-      verifyType: 'REGISTER', // 验证状态
+      verifyStatus: false, // 是否验证pass
+      verifyType: 'REGISTER', // 验证state
       codeMsg: 'Send verification code', // Tips文字
       interval: '', // 定时器
       time: 60 // 倒计时

@@ -84,7 +84,7 @@ export default {
           }
         ]
       },
-      loading: false, // Submit的加载状态
+      loading: false, // Submit的加载state
       mapMsg: {} // 地图信息
     };
   },

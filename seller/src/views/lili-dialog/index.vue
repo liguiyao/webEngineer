@@ -64,7 +64,7 @@ export default {
       }
       this.clickClose();
     },
-    open (type) { // 父组件通过ref调用，打开Goodsselect器
+    open (type) { // 父组件passref调用，打开Goodsselect器
       this.flag = true;
       if(type == 'goods'){
         this.goodsFlag = true;

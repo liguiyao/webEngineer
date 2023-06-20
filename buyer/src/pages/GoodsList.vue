@@ -135,7 +135,7 @@ export default {
   },
   data() {
     return {
-      sortIndex: 0, // 排序状态
+      sortIndex: 0, // 排序state
       sortPriceIndex: false, // 判断price升序还是降序
       goodsTool: [
         // 排序类型
@@ -145,7 +145,7 @@ export default {
         { title: "New product", en: "releaseTime" },
       ],
       goodsList: [], // Goods列表
-      loading: false, // 加载状态
+      loading: false, // 加载state
       total: 0, // 列表总数
       params: {
         // Please 求参数
@@ -202,19 +202,19 @@ export default {
       this.getGoodsList();
     },
     goGoodsDetail(skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },
       });
       window.open(routeUrl.href, "_blank");
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePageNum(val) {
       this.params.pageNumber = val;
       this.getGoodsList();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(val) {
       this.params.pageNumber = 1;
       this.params.pageSize = val;
@@ -238,7 +238,7 @@ export default {
         });
     },
     getParams(val) {
-      // 筛选条件回显
+      // 筛选items件回显
       Object.assign(this.params, val);
       this.getGoodsList();
     },

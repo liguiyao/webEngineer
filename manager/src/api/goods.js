@@ -1,7 +1,7 @@
 // 统一Please 求路径前缀在libs/axios.js中modify
 import { getRequest, postRequest, putRequest, deleteRequest} from '@/libs/axios';
 
-//  获取Goods品牌分页列表
+//  获取Goods Brand分Page列表
 export const getManagerBrandPage = (params) => {
     return getRequest('/goods/brand/getByPage', params)
 }
@@ -20,7 +20,7 @@ export const addBrand = (params) => {
 export const updateBrand = (params) => {
     return putRequest(`/goods/brand/${params.id}`, params)
 }
-// 禁用品牌
+// disable品牌
 export const disableBrand = (id, params) => {
     return putRequest(`/goods/brand/disable/${id}`, params)
 }
@@ -56,25 +56,25 @@ export const getCategoryTree = () => {
   return getRequest(`/goods/category/allChildren`)
 }
 
-//  添加Goods分类
+//  Add Goods Category
 export const insertCategory = (params) => {
     return postRequest('/goods/category', params)
 }
-//  添加Goods分类
+//  Add Goods Category
 export const updateCategory = (params) => {
     return putRequest('/goods/category', params)
 }
-//deleteGoods分类
+//deleteGoods Category
 export const delCategory = (id) => {
     return deleteRequest(`/goods/category/${id}`)
 }
-// 禁用分类
+// disable分类
 export const disableCategory = (id, type) => {
     return putRequest(`/goods/category/disable/${id}`, type)
 }
 
 
-//  获取Goods规格分页列表
+//  获取Goods规格分Page列表
 export const getSpecListData = (params) => {
     return getRequest('/goods/spec', params)
 }
@@ -100,26 +100,26 @@ export const getGoodsCategory = (parent_id) => {
     return getRequest(`/goods/category/${parent_id}/all-children`)
 }
 
-//  上架Goods
+//  OnGoods
 export const upGoods = (id, params) => {
     return putRequest(`/goods/goods/${id}/up`, params)
   }
-  //  下架Goods
+  //  OffGoods
   export const lowGoods = (id, params) => {
     return putRequest(`/goods/goods/${id}/under`, params)
   }
 
-//  获取Goodssku分页列表
+//  获取Goodssku分Page列表
 export const getGoodsSkuData = (params) => {
     return getRequest('/goods/goods/sku/list', params)
 }
 
 
-//  获取Goods分页列表
+//  获取Goods分Page列表
 export const getGoodsListData = (params) => {
     return getRequest('/goods/goods/list', params)
 }
-//  获取待审核Goods分页列表
+//  获取待审核Goods分Page列表
 export const getAuthGoodsListData = (params) => {
     return getRequest('/goods/goods/auth/list', params)
 }
@@ -174,7 +174,7 @@ export const getSkuPage = (params) => {
 }
 
 
-//查看Goods详情
+//ViewGoods Detail
 export const getGoodsDetail = (id) => {
   return getRequest(`/goods/goods/get/${id}`)
 }

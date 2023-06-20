@@ -8,7 +8,7 @@ import {
 
 
 
-// 分页获取Logistics company
+// 分Page获取Logistics company
 export const getLogisticsPage = params => {
   return getRequest(`/other/logistics/getByPage`, params);
 };
@@ -20,11 +20,11 @@ export const delLogistics = id => {
 export const addLogistics = params => {
   return postRequest(`/other/logistics/save`,params);
 };
-// 通过id查询详情
+// passid查询详情
 export const getLogisticsDetail = id => {
   return getRequest(`/other/logistics/get/${id}`);
 };
-// 编辑
+// edit
 export const updateLogistics = (id,params) => {
   return putRequest(`/other/logistics/${id}`,params);
 };

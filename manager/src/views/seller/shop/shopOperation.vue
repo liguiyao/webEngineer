@@ -362,7 +362,7 @@
           >上一步</Button
         >
         <Button type="primary" v-show="tabNameList.indexOf(tabName) < tabNameList.length - 1" @click="next"
-          >下一步</Button
+          >Next</Button
         >
         <Button
           type="primary"
@@ -394,14 +394,14 @@
         <span>审核店铺</span>
       </p>
       <div style="text-align: center">
-        <p>您确认要审核通过该店铺</p>
+        <p>您确认要审核pass该店铺</p>
       </div>
       <div slot="footer">
         <Button type="error" :loading="auditModalLoading" @click="audit('REFUSED')"
           >驳回</Button
         >
         <Button type="info" :loading="auditModalLoading" @click="audit('PASS')"
-          >通过</Button
+          >pass</Button
         >
       </div>
     </Modal>
@@ -430,7 +430,7 @@ export default {
   data() {
     return {
       shopId: this.$route.query.shopId, // 店铺id
-      isRead: false, // 是否只读，只有在店铺通过审核才可modify
+      isRead: false, // 是否只读，只有在店铺pass审核才可modify
       selectedFormBtnName: "", // 点击图片绑定form
       loading: false,
       auditModel: false,
@@ -507,7 +507,7 @@ export default {
       indeterminate: true, // 复选框全选样式
       checkAll: false, // 全选
       checkAllGroup: [], // 全选数组
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       settlementCycle: [], // 结算周期
       shopForm: {
         // 店铺数据
@@ -647,7 +647,7 @@ export default {
       }
     },
     next() {
-      // 下一步
+      // Next
       let index = this.tabNameList.indexOf(this.tabName) + 1;
       this.tabName = this.tabNameList[index];
     },
@@ -701,7 +701,7 @@ export default {
             delete params.memberId;
             shopEdit(this.shopId, params).then((res) => {
               if (res.success) {
-                this.$Message.success("编辑success");
+                this.$Message.success("editsuccess");
                 this.$router.push({ name: "shopList" });
               }
             });

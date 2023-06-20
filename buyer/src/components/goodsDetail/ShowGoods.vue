@@ -333,18 +333,18 @@ export default {
       count: 1, // GoodsQuantity
       imgIndex: 0, // 展示图片下标
       currentSelceted: [], // 当前Goodssku
-      imgList: [{ url: "" }], // Goods图片列表
+      imgList: [{ url: "" }], // Goods images列表
       skuDetail: {
         specList: [],
       }, // sku详情
       goodsSpecList: this.detail.specs, // Goodsspec
       promotionMap: {
-        // 活动状态
+        // 活动state
         SECKILL: null,
         FULL_DISCOUNT: null,
         COUPON: [],
       }, // 促销活动
-      formatList: [], // selectGoods品类的数组
+      formatList: [], // select Goods type的数组
       loading: false, // 立即购买loading
       loading1: false, // 加入购物车loading
       isCollected: false, // 是否收藏
@@ -428,7 +428,7 @@ export default {
         skuId: this.skuDetail.id,
         cartType: "BUY_NOW",
       };
-      // 虚拟Goods购买
+      // Virtual Goods购买
       if (this.skuDetail.goodsType === "VIRTUAL_GOODS") {
         params.cartType = "VIRTUAL";
       }
@@ -564,7 +564,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/******************Goods图片及购买详情开始******************/
+/******************Goods images及购买详情开始******************/
 .item-detail-see {
   width: 175px;
   margin-left: 30px;
@@ -869,5 +869,5 @@ export default {
   color: red;
   margin-bottom: 5px;
 }
-/******************Goods图片及购买详情结束******************/
+/******************Goods images及购买详情结束******************/
 </style>

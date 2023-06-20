@@ -37,7 +37,7 @@
           <!--            <span>按Enter发送 / Shift+Enter 换行</span>-->
           <!--            <el-popover placement="top-end" width="600" trigger="click">-->
           <!--              <div class="editor-books">-->
-          <!--                <div class="books-title">编辑说明:</div>-->
+          <!--                <div class="books-title">edit说明:</div>-->
           <!--                <p>-->
           <!--                  1.-->
           <!--                  支持上传QQ及Wechat截图，在QQ或Wechat中截图后使用Ctrl+v上传图片。-->
@@ -51,7 +51,7 @@
           <!--                <p>5. 按Enter发送 / Shift+Enter 换行。</p>-->
           <!--                <p>-->
           <!--                  6.-->
-          <!--                  注意：当文件正在上传时，Please 勿Close网页或离开当前对话框，否则将导致文件停止上传或上传失败。-->
+          <!--                  注意：当文件正在上传时，Please 勿Close网Page或离开当前对话框，否则将导致文件停止上传或上传失败。-->
           <!--                </p>-->
           <!--              </div>-->
           <!--              <i class="el-icon-info" slot="reference" />-->
@@ -75,13 +75,13 @@
       </el-main>
     </el-container>
 
-    <!-- 图片查看器 -->
+    <!-- 图片View器 -->
     <MeEditorImageView ref="imageViewer" v-model="imageViewer.isShow" :file="imageViewer.file"
       @confirm="confirmUploadImage" />
 
     <MeEditorRecorder v-if="recorder" @close="recorder = false" />
 
-    <!-- 代码块编辑器 -->
+    <!-- 代码块edit器 -->
     <TalkCodeBlock v-if="codeBlock.isShow" :edit-mode="codeBlock.editMode" @close="codeBlock.isShow = false"
       @confirm="confirmCodeBlock" />
 
@@ -138,10 +138,10 @@ export default {
   },
   data () {
     return {
-      // 当前编辑的内容
+      // 当前edit的内容
       editorText: "",
 
-      // 图片查看器相关信息
+      // 图片View器相关信息
       imageViewer: {
         isShow: false,
         file: null,
@@ -171,7 +171,7 @@ export default {
     };
   },
   methods: {
-    // 读取对话编辑草稿信息 并赋值给当前富文本
+    // 读取对话edit草稿信息 并赋值给当前富文本
     getDraftText (index_name) {
       return findTalk(index_name)?.draft_text || "";
     },
@@ -207,7 +207,7 @@ export default {
         let currentTime = new Date().getTime();
 
         if (this.sendtime > 0) {
-          // 判断 1秒内只能发送一条消息
+          // 判断 1秒内只能发送一items消息
           if (currentTime - this.sendtime < this.interval) {
             e.preventDefault();
             return false;
@@ -253,13 +253,13 @@ export default {
       this.$refs.filesManager.upload(file);
     },
 
-    // 打开图片查看器
+    // 打开图片View器
     openImageViewer (file) {
       this.imageViewer.isShow = true;
       this.imageViewer.file = file;
     },
 
-    // 代码块编辑器确认完成回调事件
+    // 代码块edit器确认完成回调事件
     confirmCodeBlock (data) {
       const { talk_type, receiver_id } = this.$store.state.dialogue;
       ServeSendTalkCodeBlock({
@@ -447,7 +447,7 @@ textarea::-webkit-input-placeholder {
   font-weight: 400;
 }
 
-/* 编辑器文档说明 --- start */
+/* edit器文档说明 --- start */
 .editor-books .books-title {
   font-size: 16px;
   height: 30px;
@@ -468,5 +468,5 @@ textarea::-webkit-input-placeholder {
   color: #7f7c7c;
 }
 
-/* 编辑器文档说明 --- end */
+/* edit器文档说明 --- end */
 </style>

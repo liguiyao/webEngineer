@@ -73,15 +73,15 @@ import {
 export default {
   data() {
     return {
-      promotionStatus: "", // 活动状态
+      promotionStatus: "", // 活动state
       showModal: false, // modal显隐
       openTip: true, // 显示Tips
-      loading: false, // 表单加载状态
-      submitLoading: false, // 加载状态
+      loading: false, // 表单加载state
+      submitLoading: false, // 加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
       total: 0, // 总数
       selectList: [], // 多选数据
@@ -107,7 +107,7 @@ export default {
           slot: "hours",
         },
         {
-          title: "活动状态",
+          title: "活动state",
           key: "promotionStatus",
           minWidth: 80,
           sortable: false,
@@ -166,7 +166,7 @@ export default {
           width: 110,
         },
         {
-          title: "库存",
+          title: "stock",
           slot: "quantity",
           minWidth: 30,
           width: 90,
@@ -188,7 +188,7 @@ export default {
           slot: "time",
         },
         // {
-        //   title: "状态",
+        //   title: "state",
         //   slot: "promotionApplyStatus",
         //   width: 90,
         // },
@@ -218,25 +218,25 @@ export default {
     init() {
       this.getSeckillMsg();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();
     },
-    // 清除选中状态
+    // 清除选中state
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
 
     getDataList() {
-      // 获取Goods详情
+      // 获取Goods Detail
       this.loading = true;
       this.searchForm.seckillId = this.$route.query.id;
       seckillGoodsList(this.searchForm).then((res) => {

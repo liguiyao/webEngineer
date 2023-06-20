@@ -33,11 +33,11 @@
 export default {
   name: "Error500",
   methods: {
-    // Back上一页
+    // Back上一Page
     backPage() {
       this.$router.go(-1);
     },
-    // Back首页
+    // BackHome
     goHome() {
       this.$router.push({
         name: "home_index",

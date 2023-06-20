@@ -27,7 +27,7 @@
             <Button
               size="small"
               @click.stop="handleSelectModel(element.options.list[0])"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -44,7 +44,7 @@
             <div class="setup-box">
               <div>
                 <Button size="small" @click.stop="handleSelectModel(item)"
-                  >编辑</Button
+                  >edit</Button
                 >
               </div>
             </div>
@@ -75,7 +75,7 @@
             <div class="setup-box">
               <div>
                 <Button size="small" @click.stop="handleSelectModel(item)"
-                  >编辑</Button
+                  >edit</Button
                 >
               </div>
             </div>
@@ -91,7 +91,7 @@
             <div class="setup-box">
               <div>
                 <Button size="small" @click.stop="handleSelectModel(item)"
-                  >编辑</Button
+                  >edit</Button
                 >
               </div>
             </div>
@@ -107,7 +107,7 @@
     <template v-if="element.type == 'newGoodsSort'">
       <new-goods-sort :data="element"></new-goods-sort>
     </template>
-    <!-- 首页广告 -->
+    <!-- Home广告 -->
     <template v-if="element.type == 'firstAdvert'">
       <first-page-advert :data="element"></first-page-advert>
     </template>
@@ -129,7 +129,7 @@
             <Button
               size="small"
               @click.stop="handleSelectModel(element.options)"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -260,7 +260,7 @@ export default {
     };
   },
   methods: {
-    // 编辑模块
+    // edit模块
     handleSelectModel(item) {
       this.selected = item;
       this.showModal = true;
@@ -378,7 +378,7 @@ export default {
     }
   }
 }
-/** 首页品牌 */
+/** Home品牌 */
 .brand {
   .brand-view {
     display: flex;

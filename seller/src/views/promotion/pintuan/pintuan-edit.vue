@@ -35,12 +35,12 @@
             </Radio>
           </RadioGroup>
           <br />
-          <span style="color: #cccccc">Opening虚拟成团后，24小时人数未full的团，系统将会模拟匿名买家凑full人数，使该团成团；您只需要对已付款参团的真实买家发货；建议合理Opening以提高</span>
+          <span style="color: #cccccc">Opening虚拟成团后，24小时人数未full的团，系统将会模拟匿名买家凑full人数，使该团成团；您只需要对Paid参团的真实买家发货；建议合理Opening以提高</span>
         </FormItem>
         <FormItem label="拼团规则" prop="pintuanRule">
           <Input v-model="form.pintuanRule" type="textarea" :rows="4" clearable maxlength="255" style="width: 260px" />
           <br />
-          <span style="color: #cccccc">拼团规则描述不能为空且不能大于255个字，会在WAP拼团详情页面显示</span>
+          <span style="color: #cccccc">拼团规则描述不能为空且不能大于255个字，会在WAP拼团详情Page面显示</span>
         </FormItem>
       </Form>
       <div>
@@ -57,7 +57,7 @@ export default {
     return {
       id: this.$route.query.id, // 拼团id
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         promotionName: "",
         promotionTitle: "",
         pintuanRule: "",
@@ -86,7 +86,7 @@ export default {
         ],
         rangeTime: [{ required: true, message: "Please select活动时间" }],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       options: {
         // 不可选取时间
         disabledDate(date) {
@@ -102,7 +102,7 @@ export default {
   },
 
   methods: {
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "new-pintuan");
       localStorage.storeOpenedList = JSON.stringify(
@@ -139,7 +139,7 @@ export default {
 
           delete params.rangeTime;
           if (!this.id) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete params.id;
             savePintuan(params).then((res) => {
               this.submitLoading = false;
@@ -149,7 +149,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             if (params.promotionGoodsList == "")
               delete params.promotionGoodsList;
             editPintuan(params).then((res) => {

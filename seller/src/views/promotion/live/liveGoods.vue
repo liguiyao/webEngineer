@@ -20,7 +20,7 @@
       </div>
 
       <Button v-if="!reviewed" type="primary" style="margin-bottom:10px;" @click="addNewLiveGoods" icon="md-add">selectGoods</Button>
-      <Button type="primary" v-if="params.auditStatus == 0" ghost style="margin:0 0 10px 10px" @click="getLiveGoodsMethods('clear')">更新状态</Button>
+      <Button type="primary" v-if="params.auditStatus == 0" ghost style="margin:0 0 10px 10px" @click="getLiveGoodsMethods('clear')">更新state</Button>
       <div style="position:relative">
         <Spin size="large" fix v-if="tableLoading">
         </Spin>
@@ -62,7 +62,7 @@
 
           <template slot-scope="{ row,index }" slot="action">
             <Button v-if="params.auditStatus == 99" type="primary" @click="()=>{liveGoodsData.splice(index,1)}">delete</Button>
-            <Button v-if="params.auditStatus != 99 && !reviewed" ghost type="primary" @click="()=>{$router.push({path:'/goods-operation-edit',query:{id:row.goodsId}})}">查看</Button>
+            <Button v-if="params.auditStatus != 99 && !reviewed" ghost type="primary" @click="()=>{$router.push({path:'/goods-operation-edit',query:{id:row.goodsId}})}">View</Button>
             <Button v-if="reviewed" :type="row.___selected ? 'primary' : 'default'" @click="selectedLiveGoods(row,index)">{{row.___selected ? '已':''}}select</Button>
           </template>
         </Table>
@@ -98,7 +98,7 @@ export default {
         pageSize: 10,
         auditStatus: 2, //goods status
       },
-      // Goods审核状态
+      // Goodsaudit state
       liveTabWay: [
         {
           label: "待提审",
@@ -115,7 +115,7 @@ export default {
         },
 
         {
-          label: "审核未通过",
+          label: "审核未pass",
           type: 3,
         },
       ],
@@ -131,7 +131,7 @@ export default {
           slot: "price",
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           width: 100,
         },
@@ -142,7 +142,7 @@ export default {
           width: 100,
         },
       ],
-      // 表格Goods详情
+      // 表格Goods Detail
       liveGoodsData: [],
       // 已选Goods
       selectedGoods: [],
@@ -218,14 +218,14 @@ export default {
       this.$set(this.liveGoodsData[val._index], "priceType", val.priceType);
     },
     /**
-     * 页面数据大小分页回调
+     * Page面数据大小分Page回调
      */
     changePageSize(val) {
       this.params.pageSize = val;
       this.getLiveGoodsMethods("clear");
     },
     /**
-     * 分页回调
+     * 分Page回调
      */
     changePageNumber(val) {
       this.params.pageNumber = val;
@@ -267,10 +267,10 @@ export default {
 
         return {
           goodsId: element.goodsId, //Goodsid
-          goodsImage: element.small, //Goods图片  最大为 300 * 300
+          goodsImage: element.small, //Goods images  最大为 300 * 300
           name: element.goodsName, //Goods昵称
           price: parseInt(element.price), //Goodsprice
-          quantity: element.quantity, //库存
+          quantity: element.quantity, //stock
           price2: element.price2 ? parseInt(element.price2) : "", //Goodsprice
           priceType: element.priceType, // priceType  Number  是  price类型，1：一口价（只需要传入price，price2不传） 2：price区间（price字段为左边界，price2字段为右边界，price和price2必传） 3：显示off扣价（price字段为原价，price2字段为现价， price和price2必传）
           skuId: element.id,

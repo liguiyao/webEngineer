@@ -13,7 +13,7 @@ export const update = (params) => {
 export const getNavigationData = (params) => {
     return getRequest('/siteNavigation/getByPage', params)
 }
-//禁用导航栏
+//disable导航栏
 export const disableNavigation = (ids) => {
     return deleteRequest(`/siteNavigation/disable/${ids}`)
 }
@@ -39,7 +39,7 @@ export const getFocusData = (params) => {
 export const saveFocusData = (params) => {
     return postRequest('/focus/insertOrUpdate', params)
 }
-//禁用导航栏
+//disable导航栏
 export const disableFocus = (ids) => {
     return putRequest(`/focus/disable/${ids}`)
 }
@@ -52,12 +52,12 @@ export const delFocus = (ids) => {
     return deleteRequest(`/focus/delByIds/${ids}`)
 }
 
-//根据店铺编号查询页面数据（店铺编号为0则为平台）
+//根据店铺编号查询Page面数据（店铺编号为0则为平台）
 export const getPageData = (id) => {
     return getRequest(`/page/get/${id}`)
 }
 
-//Save页面数据
+//SavePage面数据
 export const savePageData = (params) => {
     return postRequest('/page/insertOrUpdate', params)
 }
@@ -90,7 +90,7 @@ export const updateArticle = (params) => {
 export const updateArticleStatus = (id,params) => {
   return putRequest(`/other/article/update/status/${id}`, params)
 }
-//查看文章
+//View文章
 export const seeArticle = (id) => {
     return getRequest(`/other/article/${id}`)
 }
@@ -108,11 +108,11 @@ export const delArticle = (ids) => {
 
 
 
-//获取隐私协议数据
+//获取privacy协议数据
 export const getPrivacy = (type) => {
     return getRequest(`/other/article/type/${type}`)
 }
-//modify隐私协议数据
+//modifyprivacy协议数据
 export const updatePrivacy = (id,type,params) => {
     return putRequest(`/other/article/updateArticle/${type}?id=${id}`, params, {"Content-Type": "application/json"})
 }

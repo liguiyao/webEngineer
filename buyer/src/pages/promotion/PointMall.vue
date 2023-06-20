@@ -54,7 +54,7 @@ export default {
   data () {
     return {
       goodsList: [], // 积分Goods列表
-      cateList: [{ // Goods分类
+      cateList: [{ // Goods Category
         name: '全部分类',
         id: 0
       }], // 积分分类列表
@@ -89,13 +89,13 @@ export default {
         }
       })
     },
-    selectCate (item) { // selectGoods分类
+    selectCate (item) { // selectGoods Category
       let cateId = item.value === 0 ? '' : item.value
       this.params.pointsGoodsCategoryId = cateId
       this.getList()
       this.$router.push({query: {categoryId: cateId}})
     },
-    goGoodsDetail (id) { // 跳转Goods详情
+    goGoodsDetail (id) { // 跳转Goods Detail
       this.$router.push({path: '/pointGoodsDetail', query: {id}})
       // let routerUrl = this.$router.resolve({
       //   path: '/pointGoodsDetail',
@@ -103,11 +103,11 @@ export default {
       // })
       // window.open(routerUrl.href, '_blank')
     },
-    changePageNum (val) { // modify页码
+    changePageNum (val) { // modifyPage码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // modify页数
+    changePageSize (val) { // modifyPage数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()

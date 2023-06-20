@@ -2,13 +2,13 @@
   <div class="revoke-message">
     <div class="content">
       <span v-if="$store.state.user.id == item.user_id">
-        你撤回了一条消息 | {{ sendTime(item.created_at) }}
+        你撤回了一items消息 | {{ sendTime(item.created_at) }}
       </span>
       <span v-else-if="item.talk_type == 1">
-        对方撤回了一条消息 | {{ sendTime(item.created_at) }}
+        对方撤回了一items消息 | {{ sendTime(item.created_at) }}
       </span>
       <span v-else>
-        "{{ item.nickname }}" 撤回了一条消息 | {{ sendTime(item.created_at) }}
+        "{{ item.nickname }}" 撤回了一items消息 | {{ sendTime(item.created_at) }}
       </span>
     </div>
   </div>

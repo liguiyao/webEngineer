@@ -383,7 +383,7 @@ export const result = [{
         name: "user-manage",
         level: 1,
         type: 0,
-        title: "页面设置",
+        title: "Page面设置",
         path: "user-manage",
         component: "sys/user-manage/userManage",
         children: []

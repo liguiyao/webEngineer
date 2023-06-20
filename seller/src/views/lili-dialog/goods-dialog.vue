@@ -8,7 +8,7 @@
             v-model="goodsParams.goodsName" />
         </div>
         <div class="query-item">
-          <Cascader v-model="category" placeholder="Please selectGoods分类" style="width: 150px" :data="cateList"></Cascader>
+          <Cascader v-model="category" placeholder="Please selectGoods Category" style="width: 150px" :data="cateList"></Cascader>
         </div>
         <div class="query-item">
           <Button type="primary" @click="goodsData=[]; getQueryGoodsList();" icon="ios-search">search</Button>
@@ -24,7 +24,7 @@
             <div class="wap-content-desc">
               <div class="wap-content-desc-title">{{ item.goodsName }}</div>
               <div class="wap-sku">{{ item.goodsUnit }}</div>
-              <div class="wap-sku"><Tag :color="item.salesModel === 'RETAIL' ? 'default' : 'geekblue'">{{item.salesModel === "RETAIL" ? "零售型" : "批发型"}}</Tag></div>
+              <div class="wap-sku"><Tag :color="item.salesModel === 'RETAIL' ? 'default' : 'geekblue'">{{item.salesModel === "RETAIL" ? "retail" : "wholesale"}}</Tag></div>
               <div class="wap-content-desc-bottom">
                 <div>RM{{ item.price | unitPrice }}</div>
               </div>
@@ -54,7 +54,7 @@ export default {
     return {
       type: "multiple", //单选或者多选 single  multiple
 
-      cateList: [], // Goods分类列表
+      cateList: [], // Goods Category列表
       total: "", // Goods总数
       goodsParams: {
         // Please 求Goods列表参数
@@ -68,7 +68,7 @@ export default {
         authFlag: "PASS",
         sort:"createTime"
       },
-      category: [], // 选中goods分类
+      category: [], // 选中Goods Category
       goodsData: [], // Goods列表
       empty: false, // 是否空数据
       loading: false, // Goods加载loading
@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     handleReachBottom() {
-      // 页面触底触发加载
+      // Page面触底触发加载
       setTimeout(() => {
         if (
           this.goodsParams.pageNumber * this.goodsParams.pageSize <=
@@ -110,7 +110,7 @@ export default {
       }, 1500);
     },
     getQueryGoodsList() {
-      // 根据Goods分类筛选Goods
+      // 根据Goods Category筛选Goods
       API_Goods.getGoodsSkuData(this.goodsParams).then((res) => {
         this.initGoods(res);
       });

@@ -12,12 +12,12 @@ export const ws = "/ws"
 export const getShopListData = (params) => {
   return getRequest('/shop', params)
 }
-// 获取结算单分页
+// 获取结算单分Page
 export const getBillPage = (params) => {
   return getRequest(`/order/bill/getByPage`, params)
 }
 
-// 获取商家结算单流水分页
+// 获取商家结算单流水分Page
 export const getSellerFlow = (id, params) => {
   return getRequest(`/order/bill/${id}/getStoreFlow`, params)
 }
@@ -27,7 +27,7 @@ export const reconciliation = (id, params) => {
   return putRequest(`/order/bill/check/${id}/`, params)
 }
 
-// 获取商家分销订单流水分页
+// 获取商家分销订单流水分Page
 export const getDistributionFlow = (id, params) => {
   return getRequest(`/order/bill/${id}/getDistributionFlow`, params)
 }
@@ -75,12 +75,12 @@ export const editShopAddress = (id, params) => {
   return putRequest(`/member/storeAddress/${id}`, params)
 }
 
-// 添加Goodsself-lifting点
+// Add goodsself-lifting点
 export const addShopAddress = (params) => {
   return postRequest(`/member/storeAddress/`, params)
 }
 
-// 添加Goodsself-lifting点
+// Add goodsself-lifting点
 export const deleteShopAddress = (id) => {
   return deleteRequest(`/member/storeAddress/${id}`)
 }
@@ -109,7 +109,7 @@ export const updatEmerchantId = (params) => {
 }
 
 
-//modifySave库存预警数
+//modifySavestock预警数
 export const updateStockWarning = (params) => {
   return putRequest(`/settings/storeSettings/updateStockWarning`, params)
 }

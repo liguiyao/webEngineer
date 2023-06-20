@@ -42,7 +42,7 @@
             <Option value="KANJIA">xxx</Option>
           </Select>
         </Form-item>
-        <Form-item label="Order time">
+        <Form-item label="Time">
           <DatePicker
             v-model="selectDate"
             type="datetimerange"
@@ -53,7 +53,7 @@
             style="width: 160px"
           ></DatePicker>
         </Form-item>
-        <Form-item label="订单状态" prop="orderStatus">
+        <Form-item label="Status" prop="orderStatus">
           <Select
             v-model="searchForm.orderStatus"
             placeholder="Please select"
@@ -130,7 +130,7 @@ export default {
       // 表格的表头以及内容
       fields: {
         订单编号: "sn",
-        下单时间: "createTime",
+        Time: "createTime",
         客户名称: "memberName",
         支付方式: {
           field: "clientType",
@@ -138,7 +138,7 @@ export default {
             if (value == "H5") {
               return "移动端";
             } else if (value == "PC") {
-              return "PC端";
+              return "PC";
             } else if (value == "WECHAT_MP") {
               return "小程序端";
             } else if (value == "APP") {
@@ -149,23 +149,23 @@ export default {
           },
         },
         GoodsQuantity: "groupNum",
-        付款状态: {
+        付款state: {
           field: "payStatus",
           callback: (value) => {
             return value == "UNPAID"
               ? "Unpaid"
               : value == "PAID"
-              ? "已付款"
+              ? "Paid"
               : "";
           },
         },
         店铺: "storeName",
       },
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -185,14 +185,14 @@ export default {
         },
 
         {
-          title: "订单来源",
+          title: "source",
           key: "clientType",
           width: 120,
           render: (h, params) => {
             if (params.row.clientType == "H5") {
               return h("div", {}, "移动端");
             } else if (params.row.clientType == "PC") {
-              return h("div", {}, "PC端");
+              return h("div", {}, "PC");
             } else if (params.row.clientType == "WECHAT_MP") {
               return h("div", {}, "小程序端");
             } else if (params.row.clientType == "APP") {
@@ -203,13 +203,13 @@ export default {
           },
         },
         {
-          title: "订单类型",
+          title: "Order Type",
           key: "orderPromotionType",
           width: 120,
           render: (h, params) => {
             if (params.row.orderPromotionType == "NORMAL") {
               return h("div", [
-                h("tag", { props: { color: "blue" } }, "普通订单"),
+                h("tag", { props: { color: "blue" } }, "Normal"),
               ]);
             } else if (params.row.orderPromotionType == "PINTUAN") {
               return h("div", [
@@ -231,14 +231,14 @@ export default {
           },
         },
         {
-          title: "买家名称",
+          title: "Buyer",
           key: "memberName",
           minWidth: 130,
           tooltip: true,
         },
 
         {
-          title: "订单金额",
+          title: "Amount",
           key: "flowPrice",
           minWidth: 100,
           tooltip: true,
@@ -251,7 +251,7 @@ export default {
         },
 
         {
-          title: "订单状态",
+          title: "Status",
           key: "orderStatus",
           minWidth: 100,
           render: (h, params) => {
@@ -261,7 +261,7 @@ export default {
               ]);
             } else if (params.row.orderStatus == "PAID") {
               return h("div", [
-                h("tag", { props: { color: "blue" } }, "已付款"),
+                h("tag", { props: { color: "blue" } }, "Paid"),
               ]);
             } else if (params.row.orderStatus == "UNDELIVERED") {
               return h("div", [
@@ -285,13 +285,13 @@ export default {
               ]);
             } else if (params.row.orderStatus == "CANCELLED") {
               return h("div", [
-                h("tag", { props: { color: "red" } }, "已Cancel"),
+                h("tag", { props: { color: "red" } }, "Cancel"),
               ]);
             }
           },
         },
         {
-          title: "下单时间",
+          title: "Time",
           key: "createTime",
           width: 170,
         },
@@ -312,7 +312,7 @@ export default {
                   },
                 },
               },
-              "查看"
+              "View"
             );
           },
         },
@@ -326,12 +326,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -363,7 +363,7 @@ export default {
       this.total = this.data.length;
       this.loading = false;
     },
-    // 跳转详情页面
+    // 跳转详情Page面
     detail(v) {
       let sn = v.sn;
       this.$router.push({

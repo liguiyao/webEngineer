@@ -44,8 +44,8 @@ export default {
     return {
       screenHeight:document.body.clientHeight,
       scrollHieght:0,
-      topSearchShow: true, //展示 导航条
-      topIndex: 0, // 当前滚动条位置 （取整）
+      topSearchShow: true, //展示 导航items
+      topIndex: 0, // 当前滚动items位置 （取整）
       scrollTops: 0,
       open:'',
       currentIndex: 0, // 当前分类下标
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     handleScrollx(){
-      // console.log('滚动高度',window.pageYOffset) // 获取滚动条的高度
+      // console.log('滚动高度',window.pageYOffset) // 获取滚动items的高度
       // console.log(this.$refs.obtain.getBoundingClientRect().top) //获取到距离顶部的距离
       this.scrollHieght = Number(window.pageYOffset);//获取到距离顶部的距离
       this.scrollTops = Number(this.$refs.obtain.getBoundingClientRect().top); // 获取到距离顶部的距离
@@ -85,7 +85,7 @@ export default {
     if(this.open){ // 获取到图钉之后在跳转当前位置
        document.querySelector("#demo").scrollIntoView(true);
     }
-      //scrollIntoView()可以在所有的HTMLringgit素上调用，通过滚动浏览器窗口或某个容器ringgit素
+      //scrollIntoView()可以在所有的HTMLringgit素上调用，pass滚动浏览器窗口或某个容器ringgit素
     },
     changeCurr(index) {
       // select分类

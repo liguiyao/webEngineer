@@ -9,11 +9,11 @@
         </p>
       </div>
       <div class="footer">
-        <span>转发：聊天会话记录 ({{ num }}条)</span>
+        <span>转发：聊天会话记录 ({{ num }}items)</span>
       </div>
     </div>
 
-    <!-- 会话记录查看器 -->
+    <!-- 会话记录View器 -->
     <talk-forward-record ref="forwardRecordsRef" />
   </div>
 </template>

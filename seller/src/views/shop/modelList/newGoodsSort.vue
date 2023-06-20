@@ -6,7 +6,7 @@
                 <span>{{options.left.title}}</span>
                 <span>{{options.left.secondTitle}} &gt;</span>
                 <div class="setup-box">
-                    <div><Button size="small" @click.stop="handleSelectModel(options.left,true)">编辑</Button></div>
+                    <div><Button size="small" @click.stop="handleSelectModel(options.left,true)">edit</Button></div>
                 </div>
             </div>
             <div class="content">
@@ -17,7 +17,7 @@
                     </div>
                     <img :src="item.img" alt="">
                     <div class="setup-box">
-                        <div><Button size="small" @click.stop="handleSelectModel(item)">编辑</Button></div>
+                        <div><Button size="small" @click.stop="handleSelectModel(item)">edit</Button></div>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <span>{{options.middle.title}}</span>
                 <span>{{options.middle.secondTitle}} &gt;</span>
                 <div class="setup-box">
-                    <div><Button size="small" @click.stop="handleSelectModel(options.middle,true)">编辑</Button></div>
+                    <div><Button size="small" @click.stop="handleSelectModel(options.middle,true)">edit</Button></div>
                 </div>
             </div>
             <div class="content">
@@ -39,7 +39,7 @@
                     </div>
                     <img :src="item.img" alt="">
                     <div class="setup-box">
-                        <div><Button size="small" @click.stop="handleSelectModel(item)">编辑</Button></div>
+                        <div><Button size="small" @click.stop="handleSelectModel(item)">edit</Button></div>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <span>{{options.right.title}}</span>
                 <span>{{options.right.secondTitle}} &gt;</span>
                 <div class="setup-box">
-                    <div><Button size="small" @click.stop="handleSelectModel(options.right,true)">编辑</Button></div>
+                    <div><Button size="small" @click.stop="handleSelectModel(options.right,true)">edit</Button></div>
                 </div>
             </div>
             <div class="content">
@@ -60,7 +60,7 @@
                     <p>{{item.price | unitPrice('RM')}}</p>
                     <div class="jiaobiao" :class="'jiaobiao'+(index+1)">{{index+1}}</div>
                     <div class="setup-box">
-                        <div><Button size="small" @click.stop="handleSelectGoods(item)">编辑</Button></div>
+                        <div><Button size="small" @click.stop="handleSelectGoods(item)">edit</Button></div>
                     </div>
                 </div>
             </div>

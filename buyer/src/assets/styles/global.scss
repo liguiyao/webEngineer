@@ -28,7 +28,7 @@ $dark_content_color: #d5d5d5;
 
 // 背景颜色
 @mixin background_color($color) {
-    /*通过该函数设置字体颜色，后期方便统一管理；*/
+    /*pass该函数设置字体颜色，后期方便统一管理；*/
     background-color: $color;
     transition: 0.35s;
     [data-theme="dark"] & {
@@ -40,7 +40,7 @@ $dark_content_color: #d5d5d5;
 }
 // 辅助背景颜色
 @mixin sub_background_color($color) {
-    /*通过该函数设置字体颜色，后期方便统一管理；*/
+    /*pass该函数设置字体颜色，后期方便统一管理；*/
     background-color: $color;
     transition: 0.35s;
     [data-theme="dark"] & {
@@ -52,7 +52,7 @@ $dark_content_color: #d5d5d5;
 }
 
 @mixin white_background_color() {
-    /*通过该函数设置字体颜色，后期方便统一管理；*/
+    /*pass该函数设置字体颜色，后期方便统一管理；*/
     background-color: $light_white_background_color;
     transition: 0.35s;
     [data-theme="dark"] & {
@@ -65,7 +65,7 @@ $dark_content_color: #d5d5d5;
 
 // 正文颜色
 @mixin content_color($color) {
-    /*通过该函数设置字体颜色，后期方便统一管理；*/
+    /*pass该函数设置字体颜色，后期方便统一管理；*/
     color: $color;
     [data-theme="dark"] & {
         color: $dark_content_color;
@@ -77,7 +77,7 @@ $dark_content_color: #d5d5d5;
 
 // 辅助颜色
 @mixin sub_color($color) {
-    /*通过该函数设置字体颜色，后期方便统一管理；*/
+    /*pass该函数设置字体颜色，后期方便统一管理；*/
     color: $color;
     [data-theme="dark"] & {
         color: $dark_content_color;
@@ -89,7 +89,7 @@ $dark_content_color: #d5d5d5;
 
 // 标题颜色
 @mixin title_color($color) {
-    /*通过该函数设置字体颜色，后期方便统一管理；*/
+    /*pass该函数设置字体颜色，后期方便统一管理；*/
     color: $color;
     [data-theme="dark"] & {
         color: $dark_content_color;

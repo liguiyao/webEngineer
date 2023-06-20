@@ -6,7 +6,7 @@
     <Row>
       <p>
         <Alert type="success">
-          这里展示今日系统中search前一百的search热词，分数为热词在排序系统中的分数，分数越高，可以在用户获取热词时进行优先展示（首页Goodssearch栏下方推荐位）（分数可以enter 负数，会降低推荐度）
+          这里展示今日系统中search前一百的search热词，分数为热词在排序系统中的分数，分数越高，可以在用户获取热词时进行优先展示（HomeGoodssearch栏下方推荐位）（分数可以enter 负数，会降低推荐度）
         </Alert>
       </p>
     </Row>
@@ -58,7 +58,7 @@ export default {
     return {
       submitLoading: false,
       modalTitle: "",
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       modalVisible: false, //弹出框
       form: {
         keywords: "",

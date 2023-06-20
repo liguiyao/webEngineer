@@ -1,12 +1,12 @@
 import Main from "@/views/Main.vue";
 
 const config = require('@/config/index')
-// 不作为Main组件的子页面展示的页面单独写，如下
+// 不作为Main组件的子Page面展示的Page面单独写，如下
 export const loginRouter = {
   path: "/login",
   name: "login",
   meta: {
-    title: `Login - ${config.title}商家后台`
+    title: `Login - ${config.title}background`
   },
   component: () => import("@/views/login.vue")
 };
@@ -16,7 +16,7 @@ export const forgetPasswordRouter = {
   component: () => import("@/views/ForgetPassword.vue")
 };
 
-// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
+// 作为Main组件的子Page面展示但是不在左侧菜单显示的路由写在otherRouter里
 export const otherRouter = {
   path: "/",
   name: "otherRouter",
@@ -25,7 +25,7 @@ export const otherRouter = {
   children: [
     {
       path: "home",
-      title: "首页",
+      title: "Home",
       name: "home_index",
       component: () => import("@/views/home/home.vue")
     },
@@ -43,25 +43,25 @@ export const otherRouter = {
     },
     {
       path: "goods-operation",
-      title: "添加Goods",
+      title: "Add goods",
       name: "goods-operation",
       component: () => import("@/views/goods/goods-seller/goodsOperation.vue")
     },
     {
       path: "goods-operation-edit",
-      title: "编辑Goods",
+      title: "editGoods",
       name: "goods-operation-edit",
       component: () => import("@/views/goods/goods-seller/goodsOperation.vue")
     },
     {
       path: "goods-template-operation-edit",
-      title: "编辑模版",
+      title: "edit模版",
       name: "goods-template-operation-edit",
       component: () => import("@/views/goods/goods-seller/goodsOperation.vue")
     },
     {
       path: "goods-draft-operation-edit",
-      title: "编辑草稿",
+      title: "edit草稿",
       name: "goods-draft-operation-edit",
       component: () => import("@/views/goods/goods-seller/goodsOperation.vue")
     },
@@ -109,13 +109,13 @@ export const otherRouter = {
     },
     {
       path: "/floorList/main",
-      title: "编辑模板",
+      title: "edit模板",
       name: "main",
       component: () => import("@/views/shop/wap/main.vue")
     },
     {
       path: "/pcFloorList/main",
-      title: "编辑模板",
+      title: "edit模板",
       name: "renovation",
       component: () => import("@/views/shop/renovation.vue")
     },
@@ -153,13 +153,13 @@ export const otherRouter = {
     },
     {
       path: "/floorList/main",
-      title: "编辑模板",
+      title: "edit模板",
       name: "main",
       component: () => import("@/views/shop/wap/main.vue")
     },
     {
       path: "/pcFloorList/main",
-      title: "编辑模板",
+      title: "edit模板",
       name: "renovation",
       component: () => import("@/views/shop/renovation.vue")
     },
@@ -173,7 +173,7 @@ export const otherRouter = {
     //   path: "/*",
     //   name: "error-404",
     //   meta: {
-    //     title: "404-页面不存在"
+    //     title: "404-Page面不存在"
     //   },
     //   component: () => import("@/views/error-page/404.vue")
     // }

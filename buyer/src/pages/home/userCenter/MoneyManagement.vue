@@ -91,7 +91,7 @@
     <Tabs value="log" @on-click="tabPaneChange">
       <TabPane label="余额日志" name="log">
         <Table :columns="logColumns" :data="logColumnsData.records"></Table>
-        <!-- 分页 -->
+        <!-- 分Page -->
         <div class="page-size">
           <Page
             :current="walletForm.pageNumber"
@@ -113,7 +113,7 @@
           :columns="rechargeListColumns"
           :data="rechargeListData.records"
         ></Table>
-        <!-- 分页 -->
+        <!-- 分Page -->
         <div class="page-size">
           <Page
             :current="rechargeForm.pageNumber"
@@ -135,7 +135,7 @@
           :columns="withdrawApplyColumns"
           :data="withdrawApplyColumnsListData.records"
         ></Table>
-        <!-- 分页 -->
+        <!-- 分Page -->
         <div class="page-size">
           <Page
             :current="withdrawApplyForm.pageNumber"
@@ -189,14 +189,14 @@ export default {
       // 充值记录
       rechargeForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10 // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10 // Page面大小
       },
       // 提现记录
       withdrawApplyForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10 // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10 // Page面大小
       },
       // 提现Apply  校验
       withdrawApplyFormValidate: {
@@ -298,15 +298,15 @@ export default {
           }
         },
         {
-          title: '支付状态',
+          title: '支付state',
           key: 'payStatus',
           render: (h, params) => {
             if (params.row.payStatus === 'PAID') {
-              return h('div', [h('span', {}, '已付款')]);
+              return h('div', [h('span', {}, 'Paid')]);
             } else if (params.row.payStatus === 'UNPAID') {
               return h('div', [h('span', {}, 'Unpaid')]);
             } else if (params.row.payStatus === 'CANCEL') {
-              return h('div', [h('span', {}, '已Cancel')]);
+              return h('div', [h('span', {}, 'Cancel')]);
             }
           }
         },
@@ -361,7 +361,7 @@ export default {
           }
         },
         {
-          title: '提现状态',
+          title: '提现state',
           key: 'applyStatus',
           width: 95,
           render: (h, params) => {
@@ -509,7 +509,7 @@ export default {
         if (valid) {
           withdrawalApply(this.withdrawApplyFormData).then((res) => {
             if (res && res.success) {
-              this.$Message.success('提现Apply  success，关注提现状态');
+              this.$Message.success('提现Apply  success，关注提现state');
               this.withdrawApplyModal = false;
               this.init(); // 余额查询
               this.getWithdrawApplyData(); // 提现记录

@@ -271,7 +271,7 @@ export default {
       goodsTotal: 0, // GoodsQuantity
       checkedNum: 0, // 选中Quantity
       allChecked: false, // 全选
-      loading: false, // 加载状态
+      loading: false, // 加载state
       cartList: [], // 购物车列表
       couponList: [], // Coupon list
       priceDetailDTO: {}, // price明细
@@ -279,7 +279,7 @@ export default {
     };
   },
   methods: {
-    // 跳转Goods详情
+    // 跳转Goods Detail
     goGoodsDetail(skuId, goodsId) {
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
@@ -287,7 +287,7 @@ export default {
       });
       window.open(routeUrl.href, "_blank");
     },
-    // 跳转店铺首页
+    // 跳转店铺Home
     goShopPage(id) {
       let routeUrl = this.$router.resolve({
         path: "/Merchant",
@@ -358,7 +358,7 @@ export default {
         },
       });
     },
-    // 跳转支付页面
+    // 跳转支付Page面
     pay() {
       if (this.checkedNum) {
         this.$router.push({ path: "/pay", query: { way: "CART" } });
@@ -380,7 +380,7 @@ export default {
         });
       }
     },
-    // 设置Goods选中状态
+    // 设置Goods选中state
     async changeChecked(status, type, id) {
       const check = status ? 1 : 0;
       if (type === "all") {
@@ -482,7 +482,7 @@ export default {
   position: relative;
 }
 /** logo end */
-/** step步骤条 */
+/** step步骤items */
 .cart-steps {
   height: 30px;
   display: flex;
@@ -513,7 +513,7 @@ export default {
     color: #ff8f23;
   }
 }
-/** 步骤条和配送区域总体 */
+/** 步骤items和配送区域总体 */
 .available-area {
   display: flex;
   align-items: center;

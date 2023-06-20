@@ -18,7 +18,7 @@ util.oneOf = function(ele, targetArr) {
   }
 };
 
-// 打开新的页面
+// 打开新的Page面
 util.openNewPage = function(vm, name, argu, query) {
   if (!vm.$store) {
     return;
@@ -29,7 +29,7 @@ util.openNewPage = function(vm, name, argu, query) {
   let tagHasOpened = false;
   while (i < openedPageLen) {
     if (name == pageOpenedList[i].name) {
-      // 页面已经打开
+      // Page面已经打开
       vm.$store.commit("pageOpenedList", {
         index: i,
         argu: argu,
@@ -97,7 +97,7 @@ util.initRouter = function(vm) {
       path: "/*",
       name: "error-404",
       meta: {
-        title: "404-页面不存在"
+        title: "404-Page面不存在"
       },
       frontRoute: "error-page/404"
     }
@@ -122,7 +122,7 @@ util.initRouter = function(vm) {
           let tt = t[k].children;
           for (let z = 0; z < tt.length; z++) {
             tt[z].children = null;
-            // 给所有三级路由添加字段，显示一级菜单name，方便点击页签时的选中筛选
+            // 给所有三级路由添加字段，显示一级菜单name，方便点击Page签时的选中筛选
             tt[z].firstRouterName = menuData[i].name;
           }
         }
@@ -245,7 +245,7 @@ util.initRouterNode = function(routers, data) {
     }
 
     let meta = {};
-    // 给页面添加标题、父级菜单name（方便左侧菜单选中）
+    // 给Page面添加标题、父级菜单name（方便左侧菜单选中）
     meta.title = menu.title ? menu.title + " - Backstage" : null;
     meta.firstRouterName = item.firstRouterName;
     menu.meta = meta;

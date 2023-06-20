@@ -14,7 +14,7 @@
       <p slot="title">账单详细</p>
 
       <div class="tips-status">
-        <span>账单状态 ：</span>
+        <span>账单state ：</span>
         <span class="theme_color">{{
           bill.billStatus | unixSellerBillStatus
         }}</span>
@@ -208,8 +208,8 @@ export default {
       order: [], // 订单列表
       orderParam: {
         // Please 求参数
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "id", // default排序字段
         order: "desc", // default排序方式
         flowType: "PAY",
@@ -231,7 +231,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "订单金额",
+          title: "Amount",
           key: "finalPrice",
           width: 120,
           render: (h, params) => {
@@ -320,8 +320,8 @@ export default {
       refundParam: {
         // Please 求参数
         flowTypeEnum: "PAY",
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "id", // default排序字段
         order: "desc", // default排序方式
         flowType: "REFUND",
@@ -422,23 +422,23 @@ export default {
     };
   },
   methods: {
-    //订单页数发生变化
+    //订单Page数发生变化
     orderChangePage(v) {
       this.orderParam.pageNumber = v;
       this.getOrder();
     },
-    //订单每页条数变化
+    //订单每Pageitems数变化
     orderChangePageSize(v) {
       this.orderParam.pageNumber = 1;
       this.orderParam.pageSize = v;
       this.getOrder();
     },
-    //refund单页数发生变化
+    //refund单Page数发生变化
     refundOrderChangePage(v) {
       this.refundParam.pageNumber = v;
       this.getRefund();
     },
-    //refund单每页条数变化
+    //refund单每Pageitems数变化
     refundOrderChangePageSize(v) {
       this.refundParam.pageSize = v;
       tthis.getRefund();
@@ -493,7 +493,7 @@ export default {
       this.data[2].name = "出帐日期";
       this.data[2].value = bill.createTime;
 
-      this.data[3].name = "当前状态";
+      this.data[3].name = "当前state";
       this.data[3].value = filters.unixSellerBillStatus(bill.billStatus);
 
       this.data[4].name = "当前店铺";
@@ -501,7 +501,7 @@ export default {
 
       this.data[5].name = "平台打款时间";
       this.data[5].value = bill.payTime === null ? "Unpaid" : bill.payTime;
-      this.data[6].name = "订单付款总金额";
+      this.data[6].name = "Order pay总金额";
       this.data[6].value = filters.unitPrice(
         bill.orderPrice ? bill.orderPrice : 0,
         "¥"

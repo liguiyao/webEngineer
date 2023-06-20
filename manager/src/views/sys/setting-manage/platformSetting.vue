@@ -108,12 +108,12 @@
                   <Radio label="CLOSE">Close</Radio>
                 </RadioGroup>
               </FormItem>
-              <FormItem label="Goods页面小图宽度" prop="smallPictureWidth">
-                <Input type="text" v-model="goods.smallPictureWidth" placeholder="Goods页面小图宽度"
+              <FormItem label="GoodsPage面小图宽度" prop="smallPictureWidth">
+                <Input type="text" v-model="goods.smallPictureWidth" placeholder="GoodsPage面小图宽度"
                        style="width: 350px"/>
               </FormItem>
-              <FormItem label="Goods页面小图高度" prop="smallPictureHeight">
-                <Input type="text" v-model="goods.smallPictureHeight" placeholder="Goods页面小图高度"
+              <FormItem label="GoodsPage面小图高度" prop="smallPictureHeight">
+                <Input type="text" v-model="goods.smallPictureHeight" placeholder="GoodsPage面小图高度"
                        style="width: 350px"/>
               </FormItem>
               <FormItem label="缩略图宽度" prop="abbreviationPictureWidth">
@@ -337,8 +337,8 @@
     data() {
       return {
         tabName: "base", // tab栏名字
-        loading: false, // 表单加载状态
-        saveLoading: false, // Save加载状态
+        loading: false, // 表单加载state
+        saveLoading: false, // Save加载state
         base: { // 基本设置
           siteName: "",
           icp: "",

@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      depLoading: false, // 加载状态
+      depLoading: false, // 加载state
       departmentTitle: "", // modal标题
       searchKey: "", // search关键词
       dataDep: [], // 部门列表
@@ -79,7 +79,7 @@ export default {
           if (res.success) {
             res.result.forEach(function (e) {
               if (e.status == -1) {
-                e.title = "[已禁用] " + e.title;
+                e.title = "[已disable] " + e.title;
                 e.disabled = true;
               }
             });

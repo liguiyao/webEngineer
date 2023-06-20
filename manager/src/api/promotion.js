@@ -86,7 +86,7 @@ export const delKanJiaGoods = ids => {
   return deleteRequest(`/promotion/kanJiaGoods/${ids}`);
 };
 
-// 砍价活动Goods详情
+// 砍价活动Goods Detail
 export const getKanJiaActivityGoodsById = id => {
   return getRequest(`/promotion/kanJiaGoods/${id}`);
 };
@@ -112,7 +112,7 @@ export const getPlatformCouponList = params => {
 export const deletePlatformCoupon = ids => {
   return deleteRequest(`/promotion/coupon/${ids}`);
 };
-//  更新coupon状态
+//  更新couponstate
 export const updatePlatformCouponStatus = params => {
   return putRequest(`/promotion/coupon/status`, params);
 };
@@ -225,7 +225,7 @@ export const getPointsGoodsList = params => {
   return getRequest(`/promotion/pointsGoods`, params);
 };
 
-// 积分Goods详情
+// 积分Goods Detail
 export const getPointsGoodsById = id => {
   return getRequest(`/promotion/pointsGoods/${id}`);
 };
@@ -252,27 +252,27 @@ export const deletePointsGoodsStatus = id => {
   return deleteRequest(`/promotion/pointsGoods/${id}`);
 };
 
-// 积分Goods分类列表
+// 积分Goods Category列表
 export const getPointsGoodsCategoryList = params => {
   return getRequest(`/promotion/pointsGoodsCategory`, params);
 };
 
-// 积分Goods分类详情
+// 积分Goods Category详情
 export const getPointsGoodsCategoryById = id => {
   return getRequest(`/promotion/pointsGoodsCategory/${id}`);
 };
 
-// 添加积分Goods分类
+// 添加积分Goods Category
 export const addPointsGoodsCategory = params => {
   return postRequest(`/promotion/pointsGoodsCategory`, params);
 };
 
-// 更新积分Goods分类
+// 更新积分Goods Category
 export const updatePointsGoodsCategory = params => {
   return putRequest(`/promotion/pointsGoodsCategory`, params);
 };
 
-// delete积分Goods分类
+// delete积分Goods Category
 export const deletePointsGoodsCategoryById = id => {
   return deleteRequest(`/promotion/pointsGoodsCategory/${id}`);
 };

@@ -106,15 +106,15 @@ export default {
   data() {
     return {
       submitLoading:false,
-      loading: false, // 加载状态
+      loading: false, // 加载state
       expandLevel: 1, // 展开的层级
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       showParent: false, // 是否展示上级菜单
       parentTitle: "", // 父级菜单名称
       formAdd: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         parentId: "",
         sort: 1,
         level: 0,
@@ -166,10 +166,10 @@ export default {
       this.formAdd.parentId = v.id;
       this.modalVisible = true;
     },
-    // 编辑分类
+    // edit分类
     edit(v) {
       this.modalType = 1;
-      this.modalTitle = "编辑";
+      this.modalTitle = "edit";
       this.formAdd.id = v.id;
       this.formAdd.articleCategoryName = v.articleCategoryName;
       this.formAdd.level = v.level;
@@ -195,7 +195,7 @@ export default {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.formAdd.id;
             saveArticleCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
@@ -203,7 +203,7 @@ export default {
                 this.$Message.success("添加success");
 
                 this.formAdd = {
-                  // 添加或编辑表单对象初始化数据
+                  // 添加或edit表单对象初始化数据
                   parentId: "",
                   sort: 1,
                   level: 0,
@@ -216,7 +216,7 @@ export default {
               this.modalVisible = false;
             });
           } else {
-            // 编辑
+            // edit
             updateArticleCategory(this.formAdd, this.formAdd.id).then((res) => {
               this.submitLoading = false;
               if (res.success) {

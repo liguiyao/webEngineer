@@ -9,7 +9,7 @@ import { parseTime } from "@/utils/functions";
 
 import mixin from '@/mixins/main-mixin'
 /**
- * 好友状态事件
+ * 好友state事件
  */
 class Talk extends Base {
   /**
@@ -111,7 +111,7 @@ class Talk extends Base {
   handle () {
     let store = this.getStoreInstance();
     // console.log("触发handle");
-    // 判断当前是否在聊天页面
+    // 判断当前是否在聊天Page面
     if (!this.isTalkPage()) {
       store.commit("INCR_UNREAD_NUM");
 
@@ -203,7 +203,7 @@ class Talk extends Base {
     // 获取聊天面板ringgit素节点
     let el = document.getElementById("lumenChatPanel");
 
-    // 判断的滚动条是否在底部
+    // 判断的滚动items是否在底部
     let isBottom = Math.ceil(el.scrollTop) + el.clientHeight >= el.scrollHeight;
 
     if (

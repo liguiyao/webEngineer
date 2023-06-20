@@ -130,7 +130,7 @@
               <dd>
                 <div class="div-content">
                   <span v-if="params.serviceStatus=='PASS'">
-                    审核通过
+                    审核pass
                   </span>
                   <span v-else>
                     审核拒绝
@@ -376,7 +376,7 @@ export default {
       logisticsInfo: {}, //logistics information
       afterSaleInfo: {}, // after sale信息
       afterSaleImage: [], //会员申诉图片
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       storeMsg: {}, // 商家address信息
       //商家处理意见
       params: {
@@ -388,13 +388,13 @@ export default {
         remark: "",
       },
       afterSaleStatusList: [
-        // after sale状态列表
+        // after salestate列表
         {
           name: "Apply  中",
           status: "APPLY",
         },
         {
-          name: "通过",
+          name: "pass",
           status: "PASS",
         },
         {
@@ -525,17 +525,17 @@ export default {
       });
     },
     filterOrderStatus(status) {
-      // 获取订单状态中文
+      // 获取Status中文
       const ob = this.afterSaleStatusList.filter((e) => {
         return e.status === status;
       });
       return ob[0].name;
     },
-    // 根据订单状态判断是否显示logistics information
+    // 根据Status判断是否显示logistics information
     showDelivery(status) {
       let flag = false;
       this.afterSaleStatusList.forEach((e, index) => {
-        // 订单为买家Return goods，待卖家收货之后的状态，并且不是买家Cancelafter sale，展示logistics information
+        // 订单为买家Return goods，待卖家收货之后的state，并且不是买家Cancelafter sale，展示logistics information
         if (e.status === status && index >= 3 && index !== 6) {
           flag = true;
         }

@@ -94,7 +94,7 @@ export default {
       this.$store.commit("PUSH_DIALOGUE", insterChat);
       // 获取聊天面板ringgit素节点
       let el = document.getElementById("lumenChatPanel");
-      // 判断的滚动条是否在底部
+      // 判断的滚动items是否在底部
       let isBottom =
         Math.ceil(el.scrollTop) + el.clientHeight >= el.scrollHeight;
 

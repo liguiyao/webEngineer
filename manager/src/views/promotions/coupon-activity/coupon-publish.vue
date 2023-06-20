@@ -179,7 +179,7 @@ export default {
         couponActivityItems: [], //Coupon list
         couponFrequencyEnum:"", //select周期
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectCouponList: [], //select的Coupon list
       formRule: {
         promotionName: [{ required: true, message: "活动名称不能为空" }],
@@ -368,7 +368,7 @@ export default {
             if (valid) {
               const params = JSON.parse(JSON.stringify(this.form));
               this.submitLoading = true;
-              // 添加 避免编辑后传入id等数据 记得delete
+              // 添加 避免edit后传入id等数据 记得delete
               delete params.id;
               saveActivityCoupon(params).then((res) => {
                 this.submitLoading = false;
@@ -392,7 +392,7 @@ export default {
         if (valid) {
           const params = JSON.parse(JSON.stringify(this.form));
           this.submitLoading = true;
-          // 添加 避免编辑后传入id等数据 记得delete
+          // 添加 避免edit后传入id等数据 记得delete
           delete params.id;
           saveActivityCoupon(params).then((res) => {
             this.submitLoading = false;
@@ -406,7 +406,7 @@ export default {
       }
 
     },
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-platform-coupon");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);

@@ -4,7 +4,7 @@
       <div>
         <Button v-if="allowOperation.editPrice" @click="modifyPrice" type="primary">调整price</Button>
         <Button v-if="allowOperation.editConsignee" @click="editAddress" type="primary">modifyDelivery address</Button>
-        <Button v-if="allowOperation.showLogistics" @click="logistics" type="primary">查看logistics</Button>
+        <Button v-if="allowOperation.showLogistics" @click="logistics" type="primary">Viewlogistics</Button>
         <Button @click="orderLogModal = true" type="primary">订单日志</Button>
         <Button @click="printOrder" type="primary" ghost style="float:right;">打印发货单</Button>
         <Button v-if="allowOperation.take" @click="orderTake" type="primary">订单核销</Button>
@@ -25,20 +25,20 @@
           <div class="div-item-right">{{ orderInfo.order.sn }}</div>
         </div>
         <div class="div-item">
-          <div class="div-item-left">订单来源：</div>
+          <div class="div-item-left">source：</div>
           <div class="div-item-right">
             {{ orderInfo.order.clientType | clientTypeWay }}
           </div>
         </div>
         <div class="div-item">
-          <div class="div-item-left">订单状态：</div>
+          <div class="div-item-left">Status：</div>
           <div class="div-item-right">
             {{ orderInfo.orderStatusValue }}
           </div>
         </div>
 
         <div class="div-item">
-          <div class="div-item-left">下单时间：</div>
+          <div class="div-item-left">Time：</div>
           <div class="div-item-right">
             {{ orderInfo.order.createTime }}
           </div>
@@ -163,7 +163,7 @@
                   {{ key }} : {{ item }}
                 </span>
               </span>
-              <Poptip trigger="hover" style="display: block" title="扫码在手机中查看" transfer>
+              <Poptip trigger="hover" style="display: block" title="扫码在手机中View" transfer>
                 <div slot="content">
                   <vue-qr :text="wapLinkTo(row.goodsId, row.skuId)" :margin="0" colorDark="#000" colorLight="#fff"
                     :size="150"></vue-qr>
@@ -263,7 +263,7 @@
       <div>
         <Form ref="modifyPriceForm" :model="modifyPriceForm" label-position="left" :label-width="100"
           :rules="modifyPriceValidate">
-          <FormItem label="订单金额" prop="orderPrice">
+          <FormItem label="Amount" prop="orderPrice">
             <InputNumber style="width: 100%" v-model="modifyPriceForm.orderPrice" size="large" :min="0.01" :max="99999">
               <span slot="append">ringgit</span>
             </InputNumber>
@@ -494,10 +494,10 @@ export default {
       printHiddenFlag: false,//隐藏信息
       printInfoObj: {
         id: "printInfo",//要打印的id名 无#号
-        popTitle: '&nbsp;',//页眉标题 default浏览器标题 空字符串时显示undefined 使用html语言
+        popTitle: '&nbsp;',//Page眉标题 default浏览器标题 空字符串时显示undefined 使用html语言
         extraHead: '',//头部文字 default空
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       region: [], //地区
       regionId: [], //地区id
       logisticsType: 'KUAIDINIAO', //logistics类型
@@ -538,7 +538,7 @@ export default {
       orderTakeForm: {
         qrCode: "",
       },
-      //验证要调整的订单金额
+      //验证要调整的Amount
       orderTakeValidate: {
         qrCode: [
           { required: true, message: "订单核销码不能为空", trigger: "blur" },
@@ -549,7 +549,7 @@ export default {
         logisticsNo: "", //发货单号
         logisticsId: "", //Logistics company
       },
-      //验证要调整的订单金额
+      //验证要调整的Amount
       modifyPriceValidate: {
         orderPrice: [
           { required: true, message: "Please enter 大于等于0或小于99999的合法金额" },
@@ -775,20 +775,20 @@ export default {
         }
       });
     },
-    // modify订单金额
+    // modifyAmount
     modifyPrice () {
       //default要modify的金额为订单总金额
       this.modifyPriceForm.orderPrice = this.orderInfo.order.flowPrice;
       this.modal = true;
     },
-    //modify订单金额Submit
+    //modifyAmountSubmit
     modifyPriceSubmit () {
       this.$refs.modifyPriceForm.validate((valid) => {
         if (valid) {
           API_Order.modifyOrderPrice(this.sn, this.modifyPriceForm).then(
             (res) => {
               if (res.success) {
-                this.$Message.success("modify订单金额success");
+                this.$Message.success("modifyAmountsuccess");
                 this.modal = false;
                 this.getDataDetail();
               }
@@ -954,7 +954,7 @@ export default {
     this.getDataDetail();
     this.getLogisticsSetting();
   },
-  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情PageBack列表Page，modify列表PagekeepAlive为true，确保不刷新Page面
   beforeRouteLeave (to, from, next) {
     if (to.name === 'orderList' || to.name === 'virtualOrderList') {
       to.meta.keepAlive = true

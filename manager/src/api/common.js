@@ -1,6 +1,6 @@
 import {commonUrl, getRequest, getRequestWithNoToken, postRequestWithNoToken,uploadFileRequest,uploadFile} from '@/libs/axios';
 
-// 通过id获取子地区
+// passid获取子地区
 export const getChildRegion = (id) => {
   return getRequest(`${commonUrl}/common/common/region/item/${id}`);
 };

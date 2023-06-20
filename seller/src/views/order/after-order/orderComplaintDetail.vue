@@ -10,7 +10,7 @@
               <dd>{{ complaintInfo.goodsName }}</dd>
             </dl>
             <dl>
-              <dt>Complaint状态</dt>
+              <dt>Complaintstate</dt>
               <dd v-if="complaintInfo.complainStatus =='NEW'">新Complaint</dd>
               <dd v-if="complaintInfo.complainStatus =='CANCEL'">已撤销</dd>
               <dd v-if="complaintInfo.complainStatus =='WAIT_APPEAL'">待申诉</dd>
@@ -185,7 +185,7 @@
             </dl>
             <dl>
               <dt>
-                下单时间
+                Time
               </dt>
               <dd>
                 {{ complaintInfo.orderTime }}
@@ -193,7 +193,7 @@
             </dl>
             <dl>
               <dt>
-                订单金额
+                Amount
               </dt>
               <dd>
                 {{ complaintInfo.orderPrice | unitPrice('RM')}}
@@ -252,7 +252,7 @@ export default {
       images: [], //会员申诉图片
       appealImages: [], //商家申诉的图片
       applyAppealImages: [], //商家申诉表单enter 的图片
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       //商家回复内容
       params: {
         content: "",
@@ -378,7 +378,7 @@ export default {
       accessToken: this.getStore("accessToken"),
     };
   },
-  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情PageBack列表Page，modify列表PagekeepAlive为true，确保不刷新Page面
   beforeRouteLeave(to, from, next){
     if(to.name === 'orderComplaint') {
       to.meta.keepAlive = true

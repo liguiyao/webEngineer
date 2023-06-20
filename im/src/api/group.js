@@ -60,7 +60,7 @@ export const ServeGetGroupNotices = data => {
   return get('/group/notices', data)
 }
 
-//  编辑群公告
+//  edit群公告
 export const ServeEditGroupNotice = data => {
   return post('/group/edit-notice', data)
 }

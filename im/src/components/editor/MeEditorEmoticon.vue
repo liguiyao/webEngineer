@@ -134,7 +134,7 @@ export default {
     this.$store.commit("LOAD_USER_EMOTICON");
   },
   methods: {
-    // 表情包导航翻页
+    // 表情包导航翻Page
     turnPage(type) {
       if (type == 1) {
         if (this.page == 1) return false;

@@ -15,7 +15,7 @@ var BASE = {
       manager: "https://admin-api.pickmall.cn"
     },
     /**
-     * @description // 跳转买家端address pc端
+     * @description // 跳转买家端address PC
      */
     PC_URL: "http://localhost:10000",
     /**

@@ -1,8 +1,8 @@
 const getters = {
-  // 用户Login状态
+  // 用户Loginstate
   loginStatus: state => state.user.loginStatus,
 
-  // socket 连接状态
+  // socket 连接state
   socketStatus: state => state.socketStatus,
 }
 

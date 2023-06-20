@@ -48,7 +48,7 @@ class SmsLock {
     }, 1000)
   }
 
-  // 页面刷新初始化
+  // Page面刷新初始化
   init() {
     let result = localStorage.getItem(this.lockName)
 

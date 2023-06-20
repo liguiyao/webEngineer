@@ -103,12 +103,12 @@ export default {
           this.$Spin.hide();
         });
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePageNum(val) {
       this.params.pageNumber = val;
       this.getList();
     },
-    // 分页 改变每页数
+    // 分Page 改变每Page数
     changePageSize(val) {
       this.params.pageNumber = 1;
       this.params.pageSize = val;
@@ -121,7 +121,7 @@ export default {
           console.log(item);
           this.$Modal.confirm({
             title: "领取coupon",
-            content: "<p>coupon领取success，可到我的coupon页面查看</p>",
+            content: "<p>coupon领取success，可到我的couponPage面View</p>",
             okText: "我的coupon",
             cancelText: "立即使用",
             closable: true,

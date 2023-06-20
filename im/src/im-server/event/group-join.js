@@ -22,7 +22,7 @@ class GroupJoin extends Base {
 
   handle() {
     this.$notify({
-      message: '您有一条入群消息通知,Please 注意查收...',
+      message: '您有一items入群消息通知,Please 注意查收...',
       duration: 5000,
     })
   }

@@ -46,7 +46,7 @@
       </div>
       <Spin v-if="loading"></Spin>
     </div>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <div class="page-size">
       <Page :total="total" @on-change="changePageNum"
         @on-page-size-change="changePageSize"
@@ -65,7 +65,7 @@ export default {
   data () {
     return {
       commentWay: [`To be evaluated`, `Pending review`, `evaluated`], // Evaluate分类
-      loading: false, // 加载状态
+      loading: false, // 加载state
       list: [], // Evaluate列表
       total: 0, // Evaluate总数
       params: { // Please 求参数
@@ -90,11 +90,11 @@ export default {
         }
       })
     },
-    changePageNum (val) { // modify页码
+    changePageNum (val) { // modifyPage码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // modify页数
+    changePageSize (val) { // modifyPage数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()

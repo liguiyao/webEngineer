@@ -186,7 +186,7 @@ export default {
               params.row.promotionApplyStatus == "APPLY"
                 ? "Apply  "
                 : params.row.promotionApplyStatus == "PASS"
-                ? "通过"
+                ? "pass"
                 : "拒绝"
             );
           },

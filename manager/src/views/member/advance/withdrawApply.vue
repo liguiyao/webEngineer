@@ -105,14 +105,14 @@ export default {
       modalTitle: "", //弹出框标题
       openSearch: true, // 显示search
       openTip: true, // 显示Tips
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       audit: "", // 审核备注
       roleModalVisible: false, // 审核模态框
       queryModalVisible: false, // 审核模态框
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -121,7 +121,7 @@ export default {
         applyStatus: "",
       },
       selectDate: null, // select时间段
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       showList: {}, // 可operation选项
@@ -328,7 +328,7 @@ export default {
     },
     getDataList() {
       this.loading = true;
-      // 带多条件search参数获取表单数据 Please 自行modify接口
+      // 带多items件search参数获取表单数据 Please 自行modify接口
       getUserWithdrawApply(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {

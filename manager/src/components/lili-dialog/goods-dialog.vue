@@ -28,7 +28,7 @@
         <div class="query-item">
           <Cascader
             v-model="category"
-            placeholder="Please selectGoods分类"
+            placeholder="Please selectGoods Category"
             style="width: 250px"
             :data="skuList"
           ></Cascader>
@@ -101,7 +101,7 @@ export default {
       category: [], // 分类
       goodsData: [], // Goods数据
       empty: false, // 空数据
-      loading: false, // 加载状态
+      loading: false, // 加载state
     };
   },
   props: {

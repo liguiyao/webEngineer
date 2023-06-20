@@ -51,7 +51,7 @@ class Base {
   }
 
   /**
-   * 判断用户是否打开对话页
+   * 判断用户是否打开对话Page
    */
   isTalkPage() {
     let path = router.currentRoute.path;

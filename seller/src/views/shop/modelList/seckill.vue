@@ -1,6 +1,6 @@
 <template>
   <div class="seckill">
-    <div class="desc">秒杀Goods需要在促销活动中添加Goods，有Goods时才会在首页展示</div>
+    <div class="desc">秒杀Goods需要在促销活动中Add goods，有Goods时才会在Home展示</div>
     <div class="aside">
       <div class="title">{{ actName }}</div>
       <div class="hour">

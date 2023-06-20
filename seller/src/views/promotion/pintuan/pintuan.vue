@@ -18,7 +18,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="活动状态" prop="promotionStatus">
+          <Form-item label="活动state" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
               placeholder="Please select"
@@ -26,8 +26,8 @@
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
-              <Option value="START">已开始/上架</Option>
-              <Option value="END">已结束/下架</Option>
+              <Option value="START">已开始/On</Option>
+              <Option value="END">已结束/Off</Option>
               <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
@@ -47,7 +47,7 @@
             icon="ios-search"
             >search</Button
           >
-          <Button @click="handleReset" class="search-btn">重置</Button>
+          <Button @click="handleReset" class="search-btn">reset</Button>
         </Form>
       </Row>
       <Row class="operation padding-row">
@@ -61,7 +61,7 @@
               size="small"
               v-if="row.promotionStatus == 'NEW'"
               @click="edit(row)"
-              >编辑</Button
+              >edit</Button
             >
             <Button
               type="info"
@@ -75,7 +75,7 @@
               v-if="row.promotionStatus !== 'NEW' && row.promotionStatus !== 'CLOSE'"
               size="small"
               @click="manage(row, 'view')"
-              >查看</Button
+              >View</Button
             >
             <Button
               type="error"
@@ -125,11 +125,11 @@ export default {
   name: "pintuan",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 0, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 0, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "startTime", // default排序字段
         order: "desc", // default排序方式
       },
@@ -149,7 +149,7 @@ export default {
           key: "endTime",
         },
         {
-          title: "状态",
+          title: "state",
           key: "promotionStatus",
           width: 100,
           render: (h, params) => {
@@ -187,12 +187,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v - 1;
       this.getDataList();
     },
-    // 改变页数
+    // 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -203,7 +203,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置
+    // reset
     handleReset() {
       this.searchForm = {};
       this.selectDate = "";
@@ -240,7 +240,7 @@ export default {
     newAct() {
       this.$router.push({ name: "pintuan-edit" });
     },
-    // 编辑拼团
+    // edit拼团
     edit(v) {
       this.$router.push({ name: "pintuan-edit", query: { id: v.id } });
     },
@@ -336,7 +336,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+  // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
   beforeRouteLeave(to, from, next) {
     from.meta.keepAlive = false;
     next();

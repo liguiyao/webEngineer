@@ -2,7 +2,7 @@
   <div class="search">
     <Card>
       <Tabs value="RESOURCE" @on-click="handleClickType">
-        <TabPane label="图片源" name="RESOURCE">
+        <TabPane label="source" name="RESOURCE">
           <Row class="operation" style="margin-bottom: 10px">
             <Button @click="add" type="primary">添加</Button>
           </Row>
@@ -99,7 +99,7 @@
         </FormItem>
         <FormItem label="类型" prop="type">
           <radio-group v-model="form.type" type="button">
-            <radio label="RESOURCE">图片源</radio>
+            <radio label="RESOURCE">source</radio>
             <radio label="SLIDER">滑块源</radio>
           </radio-group>
         </FormItem>
@@ -124,14 +124,14 @@ export default {
     return {
       modalVisible: false, //添加验证码源弹出框
       modalTitle: "", //添加验证码源弹出框标题
-      loading: true, // 表单加载状态
-      modalType: 0, // 添加或编辑标识
-      submitLoading: false, // 添加或编辑Submit状态
+      loading: true, // 表单加载state
+      modalType: 0, // 添加或edit标识
+      submitLoading: false, // 添加或editSubmitstate
       form: {
         name: "",
         resource: "",
         type: "RESOURCE",
-      }, //添加编辑表单
+      }, //添加edit表单
       formValidate: {
         name: [
           {
@@ -150,8 +150,8 @@ export default {
       },
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         type: "RESOURCE",
@@ -211,7 +211,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -233,18 +233,18 @@ export default {
         },
       ],
       data: [], // 表单数据
-      total: 0, //条数
+      total: 0, //items数
     };
   },
 
   methods: {
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -252,9 +252,9 @@ export default {
     },
     //切换tab
     handleClickType(v) {
-      this.searchForm.pageNumber = 1; // 当前页数
-      this.searchForm.pageSize = 10; // 页面大小
-      //图片源
+      this.searchForm.pageNumber = 1; // 当前Page数
+      this.searchForm.pageSize = 10; // Page面大小
+      //source
       if (v == "RESOURCE") {
         this.searchForm.type = "RESOURCE";
       }
@@ -313,7 +313,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             API_Setting.editVerification(this.form.id, this.form).then(
               (res) => {
                 this.submitLoading = false;

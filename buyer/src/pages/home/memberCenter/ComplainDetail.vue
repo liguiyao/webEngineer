@@ -129,9 +129,9 @@ export default {
       detail: {}, // Evaluate详情
       visible: false, // 图片预览
       previewImage: '', // 预览图片address
-      loading: false, // 加载状态
+      loading: false, // 加载state
       submitLoading: false, // 回复消息loading
-      // 状态
+      // state
       statusLabel: {
         NO_APPLY: 'unapplied',
         APPLYING: 'application',
@@ -153,7 +153,7 @@ export default {
         if (res.success) this.detail = res.result
       })
     },
-    goGoodsDetail (skuId, goodsId) { // 跳转Goods详情
+    goGoodsDetail (skuId, goodsId) { // 跳转Goods Detail
       let routerUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}

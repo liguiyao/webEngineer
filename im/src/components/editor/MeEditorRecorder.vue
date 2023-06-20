@@ -158,7 +158,7 @@ export default {
 
       animation: false,
 
-      // 当前状态
+      // 当前state
       recorderStatus: 0, //0:未开始录音 1:正在录音 2:暂停录音 3:结束录音 4:播放录音 5:停止播放 6:播放结束
 
       playTimeout: null,

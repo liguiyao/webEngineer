@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     edit (id) {
-      // 编辑address
+      // editaddress
       this.$router.push({ path: '/home/addAddress', query: { id: id } });
     },
     del (id) {

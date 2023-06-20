@@ -84,16 +84,16 @@ export default {
   data() {
     return {
       id: "", //要operation的id
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "create_time", // default排序字段
         order: "desc", // default排序方式
       },
       goodsAuditForm: {
-        // Goods编辑表单
+        // Goodsedit表单
         auth_flag: 1,
       },
       columns: [
@@ -232,12 +232,12 @@ export default {
       this.getDataList();
     },
     changePage(v) {
-      // 改变页码
+      // 改变Page码
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
     changePageSize(v) {
-      // 改变每页Quantity
+      // 改变每PageQuantity
       this.searchForm.pageSize = v;
       this.getDataList();
     },
@@ -250,7 +250,7 @@ export default {
     getDataList() {
       // 获取列表数据
       this.loading = true;
-      // 带多条件search参数获取表单数据
+      // 带多items件search参数获取表单数据
       this.searchForm.authFlag = 0;
       getAuthGoodsListData(this.searchForm).then((res) => {
         this.loading = false;
@@ -283,7 +283,7 @@ export default {
         },
       });
     },
-    //查看Goods详情
+    //ViewGoods Detail
     showDetail(v) {
       let id = v.id;
       this.$router.push({

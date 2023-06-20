@@ -51,7 +51,7 @@ export default {
       type: Boolean,
       default: true
     },
-    store: { // 是否为店铺页面
+    store: { // 是否为店铺Page面
       type: Boolean,
       default: false
     },
@@ -96,7 +96,7 @@ export default {
   },
   created () {
     this.searchData = this.$route.query.keyword
-    if (!this.hover) { // 首页顶部固定search栏不调用热词接口
+    if (!this.hover) { // Home顶部固定search栏不调用热词接口
       // search热词每5分钟Please 求一次
       const reloadTime = storage.getItem('hotWordsReloadTime')
       const time = new Date().getTime() - 5 * 60 * 1000

@@ -31,7 +31,7 @@
         <h1>发货完成</h1>
 
         <div>
-          <Button class="btn" @click="close">Close页面</Button>
+          <Button class="btn" @click="close">ClosePage面</Button>
           <Button class="btn" type="primary" @click="navigationToGoodsOrder">Goods订单</Button>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default {
         path: "/order/orderList",
       });
     },
-    // Close页面
+    // ClosePage面
     close() {
       this.$store.commit("removeTag", "export-order-deliver");
       localStorage.storeOpenedList = JSON.stringify(

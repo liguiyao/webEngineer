@@ -9,12 +9,12 @@
           <DatePicker v-model="selectDate" type="daterange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px">
           </DatePicker>
         </Form-item>
-        <Form-item label="筛选状态">
+        <Form-item label="筛选state">
           <Select v-model="searchForm.billStatus" clearable style="width:160px">
             <Option value="OUT">已出账</Option>
             <Option value="CHECK">已对账</Option>
             <!-- <Option value="EXAMINE">已审核</Option> -->
-            <Option value="COMPLETE">已付款</Option>
+            <Option value="COMPLETE">Paid</Option>
           </Select>
         </Form-item>
         <Button @click="handleSearch" type="primary" icon="ios-search" class="search-btn">search</Button>
@@ -40,16 +40,16 @@ export default {
   components: {},
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
         endDate: "", // 终止时间
-        billStatus:"" //状态
+        billStatus:"" //state
       },
       selectDate: null, // select一个时间段
       selectList: [], // 多选数据
@@ -99,7 +99,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "state",
           key: "billStatus",
           width: 100,
           render: (h, params) => {
@@ -110,7 +110,7 @@ export default {
             } else if (params.row.billStatus == "EXAMINE") {
               return h("Tag", {props: {color: "purple",},},"已审核");
             } else {
-              return h("Tag", {props: {color: "green",},},"已付款");
+              return h("Tag", {props: {color: "green",},},"Paid");
             }
           },
         },
@@ -152,11 +152,11 @@ export default {
     init() {
       this.getDataList();
     },
-    changePage(v) { // 改变页码
+    changePage(v) { // 改变Page码
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    changePageSize(v) { // 改变页数
+    changePageSize(v) { // 改变Page数
       this.searchForm.pageSize = v;
       this.getDataList();
     },
@@ -229,7 +229,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        content: "您确认要delete所选的 " + this.selectCount + " items数据?",
         loading: true,
         onOk: () => {
           let ids = "";

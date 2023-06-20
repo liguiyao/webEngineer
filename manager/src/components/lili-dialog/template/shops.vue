@@ -36,7 +36,7 @@ import { getShopListData } from "@/api/shops.js";
 export default {
   data() {
     return {
-      loading: false, // 加载状态
+      loading: false, // 加载state
       total: "", // 总数
       params: { // Please 求参数
         pageNumber: 1,

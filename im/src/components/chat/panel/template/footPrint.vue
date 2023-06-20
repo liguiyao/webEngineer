@@ -55,9 +55,9 @@
                   <span></span>
                   <el-tag  size='mini' :type="col[item.orderStatus]">{{
                     item.orderStatus == 'STAY_PICKED_UP' ? '待self-lifting'
-                      : item.orderStatus == 'CANCELLED' ? '已Cancel' : item.orderStatus == 'UNPAID' ? 'Unpaid' : item.orderStatus
+                      : item.orderStatus == 'CANCELLED' ? 'Cancel' : item.orderStatus == 'UNPAID' ? 'Unpaid' : item.orderStatus
                         ==
-                        'PAID' ? '已付款' : item.orderStatus == 'UNDELIVERED' ? '待发货' : item.orderStatus == 'DELIVERED'
+                        'PAID' ? 'Paid' : item.orderStatus == 'UNDELIVERED' ? '待发货' : item.orderStatus == 'DELIVERED'
                           ? '已发货' : item.orderStatus == 'COMPLETED' ? 'completed' : item.orderStatus == 'TAKE' ? '待核销' :
                             ''
                   }}</el-tag>

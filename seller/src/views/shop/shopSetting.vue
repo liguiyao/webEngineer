@@ -49,7 +49,7 @@
             </FormItem>
             <FormItem label="店铺楼层" prop="content" class="wangEditor">
               <i-switch v-model="form.pageShow" @on-change="pageShow"></i-switch>
-               <span class="desc">店铺楼层装修是否Opening，Opening后移动端PC端将会自动展示装修的内容</span>
+               <span class="desc">店铺楼层装修是否Opening，Opening后移动端PC将会自动展示装修的内容</span>
             </FormItem>
             <FormItem label="Openingself-lifting" prop="content" class="wangEditor">
               <i-switch v-model="form.selfPickFlag" @on-change="changeSelfPickFlag"></i-switch>
@@ -200,7 +200,7 @@
             </Form-item>
           </Form>
         </TabPane>
-        <TabPane label="库存预警" name="STOCK_WARNING">
+        <TabPane label="stock预警" name="STOCK_WARNING">
           <Form
             ref="stockWarningForm"
             :model="stockWarningForm"
@@ -296,9 +296,9 @@ export default {
         salesConsigneeAddressPath: "", // after saleaddress，逗号分割
         salesConsigneeDetail: "", // Full address
       },
-      //库存预警form
+      //stock预警form
       stockWarningForm: {
-        stockWarning: "", // 库存预警Quantity
+        stockWarning: "", // stock预警Quantity
       },
       //im form
       udeskForm: {
@@ -306,7 +306,7 @@ export default {
       },
       stockWarningFormValidate: {
         stockWarning: [
-          { required: true, type:'number', message: "Please enter 库存预警数", trigger: "blur" },
+          { required: true, type:'number', message: "Please enter stock预警数", trigger: "blur" },
         ],
       },
       udeskFormValidate: {
@@ -331,7 +331,7 @@ export default {
         ],
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         storeAddressPath: "", // 店铺address中文
         storeCenter: "", // 经度 + 纬度
         longitude: "", //经度
@@ -385,7 +385,7 @@ export default {
           },
         ],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       //发货address
       addressGoods: {
         salesConsignorName:" ",
@@ -456,7 +456,7 @@ export default {
           this.storeName = res.result.storeName;
           this.form.storeCenter = res.result.storeCenter;
           Cookies.set("userInfoSeller", JSON.stringify(res.result));
-          //库存预警数赋值
+          //stock预警数赋值
           this.$nextTick(() => {
             this.stockWarningForm.stockWarning = res.result.stockWarning + "";
           });
@@ -492,7 +492,7 @@ export default {
       this.showRegion = true;
       this.regionId = "";
     },
-    //重置
+    //reset
     handleReset() {
       this.$refs.form.resetFields();
     },
@@ -511,7 +511,7 @@ export default {
         }
       });
     },
-    //modify库存预警数
+    //modifystock预警数
     stockWarningHandleSubmit() {
       this.$refs.stockWarningForm.validate((valid) => {
         if (valid) {

@@ -47,7 +47,7 @@
             <Button @click="verifyBtnClick" long :type="verifyStatus?'success':'default'">{{verifyStatus?'verify pass':'click to finish'}}</Button>
           </FormItem>
           <FormItem>
-            <Button type="error" @click="next" :loading="loading" long>下一步</Button>
+            <Button type="error" @click="next" :loading="loading" long>Next</Button>
           </FormItem>
         </Form>
         <Form
@@ -119,8 +119,8 @@ export default {
   data () {
     return {
       config:require('@/config'),
-      loading: false, // 加载状态
-      loading1: false, // 第二步加载状态
+      loading: false, // 加载state
+      loading1: false, // 第二步加载state
       formFirst: { // phone verification code表单
         // 注册表单
         mobile: '',
@@ -145,7 +145,7 @@ export default {
         code: [{ required: true, message: 'Please enter phone verification code' }],
         password: [{required: true, message: 'password cannot be empty'}, {pattern: RegExp.password, message: 'password cannot be less than 6 characters'}]
       },
-      verifyStatus: false, // 图片验证状态
+      verifyStatus: false, // 图片验证state
       verifyType: 'FIND_USER', // 图片验证类型
       codeMsg: 'Send verification code', // 验证码文字
       interval: '', // 定时器
@@ -230,7 +230,7 @@ export default {
         });
       }
     },
-    verifyChange (con) { // 验证通过
+    verifyChange (con) { // 验证pass
       if (!con.status) return;
       this.$refs.verify.show = false;
       this.verifyStatus = true;

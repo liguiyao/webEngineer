@@ -67,7 +67,7 @@ export default {
           },
         ],
       },
-      loading: false, // 加载状态
+      loading: false, // 加载state
       mapMsg: {}, // 地图信息
     };
   },

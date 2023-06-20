@@ -35,7 +35,7 @@ export default {
         'http://im-img.gzydong.club/media/images/avatar/20210602/60b6f03598ed0104301.png',
       nickname: '独特态度',
       datetime: '05/09 12:13 分',
-      remarks: '编辑个签，展示我的独特态度 展示我的独特态度。',
+      remarks: 'edit个签，展示我的独特态度 展示我的独特态度。',
       apply_id: 0,
     }
   },

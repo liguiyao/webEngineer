@@ -27,7 +27,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="after sale状态">
+          <Form-item label="after salestate">
             <Select
               v-model="searchForm.serviceStatus"
               placeholder="全部"
@@ -35,7 +35,7 @@
               style="width: 200px"
             >
               <Option value="APPLY">Apply  after sale</Option>
-              <Option value="PASS">通过after sale</Option>
+              <Option value="PASS">passafter sale</Option>
               <Option value="REFUSE">拒绝after sale</Option>
               <Option value="BUYER_RETURN">买家Return goods，待卖家收货</Option>
               <Option value="SELLER_CONFIRM">卖家Confirm receipt</Option>
@@ -112,7 +112,7 @@
               <div class="div-zoom">
                 <a @click="linkTo(row.goodsId, row.skuId)">{{ row.goodsName }}</a>
               </div>
-              <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+              <Poptip trigger="hover" title="扫码在手机中View" transfer>
                 <div slot="content">
                   <vue-qr
                     :text="wapLinkTo(row.goodsId, row.skuId)"
@@ -162,11 +162,11 @@ export default {
   name: "after-sale-order",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -179,7 +179,7 @@ export default {
       },
       selectDate: null, // select时间段
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         sn: "",
         storeName: "",
         startTime: "",
@@ -248,14 +248,14 @@ export default {
         },
 
         {
-          title: "after sale状态",
+          title: "after salestate",
           key: "serviceStatus",
           width: 150,
           render: (h, params) => {
             if (params.row.serviceStatus == "APPLY") {
               return h("div", [h("tag", { props: { color: "blue" } }, "Apply  中")]);
             } else if (params.row.serviceStatus == "PASS") {
-              return h("div", [h("tag", { props: { color: "cyan" } }, "通过after sale")]);
+              return h("div", [h("tag", { props: { color: "cyan" } }, "passafter sale")]);
             } else if (params.row.serviceStatus == "REFUSE") {
               return h("div", [h("tag", { props: { color: "volcano" } }, "拒绝after sale")]);
             } else if (params.row.serviceStatus == "BUYER_RETURN") {
@@ -304,7 +304,7 @@ export default {
                     },
                   },
                 },
-                "查看"
+                "View"
               ),
             ]);
           },
@@ -319,12 +319,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;

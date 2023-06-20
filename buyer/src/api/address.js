@@ -21,7 +21,7 @@ export function newMemberAddress (params) {
   });
 }
 
-// 编辑Delivery address
+// editDelivery address
 export function editMemberAddress (params) {
   return request({
     url: '/buyer/member/address',

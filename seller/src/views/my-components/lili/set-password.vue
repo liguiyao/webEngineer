@@ -56,7 +56,7 @@ export default {
       currentValue: this.value, // 当前密码
       tipStyle: "password-tip-none", // Tips样式
       strengthValue: 0, // 密码强度
-      progressStatus: "normal", // 进度条状态
+      progressStatus: "normal", // 进度itemsstate
       strength: "无", // 密码长度
       grade: 0 // 强度等级
     };

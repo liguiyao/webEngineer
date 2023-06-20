@@ -7,7 +7,7 @@
           <Radio label="false">Close</Radio>
 
         </RadioGroup>
-         <span class="desc">Goods审核Close后，商家添加Goods则无需审核直接上架</span>
+         <span class="desc">Goods审核Close后，商家Add goods则无需审核直接On</span>
       </FormItem>
       <div class="label-item">
         <FormItem class="label-item" label="缩略图宽" prop="abbreviationPictureWidth">

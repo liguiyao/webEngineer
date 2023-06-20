@@ -21,12 +21,12 @@ export default {
         float: "",
       },
     ],
-    webSocketWithOut:false, // ws 是否是掉线 无输出状态
+    webSocketWithOut:false, // ws 是否是掉线 无输出state
     // 对话索引（聊天对话的唯一索引）
     index_name: null,
   },
   mutations: {
-     // 设置ws状态
+     // 设置wsstate
      SET_WS_STATUS: (state,resource) =>{
       state.webSocketWithOut = resource
     },

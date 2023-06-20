@@ -25,7 +25,7 @@ export default {
   name: 'AccountSafe',
   data () {
     return {
-      pwdStatus: '' // 密码状态
+      pwdStatus: '' // 密码state
     }
   },
   mounted () {
@@ -39,7 +39,7 @@ export default {
     modifyPwd () { // modify密码
       this.$router.push({name: 'ModifyPwd', query: { status: 1 }})
     },
-    // 获取密码状态
+    // 获取密码state
     getPwdStatus () {
       getPwdStatus().then(res => {
         if (res) {

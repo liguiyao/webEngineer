@@ -16,7 +16,7 @@
         <span>Descriptive：<Rate v-model="form.descriptionScore" /></span>
       </div>
     </div>
-    <!-- 添加订单Evaluate  左侧Goods详情  右侧Evaluate框 -->
+    <!-- 添加订单Evaluate  左侧Goods Detail  右侧Evaluate框 -->
     <ul class="goods-eval">
       <li >
         <div class="goods-con">
@@ -84,7 +84,7 @@ export default {
       action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       previewImage: '', // 预览图片address
-      loading: false // Submit加载状态
+      loading: false // Submit加载state
     }
   },
   methods: {
@@ -129,7 +129,7 @@ export default {
         this.loading = false;
       })
     },
-    goGoodsDetail (skuId, goodsId) { // 跳转Goods详情
+    goGoodsDetail (skuId, goodsId) { // 跳转Goods Detail
       let routerUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}

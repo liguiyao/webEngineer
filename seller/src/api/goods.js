@@ -34,17 +34,17 @@ export const delCategdelShopGoodsLabel = id => {
   return deleteRequest(`/goods/label/${id}`);
 };
 
-//  根据goodsId分页获取Goods列表
+//  根据goodsId分Page获取Goods列表
 export const getQueryGoodsIdGoodsList = goodsId => {
   return getRequest(`/goods/goods/sku/${goodsId}/list`);
 };
 
-//  获取Goods分页列表
+//  获取Goods分Page列表
 export const getGoodsSkuListDataSeller = params => {
   return getRequest("/goods/goods/sku/list", params);
 };
 
-//  获取Goods品牌分页列表
+//  获取Goods Brand分Page列表
 export const getUserListData = params => {
   return getRequest("/goods/brand/getByPage", params);
 };
@@ -56,7 +56,7 @@ export const insertOrUpdateBrand = params => {
 export const enableBrand = (id, params) => {
   return postRequest(`/goods/brand/enable/${id}`, params);
 };
-// 禁用品牌
+// disable品牌
 export const disableBrand = (id, params) => {
   return postRequest(`/goods/brand/disable/${id}`, params);
 };
@@ -87,15 +87,15 @@ export const getAllList = id => {
   return getRequest(`/goods/label/get/${id}`);
 };
 
-//  添加Goods分类
+//  Add Goods Category
 export const insertCategory = params => {
   return postRequest("/goods/category/insertCategory", params);
 };
-//  添加Goods分类
+//  Add Goods Category
 export const updateCategory = params => {
   return postRequest("/goods/category/updateCategory", params);
 };
-//deleteGoods分类
+//deleteGoods Category
 export const delCategory = id => {
   return deleteRequest(`/goods/category/del/${id}`);
 };
@@ -103,12 +103,12 @@ export const delCategory = id => {
 export const enableCategory = (id, type) => {
   return postRequest(`/goods/category/enable/${id}`, type);
 };
-// 禁用分类
+// disable分类
 export const disableCategory = (id, type) => {
   return postRequest(`/goods/category/disable/${id}`, type);
 };
 
-//  获取Goods规格分页列表
+//  获取Goods规格分Page列表
 export const getSpecListData = params => {
   return getRequest("/goods/spec/list", params);
 };
@@ -128,7 +128,7 @@ export const delSpec = (id, params) => {
 // export const getSpecValuesListData = (id, params) => {
 //   return getRequest(`/goods/spec-values/values/${id}`, params);
 // };
-//  添加Goods规格值
+//  Add goods规格值
 // export const saveSpecValues = (id, params) => {
 //   return postRequest(`/goods/spec-values/save/${id}`, params);
 // };
@@ -138,16 +138,16 @@ export const getGoodsCategory = parent_id => {
   return getRequest(`/goods/category/${parent_id}/all-children`);
 };
 
-//  获取Goodssku分页列表
+//  获取Goodssku分Page列表
 export const getGoodsSkuData = params => {
   return getRequest("/goods/goods/sku/list", params);
 };
 
-//  获取Goods分页列表
+//  获取Goods分Page列表
 export const getGoodsListData = params => {
   return getRequest("/goods/goods/list", params);
 };
-//  获取待审核Goods分页列表
+//  获取待审核Goods分Page列表
 export const getAuthGoodsListData = params => {
   return getRequest("/goods/auth/list", params);
 };
@@ -211,12 +211,12 @@ export const getSkuPage = params => {
 // export const getSpecValuesListSellerData = (id, params) => {
 //   return getRequest(`/goods/spec-values/values/${id}`, params);
 // };
-//  添加Goods规格值
+//  Add goods规格值
 // export const saveSpecValuesSeller = (id, params) => {
 //   return postRequest(`/goods/spec-values/save/${id}`, params);
 // };
 
-//  获取Goods规格分页列表
+//  获取Goods规格分Page列表
 export const getSpecListSellerData = params => {
   return getRequest("/goods/spec/page", params);
 };
@@ -225,25 +225,25 @@ export const insertSpecSeller = params => {
   return postRequest("/goods/spec", params);
 };
 
-//  更新Goods库存
+//  更新Goodsstock
 export const updateGoodsSkuStocks = params => {
   return putRequest("/goods/goods/update/stocks", params, {
     "Content-Type": "application/json"
   });
 };
-//  获取Goods分页列表
+//  获取Goods分Page列表
 export const getGoodsListDataSeller = params => {
   return getRequest("/goods/goods/list", params);
 };
-//  获取Goods告警分页列表
+//  获取Goods告警分Page列表
 export const getGoodsListDataByStockSeller = params => {
   return getRequest("/goods/goods/list/stock", params);
 };
-//  获取Goods详情
+//  获取Goods Detail
 export const getGoods = id => {
   return getRequest(`/goods/goods/get/${id}`);
 };
-// 上架Goods
+// OnGoods
 export const upGoods = params => {
   return putRequest(`/goods/goods/up`, params);
 };
@@ -251,7 +251,7 @@ export const upGoods = params => {
 export const deleteGoods = params => {
   return putRequest(`/goods/goods/delete`, params);
 };
-//  下架Goods
+//  OffGoods
 export const lowGoods = params => {
   return putRequest(`/goods/goods/under`, params);
 };
@@ -277,12 +277,12 @@ export function editGoods(goodsId, params) {
   });
 }
 
-// 获取草稿Goods分页列表
+// 获取草稿Goods分Page列表
 export const getDraftGoodsListData = params => {
   return getRequest("/goods/draftGoods/page", params);
 };
 
-// 获取草稿Goods详情
+// 获取草稿Goods Detail
 export const getDraftGoodsDetail = id => {
   return getRequest(`/goods/draftGoods/${id}`);
 };

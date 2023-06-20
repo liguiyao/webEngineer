@@ -15,7 +15,7 @@
       <Row type="flex" justify="start">
         <Col :md="8" :lg="8" :xl="6">
           <Alert show-icon>
-            当前select编辑：
+            当前selectedit：
             <span class="select-title">{{ editTitle }}</span>
             <a class="select-clear" v-if="form.id" @click="cancelSelect"
               >Cancelselect</a
@@ -78,7 +78,7 @@
                 type="primary"
                 >modify并Save</Button
               >
-              <Button @click="handleReset">重置</Button>
+              <Button @click="handleReset">reset</Button>
             </Form-item>
           </Form>
         </Col>
@@ -142,17 +142,17 @@ export default {
   name: "store-department-manage",
   data() {
     return {
-      loading: true, // 加载状态
+      loading: true, // 加载state
       maxHeight: "500px", // 最大高度
       strict: true, // 级联还是单选
-      userLoading: false, // select角色加载状态
-      loadingEdit: false, // 编辑加载状态
+      userLoading: false, // select角色加载state
+      loadingEdit: false, // edit加载state
       modalVisible: false, // modal显隐
       selectList: [], // 已选列表
       selectCount: 0, // 已选总数
       showParent: false, // 展示父级
       modalTitle: "", // modal标题
-      editTitle: "", // 编辑标题
+      editTitle: "", // edit标题
       selectedRole: [], //select的角色
       searchKey: "", // search关键字
       form: { // Submit表单
@@ -178,7 +178,7 @@ export default {
       },
       submitLoading: false, // Submitloading
       data: [], // 部门数据
-      dataEdit: [], // 编辑时部门数据
+      dataEdit: [], // edit时部门数据
       users: [], // 用户
     };
   },
@@ -277,7 +277,7 @@ export default {
     cancelAdd() {
       this.modalVisible = false;
     },
-    // 重置表单
+    // reset表单
     handleReset() {
       this.$refs.form.resetFields();
       this.form.status = 0;
@@ -306,7 +306,7 @@ export default {
             console.warn(res)
             this.submitLoading = false;
             if (res[0].success) {
-              this.$Message.success("编辑success");
+              this.$Message.success("editsuccess");
               this.init();
               this.modalVisible = false;
             }
@@ -372,7 +372,7 @@ export default {
       this.$Modal.confirm({
         title: "确认delete",
         content:
-          "您确认要delete所选的 " + this.selectCount + " 条数据及其下级所有数据?",
+          "您确认要delete所选的 " + this.selectCount + " items数据及其下级所有数据?",
         loading: true,
         onOk: () => {
           let ids = "";

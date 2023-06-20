@@ -112,7 +112,7 @@ export default {
     this.getListByDay()
   },
   methods: {
-    goToSeckill () { // 跳转秒杀页面
+    goToSeckill () { // 跳转秒杀Page面
       let routeUrl = this.$router.resolve({
         path: '/seckill'
       });

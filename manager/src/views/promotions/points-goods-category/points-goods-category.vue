@@ -2,7 +2,7 @@
   <div>
     <Card>
       <div class="operation mb_10">
-        <Button @click="addParent" type="primary" icon="md-add">添加积分Goods分类</Button>
+        <Button @click="addParent" type="primary" icon="md-add">添加积分Goods Category</Button>
         <Button icon="md-refresh" @click="init">刷新</Button>
       </div>
       <tree-table
@@ -18,7 +18,7 @@
         primary-key="id"
       >
         <template slot="action" slot-scope="scope">
-          <Button @click.native="edit(scope.row)" style="margin-right:10px;" size="small">编辑</Button>
+          <Button @click.native="edit(scope.row)" style="margin-right:10px;" size="small">edit</Button>
           <Button @click.native="remove(scope.row)" type="primary" size="small">delete</Button>
         </template>
       </tree-table>
@@ -68,14 +68,14 @@ export default {
   data() {
     return {
       submitLoading:false,
-      loading: false, // 加载状态
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: false, // 加载state
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       showParent: false, // 是否展示上级菜单
       parentTitle: "", // 父级菜单名称
       formAdd: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         parentId: 0,
         name: "",
         deleteFlag: 0,
@@ -84,7 +84,7 @@ export default {
       },
       // 表单验证规则
       formValidate: {
-        name: [{ required: true, message: "Goods分类名称不能为空" }],
+        name: [{ required: true, message: "Goods Category名称不能为空" }],
       },
       columns: [
         {
@@ -110,10 +110,10 @@ export default {
     init() {
       this.getAllList();
     },
-    // 编辑分类
+    // edit分类
     edit(v) {
       this.modalType = 1;
-      this.modalTitle = "编辑";
+      this.modalTitle = "edit";
       this.formAdd.id = v.id;
       this.formAdd.name = v.name;
       this.formAdd.sortOrder = v.sortOrder;
@@ -123,7 +123,7 @@ export default {
     // 添加顶级分类
     addParent() {
       this.modalType = 0;
-      this.modalTitle = "添加积分Goods分类";
+      this.modalTitle = "添加积分Goods Category";
       this.parentTitle = "顶级分类";
       this.showParent = true;
       this.$refs.form.resetFields();
@@ -138,7 +138,7 @@ export default {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.formAdd.id;
             addPointsGoodsCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
@@ -150,7 +150,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             updatePointsGoodsCategory(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {

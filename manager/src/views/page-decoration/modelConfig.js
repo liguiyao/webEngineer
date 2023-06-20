@@ -611,7 +611,7 @@ export const modelData = [{
   },
   {
     type: 'firstAdvert',
-    name: '首页广告',
+    name: 'Home广告',
     icon: 'md-image',
     options: {
       list: [{

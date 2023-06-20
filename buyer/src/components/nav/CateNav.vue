@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <!-- All goods分类 -->
+    <!-- All Goods Category -->
     <div
       class="cate-list"
       v-show="showAlways || showFirstList"
@@ -113,7 +113,7 @@ export default {
       type: Boolean,
     },
     showNavBar: {
-      // 显示All goods分类右侧导航条
+      // 显示All Goods Category右侧导航items
       default: true,
       type: Boolean,
     },
@@ -137,7 +137,7 @@ export default {
       panel: false, // 二级分类展示
       panelData: [], // 二级分类数据
       showFirstList: false, // 始终展示一级列表
-      cateList: [], // Goods分类
+      cateList: [], // Goods Category
     };
   },
   computed: {
@@ -189,7 +189,7 @@ export default {
       this.panelData = this.cateList[index].children;
     },
     goGoodsList(id, secondId, firstId) {
-      // 分类共有三级，传全部分类过去
+      // 分类total有三级，传全部分类过去
       const arr = [firstId, secondId, id];
       if (!arr[1]) {
         arr.splice(0, 2);
@@ -232,7 +232,7 @@ export default {
   position: relative;
   margin: 0 auto;
 }
-/** Goods分类 */
+/** Goods Category */
 .nav-con {
   width: 1200px;
   height: 40px;

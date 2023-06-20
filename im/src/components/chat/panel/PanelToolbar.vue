@@ -1,7 +1,7 @@
 <template>
   <div class="multi-select">
     <div class="multi-title">
-      <span>已选中：{{ value }} 条消息</span>
+      <span>已选中：{{ value }} items消息</span>
     </div>
     <div class="multi-main">
       <div class="btn-group">
@@ -17,7 +17,7 @@
         <div class="multi-icon pointer" @click="$emit('event', 'forward')">
           <i class="el-icon-position" />
         </div>
-        <p>逐条转发</p>
+        <p>逐items转发</p>
       </div>
       <div class="btn-group">
         <div class="multi-icon pointer" @click="$emit('event', 'delete')">

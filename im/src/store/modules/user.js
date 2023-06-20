@@ -11,7 +11,7 @@ let state = {
   face: require("@/assets/image/detault-avatar.jpg"),
   // 名片背景
   visitCardBag: require("@/assets/image/default-user-banner.png"),
-  // 当前Login状态
+  // 当前Loginstate
   loginStatus: false,
   toUser:""
 };
@@ -36,7 +36,7 @@ const User = {
       state.loginStatus = false;
     },
 
-    // 设置用户Login状态
+    // 设置用户Loginstate
     UPDATE_LOGIN_STATUS(state) {
       state.loginStatus = true;
     },

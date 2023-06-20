@@ -1,7 +1,7 @@
 <template>
   <div class="item-class-show">
     <div class="head-bar">
-      <!-- 有Goods分类展示Goods分类 -->
+      <!-- 有Goods Category展示Goods Category -->
       <template v-if="$route.query.categoryId">
         <!-- 头部展示筛选信息 -->
         <div @click="cateClick(tabBar,1)">{{ tabBar.name }}</div>
@@ -27,7 +27,7 @@
         </div>
         <Icon type="ios-arrow-forward" v-if="tabBar.second" />
       </template>
-      <!-- 无Goods分类，展示search结果 -->
+      <!-- 无Goods Category，展示search结果 -->
       <template v-else>
         <div style="font-size:14px">Total result</div>
         <Icon type="ios-arrow-forward" />
@@ -187,13 +187,13 @@ export default {
     };
   },
   computed: {
-    cateList () { // Goods分类
+    cateList () { // Goods Category
       return this.$store.state.category || []
     }
   },
   watch: {
     selectedItem: {
-      // 监听已选条件，来调用列表接口
+      // 监听已选items件，来调用列表接口
       handler (val) {
         let classification = [];
         this.params.brandId = ''
@@ -230,9 +230,9 @@ export default {
     }
   },
   methods: {
-    getNav () { // 获取Goods分类，分类下展示
+    getNav () { // 获取Goods Category，分类下展示
       if (!this.$route.query.categoryId) return
-      if (!this.cateList.length) { // Goods分类存储在localstorage，接口未调用success前再次刷新数据
+      if (!this.cateList.length) { // Goods Category存储在localstorage，接口未调用success前再次刷新数据
         setTimeout(() => {
           this.getNav()
         }, 500)
@@ -282,7 +282,7 @@ export default {
     selectBrand (item, index) {
       // select筛选项
       if (this.multiple !== false) {
-        // 非多选直接在顶部栏展示，多选则添加select状态
+        // 非多选直接在顶部栏展示，多选则添加selectstate
 
         let key = this.multSelected.indexOf(item);
         if (key > -1) {

@@ -12,7 +12,7 @@ export function goodsList (params) {
   });
 }
 
-// Goods分类 筛选条件  品牌， 尺寸等
+// Goods Category 筛选items件  品牌， 尺寸等
 export function filterList (params) {
   return request({
     url: '/buyer/goods/goods/es/related',
@@ -22,7 +22,7 @@ export function filterList (params) {
   });
 }
 
-// id获取Goods详情
+// id获取Goods Detail
 export function goodsDetail (goodsId) {
   return request({
     url: `/buyer/goods/goods/get/${goodsId}`,
@@ -41,7 +41,7 @@ export function goodsSkuDetail (params) {
   });
 }
 
-// 获取所有Goods分类
+// 获取所有Goods Category
 export function getCategory (parentId) {
   return request({
     url: `/buyer/goods/category/get/${parentId}`,

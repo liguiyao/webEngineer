@@ -109,7 +109,7 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/", // 首页
+      path: "/", // Home
       name: "Index",
       component: Index,
     },
@@ -143,13 +143,13 @@ export default new Router({
       component: GoodsList,
     },
     {
-      path: "/goodsDetail", // Goods详情
+      path: "/goodsDetail", // Goods Detail
       name: "GoodsDetail",
       component: GoodsDetail,
       meta: { title: "Goods detail" },
     },
     {
-      path: "/pointGoodsDetail", // Goods详情
+      path: "/pointGoodsDetail", // Goods Detail
       name: "PointGoodsDetail",
       component: PointGoodsDetail,
       meta: { title: "Goods points" },
@@ -166,7 +166,7 @@ export default new Router({
       meta: { title: "Cart" },
     },
     {
-      path: "/pay", // 支付页面
+      path: "/pay", // 支付Page面
       name: "Pay",
       component: Pay,
       meta: { title: "Payment detail" },
@@ -188,12 +188,12 @@ export default new Router({
       component: ThirdPay,
     },
     {
-      path: "/payDone", // payment success页面
+      path: "/payDone", // payment successPage面
       name: "PayDone",
       component: PayDone,
     },
     {
-      path: "/article", // 文章页面
+      path: "/article", // 文章Page面
       name: "article",
       component: article,
       meta: {
@@ -201,7 +201,7 @@ export default new Router({
       },
     },
     {
-      path: "/article/detail", // 文章页面
+      path: "/article/detail", // 文章Page面
       name: "articleDetail",
       component: articleDetail,
       meta: {
@@ -233,7 +233,7 @@ export default new Router({
       },
     },
     {
-      path: "/home", // 主页
+      path: "/home", // 主Page
       component: Home,
       children: [
         {

@@ -156,7 +156,7 @@ export default {
             hashName: hash_name,
             originalFile: file,
             filename: file.name,
-            status: 0, // 文件上传状态 0:等待上传 1:上传中 2:上传完成 3:网络异常
+            status: 0, // 文件上传state 0:等待上传 1:上传中 2:上传完成 3:网络异常
             progress: 0,
             filesize: formatSize(file.size),
             filetype: file.type || '未知',

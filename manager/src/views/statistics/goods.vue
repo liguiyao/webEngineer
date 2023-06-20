@@ -10,7 +10,7 @@
         <TabPane label="热门Goods订单Quantity" name="NUM">
           <Table :columns="columns" :data="data"></Table>
         </TabPane>
-        <TabPane label="热门Goods订单金额" name="PRICE">
+        <TabPane label="热门GoodsAmount" name="PRICE">
           <Table :columns="columns" :data="data"></Table>
         </TabPane>
       </Tabs>
@@ -66,7 +66,7 @@ export default {
       this.params.type = name;
       this.getData();
     },
-    // 条件删选
+    // items件删选
     clickBreadcrumb(item, index) {
       let callback = item;
       let type = this.params.type;

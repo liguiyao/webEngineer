@@ -27,7 +27,7 @@
 
       <div class="model-view-content">
         <div class="content">
-          <div class="wap-title">首页</div>
+          <div class="wap-title">Home</div>
           <draggable
             class="draggable"
             group="model"

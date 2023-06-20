@@ -5,11 +5,11 @@
         <Form-item label="活动名称">
           <Input type="text" v-model="searchForm.promotionName" placeholder="Please enter 活动名称" clearable style="width: 200px" />
         </Form-item>
-        <Form-item label="活动状态" prop="promotionStatus">
+        <Form-item label="活动state" prop="promotionStatus">
           <Select v-model="searchForm.promotionStatus" placeholder="Please select" clearable style="width: 200px">
             <Option value="NEW">未开始</Option>
-            <Option value="START">已开始/上架</Option>
-            <Option value="END">已结束/下架</Option>
+            <Option value="START">已开始/On</Option>
+            <Option value="END">已结束/Off</Option>
             <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
@@ -19,7 +19,7 @@
         </Form-item>
         <Form-item>
           <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-          <Button @click="handleReset" class="ml_10">重置</Button>
+          <Button @click="handleReset" class="ml_10">reset</Button>
         </Form-item>
       </Form>
       <Row class="operation">
@@ -37,8 +37,8 @@
         </template>
         <template slot-scope="{ row }" slot="action">
           <div>
-            <Button type="primary" v-if="row.promotionStatus == 'NEW'" size="small" @click="edit(row)">编辑</Button>
-            <Button type="info" v-else size="small" @click="edit(row)">查看</Button>
+            <Button type="primary" v-if="row.promotionStatus == 'NEW'" size="small" @click="edit(row)">edit</Button>
+            <Button type="info" v-else size="small" @click="edit(row)">View</Button>
             <Button type="success" v-if="row.promotionStatus === 'START'" style="margin-left: 5px" size="small"
               @click="openOrClose(row)">Close</Button>
             <Button type="success" v-if="row.promotionStatus === 'CLOSE'" style="margin-left: 5px" size="small"
@@ -68,7 +68,7 @@ export default {
     return {
       total: 0,
       selectDate: [],
-      loading: false, // 表单加载状态
+      loading: false, // 表单加载state
       searchForm: {
         // 列表Please 求参数
         pageNumber: 1,
@@ -98,7 +98,7 @@ export default {
           width: 100,
         },
         {
-          title: "活动状态",
+          title: "活动state",
           key: "promotionStatus",
           width: 100,
           render: (h, params) => {
@@ -141,7 +141,7 @@ export default {
     };
   },
   methods: {
-    // 改变页码
+    // 改变Page码
     newAct () {
       this.$router.push({ name: "full-discount-detail" });
     },
@@ -149,12 +149,12 @@ export default {
     init () {
       this.getDataList();
     },
-    // 改变页数
+    // 改变Page数
     changePage (v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePageSize (v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -165,7 +165,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置
+    // reset
     handleReset () {
       this.selectDate = "";
       this.searchForm = {};
@@ -173,7 +173,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    //  编辑
+    //  edit
     edit (row) {
       this.$router.push({ name: "full-discount-detail", query: { id: row.id } });
     },
@@ -290,7 +290,7 @@ export default {
   mounted () {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+  // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
   beforeRouteLeave (to, from, next) {
     from.meta.keepAlive = false;
     next();

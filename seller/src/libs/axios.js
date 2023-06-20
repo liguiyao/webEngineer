@@ -63,7 +63,7 @@ service.interceptors.response.use(
         }
         break;
       case 401:
-        // 未Login 清除已Login状态
+        // 未Login 清除已Loginstate
         Cookies.set("userInfoSeller", "");
         setStore("accessToken", "");
         if (router.history.current.name != "login") {
@@ -88,10 +88,10 @@ service.interceptors.response.use(
     }
   },
   async error => {
-    // Back状态码不为200时候的错误处理
+    // Backstate码不为200时候的错误处理
     if (error.response) {
       if (error.response.status === 401) {
-        // 这种情况一般调到Login页
+        // 这种情况一般调到LoginPage
       } else if (error.response.status === 404) {
         // 避免刷新token报错
       } else if (error.response.status === 403) {

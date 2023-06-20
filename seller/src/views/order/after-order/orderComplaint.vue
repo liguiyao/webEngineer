@@ -21,8 +21,8 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="状态" prop="status">
-            <Select v-model="searchForm.status" placeholder="Please select订单状态" clearable style="width: 200px">
+          <Form-item label="state" prop="status">
+            <Select v-model="searchForm.status" placeholder="Please selectStatus" clearable style="width: 200px">
               <Option value="NEW">新Complaint</Option>
               <Option value="CANCEL">已撤销</Option>
               <Option value="WAIT_APPEAL">待申诉</Option>
@@ -33,7 +33,7 @@
             </Select>
           </Form-item>
           <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-          <Button @click="handleReset" class="search-btn">重置</Button>
+          <Button @click="handleReset" class="search-btn">reset</Button>
         </Form>
       </Row>
       <Table
@@ -46,7 +46,7 @@
       >
         <template slot-scope="{row}" slot="goodsName">
           <a class="mr_10" @click="linkTo(row.goodsId,row.skuId)">{{row.goodsName}}</a>
-          <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+          <Poptip trigger="hover" title="扫码在手机中View" transfer>
             <div slot="content">
               <vue-qr :text="wapLinkTo(row.goodsId,row.skuId)"  :margin="0" colorDark="#000" colorLight="#fff" :size="150"></vue-qr>
             </div>
@@ -84,11 +84,11 @@
     },
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
         },
@@ -116,7 +116,7 @@
             key: "createTime",
           },
           {
-            title: "Complaint状态",
+            title: "Complaintstate",
             key: "complainStatus",
             render: (h, params) => {
               if (params.row.complainStatus == "NEW") {
@@ -198,12 +198,12 @@
       init() {
         this.getDataList();
       },
-      // 改变页码
+      // 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 改变页数
+      // 改变Page数
       changePageSize(v) {
         this.searchForm.pageSize = v;
         this.getDataList();
@@ -214,7 +214,7 @@
         this.searchForm.pageSize = 10;
         this.getDataList();
       },
-      // 重置
+      // reset
       handleReset() {
         this.searchForm = {}
         this.searchForm.pageNumber = 1;
@@ -246,7 +246,7 @@
     mounted() {
       this.init();
     },
-    // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+    // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
     beforeRouteLeave(to, from, next) {
       from.meta.keepAlive = false
       next()

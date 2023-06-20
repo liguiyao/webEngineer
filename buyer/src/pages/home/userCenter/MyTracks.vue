@@ -19,7 +19,7 @@
         </span>
       </li>
     </ul>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <div class="page-size">
       <Page
         :total="total"
@@ -55,14 +55,14 @@ export default {
   },
   methods: {
     goodsDetail(skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },
       });
       window.open(routeUrl.href, "_blank");
     },
-    // 跳转店铺首页
+    // 跳转店铺Home
     shopPage(id) {
       let routeUrl = this.$router.resolve({
         path: "/Merchant",
@@ -96,12 +96,12 @@ export default {
       });
     },
     changePageNum(val) {
-      // modify页码
+      // modifyPage码
       this.params.pageNumber = val;
       this.getList();
     },
     changePageSize(val) {
-      // modify页数
+      // modifyPage数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList();

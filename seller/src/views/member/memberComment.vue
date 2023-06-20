@@ -19,7 +19,7 @@
           <DatePicker v-model="selectDate" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" clearable @on-change="selectDateRange" placeholder="select start time" style="width: 200px"></DatePicker>
         </Form-item>
         <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-        <Button @click="handleReset" class="search-btn">重置</Button>
+        <Button @click="handleReset" class="search-btn">reset</Button>
       </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10"></Table>
       <Row type="flex" justify="end" class="mt_10">
@@ -73,15 +73,15 @@ export default {
     return {
       detailInfo: {}, // 详情信息
       image: [], //Evaluate图片
-      replyStatus: false, //回复状态
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
-      loading: true, // 表单加载状态
+      replyStatus: false, //回复state
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
+      loading: true, // 表单加载state
       content: "", //Evaluate内容
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -96,7 +96,7 @@ export default {
       formValidate: {
         reply: [{ required: true, message: "Please enter 回复内容", trigger: "blur" }],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       columns: [
         // 表头
         {
@@ -132,7 +132,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "state",
           key: "status",
           width: 100,
           render: (h, params) => {
@@ -144,7 +144,7 @@ export default {
           },
         },
         {
-          title: "回复状态",
+          title: "回复state",
           key: "replyStatus",
           width: 110,
           render: (h, params) => {
@@ -201,13 +201,13 @@ export default {
       // 初始化数据
       this.getDataList();
     },
-    // 改变页数
+    // 改变Page数
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 改变页码
+    // 改变Page码
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -218,14 +218,14 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置
+    // reset
     handleReset() {
       this.searchForm = {};
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 清除选中状态
+    // 清除选中state
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },

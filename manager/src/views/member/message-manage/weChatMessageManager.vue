@@ -120,18 +120,18 @@ export default {
       searchForm: { // Please 求参数
         type: "WECHAT"
       },
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       id: '', // 模板id
       //Wechat消息查询
       weChatSearchForm: {
         // search框对应data对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
       weChatMPSearchForm: {
         // search框对应data对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
       weChatColumns: [
         {
@@ -193,7 +193,7 @@ export default {
                     }
                   }
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -348,7 +348,7 @@ export default {
         }
       });
     },
-    //分页获取Wechat消息
+    //分Page获取Wechat消息
     getWechatMessagePage() {
       getWechatMessagePage(this.weChatSearchForm).then(res => {
         this.loading = false;
@@ -358,7 +358,7 @@ export default {
         }
       });
     },
-    //分页获取Wechat小程序消息订阅
+    //分Page获取Wechat小程序消息订阅
     getWechatMPMessagePage() {
       getWechatMPMessagePage(this.weChatMPSearchForm).then(res => {
         this.loading = false;

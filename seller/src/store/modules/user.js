@@ -5,7 +5,7 @@ const user = {
     mutations: {
         logout () {
             Cookies.remove('userInfoSeller');
-            // 清空打开的页面等数据
+            // 清空打开的Page面等数据
             localStorage.clear();
         }
     }

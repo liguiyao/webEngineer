@@ -35,7 +35,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="状态">
+          <Form-item label="state">
             <Select v-model="searchForm.promotionStatus" style="width: 200px">
               <Option v-for="item in statusList" :value="item.value" :key="item.value">{{
                 item.label
@@ -69,7 +69,7 @@
             <a class="mr_10" @click="linkTo(row.goodsId, row.skuId)">{{
               row.goodsName
             }}</a>
-            <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+            <Poptip trigger="hover" title="扫码在手机中View" transfer>
               <div slot="content">
                 <vue-qr
                   :text="wapLinkTo(row.goodsId, row.skuId)"
@@ -110,7 +110,7 @@
             size="small"
             @click="edit(row.id)"
             style="margin-right: 5px"
-            >编辑</Button
+            >edit</Button
           >
           <Button
             v-if="row.promotionStatus === 'START' || row.promotionStatus === 'NEW'"
@@ -164,16 +164,16 @@ export default {
   },
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime",
         order: "desc", // default排序方式
       },
       statusList: [
-        // 活动状态
+        // 活动state
         { label: "未开始", value: "NEW" },
         { label: "已开始", value: "START" },
         { label: "已结束", value: "END" },
@@ -199,12 +199,12 @@ export default {
           width: 100,
         },
         {
-          title: "库存Quantity",
+          title: "stockQuantity",
           slot: "quantity",
           width: 100,
         },
         {
-          title: "活动剩余库存",
+          title: "活动剩余stock",
           key: "activeStock",
           width: 150,
         },
@@ -224,7 +224,7 @@ export default {
           minWidth: 150,
         },
         {
-          title: "状态",
+          title: "state",
           key: "promotionStatus",
           width: 100,
           render: (h, params) => {
@@ -253,16 +253,16 @@ export default {
     init() {
       this.getDataList();
     },
-    // 跳转添加Goods页面
+    // 跳转Add goodsPage面
     addPointsGoods() {
       this.$router.push({ name: "add-points-goods" });
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -291,7 +291,7 @@ export default {
         }
       });
     },
-    // 编辑
+    // edit
     edit(id) {
       this.$router.push({ name: "edit-points-goods", query: { id: id } });
     },

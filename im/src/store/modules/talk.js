@@ -8,14 +8,14 @@ const Talk = {
     // 用户对话列表
     items: [],
 
-    // 最后一条消息
+    // 最后一items消息
     unreadMessage: {
       num: 0,
       nickname: "未知",
       content: "...",
     },
 
-    // 对话列表重载状态
+    // 对话列表重载state
     heavyLoad: false,
   },
   getters: {
@@ -116,7 +116,7 @@ const Talk = {
       state.unreadMessage.content = resource.content;
     },
 
-    // 清除最后一条未读消息
+    // 清除最后一items未读消息
     CLEAR_TLAK_UNREAD_MESSAGE (state) {
       state.unreadMessage = {
         num: 0,

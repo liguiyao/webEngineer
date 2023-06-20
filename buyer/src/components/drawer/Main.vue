@@ -85,7 +85,7 @@ export default {
         }
       }
     },
-    openBlank (path) { // 新页面打开address
+    openBlank (path) { // 新Page面打开address
       let routerUrl = this.$router.resolve({
         path: path
       })

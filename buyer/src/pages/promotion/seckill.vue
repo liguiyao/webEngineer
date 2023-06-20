@@ -135,7 +135,7 @@ export default {
       });
     },
     goGoodsDetail (skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },

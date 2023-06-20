@@ -3,7 +3,7 @@
     <Card>
       <Form ref="searchForm" :model="searchForm" inline :label-width="100" class="search-form">
 
-        <Form-item label="直播状态" prop="promotionStatus">
+        <Form-item label="直播state" prop="promotionStatus">
           <Select v-model="searchForm.status" placeholder="Please select" clearable style="width: 200px">
             <Option value="NEW">未开始</Option>
             <Option value="START">直播中</Option>
@@ -95,7 +95,7 @@ export default {
         },
 
         {
-          title: "直播状态",
+          title: "直播state",
           render: (h, params) => {
             return h(
               "span",
@@ -135,7 +135,7 @@ export default {
                       },
                     },
                   },
-                  "查看/添加Goods"
+                  "View/Add goods"
                 ),
               ]
             );
@@ -159,14 +159,14 @@ export default {
   },
   methods: {
     /**
-     * search直播间状态
+     * search直播间state
      */
     handleSearch() {
       this.getStoreLives();
     },
 
     /**
-     * 页面数据大小分页回调
+     * Page面数据大小分Page回调
      */
     changePageSize(val) {
       console.log(val)
@@ -174,7 +174,7 @@ export default {
       this.getStoreLives();
     },
     /**
-     * 分页回调
+     * 分Page回调
      */
     changePageNumber(val) {
       console.log(val)

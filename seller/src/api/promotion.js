@@ -55,7 +55,7 @@ export const getPintuanList = (params) => {
 export const savePintuan = (params) => {
     return postRequest('/promotion/pintuan', params, { 'Content-type': 'application/json' })
 }
-// 编辑 拼团
+// edit 拼团
 export const editPintuan = (params) => {
     return putRequest('/promotion/pintuan', params, { 'Content-type': 'application/json' })
 }
@@ -94,7 +94,7 @@ export const getShopCouponList = (params) => {
     return getRequest('/promotion/coupon', params)
 }
 
-//  更新coupon状态
+//  更新couponstate
 export const updateCouponStatus = (params) => {
     return putRequest(`/promotion/coupon/status`, params)
 }
@@ -103,7 +103,7 @@ export const updateCouponStatus = (params) => {
 export const deleteShopCoupon = (ids) => {
     return deleteRequest(`/promotion/coupon/${ids}`)
 }
-//  上架coupon
+//  Oncoupon
 export const upShopCoupon = (ids, params) => {
     return postRequest(`/promotion/coupon/up/${ids}`, params)
 }
@@ -159,12 +159,12 @@ export const newFullDiscount = (params) => {
     return postRequest(`/promotion/fullDiscount`, params, { 'Content-type': 'application/json' })
 }
 
-// 编辑full减活动
+// editfull减活动
 export const editFullDiscount = (params) => {
     return putRequest(`/promotion/fullDiscount`, params, { 'Content-type': 'application/json' })
 }
 
-// 通过id获取full减活动
+// passid获取full减活动
 export const getFullDiscountById = (id) => {
     return getRequest(`/promotion/fullDiscount/${id}`)
 }

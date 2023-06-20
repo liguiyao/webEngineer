@@ -10,7 +10,7 @@
               <dd>{{complaintInfo.goodsName}}</dd>
             </dl>
             <dl>
-              <dt>Complaint状态</dt>
+              <dt>Complaintstate</dt>
               <dd v-if="complaintInfo.complainStatus =='NEW'">New Complaint</dd>
               <dd v-if="complaintInfo.complainStatus =='CANCEL'">已撤销</dd>
               <dd v-if="complaintInfo.complainStatus =='WAIT_APPEAL'">待申诉</dd>
@@ -169,7 +169,7 @@
             </dl>
             <dl>
               <dt>
-                下单时间
+                Time
               </dt>
               <dd>
                 {{complaintInfo.createTime}}
@@ -177,7 +177,7 @@
             </dl>
             <dl>
               <dt>
-                订单金额
+                Amount
               </dt>
               <dd>
                 {{complaintInfo.orderPrice}}
@@ -229,7 +229,7 @@ export default {
       complaintInfo: "", // Complaint信息
       images: [], //会员申诉图片
       appealImages: [], //商家申诉的图片
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       //管理端回复内容
       params: {
         content: "",

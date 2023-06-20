@@ -54,13 +54,13 @@ export default {
   data() {
     return {
       statusNameList: [
-        // coupon状态
+        // couponstate
         "未使用",
         "已使用",
         "已过期",
       ],
-      statusList: ["NEW", "USED", "EXPIRE"], // coupon状态
-      loading: false, // 列表加载状态
+      statusList: ["NEW", "USED", "EXPIRE"], // couponstate
+      loading: false, // 列表加载state
       params: {
         // Please 求参数
         pageNumber: 1,
@@ -83,14 +83,14 @@ export default {
         }
       });
     },
-    // 切换coupon状态
+    // 切换couponstate
     change(index) {
       this.params.memberCouponStatus = this.statusList[index];
       this.params.pageNumber = 1;
       this.getList();
     },
     go(item) {
-      // 根据使用条件跳转Goods列表页面
+      // 根据使用items件跳转Goods列表Page面
       if (this.params.memberCouponStatus !== "NEW") return;
 
       this.$router.push({
@@ -100,13 +100,13 @@ export default {
     },
 
     changePageNum(val) {
-      // 分页改变页码
+      // 分Page改变Page码
       this.params.pageNumber = val;
       this.getList();
     },
 
     changePageSize(val) {
-      // 分页改变页数
+      // 分Page改变Page数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList();

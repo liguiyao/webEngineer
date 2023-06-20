@@ -44,11 +44,11 @@ export default {
   name: "paymentLog",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         sn: "",
@@ -120,7 +120,7 @@ export default {
             } else if (params.row.clientType === "APP") {
               return h("div", [h("span", {}, "APP")]);
             } else if (params.row.clientType === "PC") {
-              return h("div", [h("span", {}, "PC网页")]);
+              return h("div", [h("span", {}, "PC网Page")]);
             } else if (
               params.row.clientType === "H5" ||
               params.row.clientType === "wap"
@@ -174,12 +174,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 改变页数
+    // 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;

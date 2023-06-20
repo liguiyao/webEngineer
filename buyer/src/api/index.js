@@ -1,6 +1,6 @@
 import request, { Method } from "@/plugins/request.js";
 
-// 获取首页楼层装修数据
+// 获取Home楼层装修数据
 export function indexData(params) {
   return request({
     url: "/buyer/other/pageData/getIndex",
@@ -33,7 +33,7 @@ export function getFloorStoreData(params) {
 /**
  * 楼层装修数据
  * @param pageClientType 客户端类型,available值:PC,H5,WECHAT_MP,APP
- * @param pageType 页面类型,available值:INDEX,STORE,SPECIAL
+ * @param pageType Page面类型,available值:INDEX,STORE,SPECIAL
  */
 export function pageData(params) {
   return request({

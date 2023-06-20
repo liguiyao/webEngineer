@@ -29,11 +29,11 @@
           </DropdownMenu>
         </Dropdown>
       </Row>
-      <!-- 页面主体，左侧树结构，右侧表单项 -->
+      <!-- Page面主体，左侧树结构，右侧表单项 -->
       <Row type="flex" justify="start">
         <Col :md="8" :lg="8" :xl="6">
           <Alert show-icon>
-            当前select编辑：
+            当前selectedit：
             <span class="select-title">{{ editTitle }}</span>
             <a class="select-clear" v-if="form.id" @click="cancelEdit">Cancelselect</a>
           </Alert>
@@ -74,7 +74,7 @@
                   size="16"
                   style="margin-right: 5px"
                 ></Icon>
-                <span>页面菜单</span>
+                <span>Page面菜单</span>
               </div>
             </FormItem>
             <FormItem label="菜单名称" prop="title">
@@ -88,7 +88,7 @@
             >
               <Tooltip
                 placement="right"
-                content="路由address，英文唯一，跳转页面，路径展示用 "
+                content="路由address，英文唯一，跳转Page面，路径展示用 "
               >
                 <Input class="menu-input" v-model="form.path" />
               </Tooltip>
@@ -96,7 +96,7 @@
             <FormItem label="路由名称" prop="name" class="block-tool">
               <Tooltip
                 placement="right"
-                content="路由name，需英文唯一，跳转页面用"
+                content="路由name，需英文唯一，跳转Page面用"
                 transfer
               >
                 <Input class="menu-input" v-model="form.name" />
@@ -123,7 +123,7 @@
                 type="primary"
                 >Save
               </Button>
-              <Button @click="handleReset">重置</Button>
+              <Button @click="handleReset">reset</Button>
             </Form-item>
           </Form>
         </Col>
@@ -149,7 +149,7 @@
           </div>
           <div v-show="formAdd.level != 0">
             <Icon type="ios-list-box-outline" size="16" style="margin-right: 5px"></Icon>
-            <span>页面菜单</span>
+            <span>Page面菜单</span>
           </div>
         </FormItem>
         <FormItem label="菜单名称" prop="title">
@@ -160,7 +160,7 @@
           <Input v-model="formAdd.path" />
         </FormItem>
         <FormItem label="路由名称" prop="name" class="block-tool">
-          <Tooltip placement="right" content="路由name，需英文唯一，跳转页面用">
+          <Tooltip placement="right" content="路由name，需英文唯一，跳转Page面用">
             <Input v-model="formAdd.name" />
           </Tooltip>
         </FormItem>
@@ -199,7 +199,7 @@ export default {
   name: "menu-manage",
   data() {
     return {
-      loading: true, // 加载状态
+      loading: true, // 加载state
       strict: true, // 级联 单选
       maxHeight: "500px", // 最大高度
       expandLevel: 1, // 展开层级
@@ -209,7 +209,7 @@ export default {
       showParent: false, // 展示父级
       searchKey: "", // search关键词
       parentTitle: "", // 父级标题
-      editTitle: "", // 编辑标题
+      editTitle: "", // edit标题
       modalTitle: "", // modal标题
       form: {
         // 表单数据
@@ -241,7 +241,7 @@ export default {
           },
         ],
       },
-      submitLoading: false, // Submit状态
+      submitLoading: false, // Submitstate
       data: [], // 数据
     };
   },
@@ -419,7 +419,7 @@ export default {
       this.form.id = "";
       this.editTitle = "";
     },
-    // 重置表单
+    // reset表单
     handleReset() {
       this.$refs.form.resetFields();
       this.form.frontRoute = "";
@@ -449,7 +449,7 @@ export default {
           editPermission(this.form).then((res) => {
             this.submitLoading = false;
             if (res.success) {
-              this.$Message.success("编辑success");
+              this.$Message.success("editsuccess");
               // 标记重新获取菜单数据
               this.$store.commit("setAdded", false);
               util.initRouter(this);
@@ -531,7 +531,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        content: "您确认要delete所选的 " + this.selectCount + " items数据?",
         loading: true,
         onOk: () => {
           let ids = "";

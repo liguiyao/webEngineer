@@ -3,7 +3,7 @@
     <!-- TODO 目前数据少暂且不用 -->
     <!-- <div class="list">
       <div class="list-item active">
-        文章页
+        文章Page
       </div>
     </div> -->
     <div class="content">

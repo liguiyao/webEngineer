@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     goCartList() {
-      // 跳转购物车页面
+      // 跳转购物车Page面
       let routerUrl = this.$router.resolve({
         path: "/cart",
       });

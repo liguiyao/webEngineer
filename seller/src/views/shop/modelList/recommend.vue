@@ -10,7 +10,7 @@
         <div class="setup-box">
           <div>
             <Button size="small" @click.stop="handleSelectModel(msgLeft, true)"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -24,14 +24,14 @@
             size="small"
             :style="{ background: msgLeft.bgColor }"
             class="fz_12 view-btn"
-            >点击查看</Button
+            >点击View</Button
           >
           <div class="setup-box">
             <div>
               <Button
                 size="small"
                 @click.stop="handleSelectModel(msgLeft.list[0])"
-                >编辑</Button
+                >edit</Button
               >
             </div>
           </div>
@@ -47,7 +47,7 @@
               <div class="setup-box">
                 <div>
                   <Button size="small" @click.stop="handleSelectModel(item)"
-                    >编辑</Button
+                    >edit</Button
                   >
                 </div>
               </div>
@@ -66,7 +66,7 @@
         <div class="setup-box">
           <div>
             <Button size="small" @click.stop="handleSelectModel(msgRight, true)"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -94,7 +94,7 @@
           <div class="setup-box">
             <div>
               <Button size="small" @click.stop="handleSelectModel(item)"
-                >编辑</Button
+                >edit</Button
               >
             </div>
           </div>
@@ -227,7 +227,7 @@ export default {
     };
   },
   methods: {
-    // 编辑
+    // edit
     handleSelectModel(item, type) {
       this.selected = item;
       if (type) {

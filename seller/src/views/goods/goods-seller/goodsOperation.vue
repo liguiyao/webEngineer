@@ -2,9 +2,9 @@
   <div class="goods-operation">
     <div class="step-list">
       <steps :current="activestep" style="height:60px;margin-top: 10px">
-        <step title="selectGoods品类"/>
-        <step title="enter Goods详情"/>
-        <step title="Goods发布success"/>
+        <step title="select Goods type"/>
+        <step title="enter Goods Detail"/>
+        <step title="Goods release success"/>
       </steps>
     </div>
     <!-- 第一步 select分类 -->
@@ -37,14 +37,14 @@ export default {
     };
   },
   methods: {
-    // selectGoods分类回调
+    // selectGoods Category回调
     getFirstData (item) {
       this.firstData = item;
       this.activestep = 1;
     }
   },
   mounted() {
-    // 编辑Goods、模板
+    // editGoods、模板
     if (this.$route.query.id || this.$route.query.draftId) {
       this.activestep = 1;
     } else {

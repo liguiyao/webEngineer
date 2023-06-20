@@ -52,14 +52,14 @@ export default {
   components: {},
   data () {
     return {
-      loading: true, // 表单加载状态
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: true, // 表单加载state
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "asc", // default排序方式
       },
@@ -72,13 +72,13 @@ export default {
         specValue: [regular.REQUIRED, regular.VARCHAR255],
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         specName: "",
         specValue: "",
       },
-      /** 编辑规格值 */
+      /** edit规格值 */
       specValue: [],
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -156,13 +156,13 @@ export default {
     init () {
       this.getDataList();
     },
-    //modify分页
+    //modify分Page
     changePage (v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    //modify页面大小
+    //modifyPage面大小
     changePageSize (v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -173,7 +173,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    //重置search参数
+    //resetsearch参数
     handleReset () {
       this.$refs.searchForm.resetFields();
       this.searchForm.pageNumber = 1;
@@ -202,7 +202,7 @@ export default {
     //获取数据
     getDataList () {
       this.loading = true;
-      // 带多条件search参数获取表单数据 Please 自行modify接口
+      // 带多items件search参数获取表单数据 Please 自行modify接口
       getSpecListData(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -223,7 +223,7 @@ export default {
               this.submitLoading = false;
               return;
             }
-            // 添加 避免编辑后传入id等数据
+            // 添加 避免edit后传入id等数据
             delete this.form.id;
             insertSpec(this.form).then((res) => {
               this.submitLoading = false;
@@ -234,7 +234,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             updateSpec(this.form.id, this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
@@ -256,7 +256,7 @@ export default {
       delete this.form.id;
       this.modalVisible = true;
     },
-    //弹出编辑框
+    //弹出edit框
     edit (v) {
       this.modalType = 1;
       this.modalTitle = "edit";

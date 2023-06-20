@@ -31,7 +31,7 @@
 
           <div class="buttom-group">
             <el-button size="small" plain @click="close">
-              {{ editMode ? 'Cancel编辑' : 'Close预览' }}
+              {{ editMode ? 'Canceledit' : 'Close预览' }}
             </el-button>
 
             <el-button v-show="editMode" type="primary" size="small" @click="submit">发送代码

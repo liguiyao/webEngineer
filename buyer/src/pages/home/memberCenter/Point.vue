@@ -13,7 +13,7 @@
         </div>
       </template>
     </Table>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <Page
       style="float:right;margin-top:10px"
       :current="params.pageNumber"
@@ -76,11 +76,11 @@ export default {
         if (res.success) this.pointObj = res.result
       })
     },
-    changePage (val) { // modify页码
+    changePage (val) { // modifyPage码
       this.params.pageNumber = val
       this.getHistory()
     },
-    changePageSize (val) { // modify页数
+    changePageSize (val) { // modifyPage数
       this.params.pageSize = val
       this.params.pageNumber = 1
       this.getHistory()

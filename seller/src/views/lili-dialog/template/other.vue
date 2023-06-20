@@ -7,7 +7,7 @@
           <p>{{item.title}}</p>
         </div>
       </Col>
-      <!-- 外部链接，只有pc端跳转 -->
+      <!-- 外部链接，只有PC跳转 -->
       <Col span="6" v-if="$route.name === 'renovation'">
         <div class="card" :class="{'active':selectedIndex == linkList.length}" @click="handleLink(linkItem,linkList.length)">
           <Poptip v-model="linkVisible">
@@ -30,7 +30,7 @@ export default {
     return {
       linkList: [ // 链接列表
         {
-          title: "首页",
+          title: "Home",
           icon: "md-home",
           ___type: "home",
         },

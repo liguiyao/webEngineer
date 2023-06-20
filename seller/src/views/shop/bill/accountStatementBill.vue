@@ -31,7 +31,7 @@
             ></DatePicker>
           </Form-item>
           <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-          <Button @click="handleReset" class="search-btn">重置</Button>
+          <Button @click="handleReset" class="search-btn">reset</Button>
         </Form>
       </Row>
       <Table
@@ -67,11 +67,11 @@
     name: "accountStatementBill",
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
           startDate: "", // 起始时间
@@ -112,7 +112,7 @@
 
 
           {
-            title: "状态",
+            title: "state",
             key: "billStatus",
             width: 100,
             render: (h, params) => {
@@ -123,7 +123,7 @@
               } else if (params.row.billStatus == "EXAMINE") {
                 return h("Tag", {props: {color: "purple",},},"已审核");
               } else {
-                return h("Tag", {props: {color: "green",},},"已付款");
+                return h("Tag", {props: {color: "green",},},"Paid");
               }
             }
           },
@@ -151,7 +151,7 @@
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 ),
               ]);
             },
@@ -166,12 +166,12 @@
       init() {
         this.getDataList();
       },
-      // 分页 改变页码
+      // 分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageSize = v;
         this.getDataList();
@@ -182,7 +182,7 @@
         this.searchForm.pageSize = 10;
         this.getDataList();
       },
-      // 重置
+      // reset
       handleReset() {
         this.searchForm = {}
         this.searchForm.pageNumber = 1;
@@ -203,7 +203,7 @@
         this.total = this.data.length;
         this.loading = false;
       },
-      // 查看详情
+      // View详情
       detail(v) {
         let id = v.id;
         this.$router.push({
@@ -216,7 +216,7 @@
     mounted() {
       this.init();
     },
-    // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+    // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
     beforeRouteLeave(to, from, next) {
       from.meta.keepAlive = false
       next()

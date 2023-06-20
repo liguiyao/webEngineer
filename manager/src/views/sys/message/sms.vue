@@ -43,7 +43,7 @@
                   审核中
                 </div>
                 <div v-if="scope.row.signStatus ==1 ">
-                  审核通过
+                  审核pass
                 </div>
               </template>
             </Table>
@@ -100,7 +100,7 @@
             </FormItem>
             <FormItem label="接收人" prop="smsRange">
               <p>
-                已选<span style="color: #f56c1d"> {{memberNum}}</span>人，预计耗费条数<span style="color: #f56c1d">{{this.smsForm.num}}条</span>
+                已选<span style="color: #f56c1d"> {{memberNum}}</span>人，预计耗费items数<span style="color: #f56c1d">{{this.smsForm.num}}items</span>
               </p>
               <RadioGroup type="button" button-style="solid" @on-change="smsRangeChange" v-model="smsForm.smsRange">
                 <Radio label="1">全部会员</Radio>
@@ -173,37 +173,37 @@ export default {
       smsSigns: [], //短信签名
       sendSmsModal: false, //弹出发送短信模态框
       sendSmsModalTitle: "短信发送", //发送短信模态框标题
-      modalType: 0, // 添加或编辑标识
+      modalType: 0, // 添加或edit标识
       templateModalVisible: false, //添加短信模板弹出框
       templateModalTitle: "", //添加短信模板弹出框标题
       templateForm: {}, //短信模板添加form
-      submitLoading: false, // Submit加载状态
+      submitLoading: false, // Submit加载state
       signSearchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
       //短信模板查询form
       templateSearchForm: {
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
-      //会员条数查询form
+      //会员items数查询form
       memberSearchFrom: {
-        disabled: "OPEN", // 会员状态
+        disabled: "OPEN", // 会员state
       },
-      //会员查询条件
+      //会员查询items件
       memberSearchParam: {
-        pageNumber: 1, // 当前页数
-        pageSize: 8, // 页面大小
-        disabled: "OPEN", // 会员状态
+        pageNumber: 1, // 当前Page数
+        pageSize: 8, // Page面大小
+        disabled: "OPEN", // 会员state
       },
       //短信记录查询form
       smsSearchForm: {
         sort: "createTime",
         order: "desc",
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
       smsForm: { // 短信模板数据
         smsName: "",
@@ -271,7 +271,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "预计发送条数",
+          title: "预计发送items数",
           key: "num",
           width: 140,
         },
@@ -320,7 +320,7 @@ export default {
           key: "templateContent",
         },
         {
-          title: "状态",
+          title: "state",
           key: "templateStatus",
           headerAlign: "center",
           Width: "100px",
@@ -328,7 +328,7 @@ export default {
             if (params.row.templateStatus == 0) {
               return h("div", {}, "审核中");
             } else if(params.row.templateStatus == 1){
-              return h("div", {}, "审核通过");
+              return h("div", {}, "审核pass");
             } else {
               return h("div", {}, "审核失败");
             }
@@ -361,7 +361,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -400,7 +400,7 @@ export default {
           key: "remark",
         },
         {
-          title: "状态",
+          title: "state",
           key: "signStatus",
           headerAlign: "center",
           Width: "100px",
@@ -434,7 +434,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -473,13 +473,13 @@ export default {
       //查询会员总数
       this.getMemberNum();
     },
-    //查询会员条数
+    //查询会员items数
     getMemberNum() {
       API_Member.getMemberNum(this.memberSearchFrom).then((res) => {
         this.loading = false;
         if (res.success) {
           this.memberNum = res.result;
-          this.smsForm.num = this.memberNum; //全部会员则会员数就等于条数
+          this.smsForm.num = this.memberNum; //全部会员则会员数就等于items数
         }
       });
     },
@@ -558,7 +558,7 @@ export default {
         }, 1000);
       });
     },
-    //分页查询会员信息
+    //分Page查询会员信息
     getMembers() {
       API_Member.getMemberListData(this.memberSearchParam).then((res) => {
         this.loading = false;
@@ -782,29 +782,29 @@ export default {
       });
       this.loading = false;
     },
-    //短信记录页数变化
+    //短信记录Page数变化
     smsChangePage(v) {
       this.smsSearchForm.pageNumber = v;
       this.getSms();
     },
-    //短信记录页数变化
+    //短信记录Page数变化
     smsChangePageSize(v) {
       this.smsSearchForm.pageNumber = 1;
       this.smsSearchForm.pageSize = v;
       this.getSms();
     },
-    //短信模板页数变化
+    //短信模板Page数变化
     templateChangePage(v) {
       this.templateSearchForm.pageNumber = v;
       this.getSmsTemplate();
     },
-    //短信模板页数变化
+    //短信模板Page数变化
     templateChangePageSize(v) {
       this.templateSearchForm.pageNumber =1;
       this.templateSearchForm.pageSize = v;
       this.getSmsTemplate();
     },
-    //分页获取短信模板数据
+    //分Page获取短信模板数据
     getSmsTemplate() {
       this.loading = true;
       API_Setting.getSmsTemplatePage(this.templateSearchForm).then((res) => {
@@ -816,7 +816,7 @@ export default {
       });
       this.loading = false;
     },
-    //分页获取短信记录数据
+    //分Page获取短信记录数据
     getSms() {
       this.loading = true;
       API_Setting.getSmsPage(this.smsSearchForm).then((res) => {
@@ -828,12 +828,12 @@ export default {
       });
       this.loading = false;
     },
-    //短信模板页数变化
+    //短信模板Page数变化
     signChangePage(v) {
       this.signSearchForm.pageNumber = v;
       this.getSmsSign();
     },
-    //短信模板页数变化
+    //短信模板Page数变化
     signChangePageSize(v) {
       this.signSearchForm.pageNumber = 1;
       this.signSearchForm.pageSize = v;
@@ -843,7 +843,7 @@ export default {
     editSign(v) {
       this.$router.push({ name: "add-sms-sign", query: { id: v.id } });
     },
-    //分页获取短信签名数据
+    //分Page获取短信签名数据
     getSmsSign() {
       this.loading = true;
       API_Setting.getSmsSignPage(this.signSearchForm).then((res) => {

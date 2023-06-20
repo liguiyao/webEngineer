@@ -23,7 +23,7 @@
             @click="edit(scope.row)"
             size="small"
             style="margin-right:5px"
-          >编辑
+          >edit
           </Button>
           <Button
             v-show="scope.row.level != 1 "
@@ -87,12 +87,12 @@ export default {
     return {
       submitLoading: false, // Submitloading
       loading: false, //表格加载的loading
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       showParent: false, // 是否展示上级菜单
       parentTitle: "", // 父级菜单名称
-      formAdd: { // 添加或编辑表单对象初始化数据
+      formAdd: { // 添加或edit表单对象初始化数据
         parentId: "",
         labelName: "",
         sortOrder: 1,
@@ -155,10 +155,10 @@ export default {
       this.formAdd.parentId = v.id || 0;
       this.modalVisible = true;
     },
-    // 编辑分类
+    // edit分类
     edit(v) {
       this.modalType = 1;
-      this.modalTitle = "编辑";
+      this.modalTitle = "edit";
       this.formAdd.id = v.id;
       this.formAdd.labelName = v.labelName;
       this.formAdd.level = v.level;
@@ -181,13 +181,13 @@ export default {
       this.modalVisible = true;
 
     },
-    //Submit编辑和添加
+    //Submitedit和添加
     submit() {
       this.$refs.formAdd.validate(valid => {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.formAdd.id;
             API_Goods.addShopGoodsLabel(this.formAdd).then((res) => {
               this.submitLoading = false;
@@ -198,7 +198,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             API_Goods.editShopGoodsLabel(this.formAdd).then((res) => {
               this.submitLoading = false;
               if (res.success) {

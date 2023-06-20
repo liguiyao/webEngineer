@@ -35,7 +35,7 @@ export function promotionsScopeTypeRender(h, params) {
     text = "全品类";
     color = "default";
   } else if (params.row.scopeType == "PORTION_GOODS_CATEGORY") {
-    text = "Goods分类";
+    text = "Goods Category";
     color = "yellow";
   } else if (params.row.scopeType == "PORTION_SHOP_CATEGORY") {
     text = "店铺分类";

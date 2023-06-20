@@ -71,16 +71,16 @@ export default {
   data () {
     return {
       goodsMsg: {}, // Goods details
-      isLoading: false, // 加载状态
+      isLoading: false, // 加载state
       categoryBar: [], // 分类
       storeCollected: false, // Goods收藏
       storeMsg: {}, // 店铺信息
-      takeDownSale:false, // 是否下架
+      takeDownSale:false, // 是否Off
 
     };
   },
   methods: {
-    // 跳转首页或Goods页面
+    // 跳转Home或GoodsPage面
     target(url){
       this.$router.push({path: url})
 
@@ -89,7 +89,7 @@ export default {
     targetClickSku (val) {
       this.getGoodsDetail(val);
     },
-    // 获取Goods详情
+    // 获取Goods Detail
     getGoodsDetail (val) {
       this.isLoading = true;
       const params = val || this.$route.query;

@@ -79,12 +79,12 @@ export default {
   components: {},
   data() {
     return {
-      distributionStatusList, // 分销状态
-      loading: true, // 表单加载状态
+      distributionStatusList, // 分销state
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
       },
       columns: [
         {
@@ -226,12 +226,12 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();

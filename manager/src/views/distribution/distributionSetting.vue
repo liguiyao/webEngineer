@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         isOpen: true,
         distributionDay: 0, //分销关系绑定天数
         cashDay: 0, //分销结算天数

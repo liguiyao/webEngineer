@@ -183,7 +183,7 @@
             @click="liveGoodsVisible = true"
             :disabled="liveStatus != 'NEW'"
             icon="md-add"
-            >添加Goods</Button
+            >Add goods</Button
           >
           <Table class="goods-table" :columns="liveColumns" :data="liveData">
             <template slot-scope="{ row, index }" slot="goodsName">
@@ -249,7 +249,7 @@
       </Form>
     </Card>
     <!-- 浏览图片 -->
-    <Modal title="查看图片" v-model="imageVisible">
+    <Modal title="View图片" v-model="imageVisible">
       <img :src="imageSrc" v-if="imageVisible" style="width: 100%" />
     </Modal>
 
@@ -277,11 +277,11 @@ export default {
     return {
       spinShow: false, // loading加载
       liveGoodsVisible: false, //selectGoods
-      imageVisible: false, //查看图片的dailog
-      imageSrc: "", //查看图片的路径
+      imageVisible: false, //View图片的dailog
+      imageSrc: "", //View图片的路径
       action: uploadFile, // 上传address
       accessToken: {}, // 验证token
-      liveStatus: "NEW", //当前直播状态
+      liveStatus: "NEW", //当前直播state
       // 不能select今天以前的时间
       optionsTime: {
         disabledDate(date) {
@@ -331,7 +331,7 @@ export default {
           slot: "price",
         },
         {
-          title: "库存",
+          title: "stock",
           slot: "quantity",
           width: 100,
         },
@@ -347,8 +347,8 @@ export default {
   mounted() {
 
     /**
-     * 如果query.id有值说明是查看详情
-     * liveStatus 可以判断当前直播状态 从而区分数据 是否是未开始、已Opening、已Close、
+     * 如果query.id有值说明是View详情
+     * liveStatus 可以判断当前直播state 从而区分数据 是否是未开始、已Opening、已Close、
      */
     if (this.$route.query.id) {
       // 获取直播间详情
@@ -452,7 +452,7 @@ export default {
     },
 
     /**
-     * 上传图片查看图片
+     * 上传图片View图片
      */
     handleView(src) {
       this.imageVisible = true;
@@ -466,7 +466,7 @@ export default {
       if (this.liveStatus == "NEW") {
         this.liveForm[type] = "";
       } else {
-        this.$Message.error("当前状态禁止modifydelete!");
+        this.$Message.error("当前state禁止modifydelete!");
       }
     },
     /**
@@ -590,7 +590,7 @@ export default {
     createLives() {
       this.$refs["liveForm"].validate((valid) => {
         if (valid) {
-          // 需判断当前是否是添加Goods
+          // 需判断当前是否是Add goods
           if (this.$route.query.id) {
             this.spinShow = true;
             this.liveForm.commodityList = JSON.stringify(this.liveForm.commodityList);

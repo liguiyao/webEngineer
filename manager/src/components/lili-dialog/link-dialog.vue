@@ -49,7 +49,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$refs["lili-component"][0].type = "single"; //Goods页面设置成为单选
+      this.$refs["lili-component"][0].type = "single"; //GoodsPage面设置成为单选
     });
     let url  = window.location.href
     if(url.indexOf('/floorList/renovation') != -1){

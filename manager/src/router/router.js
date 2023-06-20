@@ -1,7 +1,7 @@
 import Main from "@/views/Main.vue";
 
 const config = require('@/config/index')
-// 不作为Main组件的子页面展示的页面单独写，如下
+// 不作为Main组件的子Page面展示的Page面单独写，如下
 export const loginRouter = {
   path: "/login",
   name: "login",
@@ -11,7 +11,7 @@ export const loginRouter = {
   component: () => import("@/views/login.vue")
 };
 
-// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
+// 作为Main组件的子Page面展示但是不在左侧菜单显示的路由写在otherRouter里
 export const otherRouter = {
   path: "/",
   name: "otherRouter",
@@ -20,7 +20,7 @@ export const otherRouter = {
   children: [
     {
       path: "home",
-      title: '首页',
+      title: 'Home',
       name: "home_index",
       component: () => import("@/views/home/home.vue")
     },
@@ -87,25 +87,25 @@ export const otherRouter = {
     },
     {
       path: "goods-brand",
-      title: "Goods品牌",
+      title: "Goods Brand",
       name: "goods-brand",
       component: () => import("@/views/goods/goods-manage/brand.vue")
     },
     {
       path: "goods-category",
-      title: "Goods分类",
+      title: "Goods Category",
       name: "goods-category",
       component: () => import("@/views/goods/goods-manage/category.vue")
     },
     {
       path: "goods-parameter",
-      title: "Goods参数",
+      title: "Parameter",
       name: "goods-parameter",
       component: () => import("@/views/goods/goods-manage/parameter.vue")
     },
     {
       path: "goods-spec",
-      title: "Goods参数",
+      title: "Parameter",
       name: "goods-spec",
       component: () => import("@/views/goods/goods-manage/spec.vue")
     },
@@ -150,7 +150,7 @@ export const otherRouter = {
 
     {
       path: "goods/goods-info/goodsDetail",
-      title: "Goods详情",
+      title: "Goods Detail",
       name: "goods-detail",
       component: () => import("@/views/goods/goods-info/goodsDetail.vue")
     },
@@ -170,7 +170,7 @@ export const otherRouter = {
     },
     {
       path: "promotions/manager-points-goods-category",
-      title: "积分Goods分类",
+      title: "积分Goods Category",
       name: "manager-points-goods-category",
       component: () =>
         import("@/views/promotions/points-goods-category/points-goods-category.vue")
@@ -207,7 +207,7 @@ export const otherRouter = {
     },
     {
       path: "promotions/edit-platform-coupon",
-      title: "编辑平台coupon",
+      title: "edit平台coupon",
       name: "edit-platform-coupon",
       component: () => import("@/views/promotions/coupon/coupon-publish.vue")
     },
@@ -219,7 +219,7 @@ export const otherRouter = {
     },
     {
       path: "promotions/edit-coupon-activity",
-      title: "编辑平台coupon活动",
+      title: "edit平台coupon活动",
       name: "edit-coupon-activity",
       component: () => import("@/views/promotions/coupon-activity/coupon-publish.vue")
     },
@@ -249,7 +249,7 @@ export const otherRouter = {
     },
     {
       path: "promotions/seckill/manager-seckill-add",
-      title: "编辑秒杀活动",
+      title: "edit秒杀活动",
       name: "manager-seckill-add",
       component: () => import("@/views/promotions/seckill/seckill-add.vue")
     },
@@ -261,13 +261,13 @@ export const otherRouter = {
     },
     {
       path: "/floorList/renovation",
-      title: "编辑模板",
+      title: "edit模板",
       name: "renovation",
       component: () => import("@/views/page-decoration/renovation.vue")
     },
     {
       path: "/floorList/main",
-      title: "编辑模板",
+      title: "edit模板",
       name: "main",
       component: () => import("@/views/page-decoration/wap/main.vue")
     },
@@ -279,7 +279,7 @@ export const otherRouter = {
     },
     {
       path: "live-detail",
-      title: "查看直播",
+      title: "View直播",
       name: "live-detail",
       component: () => import("@/views/promotions/live/live-detail.vue")
     }
@@ -290,7 +290,7 @@ export const page404 = {
   path: "/*",
   name: "error-404",
   meta: {
-    title: "404-页面不存在"
+    title: "404-Page面不存在"
   },
   component: () => import("@/views/error-page/404.vue")
 };

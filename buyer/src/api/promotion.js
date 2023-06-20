@@ -24,7 +24,7 @@ export function seckillByTimeline (timeline) {
 }
 
 /**
- * 获取积分Goods分类列表
+ * 获取积分Goods Category列表
  */
 export function pointGoodsCategory (params) {
   return request({
@@ -47,7 +47,7 @@ export function pointGoods (params) {
   });
 }
 /**
- * 获取积分Goods详情
+ * 获取积分Goods Detail
  */
 export function pointGoodsDetail (id) {
   return request({

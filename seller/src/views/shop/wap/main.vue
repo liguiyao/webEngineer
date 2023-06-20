@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       layout, // 装修模块
-      name: "index", // 装修的页面
+      name: "index", // 装修的Page面
     };
   },
   methods: {

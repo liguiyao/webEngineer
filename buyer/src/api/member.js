@@ -95,7 +95,7 @@ export function cancelStoreCollect (type, id) {
   });
 }
 
-// 查看是否收藏Goods
+// View是否收藏Goods
 export function isCollection (type, goodsId) {
   return request({
     url: `/buyer/member/collection/isCollection/${type}/${goodsId}`,
@@ -104,7 +104,7 @@ export function isCollection (type, goodsId) {
   });
 }
 
-// 查看是否收藏店铺
+// View是否收藏店铺
 export function isStoreCollection (type, goodsId) {
   return request({
     url: `/buyer/member/storeCollection/isCollection/${type}/${goodsId}`,
@@ -171,7 +171,7 @@ export function evaluationDetail (id) {
   });
 }
 
-// 发票分页列表
+// 发票分Page列表
 export function receiptList () {
   return request({
     url: `/buyer/trade/receipt`,
@@ -239,7 +239,7 @@ export function afterSaleList (params) {
   });
 }
 
-// 获取Apply  after sale页面信息
+// 获取Apply  after salePage面信息
 export function afterSaleInfo (sn) {
   return request({
     url: `/buyer/order/afterSale/applyAfterSaleInfo/${sn}`,
@@ -301,7 +301,7 @@ export function handleComplain (data) {
     data
   });
 }
-// 分页获取我的Complaint列表
+// 分Page获取我的Complaint列表
 export function complainList (params) {
   return request({
     url: `/buyer/order/complain`,
@@ -422,8 +422,8 @@ export function distCash (params) {
 
 /**
  * My tract
- * @param {Number} pageNumber 页码
- * @param {Number} pageSize 页数
+ * @param {Number} pageNumber Page码
+ * @param {Number} pageSize Page数
  */
 export function tracksList (params) {
   return request({
@@ -481,7 +481,7 @@ export function memberPointHistory (params) {
   });
 }
 /**
- * 分页获取会员站内信
+ * 分Page获取会员站内信
  * @param {Object} params Please 求参数，包括pageNumber、pageSize、status
  */
 export function memberMsgList (params) {

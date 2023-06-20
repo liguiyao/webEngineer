@@ -12,7 +12,7 @@
             <Button
               size="small"
               @click.stop="handleSelectModel(options.left, true)"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -31,7 +31,7 @@
           <div class="setup-box">
             <div>
               <Button size="small" @click.stop="handleSelectModel(item)"
-                >编辑</Button
+                >edit</Button
               >
             </div>
           </div>
@@ -51,7 +51,7 @@
             <Button
               size="small"
               @click.stop="handleSelectModel(options.middle, true)"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -70,7 +70,7 @@
           <div class="setup-box">
             <div>
               <Button size="small" @click.stop="handleSelectModel(item)"
-                >编辑</Button
+                >edit</Button
               >
             </div>
           </div>
@@ -90,7 +90,7 @@
             <Button
               size="small"
               @click.stop="handleSelectModel(options.right, true)"
-              >编辑</Button
+              >edit</Button
             >
           </div>
         </div>
@@ -110,7 +110,7 @@
           <div class="setup-box">
             <div>
               <Button size="small" @click.stop="handleSelectGoods(item)"
-                >编辑</Button
+                >edit</Button
               >
             </div>
           </div>

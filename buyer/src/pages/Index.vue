@@ -31,7 +31,7 @@
     <BaseHeader></BaseHeader>
     <!-- search框、logo -->
     <Search></Search>
-    <!-- Goods分类 -->
+    <!-- Goods Category -->
     <cateNav :showAlways="true" v-if="showNav" :large="carouselLarge" :opacity="carouselOpacity"></cateNav>
     <!-- 楼层装修部分 -->
     <model-form ref="modelForm" :data="modelForm"></model-form>
@@ -144,7 +144,7 @@ export default {
       console.log(111)
     } ,
     getIndexData () {
-      // 获取首页装修数据
+      // 获取Home装修数据
       indexData({ clientType: 'PC' }).then(async (res) => {
         if (res.success) {
           let dataJson = JSON.parse(res.result.pageData);

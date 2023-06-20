@@ -84,7 +84,7 @@
         </Card>
       </Col>
     </Row>
-    <!-- 站内信模板编辑 -->
+    <!-- 站内信模板edit -->
     <Modal
       :title="modalTitle"
       v-model="modalVisible"
@@ -299,19 +299,19 @@
       return {
         checkUserList: false, //会员select器
         selectedMember: [], //select的会员
-        loading: true, // 表单加载状态
-        modalVisible: false, // 添加或编辑显示
-        modalTitle: "", // 添加或编辑标题
+        loading: true, // 表单加载state
+        modalVisible: false, // 添加或edit显示
+        modalTitle: "", // 添加或edit标题
         messageModalVisible: false, // 发送站内信模态框
         messageModalTitle: "", // 发送站内信标题
-        messageDetailModalVisible: false, // 添加或编辑显示
+        messageDetailModalVisible: false, // 添加或edit显示
         shopShow: false, //指定商家是否出现
         memberShow: false, //指定会员是否出现
         shopList: [],//店铺列表
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
         },
@@ -328,20 +328,20 @@
         //管理端消息汇总
         searchMessageForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         //发送给店铺的消息
         searchShopMessageForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         //发送给会员的消息
         searchMemberMessageForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         form: {
           noticeNode: "",
@@ -367,7 +367,7 @@
           ],
 
         },
-        submitLoading: false, // 添加或编辑Submit状态
+        submitLoading: false, // 添加或editSubmitstate
         selectCount: 0, // 多选计数
         noticeColumns: [
           {
@@ -389,7 +389,7 @@
             sortable: false,
           },
           {
-            title: "状态",
+            title: "state",
             key: "noticeStatus",
             maxWidth: 100,
             sortType: "desc",
@@ -465,7 +465,7 @@
                       }
                     }
                   },
-                  "编辑"
+                  "edit"
                 ),
               ]);
             }
@@ -745,12 +745,12 @@
           this.getMessage()
         }
       },
-      // 分页 modify页码
+      // 分Page modifyPage码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getNoticeMessage();
       },
-      // 分页 modify页数
+      // 分Page modifyPage数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;
@@ -762,26 +762,26 @@
         this.getMessage();
       },
 
-      //消息每页条数发生变化
+      //消息每Pageitems数发生变化
       messageChangePageSize(v) {
         this.searchMessageForm.pageSize = v;
         this.searchMessageForm.pageNumber = 1;
         this.getMessage();
       },
-      //消息页数变化
+      //消息Page数变化
       messageChangePage(v) {
         this.searchMessageForm.pageNumber = v;
         this.getMessage();
         this.clearSelectAll();
       },
 
-      //会员消息每页条数发生变化
+      //会员消息每Pageitems数发生变化
       memberMessageChangePageSize(v) {
         this.searchMemberMessageForm.pageSize = v;
         this.searchMemberMessageForm.pageNumber = 1;
         this.messageDetail();
       },
-      //会员消息页数变化
+      //会员消息Page数变化
       memberMessageChangePage(v) {
         this.searchMemberMessageForm.pageNumber = v;
         this.messageDetail();
@@ -794,12 +794,12 @@
         this.messageDetail()
       },
 
-      //店铺消息每页条数发生变化
+      //店铺消息每Pageitems数发生变化
       shopMessageChangePageSize(v) {
         this.searchShopMessageForm.pageSize = v;
         this.messageDetail();
       },
-      //店铺消息页数变化
+      //店铺消息Page数变化
       shopMessageChangePage(v) {
         this.searchShopMessageForm.pageNumber = v;
         this.messageDetail();
@@ -987,21 +987,21 @@
         this.messageDetailModalVisible = true;
         this.modalTitle = "消息详情"
       },
-      // 编辑通知
+      // edit通知
       edit(v) {
         API_Setting.getNoticeMessageDetail(v.id).then((res) => {
           if (res.success) {
-            this.modalTitle = "编辑通知类推送"
+            this.modalTitle = "edit通知类推送"
             this.modalVisible = true
             this.form = res.result
           }
         });
       },
-      //禁用站内信模板
+      //disable站内信模板
       disable(v) {
         API_Setting.updateMessageStatus(v.id, "CLOSE").then((res) => {
           if (res.success) {
-            this.$Message.success("禁用success");
+            this.$Message.success("disablesuccess");
             this.getNoticeMessage();
           }
         });

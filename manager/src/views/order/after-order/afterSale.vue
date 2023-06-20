@@ -138,11 +138,11 @@
       return {
         modalVisible: false,//添加after sale原因弹出框
         modalTitle: "", //添加after sale原因弹出框标题
-        loading: true, // 表单加载状态
-        submitLoading: false, // 添加或编辑Submit状态
+        loading: true, // 表单加载state
+        submitLoading: false, // 添加或editSubmitstate
         form: {
           reason: ""
-        },//添加编辑表单
+        },//添加edit表单
         formValidate: {
           reason: [
             {
@@ -154,8 +154,8 @@
         },
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
           serviceType: "RETURN_MONEY"
@@ -199,7 +199,7 @@
                       }
                     }
                   },
-                  "编辑"
+                  "edit"
                 ),
                 h(
                   "Button",
@@ -221,18 +221,18 @@
           },
         ],
         data: [], // 表单数据
-        total: 0,//条数
+        total: 0,//items数
       };
     },
 
     methods: {
-      // 分页 modify页码
+      // 分Page modifyPage码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
         this.clearSelectAll();
       },
-      // 分页 modify页数
+      // 分Page modifyPage数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;
@@ -240,8 +240,8 @@
       },
       //切换tab
       handleClickType(v) {
-        this.searchForm.pageNumber = 1 // 当前页数
-        this.searchForm.pageSize = 10 // 页面大小
+        this.searchForm.pageNumber = 1 // 当前Page数
+        this.searchForm.pageSize = 10 // Page面大小
         //refund
         if (v == "RETURN_MONEY") {
           this.searchForm.serviceType = "RETURN_MONEY"
@@ -305,7 +305,7 @@
                 }
               });
             } else {
-              // 编辑
+              // edit
               API_Order.editAfterSaleReason(this.form.id, this.form).then((res) => {
                 this.submitLoading = false;
                 if (res.success) {

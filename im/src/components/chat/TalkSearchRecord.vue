@@ -272,8 +272,8 @@ export default {
       search: {
         keyword: "", // 关键字查询
         date: "", // 时间查询
-        page: 1, // 当前分页
-        totalPage: 50, // 总分页
+        page: 1, // 当前分Page
+        totalPage: 50, // 总分Page
         items: [], // 数据列表
         isShowDate: false,
       },

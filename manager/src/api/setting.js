@@ -22,11 +22,11 @@ export const editNoticeMessage = (id, params) => {
 export const wechatMessageSync = (params) => {
   return getRequest("/wechat/wechatMessage/init", params)
 }
-//分页获取Wechat消息
+//分Page获取Wechat消息
 export const getWechatMessagePage = (params) => {
   return getRequest("/wechat/wechatMessage", params)
 }
-//编辑Wechat消息模版
+//editWechat消息模版
 export const editWechatMessageTemplate = (id, params) => {
   return putRequest(`/wechat/wechatMessage/${id}`, params)
 }
@@ -40,11 +40,11 @@ export const delWechatMessageTemplate = (id, params) => {
 export const wechatMPMessageSync = (params) => {
   return getRequest("/wechat/wechatMPMessage/init", params)
 }
-//分页获取Wechat消息订阅
+//分Page获取Wechat消息订阅
 export const getWechatMPMessagePage = (params) => {
   return getRequest("/wechat/wechatMPMessage", params)
 }
-//编辑Wechat消息订阅模版
+//editWechat消息订阅模版
 export const editWechatMPMessageTemplate = (id, params) => {
   return putRequest(`/wechat/wechatMPMessage/${id}`, params)
 }
@@ -67,7 +67,7 @@ export const deleteMessage = (id) => {
 export const openNoticeMessage = (id) => {
   return putRequest(`/setting/noticeMessage/${id}/open`);
 };
-// modify站内信状态
+// modify站内信state
 export const updateMessageStatus = (id,status) => {
   return putRequest(`/setting/noticeMessage/${id}/${status}`);
 };
@@ -87,7 +87,7 @@ export const deleteSmsTemplatePage = (params) => {
 export const editSmsTemplatePage = (params) => {
   return putRequest(`sms/template/modifySmsTemplate`, params);
 };
-//分页查询短信签名
+//分Page查询短信签名
 export const getSmsSignPage = (params) => {
   return getRequest(`sms/sign/querySmsSignPage`, params);
 };
@@ -116,7 +116,7 @@ export const smsSignDetail = (id) => {
   return getRequest(`sms/sign/${id}`);
 };
 
-//分页查询app版本信息
+//分Page查询app版本信息
 export const appVersionPage = (params) => {
   return getRequest(`/other/appVersion`, params);
 };

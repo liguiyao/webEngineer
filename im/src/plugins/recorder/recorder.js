@@ -175,10 +175,10 @@ export default class Recorder {
         errorMsg = '录音设备无法被使用'
         break
       case 'NotAllowedError':
-        errorMsg = '用户已禁止网页调用录音设备'
+        errorMsg = '用户已禁止网Page调用录音设备'
         break
       case 'PermissionDeniedError':
-        errorMsg = '用户已禁止网页调用录音设备'
+        errorMsg = '用户已禁止网Page调用录音设备'
         break // 用户拒绝
       case 'NotFoundError':
         errorMsg = '录音设备未找到'

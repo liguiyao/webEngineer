@@ -27,17 +27,17 @@ export const uploadDeliverExcel = params => {
   return postRequestWithNoForm(`/order/order/batchDeliver`, params );
 };
 
-// 获取普通订单列表
+// 获取Normal列表
 export const getOrderList = params => {
   return getRequest(`/order/order`, params);
 };
 
-// 获取普通订单详细信息
+// 获取Normal详细信息
 export const getOrderDetail = sn => {
   return getRequest(`/order/order/${sn}`);
 };
 
-// 调整订单金额
+// 调整Amount
 export const modifyOrderPrice = (sn, params) => {
   return putRequest(`/order/order/update/${sn}/price`, params);
 };

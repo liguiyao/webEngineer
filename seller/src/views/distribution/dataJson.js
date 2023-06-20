@@ -1,4 +1,4 @@
-// 分销商状态列表
+// 分销商state列表
 export const distributionStatusList= [
     {
         value:'APPLY',
@@ -14,10 +14,10 @@ export const distributionStatusList= [
     },
     {
         value:'PASS',
-        label:'审核通过'
+        label:'审核pass'
     },
 ]
-// 分销佣金状态列表
+// 分销佣金state列表
 export const cashStatusList = [
     {
         value:'APPLY',
@@ -29,10 +29,10 @@ export const cashStatusList = [
     },
     {
         value:'PASS',
-        label:'通过'
+        label:'pass'
     }
 ]
-// 分销订单状态列表
+// 分销Status列表
 export const orderStatusList = [
     {
         value:'WAIT_BILL',

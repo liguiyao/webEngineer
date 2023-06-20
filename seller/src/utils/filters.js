@@ -34,13 +34,13 @@ export function enCode(v1) {
 
 
 /**
- * 订单来源
+ * source
  */
 export function clientTypeWay(val) {
   if (val == "H5") {
     return "移动端";
   } else if (val == "PC") {
-    return "PC端";
+    return "PC";
   } else if (val == "WECHAT_MP") {
     return "小程序端";
   } else if (val == "APP") {
@@ -165,7 +165,7 @@ export function formatDate(date, fmt) {
 
 // 楼层装修，select链接处理跳转方式
 export function formatLinkType (item) {
-  const types = ['goods', 'category', 'shops', 'marketing', 'pages', 'other'] // 所有跳转的分类 依次为 Goods、分类、店铺、活动、页面、Others
+  const types = ['goods', 'category', 'shops', 'marketing', 'pages', 'other'] // 所有跳转的分类 依次为 Goods、分类、店铺、活动、Page面、Others
   let url = '';
   switch (item.___type) {
     case 'goods':
@@ -190,7 +190,7 @@ export function formatLinkType (item) {
 
     case 'other':
       switch (item.title) {
-        case '首页':
+        case 'Home':
           url = '/';
           break;
         case '购物车':

@@ -47,7 +47,7 @@ export default {
   },
   data () {
     return {
-      detail: {} // Goods详情
+      detail: {} // Goods Detail
     };
   },
   mounted () {
@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/****************************加入购物车页面开始*****************************/
+/****************************加入购物车Page面开始*****************************/
 .add-info-box-container{
   width: 100%;
   background-color: #F5F5F5;
@@ -191,5 +191,5 @@ border:1px solid $theme_color;
   color: $theme_color;
   border: 1px solid $theme_color;
 }
-/****************************加入购物车页面结束*****************************/
+/****************************加入购物车Page面结束*****************************/
 </style>

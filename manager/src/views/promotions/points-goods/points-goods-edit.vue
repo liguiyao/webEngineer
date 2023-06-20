@@ -17,7 +17,7 @@
             <FormItem label="Goodsprice">
               <div>{{ form.goodsSku.price | unitPrice("RM") }}</div>
             </FormItem>
-            <FormItem label="库存">
+            <FormItem label="stock">
               <div>{{ form.goodsSku.quantity }}</div>
             </FormItem>
             <FormItem label="结算price" prop="settlementPrice">
@@ -40,11 +40,11 @@
                 }}</Option>
               </Select>
             </FormItem>
-            <FormItem label="活动库存" prop="activeStock">
+            <FormItem label="活动stock" prop="activeStock">
               <Input
                 type="number"
                 v-model="form.activeStock"
-                placeholder="Please enter 活动库存"
+                placeholder="Please enter 活动stock"
                 clearable
                 style="width: 260px"
               />
@@ -113,12 +113,12 @@ export default {
       },
       categoryList: [], // 分类列表
       id: this.$route.query.id, // 活动id
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       formRule: {
         settlementPrice: [{ required: true, message: "Please enter 结算price" }],
-        pointsGoodsCategoryId: [{ required: true, message: "Please select积分Goods分类" }],
+        pointsGoodsCategoryId: [{ required: true, message: "Please select积分Goods Category" }],
         points: [{ required: true, message: "Please enter 兑换积分" }],
-        activeStock: [{ required: true, message: "Please enter 库存" }],
+        activeStock: [{ required: true, message: "Please enter stock" }],
       },
       options: {
         disabledDate(date) {
@@ -141,7 +141,7 @@ export default {
       this.pointsGoodsCategoryId=v.value
       this.pointsGoodsCategoryName=v.label
     },
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "edit-points-goods");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
@@ -194,7 +194,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*编辑基本信息*/
+/*edit基本信息*/
 .el-form {
   padding-bottom: 80px;
 

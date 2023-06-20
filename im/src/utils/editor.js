@@ -96,7 +96,7 @@ export function getPasteHtml(e, filterStyle, ignoreImg) {
     return
   }
 
-  // 过滤word中状态过来的无用字符
+  // 过滤word中state过来的无用字符
   let docSplitHtml = pasteHtml.split('</html>')
   if (docSplitHtml.length === 2) {
     pasteHtml = docSplitHtml[0]

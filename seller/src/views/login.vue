@@ -76,9 +76,9 @@ export default {
   },
   data() {
     return {
-      saveLogin: true, // SaveLogin状态
-      loading: false, // 加载状态
-      verifyStatus: false, // 是否图片验证通过
+      saveLogin: true, // SaveLoginstate
+      loading: false, // 加载state
+      verifyStatus: false, // 是否图片验证pass
       time: 60, // 倒计时
       loginType: 'passwordLogin', //登陆类型
       form: {

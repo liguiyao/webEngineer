@@ -76,7 +76,7 @@
       </div>
       <Spin size="large" fix v-if="spinShow"></Spin>
     </div>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <div class="page-size" v-if="!homePage">
       <Page :total="total" @on-change="changePageNum"
         @on-page-size-change="changePageSize"
@@ -115,7 +115,7 @@ import { orderStatusList } from '../enumeration.js'
 export default {
   name: 'MyOrder',
   props: {
-    homePage: { // 判断是否个人中心首页展示内容
+    homePage: { // 判断是否个人中心Home展示内容
       type: Boolean,
       default: false
     }
@@ -134,11 +134,11 @@ export default {
         orderSn: '',
         reason: ''
       },
-      // 状态数组
+      // state数组
       orderStatusList,
-      changeWay: ['All order', 'To be paid', 'To be receive', 'completed'], // 订单状态
+      changeWay: ['All order', 'To be paid', 'To be receive', 'completed'], // Status
       total: 0, // 数据总数
-      spinShow: false, // 加载状态
+      spinShow: false, // 加载state
       afterSaleModal: false, // selectafter saleGoods模态框
       afterSaleColumns: [ // after saleGoods表头
         {title: 'goods name', key: 'name'},
@@ -155,14 +155,14 @@ export default {
   },
   methods: {
     goodsDetail (skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: { skuId, goodsId }
       });
       window.open(routeUrl.href, '_blank');
     },
-    // 切换订单状态
+    // 切换Status
     change (index) {
       switch (index) {
         case 0:
@@ -180,7 +180,7 @@ export default {
       }
       this.getList()
     },
-    // 跳转店铺首页
+    // 跳转店铺Home
     shopPage (id) {
       let routeUrl = this.$router.resolve({
         path: '/Merchant',
@@ -256,11 +256,11 @@ export default {
         }
       });
     },
-    changePageNum (val) { // modify页码
+    changePageNum (val) { // modifyPage码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize (val) { // modify页数
+    changePageSize (val) { // modifyPage数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()
@@ -285,7 +285,7 @@ export default {
         }
       })
     },
-    filterOrderStatus (status) { // 获取订单状态中文
+    filterOrderStatus (status) { // 获取Status中文
       const ob = this.orderStatusList.filter(e => { return e.status === status });
       return ob && ob[0] ? ob[0].name : status
     }

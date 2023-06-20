@@ -5,11 +5,11 @@
         <Form-item label="活动名称" prop="goodsName">
           <Input type="text" v-model="searchForm.promotionName" placeholder="Please enter 活动名称" clearable style="width: 200px" />
         </Form-item>
-        <Form-item label="活动状态" prop="promotionStatus">
+        <Form-item label="活动state" prop="promotionStatus">
           <Select v-model="searchForm.promotionStatus" placeholder="Please select" clearable style="width: 200px">
             <Option value="NEW">未开始</Option>
-            <Option value="START">已开始/上架</Option>
-            <Option value="END">已结束/下架</Option>
+            <Option value="START">已开始/On</Option>
+            <Option value="END">已结束/Off</Option>
             <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
@@ -18,7 +18,7 @@
           </DatePicker>
         </Form-item>
         <Button @click="handleSearch" type="primary" class="search-btn">search</Button>
-        <Button @click="handleReset" class="ml_10">重置</Button>
+        <Button @click="handleReset" class="ml_10">reset</Button>
       </Form>
 
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10">
@@ -32,7 +32,7 @@
         </template>
         <template slot-scope="{ row }" slot="action">
           <Button v-if="row.promotionStatus === 'NEW'" type="primary" size="small" @click="manage(row)">管理</Button>
-          <Button v-else type="info" size="small" @click="manage(row)">查看</Button>
+          <Button v-else type="info" size="small" @click="manage(row)">View</Button>
         </template>
       </Table>
       <Row type="flex" justify="end" class="mt_10">
@@ -52,11 +52,11 @@ export default {
   data () {
     return {
       selectDate: [],
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "startTime",
         order: "desc", // default排序方式
       },
@@ -79,7 +79,7 @@ export default {
           slot: "hours",
         },
         {
-          title: "状态",
+          title: "state",
           key: "promotionStatus",
           width: 100,
           render: (h, params) => {
@@ -127,12 +127,12 @@ export default {
     init () {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage (v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize (v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -143,7 +143,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置
+    // reset
     handleReset () {
       this.searchForm = {};
       this.selectDate = "";
@@ -165,7 +165,7 @@ export default {
         this.searchForm.startTime = null;
         this.searchForm.endTime = null;
       }
-      // 带多条件search参数获取表单数据
+      // 带多items件search参数获取表单数据
       seckillList(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {
@@ -190,7 +190,7 @@ export default {
   mounted () {
     this.init();
   },
-  // 页面缓存处理，从该页面离开时，modifyKeepAlive为false，保证进入该页面是刷新
+  // Page面缓存处理，从该Page面离开时，modifyKeepAlive为false，保证进入该Page面是刷新
   beforeRouteLeave (to, from, next) {
     from.meta.keepAlive = false
     next()

@@ -46,7 +46,7 @@ export default {
       positionPicker: null, // 地图拖拽选点
       tips: [], //search关键字列表
       addrContent: {}, // 回显address信息
-      loading: false, // 加载状态
+      loading: false, // 加载state
     };
   },
   watch: {

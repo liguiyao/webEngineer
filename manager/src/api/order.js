@@ -13,7 +13,7 @@ export const storeComplain = (params) => {
 }
 
 
-//  获取after sale原因分页列表
+//  获取after sale原因分Page列表
 export const getAfterSaleReasonPage = (params) => {
   return getRequest('/order/afterSaleReason/getByPage', params)
 }
@@ -78,12 +78,12 @@ export const getOrderList = (params) => {
   return getRequest(`/order/order`, params)
 }
 
-//  订单付款
+//  Order pay
 export const orderPay = (sn) => {
   return postRequest(`/order/order/${sn}/pay`)
 }
 
-//  订单付款
+//  Order pay
 export const orderDetail = (sn) => {
   return getRequest(`/order/order/${sn}`)
 }

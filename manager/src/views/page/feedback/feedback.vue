@@ -75,7 +75,7 @@
     name: "feedback",
     data() {
       return {
-        loading: true, // 加载状态
+        loading: true, // 加载state
         form: {}, // 表单数据
         searchForm: { // Please 求参数
           pageNumber: 1,
@@ -148,7 +148,7 @@
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 )
               ]);
             },
@@ -164,12 +164,12 @@
       init() {
         this.getFeedback();
       },
-      // 分页 modify页码
+      // 分Page modifyPage码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getFeedback();
       },
-      // 分页 modify页数
+      // 分Page modifyPage数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;

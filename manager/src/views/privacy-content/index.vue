@@ -3,7 +3,7 @@
     <Row>
       <Col span="24">
       <Card class="article-detail">
-        <Alert>隐私协议在移动端中 设置->关于我们->对应的文章展示</Alert>
+        <Alert>privacy协议在移动端中 设置->关于我们->对应的文章展示</Alert>
         <Table :loading="loading" border :columns="columns" :data="data" ref="table">
         </Table>
       </Card>
@@ -56,14 +56,14 @@ export default {
   data() {
     return {
       initEditor,
-      loading: false, // 表单加载状态
-      modalVisible: false, // 添加或编辑显示
+      loading: false, // 表单加载state
+      modalVisible: false, // 添加或edit显示
       treeDataDefault: [],
       list: [], // 列表
       treeValue: "", // select的分类
       //树结构
       treeData: [],
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       modalTitle:'',
       currindex:'',
       form: {
@@ -114,7 +114,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               )
             ]);
           },
@@ -138,7 +138,7 @@ export default {
           type:'ABOUT'
         },
         {
-          name:'隐私策略',
+          name:'privacy策略',
           type:'PRIVACY_POLICY'
         },
       ], // 表单数据
@@ -201,10 +201,10 @@ export default {
       }
       return arr;
     },
-    // 编辑文章modal
+    // edit文章modal
     edit(data) {
       this.modalType = 1;
-      this.modalTitle = "编辑协议";
+      this.modalTitle = "edit协议";
       this.form.article = {
         content:''
       };
@@ -229,7 +229,7 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.submitLoading = true;
-          // 编辑
+          // edit
           updatePrivacy(this.form.id,this.form.type,this.form.article).then((res) => {
             this.submitLoading = false;
             if (res.success) {

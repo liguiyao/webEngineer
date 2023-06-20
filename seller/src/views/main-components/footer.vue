@@ -1,9 +1,9 @@
 <template>
   <div class="foot">
     <Row type="flex" justify="space-around" class="help">
-      <a class="item" :href="config.website" target="_blank">帮助</a>
-      <a class="item" :href="config.website" target="_blank">隐私</a>
-      <a class="item" :href="config.website" target="_blank">条款</a>
+      <a class="item" :href="config.website" target="_blank">help</a>
+      <a class="item" :href="config.website" target="_blank">privacy</a>
+      <a class="item" :href="config.website" target="_blank">clause</a>
     </Row>
     <Row type="flex" justify="center" class="copyright">
       Copyright © {{ year }} - Present

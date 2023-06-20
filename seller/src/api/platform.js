@@ -5,7 +5,7 @@ import { getRequest, postRequest, putRequest, deleteRequest, importRequest, getR
 export const getParams = (params) => {
     return getRequest('/platformSetting/get/'+params)
 }
-// 编辑kuaidi配置
+// editkuaidi配置
 export const editParams = (params,method) => {
     return postRequest('/platformSetting/insertOrUpdate/'+method, params)
 }

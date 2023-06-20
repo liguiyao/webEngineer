@@ -47,11 +47,11 @@
     },
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
           startDate: "", // 起始时间
@@ -136,7 +136,7 @@
                         },
                       },
                     },
-                    "查看"
+                    "View"
                   )
               }
             },
@@ -156,12 +156,12 @@
       init() {
         this.getDataList();
       },
-      // 分页 改变页码
+      // 分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;
@@ -182,7 +182,7 @@
       // 获取列表数据
       getDataList() {
         this.loading = true;
-        // 带多条件search参数获取表单数据 Please 自行modify接口
+        // 带多items件search参数获取表单数据 Please 自行modify接口
         this.searchForm.storeDisable='APPLYING'
         getShopListData(this.searchForm).then((res) => {
           this.loading = false;
@@ -194,7 +194,7 @@
         this.total = this.data.length;
         this.loading = false;
       },
-      // 查看店铺
+      // View店铺
       edit(v) {
         this.$router.push({ path: '/shop-operation', query: { shopId: v.id } });
       },

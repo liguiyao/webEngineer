@@ -13,7 +13,7 @@
       </Row>
     </Card>
 
-    <!-- 编辑 -->
+    <!-- edit -->
     <Modal :title="modalTitle" v-model="roleModalVisible" :mask-closable="false" :width="500">
       <Form ref="roleForm" :model="roleForm" :label-width="80" :rules="roleFormValidate">
         <FormItem label="角色名称" prop="name">
@@ -44,7 +44,7 @@
           <Option value="2">仅展开一级</Option>
           <Option value="3">仅展开两级</Option>
         </Select>
-        <Button type="primary" :loading="submitPermLoading" @click="submitPermEdit()">编辑
+        <Button type="primary" :loading="submitPermLoading" @click="submitPermEdit()">edit
         </Button>
       </div>
     </Modal>
@@ -54,7 +54,7 @@
     <Modal width="800" v-model="selectIsSuperModel" title="select菜单权限" :loading="superModelLoading" @on-ok="saveRole">
       <div class="btns">
         <Button type="primary" @click="setRole()" class="btn-item">一键选中·数据权限</Button>
-        <Button class="btn-item" @click="setRole('onlyView')">一键选中·查看权限</Button>
+        <Button class="btn-item" @click="setRole('onlyView')">一键选中·View权限</Button>
       </div>
       <div class="role-list">
         <div class="role-item" v-for="(item, index) in saveRoleWay" :key="index">
@@ -65,7 +65,7 @@
                 <span>operation数据权限</span>
               </Radio>
               <Radio :label="0">
-                <span>查看权限</span>
+                <span>View权限</span>
               </Radio>
             </RadioGroup>
           </div>
@@ -95,14 +95,14 @@ export default {
       selectIsSuperModel: false, //Save权限弹出select权限
       rolePermsWay: [], //查询角色权限集合
       openLevel: "0", // 展开的级别
-      loading: true, // 加载状态
+      loading: true, // 加载state
       treeLoading: true, // 树加载
       depTreeLoading: true, // 部门树加载
       submitPermLoading: false, // 权限Submit加载
       submitDepLoading: false, // 部门Submit加载
       sortColumn: "", // 排序
       sortType: "desc", // 排序类型
-      modalType: 0, // 0 添加 1 编辑
+      modalType: 0, // 0 添加 1 edit
       roleModalVisible: false, // 角色modal
       permModalVisible: false, // 菜单权限modal
       depModalVisible: false, // 部门modal
@@ -199,7 +199,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -221,15 +221,15 @@ export default {
         },
       ],
       data: [], // 角色数据
-      pageNumber: 1, // 页数
-      pageSize: 10, // 每页Quantity
+      pageNumber: 1, // Page数
+      pageSize: 10, // 每PageQuantity
       total: 0, // 总数
       permData: [], // 菜单权限数据
-      editRolePermId: "", // 编辑权限id
+      editRolePermId: "", // edit权限id
       selectAllFlag: false, // 全选标识
       depData: [], // 部门数据
       dataType: 0, // 数据类型
-      editDepartments: [], // 编辑部门
+      editDepartments: [], // edit部门
 
       saveRoleWay: [], //用户Save用户点击的菜单
     };
@@ -298,20 +298,20 @@ export default {
               data.isSuper == 1
                 ? "operation权限"
                 : data.isSuper == 0
-                ? "查看权限"
+                ? "View权限"
                 : ""
             ),
           ]),
         ]
       );
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.pageNumber = v;
       this.getRoleList();
       this.clearSelectAll();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.pageNumber = 1;
       this.pageSize = v;
@@ -372,12 +372,12 @@ export default {
         this.treeLoading = false;
       });
     },
-    // 递归标记禁用节点
+    // 递归标记disable节点
     deleteDisableNode(permData) {
       let that = this;
       permData.forEach(function (e) {
         if (e.status == -1) {
-          e.title = "[已禁用] " + e.title;
+          e.title = "[已disable] " + e.title;
           e.disabled = true;
         }
         if (e.children && e.children.length > 0) {
@@ -428,10 +428,10 @@ export default {
       delete this.roleForm.id;
       this.roleModalVisible = true;
     },
-    // 编辑
+    // edit
     edit(v) {
       this.modalType = 1;
-      this.modalTitle = "编辑角色";
+      this.modalTitle = "edit角色";
       this.$refs.roleForm.resetFields();
       // 转换null为""
       for (let attr in v) {
@@ -478,7 +478,7 @@ export default {
       }
       this.$Modal.confirm({
         title: "确认delete",
-        content: "您确认要delete所选的 " + this.selectCount + " 条数据?",
+        content: "您确认要delete所选的 " + this.selectCount + " items数据?",
         loading: true,
         onOk: () => {
           let ids = "";
@@ -519,7 +519,7 @@ export default {
       });
 
       if (this.treeLoading) {
-        this.$Message.warning("菜单权限数据加载中，Please 稍后点击查看");
+        this.$Message.warning("菜单权限数据加载中，Please 稍后点击View");
         return;
       }
       this.editRolePermId = v.id;
@@ -626,7 +626,7 @@ export default {
               e.children = [];
             }
             if (e.status == -1) {
-              e.title = "[已禁用] " + e.title;
+              e.title = "[已disable] " + e.title;
               e.disabled = true;
             }
           });

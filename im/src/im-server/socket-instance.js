@@ -95,9 +95,9 @@ class SocketInstance {
   }
 
   /**
-   * 更新 WebSocket 连接状态
+   * 更新 WebSocket 连接state
    *
-   * @param {Boolean} status 连接状态
+   * @param {Boolean} status 连接state
    */
   updateSocketStatus (status) {
     store.commit("UPDATE_SOCKET_STATUS", status);

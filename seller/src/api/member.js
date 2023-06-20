@@ -1,7 +1,7 @@
 // 统一Please 求路径前缀在libs/axios.js中modify
 import { getRequest, putRequest, postRequest } from "@/libs/axios";
 
-// 分页获取会员Evaluate
+// 分Page获取会员Evaluate
 export const getMemberReview = (params) => {
   return getRequest("/member/evaluation", params);
 };
@@ -21,7 +21,7 @@ export const getStatisticsList = (params) => {
   return getRequest("/statistics/view/list", params);
 };
 
-//   获取分页
+//   获取分Page
 export const getMember = (params) => {
   return getRequest("/member/getByPage", params);
 };

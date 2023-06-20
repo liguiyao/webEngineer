@@ -44,7 +44,7 @@ export default {
         storeName: "",
       },
       dateList: [
-        // 筛选条件
+        // 筛选items件
         {
           title: "Today",
           selected: false,
@@ -76,7 +76,7 @@ export default {
     this.getShopList();
   },
   methods: {
-    // 页面触底
+    // Page面触底
     handleReachBottom() {
       setTimeout(() => {
         if (this.params.pageNumber * this.params.pageSize <= this.shopTotal) {

@@ -29,7 +29,7 @@
         </FormItem>
         <FormItem label="版本号" prop="version">
           <Input v-model="form.version" maxlength="15" clearable style="width: 40%" />
-          <span class="tips">在移动端项目->manifest.json->基础配置->应用版本名称中查看</span>
+          <span class="tips">在移动端项目->manifest.json->基础配置->应用版本名称中View</span>
         </FormItem>
         <FormItem label="更新时间" prop="versionUpdateDate">
           <DatePicker v-model="form.versionUpdateDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" clearable placeholder="Please select" style="width: 200px"></DatePicker>
@@ -55,7 +55,7 @@
         <FormItem label="下载address" prop="downloadUrl">
           <Input v-model="form.downloadUrl" maxlength="100" clearable style="width: 40%" />
           <span class="tips" v-if="form.type == 'IOS'">
-            AppStore中App项目下载目录。可从下载App页面点击分享，拷贝链接
+            AppStore中App项目下载目录。可从下载AppPage面点击分享，拷贝链接
           </span>
           <span class="tips" v-else>
             安卓该链接为应用的下载address
@@ -71,7 +71,7 @@
       </div>
     </Modal>
     <div>
-      <!-- 查看版本信息 -->
+      <!-- View版本信息 -->
       <Modal :title="queryModalTitle" v-model="queryModalVisible" :width="700">
         <Form>
           <div class="div-version">
@@ -123,21 +123,21 @@ export default {
   data() {
     return {
       queryModalVisible: false, // 版本信息modal
-      queryModalTitle: "查看更新信息", // modal标题
-      loading: true, // 表单加载状态
+      queryModalTitle: "View更新信息", // modal标题
+      loading: true, // 表单加载state
       modalVisible: false, // 添加app版本模态框
       modalTitle: "", // 添加app版本标题
-      modalType: 0, // 新增、编辑标识
+      modalType: 0, // 新增、edit标识
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         type: "",
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         versionName: "",
         version: "",
         forceUpdate: 1,
@@ -160,7 +160,7 @@ export default {
         ],
         versionUpdateDate: [{ required: true, message: "更新时间不能为空" }],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       columns: [
         {
           title: "版本名称",
@@ -231,7 +231,7 @@ export default {
                     },
                   },
                 },
-                "查看"
+                "View"
               ),
               h(
                 "Button",
@@ -284,12 +284,12 @@ export default {
     init() {
       this.getData();
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getData();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -327,7 +327,7 @@ export default {
         content: " ",
       };
     },
-    //编辑app版本信息
+    //editapp版本信息
     editAppVersion(v) {
       this.modalVisible = true;
       this.modalTitle = "modifyAPP版本信息";
@@ -350,7 +350,7 @@ export default {
             this.form.updateTime = versionUpdateDate;
           }
           if (this.modalType == 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.form.id;
             API_Setting.addVersion(this.form).then((res) => {
               this.submitLoading = false;
@@ -391,7 +391,7 @@ export default {
         },
       });
     },
-    // 查看
+    // View
     detail(v) {
       this.queryModalVisible = true;
       this.form = JSON.parse(JSON.stringify(v));

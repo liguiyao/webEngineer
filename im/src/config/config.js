@@ -1,6 +1,6 @@
 
 /**
- * 读取公共配置API路径。
+ * 读取公total配置API路径。
  * 工程会读取根目录下的 env 。
  * 根目录下的.env文件是用来定义环境变量的。
  * 它可以包含各种键值对，每个键代表一个环境变量。
@@ -25,6 +25,6 @@ export default {
   BASE_SELLER: process.env.VUE_APP_SELLER || "",
   // 点击Goods跳转到的address
   PC_URL: process.env.VUE_APP_PC_URL || "https://pc-b2b2c.pickmall.cn",
-  // 订单跳转商家订单页面
+  // 订单跳转商家订单Page面
   PC_STORE: process.env.VUE_APP_PC_STORE || 'https://store-b2b2c.pickmall.cn',
 };

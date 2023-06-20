@@ -2,7 +2,7 @@ import request, {
   Method
 } from '@/plugins/request.js'
 
-// 店铺分页列表
+// 店铺分Page列表
 export function shopList (params) {
   return request({
     url: '/buyer/store/store',

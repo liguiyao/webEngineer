@@ -1,5 +1,5 @@
 
-// 订单状态
+// Status
 export const orderStatusList = [
   {
     name: '全部',
@@ -10,7 +10,7 @@ export const orderStatusList = [
     status: 'UNPAID'
   },
   {
-    name: '已付款',
+    name: 'Paid',
     status: 'PAID'
   },
   {
@@ -30,7 +30,7 @@ export const orderStatusList = [
     status: 'TAKE'
   },
   {
-    name: '已Cancel',
+    name: 'Cancel',
     status: 'CANCELLED'
   },
   {
@@ -38,14 +38,14 @@ export const orderStatusList = [
     status: 'STAY_PICKED_UP'
   }
 ]
-// 订单after sale状态
+// 订单after salestate
 export const afterSaleStatusList = [
   {
     name: 'Apply  中',
     status: 'APPLY'
   },
   {
-    name: '通过',
+    name: 'pass',
     status: 'PASS'
   },
   {

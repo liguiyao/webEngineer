@@ -254,14 +254,14 @@ export default {
   },
   methods: {
     goodsDetail(skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },
       });
       window.open(routeUrl.href, "_blank");
     },
-    // 跳转店铺首页
+    // 跳转店铺Home
     shopPage(id) {
       let routeUrl = this.$router.resolve({
         path: "/Merchant",
@@ -459,7 +459,7 @@ table {
     color: $theme_color;
   }
 }
-/** 订单进度条 */
+/** 订单进度items */
 .progress {
   margin: 15px 0;
 }

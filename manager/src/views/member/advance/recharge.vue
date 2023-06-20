@@ -73,11 +73,11 @@
     name: "recharge",
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
           startDate: "", // 起始时间
@@ -134,7 +134,7 @@
             sortable: false,
             render: (h, params) => {
               if (params.row.payStatus == "PAID") {
-                return h("Tag", {props: {color: "green",},}, "已付款");
+                return h("Tag", {props: {color: "green",},}, "Paid");
               } else {
                 return h("Tag", {props: {color: "red",},}, "Unpaid");
               }
@@ -164,12 +164,12 @@
       init() {
         this.getDataList();
       },
-      // 分页 改变页码
+      // 分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;

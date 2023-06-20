@@ -38,7 +38,7 @@ export default {
     return {
       modelData, // 可选模块数据
       modelForm: { list: [] }, // 模板数据
-      submitLoading: false, // Submit加载状态
+      submitLoading: false, // Submit加载state
     };
   },
   methods: {

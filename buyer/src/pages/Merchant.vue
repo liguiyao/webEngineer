@@ -157,7 +157,7 @@ export default {
   },
   methods: {
     getIndexData() {
-      // 获取首页装修数据
+      // 获取Home装修数据
       getFloorStoreData({clientType: "PC", num: this.$route.query.id, pageType: 'STORE'}).then(
         (res) => {
           if (res.success) {
@@ -221,7 +221,7 @@ export default {
           this.storeMsg = res.result;
           console.log(this.storeMsg)
 
-          //判定如果Opening楼层展示，则获取页面信息 否则读取Goods details
+          //判定如果Opening楼层展示，则获取Page面信息 否则读取Goods details
           if (this.storeMsg.pageShow && this.storeMsg.pageShow === '1') {
 
             this.getIndexData();
@@ -262,7 +262,7 @@ export default {
         });
     },
     goGoodsDetail(skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: {skuId, goodsId},
@@ -281,12 +281,12 @@ export default {
       this.cateName = cate.labelName;
       this.getGoodsList();
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePageNum(val) {
       this.params.pageNumber = val;
       this.getGoodsList();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(val) {
       this.params.pageNumber = 1;
       this.params.pageSize = val;

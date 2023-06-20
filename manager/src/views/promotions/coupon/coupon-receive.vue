@@ -38,7 +38,7 @@
             <Option value="ACTIVITY">活动获取</Option>
           </Select>
         </Form-item>
-        <Form-item label="coupon状态" prop="memberCouponStatus">
+        <Form-item label="couponstate" prop="memberCouponStatus">
           <Select
             v-model="searchForm.memberCouponStatus"
             placeholder="Please select"
@@ -107,11 +107,11 @@ export default {
   name: "coupon-recevie",
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "create_time", // default排序字段
         order: "desc", // default排序方式
         getType: "", // default排序方式
@@ -179,7 +179,7 @@ export default {
           },
         },
         {
-          title: "会员coupon状态",
+          title: "会员couponstate",
           width: 130,
           key: "memberCouponStatus",
           render: (h, params) => {
@@ -233,7 +233,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      refreshTable: true, // modify选中状态后刷新表格
+      refreshTable: true, // modify选中state后刷新表格
       selectDate: [], //选中的信息
     };
   },
@@ -268,12 +268,12 @@ export default {
       this.getDataList();
     },
     changePage(v) {
-      // 改变页码
+      // 改变Page码
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
     changePageSize(v) {
-      // 改变页数
+      // 改变Page数
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
       this.getDataList();

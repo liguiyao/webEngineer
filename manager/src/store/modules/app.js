@@ -16,8 +16,8 @@ const app = {
     currNavTitle: "", // 当前顶部菜单标题
     cachePage: [],
     lang: '',
-    pageOpenedList: [{ // 打开过的页面，顶部历史菜单项
-      title: '首页',
+    pageOpenedList: [{ // 打开过的Page面，顶部历史菜单项
+      title: 'Home',
       path: '',
       name: 'home_index'
     }],
@@ -27,7 +27,7 @@ const app = {
     tagsList: [...otherRouter.children], //这块是面包屑的内容不能delete
     routers: [otherRouter],
     messageCount: 0,
-    // 在这里定义你不想要缓存的页面的name属性值(参见路由配置router.js)
+    // 在这里定义你不想要缓存的Page面的name属性值(参见路由配置router.js)
     dontCache: ['test', 'test']
   },
   mutations: {
@@ -36,7 +36,7 @@ const app = {
       state.routers.push(...routes);
       router.addRoutes(routes);
     },
-    // 动态添加全局路由404、500等页面，不需要缓存
+    // 动态添加全局路由404、500等Page面，不需要缓存
     updateDefaultRouter(state, routes) {
       router.addRoutes(routes);
     },

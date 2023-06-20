@@ -9,7 +9,7 @@
         <!-- <img :src="topAdvert.img" width="1200" height="80" alt="" /> -->
         <div class="setup-box">
           <Button size="small" @click.stop="handleModel('topAdvert')"
-            >编辑</Button
+            >edit</Button
           >
         </div>
       </div>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <!-- <div class="nav-con">
-        <div class="all-categories">All goods分类</div>
+        <div class="all-categories">All Goods Category</div>
         <ul class="nav-item">
           <li v-for="(item, index) in navList.list" :key="index">
             <a href="#">{{ item.name }}</a>
@@ -42,7 +42,7 @@
         </ul>
         <div class="setup-box">
           <Button size="small" @click.stop="handleModel('quickNav')"
-            >编辑</Button
+            >edit</Button
           >
         </div>
       </div> -->
@@ -383,7 +383,7 @@ export default {
     }
   }
 }
-/** Goods分类 */
+/** Goods Category */
 .nav-con {
   width: 1200px;
   height: 40px;

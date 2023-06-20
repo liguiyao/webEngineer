@@ -14,7 +14,7 @@ export function clearCart () {
 }
 
 /**
- * 获取购物车页面购物车详情
+ * 获取购物车Page面购物车详情
  */
 export function cartGoodsAll () {
   return request({
@@ -36,7 +36,7 @@ export function cartCount () {
 }
 
 /**
- * 获取结算页面购物车详情
+ * 获取结算Page面购物车详情
  */
 export function cartGoodsPay (params) {
   return request({
@@ -63,7 +63,7 @@ export function addCartGoods (params) {
 
 /**
  * 创建交易
- * @param client 客户端：H5/移动端 PC/PC端,WECHAT_MP/小程序端,APP/移动应用端
+ * @param client 客户端：H5/移动端 PC/PC,WECHAT_MP/小程序端,APP/移动应用端
  * @param way 购物车购买：CART/立即购买：BUY_NOW / 积分购买：POINT
  * @param remark 备注  非必填
  */

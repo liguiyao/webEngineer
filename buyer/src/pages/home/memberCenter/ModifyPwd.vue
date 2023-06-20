@@ -83,7 +83,7 @@ export default {
   name: 'modifyPwd',
   data () {
     return {
-      // 1为modify    2为设置     3为Submit校验的下一步
+      // 1为modify    2为设置     3为Submit校验的Next
       status: '',
       showPwd: false, // 显示密码
       formData: { // 验证表单

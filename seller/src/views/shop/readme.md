@@ -1,8 +1,8 @@
-### 楼层装修页面
+### 楼层装修Page面
 
 #### floorList.vue  楼层列表
 
-#### renovation.vue 楼层装修主页面
+#### renovation.vue 楼层装修主Page面
 
 #### singleConfig.vue  右侧配置项
 

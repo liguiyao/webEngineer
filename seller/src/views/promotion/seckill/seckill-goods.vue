@@ -145,15 +145,15 @@ export default {
   data() {
     return {
       tabCurrent: 0,
-      promotionStatus: "", // 活动状态
-      loading: false, // 表单加载状态
+      promotionStatus: "", // 活动state
+      loading: false, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 0, // 当前页数
-        pageSize: 1000, // 页面大小
+        pageNumber: 0, // 当前Page数
+        pageSize: 1000, // Page面大小
       },
       tabIndex: 0, // selectGoods的下标
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       data: [{}], // 表单数据
@@ -188,7 +188,7 @@ export default {
           minWidth: 50,
         },
         {
-          title: "库存",
+          title: "stock",
           slot: "quantity",
           minWidth: 40,
         },
@@ -198,7 +198,7 @@ export default {
           minWidth: 50,
         },
         {
-          title: "状态",
+          title: "state",
           slot: "promotionApplyStatus",
           minWidth: 30,
         },
@@ -213,7 +213,7 @@ export default {
     };
   },
   methods: {
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "seckill-goods");
       localStorage.storeOpenedList = JSON.stringify(
@@ -251,7 +251,7 @@ export default {
     init() {
       this.getSeckillMsg();
     },
-    // 清除选中状态
+    // 清除选中state
     clearSelectAll() {
       this.$refs.table.selectAll(false);
     },
@@ -262,7 +262,7 @@ export default {
     },
 
     getDataList() {
-      // 获取Goods详情
+      // 获取Goods Detail
       this.loading = true;
       this.searchForm.seckillId = this.$route.query.id;
       // 处理过的时间 为‘1:00’
@@ -375,13 +375,13 @@ export default {
       }
       return [];
     },
-    // 格式化Apply  状态
+    // 格式化Apply  state
     promotionApplyStatus(key) {
       switch (key) {
         case "APPLY":
           return "Apply  ";
         case "PASS":
-          return "通过";
+          return "pass";
         case "REFUSE":
           return "拒绝";
         default:
@@ -399,7 +399,7 @@ export default {
   mounted() {
     this.init();
   },
-  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情PageBack列表Page，modify列表PagekeepAlive为true，确保不刷新Page面
   beforeRouteLeave(to, from, next) {
     if (to.name === "seckill") {
       to.meta.keepAlive = true;

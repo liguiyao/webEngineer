@@ -84,7 +84,7 @@ export default {
     return {
       accessToken: {}, // 验证token
       currentValue: this.value, // 当前值
-      loading: false, // 加载状态
+      loading: false, // 加载state
       viewImage: false, // 预览图片modal
       uploadFileUrl: uploadFile // 上传address
     };

@@ -32,7 +32,7 @@
             <FormItem label="活动时间">
               <span>{{ couponActivity.startTime }}～{{ couponActivity.endTime }}</span>
             </FormItem>
-            <FormItem label="活动状态">
+            <FormItem label="活动state">
               <span v-if="couponActivity.promotionStatus === 'NEW'">未开始</span>
               <span v-if="couponActivity.promotionStatus === 'START'">已开始</span>
               <span v-if="couponActivity.promotionStatus === 'END'">已结束</span>
@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*selectGoods品类*/
+/*select Goods type*/
 .content-goods-publish {
   padding: 15px;
   margin: 0 auto;

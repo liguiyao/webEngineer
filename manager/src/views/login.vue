@@ -79,7 +79,7 @@ export default {
   },
   data() {
     return {
-      loading: false, // 加载状态
+      loading: false, // 加载state
       form: {
         // 表单数据
         username: "",

@@ -8,7 +8,7 @@
 // } from '@/axios/index.js';
 import request, {Method} from '@/plugins/request.js'
 
-// 获取密码状态
+// 获取密码state
 export function getPwdStatus (params) {
   return request({
     url: '/buyer/passport/member/wallet/check',
@@ -58,7 +58,7 @@ export function editPwd (params) {
   })
 }
 
-// 获取密码状态
+// 获取密码state
 export function logout () {
   return request({
     url: '/buyer/passport/member/logout',

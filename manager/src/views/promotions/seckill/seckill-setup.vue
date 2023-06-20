@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     /**
-     * Close当前页面
+     * Close当前Page面
      */
     closeCurrentPage() {
       this.$store.commit("removeTag", "manager-seckill-add");

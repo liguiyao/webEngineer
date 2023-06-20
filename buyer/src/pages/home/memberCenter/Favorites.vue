@@ -55,7 +55,7 @@ export default {
         pageSize: 100,
         type: 'GOODS'
       },
-      spinShow: false // 加载状态
+      spinShow: false // 加载state
     };
   },
   methods: {
@@ -112,7 +112,7 @@ export default {
       })
       window.open(url.href, '_blank')
     },
-    goShop (id) { // 跳转店铺页面
+    goShop (id) { // 跳转店铺Page面
       let url = this.$router.resolve({
         path: '/merchant',
         query: {id}

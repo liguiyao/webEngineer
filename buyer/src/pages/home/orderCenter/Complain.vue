@@ -71,7 +71,7 @@ export default {
       action: commonUrl + '/common/common/upload/file', // 上传address
       accessToken: {}, // 验证token
       previewImage: '', // 图片address
-      loading: false, // 加载状态
+      loading: false, // 加载state
       reasonList: [] // Complaint原因
     }
   },
@@ -106,7 +106,7 @@ export default {
         }
       })
     },
-    goGoodsDetail (skuId, goodsId) { // 跳转Goods详情
+    goGoodsDetail (skuId, goodsId) { // 跳转Goods Detail
       let routerUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}

@@ -118,8 +118,8 @@ export default {
   data() {
     return {
       descTitle: "", // modal标题
-      descFlag: false, //编辑查看框
-      loading: true, // 表单加载状态
+      descFlag: false, //editView框
+      loading: true, // 表单加载state
       addFlag: false, // modal显隐控制
       updateRegion: false, // 地区
       addMemberForm: {
@@ -246,7 +246,7 @@ export default {
                       },
                     },
                   },
-                  "查看"
+                  "View"
                 ),
                 h(
                   "Button",
@@ -266,7 +266,7 @@ export default {
                       },
                     },
                   },
-                  "编辑"
+                  "edit"
                 ),
                 h(
                   "Button",
@@ -285,7 +285,7 @@ export default {
                       },
                     },
                   },
-                  "禁用"
+                  "disable"
                 ),
               ]
             );
@@ -361,12 +361,12 @@ export default {
       });
       this.data = data;
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getData();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.searchForm.pageNumber = 1;
@@ -378,9 +378,9 @@ export default {
       this.searchForm.pageSize = 10;
       this.getData();
     },
-    //查看详情modify
+    //View详情modify
     editPerm(val) {
-      this.descTitle = `查看用户 ${val.username}`;
+      this.descTitle = `View用户 ${val.username}`;
       this.descFlag = true;
       this.updateRegion = false;
       this.getMemberInfo(val.id);
@@ -390,7 +390,7 @@ export default {
       this.$refs.addMemberForm.resetFields();
     },
     /**
-     * 查询查看会员详情
+     * 查询View会员详情
      */
     getMemberInfo(id) {
       API_Member.getMemberInfoData(id).then((res) => {
@@ -437,12 +437,12 @@ export default {
       this.region = val[1];
       this.regionId = val[0];
     },
-    //查看会员
+    //View会员
     detail(row) {
       this.$router.push({ name: "member-detail", query: { id: row.id } });
     },
 
-    //禁用会员
+    //disable会员
     disabled(v) {
       let params = {
         memberIds: [v.id],
@@ -450,11 +450,11 @@ export default {
       };
       this.$Modal.confirm({
         title: "Tips",
-        content: "<p>确认禁用此会员？</p>",
+        content: "<p>确认disable此会员？</p>",
         onOk: () => {
           API_Member.updateMemberStatus(params).then((res) => {
             if (res.success) {
-              this.$Message.success("禁用success");
+              this.$Message.success("disablesuccess");
               this.getData();
             } else {
               // this.$Message.error(res.message);

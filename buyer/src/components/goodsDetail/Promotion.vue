@@ -26,7 +26,7 @@ export default {
   },
   data () {
     return {
-      end: '', // 结束状态
+      end: '', // 结束state
       hours: '', // 小时
       minutes: '', // 分钟
       seconds: '', // 秒

@@ -2,13 +2,13 @@
   <div class="wrapper">
 
     <Card class="content">
-      <Button type="primary" @click="handleAdd()">添加页面</Button>
+      <Button type="primary" @click="handleAdd()">添加Page面</Button>
       <div class="list">
         <Spin size="large" fix v-if="loading"></Spin>
         <div class="item item-title" >
-          <div>页面名称</div>
+          <div>Page面名称</div>
           <div class="item-config">
-            <div>状态</div>
+            <div>state</div>
             <div>operation</div>
           </div>
         </div>
@@ -41,14 +41,14 @@ export default {
   // components: {region},
   data() {
     return {
-      selectedIndex: 0, // 装修那个页面的下标
+      selectedIndex: 0, // 装修那个Page面的下标
       columns: [ // 表头
         {
-          title: "页面名称",
+          title: "Page面名称",
           key: "name",
         },
         {
-          title: "状态",
+          title: "state",
         },
         {
           title: "operation",
@@ -56,7 +56,7 @@ export default {
         },
       ],
 
-      loading: false, // 加载状态
+      loading: false, // 加载state
 
       params: { // Please 求参数
         pageNumber: 1,
@@ -66,7 +66,7 @@ export default {
         pageType: "STORE",
         pageClientType: "H5",
       },
-      total: 0, // 页面Quantity
+      total: 0, // Page面Quantity
       list: [], // 总数据
     };
   },
@@ -135,7 +135,7 @@ export default {
         path: "/floorList/main",
       });
     },
-     // 分页 改变页数
+     // 分Page 改变Page数
      changePageSize(v) {
       this.params.pageNumber = 1;
       this.params.pageSize = v;

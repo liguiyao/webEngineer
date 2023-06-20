@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    // 状态
+    // state
     openStyleStore: "", // 移动端楼层装修中select风格存储
     openStoreId:"",
     notices: "" //通知Tips信息

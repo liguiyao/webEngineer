@@ -177,13 +177,13 @@ export default {
     return {
       orderOrRefund: 1, // 订单还是退单
       total:0, // 订单总数
-      // 订单状态
+      // Status
       orderStatusList: {
         UNDELIVERED: "待发货",
         UNPAID: "Unpaid",
-        PAID: "已付款",
+        PAID: "Paid",
         DELIVERED: "已发货",
-        CANCELLED: "已Cancel",
+        CANCELLED: "Cancel",
         COMPLETED: "completed",
         TAKE: "completed",
       },
@@ -198,7 +198,7 @@ export default {
       serviceStatusList: {
         // 服务类型
         APPLY: "Apply  after sale",
-        PASS: "通过after sale",
+        PASS: "passafter sale",
         REFUSE: "拒绝after sale",
         BUYER_RETURN: "买家Return goods，待卖家收货",
         SELLER_RE_DELIVERY: "商家换货/补发",
@@ -238,7 +238,7 @@ export default {
         },
 
         {
-          title: "订单状态",
+          title: "Status",
           key: "orderStatus",
           render: (h, params) => {
             return h("div", this.orderStatusList[params.row.orderStatus]);
@@ -281,7 +281,7 @@ export default {
           },
         },
         {
-          title: "Goods图片",
+          title: "Goods images",
           key: "goodsImage",
           render: (h, params) => {
             return h("img", {
@@ -312,7 +312,7 @@ export default {
           },
         },
         {
-          title: "after sale单状态",
+          title: "after sale单state",
           key: "serviceStatus",
           render: (h, params) => {
             return h("div", this.serviceStatusList[params.row.serviceStatus]);

@@ -150,7 +150,7 @@
                   <Option value="UNKNOWN">Unknown</Option>
                 </Select>
               </Form-item>
-              <Form-item label="order time">
+              <Form-item label="Time">
                 <DatePicker
                   v-model="selectDate"
                   type="datetimerange"
@@ -370,7 +370,7 @@
     data() {
       return {
         id: "",//会员id
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         memberInfo: {},//会员信息
         memberWalletInfo: {},//会员预存款信息
         addressModalTitle: "",//会员addressoperation标题
@@ -381,7 +381,7 @@
 
         },//会员addressoperationform
         selectDate: null, // select时间段
-        submitLoading: false, // 添加或编辑Submit状态
+        submitLoading: false, // 添加或editSubmitstate
         addressFormValidate: {
           name: [{required: true, message: "receiver name cannot empyt"}],
           mobile: [
@@ -445,11 +445,11 @@
 
         ],
         pointData: [],//历史积分数据
-        pointTotal: 0,//历史积分总条数
+        pointTotal: 0,//历史积分总items数
         //历史积分数据查询form
         pointSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         orderColumns: [
           {
@@ -577,7 +577,7 @@
             tooltip: true
           },
           {
-            title: "Order time",
+            title: "Time",
             key: "createTime",
             width: 170,
           },
@@ -618,11 +618,11 @@
 
         ],
         orderData: [],//订单数据
-        orderTotal: 0,//订单总条数
+        orderTotal: 0,//订单总items数
         //TA的订单form
         orderSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           payStatus: "",
           orderSn: "",
           orderType: "",
@@ -723,7 +723,7 @@
                       },
                     },
                   },
-                  "编辑"
+                  "edit"
                 ),
               ]);
             },
@@ -731,11 +731,11 @@
 
         ],
         addressData: [],//历史积分数据
-        addressTotal: 0,//历史积分总条数
+        addressTotal: 0,//历史积分总items数
         //TA的Delivery addressform
         addressSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
         },
         //消费记录
         walletColumns: [
@@ -800,17 +800,17 @@
         ],
         //TA的余额消费记录
         walletSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
         },
         walletData: [],//历史积分数据
-        walletTotal: 0,//历史积分总条数
+        walletTotal: 0,//历史积分总items数
         //TA的发票记录
         receiptRecordSearchForm: {
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
         },
@@ -854,7 +854,7 @@
           },
           ],
         receiptRecordData: [],//发票记录数据
-        receiptRecordTotal: 0,//发票记录总条数
+        receiptRecordTotal: 0,//发票记录总items数
       };
     },
     methods: {
@@ -889,7 +889,7 @@
           this.$set(this, "memberInfo", res.result);
         });
       },
-      //会员状态改变事件
+      //会员state改变事件
       memberStatusChange(v) {
         let params = {
           memberIds: [this.id],
@@ -954,7 +954,7 @@
         });
         this.loading = false;
       },
-      //跳转到Order details页面
+      //跳转到Order detailsPage面
       orderDetail(v) {
         this.$router.push({
           name: "order-detail",
@@ -1060,52 +1060,52 @@
         this.loading = false;
       }
       ,
-      //积分记录页数变化
+      //积分记录Page数变化
       pointChangePage(v) {
         this.pointSearchForm.pageNumber = v;
         this.getPointData();
       }
       ,
-      //积分记录页数变化
+      //积分记录Page数变化
       pointChangePageSize(v) {
         this.pointSearchForm.pageNumber = 1;
         this.pointSearchForm.pageSize = v;
         this.getPointData();
       }
       ,
-      //会员address记录页数变化
+      //会员address记录Page数变化
       addressChangePage(v) {
         this.addressSearchForm.pageNumber = v;
         this.getAddressData()
       }
       ,
-      //会员address记录页数变化
+      //会员address记录Page数变化
       addressChangePageSize(v) {
         this.addressSearchForm.pageNumber = 1;
         this.addressSearchForm.pageSize = v;
         this.getPointData();
       },
 
-      //余额记录页数变化
+      //余额记录Page数变化
       walletChangePage(v) {
         this.walletSearchForm.pageNumber = v;
         this.getDepositLogData();
       }
       ,
-      //余额记录页数变化
+      //余额记录Page数变化
       walletChangePageSize(v) {
         this.walletSearchForm.pageNumber = 1;
         this.walletSearchForm.pageSize = v;
         this.getDepositLogData();
       },
 
-      //订单记录页数变化
+      //订单记录Page数变化
       orderChangePage(v) {
         this.orderSearchForm.pageNumber = v;
         this.getOrderData()
       }
       ,
-      //订单记录页数变化
+      //订单记录Page数变化
       orderChangePageSize(v) {
         this.orderSearchForm.pageNumber = 1;
         this.orderSearchForm.pageSize = v;

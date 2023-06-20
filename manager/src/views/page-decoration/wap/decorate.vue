@@ -26,11 +26,11 @@
         >select促销活动</Button
       >
     </div>
-    <Alert type="warning" v-if="res.name == 'Goods分类'"
+    <Alert type="warning" v-if="res.name == 'Goods Category'"
       >装修Tips
       <template slot="desc">
         <div style="color: red">
-          如果当前装修模块不是最后一项模块且模块内容绑定为分类，则会default展示绑定分类的100条Goods details。
+          如果当前装修模块不是最后一项模块且模块内容绑定为分类，则会default展示绑定分类的100itemsGoods details。
         </div>
         <div style="color: red">
           如果当前装修模块是最后一项模块且模块内容绑定为分类，则会default会根据绑定分类触底加载Goods details。
@@ -529,7 +529,7 @@ export default {
       selectedLinks: "", // 已选链接
       modelList: "", // 装修列表
       enableSelectCategory: false, //Goods是否绑定分类
-      goodsSelectedIndex: 0, //绑定Goods分类的索引
+      goodsSelectedIndex: 0, //绑定Goods Category的索引
     };
   },
   watch: {

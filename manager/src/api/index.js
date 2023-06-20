@@ -26,16 +26,16 @@ export const getAllCity = (params) => {
 }
 
 
-// 获取首页查询数据
+// 获取Home查询数据
 export const homeStatistics = (params) => {
   return getRequest("/statistics/index", params);
 };
 
-// 获取首页tpo10Goods
+// 获取Hometpo10Goods
 export const hotGoods = (params) => {
   return getRequest("/statistics/index/goodsStatistics", params);
 };
-// 获取首页tpo10店铺
+// 获取Hometpo10店铺
 export const hotShops = (params) => {
   return getRequest("/statistics/index/storeStatistics", params);
 };
@@ -80,7 +80,7 @@ export const sendLoginSms = (mobile, params) => {
 export const sendRegistSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendRegistSms/${mobile}`, params);
 };
-// 发送重置密码短信验证码
+// 发送reset密码短信验证码
 export const sendResetSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendResetSms/${mobile}`, params);
 };
@@ -88,7 +88,7 @@ export const sendResetSms = (mobile, params) => {
 export const sendEditMobileSms = (mobile, params) => {
   return getRequest(`/common/captcha/sendEditMobileSms/${mobile}`, params);
 };
-// 通过手机重置密码
+// pass手机reset密码
 export const resetByMobile = (params) => {
   return postRequest("/user/resetByMobile", params);
 };
@@ -97,7 +97,7 @@ export const resetByMobile = (params) => {
 export const ipInfo = (params) => {
   return getRequest("/common/ip/info", params);
 };
-// 个人中心编辑
+// 个人中心edit
 export const userInfoEdit = (params) => {
   return putRequest("/passport/user/edit", params);
 };
@@ -109,11 +109,11 @@ export const changePass = (params) => {
 export const changeMobile = (params) => {
   return postRequest("/passport/user/changeMobile", params);
 };
-// 获取用户数据 多条件
+// 获取用户数据 多items件
 export const getUserListData = (params) => {
   return getRequest("/passport/user", params);
 };
-// 通过用户名search
+// pass用户名search
 export const searchUserByName = (username, params) => {
   return getRequest("/passport/user/searchByName/" + username, params);
 };
@@ -126,11 +126,11 @@ export const getAllUserData = (params) => {
 export const addUser = (params) => {
   return postRequest("/passport/user", params);
 };
-// 编辑管理员自身
+// edit管理员自身
 export const editUser = (params) => {
   return putRequest("/passport/user/edit", params);
 };
-// 编辑用户
+// edit用户
 export const editOtherUser = (params) => {
   return putRequest("/passport/user/admin/edit", params);
 };
@@ -147,12 +147,12 @@ export const importUserData = (params) => {
   return importRequest("/passport/user/importData", params);
 };
 /****************************** 部门 */
-// 通过部门获取全部角色数据
+// pass部门获取全部角色数据
 export const getUserByDepartmentId = (id, params) => {
   return getRequest(`/permission/departmentRole/${id}`, params);
 };
 
-// 通过部门modify绑定角色
+// pass部门modify绑定角色
 export const updateDepartmentRole = (id, params) => {
   return putRequestWithNoForm(`/permission/departmentRole/${id}`, params);
 };
@@ -169,7 +169,7 @@ export const loadDepartment = (id) => {
 export const addDepartment = (params) => {
   return postRequest("/permission/department", params);
 };
-// 编辑部门
+// edit部门
 export const editDepartment = (ids, params) => {
   return putRequest(`/permission/department/${ids} `, params);
 };
@@ -188,7 +188,7 @@ export const searchDepartment = (params) => {
 export const getAllRoleList = (params) => {
   return getRequest("/permission/role", params);
 };
-// 分页获取角色数据
+// 分Page获取角色数据
 export const getRoleList = (params) => {
   return getRequest("/permission/role", params);
 };
@@ -198,12 +198,12 @@ export const addRole = (params) => {
   return postRequest("/permission/role", params);
 };
 
-// 编辑角色
+// edit角色
 export const editRole = (params) => {
   return putRequest(`/permission/role/${params.roleId}`, params);
 };
 
-// 查看某角色拥有的菜单
+// View某角色拥有的菜单
 export const selectRoleMenu = (params) => {
   return getRequest(`/permission/roleMenu/${params}`);
 };
@@ -245,7 +245,7 @@ export const addPermission = (params) => {
   return postRequest("/permission/menu", params);
 };
 
-// 编辑权限
+// edit权限
 export const editPermission = (params) => {
   return putRequest(`/permission/menu/${params.id}`, params);
 };
@@ -261,7 +261,7 @@ export const searchPermission = (params) => {
 /****************************** 权限结束 */
 
 
-// 分页获取日志数据
+// 分Page获取日志数据
 export const getLogListData = (params) => {
   return getRequest("/setting/log/getAllByPage", params);
 };
@@ -275,7 +275,7 @@ export const deleteAllLog = (params) => {
 };
 
 
-// 分页获Cancel息数据
+// 分Page获Cancel息数据
 export const getMessageData = (params) => {
   return getRequest("/other/message/getByCondition", params);
 };
@@ -287,7 +287,7 @@ export const getMessageDataById = (id, params) => {
 export const addMessage = (params) => {
   return postRequest("/messageSend/send", params);
 };
-// 编辑消息
+// edit消息
 export const editMessage = (params) => {
   return postRequest("/other/message/edit", params);
 };
@@ -295,7 +295,7 @@ export const editMessage = (params) => {
 export const deleteMessage = (ids, params) => {
   return deleteRequest(`/other/message/delByIds/${ids}`, params);
 };
-// 编辑发送消息
+// edit发送消息
 export const editMessageSend = (params) => {
   return putRequest("/messageSend/update", params);
 };
@@ -304,7 +304,7 @@ export const deleteMessageSend = (ids, params) => {
   return deleteRequest(`/manager/messageSend/delByIds/${ids}`, params);
 };
 
-// 分页获取文件数据
+// 分Page获取文件数据
 export const getFileListData = (params) => {
   return getRequest("/common/file", params);
 };
@@ -336,13 +336,13 @@ export const setSetting = (key, params) => {
   return putRequestWithNoForm(`/setting/setting/put/${key}`, params);
 };
 
-// 分页查询敏感词
+// 分Page查询敏感词
 
 export const getSensitiveWordsPage = (params) => {
   return getRequest(`/other/sensitiveWords`, params);
 };
 
-// 分页查询敏感词
+// 分Page查询敏感词
 export const insertSensitiveWords = (params) => {
   return postRequest(`/other/sensitiveWords`, params);
 };
@@ -357,19 +357,19 @@ export const delSensitive = (ids) => {
   return deleteRequest(`/other/sensitiveWords/delByIds/${ids}`);
 };
 
-// 添加Goods计量单位
+// Add goodsUnit
 export const addGoodsUnit = (params) => {
   return postRequest(`/goods/goodsUnit`, params);
 };
-// 分页获取Goods计量单位
+// 分Page获取GoodsUnit
 export const getGoodsUnitPage = (params) => {
   return getRequest(`/goods/goodsUnit`, params);
 };
-// 编辑Goods计量单位
+// editGoodsUnit
 export const updateGoodsUnit = (id, params) => {
   return putRequest(`/goods/goodsUnit/${id}`, params);
 };
-// deleteGoods计量单位
+// deleteGoodsUnit
 export const delGoodsUnit = (ids) => {
   return deleteRequest(`/goods/goodsUnit/delete/${ids}`);
 };
@@ -393,12 +393,12 @@ export const addRegion = (params) => {
   return postRequest(`/setting/region`, params);
 };
 
-// 通过id获取子地区
+// passid获取子地区
 export const getChildRegion = (id) => {
   return getRequest(`/setting/region/item/${id}`);
 };
 
-// 重置用户密码
+// reset用户密码
 export const resetPassword = (params) => {
   return postRequest(`/passport/user/resetPassword/${params}`);
 };
@@ -413,7 +413,7 @@ export const getProgress = () => {
   return getRequest(`/other/elasticsearch/progress`);
 };
 
-// 分页查询自定义分词
+// 分Page查询自定义分词
 export const getCustomWordsPage = (params) => {
   return getRequest(`/other/customWords/page`, params);
 };

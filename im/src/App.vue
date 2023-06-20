@@ -8,7 +8,7 @@ export default {
   name: 'App',
   data () {
     return {
-      // 用于点击当前页的router时，刷新当前页
+      // 用于点击当前Page的router时，刷新当前Page
       showView: true,
       beforeUnload: '',
       Handler: ''
@@ -23,7 +23,7 @@ export default {
     beforeunloadHandler () {
       this.beforeUnload = new Date().getTime();
     },
-    // 页面Close后 重置btnHide
+    // Page面Close后 resetbtnHide
     unloadHandler (e) {
       this.Handler = new Date().getTime() - this.beforeUnload;
       if (this.Handler <= 5) {

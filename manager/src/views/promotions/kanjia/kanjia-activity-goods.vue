@@ -18,7 +18,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="活动状态" prop="promotionStatus">
+          <Form-item label="活动state" prop="promotionStatus">
             <Select
               v-model="searchForm.promotionStatus"
               placeholder="Please select"
@@ -26,8 +26,8 @@
               style="width: 200px"
             >
               <Option value="NEW">未开始</Option>
-              <Option value="START">已开始/上架</Option>
-              <Option value="END">已结束/下架</Option>
+              <Option value="START">已开始/On</Option>
+              <Option value="END">已结束/Off</Option>
               <Option value="CLOSE">紧急Close/作废</Option>
             </Select>
           </Form-item>
@@ -67,7 +67,7 @@
             <a class="mr_10" @click="linkTo(row.goodsId, row.skuId)">{{
               row.goodsName
             }}</a>
-            <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+            <Poptip trigger="hover" title="扫码在手机中View" transfer>
               <div slot="content">
                 <vue-qr
                   :text="wapLinkTo(row.goodsId, row.skuId)"
@@ -102,14 +102,14 @@
             size="small"
             style="margin-right: 10px"
             @click="edit(row)"
-            >编辑
+            >edit
           </Button>
           <Button
             v-else
             size="small"
             style="margin-right: 10px"
             @click="edit(row, 'onlyView')"
-            >查看
+            >View
           </Button>
           <Button
             type="error"
@@ -152,24 +152,24 @@ export default {
   data() {
     return {
       selectDate: [], //选中的数据
-      loading: true, // 表单加载状态
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: true, // 表单加载state
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         goodsName: "",
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
       },
       // 表单验证规则
       formValidate: {},
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -180,12 +180,12 @@ export default {
           tooltip: true,
         },
         {
-          title: "库存Quantity",
+          title: "stockQuantity",
           slot: "quantity",
           width: 100,
         },
         {
-          title: "剩余活动库存",
+          title: "剩余活动stock",
           key: "stock",
           width: 110,
         },
@@ -229,7 +229,7 @@ export default {
           minWidth: 150,
         },
         {
-          title: "状态",
+          title: "state",
           key: "promotionStatus",
           render: (h, params) => {
             return promotionsStatusRender(h, params);
@@ -308,7 +308,7 @@ export default {
         this.searchForm.startTime = null;
         this.searchForm.endTime = null;
       }
-      // 带多条件search参数获取表单数据 Please 自行modify接口
+      // 带多items件search参数获取表单数据 Please 自行modify接口
       getKanJiaGoodsList(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {

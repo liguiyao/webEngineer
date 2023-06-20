@@ -102,9 +102,9 @@ import {
 export default {
   data() {
     return {
-      asyncLoading: false, // 加载状态
+      asyncLoading: false, // 加载state
       num: 10, // 更新倒计时
-      modalFlag: false, // 新增编辑标识
+      modalFlag: false, // 新增edit标识
       timerNum: 10, // 定时器
       data: [], // 加载数据
       id: 0, // id
@@ -156,7 +156,7 @@ export default {
       delete this.addValidate.children;
       addRegion(this.addValidate).then((res) => {
         if (res.success) {
-          this.$Message.success("添加success!Please 稍后查看");
+          this.$Message.success("添加success!Please 稍后View");
         }
       });
     },
@@ -206,7 +206,7 @@ export default {
         onOk: () => {
           delRegion(this.formValidate.id).then((res) => {
             if (res.success) {
-              this.$Message.success("deletesuccess!,Please 稍后查看数据");
+              this.$Message.success("deletesuccess!,Please 稍后View数据");
             }
           });
         },
@@ -227,7 +227,7 @@ export default {
             : (this.formValidate.adCode = "");
           updateRegion(this.formValidate.id, this.formValidate).then((res) => {
             if (res.result) {
-              this.$Message.success("modifysuccess!,Please 稍后查看数据");
+              this.$Message.success("modifysuccess!,Please 稍后View数据");
             }
           });
         } else {

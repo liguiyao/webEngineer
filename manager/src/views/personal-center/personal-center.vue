@@ -75,7 +75,7 @@ export default {
         avatar: "",
         nickname: ""
       },
-      saveLoading:false,//loading 状态
+      saveLoading:false,//loading state
       currMenu: "基本信息" // 当前菜单
     };
   },
@@ -92,7 +92,7 @@ export default {
       let userInfo = JSON.parse(JSON.stringify(v));
       this.userForm = userInfo;
     },
-    // 跳转modify密码页面
+    // 跳转modify密码Page面
     changePassword() {
       util.openNewPage(this, "change-password");
       this.$router.push({

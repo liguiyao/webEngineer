@@ -14,7 +14,7 @@
       >
         <template slot-scope="{ row }" slot="action">
           <Button type="info" size="small" style="margin-right: 10px" @click="info(row)">
-            查看
+            View
           </Button>
           <Button
             v-if="
@@ -56,26 +56,26 @@ export default {
   components: {},
   data() {
     return {
-      loading: true, // 表单加载状态
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: true, // 表单加载state
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         promotionName: "",
       },
       // 表单验证规则
       formValidate: {
         promotionName: [{ required: true, message: "不能为空", trigger: "blur" }],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -148,7 +148,7 @@ export default {
           },
         },
         {
-          title: "状态",
+          title: "state",
           minWidth: 80,
           key: "promotionStatus",
           fixed: "right",
@@ -184,16 +184,16 @@ export default {
     add() {
       this.$router.push({ name: "add-coupon-activity" });
     },
-    //查看详情
+    //View详情
     info(v) {
       this.$router.push({ name: "coupon-activity-info", query: { id: v.id } });
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -224,7 +224,7 @@ export default {
       });
       this.loading = false;
     },
-    //跳转编辑
+    //跳转edit
     edit(v) {
       this.$router.push({ name: "edit-platform-coupon", query: { id: v.id } });
     },

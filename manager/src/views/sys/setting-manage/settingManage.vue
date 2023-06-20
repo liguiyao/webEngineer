@@ -105,7 +105,7 @@ export default {
       this.getSettingData(name);
     },
     /**
-     * 进入页面Please 求第一个配置
+     * 进入Page面Please 求第一个配置
      */
     getSettingData(name) {
       this.settingData = "";
@@ -114,7 +114,7 @@ export default {
           this.tabWay = this[item];
         }
       });
-      // 点击页面给每项第一个数据赋值
+      // 点击Page面给每项第一个数据赋值
       if (!name) {
         name = this.tabWay[0].type;
         this.selected = name;

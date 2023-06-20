@@ -88,7 +88,7 @@
         class="mb_20 width_1200_auto"
       ></new-goods-sort>
     </template>
-    <!-- 首页广告 -->
+    <!-- Home广告 -->
     <template v-if="element.type == 'firstAdvert'">
       <first-page-advert
         :data="element"

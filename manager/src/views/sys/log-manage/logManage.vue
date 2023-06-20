@@ -105,7 +105,7 @@ export default {
   data() {
     return {
       openTip: false, // OpeningTips
-      loading: true, // 加载状态
+      loading: true, // 加载state
       selectDate: null, // select时间段
       showDev: false, //展示进阶日志
       searchForm: {
@@ -283,12 +283,12 @@ export default {
     init() {
       this.getLogList();
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getLogList();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;

@@ -1,4 +1,4 @@
-/** 公共方法类 */
+/** 公total方法类 */
 import { getToken } from "@/utils/auth";
 import config from "@/config/config";
 
@@ -110,7 +110,7 @@ export function downloadIamge (imgsrc, name) {
 }
 
 /**
- * 通过图片url获取图片大小
+ * pass图片url获取图片大小
  *
  * @param {String} imgsrc 例如图片名： D8x5f13a53dbc4b9_350x345.png
  */
@@ -323,7 +323,7 @@ export function removeClass (ele, cls) {
 }
 
 /**
- * 通过图片Url获取图片等比例缩放的宽度和高度信息
+ * pass图片Url获取图片等比例缩放的宽度和高度信息
  *
  * @param {String} src
  * @param {Number} width

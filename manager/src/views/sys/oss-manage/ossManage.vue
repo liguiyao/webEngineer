@@ -106,7 +106,7 @@
             <span >{{ selectCount }}</span> 项
             <a class="select-clear" @click="clearSelectAll">清空</a>
             <span v-if="selectCount > 0" style="margin-left: 15px"
-            >共计 {{ totalSize }} 存储量</span
+            >total计 {{ totalSize }} 存储量</span
             >
           </Alert>
         </Row>
@@ -273,23 +273,23 @@ export default {
       config, // apiaddress
       selectImage: false, //是否是select
       accessToken: {}, // 上传token鉴权
-      loading: false, // 表单加载状态
+      loading: false, // 表单加载state
       fileType: "all", // 文件类型
       showType: "list", // 展示类型
-      modalVisible: false, // 添加或编辑显示
+      modalVisible: false, // 添加或edit显示
       uploadVisible: false, // 上传展示
       videoVisible: false, // 文件modal
       picVisible: false, // 图片modal
       picTitle: "", // 图片title
       videoTitle: "", // 视频title
-      modalTitle: "", // 添加或编辑标题
+      modalTitle: "", // 添加或edit标题
       searchForm: {
         // search框对应data对象
         name: "",
         fileKey: "",
         fileType: "",
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         startDate: "", // 起始时间
@@ -307,7 +307,7 @@ export default {
         name: [{required: true, message: "不能为空", trigger: "blur"}],
         fileKey: [{required: true, message: "不能为空", trigger: "blur"}],
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       totalSize: "", // 文件大小统计
@@ -543,7 +543,7 @@ export default {
       ],
       data: [], // 表单数据
       total: 0, // 表单数据总数
-      pageSizeOpts: [5, 10, 20], // 页码展示项
+      pageSizeOpts: [5, 10, 20], // Page码展示项
     };
   },
   watch:{
@@ -573,7 +573,7 @@ export default {
       };
       this.getDataList();
     },
-    // 查看大图
+    // View大图
     showPic(v) {
       this.file = v;
       this.file.msize = ((v.fileSize * 1.0) / (1024 * 1024)).toFixed(2) + " MB";
@@ -581,7 +581,7 @@ export default {
       this.picTitle = v.name + "(" + v.fileKey + ")";
       this.picVisible = true;
     },
-    // 查看视频
+    // View视频
     showVideo(v) {
       dp = new DPlayer({
         container: document.getElementById("dplayer"),
@@ -599,13 +599,13 @@ export default {
     closeVideo() {
       dp.destroy();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -627,7 +627,7 @@ export default {
         this.searchForm.endDate = v[1];
       }
     },
-    // 改变查看方式
+    // 改变View方式
     changeShowType() {
       this.searchForm.pageNumber = 1;
       if (this.showType == "list") {
@@ -777,7 +777,7 @@ export default {
     },
     // modify文件名modal
     rename(v) {
-      this.modalTitle = "编辑文件名";
+      this.modalTitle = "edit文件名";
       // 转换null为""
       for (let attr in v) {
         if (v[attr] == null) {
@@ -790,7 +790,7 @@ export default {
       this.oldKey = data.fileKey;
       this.modalVisible = true;
     },
-    // 清除选中状态
+    // 清除选中state
     clearSelectAll() {
       this.$refs.table.selectAll(false);
       this.totalSize = "";

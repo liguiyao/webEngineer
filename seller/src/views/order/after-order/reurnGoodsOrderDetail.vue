@@ -8,7 +8,7 @@
             <div class="div-form-default">
               <h3>after saleApply  </h3>
               <dl>
-                <dt>after sale状态</dt>
+                <dt>after salestate</dt>
                 <dd>{{filterStatus(afterSaleInfo.serviceStatus)}}</dd>
               </dl>
 
@@ -130,7 +130,7 @@
                 <dd>
                   <div class="div-content">
                     <span v-if="params.serviceStatus=='PASS'">
-                      审核通过
+                      审核pass
                     </span>
                     <span v-else>
                       审核拒绝
@@ -374,7 +374,7 @@ export default {
           { required: true, message: "Please selectLogistics company ", trigger: "blur" },
         ],
       },
-      modalVisible: false, // 添加或编辑显示
+      modalVisible: false, // 添加或edit显示
       afterSaleInfo: {
         // after sale信息
         afterSaleAllowOperationVO: {
@@ -383,7 +383,7 @@ export default {
       },
       afterSaleImage: [], //会员申诉图片
       appealImages: [], //商家申诉的图片
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       checkedLogistics: [], //选中的Logistics company 集合
       //商家处理意见
       params: {
@@ -391,10 +391,10 @@ export default {
         remark: "",
         actualRefundPrice: 0,
       },
-      // after sale状态
+      // after salestate
       afterSaleStatus: [
         { status: "APPLY", label: "Apply  after sale" },
-        { status: "PASS", label: "Apply  通过" },
+        { status: "PASS", label: "Apply  pass" },
         { status: "REFUSE", label: "Apply  拒绝" },
         { status: "BUYER_RETURN", label: "买家Return goods，待卖家收货" },
         { status: "SELLER_RE_DELIVERY", label: "商家换货" },
@@ -508,7 +508,7 @@ export default {
       });
        this.submitLoading = false;
     },
-    // Backafter sale状态中文描述
+    // Backafter salestate中文描述
     filterStatus(status) {
       let label = '';
       for (let i = 0; i < this.afterSaleStatus.length; i++) {
@@ -525,7 +525,7 @@ export default {
     this.sn = this.$route.query.sn;
     this.getDetail();
   },
-  // 如果是从详情页Back列表页，modify列表页keepAlive为true，确保不刷新页面
+  // 如果是从详情PageBack列表Page，modify列表PagekeepAlive为true，确保不刷新Page面
   beforeRouteLeave(to, from, next){
     if(to.name === 'returnGoodsOrder' || to.name === 'returnMoneyOrder') {
       to.meta.keepAlive = true

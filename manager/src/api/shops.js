@@ -9,7 +9,7 @@ export const getBillPage = (params) => {
 export const getShopListData = (params) => {
     return getRequest('/store/store', params)
 }
-//禁用店铺
+//disable店铺
 export const disableShop = (id) => {
     return putRequest(`/store/store/disable/${id}`)
 }
@@ -45,7 +45,7 @@ export const shopDetail = (id) => {
 
 
 
-// 获取结算单分页
+// 获取结算单分Page
 export const getBuyBillPage = (params) => {
   return getRequest(`/order/bill/getByPage`,params)
 }
@@ -56,7 +56,7 @@ export const getBuyBillDetail = (id) => {
 }
 
 
-// 获取商家结算单流水分页
+// 获取商家结算单流水分Page
 export const getStoreFlow = (id,params) => {
   return getRequest(`/order/bill/${id}/getStoreFlow`,params)
 }

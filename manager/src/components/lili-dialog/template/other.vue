@@ -19,7 +19,7 @@
           <p>{{ item.title }}</p>
         </div>
       </Col>
-      <!-- 外部链接，只有pc端跳转 -->
+      <!-- 外部链接，只有PC跳转 -->
       <Col span="4">
         <div
           v-if="linkVisible"
@@ -41,7 +41,7 @@ export default {
       linkList: [
         // 链接列表
         {
-          title: "首页",
+          title: "Home",
           icon: "md-home",
           ___type: "home",
         },

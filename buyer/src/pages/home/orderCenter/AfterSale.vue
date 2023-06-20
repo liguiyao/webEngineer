@@ -62,7 +62,7 @@
       </template>
       <Spin size="large" fix v-if="spinShow"></Spin>
     </div>
-    <!-- 分页 -->
+    <!-- 分Page -->
     <div class="page-size">
       <Page :total="total" @on-change="changePageNum"
             @on-page-size-change="changePageSize"
@@ -129,10 +129,10 @@ export default {
         sort: 'createTime',
         order: 'desc'
       },
-      // 状态数组
+      // state数组
       afterSaleStatusList,
       total: 0, // 订单总数
-      spinShow: false, // 加载状态
+      spinShow: false, // 加载state
       companyList: [], // Logistics company 列表
       logisticsShow: false, // logistics informationmodal
       singleOrder: {}, // 单独的after sale信息
@@ -147,7 +147,7 @@ export default {
         logisticsNo: [{required: true, message: 'Please enter Logistics number'}],
         mDeliverTime: [{required: true, message: 'Please select Delivery time'}]
       },
-      submitLoading: false // Submit加载状态
+      submitLoading: false // Submit加载state
     };
   },
   mounted() {
@@ -177,14 +177,14 @@ export default {
       });
     },
     goodsDetail(skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routeUrl = this.$router.resolve({
         path: '/goodsDetail',
         query: {skuId, goodsId}
       });
       window.open(routeUrl.href, '_blank');
     },
-    // 跳转店铺首页
+    // 跳转店铺Home
     shopPage(id) {
       let routeUrl = this.$router.resolve({
         path: '/Merchant',
@@ -203,16 +203,16 @@ export default {
         }
       });
     },
-    changePageNum(val) { // modify页码
+    changePageNum(val) { // modifyPage码
       this.params.pageNumber = val;
       this.getList()
     },
-    changePageSize(val) { // modify页数
+    changePageSize(val) { // modifyPage数
       this.params.pageNumber = 1;
       this.params.pageSize = val;
       this.getList()
     },
-    filterOrderStatus(status) { // 获取订单状态中文
+    filterOrderStatus(status) { // 获取Status中文
       const ob = this.afterSaleStatusList.filter(e => {
         return e.status === status
       });

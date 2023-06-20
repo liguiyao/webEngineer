@@ -100,7 +100,7 @@ export default {
       id: this.$route.query.id, // 活动id
       periodTime: null, // 抢购时间段
       showAddPeriod: false, // input显隐
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
 
       formRule: {
         promotionName: [{ required: true, message: "Please enter 活动名称" }],
@@ -118,7 +118,7 @@ export default {
     }
   },
   methods: {
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "manager-seckill-add");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
@@ -177,11 +177,11 @@ export default {
           params.applyEndTime = this.$options.filters.unixToDate(
             this.form.applyEndTime / 1000
           );
-          // 编辑
+          // edit
           updateSeckill(params).then((res) => {
             this.submitLoading = false;
             if (res && res.success) {
-              this.$Message.success("编辑success");
+              this.$Message.success("editsuccess");
               this.closeCurrentPage();
             }
           });

@@ -82,7 +82,7 @@ export function validateCode (params) {
 }
 
 /**
- * Forget Password 重置密码
+ * Forget Password reset密码
  */
 export function resetPassword (params) {
   return request({

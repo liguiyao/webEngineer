@@ -6,11 +6,11 @@
         <Form-item label="goods name" prop="goodsName">
           <Input type="text" v-model="searchForm.goodsName" placeholder="Please enter goods name" clearable style="width: 200px" />
         </Form-item>
-        <Form-item label="Goods编号" prop="id">
+        <Form-item label="Goods Num" prop="id">
           <Input
             type="text"
             v-model="searchForm.id"
-            placeholder="Goods编号"
+            placeholder="Goods Num"
             clearable
             style="width: 200px"
           />
@@ -19,7 +19,7 @@
           <Button @click="handleSearch" type="primary" icon="ios-search"
             >search</Button
           >
-          <Button @click="handleReset">重置</Button>
+          <Button @click="handleReset">reset</Button>
         </Form-item>
       </Form>
       <Table :loading="loading" border :columns="columns" :data="data" ref="table" class="mt_10"></Table>
@@ -39,11 +39,11 @@ export default {
   components: {},
   data() {
     return {
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "create_time", // default排序字段
         order: "desc", // default排序方式
         saveType: "TEMPLATE",
@@ -119,7 +119,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -152,7 +152,7 @@ export default {
       // 初始化数据
       this.getDataList();
     },
-    // 编辑模板
+    // edit模板
     editGoods(v) {
       this.$router.push({
         name: "goods-template-operation-edit",
@@ -177,12 +177,12 @@ export default {
         },
       });
     },
-    // 改变页数
+    // 改变Page数
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -193,7 +193,7 @@ export default {
       this.searchForm.pageSize = 10;
       this.getDataList();
     },
-    // 重置
+    // reset
     handleReset() {
       this.$refs.searchForm.resetFields();
       this.searchForm.pageNumber = 1;
@@ -204,7 +204,7 @@ export default {
     // 获取列表数据
     getDataList() {
       this.loading = true;
-      // 带多条件search参数获取表单数据
+      // 带多items件search参数获取表单数据
       getDraftGoodsListData(this.searchForm).then((res) => {
         this.loading = false;
         if (res.success) {

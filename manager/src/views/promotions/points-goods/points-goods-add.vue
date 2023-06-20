@@ -139,7 +139,7 @@ export default {
       showTable: true,
       promotionGoodsList: [], // 活动Goods列表
       categoryList: [], // 分类列表
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectedGoods: [], // 已选Goods列表，便于delete
       formRule: {
         startTime: [
@@ -226,7 +226,7 @@ export default {
           },
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           minWidth: 20,
           render: (h, params) => {
@@ -244,7 +244,7 @@ export default {
           minWidth: 60,
         },
         {
-          title: "活动库存",
+          title: "活动stock",
           slot: "activeStock",
           minWidth: 40,
         },
@@ -289,7 +289,7 @@ export default {
     await this.getCategory();
   },
   methods: {
-    // 获取Goods分类
+    // 获取Goods Category
     async getCategory() {
       let res = await getPointsGoodsCategoryList();
       this.categoryList = res.result.records;
@@ -323,7 +323,7 @@ export default {
         }
       });
     },
-    // Close当前页面
+    // Close当前Page面
     closeCurrentPage() {
       this.$store.commit("removeTag", "add-points-goods");
       localStorage.pageOpenedList = JSON.stringify(this.$store.state.app.pageOpenedList);
@@ -333,7 +333,7 @@ export default {
     changeCategory(val, index) {
       this.promotionGoodsList[index].pointsGoodsCategoryName = val.label;
     },
-    // 变更选中状态
+    // 变更选中state
     changeSelect(e) {
       // 已选Goods批量select
       this.selectedGoods = e;

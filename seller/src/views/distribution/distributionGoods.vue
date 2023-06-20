@@ -24,7 +24,7 @@
               <div class="div-zoom">
                 <a @click="linkTo(row.id,row.skuId)">{{row.goodsName}}</a>
               </div>
-              <Poptip trigger="hover" title="扫码在手机中查看" transfer>
+              <Poptip trigger="hover" title="扫码在手机中View" transfer>
                 <div slot="content">
                   <vue-qr :text="wapLinkTo(row.id,row.skuId)"  :margin="0" colorDark="#000" colorLight="#fff" :size="150"></vue-qr>
                 </div>
@@ -81,14 +81,14 @@ export default {
   },
   data() {
     return {
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
-      submitLoading: false, // 添加或编辑Submit状态
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
+      submitLoading: false, // 添加或editSubmitstate
       shopList:[], // 店铺列表
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: { // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
       },
@@ -122,7 +122,7 @@ export default {
           }
         },
         {
-          title: "库存",
+          title: "stock",
           key: "quantity",
           width: 100
         },
@@ -184,19 +184,19 @@ export default {
       this.modalTitle = "Save分销Goods"
       this.skuId = v[0].id
     },
-    // 添加Goodsmodal
+    // Add goodsmodal
     add(){
       this.$refs.liliDialog.flag = true;
       this.$refs.liliDialog.goodsFlag = true;
       this.$refs.liliDialog.singleGoods();
     },
-    // 改变页码
+    // 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.$refs.table.selectAll(false);
     },
-    // 添加Goods
+    // Add goods
     handleSubmit(){
       this.$refs['form'].validate((valid) => {
         if (valid) {
@@ -210,7 +210,7 @@ export default {
         }
       })
     },
-    // 改变页数
+    // 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -224,7 +224,7 @@ export default {
     // 获取Goods列表
     getDataList() {
       this.loading = true;
-      // 带多条件search参数获取表单数据 Please 自行modify接口
+      // 带多items件search参数获取表单数据 Please 自行modify接口
       getDistributionGoods(this.searchForm).then(res => {
         this.loading = false;
         if (res.success) {

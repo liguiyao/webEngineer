@@ -14,7 +14,7 @@
         </Carousel>
         <div class="setup-box">
           <div>
-            <Button size="small" @click.stop="handleSelectModel">编辑</Button>
+            <Button size="small" @click.stop="handleSelectModel">edit</Button>
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@ export default {
 
   methods: {
     handleSelectModel() {
-      // 编辑模块
+      // edit模块
       this.showModal = true;
     },
     // 添加轮播图

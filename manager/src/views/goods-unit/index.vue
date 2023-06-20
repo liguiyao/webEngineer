@@ -64,19 +64,19 @@ export default {
   name: "goods-unit",
   data() {
     return {
-      loading: true, // 表单加载状态
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: true, // 表单加载state
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         name: "",
       },
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         name: "",
       },
       // 表单验证规则
@@ -86,7 +86,7 @@ export default {
           regular.VARCHAR5
         ]
       },
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       selectList: [], // 多选数据
       selectCount: 0, // 多选计数
       columns: [
@@ -173,13 +173,13 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 改变页码
+    // 分Page 改变Page码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 改变页数
+    // 分Page 改变Page数
     changePageSize(v) {
       this.searchForm.pageSize = v;
       this.getDataList();
@@ -226,7 +226,7 @@ export default {
               this.submitLoading = false
               return
             }
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.form.id;
             addGoodsUnit(this.form).then((res) => {
               this.submitLoading = false;
@@ -237,7 +237,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             updateGoodsUnit(this.id, this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
@@ -258,7 +258,7 @@ export default {
 
       this.modalVisible = true;
     },
-    // 编辑
+    // edit
     edit(v) {
       this.id = v.id;
       this.modalTitle = "modify";

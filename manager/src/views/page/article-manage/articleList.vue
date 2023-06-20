@@ -45,7 +45,7 @@
             :data="data"
             ref="table"
           >
-            <!-- 页面展示 -->
+            <!-- Page面展示 -->
             <template slot="openStatusSlot" slot-scope="scope">
               <div></div>
               <i-switch
@@ -163,22 +163,22 @@ export default {
     return {
       initEditor: initEditor,
       selectedIndex: 99999, // 已选下标
-      loading: true, // 表单加载状态
-      modalType: 0, // 添加或编辑标识
-      modalVisible: false, // 添加或编辑显示
-      modalTitle: "", // 添加或编辑标题
+      loading: true, // 表单加载state
+      modalType: 0, // 添加或edit标识
+      modalVisible: false, // 添加或edit显示
+      modalTitle: "", // 添加或edit标题
       treeDataDefault: [],
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime", // default排序字段
         order: "desc", // default排序方式
         categoryId: "",
       },
       searchTreeValue: "", // 切换
       form: {
-        // 添加或编辑表单对象初始化数据
+        // 添加或edit表单对象初始化数据
         openStatus: false,
         title: "",
         categoryId: "",
@@ -190,7 +190,7 @@ export default {
       treeValue: "", // select的分类
       //树结构
       treeData: [],
-      submitLoading: false, // 添加或编辑Submit状态
+      submitLoading: false, // 添加或editSubmitstate
       columns: [
         // 表头
         {
@@ -262,7 +262,7 @@ export default {
                     },
                   },
                 },
-                "编辑"
+                "edit"
               ),
               h(
                 "Button",
@@ -346,12 +346,12 @@ export default {
       this.form.categoryId = value;
       this.treeValue = title;
     },
-    // 改变页数
+    // 改变Page数
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
     },
-    // 改变页码
+    // 改变Page码
     changePageSize(v) {
       this.selected.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -422,7 +422,7 @@ export default {
         if (valid) {
           this.submitLoading = true;
           if (this.modalType === 0) {
-            // 添加 避免编辑后传入id等数据 记得delete
+            // 添加 避免edit后传入id等数据 记得delete
             delete this.form.id;
             saveArticle(this.form).then((res) => {
               this.submitLoading = false;
@@ -433,7 +433,7 @@ export default {
               }
             });
           } else {
-            // 编辑
+            // edit
             updateArticle(this.form).then((res) => {
               this.submitLoading = false;
               if (res.success) {
@@ -460,10 +460,10 @@ export default {
       delete this.form.id;
       this.modalVisible = true;
     },
-    // 编辑文章modal
+    // edit文章modal
     edit(data) {
       this.modalType = 1;
-      this.modalTitle = "编辑文章";
+      this.modalTitle = "edit文章";
       this.treeValue = "";
       this.form = {
         content: "",

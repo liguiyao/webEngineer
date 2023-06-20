@@ -19,7 +19,7 @@
         /></span>
       </div>
     </div>
-    <!-- 添加订单Evaluate  左侧Goods详情  右侧Evaluate框 -->
+    <!-- 添加订单Evaluate  左侧Goods Detail  右侧Evaluate框 -->
     <ul class="goods-eval">
       <li>
         <div class="goods-con">
@@ -95,7 +95,7 @@ export default {
       orderGoods: {}, // 订单Goods
       visible: false, // 图片预览
       previewImage: "", // 预览图片链接
-      loading: false, // 加载状态
+      loading: false, // 加载state
     };
   },
   methods: {
@@ -106,7 +106,7 @@ export default {
       });
     },
     goGoodsDetail(skuId, goodsId) {
-      // 跳转Goods详情
+      // 跳转Goods Detail
       let routerUrl = this.$router.resolve({
         path: "/goodsDetail",
         query: { skuId, goodsId },

@@ -119,7 +119,7 @@ export default {
       orderList: [], // 订单列表
       collectList: [], // 收藏列表
       tracksList: [], // 足迹列表
-      orderStatusList: [ // 订单状态
+      orderStatusList: [ // Status
         {
           name: 'UNPAID',
           status: 'UNPAID'
@@ -174,7 +174,7 @@ export default {
         }
       });
     },
-    filterOrderStatus (status) { // 获取订单状态中文
+    filterOrderStatus (status) { // 获取Status中文
       const ob = this.orderStatusList.filter(e => { return e.status === status });
       return ob[0].name
     },
@@ -221,7 +221,7 @@ export default {
       }
       return `${shop}${goods}available`
     },
-    addToCart (id) { // 添加Goods到购物车
+    addToCart (id) { // Add goods到购物车
       const params = {
         num: 1,
         skuId: id

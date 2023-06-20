@@ -31,7 +31,7 @@ const errorHandler = (error) => {
       if(!isRefreshing){
       
       /**
-       * 403Tips将重新从商家移动端进入当前页面
+       * 403Tips将重新从商家移动端进入当前Page面
        */
       MessageBox("当前Login已失效，Please 从Close重新进入。", "Tips", {
         confirmButtonText: "Confirm",
@@ -45,7 +45,7 @@ const errorHandler = (error) => {
           window.close();
           Notification({
             title:"Login失效Tips",
-            message: "Please 手动Close当前页面",
+            message: "Please 手动Close当前Page面",
             type:"error",
             position: "top-right",
           });
@@ -55,7 +55,7 @@ const errorHandler = (error) => {
           isRefreshing = true
           Notification({
             title:"Login失效Tips",
-            message: "Please 手动Close当前页面",
+            message: "Please 手动Close当前Page面",
             type:"error",
             position: "top-right",
           });

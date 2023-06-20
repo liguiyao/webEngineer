@@ -58,11 +58,11 @@ export default {
     return {
       progress: true, // 展示进度
       num: 20, // Submit进度
-      saveDialog: false, // 加载状态
+      saveDialog: false, // 加载state
       way: [
         // 装修tab栏切换
         {
-          title: "首页",
+          title: "Home",
           name: "index",
           selected: true,
         },
@@ -150,7 +150,7 @@ export default {
         .catch((error) => {});
     },
 
-    // Back查询数据页面
+    // Back查询数据Page面
     goback() {
       this.$router.push({
         path: "/wapList",

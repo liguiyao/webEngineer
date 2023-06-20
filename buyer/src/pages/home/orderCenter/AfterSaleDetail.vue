@@ -111,7 +111,7 @@ export default {
       afterSale: {}, // After-sale details数据
       logList: [], // 日志
       reasonList: [], // after sale原因列表
-      afterSaleStatusList, // after sale状态列表
+      afterSaleStatusList, // after salestate列表
       companyList: [], // Logistics company 列表
       logisticsShow: false, // logistics informationmodal
       form: { // logistics information数据
@@ -125,7 +125,7 @@ export default {
         logisticsNo: [{ required: true, message: 'Please enter Logistics number' }],
         mDeliverTime: [{ required: true, message: 'Please selectDelivery time' }]
       },
-      submitLoading: false // Submit加载状态
+      submitLoading: false // Submit加载state
     };
   },
   methods: {
@@ -161,11 +161,11 @@ export default {
         this.logList = res.result;
       })
     },
-    filterOrderStatus (status) { // 获取订单状态中文
+    filterOrderStatus (status) { // 获取Status中文
       const ob = this.afterSaleStatusList.filter(e => { return e.status === status });
       if (ob.length) return ob[0].name
     },
-    perviewImg (img) { // 查看图片
+    perviewImg (img) { // View图片
       window.open(img, '_blank')
     },
     cancel (sn) { // Cancelafter saleApply
@@ -272,7 +272,7 @@ export default {
     span{color: #999;}
   }
 }
-/** after sale进度条 */
+/** after sale进度items */
 .progress {
   margin: 15px 0;
 }

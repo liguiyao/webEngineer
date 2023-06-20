@@ -21,7 +21,7 @@
               style="width: 200px"
             />
           </Form-item>
-          <Form-item label="状态" prop="status">
+          <Form-item label="state" prop="status">
             <Select v-model="searchForm.status" placeholder="Please select" clearable style="width: 200px">
               <Option value="NEW">New Complaint</Option>
               <Option value="CANCEL">已撤销</Option>
@@ -80,11 +80,11 @@
     },
     data() {
       return {
-        loading: true, // 表单加载状态
+        loading: true, // 表单加载state
         searchForm: {
           // search框初始化对象
-          pageNumber: 1, // 当前页数
-          pageSize: 10, // 页面大小
+          pageNumber: 1, // 当前Page数
+          pageSize: 10, // Page面大小
           sort: "createTime", // default排序字段
           order: "desc", // default排序方式
         },
@@ -121,7 +121,7 @@
             width: 180,
           },
           {
-            title: "Complaint状态",
+            title: "Complaintstate",
             key: "complainStatus",
             width: 100,
             render: (h, params) => {
@@ -210,12 +210,12 @@
       init() {
         this.getDataList();
       },
-      // 分页 改变页码
+      // 分Page 改变Page码
       changePage(v) {
         this.searchForm.pageNumber = v;
         this.getDataList();
       },
-      // 分页 改变页数
+      // 分Page 改变Page数
       changePageSize(v) {
         this.searchForm.pageNumber = 1;
         this.searchForm.pageSize = v;

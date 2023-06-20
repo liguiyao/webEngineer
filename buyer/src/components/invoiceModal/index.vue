@@ -52,7 +52,7 @@ export default {
     return {
       invoice: 1, // 发票类型
       invoiceAvailable: false, // 模态框显隐
-      loading: false, // Submit状态
+      loading: false, // Submitstate
       invoiceForm: {
         // 普票表单
         receiptTitle: '', // 发票抬头

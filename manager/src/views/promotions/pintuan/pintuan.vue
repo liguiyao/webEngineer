@@ -17,7 +17,7 @@
             style="width: 200px"
           />
         </Form-item>
-        <Form-item label="活动状态" prop="promotionStatus">
+        <Form-item label="活动state" prop="promotionStatus">
           <Select
             v-model="searchForm.promotionStatus"
             placeholder="Please select"
@@ -25,8 +25,8 @@
             style="width: 200px"
           >
             <Option value="NEW">未开始</Option>
-            <Option value="START">已开始/上架</Option>
-            <Option value="END">已结束/下架</Option>
+            <Option value="START">已开始/On</Option>
+            <Option value="END">已结束/Off</Option>
             <Option value="CLOSE">紧急Close/作废</Option>
           </Select>
         </Form-item>
@@ -51,7 +51,7 @@
       >
         <template slot-scope="{ row }" slot="action">
           <Button type="info" size="small" @click="view(row)" style="margin-right: 5px"
-            >查看</Button
+            >View</Button
           >
           <Button
             type="error"
@@ -89,11 +89,11 @@ export default {
   data() {
     return {
       selectDate: [], //选中的数据
-      loading: true, // 表单加载状态
+      loading: true, // 表单加载state
       searchForm: {
         // search框初始化对象
-        pageNumber: 1, // 当前页数
-        pageSize: 10, // 页面大小
+        pageNumber: 1, // 当前Page数
+        pageSize: 10, // Page面大小
         sort: "createTime",
         order: "desc", // default排序方式
       },
@@ -106,7 +106,7 @@ export default {
           tooltip: true,
         },
         {
-          title: "状态",
+          title: "state",
           key: "promotionStatus",
           width: 110,
           render: (h, params) => {
@@ -148,13 +148,13 @@ export default {
     init() {
       this.getDataList();
     },
-    // 分页 modify页码
+    // 分Page modifyPage码
     changePage(v) {
       this.searchForm.pageNumber = v;
       this.getDataList();
       this.clearSelectAll();
     },
-    // 分页 modify页数
+    // 分Page modifyPage数
     changePageSize(v) {
       this.searchForm.pageNumber = 1;
       this.searchForm.pageSize = v;
@@ -184,7 +184,7 @@ export default {
         }
       });
     },
-    // 查看拼团Goods
+    // View拼团Goods
     view(v) {
       this.$router.push({ name: "pintuan-goods", query: { id: v.id } });
     },

@@ -169,7 +169,7 @@ export default {
     this.initGoods(this.$route.query.id);
   },
   methods: {
-    // 初始化数据，获取Goods详情
+    // 初始化数据，获取Goods Detail
     initGoods(id) {
       getGoodsDetail(id).then((res) => {
         this.goods = res.result;
@@ -210,7 +210,7 @@ export default {
         this.wholesaleData = res.result.wholesaleList;
       });
     },
-    // 预览Goods图片
+    // 预览Goods images
     handleViewGoodsPicture(url) {
       this.previewGoodsPicture = url;
       this.goodsPictureVisible = true;
